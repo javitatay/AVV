@@ -1,0 +1,2714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iluminación Suite — Espectáculos en Directo</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #192A56;
+  --navy2:   #1e3368;
+  --navy3:   #243a73;
+  --yellow:  #F7D794;
+  --yellow2: #f0c96e;
+  --pink:    #EDA6A3;
+  --pink2:   #e58e8b;
+  --white:   #FCFBFB;
+  --bg:      #FCFBFB;
+  --bg2:     #f4f3f0;
+  --bg3:     #edecea;
+  --border:  #dddbd7;
+  --border2: #ccc9c4;
+  --text:    #192A56;
+  --text2:   #4a5a82;
+  --text3:   #8896b5;
+  --shadow:  0 1px 3px rgba(25,42,86,.08), 0 4px 16px rgba(25,42,86,.06);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* ── HEADER ── */
+.top-header {
+  background: var(--navy);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo-area { display: flex; align-items: center; gap: 12px; }
+.logo-icon {
+  width: 30px; height: 30px;
+  background: var(--yellow);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 11px; color: var(--navy);
+  flex-shrink: 0;
+}
+.logo-text { font-weight: 600; font-size: 15px; color: var(--white); letter-spacing: 0.3px; }
+.logo-sub  { font-size: 10px; color: rgba(252,251,251,.45); font-weight: 400; margin-top: 1px; }
+.header-badge {
+  background: rgba(252,251,251,.1);
+  border: 1px solid rgba(252,251,251,.18);
+  border-radius: 5px;
+  padding: 4px 11px;
+  font-size: 11px;
+  color: rgba(252,251,251,.5);
+  font-weight: 500;
+}
+
+/* ── NAV ── */
+.nav-bar {
+  background: var(--navy);
+  border-bottom: 3px solid var(--bg);
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 24px;
+  position: sticky;
+  top: 56px;
+  z-index: 99;
+  gap: 2px;
+}
+.nav-bar::-webkit-scrollbar { display: none; }
+.nav-tab {
+  padding: 14px 15px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(252,251,251,.45);
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+  transition: color .15s, border-color .15s;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-tab:hover { color: rgba(252,251,251,.75); }
+.nav-tab.active { color: var(--white); border-bottom-color: var(--yellow); }
+.nav-num {
+  width: 18px; height: 18px;
+  background: rgba(252,251,251,.08);
+  border-radius: 4px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 600; color: rgba(252,251,251,.4);
+}
+.nav-tab.active .nav-num { background: var(--yellow); color: var(--navy); }
+
+/* ── MAIN ── */
+.main { padding: 32px; max-width: 1380px; margin: 0 auto; }
+.module { display: none; }
+.module.active { display: block; }
+
+/* ── LANDING ── */
+.landing-hero {
+  background: var(--navy);
+  border-radius: 14px;
+  padding: 48px 52px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.landing-hero::before {
+  content: '';
+  position: absolute;
+  right: -60px; top: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(247,215,148,.07);
+}
+.landing-hero::after {
+  content: '';
+  position: absolute;
+  right: 80px; bottom: -80px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(237,166,163,.06);
+}
+.landing-title {
+  font-size: 32px; font-weight: 700;
+  color: var(--white); margin-bottom: 10px;
+  letter-spacing: -0.5px; line-height: 1.2;
+}
+.landing-title span { color: var(--yellow); }
+.landing-desc {
+  font-size: 14px; color: rgba(252,251,251,.6);
+  max-width: 540px; line-height: 1.7; margin-bottom: 24px;
+  font-weight: 400;
+}
+.landing-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill {
+  background: rgba(247,215,148,.15);
+  border: 1px solid rgba(247,215,148,.25);
+  color: var(--yellow);
+  font-size: 11px; font-weight: 600;
+  padding: 4px 12px; border-radius: 20px;
+}
+.pill-pink {
+  background: rgba(237,166,163,.15);
+  border-color: rgba(237,166,163,.25);
+  color: var(--pink);
+}
+
+.landing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.module-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  cursor: pointer;
+  transition: box-shadow .18s, transform .18s, border-color .18s;
+  position: relative;
+  overflow: hidden;
+}
+.module-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+  border-color: var(--border2);
+}
+.module-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  border-radius: 12px 0 0 12px;
+}
+.card-accent-yellow::before { background: var(--yellow); }
+.card-accent-pink::before   { background: var(--pink); }
+.card-accent-navy::before   { background: var(--navy); }
+
+.card-num {
+  font-size: 10px; font-weight: 700; color: var(--text3);
+  letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card-icon { font-size: 26px; margin-bottom: 10px; display: block; }
+.card-title {
+  font-size: 15px; font-weight: 700; color: var(--navy);
+  margin-bottom: 6px;
+}
+.card-desc { font-size: 12px; color: var(--text2); line-height: 1.55; font-weight: 400; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
+.card-tag {
+  font-size: 10px; font-weight: 500;
+  padding: 2px 8px; border-radius: 3px;
+  background: var(--bg2); color: var(--text3);
+}
+.card-arrow {
+  position: absolute; right: 20px; bottom: 20px;
+  font-size: 18px; color: var(--border2);
+  transition: color .15s, transform .15s;
+}
+.module-card:hover .card-arrow { color: var(--navy); transform: translateX(3px); }
+
+/* ── MODULE HEADER ── */
+.back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; color: var(--text3);
+  cursor: pointer; margin-bottom: 22px;
+  padding: 6px 12px; border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--white); transition: all .15s;
+}
+.back-btn:hover { color: var(--navy); border-color: var(--border2); }
+.module-header {
+  display: flex; align-items: flex-start; gap: 16px;
+  margin-bottom: 24px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-icon { font-size: 28px; line-height: 1; margin-top: 2px; }
+.module-title { font-size: 20px; font-weight: 700; margin-bottom: 4px; color: var(--navy); }
+.module-desc  { font-size: 12px; color: var(--text2); margin-bottom: 10px; font-weight: 400; }
+.module-tags  { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  background: var(--bg2); border: 1px solid var(--border);
+  color: var(--text2); font-size: 11px; font-weight: 500;
+  padding: 2px 9px; border-radius: 4px;
+}
+.tag-yellow { background: rgba(247,215,148,.15); border-color: rgba(247,215,148,.4); color: #8a6c1a; }
+.tag-pink   { background: rgba(237,166,163,.15); border-color: rgba(237,166,163,.4); color: #8a3a38; }
+.tag-navy   { background: rgba(25,42,86,.08);    border-color: rgba(25,42,86,.2);   color: var(--navy); }
+
+/* ── PANELS ── */
+.panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 4px rgba(25,42,86,.04);
+}
+.panel-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.6px;
+  text-transform: uppercase; color: var(--text3);
+  margin-bottom: 16px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.panel-subtitle {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.4px;
+  text-transform: uppercase; color: var(--text3);
+  margin: 18px 0 10px;
+}
+
+/* ── GRIDS ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+@media (max-width: 860px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+.section-gap { margin-top: 18px; }
+
+/* ── FORMS ── */
+.calc-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.calc-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { font-size: 11px; font-weight: 600; color: var(--text3); }
+input[type=number], select {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 6px; color: var(--text);
+  padding: 8px 11px; font-size: 13px;
+  font-family: 'Poppins', sans-serif; font-weight: 400;
+  width: 100%; outline: none; transition: border-color .15s;
+}
+input:focus, select:focus { border-color: var(--navy); }
+.btn {
+  background: var(--navy); color: var(--white); border: none;
+  border-radius: 7px; padding: 9px 20px;
+  font-family: 'Poppins', sans-serif; font-weight: 600;
+  font-size: 12px; cursor: pointer; width: 100%; margin-top: 8px;
+  transition: opacity .15s;
+}
+.btn:hover { opacity: .85; }
+.btn-secondary { background: var(--bg2); border: 1px solid var(--border); color: var(--navy); }
+.btn-green  { background: #2a9d6f; }
+.btn-orange { background: #c4692c; }
+
+/* ── RESULTS ── */
+.result-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.result-grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+.result-box {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 13px; text-align: center;
+}
+.result-box.green  { border-color: rgba(42,157,111,.3); background: rgba(42,157,111,.06); }
+.result-box.orange { border-color: rgba(196,105,44,.3); background: rgba(196,105,44,.06); }
+.result-box.yellow { border-color: rgba(247,215,148,.5); background: rgba(247,215,148,.1); }
+.result-box.purple { border-color: rgba(139,108,247,.3); background: rgba(139,108,247,.06); }
+.result-box.red    { border-color: rgba(192,57,43,.3);  background: rgba(192,57,43,.06); }
+.result-val {
+  font-size: 18px; font-weight: 700; color: var(--navy);
+  margin-bottom: 3px; font-variant-numeric: tabular-nums;
+}
+.result-box.green  .result-val { color: #1e7a52; }
+.result-box.orange .result-val { color: #a0541d; }
+.result-box.yellow .result-val { color: #8a6c1a; }
+.result-box.purple .result-val { color: #5c3fbf; }
+.result-box.red    .result-val { color: #b02a2a; }
+.result-label { font-size: 10px; font-weight: 600; color: var(--text3); }
+
+/* ── TABLES ── */
+.comp-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.comp-table th {
+  background: var(--bg2); color: var(--text3);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.4px;
+  text-transform: uppercase; padding: 9px 12px;
+  text-align: left; border-bottom: 1px solid var(--border);
+}
+.comp-table td {
+  padding: 9px 12px; border-bottom: 1px solid var(--border);
+  color: var(--text2); vertical-align: middle;
+}
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table tr:hover td { background: var(--bg2); }
+
+/* ── BADGES ── */
+.badge {
+  display: inline-block; font-size: 10px; font-weight: 600;
+  padding: 2px 8px; border-radius: 4px;
+}
+.badge-blue   { background: rgba(25,42,86,.08);  border: 1px solid rgba(25,42,86,.2);  color: var(--navy); }
+.badge-green  { background: rgba(42,157,111,.1); border: 1px solid rgba(42,157,111,.25); color: #1e7a52; }
+.badge-orange { background: rgba(196,105,44,.1); border: 1px solid rgba(196,105,44,.25); color: #8a4416; }
+.badge-yellow { background: rgba(247,215,148,.2); border: 1px solid rgba(247,215,148,.6); color: #6b5010; }
+.badge-purple { background: rgba(92,63,191,.08); border: 1px solid rgba(92,63,191,.2);  color: #3d2a8c; }
+.badge-red    { background: rgba(176,42,42,.08); border: 1px solid rgba(176,42,42,.2);  color: #8a1a1a; }
+.badge-gray   { background: var(--bg2); border: 1px solid var(--border); color: var(--text3); }
+
+/* ── INNER TABS ── */
+.inner-tabs { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
+.inner-tab {
+  padding: 7px 14px; font-size: 12px; font-weight: 500;
+  color: var(--text3); cursor: pointer;
+  border: 1px solid var(--border); border-radius: 6px;
+  background: var(--white); transition: all .15s;
+}
+.inner-tab:hover { color: var(--navy); border-color: var(--border2); }
+.inner-tab.active {
+  background: var(--navy); border-color: var(--navy);
+  color: var(--white);
+}
+.inner-pane { display: none; }
+.inner-pane.active { display: block; }
+
+/* ── INFO CARDS ── */
+.info-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 18px;
+}
+.info-card-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+.info-card p { font-size: 12.5px; color: var(--text2); line-height: 1.65; font-weight: 400; }
+
+/* ── FORMULA ── */
+.formula {
+  background: rgba(25,42,86,.05); border: 1px solid rgba(25,42,86,.15);
+  border-radius: 6px; padding: 10px 14px;
+  font-size: 12px; color: var(--navy); margin-top: 10px; font-weight: 600;
+}
+
+/* ── NOTES ── */
+.note {
+  background: rgba(247,215,148,.12); border: 1px solid rgba(247,215,148,.5);
+  border-radius: 7px; padding: 11px 14px;
+  font-size: 12px; color: var(--text); line-height: 1.6;
+  margin-top: 12px; font-weight: 400;
+}
+.note-orange { background: rgba(237,166,163,.1); border-color: rgba(237,166,163,.5); }
+.note-green  { background: rgba(42,157,111,.07); border-color: rgba(42,157,111,.3); }
+.note-yellow { background: rgba(247,215,148,.12); border-color: rgba(247,215,148,.5); }
+.note-purple { background: rgba(92,63,191,.06);  border-color: rgba(92,63,191,.2); }
+.note-red    { background: rgba(176,42,42,.06);  border-color: rgba(176,42,42,.2); }
+
+/* ── DIAGRAMS ── */
+.diagram-wrap {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 16px; background: var(--bg2);
+  border-radius: 8px; border: 1px solid var(--border);
+}
+.diagram-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.diag-node { padding: 7px 13px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.diag-node.source  { background: rgba(25,42,86,.1);   border: 1px solid rgba(25,42,86,.25);   color: var(--navy); }
+.diag-node.process { background: rgba(247,215,148,.2); border: 1px solid rgba(247,215,148,.5); color: #6b5010; }
+.diag-node.output  { background: rgba(42,157,111,.1);  border: 1px solid rgba(42,157,111,.3);  color: #1e7a52; }
+.diag-node.danger  { background: rgba(176,42,42,.08);  border: 1px solid rgba(176,42,42,.2);   color: #8a1a1a; }
+.diag-arrow { font-size: 14px; color: var(--text3); }
+
+/* ── KELVIN BAR ── */
+.kelvin-bar {
+  height: 28px; border-radius: 8px; margin: 12px 0;
+  background: linear-gradient(to right, #ff8c1a, #ffbb44, #ffeebb, #ffffff, #cce0ff, #99c2ff, #6699ff);
+  position: relative; border: 1px solid var(--border);
+}
+.kelvin-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); font-weight: 600; margin-top: 4px; }
+
+/* ── DMX CHANNEL VIS ── */
+.dmx-channels {
+  display: flex; gap: 4px; flex-wrap: wrap;
+  padding: 14px; background: var(--navy); border-radius: 10px;
+}
+.dmx-ch {
+  width: 38px; height: 38px; border-radius: 5px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  font-size: 8px; font-weight: 600; cursor: default;
+  transition: transform .1s;
+}
+.dmx-ch:hover { transform: scale(1.1); }
+.dmx-ch.used   { background: rgba(247,215,148,.25); border: 1px solid rgba(247,215,148,.4); color: var(--yellow); }
+.dmx-ch.free   { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); color: rgba(255,255,255,.2); }
+.dmx-ch.active { background: var(--yellow); border: 1px solid var(--yellow2); color: var(--navy); }
+
+/* ── SPECTRUM VIS ── */
+.spectrum-bar {
+  height: 40px; border-radius: 8px; margin: 10px 0;
+  background: linear-gradient(to right, #8b00ff 0%, #4b0082 10%, #0000ff 20%, #00c0ff 35%, #00ff00 50%, #ffff00 65%, #ff7f00 80%, #ff0000 100%);
+  border: 1px solid var(--border); position: relative;
+}
+.spectrum-nm { display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); font-weight: 600; margin-top: 3px; }
+
+/* ── LIGHT BEAM VIS ── */
+.beam-demo {
+  background: #0a0f1e; border-radius: 10px; padding: 20px;
+  text-align: center; position: relative; overflow: hidden;
+  min-height: 160px; border: 1px solid rgba(255,255,255,.06);
+  display: flex; align-items: center; justify-content: center; gap: 32px;
+}
+
+/* ── CANVAS ── */
+canvas { border-radius: 8px; }
+
+/* ── FOCO CARDS ── */
+.foco-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 14px; }
+.foco-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px; position: relative;
+}
+.foco-card .foco-icon { font-size: 32px; margin-bottom: 10px; }
+.foco-card .foco-name { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.foco-card .foco-desc { font-size: 11.5px; color: var(--text2); line-height: 1.6; }
+.foco-card .foco-type {
+  position: absolute; top: 14px; right: 14px;
+  font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 3px;
+}
+.foco-hard  { background: rgba(25,42,86,.08); color: var(--navy); border: 1px solid rgba(25,42,86,.15); }
+.foco-soft  { background: rgba(42,157,111,.1); color: #1e7a52; border: 1px solid rgba(42,157,111,.25); }
+.foco-beam  { background: rgba(247,215,148,.2); color: #6b5010; border: 1px solid rgba(247,215,148,.5); }
+.foco-led   { background: rgba(92,63,191,.08); color: #3d2a8c; border: 1px solid rgba(92,63,191,.2); }
+
+/* ── ATTR CARDS ── */
+.attr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 12px; }
+.attr-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 9px; padding: 16px;
+}
+.attr-ch { font-size: 10px; font-weight: 700; color: var(--text3); letter-spacing: 0.5px; margin-bottom: 6px; }
+.attr-name { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+.attr-desc { font-size: 11.5px; color: var(--text2); line-height: 1.6; }
+
+/* ── RIGGING ── */
+.rigging-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 14px; }
+.rigging-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px;
+  border-left: 4px solid var(--yellow);
+}
+.rigging-card.danger-border { border-left-color: var(--pink); }
+.rigging-card.green-border  { border-left-color: #2a9d6f; }
+.rigging-icon { font-size: 26px; margin-bottom: 8px; }
+.rigging-name { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.rigging-desc { font-size: 11.5px; color: var(--text2); line-height: 1.6; }
+
+
+/* ── FADE ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+.module.active > * { animation: fadeUp .22s ease both; }
+.module.active > *:nth-child(2) { animation-delay: .05s; }
+.module.active > *:nth-child(3) { animation-delay: .09s; }
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="logo-area">
+    <div class="logo-icon">IS</div>
+    <div>
+      <div class="logo-text">Iluminación Suite</div>
+      <div class="logo-sub">Espectáculos en Directo · UD 4 · 5</div>
+    </div>
+  </div>
+  <div class="header-badge">v1.0 · 8 módulos</div>
+</header>
+
+<nav class="nav-bar" id="navBar">
+  <div class="nav-tab active" data-module="m0"><span class="nav-num">★</span> Inicio</div>
+  <div class="nav-tab" data-module="m1"><span class="nav-num">1</span> Fundamentos de la Luz</div>
+  <div class="nav-tab" data-module="m2"><span class="nav-num">2</span> Magnitudes &amp; Temp. Color</div>
+  <div class="nav-tab" data-module="m3"><span class="nav-num">3</span> Fuentes de Luz</div>
+  <div class="nav-tab" data-module="m4"><span class="nav-num">4</span> Tipos de Focos</div>
+  <div class="nav-tab" data-module="m5"><span class="nav-num">5</span> Cabezas Móviles</div>
+  <div class="nav-tab" data-module="m6"><span class="nav-num">6</span> Atributos &amp; Canales</div>
+  <div class="nav-tab" data-module="m7"><span class="nav-num">7</span> Rigging &amp; Seguridad</div>
+  <div class="nav-tab" data-module="m8"><span class="nav-num">8</span> Protocolo DMX</div>
+</nav>
+
+<main class="main">
+
+<!-- ═══ LANDING ═══ -->
+<section class="module active" id="m0">
+  <div class="landing-hero">
+    <div class="landing-title">Bienvenido a<br><span>Iluminación Suite</span></div>
+    <div class="landing-desc">Herramienta de referencia para iluminación en espectáculos en directo. Contiene teoría, calculadoras interactivas, tablas de referencia y simuladores para las unidades didácticas 4 y 5.</div>
+    <div class="landing-pills">
+      <span class="pill">UD4 — Luz, Focos y Atributos</span>
+      <span class="pill pill-pink">UD5 — Rigging, DMX y Programación</span>
+    </div>
+  </div>
+
+  <div class="landing-grid">
+    <div class="module-card card-accent-yellow" onclick="goTo('m1')">
+      <div class="card-num">Módulo 01 · UD4</div>
+      <span class="card-icon">💡</span>
+      <div class="card-title">Fundamentos de la Luz</div>
+      <div class="card-desc">Qué es la luz, intensidad, calidad (dura/suave), dirección, espectro visible y fenómenos de reflexión y refracción.</div>
+      <div class="card-tags">
+        <span class="card-tag">Espectro visible</span><span class="card-tag">Reflexión</span>
+        <span class="card-tag">Refracción</span><span class="card-tag">Calidad</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-pink" onclick="goTo('m2')">
+      <div class="card-num">Módulo 02 · UD4</div>
+      <span class="card-icon">🌡️</span>
+      <div class="card-title">Magnitudes &amp; Temperatura de Color</div>
+      <div class="card-desc">Lúmenes, candelas, lux, dimmer, temperatura de color en ºKelvin y calculadora de la ley inversa del cuadrado.</div>
+      <div class="card-tags">
+        <span class="card-tag">Lúmenes · Lux · Candela</span>
+        <span class="card-tag">ºKelvin</span><span class="card-tag">Ley inv. cuadrado</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-yellow" onclick="goTo('m3')">
+      <div class="card-num">Módulo 03 · UD4</div>
+      <span class="card-icon">🔆</span>
+      <div class="card-title">Fuentes de Luz</div>
+      <div class="card-desc">Incandescente, halógena, dicroica, fluorescente, descarga HMI y LED. Comparativa de rendimiento, temperatura y vida útil.</div>
+      <div class="card-tags">
+        <span class="card-tag">Incandescente</span><span class="card-tag">Halógena</span>
+        <span class="card-tag">LED</span><span class="card-tag">HMI</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-navy" onclick="goTo('m4')">
+      <div class="card-num">Módulo 04 · UD4</div>
+      <span class="card-icon">🎭</span>
+      <div class="card-title">Tipos de Focos</div>
+      <div class="card-desc">PAR, PAR LED, PC Plano Convexo, Fresnel, Recortes (Profile), Cegadoras y Pixel Bar. Tabla comparativa completa.</div>
+      <div class="card-tags">
+        <span class="card-tag">PAR · PC · Fresnel</span>
+        <span class="card-tag">Recortes</span><span class="card-tag">Pixel Bar</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-pink" onclick="goTo('m5')">
+      <div class="card-num">Módulo 05 · UD4</div>
+      <span class="card-icon">🤖</span>
+      <div class="card-title">Cabezas Móviles</div>
+      <div class="card-desc">Wash, Spot y Beam. Diferencias de haz, ángulo, funciones y usos en escena. Simulador visual de tipos de haz.</div>
+      <div class="card-tags">
+        <span class="card-tag">Wash</span><span class="card-tag">Spot</span>
+        <span class="card-tag">Beam</span><span class="card-tag">Pan · Tilt</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-yellow" onclick="goTo('m6')">
+      <div class="card-num">Módulo 06 · UD4</div>
+      <span class="card-icon">🎛️</span>
+      <div class="card-title">Atributos &amp; Canales</div>
+      <div class="card-desc">Dimmer, Pan/Tilt, Color, Zoom, Iris, Focus, Frost, Prisma y Gobo. Qué son y para qué sirven en espectáculos.</div>
+      <div class="card-tags">
+        <span class="card-tag">Dimmer</span><span class="card-tag">Gobo</span>
+        <span class="card-tag">Prisma</span><span class="card-tag">Frost</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-navy" onclick="goTo('m7')">
+      <div class="card-num">Módulo 07 · UD5</div>
+      <span class="card-icon">🏗️</span>
+      <div class="card-title">Rigging &amp; Seguridad</div>
+      <div class="card-desc">Trusses, torres, garras, safety, polipastos, acometida eléctrica, corriente trifásica y distribuidores de corriente.</div>
+      <div class="card-tags">
+        <span class="card-tag">Trusses</span><span class="card-tag">Rigging</span>
+        <span class="card-tag">Acometida</span><span class="card-tag">Trifásica</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-pink" onclick="goTo('m8')">
+      <div class="card-num">Módulo 08 · UD5</div>
+      <span class="card-icon">📡</span>
+      <div class="card-title">Protocolo DMX</div>
+      <div class="card-desc">DMX-512, canales, address, ID, fixture, conexionado, librerías, splitters, nodos, cuadro dimmers y ART-NET.</div>
+      <div class="card-tags">
+        <span class="card-tag">DMX-512</span><span class="card-tag">Address</span>
+        <span class="card-tag">Fixture</span><span class="card-tag">ART-NET</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ MÓDULO 1 — FUNDAMENTOS DE LA LUZ ═══ -->
+<section class="module" id="m1">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+  <div class="module-header">
+    <div class="module-icon">💡</div>
+    <div>
+      <div class="module-title">Fundamentos de la Luz</div>
+      <div class="module-desc">Qué es la luz, intensidad, calidad, dirección, espectro visible, reflexión y refracción — UD4</div>
+      <div class="module-tags">
+        <span class="tag">Espectro 380–780nm</span><span class="tag tag-yellow">Reflexión</span>
+        <span class="tag tag-pink">Refracción</span><span class="tag">Calidad dura/suave</span><span class="tag">Dirección</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="panel">
+      <div class="panel-title">¿Qué es la Luz?</div>
+      <div class="info-card">
+        <div class="info-card-title">Definición física</div>
+        <p>La luz es una forma de radiación electromagnética que el ojo humano puede percibir. Se comporta simultáneamente como onda y como partícula (fotones), y se propaga en línea recta hasta interactuar con una superficie a <strong>300.000 km/s</strong>.</p>
+      </div>
+      <div class="note" style="margin-top:14px;">
+        <strong>💡 En luminotecnia</strong> la entendemos como energía visible que no solo permite ver, sino que <em>comunica</em>: sensación, volumen, distancia, ritmo y ambiente. La luz controla el estado emocional del público.
+      </div>
+      <div class="section-gap"></div>
+      <div class="info-card">
+        <div class="info-card-title">Espectro visible</div>
+        <p>El ojo humano detecta la porción del espectro electromagnético entre <strong>380 nm</strong> (violeta) y <strong>780 nm</strong> (rojo). Cada longitud de onda se percibe como un color.</p>
+      </div>
+      <div class="spectrum-bar" style="margin-top:14px;"></div>
+      <div class="spectrum-nm">
+        <span>380 nm (violeta)</span>
+        <span>450 nm</span>
+        <span>530 nm</span>
+        <span>590 nm</span>
+        <span>650 nm</span>
+        <span>780 nm (rojo)</span>
+      </div>
+      <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="badge" style="background:#8b00ff22;border:1px solid #8b00ff44;color:#5200aa;">Violeta 380–450</span>
+        <span class="badge" style="background:#0000ff22;border:1px solid #0000ff44;color:#0000aa;">Azul 450–495</span>
+        <span class="badge" style="background:#00b00022;border:1px solid #00b00044;color:#005500;">Verde 495–570</span>
+        <span class="badge" style="background:#ffff0022;border:1px solid #cccc0044;color:#888800;">Amarillo 570–590</span>
+        <span class="badge" style="background:#ff800022;border:1px solid #ff800044;color:#994400;">Naranja 590–620</span>
+        <span class="badge" style="background:#ff000022;border:1px solid #ff000044;color:#aa0000;">Rojo 620–780</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Intensidad</div>
+      <div class="info-card">
+        <div class="info-card-title">¿Qué es la intensidad?</div>
+        <p>Es la cantidad de luz necesaria para obtener el efecto deseado, o la cantidad real de energía lumínica emitida o recibida. Se puede controlar mediante:</p>
+      </div>
+      <div style="margin-top:12px; display:flex; flex-direction:column; gap:8px;">
+        <div class="diag-node process" style="border-radius:6px;">⚡ Potencia propia del foco</div>
+        <div class="diag-node source" style="border-radius:6px;">🎨 Filtros de color (reducen intensidad)</div>
+        <div class="diag-node output" style="border-radius:6px;">🎚️ Dimmerizando intensidad (0–100%)</div>
+      </div>
+      <div class="panel-subtitle">Factores que afectan la intensidad</div>
+      <table class="comp-table">
+        <thead><tr><th>Factor</th><th>Efecto</th></tr></thead>
+        <tbody>
+          <tr><td>🔭 Distancia</td><td>Si duplicas la distancia, recibes <strong>¼ de luz</strong> (ley inv. cuadrado)</td></tr>
+          <tr><td>🔍 Óptica</td><td>Apertura amplia = menos intensidad en un punto, más dispersión</td></tr>
+          <tr><td>🎨 Colores</td><td>Ciertos filtros reducen la intensidad significativamente</td></tr>
+        </tbody>
+      </table>
+      <div class="formula">E = I / d²   →   Iluminancia (lux) = Candelas / distancia²</div>
+    </div>
+  </div>
+
+  <div class="grid-2 section-gap">
+    <div class="panel">
+      <div class="panel-title">Calidad (Tipo) de Luz</div>
+      <div class="grid-2" style="gap:12px;">
+        <div style="background:rgba(25,42,86,.06); border:1px solid rgba(25,42,86,.15); border-radius:8px; padding:16px;">
+          <div style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:8px;">☀️ Luz Dura</div>
+          <p style="font-size:12px; color:var(--text2); line-height:1.65;">Proviene de una fuente pequeña o concentrada. Produce sombras nítidas y contrastes fuertes.</p>
+          <div style="margin-top:10px; display:flex; flex-direction:column; gap:4px;">
+            <div class="badge badge-blue">PAR</div>
+            <div class="badge badge-blue" style="margin-top:4px;">Recortes (Profiles)</div>
+            <div class="badge badge-blue" style="margin-top:4px;">Cabezas Móviles Beam</div>
+          </div>
+        </div>
+        <div style="background:rgba(42,157,111,.05); border:1px solid rgba(42,157,111,.2); border-radius:8px; padding:16px;">
+          <div style="font-size:13px; font-weight:700; color:#1e7a52; margin-bottom:8px;">🌥️ Luz Suave</div>
+          <p style="font-size:12px; color:var(--text2); line-height:1.65;">Proviene de una fuente grande o difusa. Sombras blandas, bordes suaves, ambiente envolvente.</p>
+          <div style="margin-top:10px; display:flex; flex-direction:column; gap:4px;">
+            <div class="badge badge-green">Fresnel</div>
+            <div class="badge badge-green" style="margin-top:4px;">PC con lente difusa</div>
+            <div class="badge badge-green" style="margin-top:4px;">Cabezas Móviles Wash</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Dirección de la Luz</div>
+      <p style="font-size:12.5px; color:var(--text2); margin-bottom:14px; line-height:1.65;">Según el ángulo en que incide la luz podemos expresar e iluminar de diferentes formas. La dirección controla cómo se modelan los volúmenes y los contrastes.</p>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(--bg2); border-radius:7px; border:1px solid var(--border);">
+          <span style="font-size:18px;">⬅️</span>
+          <div><div style="font-size:12px;font-weight:700;color:var(--navy);">Frontal</div><div style="font-size:11px;color:var(--text3);">Ilumina de frente, elimina sombras, plana.</div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(--bg2); border-radius:7px; border:1px solid var(--border);">
+          <span style="font-size:18px;">➡️</span>
+          <div><div style="font-size:12px;font-weight:700;color:var(--navy);">Contraluz</div><div style="font-size:11px;color:var(--text3);">Desde atrás, separa del fondo, crea silueta.</div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(--bg2); border-radius:7px; border:1px solid var(--border);">
+          <span style="font-size:18px;">↔️</span>
+          <div><div style="font-size:12px;font-weight:700;color:var(--navy);">Lateral</div><div style="font-size:11px;color:var(--text3);">Desde los lados, modela volumen y textura.</div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(--bg2); border-radius:7px; border:1px solid var(--border);">
+          <span style="font-size:18px;">⬇️</span>
+          <div><div style="font-size:12px;font-weight:700;color:var(--navy);">Cenital (arriba)</div><div style="font-size:11px;color:var(--text3);">Desde arriba, sombras pronunciadas, dramático.</div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(--bg2); border-radius:7px; border:1px solid var(--border);">
+          <span style="font-size:18px;">⬆️</span>
+          <div><div style="font-size:12px;font-weight:700;color:var(--navy);">Nadir (abajo)</div><div style="font-size:11px;color:var(--text3);">Desde el suelo hacia arriba, efecto inquietante.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel section-gap">
+    <div class="panel-title">Reflexión y Refracción</div>
+    <div class="grid-2">
+      <div>
+        <div class="info-card">
+          <div class="info-card-title">🪞 Reflexión</div>
+          <p>Fenómeno por el cual la luz rebota sobre una superficie cambiando de dirección sin alterar su velocidad.</p>
+          <div style="margin-top:12px; display:flex; flex-direction:column; gap:8px;">
+            <div style="padding:10px; background:white; border:1px solid var(--border); border-radius:6px;">
+              <div style="font-size:11.5px; font-weight:700; color:var(--navy); margin-bottom:3px;">Especular</div>
+              <div style="font-size:11px; color:var(--text2);">Como en un espejo. La luz rebota ordenadamente. <strong>Ángulo de incidencia = ángulo de reflexión.</strong></div>
+            </div>
+            <div style="padding:10px; background:white; border:1px solid var(--border); border-radius:6px;">
+              <div style="font-size:11.5px; font-weight:700; color:var(--navy); margin-bottom:3px;">Difusa</div>
+              <div style="font-size:11px; color:var(--text2);">La luz se dispersa en múltiples direcciones. No se mantiene una dirección clara.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="info-card">
+          <div class="info-card-title">🔬 Refracción</div>
+          <p>Cambio de dirección y velocidad que sufre la luz al pasar de un medio a otro (aire → vidrio, aire → agua). <strong>La óptica de los proyectores está basada en este principio.</strong></p>
+          <div style="margin-top:12px; display:flex; flex-direction:column; gap:8px;">
+            <div style="padding:10px; background:white; border:1px solid var(--border); border-radius:6px;">
+              <div style="font-size:11.5px; font-weight:700; color:var(--navy); margin-bottom:3px;">Lente convexa (+)</div>
+              <div style="font-size:11px; color:var(--text2);">Concentra la luz → efecto Spot. Empleada en recortes y PAR.</div>
+            </div>
+            <div style="padding:10px; background:white; border:1px solid var(--border); border-radius:6px;">
+              <div style="font-size:11.5px; font-weight:700; color:var(--navy); margin-bottom:3px;">Lente cóncava (−)</div>
+              <div style="font-size:11px; color:var(--text2);">Dispersa la luz → efecto Wash. Empleada en Fresnel y PCs.</div>
+            </div>
+            <div style="padding:10px; background:white; border:1px solid var(--border); border-radius:6px;">
+              <div style="font-size:11.5px; font-weight:700; color:var(--navy); margin-bottom:3px;">Primas / Focos-Zoom</div>
+              <div style="font-size:11px; color:var(--text2);">Dividen o ajustan el haz con precisión controlando la nitidez.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ MÓDULO 2 — MAGNITUDES & TEMPERATURA ═══ -->
+<section class="module" id="m2">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+  <div class="module-header">
+    <div class="module-icon">🌡️</div>
+    <div>
+      <div class="module-title">Magnitudes &amp; Temperatura de Color</div>
+      <div class="module-desc">Lúmenes, candelas, lux, dimmer, temperatura en ºKelvin y calculadora de la ley inversa del cuadrado — UD4</div>
+      <div class="module-tags">
+        <span class="tag">Lúmenes (lm)</span><span class="tag">Candela (cd)</span>
+        <span class="tag">Lux (lx)</span><span class="tag tag-yellow">ºKelvin</span><span class="tag">Ley inv. cuadrado</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="panel">
+      <div class="panel-title">Magnitudes fotométricas</div>
+      <table class="comp-table">
+        <thead>
+          <tr><th>Magnitud</th><th>Símbolo</th><th>¿Qué mide?</th><th>Unidad</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lumen</strong></td>
+            <td><span class="badge badge-yellow">lm</span></td>
+            <td>Flujo luminoso total emitido por una fuente (mide potencia)</td>
+            <td>lm</td>
+          </tr>
+          <tr>
+            <td><strong>Candela</strong></td>
+            <td><span class="badge badge-blue">cd</span></td>
+            <td>Intensidad luminosa en una dirección concreta (flujo / ángulo sólido)</td>
+            <td>cd</td>
+          </tr>
+          <tr>
+            <td><strong>Lux</strong></td>
+            <td><span class="badge badge-green">lx</span></td>
+            <td>Iluminancia — luz que incide sobre 1 m² de superficie</td>
+            <td>lx = lm/m²</td>
+          </tr>
+          <tr>
+            <td><strong>% Dimmer</strong></td>
+            <td><span class="badge badge-gray">%</span></td>
+            <td>Nivel de regulación de potencia / señal escénica</td>
+            <td>0–100%</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="formula">Lux (lx) = Lúmenes (lm) / Área (m²)   →   E = Φ / A</div>
+      <div class="note" style="margin-top:14px;">
+        <strong>Analogía:</strong> Los lúmenes son cuánta agua sale de un grifo total. Los lux son cuán mojado queda 1 m² de suelo dependiendo de la distancia y el área iluminada.
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Calculadora — Ley Inversa del Cuadrado</div>
+      <div class="info-card" style="margin-bottom:14px;">
+        <div class="info-card-title">E = I / d²</div>
+        <p>Si un foco emite una intensidad I (candelas) y está a distancia d, la iluminancia en esa superficie es E (lux). Si duplicas la distancia, recibes ¼ de la luz.</p>
+      </div>
+      <div class="calc-row">
+        <div class="field">
+          <label>Lúmenes del foco (lm)</label>
+          <input type="number" id="lic_lm" value="10000" min="1">
+        </div>
+        <div class="field">
+          <label>Apertura del haz (m²)</label>
+          <input type="number" id="lic_area" value="1" min="0.01" step="0.1">
+        </div>
+      </div>
+      <div class="calc-row">
+        <div class="field">
+          <label>Distancia (m)</label>
+          <input type="number" id="lic_d1" value="2" min="0.1" step="0.5">
+        </div>
+        <div class="field">
+          <label>Distancia doble (m)</label>
+          <input type="number" id="lic_d2" value="4" min="0.1" step="0.5">
+        </div>
+      </div>
+      <button class="btn" onclick="calcLIC()">Calcular Iluminancia</button>
+      <div id="lic_result" style="display:none; margin-top:14px;">
+        <div class="result-grid">
+          <div class="result-box green"><div class="result-val" id="lic_e1">—</div><div class="result-label">Lux a d1</div></div>
+          <div class="result-box orange"><div class="result-val" id="lic_e2">—</div><div class="result-label">Lux a d2</div></div>
+          <div class="result-box yellow"><div class="result-val" id="lic_ratio">—</div><div class="result-label">Factor reducción</div></div>
+        </div>
+        <div class="note note-green" style="margin-top:12px;" id="lic_note"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel section-gap">
+    <div class="panel-title">Temperatura de Color (ºKelvin)</div>
+    <div class="info-card" style="margin-bottom:16px;">
+      <div class="info-card-title">¿Qué es la temperatura de color?</div>
+      <p>Mide la dominante cromática de una fuente de luz según su tonalidad cálida (amarilla/rojiza) o fría (azulada). <strong>No es la temperatura física</strong> del foco, sino una referencia basada en el color que emitiría un cuerpo negro al calentarse a esa temperatura.</p>
+    </div>
+    <div class="kelvin-bar"></div>
+    <div class="kelvin-labels">
+      <span>1800K</span><span>2700K</span><span>3200K</span><span>4500K</span><span>5600K</span><span>6500K</span><span>9000K</span>
+    </div>
+    <table class="comp-table" style="margin-top:16px;">
+      <thead><tr><th>Rango (ºK)</th><th>Apariencia</th><th>Referencia</th><th>Uso en espectáculos</th></tr></thead>
+      <tbody>
+        <tr><td>1800–2000 K</td><td><span class="badge" style="background:#ff8c1a22;color:#993300;border:1px solid #ff8c1a44;">Llama de vela</span></td><td>Velas, fuego</td><td>Efectos de fuego, atmósferas íntimas</td></tr>
+        <tr><td>2700–3000 K</td><td><span class="badge" style="background:#ffbb4422;color:#664400;border:1px solid #ffbb4444;">Muy cálida</span></td><td>Bombilla incandescente</td><td>Ambiente romántico, teatro clásico</td></tr>
+        <tr><td>3200 K</td><td><span class="badge" style="background:#ffd27022;color:#664400;border:1px solid #ffd27044;">Cálida</span></td><td>Halógena estudio</td><td>Estándar TV/cine, focos convencionales</td></tr>
+        <tr><td>4000–5000 K</td><td><span class="badge" style="background:#ffeebb22;color:#444400;border:1px solid #ffeebb66;">Neutra</span></td><td>Luz matutina</td><td>Iluminación general, oficinas</td></tr>
+        <tr><td>5600 K</td><td><span class="badge" style="background:#ffffff33;color:#333333;border:1px solid #cccccc;">Luz de día</span></td><td>Estándar daylight</td><td>Focos HMI, rodajes exteriores</td></tr>
+        <tr><td>6500–7000 K</td><td><span class="badge" style="background:#cce0ff22;color:#003399;border:1px solid #99c2ff44;">Fría / azulada</span></td><td>Cielo nublado</td><td>Efectos fríos, escenas dramáticas</td></tr>
+        <tr><td>8000–9000 K</td><td><span class="badge" style="background:#99c2ff22;color:#003399;border:1px solid #6699ff44;">Muy fría</span></td><td>Cielo azul</td><td>Efectos futuristas, sci-fi</td></tr>
+      </tbody>
+    </table>
+    <div class="note note-orange" style="margin-top:14px;">
+      <strong>⚠️ Dimmer y temperatura:</strong> En focos halógenos, bajar el dimmer hace más cálida la luz (el filamento se enfría → color más anaranjado). En focos LED, el color se mantiene estable porque el control es electrónico.
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ MÓDULO 3 — FUENTES DE LUZ ═══ -->
+<section class="module" id="m3">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+  <div class="module-header">
+    <div class="module-icon">🔆</div>
+    <div>
+      <div class="module-title">Fuentes de Luz</div>
+      <div class="module-desc">Incandescente, halógena, dicroica, fluorescente, descarga HMI y LED — UD4</div>
+      <div class="module-tags">
+        <span class="tag">Incandescente</span><span class="tag">Halógena</span><span class="tag">HMI</span>
+        <span class="tag tag-yellow">LED</span><span class="tag">lm/W</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-tabs" id="tabs_fuentes">
+    <div class="inner-tab active" onclick="switchTab('fuentes','incandescente')">Incandescente</div>
+    <div class="inner-tab" onclick="switchTab('fuentes','halogena')">Halógena</div>
+    <div class="inner-tab" onclick="switchTab('fuentes','dicroica')">Dicroica</div>
+    <div class="inner-tab" onclick="switchTab('fuentes','fluorescente')">Fluorescente</div>
+    <div class="inner-tab" onclick="switchTab('fuentes','descarga')">Descarga HMI</div>
+    <div class="inner-tab" onclick="switchTab('fuentes','led')">💡 LED</div>
+    <div class="inner-tab" onclick="switchTab('fuentes','comparativa')">📊 Comparativa</div>
+  </div>
+
+  <div class="inner-pane active" id="fuentes_incandescente">
+    <div class="grid-2">
+      <div class="panel"><div class="panel-title">Lámpara Incandescente</div>
+        <div class="info-card"><div class="info-card-title">Principio de funcionamiento</div>
+          <p>Produce luz al calentarse un filamento —generalmente de <strong>wolframio</strong>— hasta ponerse incandescente. Al pasar la corriente, el filamento alcanza temperaturas de hasta 2.500 ºC y emite luz por incandescencia.</p>
+        </div>
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.4);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Luz muy cálida: <strong>2700–3200 K</strong></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.4);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Encendido instantáneo</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(237,166,163,.1);border:1px solid rgba(237,166,163,.4);border-radius:6px;">
+            <span>❌</span><div style="font-size:12px;color:var(--text2);">El filamento se deteriora con el tiempo (750–2000 h)</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(237,166,163,.1);border:1px solid rgba(237,166,163,.4);border-radius:6px;">
+            <span>❌</span><div style="font-size:12px;color:var(--text2);">Muy bajo rendimiento: <strong>10–15 lm/W</strong> (90% se pierde en calor)</div>
+          </div>
+        </div>
+        <div class="note note-orange" style="margin-top:12px;">Prácticamente en desuso en luminotecnia moderna.</div>
+      </div>
+      <div class="panel"><div class="panel-title">Características técnicas</div>
+        <div class="result-grid" style="margin-bottom:14px;">
+          <div class="result-box"><div class="result-val">10–15</div><div class="result-label">lm/W rendimiento</div></div>
+          <div class="result-box yellow"><div class="result-val">2700–3000</div><div class="result-label">ºK color</div></div>
+          <div class="result-box red"><div class="result-val">750–2000</div><div class="result-label">Horas vida útil</div></div>
+        </div>
+        <canvas id="c_incan" width="380" height="120" style="width:100%;background:var(--navy);"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="fuentes_halogena">
+    <div class="grid-2">
+      <div class="panel"><div class="panel-title">Lámpara Halógena / Halogenuros</div>
+        <div class="info-card"><div class="info-card-title">Evolución de la incandescente</div>
+          <p>Filamento de wolframio + <strong>gas halógeno</strong> en el interior. El halógeno crea un ciclo que regenera el filamento alargando su vida útil. Temperatura estable de <strong>3200 K</strong>.</p>
+        </div>
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.4);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Mejor rendimiento que incandescente (15–25 lm/W)</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.4);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Temperatura de color estable <strong>3200 K</strong></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(237,166,163,.1);border:1px solid rgba(237,166,163,.4);border-radius:6px;">
+            <span>❌</span><div style="font-size:12px;color:var(--text2);">Genera mucho calor</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(237,166,163,.1);border:1px solid rgba(237,166,163,.4);border-radius:6px;">
+            <span>❌</span><div style="font-size:12px;color:var(--text2);">Vida útil limitada (2000–4000 h)</div>
+          </div>
+        </div>
+        <div class="panel-subtitle" style="margin-top:14px;">Usos en luminotecnia convencional</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="badge badge-blue">PAR 64 / PAR 56</span><span class="badge badge-blue">Fresnel</span>
+          <span class="badge badge-blue">PC Plano-Convexo</span><span class="badge badge-blue">Recortes</span>
+        </div>
+      </div>
+      <div class="panel"><div class="panel-title">Características técnicas</div>
+        <div class="result-grid">
+          <div class="result-box"><div class="result-val">15–25</div><div class="result-label">lm/W rendimiento</div></div>
+          <div class="result-box yellow"><div class="result-val">3200</div><div class="result-label">ºK estable</div></div>
+          <div class="result-box orange"><div class="result-val">2–4K</div><div class="result-label">Horas vida útil</div></div>
+        </div>
+        <div class="note" style="margin-top:14px;">El ciclo halógeno: las moléculas de wolframio que se evaporan del filamento se re-depositan gracias al gas halógeno, aumentando la vida útil respecto a la incandescente simple.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="fuentes_dicroica">
+    <div class="grid-2">
+      <div class="panel"><div class="panel-title">Lámparas Dicroicas</div>
+        <div class="info-card"><div class="info-card-title">Principio dicroico</div>
+          <p>Proyectores halógenos con un <strong>filtro dicroico en el reflector</strong> que separa calor y luz. El reflector refleja la luz visible hacia adelante y deja pasar el calor infrarojo hacia atrás.</p>
+        </div>
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.4);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Luz frontal muy limpia</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.4);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Mucho menos calor proyectado hacia adelante (se disipa por detrás)</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.4);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Colores y temperatura más controlados</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(237,166,163,.1);border:1px solid rgba(237,166,163,.4);border-radius:6px;">
+            <span>❌</span><div style="font-size:12px;color:var(--text2);">Alto consumo respecto al LED (20–30 lm/W)</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel"><div class="panel-title">Características técnicas</div>
+        <div class="result-grid">
+          <div class="result-box"><div class="result-val">20–30</div><div class="result-label">lm/W rendimiento</div></div>
+          <div class="result-box yellow"><div class="result-val">3000–3200</div><div class="result-label">ºK color</div></div>
+          <div class="result-box green"><div class="result-val">3–5K</div><div class="result-label">Horas vida útil</div></div>
+        </div>
+        <div class="note" style="margin-top:14px;">El reflector dicroico es un reflector de interferencia: transmite la radiación infrarroja y refleja selectivamente las longitudes de onda del visible.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="fuentes_fluorescente">
+    <div class="grid-2">
+      <div class="panel"><div class="panel-title">Lámparas Fluorescentes</div>
+        <div class="info-card"><div class="info-card-title">Principio de funcionamiento</div>
+          <p>Tubo lleno de gases + fósforos que emiten luz cuando los electrones colisionan con los átomos de mercurio. La radiación UV generada excita los fósforos que emiten luz visible.</p>
+        </div>
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.4);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Muy eficiente: 60–100 lm/W</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.4);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Muy poco calor generado</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(237,166,163,.1);border:1px solid rgba(237,166,163,.4);border-radius:6px;">
+            <span>❌</span><div style="font-size:12px;color:var(--text2);">Encendido lento en modelos antiguos (parpadeo inicial)</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(237,166,163,.1);border:1px solid rgba(237,166,163,.4);border-radius:6px;">
+            <span>❌</span><div style="font-size:12px;color:var(--text2);">No apto para efectos escénicos, sin control DMX</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel"><div class="panel-title">Características técnicas</div>
+        <div class="result-grid">
+          <div class="result-box green"><div class="result-val">60–100</div><div class="result-label">lm/W rendimiento</div></div>
+          <div class="result-box yellow"><div class="result-val">3000–6500</div><div class="result-label">ºK rango</div></div>
+          <div class="result-box green"><div class="result-val">7–15K</div><div class="result-label">Horas vida útil</div></div>
+        </div>
+        <div class="note note-orange" style="margin-top:14px;">CRI variable según el tipo de fósforo. Uso muy limitado en espectáculos escénicos por su imposibilidad de dimmerizar con eficacia.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="fuentes_descarga">
+    <div class="grid-2">
+      <div class="panel"><div class="panel-title">Lámparas de Descarga (HMI)</div>
+        <div class="info-card"><div class="info-card-title">Hidrargirum Medium-arc Iodide</div>
+          <p>Cápsula de cuarzo llena de gas con <strong>dos electrodos</strong> que producen descargas periódicas de arco. Son las fuentes de mayor potencia utilizadas en espectáculos y cine.</p>
+        </div>
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.4);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Lámparas muy potentes (80–120+ lm/W)</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.4);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Temperatura de color fría: <strong>5500–6000 K</strong> (luz de día)</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(237,166,163,.1);border:1px solid rgba(237,166,163,.4);border-radius:6px;">
+            <span>❌</span><div style="font-size:12px;color:var(--text2);"><strong>No regulable</strong> por dimmer convencional</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(237,166,163,.1);border:1px solid rgba(237,166,163,.4);border-radius:6px;">
+            <span>❌</span><div style="font-size:12px;color:var(--text2);">Cambio costoso, genera mucho calor</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel"><div class="panel-title">Características técnicas</div>
+        <div class="result-grid">
+          <div class="result-box green"><div class="result-val">80–120+</div><div class="result-label">lm/W rendimiento</div></div>
+          <div class="result-box" style="border-color:rgba(99,160,255,.3);background:rgba(99,160,255,.07);"><div class="result-val" style="color:#1a3a99;">5600–8000</div><div class="result-label">ºK (daylight)</div></div>
+          <div class="result-box orange"><div class="result-val">750–3K</div><div class="result-label">Horas vida útil</div></div>
+        </div>
+        <div class="note" style="margin-top:14px;">Uso principal: focos Follow Spot de largo alcance, proyectores de cine y televisión que requieren luz equivalente a la del sol.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="fuentes_led">
+    <div class="grid-2">
+      <div class="panel"><div class="panel-title">LED — Light Emitting Diode</div>
+        <div class="info-card"><div class="info-card-title">El estándar absoluto en luminotecnia moderna</div>
+          <p>Un diodo emisor de luz: al pasar corriente por un semiconductor, libera fotones en forma de luz. La tecnología LED domina completamente la luminotecnia de espectáculos actual.</p>
+        </div>
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(42,157,111,.06);border:1px solid rgba(42,157,111,.25);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Muy eficiente: <strong>80–150+ lm/W</strong></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(42,157,111,.06);border:1px solid rgba(42,157,111,.25);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Vida útil muy larga: <strong>25.000–50.000 h</strong></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(42,157,111,.06);border:1px solid rgba(42,157,111,.25);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Temperatura de color configurable (RGBW, RGBA, RGB-Lime)</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(42,157,111,.06);border:1px solid rgba(42,157,111,.25);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;color:var(--text2);">Casi sin calor en el haz · Encendido instantáneo</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(237,166,163,.1);border:1px solid rgba(237,166,163,.4);border-radius:6px;">
+            <span>⚠️</span><div style="font-size:12px;color:var(--text2);">Requiere buena refrigeración en el cuerpo del foco</div>
+          </div>
+        </div>
+        <div class="panel-subtitle">Tipos de mezcla de color LED</div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <span class="badge badge-purple">RGB</span>
+          <span class="badge badge-purple">RGBW</span>
+          <span class="badge badge-purple">RGBA</span>
+          <span class="badge badge-purple">RGB-Lime</span>
+          <span class="badge badge-purple">RGBAW</span>
+        </div>
+      </div>
+      <div class="panel"><div class="panel-title">Características técnicas</div>
+        <div class="result-grid-4" style="gap:10px;">
+          <div class="result-box green"><div class="result-val">80–150+</div><div class="result-label">lm/W</div></div>
+          <div class="result-box" style="border-color:rgba(92,63,191,.3);background:rgba(92,63,191,.06);"><div class="result-val" style="color:#3d2a8c;">Variable</div><div class="result-label">ºK</div></div>
+          <div class="result-box green"><div class="result-val">25–50K</div><div class="result-label">Horas vida</div></div>
+          <div class="result-box yellow"><div class="result-val">Bajo</div><div class="result-label">Calor haz</div></div>
+        </div>
+        <div class="note note-green" style="margin-top:14px;">El LED es hoy en día el <strong>estándar absoluto</strong> en luminotecnia moderna por su eficiencia, versatilidad cromática y larga vida útil.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="fuentes_comparativa">
+    <div class="panel">
+      <div class="panel-title">Comparativa completa de fuentes de luz</div>
+      <div style="overflow-x:auto;">
+        <table class="comp-table">
+          <thead><tr><th>Fuente</th><th>Rendimiento</th><th>Temp. Color</th><th>Calor</th><th>Vida Útil</th><th>Regulable</th><th>Uso actual</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Incandescente</strong></td>
+              <td><span class="badge badge-red">10–15 lm/W</span></td>
+              <td>2700–3000 K</td>
+              <td><span class="badge badge-red">Muy alto</span></td>
+              <td>750–2000 h</td>
+              <td>✅ Sí</td>
+              <td><span class="badge badge-gray">Obsoleta</span></td>
+            </tr>
+            <tr>
+              <td><strong>Halógena</strong></td>
+              <td><span class="badge badge-orange">15–25 lm/W</span></td>
+              <td>3000–3200 K</td>
+              <td><span class="badge badge-red">Muy alto</span></td>
+              <td>2000–4000 h</td>
+              <td>✅ Sí</td>
+              <td><span class="badge badge-yellow">Convencional</span></td>
+            </tr>
+            <tr>
+              <td><strong>Dicroica</strong></td>
+              <td><span class="badge badge-orange">20–30 lm/W</span></td>
+              <td>3000–3200 K</td>
+              <td><span class="badge badge-yellow">Medio (atrás)</span></td>
+              <td>3000–5000 h</td>
+              <td>✅ Sí</td>
+              <td><span class="badge badge-yellow">Convencional</span></td>
+            </tr>
+            <tr>
+              <td><strong>Fluorescente</strong></td>
+              <td><span class="badge badge-green">60–100 lm/W</span></td>
+              <td>3000–6500 K</td>
+              <td><span class="badge badge-green">Bajo</span></td>
+              <td>7000–15000 h</td>
+              <td>⚠️ Parcial</td>
+              <td><span class="badge badge-gray">Limitado</span></td>
+            </tr>
+            <tr>
+              <td><strong>Descarga HMI</strong></td>
+              <td><span class="badge badge-green">80–120+ lm/W</span></td>
+              <td>5600–8000 K</td>
+              <td><span class="badge badge-red">Muy alto</span></td>
+              <td>750–3000 h</td>
+              <td>❌ No</td>
+              <td><span class="badge badge-blue">Follow Spot</span></td>
+            </tr>
+            <tr style="background:rgba(42,157,111,.04);">
+              <td><strong>LED ⭐</strong></td>
+              <td><span class="badge badge-green">80–150+ lm/W</span></td>
+              <td>Variable RGBW</td>
+              <td><span class="badge badge-green">Bajo (haz)</span></td>
+              <td>25000–50000 h</td>
+              <td>✅ Sí</td>
+              <td><span class="badge badge-green">Estándar actual</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ MÓDULO 4 — TIPOS DE FOCOS ═══ -->
+<section class="module" id="m4">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+  <div class="module-header">
+    <div class="module-icon">🎭</div>
+    <div>
+      <div class="module-title">Tipos de Focos</div>
+      <div class="module-desc">PAR, PC Plano Convexo, Fresnel, Recortes, Cegadoras, Pixel Bar — UD4</div>
+      <div class="module-tags">
+        <span class="tag">PAR 64/56/36</span><span class="tag tag-yellow">Fresnel</span>
+        <span class="tag tag-pink">Recortes</span><span class="tag">PC</span><span class="tag">Pixel Bar</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="foco-grid">
+    <div class="foco-card">
+      <div class="foco-type foco-hard">Haz duro</div>
+      <div class="foco-icon">🔦</div>
+      <div class="foco-name">PAR (Parabolic Aluminized Reflector)</div>
+      <div class="foco-desc">Reflector parabólico que produce un haz de luz casi paralelo, muy concentrado y brillante. <strong>Sin control de ángulo ni haz.</strong> Lámparas CP60 (cerrada), CP61 (intermedia), CP62 (abierta).</div>
+      <div style="margin-top:10px; display:flex; gap:4px; flex-wrap:wrap;">
+        <span class="badge badge-blue">PAR64 200mm</span>
+        <span class="badge badge-blue">PAR56 175mm</span>
+        <span class="badge badge-blue">PAR36 115mm</span>
+      </div>
+    </div>
+
+    <div class="foco-card">
+      <div class="foco-type foco-led">LED</div>
+      <div class="foco-icon">🔵</div>
+      <div class="foco-name">PAR LED</div>
+      <div class="foco-desc">Versión moderna del PAR con diodos LED como fuente. Mantiene el concepto del haz amplio y potente pero con <strong>mezcla de color RGB/RGBW sin filtros</strong> y mayor eficiencia.</div>
+      <div style="margin-top:10px; display:flex; gap:4px; flex-wrap:wrap;">
+        <span class="badge badge-purple">RGBW</span>
+        <span class="badge badge-purple">RGBA</span>
+        <span class="badge badge-purple">RGB-Lime</span>
+      </div>
+    </div>
+
+    <div class="foco-card">
+      <div class="foco-type foco-hard">Haz ajustable</div>
+      <div class="foco-icon">🔆</div>
+      <div class="foco-name">PC — Plano Convexo</div>
+      <div class="foco-desc">Utiliza una lente plano-convexa (una cara plana, otra convexa) para concentrar y dirigir la luz. Permite <strong>ajustar el haz</strong> moviendo la lámpara. Viseras para evitar derrames.</div>
+      <div style="margin-top:10px; display:flex; gap:4px; flex-wrap:wrap;">
+        <span class="badge badge-yellow">Zoom mecánico</span>
+        <span class="badge badge-gray">Haz uniforme</span>
+      </div>
+    </div>
+
+    <div class="foco-card">
+      <div class="foco-type foco-soft">Haz suave</div>
+      <div class="foco-icon">🌥️</div>
+      <div class="foco-name">Fresnel</div>
+      <div class="foco-desc">Proyector con <strong>lente Fresnel</strong> compuesta por anillos concéntricos que reducen peso y grosor. Luz difusa y suave, se usa para rellenar y evitar bordes definidos en escena.</div>
+      <div style="margin-top:10px; display:flex; gap:4px; flex-wrap:wrap;">
+        <span class="badge badge-green">Bordes suaves</span>
+        <span class="badge badge-green">Zoom + viseras</span>
+      </div>
+    </div>
+
+    <div class="foco-card">
+      <div class="foco-type foco-hard">Haz definido</div>
+      <div class="foco-icon">✂️</div>
+      <div class="foco-name">Recortes (Profile / Ellipsoidal)</div>
+      <div class="foco-desc">Haz de luz muy definido y controlable. <strong>Cuchillas internas</strong> para recortar el haz, porta-gobos para proyectar patrones. Zoom y enfoque ajustables. Máxima precisión.</div>
+      <div style="margin-top:10px; display:flex; gap:4px; flex-wrap:wrap;">
+        <span class="badge badge-blue">Gobos</span>
+        <span class="badge badge-blue">Cuchillas</span>
+        <span class="badge badge-blue">Zoom + Focus</span>
+      </div>
+    </div>
+
+    <div class="foco-card">
+      <div class="foco-type foco-led">LED lineal</div>
+      <div class="foco-icon">💥</div>
+      <div class="foco-name">Cegadora / Blinder</div>
+      <div class="foco-desc">Proyector de <strong>gran intensidad</strong> diseñado para emitir luz frontal directa muy potente, normalmente hacia el público. Se usa para golpes de efecto y para iluminar al público.</div>
+      <div style="margin-top:10px; display:flex; gap:4px; flex-wrap:wrap;">
+        <span class="badge badge-orange">Alta intensidad</span>
+        <span class="badge badge-orange">Frontal/público</span>
+      </div>
+    </div>
+
+    <div class="foco-card">
+      <div class="foco-type foco-led">LED pixel</div>
+      <div class="foco-icon">📏</div>
+      <div class="foco-name">Pixel Bar</div>
+      <div class="foco-desc">Proyector LED lineal compuesto por <strong>múltiples segmentos (píxeles) controlables de forma independiente</strong>. Formato lineal, ideal para fondos, telones y cicloramas.</div>
+      <div style="margin-top:10px; display:flex; gap:4px; flex-wrap:wrap;">
+        <span class="badge badge-purple">Control pixelado</span>
+        <span class="badge badge-purple">Fondos</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel section-gap">
+    <div class="panel-title">Tabla comparativa de tipos de focos</div>
+    <div style="overflow-x:auto;">
+      <table class="comp-table">
+        <thead>
+          <tr><th>Tipo</th><th>Tipo de haz</th><th>Bordes</th><th>Control haz</th><th>Uso principal</th><th>Ventajas</th><th>Desventajas</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>PAR</strong></td>
+            <td>Fijo (según lámpara)</td>
+            <td>Muy duros/irregulares</td>
+            <td><span class="badge badge-red">Muy limitado</span></td>
+            <td>Baños de color, contras</td>
+            <td>Potente, robusto, barato</td>
+            <td>Poco preciso, sin recorte</td>
+          </tr>
+          <tr>
+            <td><strong>PC</strong></td>
+            <td>Ajustable</td>
+            <td>Duros/suavizados</td>
+            <td><span class="badge badge-yellow">Zoom mecánico</span></td>
+            <td>Iluminación general</td>
+            <td>Más control que PAR</td>
+            <td>Bordes poco definidos</td>
+          </tr>
+          <tr>
+            <td><strong>Fresnel</strong></td>
+            <td>Ajustable</td>
+            <td>Suaves y difusos</td>
+            <td><span class="badge badge-yellow">Zoom + viseras</span></td>
+            <td>Frontal y modelado</td>
+            <td>Transiciones suaves, versátil</td>
+            <td>Menos precisión puntual</td>
+          </tr>
+          <tr>
+            <td><strong>Recorte</strong></td>
+            <td>Muy direccional</td>
+            <td>Muy definidos</td>
+            <td><span class="badge badge-green">Zoom+cuchillas+gobos</span></td>
+            <td>Iluminación selectiva</td>
+            <td>Máxima precisión, gobos</td>
+            <td>Más caro, menos relleno</td>
+          </tr>
+          <tr>
+            <td><strong>Cegadora</strong></td>
+            <td>Fijo frontal</td>
+            <td>Sin bordes definidos</td>
+            <td><span class="badge badge-red">Sin control</span></td>
+            <td>Público, efectos</td>
+            <td>Alta intensidad</td>
+            <td>Sólo uso frontal</td>
+          </tr>
+          <tr>
+            <td><strong>Pixel Bar</strong></td>
+            <td>Lineal pixelado</td>
+            <td>Lineal</td>
+            <td><span class="badge badge-purple">Pixel a pixel</span></td>
+            <td>Fondos, cicloramas</td>
+            <td>Efectos dinámicos</td>
+            <td>No iluminación puntual</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ MÓDULO 5 — CABEZAS MÓVILES ═══ -->
+<section class="module" id="m5">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+  <div class="module-header">
+    <div class="module-icon">🤖</div>
+    <div>
+      <div class="module-title">Cabezas Móviles</div>
+      <div class="module-desc">Wash, Spot y Beam — tipos de haz, ángulo, gobos y usos escénicos — UD4</div>
+      <div class="module-tags">
+        <span class="tag tag-yellow">Wash 20°–60°</span><span class="tag">Spot 10°–30°</span>
+        <span class="tag tag-pink">Beam 2°–8°</span><span class="tag">Pan 540°</span><span class="tag">Tilt 270°</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="panel" style="border-top: 3px solid var(--yellow);">
+      <div style="text-align:center; margin-bottom:14px;">
+        <div style="font-size:40px;">🌊</div>
+        <div style="font-size:16px; font-weight:700; color:var(--navy);">WASH</div>
+        <div style="font-size:11px; color:var(--text3); margin-top:3px;">Baño de luz</div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:14px;">
+        <div style="padding:7px 10px; background:var(--bg2); border-radius:5px; font-size:11.5px; color:var(--text2);">🔵 <strong>Haz:</strong> Suave y difuso</div>
+        <div style="padding:7px 10px; background:var(--bg2); border-radius:5px; font-size:11.5px; color:var(--text2);">📐 <strong>Ángulo:</strong> 20° a 60° o más</div>
+        <div style="padding:7px 10px; background:var(--bg2); border-radius:5px; font-size:11.5px; color:var(--text2);">🎨 <strong>Color:</strong> Mezcla RGB/RGBW homogénea</div>
+        <div style="padding:7px 10px; background:var(--bg2); border-radius:5px; font-size:11.5px; color:var(--text2);">🚫 <strong>Gobos:</strong> No</div>
+      </div>
+      <div style="font-size:11.5px; color:var(--text2); line-height:1.65;">
+        <strong>Usos:</strong> Iluminación de fondos y escenarios completos. Creación de ambientes cromáticos. Gran cobertura. Ideal para baños de color uniformes.
+      </div>
+    </div>
+
+    <div class="panel" style="border-top: 3px solid var(--pink);">
+      <div style="text-align:center; margin-bottom:14px;">
+        <div style="font-size:40px;">🎯</div>
+        <div style="font-size:16px; font-weight:700; color:var(--navy);">SPOT</div>
+        <div style="font-size:11px; color:var(--text3); margin-top:3px;">Haz enfocable</div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:14px;">
+        <div style="padding:7px 10px; background:var(--bg2); border-radius:5px; font-size:11.5px; color:var(--text2);">🔵 <strong>Haz:</strong> Nítido con zoom ajustable</div>
+        <div style="padding:7px 10px; background:var(--bg2); border-radius:5px; font-size:11.5px; color:var(--text2);">📐 <strong>Ángulo:</strong> 10° a 30°</div>
+        <div style="padding:7px 10px; background:var(--bg2); border-radius:5px; font-size:11.5px; color:var(--text2);">🔄 <strong>Efectos:</strong> Prismas</div>
+        <div style="padding:7px 10px; background:var(--bg2); border-radius:5px; font-size:11.5px; color:var(--text2);">✅ <strong>Gobos:</strong> Sí, estáticos y rotativos</div>
+      </div>
+      <div style="font-size:11.5px; color:var(--text2); line-height:1.65;">
+        <strong>Usos:</strong> Iluminación puntual de artistas. Proyección de patrones y texturas. Gran versatilidad y control preciso del haz.
+      </div>
+    </div>
+
+    <div class="panel" style="border-top: 3px solid var(--navy);">
+      <div style="text-align:center; margin-bottom:14px;">
+        <div style="font-size:40px;">⚡</div>
+        <div style="font-size:16px; font-weight:700; color:var(--navy);">BEAM</div>
+        <div style="font-size:11px; color:var(--text3); margin-top:3px;">Haz estrecho</div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:14px;">
+        <div style="padding:7px 10px; background:var(--bg2); border-radius:5px; font-size:11.5px; color:var(--text2);">🔵 <strong>Haz:</strong> Extremadamente estrecho y potente</div>
+        <div style="padding:7px 10px; background:var(--bg2); border-radius:5px; font-size:11.5px; color:var(--text2);">📐 <strong>Ángulo:</strong> 2° a 8°</div>
+        <div style="padding:7px 10px; background:var(--bg2); border-radius:5px; font-size:11.5px; color:var(--text2);">💨 <strong>Humo:</strong> Visible en el aire</div>
+        <div style="padding:7px 10px; background:var(--bg2); border-radius:5px; font-size:11.5px; color:var(--text2);">⚡ <strong>Alta intensidad lumínica</strong></div>
+      </div>
+      <div style="font-size:11.5px; color:var(--text2); line-height:1.65;">
+        <strong>Usos:</strong> Crear líneas de luz en el aire con humo. Impacto visual espectacular. No sirve para iluminar superficies amplias.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel section-gap">
+    <div class="panel-title">Simulador visual de tipos de haz</div>
+    <div class="beam-demo" id="beamDemo">
+      <canvas id="beamCanvas" width="700" height="160" style="width:100%; border-radius:8px;"></canvas>
+    </div>
+    <div style="display:flex; gap:8px; justify-content:center; margin-top:12px; flex-wrap:wrap;">
+      <button class="btn btn-secondary" style="width:auto;padding:7px 18px;" onclick="drawBeam('wash')">🌊 Wash</button>
+      <button class="btn btn-secondary" style="width:auto;padding:7px 18px;" onclick="drawBeam('spot')">🎯 Spot</button>
+      <button class="btn btn-secondary" style="width:auto;padding:7px 18px;" onclick="drawBeam('beam')">⚡ Beam</button>
+    </div>
+  </div>
+
+  <div class="panel section-gap">
+    <div class="panel-title">Tabla comparativa — Cabezas Móviles</div>
+    <table class="comp-table">
+      <thead>
+        <tr><th>Tipo</th><th>Haz de Luz</th><th>Ángulo</th><th>Función Principal</th><th>Gobos</th><th>Cobertura</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>WASH 🌊</strong></td>
+          <td>Suave y difuso</td>
+          <td>20°–60°</td>
+          <td>Baño de luz uniforme</td>
+          <td>❌ No</td>
+          <td><span class="badge badge-green">Amplia</span></td>
+        </tr>
+        <tr>
+          <td><strong>SPOT 🎯</strong></td>
+          <td>Definido</td>
+          <td>10°–30°</td>
+          <td>Iluminación puntual</td>
+          <td>✅ Sí</td>
+          <td><span class="badge badge-yellow">Media</span></td>
+        </tr>
+        <tr>
+          <td><strong>BEAM ⚡</strong></td>
+          <td>Muy estrecho</td>
+          <td>2°–8°</td>
+          <td>Efectos visuales en el aire</td>
+          <td>✅ Sí</td>
+          <td><span class="badge badge-red">Muy reducida</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note" style="margin-top:14px;">
+      <strong>Marcas de referencia:</strong> Robe · Martin · ETC · Clay Paky · Vari-Lite · Elation · Chauvet Pro · Cameo
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ MÓDULO 6 — ATRIBUTOS & CANALES ═══ -->
+<section class="module" id="m6">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+  <div class="module-header">
+    <div class="module-icon">🎛️</div>
+    <div>
+      <div class="module-title">Atributos &amp; Canales de Control</div>
+      <div class="module-desc">Dimmer, Pan/Tilt, Color, Zoom, Iris, Focus, Frost, Prisma y Gobo — UD4</div>
+      <div class="module-tags">
+        <span class="tag">Dimmer 0–100%</span><span class="tag tag-yellow">Pan 540°</span>
+        <span class="tag">Tilt 270°</span><span class="tag tag-pink">Gobo</span><span class="tag">Prisma</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="attr-grid">
+    <div class="attr-card">
+      <div class="attr-ch">Canal principal</div>
+      <div class="attr-name">🎚️ Dimmer</div>
+      <div class="attr-desc">Circuito electrónico que regula la intensidad lumínica. Rango: <strong>0% a 100%</strong> (0–255 DMX). En halógenas afecta la temperatura de color; en LED el color se mantiene estable.</div>
+      <div style="margin-top:8px;"><span class="badge badge-gray">Lineal · Logarítmico · Exponencial</span></div>
+    </div>
+
+    <div class="attr-card">
+      <div class="attr-ch">Movimiento horizontal</div>
+      <div class="attr-name">↔️ Pan</div>
+      <div class="attr-desc">Motor paso a paso controlado por DMX. Permite la rotación <strong>horizontal</strong> de la cabeza móvil. Rango típico: <strong>540°</strong>. Velocidad ajustable por canal DMX.</div>
+      <div style="margin-top:8px;"><span class="badge badge-blue">540° aprox.</span></div>
+    </div>
+
+    <div class="attr-card">
+      <div class="attr-ch">Movimiento vertical</div>
+      <div class="attr-name">↕️ Tilt</div>
+      <div class="attr-desc">Motor paso a paso para la rotación <strong>vertical</strong> de la cabeza. Rango típico: <strong>270°</strong>. Control absoluto o relativo según el modo programado en la consola.</div>
+      <div style="margin-top:8px;"><span class="badge badge-blue">270° aprox.</span></div>
+    </div>
+
+    <div class="attr-card">
+      <div class="attr-ch">Cromático</div>
+      <div class="attr-name">🎨 Color</div>
+      <div class="attr-desc">Cambio de color del haz. Puede ser por <strong>rueda de color</strong> (discos con filtros dicroicos) o por mezcla directa <strong>RGB/CMY</strong> mediante LEDs de diferentes colores.</div>
+      <div style="margin-top:8px; display:flex; gap:4px;">
+        <span class="badge badge-yellow">Rueda dicroica</span>
+        <span class="badge badge-purple">RGB</span>
+        <span class="badge badge-purple">CMY</span>
+      </div>
+    </div>
+
+    <div class="attr-card">
+      <div class="attr-ch">Óptico</div>
+      <div class="attr-name">🔭 Zoom</div>
+      <div class="attr-desc">Sistema óptico motorizado que ajusta la distancia entre lentes. Controla el <strong>tamaño del haz</strong> en escena. Rango típico: <strong>5° a 50°</strong> según modelo. Control por DMX.</div>
+      <div style="margin-top:8px;"><span class="badge badge-yellow">5°–50° (típico)</span></div>
+    </div>
+
+    <div class="attr-card">
+      <div class="attr-ch">Óptico mecánico</div>
+      <div class="attr-name">⭕ Iris</div>
+      <div class="attr-desc">Diafragma mecánico con láminas que <strong>reduce el diámetro del haz sin perder el foco</strong>. Muy usado en recortes y cabezas móviles para acotar con precisión el círculo de luz.</div>
+      <div style="margin-top:8px;"><span class="badge badge-gray">Reduce diámetro</span></div>
+    </div>
+
+    <div class="attr-card">
+      <div class="attr-ch">Óptico</div>
+      <div class="attr-name">🔍 Focus</div>
+      <div class="attr-desc">Ajuste motorizado de la <strong>distancia focal para controlar la nitidez</strong>. Clave para la proyección de gobos. Permite bordes duros o desenfocados según la necesidad artística.</div>
+      <div style="margin-top:8px;"><span class="badge badge-gray">Nitidez del borde</span></div>
+    </div>
+
+    <div class="attr-card">
+      <div class="attr-ch">Filtro difusor</div>
+      <div class="attr-name">🌫️ Frost</div>
+      <div class="attr-desc">Desenfoque muy grande. <strong>Convierte un Spot en Wash</strong> difuminando el rayo y aumentando la cobertura. Simula el efecto de un Fresnel a partir de un Spot. Varios grados disponibles.</div>
+      <div style="margin-top:8px;"><span class="badge badge-green">Spot → Wash</span></div>
+    </div>
+
+    <div class="attr-card">
+      <div class="attr-ch">Elemento óptico</div>
+      <div class="attr-name">🔷 Prisma</div>
+      <div class="attr-desc">Elemento óptico giratorio que <strong>divide el haz en múltiples haces</strong>. Tipos: circulares y lineales. Produce efectos dinámicos y volumétricos espectaculares.</div>
+      <div style="margin-top:8px;"><span class="badge badge-purple">Circular · Lineal</span></div>
+    </div>
+
+    <div class="attr-card">
+      <div class="attr-ch">Plantilla</div>
+      <div class="attr-name">🎪 Gobo</div>
+      <div class="attr-desc">Disco metálico o de vidrio con patrones que se proyectan mediante el foco. <strong>Tipos:</strong> estáticos, rotativos e indexables. Permite proyectar logos, texturas y efectos arquitectónicos.</div>
+      <div style="margin-top:8px; display:flex; gap:4px;">
+        <span class="badge badge-blue">Estático</span>
+        <span class="badge badge-blue">Rotativo</span>
+        <span class="badge badge-blue">Indexable</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel section-gap">
+    <div class="panel-title">Tabla resumen de atributos y canales DMX</div>
+    <div style="overflow-x:auto;">
+      <table class="comp-table">
+        <thead>
+          <tr><th>Atributo</th><th>¿Qué es?</th><th>Función en espectáculos</th><th>Notas técnicas</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Dimmer</strong></td><td>Regulación de intensidad</td><td>Subir/bajar luz, fades, acentos</td><td>En LED: curvas lineal/log/expo</td></tr>
+          <tr><td><strong>Pan &amp; Tilt</strong></td><td>Movimiento horizontal y vertical</td><td>Posicionamiento del haz en escena</td><td>Se mide en grados; control absoluto o relativo</td></tr>
+          <tr><td><strong>Color</strong></td><td>Cambio de color del haz</td><td>Ambientación, narrativa, contraste</td><td>Rueda de color o mezcla RGB/CMY</td></tr>
+          <tr><td><strong>Zoom</strong></td><td>Apertura del haz</td><td>Ajustar cobertura y tamaño del círculo</td><td>Se mide en grados (ej. 5°–40°)</td></tr>
+          <tr><td><strong>Iris</strong></td><td>Diafragma variable</td><td>Reducir diámetro del haz sin perder foco</td><td>Muy usado en recortes y móviles</td></tr>
+          <tr><td><strong>Focus</strong></td><td>Ajuste de nitidez</td><td>Definir bordes o desenfocar proyección</td><td>Clave para gobos y recortes</td></tr>
+          <tr><td><strong>Frost</strong></td><td>Filtro difusor</td><td>Suavizar el haz, eliminar bordes duros</td><td>Simula Fresnel o Wash desde un Spot</td></tr>
+          <tr><td><strong>Prisma</strong></td><td>Multiplicador óptico</td><td>Efectos dinámicos y volumétricos</td><td>Divide el haz (2, 3, 5 o más copias)</td></tr>
+          <tr><td><strong>Gobo</strong></td><td>Plantilla metálica o de cristal</td><td>Proyección de formas y texturas</td><td>Estáticos o rotatorios</td></tr>
+          <tr><td><strong>Control</strong></td><td>Sistema de manejo del foco</td><td>Operación y programación</td><td>DMX, Art-Net, sACN, modos de canal</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note note-orange" style="margin-top:14px;">
+      <strong>Filtros de color (geles):</strong> Láminas de material plástico resistente al calor que se colocan delante del foco para cambiar el color, corregir temperatura o reducir intensidad. Marcas: Rosco, Lee Filters.
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ MÓDULO 7 — RIGGING & SEGURIDAD ═══ -->
+<section class="module" id="m7">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+  <div class="module-header">
+    <div class="module-icon">🏗️</div>
+    <div>
+      <div class="module-title">Rigging &amp; Seguridad</div>
+      <div class="module-desc">Trusses, torres, garras, safety, polipastos, acometida eléctrica, trifásica — UD5</div>
+      <div class="module-tags">
+        <span class="tag tag-pink">Seguridad</span><span class="tag">Trusses</span>
+        <span class="tag">Rigging</span><span class="tag tag-yellow">Acometida</span><span class="tag">Trifásica</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="note note-red" style="margin-bottom:20px;">
+    <strong>⚠️ REGLA FUNDAMENTAL DEL RIGGING:</strong> Todo lo que se cuelga, puede caer. Tres principios: <strong>1. Sujeción correcta · 2. Cálculo de cargas · 3. Sistemas de seguridad redundantes.</strong>
+  </div>
+
+  <div class="inner-tabs" id="tabs_rigging">
+    <div class="inner-tab active" onclick="switchTab('rigging','estructura')">Estructura</div>
+    <div class="inner-tab" onclick="switchTab('rigging','sujecion')">Sujeción</div>
+    <div class="inner-tab" onclick="switchTab('rigging','elevacion')">Elevación</div>
+    <div class="inner-tab" onclick="switchTab('rigging','electrico')">Eléctrico</div>
+    <div class="inner-tab" onclick="switchTab('rigging','tabla_rigging')">📊 Tabla</div>
+  </div>
+
+  <div class="inner-pane active" id="rigging_estructura">
+    <div class="rigging-grid">
+      <div class="rigging-card">
+        <div class="rigging-icon">🏗️</div>
+        <div class="rigging-name">Trusses</div>
+        <div class="rigging-desc">Estructuras modulares de aluminio que crean marcos rígidos y ligeros para colgar equipos de iluminación, sonido y pantallas. Tipos: cuadrado, triangular, plano. Para montaje seguro deben estar certificados para cargas estáticas.</div>
+      </div>
+      <div class="rigging-card">
+        <div class="rigging-icon">🗼</div>
+        <div class="rigging-name">Torres de Iluminación</div>
+        <div class="rigging-desc">Estructuras telescópicas para elevar trusses o luminarias. <strong>Top-loading:</strong> carga en el cabezal mediante cabrestante. <strong>Front-loading:</strong> carga frontal con horquillas reforzadas, ideal para cargas pesadas.</div>
+      </div>
+      <div class="rigging-card">
+        <div class="rigging-icon">🎡</div>
+        <div class="rigging-name">Peine — Teatro</div>
+        <div class="rigging-desc">Sistema de barras móviles en recintos cubiertos (teatros, auditorios) que permiten colgar y mover iluminación verticalmente. Sistema estable y permanente ideal para espectáculos con muchos cambios de escena.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="rigging_sujecion">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Garras (Abrazaderas)</div>
+        <div class="info-card">
+          <div class="info-card-title">Herrajes de sujeción</div>
+          <p>Diseñadas para fijar aparatos de iluminación a tubos o trusses. De aleación de aluminio o acero con forma de "C" ajustable al diámetro del tubo, con tornillo de presión para agarrar firmemente. <strong>Cada abrazadera tiene un límite de carga certificado.</strong></p>
+        </div>
+        <div class="note note-orange" style="margin-top:12px;">Verificar siempre el límite de carga de la garra antes de instalar un foco. Nunca superar la carga máxima certificada.</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Cables de Seguridad (Safety)</div>
+        <div class="info-card">
+          <div class="info-card-title">Sistema de sujeción secundaria</div>
+          <p>Cables de acero inoxidable con mosquetón que actúan como sistema de <strong>reserva</strong> en caso de fallo de la abrazadera principal. <strong>Cada pieza suspendida debe tener al menos un cable de seguridad.</strong></p>
+        </div>
+        <div class="note note-red" style="margin-top:12px;">El cable de seguridad NO sustituye a la garra, es un sistema de respaldo obligatorio para cualquier equipo suspendido sobre personas.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="rigging_elevacion">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Polipastos y Motores</div>
+        <div class="info-card">
+          <div class="info-card-title">Dispositivos de elevación</div>
+          <p>El polipasto es un dispositivo mecánico para subir, bajar o suspender cargas pesadas de forma controlada mediante poleas, engranajes y cable o cadena.</p>
+        </div>
+        <div style="margin-top:12px; display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;">
+            <span>⚙️</span><div style="font-size:12px;"><strong>Manual de cadena:</strong> control manual, sin electricidad</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;">
+            <span>🔧</span><div style="font-size:12px;"><strong>Manual de palanca:</strong> mayor fuerza de elevación</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;">
+            <span>⚡</span><div style="font-size:12px;"><strong>Eléctrico de cadena:</strong> control por botón o DMX</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Elevadores tipo Genie</div>
+        <div class="info-card">
+          <div class="info-card-title">Plataformas elevadoras de personal</div>
+          <p>Plataformas elevadoras móviles para elevar personas o materiales de forma segura en altura. En espectáculos se usan principalmente durante las fases de <strong>montaje, ajuste y desmontaje</strong> de iluminación, sonido y estructuras.</p>
+        </div>
+        <div class="note note-orange" style="margin-top:12px;">
+          <strong>Rigging Ground Support:</strong> La estructura se apoya en el suelo.<br>
+          <strong>Rigging Suspendido:</strong> La estructura cuelga del techo.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="rigging_electrico">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Acometida Eléctrica</div>
+        <div class="info-card">
+          <div class="info-card-title">Entrada de energía al recinto</div>
+          <p>Punto de entrada de la energía al recinto o instalación del espectáculo. Parte del cuadro eléctrico principal y alimenta los tableros de distribución. En eventos profesionales se usa <strong>acometida trifásica</strong>.</p>
+        </div>
+        <div class="panel-subtitle">Corriente Trifásica</div>
+        <p style="font-size:12px; color:var(--text2); line-height:1.65; margin-bottom:10px;">Tres conductores activos (fases) + neutro + tierra. Permite alimentar grandes potencias de forma equilibrada. <strong>380–400 V entre fases, ~230 V por fase.</strong></p>
+        <div class="diagram-wrap">
+          <div class="diagram-row">
+            <div class="diag-node source">Fase L1 230V</div>
+            <div class="diag-arrow">+</div>
+            <div class="diag-node source">Fase L2 230V</div>
+            <div class="diag-arrow">+</div>
+            <div class="diag-node source">Fase L3 230V</div>
+          </div>
+          <div class="diagram-row">
+            <div class="diag-arrow">↓</div>
+          </div>
+          <div class="diagram-row">
+            <div class="diag-node output">400V entre fases · Trifásica</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Grupo Electrógeno &amp; Distribuidores</div>
+        <div class="info-card" style="margin-bottom:12px;">
+          <div class="info-card-title">Grupo electrógeno</div>
+          <p>Provee energía cuando no hay red disponible. Para espectáculos se usan generadores <strong>silenciosos</strong> con regulación estable de voltaje y frecuencia. Deben ubicarse ventilados y alejados del público.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">Distribuidores de corriente</div>
+          <p>Paneles eléctricos portátiles que reciben la acometida o generador y reparten la energía hacia <strong>múltiples salidas protegidas</strong>. Facilitan la gestión eléctrica del espectáculo dividiendo la potencia en circuitos protegidos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="rigging_tabla_rigging">
+    <div class="panel">
+      <div class="panel-title">Tabla completa — Elementos de Rigging y Eléctrico</div>
+      <table class="comp-table">
+        <thead><tr><th>Elemento</th><th>Función principal</th><th>Uso en espectáculos</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Trusses</strong></td><td>Estructura portante modular para colgar equipos</td><td>Soporte de focos, efectos, pantallas y sonido</td></tr>
+          <tr><td><strong>Torres</strong></td><td>Elevar trusses o equipos desde el suelo</td><td>Iluminación aérea, pequeños sistemas de sonido</td></tr>
+          <tr><td><strong>Garras</strong></td><td>Fijar focos y equipos a trusses o tubos</td><td>Sujeción individual de luminarias</td></tr>
+          <tr><td><strong>Safety (cables)</strong></td><td>Sujeción secundaria de seguridad</td><td>Respaldo en focos y elementos suspendidos</td></tr>
+          <tr><td><strong>Polipastos/Motores</strong></td><td>Elevar cargas pesadas de forma controlada</td><td>Elevación de trusses y estructuras</td></tr>
+          <tr><td><strong>Acometida eléctrica</strong></td><td>Entrada principal de energía al evento</td><td>Alimentación general del sistema eléctrico</td></tr>
+          <tr><td><strong>Grupo electrógeno</strong></td><td>Generar electricidad sin red</td><td>Eventos al aire libre o sin suministro</td></tr>
+          <tr><td><strong>Corriente trifásica</strong></td><td>Distribuir grandes potencias</td><td>Iluminación y sonido profesional</td></tr>
+          <tr><td><strong>Distribuidores</strong></td><td>Repartir y proteger la energía</td><td>Alimentar focos, mesas y equipos</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ MÓDULO 8 — PROTOCOLO DMX ═══ -->
+<section class="module" id="m8">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+  <div class="module-header">
+    <div class="module-icon">📡</div>
+    <div>
+      <div class="module-title">Protocolo DMX &amp; Programación</div>
+      <div class="module-desc">DMX-512, canales, address, ID, fixture, cables, librerías, splitters, nodos y ART-NET — UD5</div>
+      <div class="module-tags">
+        <span class="tag">DMX-512</span><span class="tag tag-yellow">Channel · Address</span>
+        <span class="tag">ID · Fixture</span><span class="tag tag-pink">ART-NET</span><span class="tag">XLR 3/5</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-tabs" id="tabs_dmx">
+    <div class="inner-tab active" onclick="switchTab('dmx','protocolo')">Protocolo DMX</div>
+    <div class="inner-tab" onclick="switchTab('dmx','channel')">Channel/Address</div>
+    <div class="inner-tab" onclick="switchTab('dmx','fixture')">ID / Fixture</div>
+    <div class="inner-tab" onclick="switchTab('dmx','cables')">Cables &amp; Conectores</div>
+    <div class="inner-tab" onclick="switchTab('dmx','librerias')">Librerías</div>
+    <div class="inner-tab" onclick="switchTab('dmx','splitters')">Splitters &amp; Nodos</div>
+    <div class="inner-tab" onclick="switchTab('dmx','artnet')">ART-NET</div>
+    <div class="inner-tab" onclick="switchTab('dmx','calc_dmx')">🧮 Calculadora</div>
+  </div>
+
+  <div class="inner-pane active" id="dmx_protocolo">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">¿Qué es DMX-512?</div>
+        <div class="info-card">
+          <div class="info-card-title">Digital MultipleX — 1986</div>
+          <p>Protocolo de comunicación entre mesas de iluminación y focos. Surgió en <strong>1986</strong> para resolver el problema de incompatibilidad entre diferentes marcas y equipos.</p>
+        </div>
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+          <div style="padding:10px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.3);border-radius:6px;">
+            <div style="font-size:12px; font-weight:700; color:var(--navy);">512 canales por universo</div>
+            <div style="font-size:11px; color:var(--text2); margin-top:2px;">Cada universo puede controlar hasta 512 parámetros individuales (0–255 cada uno)</div>
+          </div>
+          <div style="padding:10px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.3);border-radius:6px;">
+            <div style="font-size:12px; font-weight:700; color:var(--navy);">Varios universos por espectáculo</div>
+            <div style="font-size:11px; color:var(--text2); margin-top:2px;">Un espectáculo grande puede requerir múltiples universos para controlar todos los parámetros</div>
+          </div>
+          <div style="padding:10px;background:rgba(247,215,148,.1);border:1px solid rgba(247,215,148,.3);border-radius:6px;">
+            <div style="font-size:12px; font-weight:700; color:var(--navy);">Valores 0–255</div>
+            <div style="font-size:11px; color:var(--text2); margin-top:2px;">Cada canal transmite un valor entre 0 y 255 (8 bits). Dimmer 0%=0, 50%=127, 100%=255</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Visualización de universo DMX</div>
+        <p style="font-size:11.5px; color:var(--text2); margin-bottom:12px;">512 canales en un universo. Los canales marcados en amarillo están en uso por un fixture de ejemplo.</p>
+        <div class="dmx-channels" id="dmxVis"></div>
+        <div style="margin-top:10px; display:flex; gap:8px; align-items:center; font-size:11px; color:rgba(255,255,255,.5); background:var(--navy); padding:8px 12px; border-radius:6px;">
+          <span style="width:12px;height:12px;background:rgba(247,215,148,.25);border:1px solid rgba(247,215,148,.4);border-radius:3px;display:inline-block;"></span> En uso
+          <span style="width:12px;height:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:3px;display:inline-block;margin-left:8px;"></span> Libre
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="dmx_channel">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">CHANNEL — Canal DMX</div>
+        <div class="info-card">
+          <div class="info-card-title">Unidad individual de control</div>
+          <p>Un canal es una <strong>línea de control dentro del protocolo DMX</strong> que transmite un valor entre 0 y 255 para controlar una función concreta del foco.</p>
+        </div>
+        <div class="panel-subtitle">Tipos de canales</div>
+        <table class="comp-table">
+          <thead><tr><th>Tipo</th><th>Cómo funciona</th><th>Ejemplo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Continuo</strong></td><td>Valores graduales 0–255</td><td>Dimmer: 0%=0, 50%=127, 100%=255</td></tr>
+            <tr><td><strong>Discreto</strong></td><td>Rangos para posiciones fijas</td><td>Rueda color: Rojo 0–10, Azul 11–20…</td></tr>
+          </tbody>
+        </table>
+        <div class="formula" style="margin-top:12px;">Dimmer 50% = 255 × 0.5 = 127   |   Dimmer 75% = 255 × 0.75 ≈ 191</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">ADDRESS — Dirección DMX</div>
+        <div class="info-card">
+          <div class="info-card-title">Punto de entrada del foco</div>
+          <p>Es el <strong>número del primer canal DMX</strong> que ocupa un foco dentro de un universo. Es el "punto de entrada" del foco en la línea DMX.</p>
+        </div>
+        <div class="note" style="margin-top:12px;">
+          Si un foco usa <strong>16 canales</strong> y empieza en la dirección <strong>101</strong>:<br>
+          → Ocupa los canales <strong>101 al 116</strong><br>
+          El siguiente foco no puede empezar antes del canal <strong>117</strong>
+        </div>
+        <div class="panel-subtitle">Tipos de configuración</div>
+        <div style="display:flex; gap:8px;">
+          <div class="result-box" style="flex:1;text-align:center;padding:10px;">
+            <div style="font-size:13px;font-weight:700;color:var(--navy);">🔢 Binario (DIP)</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:4px;">Interruptores físicos en el foco. Cada interruptor representa un bit del número binario.</div>
+          </div>
+          <div class="result-box" style="flex:1;text-align:center;padding:10px;">
+            <div style="font-size:13px;font-weight:700;color:var(--navy);">💻 Digital</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:4px;">Pantalla y botones en el foco para introducir la dirección directamente en decimal.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="dmx_fixture">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">ID — Identificador</div>
+        <div class="info-card">
+          <div class="info-card-title">Número lógico en la mesa</div>
+          <p>Número interno de la mesa de iluminación para identificar un foco de forma lógica. <strong>No tiene relación directa con el DMX físico.</strong> Sirve para seleccionar focos rápidamente, agruparlos y programar de forma cómoda.</p>
+        </div>
+        <div class="note" style="margin-top:12px;">Ejemplo: El operador puede teclear "ID 5" para seleccionar la cabeza móvil número 5, independientemente de en qué canal DMX esté asignada.</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">FIXTURE — Aparato</div>
+        <div class="info-card">
+          <div class="info-card-title">El foco como unidad completa</div>
+          <p>El equipo físico o su representación en la mesa mediante una librería. Cuando parchas un foco, creas un "fixture" en la consola que incluye: tipo de foco, modo de canales, atributos y librería asociada.</p>
+        </div>
+        <div style="margin-top:12px; background:var(--navy); border-radius:8px; padding:14px; color:white;">
+          <div style="font-size:11px; font-weight:700; color:var(--yellow); margin-bottom:8px;">EJEMPLO COMPLETO</div>
+          <div style="font-size:12px; line-height:1.9; color:rgba(252,251,251,.8);">
+            🤖 <strong style="color:var(--yellow);">Fixture:</strong> Robe Spot<br>
+            📋 <strong style="color:var(--yellow);">Modo:</strong> 16 canales<br>
+            📍 <strong style="color:var(--yellow);">Address:</strong> 101<br>
+            🔢 <strong style="color:var(--yellow);">Canales:</strong> 101–116<br>
+            🏷️ <strong style="color:var(--yellow);">Fixture ID:</strong> 5<br>
+            🎚️ <strong style="color:var(--yellow);">Canal 1 (dimmer):</strong> ch101
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel section-gap">
+      <div class="panel-title">Relación entre Channel, Address, ID y Fixture</div>
+      <table class="comp-table">
+        <thead><tr><th>Elemento</th><th>¿Qué es?</th><th>Dónde se define</th><th>Para qué sirve</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CHANNEL</strong></td><td>Unidad individual DMX (0–255)</td><td>Protocolo / librería</td><td>Controlar una función concreta</td><td>Canal 1 = Dimmer</td></tr>
+          <tr><td><strong>ADDRESS</strong></td><td>Primer canal DMX del foco</td><td>En el foco y en la mesa</td><td>Indicar desde qué canal lee datos</td><td>Dirección 101</td></tr>
+          <tr><td><strong>ID</strong></td><td>Identificador lógico</td><td>Mesa de iluminación</td><td>Seleccionar y organizar focos</td><td>ID 5</td></tr>
+          <tr><td><strong>FIXTURE</strong></td><td>Foco como unidad completa</td><td>Al parchear en la mesa</td><td>Representar el aparato con todos sus atributos</td><td>Robe Spot 16ch</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="dmx_cables">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Cable DMX</div>
+        <div class="info-card">
+          <div class="info-card-title">Especificaciones técnicas</div>
+          <p>El cable DMX debe ser de <strong>120 Ohmios de impedancia</strong>. Se utilizan conectores XLR de 3 pines (estándar más común) o 5 pines (pines 4 y 5 de reserva).</p>
+        </div>
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(42,157,111,.06);border:1px solid rgba(42,157,111,.25);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;"><strong>XLR 3:</strong> Pin 1=GND, Pin 2=Data-, Pin 3=Data+</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(42,157,111,.06);border:1px solid rgba(42,157,111,.25);border-radius:6px;">
+            <span>✅</span><div style="font-size:12px;"><strong>XLR 5:</strong> Igual + pines 4 y 5 de reserva</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(237,166,163,.1);border:1px solid rgba(237,166,163,.4);border-radius:6px;">
+            <span>❌</span><div style="font-size:12px;"><strong>NO usar cables de sonido</strong> (70 Ohmios). Degradan la señal</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:9px;background:rgba(237,166,163,.1);border:1px solid rgba(237,166,163,.4);border-radius:6px;">
+            <span>⚠️</span><div style="font-size:12px;">Alejar de fuentes eléctricas que generen interferencias</div>
+          </div>
+        </div>
+        <div class="formula" style="margin-top:12px;">Final de línea: Resistencia terminadora de 120 Ohmios en los pines 2 y 3</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Conexionado — Cascada</div>
+        <div class="info-card">
+          <div class="info-card-title">Entrada y salida por foco</div>
+          <p>Cada foco tiene entrada (macho) y salida (hembra). Los focos se encadenan en cascada. La señal sale de la mesa, entra al primer foco, y pasa por el OUT al siguiente foco, y así sucesivamente.</p>
+        </div>
+        <div class="diagram-wrap" style="margin-top:14px;">
+          <div class="diagram-row">
+            <div class="diag-node source">Mesa DMX<br><span style="font-size:9px;">OUT (macho)</span></div>
+            <div class="diag-arrow">→</div>
+            <div class="diag-node process">Foco 1<br><span style="font-size:9px;">IN→OUT</span></div>
+            <div class="diag-arrow">→</div>
+            <div class="diag-node process">Foco 2<br><span style="font-size:9px;">IN→OUT</span></div>
+            <div class="diag-arrow">→</div>
+            <div class="diag-node output">Foco N<br><span style="font-size:9px;">IN+120Ω</span></div>
+          </div>
+        </div>
+        <div class="note note-orange" style="margin-top:12px;">El último foco de la cadena debe tener una resistencia terminadora de 120 Ohmios para evitar reflexiones de señal.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="dmx_librerias">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">¿Qué son las Librerías?</div>
+        <div class="info-card">
+          <div class="info-card-title">Perfiles digitales de los focos</div>
+          <p>Archivos digitales que describen cómo controlar los focos desde una mesa de iluminación. <strong>Sin librería, el foco no se puede controlar correctamente</strong>, aunque esté bien conectado por DMX.</p>
+        </div>
+        <div class="panel-subtitle">Contenido de una librería</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="padding:8px 12px; background:var(--bg2); border-radius:6px; font-size:12px; color:var(--text2);">📊 Número de canales DMX</div>
+          <div style="padding:8px 12px; background:var(--bg2); border-radius:6px; font-size:12px; color:var(--text2);">🎛️ Función de cada canal (dimmer, pan, tilt, color, gobo, zoom…)</div>
+          <div style="padding:8px 12px; background:var(--bg2); border-radius:6px; font-size:12px; color:var(--text2);">🔢 Valores DMX por función (rangos, posiciones, macros)</div>
+          <div style="padding:8px 12px; background:var(--bg2); border-radius:6px; font-size:12px; color:var(--text2);">📋 Modos de funcionamiento: 8ch, 16ch, extended, basic…</div>
+          <div style="padding:8px 12px; background:var(--bg2); border-radius:6px; font-size:12px; color:var(--text2);">⚡ Velocidades, efectos y presets</div>
+          <div style="padding:8px 12px; background:var(--bg2); border-radius:6px; font-size:12px; color:var(--text2);">📐 Orientación y límites de movimiento</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Dimmers externos</div>
+        <div class="info-card">
+          <div class="info-card-title">Cuadro de Dimmers</div>
+          <p>Sistema que recibe órdenes DMX y las convierte en variación de tensión eléctrica hacia focos que <strong>no son regulables internamente</strong> (principalmente halógenos e incandescentes).</p>
+        </div>
+        <div style="margin-top:12px; display:flex; flex-direction:column; gap:8px;">
+          <div style="padding:9px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;">
+            <div style="font-size:12px; font-weight:700; color:var(--navy);">⚡ Reguladores de voltaje</div>
+            <div style="font-size:11px; color:var(--text2);">Controlan la tensión AC para variar la intensidad del foco halógeno</div>
+          </div>
+          <div style="padding:9px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;">
+            <div style="font-size:12px; font-weight:700; color:var(--navy);">🔌 Schukos dimerizables</div>
+            <div style="font-size:11px; color:var(--text2);">Salidas con control de tensión variable</div>
+          </div>
+          <div style="padding:9px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;">
+            <div style="font-size:12px; font-weight:700; color:var(--navy);">🔌 Schukos directos</div>
+            <div style="font-size:11px; color:var(--text2);">Salidas a voltaje fijo, para equipos LED con dimmer propio</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="dmx_splitters">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Splitter DMX</div>
+        <div class="info-card">
+          <div class="info-card-title">Divisor de señal DMX</div>
+          <p>Dispositivo que recibe una señal y la <strong>divide en varias salidas independientes</strong>, manteniendo la integridad de la señal. Indispensable en instalaciones con muchos focos.</p>
+        </div>
+        <div style="margin-top:12px; display:flex; flex-direction:column; gap:6px;">
+          <div style="padding:8px;background:rgba(42,157,111,.06);border:1px solid rgba(42,157,111,.25);border-radius:6px;font-size:12px;color:var(--text2);">✅ Repartir una línea DMX a varias zonas del escenario</div>
+          <div style="padding:8px;background:rgba(42,157,111,.06);border:1px solid rgba(42,157,111,.25);border-radius:6px;font-size:12px;color:var(--text2);">✅ Evitar cadenas DMX demasiado largas</div>
+          <div style="padding:8px;background:rgba(42,157,111,.06);border:1px solid rgba(42,157,111,.25);border-radius:6px;font-size:12px;color:var(--text2);">✅ Aislar fallos — si una línea falla, las demás siguen</div>
+          <div style="padding:8px;background:rgba(42,157,111,.06);border:1px solid rgba(42,157,111,.25);border-radius:6px;font-size:12px;color:var(--text2);">✅ Proteger la consola frente a retornos eléctricos</div>
+        </div>
+        <div class="diagram-wrap" style="margin-top:14px;">
+          <div class="diagram-row">
+            <div class="diag-node source">Mesa DMX</div>
+            <div class="diag-arrow">→</div>
+            <div class="diag-node process">SPLITTER</div>
+          </div>
+          <div class="diagram-row">
+            <div class="diag-arrow">→</div><div class="diag-node output">Línea A</div>
+            <span style="margin:0 6px;color:var(--text3);">·</span>
+            <div class="diag-arrow">→</div><div class="diag-node output">Línea B</div>
+            <span style="margin:0 6px;color:var(--text3);">·</span>
+            <div class="diag-arrow">→</div><div class="diag-node output">Línea C</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Nodo DMX</div>
+        <div class="info-card">
+          <div class="info-card-title">Conversor Ethernet ↔ DMX</div>
+          <p>Dispositivo que convierte señales de <strong>red Ethernet en DMX512</strong>, y viceversa. Permite distribuir muchos universos DMX por red IP, reduciendo tiradas largas de cable DMX.</p>
+        </div>
+        <div style="margin-top:12px; display:flex; flex-direction:column; gap:6px;">
+          <div style="padding:8px;background:rgba(92,63,191,.06);border:1px solid rgba(92,63,191,.2);border-radius:6px;font-size:12px;color:var(--text2);">🌐 Distribuir muchos universos DMX por red</div>
+          <div style="padding:8px;background:rgba(92,63,191,.06);border:1px solid rgba(92,63,191,.2);border-radius:6px;font-size:12px;color:var(--text2);">📏 Reducir tiradas largas de cable DMX</div>
+          <div style="padding:8px;background:rgba(92,63,191,.06);border:1px solid rgba(92,63,191,.2);border-radius:6px;font-size:12px;color:var(--text2);">🔌 Conector RJ45 (Ethernet)</div>
+          <div style="padding:8px;background:rgba(92,63,191,.06);border:1px solid rgba(92,63,191,.2);border-radius:6px;font-size:12px;color:var(--text2);">🏗️ Integrar iluminación en redes IP</div>
+        </div>
+        <div class="diagram-wrap" style="margin-top:14px;">
+          <div class="diagram-row">
+            <div class="diag-node source">Mesa ART-NET<br><span style="font-size:9px;">RJ45</span></div>
+            <div class="diag-arrow">→</div>
+            <div class="diag-node process">NODO<br><span style="font-size:9px;">ETH→DMX</span></div>
+            <div class="diag-arrow">→</div>
+            <div class="diag-node output">Universo DMX<br><span style="font-size:9px;">XLR</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="dmx_artnet">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">ART-NET</div>
+        <div class="info-card">
+          <div class="info-card-title">DMX sobre Ethernet</div>
+          <p>Protocolo de comunicación de red que permite <strong>transmitir señales DMX512 a través de redes Ethernet</strong>. Puede enviar hasta <strong>32.768 universos</strong> por un solo cable de red.</p>
+        </div>
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;padding:9px;background:rgba(92,63,191,.06);border:1px solid rgba(92,63,191,.2);border-radius:6px;">
+            <span style="font-size:18px;">🌐</span>
+            <div><div style="font-size:12px;font-weight:700;color:var(--navy);">Basado en IP / Ethernet</div><div style="font-size:11px;color:var(--text2);">Usa protocolos de red estándar</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px;background:rgba(92,63,191,.06);border:1px solid rgba(92,63,191,.2);border-radius:6px;">
+            <span style="font-size:18px;">🔌</span>
+            <div><div style="font-size:12px;font-weight:700;color:var(--navy);">Conector RJ45</div><div style="font-size:11px;color:var(--text2);">Cable Ethernet estándar</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px;background:rgba(92,63,191,.06);border:1px solid rgba(92,63,191,.2);border-radius:6px;">
+            <span style="font-size:18px;">📊</span>
+            <div><div style="font-size:12px;font-weight:700;color:var(--navy);">32.768 universos</div><div style="font-size:11px;color:var(--text2);">vs 1 universo del DMX físico</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px;background:rgba(92,63,191,.06);border:1px solid rgba(92,63,191,.2);border-radius:6px;">
+            <span style="font-size:18px;">🔄</span>
+            <div><div style="font-size:12px;font-weight:700;color:var(--navy);">Bidireccional</div><div style="font-size:11px;color:var(--text2);">Permite feedback de equipos</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">DMX vs ART-NET</div>
+        <table class="comp-table">
+          <thead><tr><th>Característica</th><th>DMX-512</th><th>ART-NET</th></tr></thead>
+          <tbody>
+            <tr><td>Medio físico</td><td>XLR 3/5 pines</td><td>RJ45 (Ethernet)</td></tr>
+            <tr><td>Universos</td><td>1 por cable</td><td>32.768 por cable</td></tr>
+            <tr><td>Distancia</td><td>~300m sin repetidor</td><td>Red IP (km)</td></tr>
+            <tr><td>Dirección</td><td>Unidireccional</td><td>Bidireccional</td></tr>
+            <tr><td>Canales</td><td>512</td><td>512 × N universos</td></tr>
+            <tr><td>Uso</td><td>Conexiones cortas</td><td>Grandes instalaciones</td></tr>
+          </tbody>
+        </table>
+        <div class="note note-purple" style="margin-top:14px;">
+          <strong>sACN (E1.31)</strong> es un protocolo similar a ART-NET, también basado en Ethernet, estandarizado por ANSI/ESTA. Ambos son compatibles con la mayoría de consolas profesionales.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="dmx_calc_dmx">
+    <div class="panel">
+      <div class="panel-title">Calculadora de Universos DMX</div>
+      <div class="info-card" style="margin-bottom:16px;">
+        <div class="info-card-title">Planificación de patch DMX</div>
+        <p>Calcula cuántos universos necesitas para tu instalación y si los focos caben en un universo sin solapamiento de direcciones.</p>
+      </div>
+      <div class="calc-row-3">
+        <div class="field">
+          <label>Nº de focos</label>
+          <input type="number" id="dmx_nfocos" value="24" min="1">
+        </div>
+        <div class="field">
+          <label>Canales por foco (modo)</label>
+          <input type="number" id="dmx_nch" value="16" min="1" max="512">
+        </div>
+        <div class="field">
+          <label>Dirección inicio</label>
+          <input type="number" id="dmx_addr" value="1" min="1" max="512">
+        </div>
+      </div>
+      <button class="btn" onclick="calcDMX()">Calcular universos</button>
+      <div id="dmx_result" style="display:none; margin-top:16px;">
+        <div class="result-grid-4" style="gap:10px; margin-bottom:14px;">
+          <div class="result-box green"><div class="result-val" id="dmx_total_ch">—</div><div class="result-label">Total canales</div></div>
+          <div class="result-box yellow"><div class="result-val" id="dmx_universos">—</div><div class="result-label">Universos necesarios</div></div>
+          <div class="result-box" id="dmx_box3"><div class="result-val" id="dmx_ultimo">—</div><div class="result-label">Último canal usado</div></div>
+          <div class="result-box" id="dmx_box4"><div class="result-val" id="dmx_libre">—</div><div class="result-label">Canales libres univ.1</div></div>
+        </div>
+        <div class="note" id="dmx_note"></div>
+      </div>
+    </div>
+  </div>
+
+    <!-- ═══ HERRAMIENTA: SIMULADOR VISUAL DE PATCH DMX ═══ -->
+    <div class="panel" style="margin-top:24px">
+      <div class="panel-title">🗺️ Simulador Visual de Patch — Mapa de Universo</div>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:18px">Construye el patch de tu instalación y visualiza cómo se reparten los canales en el universo DMX. Cada fixture se muestra con un color distinto en el mapa de 512 canales.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
+
+        <!-- Form -->
+        <div>
+          <div class="calc-row">
+            <div class="field">
+              <label>Nombre del fixture</label>
+              <input type="text" id="il_fix_name" value="PAR LED 6ch" placeholder="p.ej. PAR LED RGBW" list="il_fix_list" style="font-size:14px" oninput="ilAutoFill()">
+              <datalist id="il_fix_list">
+                <option value="PAR LED 6ch" data-ch="6">
+                <option value="PAR LED 7ch" data-ch="7">
+                <option value="Fresnel Dimmer 1ch" data-ch="1">
+                <option value="Cabeza Móvil Wash 16ch" data-ch="16">
+                <option value="Cabeza Móvil Spot 18ch" data-ch="18">
+                <option value="Beam 230W 20ch" data-ch="20">
+                <option value="Barra LED 8ch" data-ch="8">
+                <option value="PAR 64 Dimmer 1ch" data-ch="1">
+                <option value="Pixel Bar 24ch" data-ch="24">
+              </datalist>
+            </div>
+            <div class="field">
+              <label>Canales por unidad</label>
+              <input type="number" id="il_fix_ch" value="6" min="1" max="512">
+            </div>
+          </div>
+          <div class="calc-row">
+            <div class="field">
+              <label>Cantidad de unidades</label>
+              <input type="number" id="il_fix_qty" value="8" min="1" max="512">
+            </div>
+            <div class="field">
+              <label>Canal de inicio</label>
+              <input type="number" id="il_fix_start" value="1" min="1" max="512">
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap">
+            <button class="btn" onclick="ilAddFixture()">+ Añadir fixture</button>
+            <button class="btn" style="background:var(--bg2);color:var(--text2);border-color:var(--border)" onclick="ilSuggestNext()">→ Siguiente libre</button>
+            <button class="btn" style="background:var(--bg2);color:var(--text2);border-color:var(--border)" onclick="ilClear()">Limpiar todo</button>
+          </div>
+
+          <!-- Collision warning -->
+          <div id="il_collision" style="display:none;margin-top:10px;padding:8px 12px;background:rgba(220,80,60,.08);border:1px solid rgba(220,80,60,.35);border-radius:6px;font-size:11px;color:#b03020;font-weight:600"></div>
+
+          <!-- Fixture list -->
+          <div id="il_list" style="margin-top:14px;display:flex;flex-direction:column;gap:5px"></div>
+        </div>
+
+        <!-- Stats -->
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="result-grid">
+            <div class="result-box"><div class="result-val" id="il_stat_fixtures">0</div><div class="result-label">Fixtures</div></div>
+            <div class="result-box green"><div class="result-val" id="il_stat_used">0</div><div class="result-label">Canales usados</div></div>
+            <div class="result-box orange"><div class="result-val" id="il_stat_free">512</div><div class="result-label">Canales libres</div></div>
+            <div class="result-box yellow"><div class="result-val" id="il_stat_pct">0%</div><div class="result-label">% ocupado</div></div>
+          </div>
+          <!-- Usage bar -->
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:4px">
+              <span>Ocupación del universo</span><span id="il_stat_bar_pct">0%</span>
+            </div>
+            <div style="height:10px;background:var(--bg3);border-radius:5px;overflow:hidden;border:1px solid var(--border)">
+              <div id="il_usage_bar" style="height:100%;width:0%;background:var(--navy2);border-radius:5px;transition:width .4s ease"></div>
+            </div>
+          </div>
+          <!-- Tip -->
+          <div style="padding:12px;background:var(--bg2);border-radius:8px;border:1px solid var(--border);font-size:11px;color:var(--text2);line-height:1.7">
+            <strong style="color:var(--navy)">💡 Recuerda:</strong> cada universo tiene exactamente 512 canales. Pasa al universo 2 cuando el 1 se llena. El canal 001 del universo 2 es físicamente diferente al canal 001 del universo 1.
+          </div>
+        </div>
+      </div>
+
+      <!-- Universe map -->
+      <div style="margin-bottom:6px;font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.8px;text-transform:uppercase">Mapa visual — Universo 1 (512 canales)</div>
+      <p style="font-size:11px;color:var(--text3);margin-bottom:8px">Cada celda = 1 canal. Pasa el cursor sobre un canal para ver qué fixture lo ocupa.</p>
+      <div id="il_map" style="display:grid;grid-template-columns:repeat(64,1fr);gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:6px;overflow:hidden;margin-bottom:8px"></div>
+      <!-- Ruler -->
+      <div style="display:flex;justify-content:space-between;padding:0 2px;margin-bottom:14px">
+        <span style="font-size:9px;color:var(--text3)">Ch 1</span>
+        <span style="font-size:9px;color:var(--text3)">65</span>
+        <span style="font-size:9px;color:var(--text3)">129</span>
+        <span style="font-size:9px;color:var(--text3)">193</span>
+        <span style="font-size:9px;color:var(--text3)">257</span>
+        <span style="font-size:9px;color:var(--text3)">321</span>
+        <span style="font-size:9px;color:var(--text3)">385</span>
+        <span style="font-size:9px;color:var(--text3)">449</span>
+        <span style="font-size:9px;color:var(--text3)">512</span>
+      </div>
+      <!-- Legend -->
+      <div id="il_legend" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+
+    <script>
+    (function(){
+      var ilFixtures = [];
+      var ilPalette = ['#192A56','#1e7a3a','#a03020','#a07010','#5030a0','#107a8a','#8a2060','#106050','#8a4020','#4050a0','#106090','#608020'];
+
+      function ilAutoFill() {
+        var name = document.getElementById('il_fix_name').value;
+        var map = {'PAR LED 6ch':6,'PAR LED 7ch':7,'Fresnel Dimmer 1ch':1,'Cabeza Móvil Wash 16ch':16,'Cabeza Móvil Spot 18ch':18,'Beam 230W 20ch':20,'Barra LED 8ch':8,'PAR 64 Dimmer 1ch':1,'Pixel Bar 24ch':24};
+        if (map[name]) document.getElementById('il_fix_ch').value = map[name];
+      }
+      window.ilAutoFill = ilAutoFill;
+
+      function ilSuggestNext() {
+        var chMap = new Array(513).fill(false);
+        ilFixtures.forEach(function(f){ for(var i=f.start;i<=f.end;i++) chMap[i]=true; });
+        for(var i=1;i<=512;i++){ if(!chMap[i]){ document.getElementById('il_fix_start').value=i; break; } }
+      }
+      window.ilSuggestNext = ilSuggestNext;
+
+      function ilAddFixture() {
+        var name  = document.getElementById('il_fix_name').value.trim() || 'Fixture';
+        var ch    = parseInt(document.getElementById('il_fix_ch').value)||1;
+        var qty   = parseInt(document.getElementById('il_fix_qty').value)||1;
+        var start = parseInt(document.getElementById('il_fix_start').value)||1;
+        var end   = start + ch*qty - 1;
+
+        if (end > 512) {
+          document.getElementById('il_collision').style.display='block';
+          document.getElementById('il_collision').textContent='⚠ Los canales '+start+'–'+end+' superan el límite del universo (512). Reduce la cantidad o el canal de inicio.';
+          return;
+        }
+        // Check collision
+        var col = false;
+        ilFixtures.forEach(function(f){
+          if (!(end < f.start || start > f.end)) col = true;
+        });
+        if (col) {
+          document.getElementById('il_collision').style.display='block';
+          document.getElementById('il_collision').textContent='⚠ Colisión detectada: los canales '+start+'–'+end+' solapan con otro fixture.';
+          return;
+        }
+        document.getElementById('il_collision').style.display='none';
+        ilFixtures.push({name:name, ch:ch, qty:qty, start:start, end:end, total:ch*qty, color:ilPalette[ilFixtures.length%ilPalette.length]});
+        ilRender();
+        // Auto-advance start
+        document.getElementById('il_fix_start').value = end+1;
+      }
+      window.ilAddFixture = ilAddFixture;
+
+      function ilClear() {
+        ilFixtures = [];
+        document.getElementById('il_collision').style.display='none';
+        ilRender();
+      }
+      window.ilClear = ilClear;
+
+      function ilRender() {
+        // Stats
+        var used = ilFixtures.reduce(function(s,f){ return s+f.total; },0);
+        var free = 512-used;
+        var pct  = Math.round(used/512*100);
+        document.getElementById('il_stat_fixtures').textContent = ilFixtures.length;
+        document.getElementById('il_stat_used').textContent     = used;
+        document.getElementById('il_stat_free').textContent     = free;
+        document.getElementById('il_stat_pct').textContent      = pct+'%';
+        document.getElementById('il_stat_bar_pct').textContent  = pct+'%';
+        var barColor = pct>90?'#b03020':pct>70?'#a07010':'#192A56';
+        var bar = document.getElementById('il_usage_bar');
+        bar.style.width = pct+'%';
+        bar.style.background = barColor;
+
+        // Map
+        var map = document.getElementById('il_map');
+        map.innerHTML = '';
+        for (var i=1; i<=512; i++) {
+          var fix = null;
+          for (var j=0; j<ilFixtures.length; j++) {
+            if (i>=ilFixtures[j].start && i<=ilFixtures[j].end) { fix=ilFixtures[j]; break; }
+          }
+          var cell = document.createElement('div');
+          cell.style.height = '9px';
+          cell.style.position = 'relative';
+          if (fix) {
+            cell.style.background = fix.color;
+            cell.style.opacity = '0.85';
+            cell.title = fix.name+' · Ch '+i+(fix.ch>1?' ('+Math.floor((i-fix.start)%fix.ch+1)+'/'+fix.ch+')':'');
+            cell.style.cursor = 'help';
+          } else {
+            cell.style.background = '#edecea';
+          }
+          map.appendChild(cell);
+        }
+
+        // Fixture list
+        var list = document.getElementById('il_list');
+        list.innerHTML = '';
+        ilFixtures.forEach(function(f, idx) {
+          var row = document.createElement('div');
+          row.style.cssText = 'display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;font-size:11px';
+          row.innerHTML = '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:'+f.color+';flex-shrink:0"></span>'
+                        + '<span style="flex:1;font-weight:600;color:var(--text)">'+f.name+'</span>'
+                        + '<span style="font-family:monospace;color:var(--text3)">'+f.qty+'u × '+f.ch+'ch = Ch '+f.start+'–'+f.end+'</span>'
+                        + '<button onclick="ilRemove('+idx+')" style="background:none;border:none;color:var(--text3);cursor:pointer;font-size:13px;padding:0 2px;line-height:1" title="Eliminar">✕</button>';
+          list.appendChild(row);
+        });
+
+        // Legend
+        var leg = document.getElementById('il_legend');
+        leg.innerHTML = ilFixtures.map(function(f){
+          return '<span style="display:inline-flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:2px 8px">'
+               + '<span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:'+f.color+'"></span>'
+               + f.name+' ('+f.start+'–'+f.end+')</span>';
+        }).join('');
+      }
+
+      window.ilRemove = function(idx) {
+        ilFixtures.splice(idx,1);
+        ilRender();
+      };
+
+      ilRender();
+    })();
+    </script>
+
+</section>
+
+
+
+</main>
+
+<script>
+// ═══ NAV ═══
+function goTo(id) {
+  document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelector(`[data-module="${id}"]`).classList.add('active');
+  window.scrollTo(0, 0);
+  if (id === 'm8') { buildDMXVis(); }
+  if (id === 'm5') { setTimeout(() => drawBeam('wash'), 100); }
+}
+document.querySelectorAll('.nav-tab').forEach(t => {
+  t.addEventListener('click', () => goTo(t.dataset.module));
+});
+
+// ═══ INNER TABS ═══
+function switchTab(group, pane) {
+  document.querySelectorAll(`#tabs_${group} .inner-tab`).forEach((t, i) => {
+    t.classList.toggle('active', t.getAttribute('onclick').includes(`'${pane}'`));
+  });
+  document.querySelectorAll(`#${group}_${pane}`).forEach(p => {});
+  document.querySelectorAll(`[id^="${group}_"]`).forEach(p => p.classList.remove('active'));
+  const el = document.getElementById(`${group}_${pane}`);
+  if (el) el.classList.add('active');
+}
+
+// ═══ M2: CALCULADORA LEY INVERSA ═══
+function calcLIC() {
+  const lm = parseFloat(document.getElementById('lic_lm').value);
+  const area = parseFloat(document.getElementById('lic_area').value);
+  const d1 = parseFloat(document.getElementById('lic_d1').value);
+  const d2 = parseFloat(document.getElementById('lic_d2').value);
+  const e1 = lm / (area * d1 * d1);
+  const e2 = lm / (area * d2 * d2);
+  const ratio = (e1 / e2).toFixed(1);
+  document.getElementById('lic_e1').textContent = Math.round(e1).toLocaleString() + ' lx';
+  document.getElementById('lic_e2').textContent = Math.round(e2).toLocaleString() + ' lx';
+  document.getElementById('lic_ratio').textContent = 'x' + ratio;
+  const note = `A ${d1}m el foco ilumina ${Math.round(e1)} lux. A ${d2}m (distancia ×${(d2/d1).toFixed(1)}) recibe ${Math.round(e2)} lux — ${ratio}x menos luz. ${e1>500?'Intensidad alta para espectáculos.':e1>200?'Intensidad correcta para escena.':'Intensidad baja, considera más potencia.'}`;
+  document.getElementById('lic_note').textContent = note;
+  document.getElementById('lic_result').style.display = 'block';
+}
+
+// ═══ M5: BEAM CANVAS ═══
+function drawBeam(type) {
+  const canvas = document.getElementById('beamCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#0a0f1e';
+  ctx.fillRect(0, 0, W, H);
+
+  const configs = {
+    wash:  { angle: 55, color1: 'rgba(247,215,148,', color2: 'rgba(247,180,50,', label: 'WASH — Haz suave 20°–60°', beams: 1 },
+    spot:  { angle: 20, color1: 'rgba(237,166,163,', color2: 'rgba(220,100,95,',  label: 'SPOT — Haz definido 10°–30°', beams: 1 },
+    beam:  { angle: 4,  color1: 'rgba(99,180,255,',  color2: 'rgba(50,140,255,',  label: 'BEAM — Haz estrecho 2°–8°', beams: 3 },
+  };
+  const c = configs[type];
+  const sources = type === 'beam' ? [W*0.3, W*0.5, W*0.7] : [W*0.5];
+
+  sources.forEach(sx => {
+    const rad = (c.angle / 2) * Math.PI / 180;
+    const grd = ctx.createRadialGradient(sx, 0, 0, sx, H*0.6, H*1.1);
+    grd.addColorStop(0, c.color1 + '0.85)');
+    grd.addColorStop(0.3, c.color1 + '0.4)');
+    grd.addColorStop(0.7, c.color1 + '0.12)');
+    grd.addColorStop(1, c.color1 + '0)');
+    ctx.beginPath();
+    const spread = Math.tan(rad) * H;
+    ctx.moveTo(sx, 0);
+    ctx.lineTo(sx + spread, H);
+    ctx.lineTo(sx - spread, H);
+    ctx.closePath();
+    ctx.fillStyle = grd;
+    ctx.fill();
+
+    // source dot
+    ctx.beginPath();
+    ctx.arc(sx, 8, 6, 0, Math.PI*2);
+    ctx.fillStyle = c.color1 + '1)';
+    ctx.fill();
+  });
+
+  // Floor line
+  ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, H-2); ctx.lineTo(W, H-2); ctx.stroke();
+
+  // Label
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.font = '600 13px Poppins, sans-serif';
+  ctx.fillText(c.label, 16, H-14);
+}
+setTimeout(() => drawBeam('wash'), 200);
+
+// ═══ M8: DMX VISUALIZER ═══
+function buildDMXVis() {
+  const container = document.getElementById('dmxVis');
+  if (!container) return;
+  container.innerHTML = '';
+  const usedStart = 101, usedLen = 16;
+  for (let i = 1; i <= 64; i++) {
+    const div = document.createElement('div');
+    div.className = 'dmx-ch';
+    if (i >= usedStart && i < usedStart + usedLen) {
+      div.className += ' active';
+      div.innerHTML = `<span>${i}</span><span style="font-size:7px;opacity:.7;">Fx</span>`;
+    } else if (i === usedStart - 1 || i === usedStart + usedLen) {
+      div.className += ' used';
+      div.innerHTML = `<span>${i}</span>`;
+    } else {
+      div.className += ' free';
+      div.innerHTML = `<span>${i}</span>`;
+    }
+    container.appendChild(div);
+  }
+  const dots = document.createElement('div');
+  dots.style.cssText = 'color:rgba(255,255,255,.2);font-size:14px;padding:10px;align-self:center;';
+  dots.textContent = '··· 448 canales más ···';
+  container.appendChild(dots);
+}
+
+// ═══ M8: DMX CALC ═══
+function calcDMX() {
+  const nfocos = parseInt(document.getElementById('dmx_nfocos').value);
+  const nch = parseInt(document.getElementById('dmx_nch').value);
+  const addr = parseInt(document.getElementById('dmx_addr').value);
+  const totalCh = nfocos * nch;
+  const lastCh = addr - 1 + totalCh;
+  const universos = Math.ceil(lastCh / 512);
+  const libre = universos === 1 ? 512 - lastCh : (universos * 512) - lastCh;
+
+  document.getElementById('dmx_total_ch').textContent = totalCh;
+  document.getElementById('dmx_universos').textContent = universos;
+  document.getElementById('dmx_ultimo').textContent = lastCh;
+  document.getElementById('dmx_libre').textContent = libre;
+
+  const box3 = document.getElementById('dmx_box3');
+  const box4 = document.getElementById('dmx_box4');
+  box3.className = 'result-box ' + (lastCh <= 512 ? 'green' : 'red');
+  box4.className = 'result-box ' + (libre > 50 ? 'green' : libre > 0 ? 'yellow' : 'red');
+
+  let note = `${nfocos} focos × ${nch} canales = ${totalCh} canales totales. `;
+  if (universos === 1) {
+    note += `✓ Todo cabe en 1 universo. Último canal usado: ${lastCh}/512. Quedan ${libre} canales libres.`;
+  } else {
+    note += `⚠ Necesitas ${universos} universos DMX. El último canal usado es el ${lastCh} (en el universo ${universos}).`;
+  }
+  document.getElementById('dmx_note').textContent = note;
+  document.getElementById('dmx_result').style.display = 'block';
+}
+
+
+// ═══ INIT ═══
+calcLIC();
+</script>
+
+<style id="avl-nav-style">
+  #avl-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(30,29,27,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 40px;
+    padding: 7px 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);
+    font-family: 'Poppins', -apple-system, sans-serif;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .avl-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.75);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .18s, color .18s, transform .18s;
+    flex-shrink: 0;
+    font-size: 13px;
+    line-height: 1;
+  }
+  .avl-nav-btn:hover {
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    transform: scale(1.08);
+  }
+  .avl-nav-btn.avl-nav-home {
+    background: #A06B6B;
+    opacity: .9;
+  }
+  .avl-nav-btn.avl-nav-home:hover {
+    opacity: 1;
+    background: #A06B6B;
+  }
+  .avl-nav-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255,255,255,0.12);
+    flex-shrink: 0;
+  }
+  .avl-nav-info {
+    padding: 0 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    min-width: 130px;
+    text-align: center;
+  }
+  .avl-nav-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -.1px;
+  }
+  .avl-nav-app {
+    font-size: 9px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+  .avl-nav-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 0 4px;
+  }
+  .avl-nav-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: background .2s, transform .2s;
+    cursor: default;
+  }
+  .avl-nav-dot.avl-active {
+    background: #A06B6B;
+    transform: scale(1.3);
+  }
+  .avl-nav-btn svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 480px) {
+    #avl-nav { bottom: 12px; padding: 6px 8px; gap: 4px; }
+    .avl-nav-info { min-width: 100px; }
+    .avl-nav-label { font-size: 10px; }
+    .avl-nav-dots { display: none; }
+  }
+</style>
+
+
+<div id="avl-nav">
+  <!-- Home -->
+  <a class="avl-nav-btn avl-nav-home" href="index.html" title="Volver al índice">
+    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 8L8 2l6 6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4 6v7h3v-3h2v3h3V6" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+
+  <div class="avl-nav-divider"></div>
+
+  <!-- Prev -->
+  <a class="avl-nav-btn" href="after-effects-suite.html" title="Motion Graphics & Composición"><svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+  <!-- Info -->
+  <div class="avl-nav-info">
+    <div class="avl-nav-label">Iluminación de Espectáculos</div>
+    <div class="avl-nav-app">Fundamentos Luz</div>
+  </div>
+
+  <!-- Dots -->
+  <div class="avl-nav-dots">
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot avl-active"></div>
+    <div class="avl-nav-dot"></div>
+  </div>
+
+  <!-- Next -->
+  <a class="avl-nav-btn" href="MAGICQ_SUITE_EDU_V4_18_56_43.html" title="Control DMX & Consola"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+</div>
+
+</body>
+</html>

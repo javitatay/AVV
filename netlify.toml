@@ -1,0 +1,63 @@
+# ─── Netlify configuration ────────────────────────────────────
+# AVL Master Suite · Animación Visual en Vivo · CFGM Video DJ
+
+[build]
+  publish = "."        # All HTML files are at root level
+
+# ─── HTTP Headers ─────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    Cache-Control          = "public, max-age=3600"
+
+# HTML pages: shorter cache so updates propagate quickly
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=300, must-revalidate"
+
+# ─── Redirects ────────────────────────────────────────────────
+# Clean URL: /video → VIDEO_SUITE_V2_19_15_38.html
+[[redirects]]
+  from   = "/video"
+  to     = "/VIDEO_SUITE_V2_19_15_38.html"
+  status = 200
+
+[[redirects]]
+  from   = "/illustrator"
+  to     = "/ILLUSTRATOR_SUITE_EDU.html"
+  status = 200
+
+[[redirects]]
+  from   = "/resolume"
+  to     = "/RESOLUME_ARENA_SUITE_EDU_19_08_59.html"
+  status = 200
+
+[[redirects]]
+  from   = "/aftereffects"
+  to     = "/after-effects-suite.html"
+  status = 200
+
+[[redirects]]
+  from   = "/ae"
+  to     = "/after-effects-suite.html"
+  status = 200
+
+[[redirects]]
+  from   = "/iluminacion"
+  to     = "/ILUMINACION_SUITE_V1.html"
+  status = 200
+
+[[redirects]]
+  from   = "/magicq"
+  to     = "/MAGICQ_SUITE_EDU_V4_18_56_43.html"
+  status = 200
+
+# 404 fallback → index
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 404
