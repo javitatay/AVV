@@ -47,4 +47,4 @@ Todos los archivos son HTML autocontenidos (sin dependencias externas de servido
 ---
 
 *Herramienta educativa independiente · © 2026 Javier Tatay*  
-*Adobe After Effects®, Adobe Illustrator® y Resolume Arena® son marcas de sus respectivos propietarios.*
+*Adobe After Effects®, Adobe Illustrator®, Resolume Arena® y Chamsys MagicQ® son marcas de sus respectivos propietarios.*
