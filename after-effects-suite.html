@@ -3323,5 +3323,153 @@ function cvLoop(ts){
   requestAnimationFrame(cvLoop);
 }
 </script>
+
+<style id="avl-nav-style">
+  #avl-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(30,29,27,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 40px;
+    padding: 7px 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);
+    font-family: 'Poppins', -apple-system, sans-serif;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .avl-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.75);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .18s, color .18s, transform .18s;
+    flex-shrink: 0;
+    font-size: 13px;
+    line-height: 1;
+  }
+  .avl-nav-btn:hover {
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    transform: scale(1.08);
+  }
+  .avl-nav-btn.avl-nav-home {
+    background: #3548C8;
+    opacity: .9;
+  }
+  .avl-nav-btn.avl-nav-home:hover {
+    opacity: 1;
+    background: #3548C8;
+  }
+  .avl-nav-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255,255,255,0.12);
+    flex-shrink: 0;
+  }
+  .avl-nav-info {
+    padding: 0 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    min-width: 130px;
+    text-align: center;
+  }
+  .avl-nav-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -.1px;
+  }
+  .avl-nav-app {
+    font-size: 9px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+  .avl-nav-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 0 4px;
+  }
+  .avl-nav-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: background .2s, transform .2s;
+  }
+  .avl-nav-dot.avl-active {
+    background: #3548C8;
+    transform: scale(1.3);
+  }
+  .avl-nav-btn svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 480px) {
+    #avl-nav { bottom: 12px; padding: 6px 8px; gap: 4px; }
+    .avl-nav-info { min-width: 100px; }
+    .avl-nav-label { font-size: 10px; }
+    .avl-nav-dots { display: none; }
+  }
+</style>
+
+<div id="avl-nav">
+  <!-- Home -->
+  <a class="avl-nav-btn avl-nav-home" href="index.html" title="Volver al índice">
+    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 8L8 2l6 6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4 6v7h3v-3h2v3h3V6" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+
+  <div class="avl-nav-divider"></div>
+
+  <!-- Prev: Resolume -->
+  <a class="avl-nav-btn" href="RESOLUME_ARENA_SUITE_EDU_19_08_59.html" title="VJing & Projection Mapping">
+    <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
+  <!-- Info -->
+  <div class="avl-nav-info">
+    <div class="avl-nav-label">Motion Graphics & FX</div>
+    <div class="avl-nav-app">Adobe After Effects</div>
+  </div>
+
+  <!-- Dots (6 suites, AE = 4th) -->
+  <div class="avl-nav-dots">
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot avl-active"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+  </div>
+
+  <!-- Next: Iluminación -->
+  <a class="avl-nav-btn" href="ILUMINACION_SUITE_V1.html" title="Iluminación de Espectáculos">
+    <svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
 </body>
 </html>
