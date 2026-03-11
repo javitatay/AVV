@@ -2880,6 +2880,118 @@ function calcLEDrev() {
 // ════════════════════════════════════════════
 // TOOL 5 — BPM LOOP DURATION
 // ════════════════════════════════════════════
+// ════════════════════════════════════════════
+// BUSCADOR DE EFECTOS — DATA + FUNCTIONS
+// ════════════════════════════════════════════
+const FX_DATA = [
+  // ── VÍDEO ──────────────────────────────────
+  { name:'AddSubtract',      cat:'color',      type:'video', desc:'Añade o resta valor a los canales R, G o B de cada píxel. Corrección de color directa.' },
+  { name:'Auto Mask',        cat:'mascara',    type:'video', desc:'Crea canal alpha basado en la luminancia. Más brillo = más opaco.' },
+  { name:'Bendoscope',       cat:'geometria',  type:'video', desc:'Caleidoscopio curvo. Parámetro: número de divisiones. Buen punto de partida.' },
+  { name:'Blow',             cat:'color',      type:'video', desc:'Reemplaza los píxeles del borde con bandas de color. Controla cuánto del vídeo se sustituye.' },
+  { name:'Blur',             cat:'distorsion', type:'video', desc:'Desenfoque simple. El modo alta calidad puede ralentizar el output según la GPU.' },
+  { name:'Bright Contrast',  cat:'color',      type:'video', desc:'Controles básicos de brillo y contraste. Corrección rápida de niveles.' },
+  { name:'Chroma RGB Delay', cat:'color',      type:'video', desc:'Retrasa canales R, G y B de forma independiente. Efecto de aberración cromática.' },
+  { name:'Displace',         cat:'distorsion', type:'video', desc:'Mueve píxeles H y V basándose en su luminancia. Parámetros Horizontal y Vertical Factor.' },
+  { name:'Distortion',       cat:'distorsion', type:'video', desc:'Efecto TV rota. Distort controla cuánto se distorsiona, Radius el alcance.' },
+  { name:'Drop Shadow',      cat:'mascara',    type:'video', desc:'Sombra paralela para clips con transparencia (alpha).' },
+  { name:'Edge Detection',   cat:'color',      type:'video', desc:'Traza y opcionalmente coloriza los contornos de las formas del clip.' },
+  { name:'Exposure',         cat:'color',      type:'video', desc:'Alternativa al brillo/contraste: ilumina las partes brillantes sin quemar las oscuras.' },
+  { name:'Flip',             cat:'geometria',  type:'video', desc:'Voltea el vídeo: Horizontal, Vertical o ambos. Corrección de orientación.' },
+  { name:'Heat',             cat:'distorsion', type:'video', desc:'Ondulación térmica. Speed controla la velocidad, Strength la intensidad.' },
+  { name:'Hue Rotate',       cat:'color',      type:'video', desc:'Desplaza el matiz (H) de todos los colores en la rueda de color. Sin afectar saturación.' },
+  { name:'Invert RGB',       cat:'color',      type:'video', desc:'Invierte canales R, G y B de forma independiente o conjunta.' },
+  { name:'Iterate',          cat:'3d',         type:'video', desc:'Dibuja el vídeo en múltiples planos 3D con posición/rotación/escala ajustable. Muy versátil.' },
+  { name:'Kaleidoscope',     cat:'geometria',  type:'video', desc:'El efecto óptico clásico de reflexiones múltiples simétricas.' },
+  { name:'Keystone',         cat:'geometria',  type:'video', desc:'Controla las 4 esquinas del clip. Ideal para corrección de proyección en mapping básico.' },
+  { name:'Keystone Crop',    cat:'geometria',  type:'video', desc:'Como Keystone pero recorta el vídeo en lugar de deformarlo.' },
+  { name:'Luma Key',         cat:'mascara',    type:'video', desc:'Elimina píxeles más brillantes que el umbral (croma por luminancia).' },
+  { name:'Luma Key I',       cat:'mascara',    type:'video', desc:'Inverso del Luma Key: elimina píxeles más oscuros que el umbral.' },
+  { name:'Mirror',           cat:'geometria',  type:'video', desc:'Reflejo especular. La mitad del clip es espejo de la otra.' },
+  { name:'Pixels In Space',  cat:'3d',         type:'video', desc:'Muestra una matriz de cubos 3D. La luminancia determina la altura de cada cubo.' },
+  { name:'Point Grid',       cat:'3d',         type:'video', desc:'Muestra el vídeo como una rejilla de círculos de colores en 3D.' },
+  { name:'Posterize',        cat:'color',      type:'video', desc:'Reduce el número de colores. Mayor valor = menos colores = aspecto gráfico plano.' },
+  { name:'Radial Blur',      cat:'distorsion', type:'video', desc:'Vídeo en planos concéntricos que dan efecto de zoom motion blur desde el centro.' },
+  { name:'Recolour',         cat:'color',      type:'video', desc:'Cambia los colores a una paleta predefinida. Floor y Ceiling ajustan los umbrales.' },
+  { name:'Separate RGB HP',  cat:'color',      type:'video', desc:'Filtros high-pass independientes para los canales R, G y B.' },
+  { name:'Stingy Sphere',    cat:'3d',         type:'video', desc:'Proyecta el vídeo sobre una esfera en espacio 3D.' },
+  { name:'Stop Motion',      cat:'tiempo',     type:'video', desc:'Congela fotogramas. Frequency = cuándo se elige nuevo frame. Frame Count = cuántos frames juega.' },
+  { name:'Stripper',         cat:'geometria',  type:'video', desc:'Pack de efectos de strips (bandas). Mode selecciona el efecto, Speed pone las bandas en movimiento.' },
+  { name:'Strobe',           cat:'tiempo',     type:'video', desc:'Alterna entre vídeo y un frame en blanco a velocidad configurable. ⚠ Cuidado con epilepsia.' },
+  { name:'Suckr',            cat:'distorsion', type:'video', desc:'Succiona el vídeo hacia el centro de la pantalla.' },
+  { name:'Threshold',        cat:'color',      type:'video', desc:'Muestra el vídeo en dos colores. Cada píxel es uno u otro según su luminancia.' },
+  { name:'Wave Warp',        cat:'distorsion', type:'video', desc:'Distorsión ondulatoria que tuerce el vídeo de formas que «no deberían ser posibles».' },
+  // ── AUDIO ──────────────────────────────────
+  { name:'Bitcrusher',       cat:'audio',      type:'audio', desc:'Reduce el bit rate del audio. Sonido lo-fi retro de ordenador. Ideal para texturas industriales.' },
+  { name:'Distortion',       cat:'audio',      type:'audio', desc:'Overdriving clásico de guitarra. Audio saturado para sonidos grungy e industriales.' },
+  { name:'EQ-3',             cat:'audio',      type:'audio', desc:'Ecualizador básico de 3 bandas: bajos, medios y altos. Ajuste rápido de tono.' },
+  { name:'Flanger',          cat:'audio',      type:'audio', desc:'Mezcla el audio con una copia desfasada de sí mismo. Efectos "squidgy" variables.' },
+  { name:'High-Pass',        cat:'audio',      type:'audio', desc:'Filtra las frecuencias graves. La resonancia añade profundidad al sonido filtrado.' },
+  { name:'Low-Pass',         cat:'audio',      type:'audio', desc:'Filtra las frecuencias agudas. El efecto clásico de "audio que llega de otra sala".' },
+  { name:'Reverb',           cat:'audio',      type:'audio', desc:'Añade un espacio acústico al audio. Size controla el tamaño de la "sala" simulada.' },
+  { name:'Delay',            cat:'audio',      type:'audio', desc:'Eco del audio con tiempo de delay y feedback configurables.' },
+  { name:'Dry/Wet',          cat:'audio',      type:'audio', desc:'Parámetro presente en todos los efectos de audio. Mezcla el original con el procesado.' },
+];
+
+const CAT_LABELS = {
+  distorsion: 'Distorsión / Warp',
+  color:      'Color / Tono',
+  '3d':       '3D / Espacio',
+  mascara:    'Máscara / Alpha',
+  geometria:  'Geometría / Simetría',
+  tiempo:     'Tiempo / Movimiento',
+  audio:      'Audio',
+};
+
+const CAT_COLORS = {
+  distorsion: '#e74c3c',
+  color:      '#9b59b6',
+  '3d':       '#3498db',
+  mascara:    '#e67e22',
+  geometria:  '#00B894',
+  tiempo:     '#f39c12',
+  audio:      '#1abc9c',
+};
+
+function buildFXCat() {
+  filterFX();
+}
+
+function filterFX() {
+  const q    = (document.getElementById('fxSearch').value || '').toLowerCase().trim();
+  const cat  = document.getElementById('fxCat').value;
+  const type = document.getElementById('fxType').value;
+  const grid = document.getElementById('fxGrid');
+  const count = document.getElementById('fxCount');
+
+  const results = FX_DATA.filter(fx => {
+    if (cat  && fx.cat  !== cat)  return false;
+    if (type && fx.type !== type) return false;
+    if (q) {
+      const hay = (fx.name + ' ' + fx.desc + ' ' + (CAT_LABELS[fx.cat] || '')).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  count.textContent = results.length + ' efecto' + (results.length !== 1 ? 's' : '') + ' encontrado' + (results.length !== 1 ? 's' : '');
+
+  grid.innerHTML = results.length === 0
+    ? '<div style="grid-column:1/-1;text-align:center;color:var(--t3);padding:32px 0;font-size:13px">Sin resultados para esa búsqueda.</div>'
+    : results.map(fx => {
+        const col = CAT_COLORS[fx.cat] || 'var(--green)';
+        const lbl = CAT_LABELS[fx.cat] || fx.cat;
+        const badge = fx.type === 'audio'
+          ? '<span style="font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;background:#1abc9c22;color:#1abc9c;border-radius:20px;padding:2px 7px;margin-left:6px">AUDIO</span>'
+          : '<span style="font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;background:#3498db22;color:#3498db;border-radius:20px;padding:2px 7px;margin-left:6px">VÍDEO</span>';
+        return `<div class="box" style="border-top:3px solid ${col}">
+          <h4 style="display:flex;align-items:center;flex-wrap:wrap;gap:4px">${fx.name}${badge}</h4>
+          <div style="font-size:10px;color:${col};font-weight:600;letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">${lbl}</div>
+          <p>${fx.desc}</p>
+        </div>`;
+      }).join('');
+}
+
 function calcBPM() {
   const bpm  = +document.getElementById('bpmVal').value  || 120;
   const bars = +document.getElementById('bpmBars').value || 4;
