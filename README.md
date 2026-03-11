@@ -38,41 +38,6 @@ Todos los archivos son HTML autocontenidos (sin dependencias externas de servido
 
 ---
 
-## Despliegue en Netlify
-
-### Opción A — Drag & Drop
-1. Ve a [app.netlify.com](https://app.netlify.com)
-2. Arrastra esta carpeta al panel de Netlify
-3. ✅ Listo
-
-### Opción B — Conectado a GitHub (recomendado)
-1. Sube este repositorio a GitHub
-2. En Netlify: **Add new site → Import an existing project**
-3. Selecciona el repositorio
-4. Configuración de build:
-   - **Build command:** *(dejar vacío)*
-   - **Publish directory:** `.`
-5. **Deploy site**
-
-Cada `git push` a `main` redespliega automáticamente.
-
----
-
-## URLs limpias (tras publicar)
-
-Además de las URLs directas, `netlify.toml` define atajos:
-
-| Atajo | Suite |
-|---|---|
-| `/video` | Fundamentos de Imagen |
-| `/illustrator` | Diseño Vectorial |
-| `/resolume` | VJing & Mapping |
-| `/ae` o `/aftereffects` | Motion Graphics |
-| `/iluminacion` | Iluminación |
-| `/magicq` | Control DMX |
-
----
-
 ## Tecnología
 
 - HTML + CSS + JavaScript vanilla (sin frameworks)
