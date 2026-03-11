@@ -1,26 +1,35 @@
 # ─── Netlify configuration ────────────────────────────────────
-# AVL Master Suite · Animación Visual en Vivo · CFGM Video DJ
+# AVV Master Suite · Animación Visual en Vivo · CFGM Video DJ
 
 [build]
   publish = "."        # All HTML files are at root level
 
 # ─── HTTP Headers ─────────────────────────────────────────────
+
+# Seguridad básica para todos los archivos
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options        = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy        = "strict-origin-when-cross-origin"
-    Cache-Control          = "public, max-age=3600"
 
-# HTML pages: shorter cache so updates propagate quickly
+# HTML: sin caché en CDN — siempre fresco desde origen
 [[headers]]
   for = "/*.html"
   [headers.values]
-    Cache-Control = "public, max-age=300, must-revalidate"
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma        = "no-cache"
+    Expires       = "0"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma        = "no-cache"
+    Expires       = "0"
 
 # ─── Redirects ────────────────────────────────────────────────
-# Clean URL: /video → VIDEO_SUITE_V2_19_15_38.html
 [[redirects]]
   from   = "/video"
   to     = "/VIDEO_SUITE_V2_19_15_38.html"
