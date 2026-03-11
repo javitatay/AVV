@@ -386,6 +386,91 @@
     .card:nth-child(5) { animation-delay: .25s; }
     .card:nth-child(6) { animation-delay: .30s; }
 
+    /* ─── CONTACT ───────────────────────────────────────── */
+    .contact {
+      max-width: 1100px;
+      margin: 0 auto 48px;
+      padding: 0 32px;
+      animation: fadeUp .5s .35s ease both;
+    }
+
+    .contact-inner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg { width: 18px; height: 18px; }
+
+    .contact-text { display: flex; flex-direction: column; gap: 2px; }
+
+    .contact-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+
+    .contact-name {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-1);
+      letter-spacing: -.2px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      background: var(--accent-lt);
+      border: 1px solid rgba(74,122,106,.2);
+      border-radius: 20px;
+      padding: 8px 18px;
+      transition: background var(--transition), transform var(--transition);
+      white-space: nowrap;
+    }
+
+    .contact-link:hover {
+      background: #d8ebe4;
+      transform: translateY(-1px);
+    }
+
+    .contact-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    @media (max-width: 600px) {
+      .contact { padding: 0 18px; margin-bottom: 32px; }
+      .contact-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .contact-link { width: 100%; justify-content: center; }
+    }
+
     /* ─── FOOTER ─────────────────────────────────────────── */
     .footer {
       border-top: 1px solid var(--border);
@@ -680,6 +765,31 @@
     </div>
     <div class="divider-text">Cada suite se abre en una nueva pestaña · Vuelve aquí para navegar entre herramientas</div>
     <div class="divider-line"></div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="5" width="20" height="14" rx="2" stroke="var(--accent)" stroke-width="1.7" fill="var(--accent)" fill-opacity=".12"/>
+            <path d="M2 8l10 7 10-7" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="contact-text">
+          <span class="contact-label">Profesor · Consultas y dudas</span>
+          <span class="contact-name">Javier Tatay Rubio</span>
+        </div>
+      </div>
+      <a class="contact-link" href="mailto:j.tatayrubio@edu.gva.es">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+        j.tatayrubio@edu.gva.es
+      </a>
+    </div>
   </div>
 
   <!-- FOOTER -->
