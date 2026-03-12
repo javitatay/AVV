@@ -1,0 +1,3415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Suite — Imagen & Vídeo</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #192A56;
+  --navy2:   #1e3368;
+  --navy3:   #243a73;
+  --yellow:  #F7D794;
+  --yellow2: #f0c96e;
+  --pink:    #EDA6A3;
+  --pink2:   #e58e8b;
+  --white:   #FCFBFB;
+  --bg:      #FCFBFB;
+  --bg2:     #f4f3f0;
+  --bg3:     #edecea;
+  --border:  #dddbd7;
+  --border2: #ccc9c4;
+  --text:    #192A56;
+  --text2:   #4a5a82;
+  --text3:   #8896b5;
+  --shadow:  0 1px 3px rgba(25,42,86,.08), 0 4px 16px rgba(25,42,86,.06);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* ── HEADER ── */
+.top-header {
+  background: var(--navy);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo-area { display: flex; align-items: center; gap: 12px; }
+.logo-icon {
+  width: 30px; height: 30px;
+  background: var(--yellow);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 11px; color: var(--navy);
+  flex-shrink: 0;
+}
+.logo-text { font-weight: 600; font-size: 15px; color: var(--white); letter-spacing: 0.3px; }
+.logo-sub  { font-size: 10px; color: rgba(252,251,251,.45); font-weight: 400; margin-top: 1px; }
+.header-badge {
+  background: rgba(252,251,251,.1);
+  border: 1px solid rgba(252,251,251,.18);
+  border-radius: 5px;
+  padding: 4px 11px;
+  font-size: 11px;
+  color: rgba(252,251,251,.5);
+  font-weight: 500;
+}
+
+/* ── NAV ── */
+.nav-bar {
+  background: var(--navy);
+  border-bottom: 3px solid var(--bg);
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 24px;
+  position: sticky;
+  top: 56px;
+  z-index: 99;
+  gap: 2px;
+}
+.nav-bar::-webkit-scrollbar { display: none; }
+.nav-tab {
+  padding: 14px 15px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(252,251,251,.45);
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+  transition: color .15s, border-color .15s;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-tab:hover { color: rgba(252,251,251,.75); }
+.nav-tab.active { color: var(--white); border-bottom-color: var(--yellow); }
+.nav-num {
+  width: 18px; height: 18px;
+  background: rgba(252,251,251,.08);
+  border-radius: 4px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 600; color: rgba(252,251,251,.4);
+}
+.nav-tab.active .nav-num { background: var(--yellow); color: var(--navy); }
+
+/* ── MAIN ── */
+.main { padding: 32px; max-width: 1380px; margin: 0 auto; }
+.module { display: none; }
+.module.active { display: block; }
+
+/* ── LANDING ── */
+.landing-hero {
+  background: var(--navy);
+  border-radius: 14px;
+  padding: 48px 52px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.landing-hero::before {
+  content: '';
+  position: absolute;
+  right: -60px; top: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(247,215,148,.07);
+}
+.landing-hero::after {
+  content: '';
+  position: absolute;
+  right: 80px; bottom: -80px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(237,166,163,.06);
+}
+.landing-title {
+  font-size: 32px; font-weight: 700;
+  color: var(--white); margin-bottom: 10px;
+  letter-spacing: -0.5px; line-height: 1.2;
+}
+.landing-title span { color: var(--yellow); }
+.landing-desc {
+  font-size: 14px; color: rgba(252,251,251,.6);
+  max-width: 540px; line-height: 1.7; margin-bottom: 24px;
+  font-weight: 400;
+}
+.landing-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill {
+  background: rgba(247,215,148,.15);
+  border: 1px solid rgba(247,215,148,.25);
+  color: var(--yellow);
+  font-size: 11px; font-weight: 600;
+  padding: 4px 12px; border-radius: 20px;
+}
+.pill-pink {
+  background: rgba(237,166,163,.15);
+  border-color: rgba(237,166,163,.25);
+  color: var(--pink);
+}
+
+.landing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.module-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  cursor: pointer;
+  transition: box-shadow .18s, transform .18s, border-color .18s;
+  position: relative;
+  overflow: hidden;
+}
+.module-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+  border-color: var(--border2);
+}
+.module-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  border-radius: 12px 0 0 12px;
+}
+.card-accent-yellow::before { background: var(--yellow); }
+.card-accent-pink::before   { background: var(--pink); }
+.card-accent-navy::before   { background: var(--navy); }
+
+.card-num {
+  font-size: 10px; font-weight: 700; color: var(--text3);
+  letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card-icon { font-size: 26px; margin-bottom: 10px; display: block; }
+.card-title {
+  font-size: 15px; font-weight: 700; color: var(--navy);
+  margin-bottom: 6px;
+}
+.card-desc { font-size: 12px; color: var(--text2); line-height: 1.55; font-weight: 400; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
+.card-tag {
+  font-size: 10px; font-weight: 500;
+  padding: 2px 8px; border-radius: 3px;
+  background: var(--bg2); color: var(--text3);
+}
+.card-arrow {
+  position: absolute; right: 20px; bottom: 20px;
+  font-size: 18px; color: var(--border2);
+  transition: color .15s, transform .15s;
+}
+.module-card:hover .card-arrow { color: var(--navy); transform: translateX(3px); }
+
+/* ── MODULE HEADER ── */
+.back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; color: var(--text3);
+  cursor: pointer; margin-bottom: 22px;
+  padding: 6px 12px; border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--white); transition: all .15s;
+}
+.back-btn:hover { color: var(--navy); border-color: var(--border2); }
+.module-header {
+  display: flex; align-items: flex-start; gap: 16px;
+  margin-bottom: 24px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-icon { font-size: 28px; line-height: 1; margin-top: 2px; }
+.module-title { font-size: 20px; font-weight: 700; margin-bottom: 4px; color: var(--navy); }
+.module-desc  { font-size: 12px; color: var(--text2); margin-bottom: 10px; font-weight: 400; }
+.module-tags  { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  background: var(--bg2); border: 1px solid var(--border);
+  color: var(--text2); font-size: 11px; font-weight: 500;
+  padding: 2px 9px; border-radius: 4px;
+}
+.tag-yellow { background: rgba(247,215,148,.15); border-color: rgba(247,215,148,.4); color: #8a6c1a; }
+.tag-pink   { background: rgba(237,166,163,.15); border-color: rgba(237,166,163,.4); color: #8a3a38; }
+.tag-navy   { background: rgba(25,42,86,.08);    border-color: rgba(25,42,86,.2);   color: var(--navy); }
+
+/* ── PANELS ── */
+.panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 4px rgba(25,42,86,.04);
+}
+.panel-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.6px;
+  text-transform: uppercase; color: var(--text3);
+  margin-bottom: 16px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.panel-subtitle {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.4px;
+  text-transform: uppercase; color: var(--text3);
+  margin: 18px 0 10px;
+}
+
+/* ── GRIDS ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+@media (max-width: 860px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+.section-gap { margin-top: 18px; }
+
+/* ── FORMS ── */
+.calc-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.calc-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { font-size: 11px; font-weight: 600; color: var(--text3); }
+input[type=number], select {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 6px; color: var(--text);
+  padding: 8px 11px; font-size: 13px;
+  font-family: 'Poppins', sans-serif; font-weight: 400;
+  width: 100%; outline: none; transition: border-color .15s;
+}
+input:focus, select:focus { border-color: var(--navy); }
+.btn {
+  background: var(--navy); color: var(--white); border: none;
+  border-radius: 7px; padding: 9px 20px;
+  font-family: 'Poppins', sans-serif; font-weight: 600;
+  font-size: 12px; cursor: pointer; width: 100%; margin-top: 8px;
+  transition: opacity .15s;
+}
+.btn:hover { opacity: .85; }
+.btn-secondary {
+  background: var(--bg2); border: 1px solid var(--border);
+  color: var(--text2); color: var(--navy);
+}
+.btn-green  { background: #2a9d6f; }
+.btn-orange { background: #c4692c; }
+
+/* ── RESULTS ── */
+.result-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.result-box {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 13px; text-align: center;
+}
+.result-box.green  { border-color: rgba(42,157,111,.3); background: rgba(42,157,111,.06); }
+.result-box.orange { border-color: rgba(196,105,44,.3); background: rgba(196,105,44,.06); }
+.result-box.yellow { border-color: rgba(247,215,148,.5); background: rgba(247,215,148,.1); }
+.result-box.purple { border-color: rgba(139,108,247,.3); background: rgba(139,108,247,.06); }
+.result-box.red    { border-color: rgba(192,57,43,.3);  background: rgba(192,57,43,.06); }
+.result-val {
+  font-size: 18px; font-weight: 700; color: var(--navy);
+  margin-bottom: 3px; font-variant-numeric: tabular-nums;
+}
+.result-box.green  .result-val { color: #1e7a52; }
+.result-box.orange .result-val { color: #a0541d; }
+.result-box.yellow .result-val { color: #8a6c1a; }
+.result-box.purple .result-val { color: #5c3fbf; }
+.result-box.red    .result-val { color: #b02a2a; }
+.result-label { font-size: 10px; font-weight: 600; color: var(--text3); }
+
+/* ── TABLES ── */
+.comp-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.comp-table th {
+  background: var(--bg2); color: var(--text3);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.4px;
+  text-transform: uppercase; padding: 9px 12px;
+  text-align: left; border-bottom: 1px solid var(--border);
+}
+.comp-table td {
+  padding: 9px 12px; border-bottom: 1px solid var(--border);
+  color: var(--text2); vertical-align: middle;
+}
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table tr:hover td { background: var(--bg2); }
+
+/* ── BADGES ── */
+.badge {
+  display: inline-block; font-size: 10px; font-weight: 600;
+  padding: 2px 8px; border-radius: 4px;
+}
+.badge-blue   { background: rgba(25,42,86,.08);  border: 1px solid rgba(25,42,86,.2);  color: var(--navy); }
+.badge-green  { background: rgba(42,157,111,.1); border: 1px solid rgba(42,157,111,.25); color: #1e7a52; }
+.badge-orange { background: rgba(196,105,44,.1); border: 1px solid rgba(196,105,44,.25); color: #8a4416; }
+.badge-yellow { background: rgba(247,215,148,.2); border: 1px solid rgba(247,215,148,.6); color: #6b5010; }
+.badge-purple { background: rgba(92,63,191,.08); border: 1px solid rgba(92,63,191,.2);  color: #3d2a8c; }
+.badge-red    { background: rgba(176,42,42,.08); border: 1px solid rgba(176,42,42,.2);  color: #8a1a1a; }
+.badge-gray   { background: var(--bg2); border: 1px solid var(--border); color: var(--text3); }
+
+/* ── INNER TABS ── */
+.inner-tabs { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
+.inner-tab {
+  padding: 7px 14px; font-size: 12px; font-weight: 500;
+  color: var(--text3); cursor: pointer;
+  border: 1px solid var(--border); border-radius: 6px;
+  background: var(--white); transition: all .15s;
+}
+.inner-tab:hover { color: var(--navy); border-color: var(--border2); }
+.inner-tab.active {
+  background: var(--navy); border-color: var(--navy);
+  color: var(--white);
+}
+.inner-pane { display: none; }
+.inner-pane.active { display: block; }
+
+/* ── INFO CARDS ── */
+.info-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 18px;
+}
+.info-card-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+.info-card p { font-size: 12.5px; color: var(--text2); line-height: 1.65; font-weight: 400; }
+
+/* ── FORMULA ── */
+.formula {
+  background: rgba(25,42,86,.05); border: 1px solid rgba(25,42,86,.15);
+  border-radius: 6px; padding: 10px 14px;
+  font-size: 12px; color: var(--navy); margin-top: 10px; font-weight: 600;
+}
+
+/* ── NOTES ── */
+.note {
+  background: rgba(247,215,148,.12); border: 1px solid rgba(247,215,148,.5);
+  border-radius: 7px; padding: 11px 14px;
+  font-size: 12px; color: var(--text); line-height: 1.6;
+  margin-top: 12px; font-weight: 400;
+}
+.note-orange { background: rgba(237,166,163,.1); border-color: rgba(237,166,163,.5); }
+.note-green  { background: rgba(42,157,111,.07); border-color: rgba(42,157,111,.3); }
+.note-yellow { background: rgba(247,215,148,.12); border-color: rgba(247,215,148,.5); }
+.note-purple { background: rgba(92,63,191,.06);  border-color: rgba(92,63,191,.2); }
+
+/* ── DIAGRAMS ── */
+.diagram-wrap {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 16px; background: var(--bg2);
+  border-radius: 8px; border: 1px solid var(--border);
+}
+.diagram-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.diag-node { padding: 7px 13px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.diag-node.source  { background: rgba(25,42,86,.1);   border: 1px solid rgba(25,42,86,.25);   color: var(--navy); }
+.diag-node.process { background: rgba(247,215,148,.2); border: 1px solid rgba(247,215,148,.5); color: #6b5010; }
+.diag-node.device  { background: rgba(237,166,163,.2); border: 1px solid rgba(237,166,163,.5); color: #8a3a38; }
+.diag-node.output  { background: rgba(42,157,111,.1);  border: 1px solid rgba(42,157,111,.3);  color: #1e7a52; }
+.diag-node.display { background: rgba(196,105,44,.1);  border: 1px solid rgba(196,105,44,.3);  color: #8a4416; }
+.diag-arrow { color: var(--text3); font-size: 14px; }
+
+/* ── CONNECTOR CARDS ── */
+.conn-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); gap: 13px; }
+.conn-card { background: var(--white); border: 1px solid var(--border); border-radius: 9px; padding: 16px; }
+.conn-name { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--navy); }
+.conn-specs { font-size: 11.5px; color: var(--text2); line-height: 1.85; font-weight: 400; }
+.conn-badge { margin-bottom: 7px; }
+
+/* ── VIS BARS ── */
+.vis-bar-wrap { margin: 8px 0; }
+.vis-bar-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+.vis-bar-track { height: 6px; background: var(--bg2); border-radius: 3px; overflow: hidden; border: 1px solid var(--border); }
+.vis-bar-fill  { height: 100%; border-radius: 3px; transition: width .5s ease; }
+
+/* ── NITS ── */
+.nits-row { display: flex; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.nits-row:last-child { border-bottom: none; }
+.nits-icon { width: 38px; height: 38px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+
+/* ── CANVAS ── */
+canvas { border-radius: 8px; }
+
+/* ── FADE ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+.module.active > * { animation: fadeUp .22s ease both; }
+.module.active > *:nth-child(2) { animation-delay: .05s; }
+.module.active > *:nth-child(3) { animation-delay: .09s; }
+
+/* ── SIMULADOR DE SEÑAL ── */
+.sim-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 820px) { .sim-grid { grid-template-columns: 1fr; } }
+.sim-results-stack { display: flex; flex-direction: column; gap: 14px; }
+.sim-toggle-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.sim-toggle-btn {
+  padding: 5px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px; font-weight: 500;
+  color: var(--text2); background: var(--bg);
+  cursor: pointer; transition: all .2s;
+}
+.sim-toggle-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.resolution-viz {
+  background: #0a0a0f; border-radius: 8px;
+  padding: 14px; min-height: 160px;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.res-outer {
+  background: #1a1a2e; border: 2px solid #333;
+  position: relative; display: flex; align-items: center; justify-content: center;
+  transition: all .4s ease; max-width: 100%;
+}
+.res-inner-text { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: rgba(255,255,255,.7); text-align: center; }
+.res-scanlines { position: absolute; inset:0; background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.15) 2px,rgba(0,0,0,.15) 4px); pointer-events:none; border-radius:6px; }
+.res-label-w,.res-label-h { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--yellow); position:absolute; }
+.res-label-w { bottom:-16px; left:50%; transform:translateX(-50%); }
+.res-label-h { right:-36px; top:50%; transform:translateY(-50%) rotate(90deg); }
+.sim-metrics-grid { display: grid; grid-template-columns: repeat(2,1fr); gap:8px; }
+.sim-metric {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px; position: relative; overflow:hidden;
+}
+.sim-metric::before { content:''; position:absolute; top:0;left:0; width:3px;height:100%; border-radius:3px 0 0 3px; }
+.sim-metric.blue::before   { background:#3B82F6; }
+.sim-metric.green::before  { background:#10b981; }
+.sim-metric.orange::before { background:#f59e0b; }
+.sim-metric.red::before    { background:#ef4444; }
+.sim-metric-name  { font-size:9px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:.4px; margin-bottom:3px; }
+.sim-metric-value { font-family:'JetBrains Mono',monospace; font-size:18px; font-weight:600; color:var(--text); line-height:1; }
+.sim-metric-unit  { font-size:10px; color:var(--text2); margin-left:2px; }
+.sim-metric-sub   { font-size:9px; color:var(--text3); margin-top:2px; }
+.bitrate-track { height:6px; background:var(--border); border-radius:3px; overflow:hidden; margin-top:6px; }
+.bitrate-fill  { height:100%; border-radius:3px; transition:width .4s ease,background .4s ease; }
+.codec-info-card {
+  background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(59,130,246,.03));
+  border:1px solid rgba(59,130,246,.2); border-radius:8px; padding:12px 14px;
+}
+.codec-props-row { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+.codec-prop-chip {
+  background:#fff; border:1px solid var(--border);
+  border-radius:6px; padding:4px 8px;
+}
+.codec-prop-chip-label { font-size:8px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:.3px; }
+.codec-prop-chip-val   { font-size:11px; font-weight:700; color:var(--text); }
+.sim-quality-pill {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:4px 12px; border-radius:16px; font-size:11px; font-weight:600;
+}
+.sim-quality-pill .dot { width:7px;height:7px;border-radius:50%; }
+.q-pro  { background:rgba(16,185,129,.12); color:#10b981; }
+.q-pro  .dot { background:#10b981; }
+.q-bc   { background:rgba(245,158,11,.12); color:#f59e0b; }
+.q-bc   .dot { background:#f59e0b; }
+.q-st   { background:rgba(59,130,246,.12); color:#3B82F6; }
+.q-st   .dot { background:#3B82F6; }
+.q-web  { background:rgba(156,163,175,.12); color:#6b7280; }
+.q-web  .dot { background:#9ca3af; }
+.sim-warn { background:rgba(245,158,11,.08); border:1px solid rgba(245,158,11,.25); border-radius:7px; padding:8px 12px; font-size:11px; color:#92400e; margin-top:6px; }
+.sig-path { display:flex; align-items:center; gap:3px; flex-wrap:wrap; padding:8px 0; }
+.sig-node { background:var(--bg2); border:1.5px solid var(--border); border-radius:6px; padding:4px 10px; font-size:10px; font-weight:600; color:var(--text); white-space:nowrap; }
+.sig-node.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+.sig-arr { color:var(--text3); font-size:12px; }
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="logo-area">
+    <div class="logo-icon">VS</div>
+    <div>
+      <div class="logo-text">Video Suite</div>
+      <div class="logo-sub">Imagen &amp; Vídeo · UD 1 · 2 · 3</div>
+    </div>
+  </div>
+  <div class="header-badge">v2.2 · 8 módulos</div>
+</header>
+
+<nav class="nav-bar" id="navBar">
+  <div class="nav-tab active" data-module="m0"><span class="nav-num">★</span> Inicio</div>
+  <div class="nav-tab" data-module="m1"><span class="nav-num">1</span> Resolución &amp; Geometría</div>
+  <div class="nav-tab" data-module="m2"><span class="nav-num">2</span> Óptica &amp; DOF</div>
+  <div class="nav-tab" data-module="m3"><span class="nav-num">3</span> Señal de Vídeo</div>
+  <div class="nav-tab" data-module="m4"><span class="nav-num">4</span> Conectores &amp; Codecs</div>
+  <div class="nav-tab" data-module="m5"><span class="nav-num">5</span> Formatos de Imagen</div>
+  <div class="nav-tab" data-module="m6"><span class="nav-num">6</span> Distribución &amp; Routing</div>
+  <div class="nav-tab" data-module="m7"><span class="nav-num">7</span> Proyección</div>
+  <div class="nav-tab" data-module="m8"><span class="nav-num">8</span> LED &amp; Mapping</div>
+</nav>
+
+<main class="main">
+
+<!-- ═══ LANDING ═══ -->
+<section class="module active" id="m0">
+  <div class="landing-hero">
+    <div class="landing-title">Bienvenido a<br><span>Video Suite</span></div>
+    <div class="landing-desc">Herramienta de referencia para la asignatura de Imagen y Vídeo. Contiene calculadoras interactivas, tablas de referencia y conceptos de las unidades didácticas 1, 2 y 3.</div>
+    <div class="landing-pills">
+      <span class="pill">UD1 — Resolución, Óptica y Exposición</span>
+      <span class="pill pill-pink">UD2 — Señal, Conectores y Codecs</span>
+      <span class="pill">UD3 — Proyección y LED</span>
+    </div>
+  </div>
+
+  <div class="landing-grid">
+    <div class="module-card card-accent-yellow" onclick="goTo('m1')">
+      <div class="card-num">Módulo 01 · UD1</div>
+      <span class="card-icon">🖥️</span>
+      <div class="card-title">Resolución &amp; Geometría</div>
+      <div class="card-desc">Calculadora de resolución, PPI, Máximo Común Divisor y relaciones de aspecto DAR, SAR y PAR.</div>
+      <div class="card-tags">
+        <span class="card-tag">Resolución</span>
+        <span class="card-tag">DAR · SAR · PAR</span>
+        <span class="card-tag">MCD</span>
+        <span class="card-tag">PPI</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-pink" onclick="goTo('m2')">
+      <div class="card-num">Módulo 02 · UD1</div>
+      <span class="card-icon">🎞️</span>
+      <div class="card-title">Óptica &amp; Profundidad de Campo</div>
+      <div class="card-desc">Fórmula de lentes 1/u+1/v=1/f, DOF, ángulo de visión, diafragma y triángulo de exposición.</div>
+      <div class="card-tags">
+        <span class="card-tag">Distancia focal</span>
+        <span class="card-tag">DOF</span>
+        <span class="card-tag">ISO · f/ · Obturación</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-yellow" onclick="goTo('m3')">
+      <div class="card-num">Módulo 03 · UD1 / UD2</div>
+      <span class="card-icon">📡</span>
+      <div class="card-title">Señal de Vídeo</div>
+      <div class="card-desc">Canal alpha, escaneo progresivo vs entrelazado, PAL/NTSC/SECAM, gamma y HDR.</div>
+      <div class="card-tags">
+        <span class="card-tag">Canal Alpha</span>
+        <span class="card-tag">Progresivo / Entrelazado</span>
+        <span class="card-tag">PAL · NTSC · SECAM</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-navy" onclick="goTo('m4')">
+      <div class="card-num">Módulo 04 · UD2</div>
+      <span class="card-icon">🔌</span>
+      <div class="card-title">Conectores &amp; Codecs de Vídeo</div>
+      <div class="card-desc">VGA, DVI, HDMI, DisplayPort, SDI, HDBaseT, HDCP, formatos y codecs intra/inter-frame.</div>
+      <div class="card-tags">
+        <span class="card-tag">HDMI · SDI · DP</span>
+        <span class="card-tag">HDCP</span>
+        <span class="card-tag">Codecs</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-pink" onclick="goTo('m5')">
+      <div class="card-num">Módulo 05 · UD2</div>
+      <span class="card-icon">🖼️</span>
+      <div class="card-title">Formatos de Imagen</div>
+      <div class="card-desc">Mapa de bits vs vectoriales, compresión con y sin pérdida, transparencia y canal alfa.</div>
+      <div class="card-tags">
+        <span class="card-tag">JPG · PNG · GIF</span>
+        <span class="card-tag">TIFF · RAW · PSD</span>
+        <span class="card-tag">SVG · PDF</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-yellow" onclick="goTo('m6')">
+      <div class="card-num">Módulo 06 · UD2</div>
+      <span class="card-icon">🔀</span>
+      <div class="card-title">Distribución &amp; Routing</div>
+      <div class="card-desc">Matrices, splitters, conversores, switches, escaladores y mesas mezcladoras de vídeo.</div>
+      <div class="card-tags">
+        <span class="card-tag">Matriz</span>
+        <span class="card-tag">Splitter</span>
+        <span class="card-tag">Escalador</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-navy" onclick="goTo('m7')">
+      <div class="card-num">Módulo 07 · UD3</div>
+      <span class="card-icon">📽️</span>
+      <div class="card-title">Proyección</div>
+      <div class="card-desc">Lúmenes ANSI/ISO/LED, throw ratio, tipos de lente, keystone, lens shift y tecnologías LCD/DLP/Láser.</div>
+      <div class="card-tags">
+        <span class="card-tag">Lúmenes ANSI/ISO</span>
+        <span class="card-tag">Throw Ratio</span>
+        <span class="card-tag">LCD · DLP · Láser</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-pink" onclick="goTo('m8')">
+      <div class="card-num">Módulo 08 · UD3</div>
+      <span class="card-icon">💡</span>
+      <div class="card-title">Pantallas LED &amp; Mapping</div>
+      <div class="card-desc">Pixel Pitch, Nits, tasa de refresco, controladora LED, mapping, grid, blending y warping.</div>
+      <div class="card-tags">
+        <span class="card-tag">Pixel Pitch</span>
+        <span class="card-tag">Nits</span>
+        <span class="card-tag">Mapping · Warping</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ MÓDULO 1 — RESOLUCIÓN & GEOMETRÍA ═══ -->
+<section class="module" id="m1">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+
+  <div class="module-header">
+    <div class="module-icon">🖥️</div>
+    <div>
+      <div class="module-title">Resolución &amp; Geometría</div>
+      <div class="module-desc">Resolución, relación de aspecto (DAR/SAR/PAR), PPI y cálculo de MCD — UD1</div>
+      <div class="module-tags">
+        <span class="tag">Resolución</span><span class="tag">DAR · SAR · PAR</span>
+        <span class="tag">MCD</span><span class="tag">PPI / PPP</span><span class="tag">Megapíxeles</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-tabs">
+    <div class="inner-tab active" data-inner="m1_res">Resolución &amp; PPI</div>
+    <div class="inner-tab" data-inner="m1_mcd">Calculadora MCD</div>
+    <div class="inner-tab" data-inner="m1_par">DAR / SAR / PAR</div>
+    <div class="inner-tab" data-inner="m1_ref">Referencia</div>
+  </div>
+
+  <!-- TAB 1: RESOLUCIÓN & PPI -->
+  <div class="inner-pane active" id="m1_res">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Calculadora de Resolución &amp; PPI</div>
+        <div class="calc-row">
+          <div class="field"><label>Ancho (px)</label><input type="number" id="r_w" value="1920" min="1"></div>
+          <div class="field"><label>Alto (px)</label><input type="number" id="r_h" value="1080" min="1"></div>
+        </div>
+        <div class="calc-row">
+          <div class="field"><label>Diagonal pantalla (pulgadas)</label><input type="number" id="r_diag" value="27" min="1" step="0.1"></div>
+          <div class="field"><label>PAR (Pixel Aspect Ratio)</label>
+            <select id="r_par">
+              <option value="1">1:1 — Píxel cuadrado (digital)</option>
+              <option value="1.094">1.094 — PAL SD 4:3</option>
+              <option value="1.458">1.458 — PAL SD 16:9</option>
+              <option value="0.909">0.909 — NTSC SD 4:3</option>
+              <option value="1.212">1.212 — NTSC SD 16:9</option>
+              <option value="2">2:1 — Anamórfico</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn" onclick="calcResolution()">CALCULAR</button>
+        <div class="result-grid" style="margin-top:16px;">
+          <div class="result-box"><div class="result-val" id="res_mp">—</div><div class="result-label">Megapíxeles</div></div>
+          <div class="result-box green"><div class="result-val" id="res_ar">—</div><div class="result-label">Aspect Ratio (SAR)</div></div>
+          <div class="result-box orange"><div class="result-val" id="res_ppi">—</div><div class="result-label">PPI (PPP)</div></div>
+          <div class="result-box yellow"><div class="result-val" id="res_dap">—</div><div class="result-label">DAR con PAR</div></div>
+          <div class="result-box purple"><div class="result-val" id="res_total">—</div><div class="result-label">Total píxeles</div></div>
+          <div class="result-box"><div class="result-val" id="res_class">—</div><div class="result-label">Clasificación</div></div>
+        </div>
+        <div class="note" id="res_note" style="display:none"><strong>📌 </strong><span id="res_note_text"></span></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Resoluciones Estándar</div>
+        <table class="comp-table">
+          <thead><tr><th>Nombre</th><th>Píxeles</th><th>AR</th><th>Clase</th></tr></thead>
+          <tbody>
+            <tr><td>SD PAL</td><td>720×576</td><td>4:3 / 16:9</td><td><span class="badge badge-orange">PAL</span></td></tr>
+            <tr><td>SD NTSC</td><td>720×480</td><td>4:3 / 16:9</td><td><span class="badge badge-orange">NTSC</span></td></tr>
+            <tr><td>HD 720p</td><td>1280×720</td><td>16:9</td><td><span class="badge badge-blue">HD Ready</span></td></tr>
+            <tr><td>Full HD 1080p</td><td>1920×1080</td><td>16:9</td><td><span class="badge badge-blue">FHD</span></td></tr>
+            <tr><td>2K DCI</td><td>2048×1080</td><td>1.90:1</td><td><span class="badge badge-purple">DCI</span></td></tr>
+            <tr><td>QHD / 1440p</td><td>2560×1440</td><td>16:9</td><td><span class="badge badge-green">QHD</span></td></tr>
+            <tr><td>4K UHD</td><td>3840×2160</td><td>16:9</td><td><span class="badge badge-green">4K</span></td></tr>
+            <tr><td>4K DCI</td><td>4096×2160</td><td>1.90:1</td><td><span class="badge badge-purple">DCI</span></td></tr>
+            <tr><td>8K UHD</td><td>7680×4320</td><td>16:9</td><td><span class="badge badge-yellow">8K</span></td></tr>
+          </tbody>
+        </table>
+        <div class="panel-subtitle" style="margin-top:18px;">PPI y calidad visual</div>
+        <table class="comp-table">
+          <thead><tr><th>PPI</th><th>Calidad</th><th>Uso recomendado</th></tr></thead>
+          <tbody>
+            <tr><td>&lt;72</td><td><span class="badge badge-red">Baja</span></td><td>Proyección, cartelería lejana</td></tr>
+            <tr><td>72–96</td><td><span class="badge badge-orange">Aceptable</span></td><td>TV a distancia</td></tr>
+            <tr><td>96–150</td><td><span class="badge badge-yellow">Buena</span></td><td>Monitor de trabajo</td></tr>
+            <tr><td>150–220</td><td><span class="badge badge-blue">Alta</span></td><td>Monitor profesional</td></tr>
+            <tr><td>&gt;220</td><td><span class="badge badge-green">Retina</span></td><td>Smartphone, laptop, tablet</td></tr>
+          </tbody>
+        </table>
+        <div class="formula">PPI = √(ancho² + alto²) / diagonal_pulgadas</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Visualizador de Relaciones de Aspecto</div>
+      <div id="ar_visual" style="display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap;min-height:80px;padding:8px 0;"></div>
+      <div class="note"><strong>DAR</strong> (Display Aspect Ratio): relación ancho:alto de la pantalla física. <strong>SAR</strong> (Storage Aspect Ratio): relación de los píxeles almacenados. <strong>PAR</strong> (Pixel Aspect Ratio): forma del píxel individual. <strong>DAR = PAR × SAR</strong>. En vídeo digital moderno el PAR es siempre 1:1 (píxel cuadrado).</div>
+    </div>
+  </div>
+
+  <!-- TAB 2: MCD -->
+  <div class="inner-pane" id="m1_mcd">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Calculadora de MCD y Relación de Aspecto</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6">Introduce el ancho y alto en píxeles. La calculadora hallará el <strong>Máximo Común Divisor</strong> y la relación de aspecto reducida.</p>
+        <div class="calc-row">
+          <div class="field"><label>Ancho (px)</label><input type="number" id="mcd_w" value="1920" min="1"></div>
+          <div class="field"><label>Alto (px)</label><input type="number" id="mcd_h" value="1080" min="1"></div>
+        </div>
+        <button class="btn" onclick="calcMCD()">CALCULAR MCD</button>
+        <div id="mcd_result" style="margin-top:18px;display:none">
+          <div class="result-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="result-box green"><div class="result-val" id="mcd_val">—</div><div class="result-label">MCD</div></div>
+            <div class="result-box"><div class="result-val" id="mcd_ar">—</div><div class="result-label">Aspect Ratio</div></div>
+          </div>
+          <div class="note" id="mcd_note" style="margin-top:12px"></div>
+          <div style="margin-top:16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;" id="mcd_steps_wrap">
+            <div class="panel-subtitle" style="margin:0 0 10px">Pasos del cálculo</div>
+            <div id="mcd_steps" style="font-family:'Poppins',sans-serif;font-size:12px;color:var(--accent3);line-height:1.8"></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Ejercicios del Temario (Ej. 1.3)</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:14px;">Resoluciones del ejercicio 1.3 — haz clic para cargar y calcular:</p>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <button class="btn btn-secondary" onclick="loadMCD(640,480)">640×480 px</button>
+          <button class="btn btn-secondary" onclick="loadMCD(1024,576)">1024×576 px</button>
+          <button class="btn btn-secondary" onclick="loadMCD(1440,2560)">1440×2560 px (vertical)</button>
+          <button class="btn btn-secondary" onclick="loadMCD(2560,1080)">2560×1080 px (ultra wide)</button>
+          <button class="btn btn-secondary" onclick="loadMCD(750,1334)">750×1334 px (iPhone)</button>
+        </div>
+        <div class="note note-yellow" style="margin-top:16px"><strong>Método:</strong> 1) Medir ancho y alto · 2) Buscar el MCD (algoritmo de Euclides) · 3) Dividir ancho y alto entre MCD · 4) Los resultados son la relación de aspecto.</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Ejercicio 1.2 — Escalado conservando Aspect Ratio</div>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:16px;">Dado un vídeo UHD-1 (4K), ¿cuál es la siguiente resolución inferior que conserva el mismo aspect ratio 16:9?</p>
+      <div class="calc-row">
+        <div class="field"><label>Resolución origen — Ancho (px)</label><input type="number" id="scale_w" value="3840" min="1"></div>
+        <div class="field"><label>Resolución origen — Alto (px)</label><input type="number" id="scale_h" value="2160" min="1"></div>
+      </div>
+      <button class="btn btn-green" onclick="calcScale()">CALCULAR ESCALA SIGUIENTE</button>
+      <div id="scale_result" style="margin-top:16px;display:none">
+        <div class="result-grid">
+          <div class="result-box green"><div class="result-val" id="sc_ar">—</div><div class="result-label">Aspect Ratio</div></div>
+          <div class="result-box"><div class="result-val" id="sc_next">—</div><div class="result-label">Resolución ½</div></div>
+          <div class="result-box orange"><div class="result-val" id="sc_nextname">—</div><div class="result-label">Nombre estándar</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: DAR/SAR/PAR -->
+  <div class="inner-pane" id="m1_par">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Calculadora DAR = PAR × SAR</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Ejercicio 1.4: comprueba si los píxeles son cuadrados a partir del SAR y el DAR de la pantalla.</p>
+        <div class="calc-row">
+          <div class="field"><label>SAR — Ancho almacenado (px)</label><input type="number" id="par_sarw" value="720" min="1"></div>
+          <div class="field"><label>SAR — Alto almacenado (px)</label><input type="number" id="par_sarh" value="576" min="1"></div>
+        </div>
+        <div class="calc-row">
+          <div class="field"><label>DAR destino — Ancho</label><input type="number" id="par_darw" value="4" min="1"></div>
+          <div class="field"><label>DAR destino — Alto</label><input type="number" id="par_darh" value="3" min="1"></div>
+        </div>
+        <button class="btn" onclick="calcPAR()">CALCULAR PAR</button>
+        <div id="par_result" style="margin-top:16px;display:none">
+          <div class="result-grid">
+            <div class="result-box"><div class="result-val" id="par_sar_ratio">—</div><div class="result-label">SAR</div></div>
+            <div class="result-box green"><div class="result-val" id="par_dar_val">—</div><div class="result-label">DAR objetivo</div></div>
+            <div class="result-box orange"><div class="result-val" id="par_par_val">—</div><div class="result-label">PAR resultante</div></div>
+          </div>
+          <div class="note" id="par_note" style="margin-top:12px"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Conceptos DAR · SAR · PAR</div>
+        <div class="grid-3">
+          <div class="info-card">
+            <div class="info-card-title" style="color:var(--accent)">DAR</div>
+            <p><strong>Display Aspect Ratio</strong><br>Relación de aspecto de la <em>pantalla física</em>. Lo que ve el espectador. Ej: 16:9, 4:3</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title" style="color:var(--accent3)">SAR</div>
+            <p><strong>Storage Aspect Ratio</strong><br>Relación entre los píxeles <em>almacenados</em>. El tamaño en píxeles del archivo. Ej: 720:576</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title" style="color:var(--accent4)">PAR</div>
+            <p><strong>Pixel Aspect Ratio</strong><br>Forma del <em>píxel individual</em>. Si es 1:1 el píxel es cuadrado. Si no, es rectangular.</p>
+          </div>
+        </div>
+        <div class="formula">DAR = PAR × SAR<br>Si DAR = SAR → PAR = 1:1 (píxel cuadrado)</div>
+        <div class="note note-orange" style="margin-top:12px"><strong>Ejemplo práctico:</strong> Un SD PAL tiene SAR 720×576 (5:4) pero se muestra en DAR 4:3. Por tanto PAR ≠ 1:1, los píxeles son rectangulares. En vídeo digital HD y superior, SAR = DAR → PAR 1:1 siempre.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: REFERENCIA -->
+  <div class="inner-pane" id="m1_ref">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Canal Alpha</div>
+        <div class="info-card" style="margin-bottom:14px">
+          <div class="info-card-title">¿Qué es el Canal Alpha?</div>
+          <p>Define la <strong>opacidad de cada píxel</strong> en una imagen. Actúa como máscara de transparencia que permite mezclar capas, imágenes o fondos opacos con imágenes con distintos grados de transparencia.</p>
+        </div>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+          <div style="display:flex;gap:8px;margin-bottom:12px;font-family:'Poppins',sans-serif;font-size:12px">
+            <div style="background:rgba(255,68,85,.6);border-radius:4px;padding:8px 12px;color:var(--white)">R</div>
+            <div style="background:rgba(0,255,136,.6);border-radius:4px;padding:8px 12px;color:var(--white)">G</div>
+            <div style="background:rgba(0,100,255,.6);border-radius:4px;padding:8px 12px;color:var(--white)">B</div>
+            <div style="background:rgba(255,255,255,.3);border:1px dashed rgba(255,255,255,.4);border-radius:4px;padding:8px 12px;color:var(--white)">α</div>
+          </div>
+          <p style="font-size:12px;color:var(--text2)">A los 3 canales RGB (rojo, verde, azul) se añade un 4.º canal <strong>Alfa</strong> que define la opacidad (0 = transparente, 255 = opaco).</p>
+        </div>
+        <div class="note" style="margin-top:12px"><strong>Formatos con soporte Alpha:</strong> PNG (canal alfa real), TIFF, PSD, WEBP, GIF (transparencia binaria, sin alfa real), MOV ProRes 4444.</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Proporciones de Píxel — Tabla Comparativa</div>
+        <table class="comp-table">
+          <thead><tr><th>Estándar</th><th>SAR</th><th>DAR</th><th>PAR</th><th>Forma px</th></tr></thead>
+          <tbody>
+            <tr><td>HD digital 1080p</td><td>1920:1080</td><td>16:9</td><td><span class="badge badge-green">1:1</span></td><td>Cuadrado ✓</td></tr>
+            <tr><td>PAL SD 4:3</td><td>720:576</td><td>4:3</td><td><span class="badge badge-orange">1.094:1</span></td><td>Rect. hor.</td></tr>
+            <tr><td>PAL SD 16:9</td><td>720:576</td><td>16:9</td><td><span class="badge badge-orange">1.458:1</span></td><td>Rect. hor.</td></tr>
+            <tr><td>NTSC SD 4:3</td><td>720:480</td><td>4:3</td><td><span class="badge badge-yellow">0.909:1</span></td><td>Rect. vert.</td></tr>
+            <tr><td>NTSC SD 16:9</td><td>720:480</td><td>16:9</td><td><span class="badge badge-orange">1.212:1</span></td><td>Rect. hor.</td></tr>
+            <tr><td>Anamórfico 2x</td><td>2048:1080</td><td>2.39:1</td><td><span class="badge badge-purple">2:1</span></td><td>Rect. hor. 2x</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MÓDULO 2 — ÓPTICA & DOF ═══ -->
+<section class="module" id="m2">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+
+  <div class="module-header">
+    <div class="module-icon">🎞️</div>
+    <div>
+      <div class="module-title">Óptica &amp; Profundidad de Campo</div>
+      <div class="module-desc">Distancia focal, diafragma, ISO, profundidad de campo y triángulo de exposición — UD1</div>
+      <div class="module-tags">
+        <span class="tag">Distancia Focal</span><span class="tag">1/u + 1/v = 1/f</span>
+        <span class="tag">Diafragma f/</span><span class="tag">ISO</span><span class="tag">DOF</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-tabs">
+    <div class="inner-tab active" data-inner="m2_focal">Distancia Focal</div>
+    <div class="inner-tab" data-inner="m2_dof">Profundidad de Campo</div>
+    <div class="inner-tab" data-inner="m2_exp">Triángulo de Exposición</div>
+  </div>
+
+  <!-- TAB: DISTANCIA FOCAL -->
+  <div class="inner-pane active" id="m2_focal">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Calculadora de Distancia Focal — 1/u + 1/v = 1/f</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Ejercicio 1.5: introduce dos valores conocidos y calcula el tercero.</p>
+        <div class="field" style="margin-bottom:12px">
+          <label>Calcular</label>
+          <select id="focal_mode" onchange="updateFocalInputs()">
+            <option value="f">f — distancia focal (a partir de u y v)</option>
+            <option value="u">u — distancia objeto → lente (a partir de v y f)</option>
+            <option value="v">v — distancia lente → imagen (a partir de u y f)</option>
+          </select>
+        </div>
+        <div class="calc-row">
+          <div class="field" id="focal_u_wrap">
+            <label>u — Objeto → Lente (cm)</label>
+            <input type="number" id="focal_u" value="30" min="0.1" step="0.1">
+          </div>
+          <div class="field" id="focal_v_wrap">
+            <label>v — Lente → Imagen (cm)</label>
+            <input type="number" id="focal_v" value="10" min="0.1" step="0.1">
+          </div>
+        </div>
+        <div class="field" id="focal_f_wrap" style="display:none;margin-bottom:12px">
+          <label>f — Distancia focal (cm)</label>
+          <input type="number" id="focal_f_in" value="7.5" min="0.1" step="0.1">
+        </div>
+        <button class="btn" onclick="calcFocal()">CALCULAR</button>
+        <div id="focal_result" style="margin-top:16px;display:none">
+          <div class="result-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="result-box green"><div class="result-val" id="focal_out_val">—</div><div class="result-label" id="focal_out_label">Resultado</div></div>
+            <div class="result-box orange"><div class="result-val" id="focal_out_mm">—</div><div class="result-label">En milímetros</div></div>
+          </div>
+          <div class="note" id="focal_note" style="margin-top:12px"></div>
+        </div>
+        <div class="formula" style="margin-top:16px">1/u + 1/v = 1/f<br>u = distancia objeto→lente · v = distancia lente→imagen · f = distancia focal</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Distancia Focal y Ángulo Visual</div>
+        <div class="info-card" style="margin-bottom:14px">
+          <div class="info-card-title">Definición</div>
+          <p>La <strong>distancia focal</strong> es la distancia en mm desde el centro de la lente hasta el plano del sensor/CCD. Determina el <strong>ángulo visual</strong> de la lente: a mayor distancia focal → menor campo visual. A menor distancia → mayor ángulo.</p>
+        </div>
+        <table class="comp-table">
+          <thead><tr><th>Focal</th><th>Ángulo H (FF)</th><th>Tipo de objetivo</th></tr></thead>
+          <tbody>
+            <tr><td>14 mm</td><td>104°</td><td><span class="badge badge-orange">Gran angular extremo</span></td></tr>
+            <tr><td>24 mm</td><td>84°</td><td><span class="badge badge-yellow">Gran angular</span></td></tr>
+            <tr><td>35 mm</td><td>64°</td><td><span class="badge badge-blue">Semi-gran angular</span></td></tr>
+            <tr><td>50 mm</td><td>47°</td><td><span class="badge badge-green">Normal / ojo humano</span></td></tr>
+            <tr><td>85 mm</td><td>29°</td><td><span class="badge badge-blue">Retrato</span></td></tr>
+            <tr><td>135 mm</td><td>18°</td><td><span class="badge badge-purple">Corto tele</span></td></tr>
+            <tr><td>200 mm</td><td>12°</td><td><span class="badge badge-purple">Teleobjetivo</span></td></tr>
+            <tr><td>400 mm</td><td>6°</td><td><span class="badge badge-red">Supertele</span></td></tr>
+          </tbody>
+        </table>
+        <div class="panel-subtitle">Apertura de diafragma — diámetro efectivo</div>
+        <div class="calc-row">
+          <div class="field"><label>Focal (mm)</label><input type="number" id="ap_focal" value="50" min="1"></div>
+          <div class="field"><label>Número f/</label><input type="number" id="ap_fnum" value="4" min="0.7" step="0.1"></div>
+        </div>
+        <button class="btn btn-secondary" onclick="calcApertureDiam()">CALCULAR DIÁMETRO</button>
+        <div class="result-grid" style="grid-template-columns:1fr 1fr;margin-top:12px">
+          <div class="result-box"><div class="result-val" id="ap_diam">—</div><div class="result-label">Diámetro (mm)</div></div>
+          <div class="result-box orange"><div class="result-val" id="ap_area">—</div><div class="result-label">Área (mm²)</div></div>
+        </div>
+        <div class="formula">d = focal / f_number &nbsp;|&nbsp; Área = π × (d/2)²</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: DOF -->
+  <div class="inner-pane" id="m2_dof">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Calculadora de Profundidad de Campo</div>
+        <div class="calc-row">
+          <div class="field"><label>Distancia focal (mm)</label><input type="number" id="d_f" value="50" min="1"></div>
+          <div class="field"><label>Apertura (f/)</label><input type="number" id="d_ap" value="2.8" step="0.1" min="0.7"></div>
+        </div>
+        <div class="calc-row">
+          <div class="field"><label>Distancia sujeto (m)</label><input type="number" id="d_dist" value="3" step="0.1" min="0.1"></div>
+          <div class="field"><label>Sensor / Formato</label>
+            <select id="d_sensor">
+              <option value="43.3">Full Frame (36×24mm)</option>
+              <option value="28.4" selected>APS-C (23.6×15.6mm)</option>
+              <option value="21.6">Micro 4/3 (17.3×13mm)</option>
+              <option value="8">1" (13.2×8.8mm)</option>
+              <option value="5.64">1/2.3" (6.3×4.7mm)</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn" onclick="calcDOF()">CALCULAR DOF</button>
+        <div class="result-grid" style="margin-top:16px;">
+          <div class="result-box"><div class="result-val" id="d_hn">—</div><div class="result-label">Hiper Focal (m)</div></div>
+          <div class="result-box green"><div class="result-val" id="d_near">—</div><div class="result-label">Límite Cercano (m)</div></div>
+          <div class="result-box orange"><div class="result-val" id="d_far">—</div><div class="result-label">Límite Lejano (m)</div></div>
+          <div class="result-box yellow"><div class="result-val" id="d_dof">—</div><div class="result-label">DOF Total (m)</div></div>
+          <div class="result-box purple"><div class="result-val" id="d_aov">—</div><div class="result-label">Ángulo Visión H</div></div>
+          <div class="result-box"><div class="result-val" id="d_eq35">—</div><div class="result-label">Equiv. 35mm</div></div>
+        </div>
+        <div style="margin-top:16px;">
+          <div style="font-size:11px;color:var(--text3);letter-spacing:0.2px;text-transform:uppercase;margin-bottom:8px">Representación DOF</div>
+          <div id="dof_visual" style="height:44px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;position:relative;overflow:hidden;">
+            <div id="dof_bar" style="position:absolute;top:0;height:100%;background:rgba(0,212,255,.2);border-left:2px solid var(--accent);border-right:2px solid var(--accent);transition:all .4s;"></div>
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;color:var(--text3);letter-spacing:0.2px;">← DOF →</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Profundidad de Campo — Conceptos</div>
+        <div class="info-card" style="margin-bottom:12px">
+          <div class="info-card-title">¿Qué es la Profundidad de Campo?</div>
+          <p>La profundidad de campo (DOF) es la <strong>relación entre la apertura del diafragma</strong> y la cantidad de espacio que aparece nítido y enfocado en la imagen. Determina qué parte de la escena se ve con claridad.</p>
+        </div>
+        <div class="grid-2">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
+            <div style="font-size:12px;font-weight:700;color:var(--accent3);margin-bottom:6px">DOF AMPLIA</div>
+            <div style="font-size:12px;color:var(--text2)">f/ número alto (f/11, f/16)<br>Distancia focal corta<br>Sujeto lejos<br>→ todo enfocado</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
+            <div style="font-size:12px;font-weight:700;color:var(--accent4);margin-bottom:6px">DOF REDUCIDA</div>
+            <div style="font-size:12px;color:var(--text2)">f/ número bajo (f/1.4, f/2.8)<br>Distancia focal larga<br>Sujeto cerca<br>→ fondo desenfocado</div>
+          </div>
+        </div>
+        <div class="panel-subtitle">Valores f/ estándar</div>
+        <div id="fstops_vis" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+        <div class="note note-yellow" style="margin-top:12px"><strong>Regla:</strong> Cada paso completo (full stop) duplica o divide el área de apertura, cambiando la exposición en 1 EV. Secuencia: f/1 · f/1.4 · f/2 · f/2.8 · f/4 · f/5.6 · f/8 · f/11 · f/16 · f/22</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: EXPOSICIÓN -->
+  <div class="inner-pane" id="m2_exp">
+    <div class="panel">
+      <div class="panel-title">El Triángulo de Exposición</div>
+      <div class="grid-3">
+        <div class="info-card">
+          <div class="info-card-title" style="color:var(--accent)">📐 Apertura (f/)</div>
+          <p><strong>Controla la cantidad de luz</strong> que pasa por el objetivo y la profundidad de campo.<br><br>f/ bajo = apertura grande = más luz + poco DOF (fondo desenfocado).<br>f/ alto = apertura pequeña = menos luz + mucho DOF (todo enfocado).</p>
+          <div class="formula">Área = π × (focal / (2×N))²</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title" style="color:var(--accent3)">⏱ Velocidad de Obturación</div>
+          <p><strong>Tiempo que el sensor queda expuesto.</strong><br><br>Para vídeo, la <em>regla de 180°</em> establece que la velocidad debe ser aprox. el doble del framerate:<br>25 fps → 1/50s<br>30 fps → 1/60s<br>60 fps → 1/120s</p>
+          <div class="formula">Regla 180°: t = 1 / (fps × 2)</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title" style="color:var(--accent5)">⚡ ISO (Sensibilidad)</div>
+          <p><strong>Sensibilidad del sensor</strong> a la luz. Amplificación electrónica (digital).<br><br>ISO alto = más luz capturada, pero más ruido (grano) digital.<br><br>Valores: 100 · 200 · 400 · 800 · 1600 · 3200 · 6400<br>Duplicar ISO = +1 EV de exposición.</p>
+          <div class="formula">EV = log₂(N² / t) + log₂(ISO/100)</div>
+        </div>
+      </div>
+      <div class="note" style="margin-top:20px"><strong>Relación entre los tres factores:</strong> Si subimos el ISO para compensar poca luz, ganamos exposición pero añadimos ruido. Si abrimos el diafragma ganamos luz pero reducimos el DOF. Si reducimos la velocidad de obturación ganamos luz pero arriesgamos motion blur. El equilibrio entre los tres define la exposición correcta.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MÓDULO 3 — SEÑAL DE VÍDEO ═══ -->
+<section class="module" id="m3">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+
+  <div class="module-header">
+    <div class="module-icon">📡</div>
+    <div>
+      <div class="module-title">Señal de Vídeo</div>
+      <div class="module-desc">Canal alpha, escaneo progresivo vs entrelazado, PAL/NTSC/SECAM, gamma y HDR — UD1/UD2</div>
+      <div class="module-tags">
+        <span class="tag">Canal Alpha</span><span class="tag">Progresivo</span>
+        <span class="tag">Entrelazado</span><span class="tag">PAL · NTSC · SECAM</span>
+        <span class="tag">Gamma</span><span class="tag">HDR</span>
+      </div>
+    </div>
+  </div>
+  <div class="inner-tabs">
+    <div class="inner-tab active" data-inner="i_scan">Progresivo vs Entrelazado</div>
+    <div class="inner-tab" data-inner="i_pal">PAL / NTSC / SECAM</div>
+    <div class="inner-tab" data-inner="i_gamma">Gamma &amp; HDR</div>
+    <div class="inner-tab" data-inner="i_alpha">Canal Alpha</div>
+    <div class="inner-tab" data-inner="i_simulador">📡 Simulador de Señal</div>
+  </div>
+
+  <div class="inner-pane active" id="i_scan">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Escaneo Progresivo (p)</div>
+        <div class="info-card" style="margin-bottom:14px">
+          <div class="info-card-title" style="color:var(--accent)">Progresivo</div>
+          <p>El escaneo progresivo <strong>visualiza todas las líneas horizontales de una sola vez</strong> como si fuesen un único fotograma completo. Cada frame contiene toda la información de imagen.</p>
+        </div>
+        <canvas id="prog_canvas" width="300" height="120" style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;"></canvas>
+        <div class="note" style="margin-top:12px"><strong>Ejemplos:</strong> 1080p, 720p, 4K UHD. Se usa en vídeo digital moderno, streaming, grabación en cámara.</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Escaneo Entrelazado (i)</div>
+        <div class="info-card" style="margin-bottom:14px">
+          <div class="info-card-title" style="color:var(--accent4)">Entrelazado</div>
+          <p>El escaneo entrelazado <strong>visualiza sólo la mitad de las líneas en cada pasada</strong>: el primer campo contiene todas las líneas impares y el segundo las pares. Se usa en los estándares analógicos PAL, NTSC y SECAM.</p>
+        </div>
+        <canvas id="inter_canvas" width="300" height="120" style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;"></canvas>
+        <div class="note note-orange" style="margin-top:12px"><strong>Ejemplos:</strong> 1080i (broadcast), 576i (PAL SD), 480i (NTSC SD). Puede causar artefactos (peinado) en movimientos rápidos.</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Comparativa Progresivo vs Entrelazado</div>
+      <table class="comp-table">
+        <thead><tr><th>Característica</th><th>Progresivo (p)</th><th>Entrelazado (i)</th></tr></thead>
+        <tbody>
+          <tr><td>Líneas por frame</td><td><span class="badge badge-green">100% en cada frame</span></td><td><span class="badge badge-orange">50% por campo (2 campos/frame)</span></td></tr>
+          <tr><td>Calidad de movimiento</td><td><span class="badge badge-green">Mejor</span></td><td><span class="badge badge-yellow">Artefactos posibles</span></td></tr>
+          <tr><td>Uso principal</td><td>Digital, streaming, web</td><td>Broadcast TV analógico</td></tr>
+          <tr><td>Ejemplos</td><td>1080p, 720p, 4K</td><td>1080i, 576i, 480i</td></tr>
+          <tr><td>Ancho de banda</td><td>Mayor</td><td><span class="badge badge-green">Menor</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="i_pal">
+    <div class="panel">
+      <div class="panel-title">PAL / NTSC / SECAM — Emisión TV Analógica</div>
+      <div class="note note-yellow" style="margin-bottom:20px"><strong>Ejercicio 2.4:</strong> Además del PAL y el NTSC existe el sistema SECAM, empleado principalmente en Francia, Rusia y parte de África.</div>
+      <table class="comp-table">
+        <thead><tr><th>Sistema</th><th>Nombre completo</th><th>Líneas</th><th>Frame rate</th><th>Países</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-blue">PAL</span></td>
+            <td>Phase Alternating Line</td><td>625</td><td>25 fps / 50 Hz</td>
+            <td>Europa, Australia, Asia, Sudamérica</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-orange">NTSC</span></td>
+            <td>National Television Standard Committee</td><td>525</td><td>29.97 fps / 60 Hz</td>
+            <td>EE.UU., Canadá, México, Japón</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-purple">SECAM</span></td>
+            <td>Séquentiel couleur à mémoire</td><td>625</td><td>25 fps / 50 Hz</td>
+            <td>Francia, Rusia, parte de África</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="grid-3" style="margin-top:16px">
+        <div class="info-card">
+          <div class="info-card-title" style="color:var(--accent)">PAL</div>
+          <p>Resolución 720×576px (SD). Usado en España y la mayoría de Europa. Se caracteriza por su corrección automática de fase de color, ofreciendo mejor fidelidad cromática que NTSC.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title" style="color:var(--accent4)">NTSC</div>
+          <p>Resolución 720×480px (SD). Fue el primer sistema de TV en color. Su framerate ligeramente inferior a 30 fps (29.97) proviene de la frecuencia eléctrica de 60 Hz en EE.UU.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title" style="color:var(--purple)">SECAM</div>
+          <p>Mismo número de líneas que PAL pero distinto sistema de codificación del color. Desarrollado en Francia en los 60. Incompatible directamente con PAL y NTSC.</p>
+        </div>
+      </div>
+      <div class="note" style="margin-top:16px"><strong>Actualidad:</strong> Hoy la TDT (Televisión Digital Terrestre) tiene sus propios estándares digitales (DVB-T, ATSC, ISDB). Los sistemas analógicos PAL, NTSC y SECAM están en desuso, pero sus resoluciones y framerates heredados siguen presentes en vídeo SD.</div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="i_gamma">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Gamma — Curva de Luminancia</div>
+        <div class="info-card" style="margin-bottom:14px">
+          <div class="info-card-title">¿Qué es Gamma?</div>
+          <p><strong>Gamma controla cómo se representan los tonos intermedios</strong> (las transiciones entre blanco y negro). No afecta al brillo máximo ni mínimo, sino a la <em>curva de luminancia</em>. Sirve para mejorar detalles en sombras o evitar que las zonas claras se "quemen".</p>
+        </div>
+        <canvas id="gamma_canvas" width="400" height="200" style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;"></canvas>
+        <div class="note" style="margin-top:12px">γ=1.0 = lineal · γ=2.2 = sRGB (monitores PC) · γ=2.4 = Rec.709 (broadcast HD) · γ=2.6 = DCI (cine digital)</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Contraste y HDR</div>
+        <div class="info-card" style="margin-bottom:12px">
+          <div class="info-card-title" style="color:var(--accent3)">Contraste</div>
+          <p>Mide la diferencia entre el blanco más brillante y el negro más oscuro. Se expresa como relación: 10.000:1 significa que el blanco es 10.000 veces más luminoso que el negro.</p>
+        </div>
+        <div class="info-card" style="margin-bottom:12px">
+          <div class="info-card-title" style="color:var(--accent5)">HDR — High Dynamic Range</div>
+          <p><strong>Alto Rango Dinámico.</strong> Permite mostrar más diferencia entre las zonas más brillantes y las más oscuras que el SDR estándar. El contenido <em>debe estar grabado en HDR</em> y el dispositivo de visualización debe ser compatible.</p>
+        </div>
+        <table class="comp-table">
+          <thead><tr><th>Estándar</th><th>Brillo máx.</th><th>Uso</th></tr></thead>
+          <tbody>
+            <tr><td>SDR Rec.709</td><td>100 nits</td><td>Broadcast HD, monitores</td></tr>
+            <tr><td><span class="badge badge-blue">HDR10</span></td><td>1.000 nits</td><td>4K Blu-ray, streaming</td></tr>
+            <tr><td><span class="badge badge-orange">Dolby Vision</span></td><td>10.000 nits</td><td>Cine, TV premium</td></tr>
+            <tr><td><span class="badge badge-green">HDR10+</span></td><td>4.000 nits</td><td>Samsung, streaming</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="i_alpha">
+    <div class="panel">
+      <div class="panel-title">Canal Alpha — Transparencia en Vídeo</div>
+      <div class="grid-2">
+        <div>
+          <div class="info-card" style="margin-bottom:14px">
+            <div class="info-card-title">Canal Alpha</div>
+            <p>Define la <strong>opacidad de un píxel</strong> en una imagen. Actúa como máscara de transparencia permitiendo mezclar capas, imágenes o fondos opacos con imágenes con grado de transparencia.<br><br>A los tres canales RGB se añade un 4.º canal <strong>Alfa</strong> que define el grado de opacidad (0 = transparente total, 255 = opaco total).</p>
+          </div>
+          <div class="formula">Pixel = (R, G, B, α)<br>α=0 → transparente · α=255 → opaco</div>
+        </div>
+        <div>
+          <div class="panel-subtitle">Formatos con soporte Alpha</div>
+          <table class="comp-table">
+            <thead><tr><th>Formato</th><th>Alpha</th><th>Tipo</th></tr></thead>
+            <tbody>
+              <tr><td>PNG</td><td><span class="badge badge-green">Sí (real)</span></td><td>Bitmap</td></tr>
+              <tr><td>TIFF</td><td><span class="badge badge-green">Sí</span></td><td>Bitmap</td></tr>
+              <tr><td>PSD</td><td><span class="badge badge-green">Sí + capas</span></td><td>Bitmap editable</td></tr>
+              <tr><td>WEBP</td><td><span class="badge badge-green">Sí + anim.</span></td><td>Bitmap</td></tr>
+              <tr><td>GIF</td><td><span class="badge badge-yellow">Básica (1 bit)</span></td><td>Bitmap</td></tr>
+              <tr><td>SVG</td><td><span class="badge badge-green">Sí</span></td><td>Vectorial</td></tr>
+              <tr><td>MOV ProRes 4444</td><td><span class="badge badge-green">Sí (vídeo)</span></td><td>Vídeo</td></tr>
+              <tr><td>JPG</td><td><span class="badge badge-red">No</span></td><td>Bitmap</td></tr>
+              <tr><td>MP4 / H.264</td><td><span class="badge badge-red">No</span></td><td>Vídeo</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SIMULADOR DE SEÑAL ── -->
+  <div class="inner-pane" id="i_simulador">
+    <div class="note note-yellow" style="margin-bottom:18px">
+      <strong>📡 Simulador interactivo:</strong> Configura los parámetros de tu señal y observa en tiempo real cómo afectan al bitrate, tamaño de archivo y calidad.
+    </div>
+    <div class="sim-grid">
+      <!-- Controles -->
+      <div class="panel">
+        <div class="panel-title">⚙️ Parámetros de señal</div>
+
+        <div style="margin-bottom:14px">
+          <div class="form-label" style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Resolución</div>
+          <select id="s_res" onchange="simUpdate()" style="width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:'Poppins',sans-serif;font-size:12px;color:var(--text);background:var(--bg)">
+            <option value="640,360">nHD — 640×360</option>
+            <option value="1280,720">HD — 1280×720</option>
+            <option value="1920,1080" selected>Full HD — 1920×1080</option>
+            <option value="2560,1440">QHD — 2560×1440</option>
+            <option value="3840,2160">4K UHD — 3840×2160</option>
+            <option value="7680,4320">8K UHD — 7680×4320</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:14px">
+          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Frame Rate</div>
+          <div class="sim-toggle-row" id="s_fps_group">
+            <button class="sim-toggle-btn" onclick="simSetFPS(24,this)">24fps</button>
+            <button class="sim-toggle-btn" onclick="simSetFPS(25,this)">25fps</button>
+            <button class="sim-toggle-btn active" onclick="simSetFPS(30,this)">30fps</button>
+            <button class="sim-toggle-btn" onclick="simSetFPS(50,this)">50fps</button>
+            <button class="sim-toggle-btn" onclick="simSetFPS(60,this)">60fps</button>
+            <button class="sim-toggle-btn" onclick="simSetFPS(120,this)">120fps</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px">
+          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Profundidad de color</div>
+          <div class="sim-toggle-row" id="s_bit_group">
+            <button class="sim-toggle-btn" onclick="simSetBit(8,this)">8 bit</button>
+            <button class="sim-toggle-btn active" onclick="simSetBit(10,this)">10 bit</button>
+            <button class="sim-toggle-btn" onclick="simSetBit(12,this)">12 bit</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px">
+          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Muestreo de color</div>
+          <div class="sim-toggle-row" id="s_chroma_group">
+            <button class="sim-toggle-btn" onclick="simSetChroma('4:2:0',this)">4:2:0</button>
+            <button class="sim-toggle-btn active" onclick="simSetChroma('4:2:2',this)">4:2:2</button>
+            <button class="sim-toggle-btn" onclick="simSetChroma('4:4:4',this)">4:4:4</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px">
+          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Codec</div>
+          <select id="s_codec" onchange="simUpdate()" style="width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:'Poppins',sans-serif;font-size:12px;color:var(--text);background:var(--bg)">
+            <optgroup label="Broadcast / Edición">
+              <option value="prores422">Apple ProRes 422</option>
+              <option value="prores444">Apple ProRes 4444</option>
+              <option value="dnxhd">Avid DNxHD</option>
+              <option value="rawhd">RAW sin comprimir</option>
+            </optgroup>
+            <optgroup label="Producción">
+              <option value="h264" selected>H.264 / AVC</option>
+              <option value="h265">H.265 / HEVC</option>
+              <option value="av1">AV1</option>
+            </optgroup>
+            <optgroup label="Streaming / Web">
+              <option value="vp9">VP9</option>
+              <option value="webm">WebM (VP8)</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div style="border-top:1px solid var(--border);margin:14px 0 14px"></div>
+
+        <div style="margin-bottom:14px">
+          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Duración del clip</div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <input type="range" id="s_dur" min="1" max="120" value="10" oninput="simUpdate()" style="flex:1;height:4px;-webkit-appearance:none;appearance:none;background:var(--border);border-radius:4px;outline:none">
+            <span id="s_dur_val" style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--accent);min-width:55px;text-align:right">10 min</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Resultados -->
+      <div class="sim-results-stack">
+
+        <!-- Visualizador -->
+        <div class="panel">
+          <div class="panel-title">🖥️ Vista de resolución</div>
+          <div class="resolution-viz">
+            <div class="res-outer" id="s_res_outer">
+              <div class="res-scanlines"></div>
+              <div class="res-inner-text" id="s_res_text">1920×1080</div>
+              <div class="res-label-w" id="s_label_w">1920 px</div>
+              <div class="res-label-h" id="s_label_h">1080 px</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <div id="s_quality_pill" class="sim-quality-pill q-st"><span class="dot"></span><span id="s_quality_text">Streaming</span></div>
+            <span style="font-size:11px;color:var(--text2)">Aspect ratio: <strong id="s_ar">16:9</strong></span>
+            <span style="font-size:11px;color:var(--text2)">Megapíxeles: <strong id="s_mp">2.07</strong></span>
+          </div>
+        </div>
+
+        <!-- Métricas -->
+        <div class="panel">
+          <div class="panel-title">📊 Métricas calculadas</div>
+          <div class="sim-metrics-grid">
+            <div class="sim-metric blue">
+              <div class="sim-metric-name">Bitrate estimado</div>
+              <div class="sim-metric-value" id="s_bitrate">—<span class="sim-metric-unit">Mbps</span></div>
+              <div class="sim-metric-sub" id="s_bitrate_sub"></div>
+              <div class="bitrate-track"><div class="bitrate-fill" id="s_bitrate_bar" style="width:0%;background:#3B82F6"></div></div>
+            </div>
+            <div class="sim-metric green">
+              <div class="sim-metric-name">Tamaño de archivo</div>
+              <div class="sim-metric-value" id="s_size">—</div>
+              <div class="sim-metric-sub" id="s_size_sub"></div>
+            </div>
+            <div class="sim-metric orange">
+              <div class="sim-metric-name">Datos por frame</div>
+              <div class="sim-metric-value" id="s_frame">—<span class="sim-metric-unit">KB</span></div>
+              <div class="sim-metric-sub" id="s_frame_sub"></div>
+            </div>
+            <div class="sim-metric red">
+              <div class="sim-metric-name">Ancho de banda</div>
+              <div class="sim-metric-value" id="s_bw">—<span class="sim-metric-unit">Mbps</span></div>
+              <div class="sim-metric-sub">para streaming</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Codec info -->
+        <div class="panel">
+          <div class="panel-title">🧩 Información del codec</div>
+          <div class="codec-info-card" id="s_codec_card"></div>
+        </div>
+
+        <!-- Flujo señal -->
+        <div class="panel">
+          <div class="panel-title">🔗 Flujo de la señal</div>
+          <div class="sig-path" id="s_sig_path"></div>
+          <div id="s_warns"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══ MÓDULO 4 — CONECTORES & CODECS ═══ -->
+<section class="module" id="m4">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+
+  <div class="module-header">
+    <div class="module-icon">🔌</div>
+    <div>
+      <div class="module-title">Conectores &amp; Codecs de Vídeo</div>
+      <div class="module-desc">Conectores vídeo, HDCP, formatos y codecs, intra-frame vs inter-frame — UD2</div>
+      <div class="module-tags">
+        <span class="tag">VGA · DVI · HDMI</span><span class="tag">DisplayPort · USB-C</span>
+        <span class="tag">SDI · Fibra</span><span class="tag">HDCP</span>
+        <span class="tag">Codecs</span><span class="tag">Intra / Inter frame</span>
+      </div>
+    </div>
+  </div>
+  <div class="inner-tabs">
+    <div class="inner-tab active" data-inner="c_conn">Conectores</div>
+    <div class="inner-tab" data-inner="c_hdcp">HDCP</div>
+    <div class="inner-tab" data-inner="c_codecs">Formatos &amp; Codecs</div>
+    <div class="inner-tab" data-inner="c_audio">Audio</div>
+    <div class="inner-tab" data-inner="c_vj">Codecs VJ · Live</div>
+  </div>
+
+  <div class="inner-pane active" id="c_conn">
+    <div class="conn-grid">
+      <div class="conn-card">
+        <div class="conn-badge"><span class="badge badge-gray">ANALÓGICO</span></div>
+        <div class="conn-name" style="color:var(--accent4)">VGA</div>
+        <div class="conn-specs">Video Graphics Array / RGB / D-sub<br>— Señal analógica<br>— NO transmite audio<br>— Más cable = peor señal<br>— Máx. ~1080p<br>— Conector D-sub 15 pines</div>
+      </div>
+      <div class="conn-card">
+        <div class="conn-badge"><span class="badge badge-blue">DIGITAL+ANALÓGICO</span></div>
+        <div class="conn-name" style="color:var(--accent)">DVI</div>
+        <div class="conn-specs">Digital Visual Interface<br>— DVI-D: sólo digital<br>— DVI-A: sólo analógico<br>— DVI-I: digital + analógico<br>— Simple: 1920×1200 @ 60Hz<br>— Doble: 2560×1600 @ 60Hz<br>— NO lleva audio</div>
+      </div>
+      <div class="conn-card">
+        <div class="conn-badge"><span class="badge badge-green">DIGITAL</span></div>
+        <div class="conn-name" style="color:var(--accent3)">HDMI</div>
+        <div class="conn-specs">High Definition Multimedia Interface<br>— Audio + Vídeo en un cable<br>— HDMI 2.0: 4K @ 60Hz<br>— HDMI 2.1: 8K @ 60Hz / 4K @ 120Hz<br>— Máx. ~10-15m sin repetidores<br>— HDCP compatible</div>
+      </div>
+      <div class="conn-card">
+        <div class="conn-badge"><span class="badge badge-purple">DIGITAL</span></div>
+        <div class="conn-name" style="color:var(--purple)">DisplayPort</div>
+        <div class="conn-specs">DisplayPort / DP<br>— DP 1.4: 8K o 4K @ 120Hz<br>— Audio + vídeo<br>— Conector propio o USB-C<br>— Thunderbolt compatible<br>— Multistream (MST)</div>
+      </div>
+      <div class="conn-card">
+        <div class="conn-badge"><span class="badge badge-yellow">DIGITAL MULTIPROTOCOLO</span></div>
+        <div class="conn-name" style="color:var(--accent5)">USB-C / Thunderbolt</div>
+        <div class="conn-specs">Conector ≠ Protocolo<br>— USB-C: conector simétrico<br>— Puede llevar: datos + vídeo + carga<br>— Thunderbolt 4: 40 Gbps<br>— TB compatible con USB-C<br>— Puede transmitir DP + USB + power</div>
+      </div>
+      <div class="conn-card">
+        <div class="conn-badge"><span class="badge badge-green">PROFESIONAL</span></div>
+        <div class="conn-name" style="color:var(--accent3)">SDI</div>
+        <div class="conn-specs">Serial Digital Interface<br>— Sin compresión<br>— Cable coaxial BNC 75Ω<br>— Puede incluir audio embebido<br>— Estándar broadcast<br>— Hasta 4K 2160p 50/60<br>— Tiradas largas (>100m)</div>
+      </div>
+      <div class="conn-card">
+        <div class="conn-badge"><span class="badge badge-purple">LARGA DISTANCIA</span></div>
+        <div class="conn-name" style="color:var(--accent6)">Fibra Óptica</div>
+        <div class="conn-specs">Optical Fiber<br>— Sin interferencias EM<br>— Distancias kilométricas<br>— LC, SC, ST conectores<br>— Requiere conversores<br>— Máxima calidad de señal</div>
+      </div>
+      <div class="conn-card">
+        <div class="conn-badge"><span class="badge badge-orange">INSTALACIÓN</span></div>
+        <div class="conn-name" style="color:var(--accent4)">HDBaseT</div>
+        <div class="conn-specs">Protocolo sobre Cat5e/Cat6<br>— Hasta 100m con Cat6<br>— Vídeo 4K UHD sin comp.<br>— Audio multicanal<br>— Ethernet 100Mbps<br>— Control IR/RS-232/USB<br>— Alimentación hasta 100W<br>— Requiere Tx + Rx</div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:16px"><strong>Importante:</strong> El <em>conector</em> y el <em>protocolo</em> son cosas distintas. El USB-C es un conector físico que puede transmitir diferentes protocolos: USB, DisplayPort, Thunderbolt, HDMI Alt-Mode, etc. Un cable USB-C puede ser solo USB 2.0 o puede ser Thunderbolt 4 dependiendo de su especificación.</div>
+  </div>
+
+  <div class="inner-pane" id="c_hdcp">
+    <div class="panel">
+      <div class="panel-title">HDCP — High-Bandwidth Digital Content Protection</div>
+      <div class="grid-2">
+        <div class="info-card">
+          <div class="info-card-title">¿Qué es HDCP?</div>
+          <p>Es una especificación desarrollada por <strong>Intel</strong> para controlar el contenido de audio y vídeo digital transmitido mediante DisplayPort, DVI, HDMI y otras conexiones digitales.<br><br>Es una forma digital de <strong>controlar los derechos</strong> y evitar la copia de contenidos protegidos (DRM).</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title" style="color:var(--accent5)">¿Cómo funciona?</div>
+          <p>Los dispositivos certificados con HDCP tienen una <strong>clave maestra</strong> que sirve para cifrar y desencriptar los contenidos. Esa clave sólo se proporciona a fabricantes autorizados.<br><br>Antes de transmitir contenido, la fuente verifica que el receptor tiene HDCP → si no lo tiene, bloquea o degrada la señal.</p>
+        </div>
+      </div>
+      <div class="panel-subtitle" style="margin-top:20px">Versiones HDCP</div>
+      <table class="comp-table">
+        <thead><tr><th>Versión</th><th>Resolución máxima</th><th>Conector</th></tr></thead>
+        <tbody>
+          <tr><td>HDCP 1.4</td><td>1080p</td><td>HDMI 1.x, DVI</td></tr>
+          <tr><td><span class="badge badge-blue">HDCP 2.2</span></td><td>4K UHD</td><td>HDMI 2.0</td></tr>
+          <tr><td><span class="badge badge-green">HDCP 2.3</span></td><td>4K/8K</td><td>HDMI 2.1, DP 1.4</td></tr>
+        </tbody>
+      </table>
+      <div class="note note-orange" style="margin-top:16px"><strong>⚠ Implicación práctica:</strong> En producción audiovisual en directo, el HDCP puede causar problemas si las señales de dispositivos de consumo (reproductores Blu-ray, consolas) pasan por matrices o mezcladores que no lo soportan. Es habitual usar equipos broadcast con splitters/conversores HDCP-compliant.</div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="c_codecs">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Concepto: Formato, Codec y Contenedor</div>
+        <div class="info-card" style="margin-bottom:12px">
+          <div class="info-card-title">FORMATO</div>
+          <p>Modo en el que se guardan, organizan y almacenan los datos digitalizados. Determina la estructura de distribución incluyendo metadatos.<br><strong>El formato contiene el codec y el archivo contenedor.</strong></p>
+        </div>
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-title" style="color:var(--accent3)">CODEC</div>
+            <p>Algoritmo que <strong>transforma la información</strong>.<br>COdificador / DECodificador.<br>Comprime y descomprime.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title" style="color:var(--accent4)">CONTENEDOR</div>
+            <p>Archivo donde se <strong>encapsula</strong> la información del codec, audio, subtítulos y metadatos.</p>
+          </div>
+        </div>
+        <div class="panel-subtitle" style="margin-top:16px">Intra-frame vs Inter-frame</div>
+        <div class="grid-2">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
+            <div style="font-weight:700;color:var(--accent);margin-bottom:8px;font-size:13px">INTRA-FRAME</div>
+            <p style="font-size:12px;color:var(--text2)">Comprime <strong>cada frame individualmente</strong>. Cada fotograma tiene toda la información de píxeles.<br>✓ Menor procesamiento<br>✗ Archivos más pesados<br>Ej: ProRes, DNxHD, MJPEG</p>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
+            <div style="font-weight:700;color:var(--accent5);margin-bottom:8px;font-size:13px">INTER-FRAME</div>
+            <p style="font-size:12px;color:var(--text2)">Se basa en la <strong>similitud entre frames</strong> (I, P, B frames). Sólo guarda los cambios.<br>✓ Menor peso<br>✗ Mayor procesamiento<br>Ej: H.264, H.265, MPEG-4</p>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Formatos de Vídeo Comunes</div>
+        <table class="comp-table">
+          <thead><tr><th>Formato</th><th>Codec</th><th>Compresión</th><th>Uso</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge badge-green">MP4</span></td><td>H.264 / AAC</td><td>Sí</td><td>Universal, web, cámara</td></tr>
+            <tr><td><span class="badge badge-blue">MOV</span></td><td>ProRes / MPEG-4</td><td>Variable</td><td>Apple, edición pro</td></tr>
+            <tr><td><span class="badge badge-orange">AVI</span></td><td>DivX, Xvid, etc.</td><td>Variable</td><td>Archivo, Windows</td></tr>
+            <tr><td><span class="badge badge-yellow">MKV</span></td><td>Múltiples</td><td>Variable</td><td>Open source, flexible</td></tr>
+            <tr><td><span class="badge badge-purple">AVCHD</span></td><td>H.264</td><td>Sí</td><td>Videocámaras Sony/Panasonic</td></tr>
+            <tr><td><span class="badge badge-blue">WEBM</span></td><td>VP8/VP9</td><td>Sí</td><td>Web (Google)</td></tr>
+            <tr><td><span class="badge badge-gray">WMV</span></td><td>Windows Media</td><td>Sí</td><td>Windows (legacy)</td></tr>
+            <tr><td><span class="badge badge-gray">FLV</span></td><td>Flash</td><td>Sí</td><td>Obsoleto</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="c_audio">
+    <div class="panel">
+      <div class="panel-title">Codecs y Formatos de Audio</div>
+      <div class="grid-2">
+        <div>
+          <table class="comp-table">
+            <thead><tr><th>Formato</th><th>Compresión</th><th>Canales</th><th>Uso típico</th></tr></thead>
+            <tbody>
+              <tr><td><span class="badge badge-green">AAC</span></td><td>Con pérdida</td><td>Hasta 48</td><td>MP4, streaming, broadcast</td></tr>
+              <tr><td><span class="badge badge-blue">MP3</span></td><td>Con pérdida</td><td>Estéreo</td><td>Música, podcast</td></tr>
+              <tr><td><span class="badge badge-orange">WAV / PCM</span></td><td>Sin compresión</td><td>Múltiples</td><td>Estudio, broadcast</td></tr>
+              <tr><td><span class="badge badge-yellow">FLAC</span></td><td>Sin pérdida</td><td>Múltiples</td><td>Archivo, calidad máxima</td></tr>
+              <tr><td><span class="badge badge-purple">Dolby Digital</span></td><td>Con pérdida</td><td>5.1 / 7.1</td><td>Cine, BD, DVD</td></tr>
+              <tr><td><span class="badge badge-purple">DTS</span></td><td>Con pérdida</td><td>5.1+</td><td>Cine, BD</td></tr>
+              <tr><td><span class="badge badge-green">OPUS</span></td><td>Con pérdida</td><td>Múltiples</td><td>VoIP, streaming</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">Parámetros clave del audio digital</div>
+          <p><strong>Sample Rate (Hz):</strong> Nº de muestras por segundo. CD = 44.1 kHz. Broadcast = 48 kHz.<br><br><strong>Bit Depth:</strong> Resolución dinámica. 16-bit = CD, 24-bit = profesional.<br><br><strong>Canales:</strong> Mono (1), Estéreo (2), 5.1 (6), 7.1 (8).<br><br><strong>Bitrate:</strong> Kbps para audio comprimido. MP3 → 128–320 kbps.</p>
+          <div class="formula">SNR (dB) ≈ 6.02 × bits + 1.76<br>24-bit → ~146 dB de rango dinámico</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PESTAÑA VJ / LIVE ── -->
+  <div class="inner-pane" id="c_vj">
+
+    <div class="panel">
+      <div class="panel-title">¿Por qué los codecs habituales no sirven para VJ en directo?</div>
+      <div class="grid-2">
+        <div class="info-card">
+          <div class="info-card-title">El problema del tiempo real</div>
+          <p>En edición de vídeo se prioriza la compresión: un archivo más pequeño es mejor. En VJ en directo el criterio cambia radicalmente — lo que importa es que la <strong>CPU o GPU pueda decodificar el vídeo fotograma a fotograma sin retraso</strong>, mientras el software mezcla varias capas a la vez.<br><br>Codecs como H.264 o H.265 son inter-frame: para mostrar un fotograma necesitan calcular las diferencias con los anteriores. Esto implica carga computacional alta y latencia inaceptable en directo.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">La solución: intra-frame + GPU</div>
+          <p>Los codecs para VJ son siempre <strong>intra-frame</strong>: cada fotograma es independiente y se decodifica sin depender de los anteriores. Algunos van un paso más allá y delegan la decodificación en la <strong>GPU</strong> (tarjeta gráfica), liberando la CPU para el resto de la sesión.<br><br>La referencia histórica del sector es <strong>QuickTime + Photo-JPEG (P-JPEG)</strong>. Hoy conviven varios codecs modernos, cada uno optimizado para un software concreto.</p>
+          <div class="formula">Regla: intra-frame siempre · GPU cuando sea posible · canal alpha si necesitas transparencias</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Tabla comparativa de codecs para VJ</div>
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Codec</th>
+            <th>Contenedor</th>
+            <th>Decodificación</th>
+            <th>Canal Alpha</th>
+            <th>Compatibilidad</th>
+            <th>Peso relativo</th>
+            <th>Perfil</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-orange">Photo-JPEG (P-JPEG)</span></td>
+            <td>.mov (QuickTime)</td>
+            <td><span class="badge badge-yellow">CPU</span></td>
+            <td><span class="badge badge-red">No</span></td>
+            <td>ArKaos · Resolume · Universal</td>
+            <td>Medio</td>
+            <td>Clásico. Referencia histórica del sector. Compatible con casi todo. Alta carga CPU.</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-blue">DXV / DXV3</span></td>
+            <td>.mov (QuickTime)</td>
+            <td><span class="badge badge-green">GPU</span></td>
+            <td><span class="badge badge-green">Sí (DXV3)</span></td>
+            <td>Resolume Arena / Avenue</td>
+            <td>Alto</td>
+            <td>Codec nativo de Resolume. Decodificación por GPU, muy eficiente en sesiones largas. DXV3 añade canal alpha.</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">HAP</span></td>
+            <td>.mov (QuickTime)</td>
+            <td><span class="badge badge-green">GPU</span></td>
+            <td><span class="badge badge-red">No</span></td>
+            <td>Resolume · MadMapper · VDMX · Millumin</td>
+            <td>Muy alto</td>
+            <td>Codec abierto y gratuito. Decodificación GPU. Estándar de facto para VJ multiplataforma.</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">HAP Alpha</span></td>
+            <td>.mov (QuickTime)</td>
+            <td><span class="badge badge-green">GPU</span></td>
+            <td><span class="badge badge-green">Sí</span></td>
+            <td>Resolume · MadMapper · VDMX · Millumin</td>
+            <td>Muy alto</td>
+            <td>Variante de HAP con canal alpha. Imprescindible para elementos gráficos sobre capas (textos, logos, VFX).</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">HAP Q</span></td>
+            <td>.mov (QuickTime)</td>
+            <td><span class="badge badge-green">GPU</span></td>
+            <td><span class="badge badge-red">No</span></td>
+            <td>Resolume · MadMapper · VDMX · Millumin</td>
+            <td>Máximo</td>
+            <td>Calidad superior al HAP estándar. Para contenidos con degradados suaves o vídeo de alta gama donde la compresión HAP es visible.</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-purple">NotchLC</span></td>
+            <td>.mov / .avi</td>
+            <td><span class="badge badge-green">GPU</span></td>
+            <td><span class="badge badge-green">Sí</span></td>
+            <td>Resolume · Notch · producción profesional</td>
+            <td>Alto</td>
+            <td>Alta calidad visual, pérdidas mínimas. Orientado a producción audiovisual profesional y espectáculos de gran formato.</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-yellow">ProRes 4444</span></td>
+            <td>.mov (QuickTime)</td>
+            <td><span class="badge badge-yellow">CPU</span></td>
+            <td><span class="badge badge-green">Sí</span></td>
+            <td>Universal · flujo editorial → VJ</td>
+            <td>Muy alto</td>
+            <td>Calidad máxima con canal alpha. Habitual en flujos editorial (After Effects → VJ). Pesado: requiere disco rápido (SSD).</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">H.264 / H.265</span></td>
+            <td>.mp4 / .mov</td>
+            <td><span class="badge badge-red">CPU (alta)</span></td>
+            <td><span class="badge badge-red">No</span></td>
+            <td>Reproducción · no recomendado para VJ</td>
+            <td>Bajo</td>
+            <td>Inter-frame. Alta compresión pero decodificación costosa. <strong>Desaconsejado en sesiones VJ</strong>: puede provocar caídas de frame y latencia.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note note-orange" style="margin-top:14px">⚠️ <strong>Según Le Freak (Cap. 5):</strong> "Para los programas de VJ lo mejor son archivos en formato QuickTime y con el codec P-JPEG. Desde hace años ese codec se ha tomado como referencia en las sesiones de VJ, no obstante, Resolume tiene el suyo propio, el DXV, que se puede usar siempre que usemos Resolume."</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Flujo de exportación: de After Effects al mediaserver</div>
+        <div class="diagram-wrap">
+          <div class="diagram-row">
+            <div class="diag-node source">Adobe After Effects<br><span style="font-size:10px;font-weight:400">Composición finalizada</span></div>
+            <div class="diag-arrow">→</div>
+            <div class="diag-node process">Exportar / Renderizar<br><span style="font-size:10px;font-weight:400">Composición → Añadir a cola</span></div>
+          </div>
+          <div class="diagram-row" style="margin-left:20px">
+            <div class="diag-arrow">↓</div>
+          </div>
+          <div class="diagram-row">
+            <div class="diag-node device">Elegir codec VJ<br><span style="font-size:10px;font-weight:400">HAP · HAP Alpha · DXV · P-JPEG</span></div>
+            <div class="diag-arrow">→</div>
+            <div class="diag-node device">Contenedor .mov<br><span style="font-size:10px;font-weight:400">QuickTime · codec correcto</span></div>
+          </div>
+          <div class="diagram-row" style="margin-left:20px">
+            <div class="diag-arrow">↓</div>
+          </div>
+          <div class="diagram-row">
+            <div class="diag-node output">Mediaserver VJ<br><span style="font-size:10px;font-weight:400">Resolume · ArKaos · MadMapper</span></div>
+            <div class="diag-arrow">→</div>
+            <div class="diag-node display">Salida en directo<br><span style="font-size:10px;font-weight:400">Proyector · Pantalla LED</span></div>
+          </div>
+        </div>
+        <div class="note" style="margin-top:14px">💡 Si el contenido tiene elementos sobre fondo transparente (logos, textos, VFX), exportar siempre con <strong>HAP Alpha</strong> o <strong>ProRes 4444</strong> para conservar el canal alpha.</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">¿Qué codec usar según la situación?</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="info-card">
+            <div class="info-card-title">🎛️ Sesión VJ general con Resolume</div>
+            <p><strong>DXV3</strong> si solo usas Resolume. <strong>HAP</strong> si compartes archivos con otros operadores o software. Ambos descargan la GPU y permiten mezclar más capas simultáneas.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">✂️ Elementos con transparencia (logos, títulos)</div>
+            <p><strong>HAP Alpha</strong> para máxima compatibilidad. <strong>DXV3</strong> si el destino final es siempre Resolume. <strong>ProRes 4444</strong> en entornos de producción editorial.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">🖥️ Compatibilidad universal / primer proyecto</div>
+            <p><strong>Photo-JPEG (P-JPEG)</strong> en contenedor .mov. Compatible con casi cualquier software VJ. Penaliza la CPU pero es la opción más segura cuando se desconoce el entorno de reproducción.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">🎬 Producción de gran formato / espectáculo</div>
+            <p><strong>NotchLC</strong> o <strong>HAP Q</strong> para la máxima calidad en pantallas de gran resolución. Requiere disco SSD rápido y tarjeta gráfica dedicada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">El contenedor importa: QuickTime (.mov) y sus alternativas</div>
+      <div class="grid-3">
+        <div class="info-card">
+          <div class="info-card-title">.mov — QuickTime</div>
+          <p>Contenedor de referencia para VJ. Soporta todos los codecs profesionales (HAP, DXV, ProRes, P-JPEG). Compatible en Mac y Windows. Imprescindible para flujos VJ.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">.mp4 — MPEG-4</div>
+          <p>Contenedor universal, pero generalmente ligado a H.264/H.265. No soporta los codecs GPU para VJ. Útil para distribución y previsualización, no para sesión en directo.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">.avi — AVI</div>
+          <p>Contenedor antiguo de Windows. Algunos codecs VJ como NotchLC lo soportan. En desuso para flujos modernos, pero todavía compatible con la mayoría de mediaservers.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /c_vj -->
+
+</section>
+
+<!-- ═══ MÓDULO 5 — FORMATOS DE IMAGEN ═══ -->
+<section class="module" id="m5">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+
+  <div class="module-header">
+    <div class="module-icon">🖼️</div>
+    <div>
+      <div class="module-title">Formatos de Imagen</div>
+      <div class="module-desc">Mapa de bits vs vectoriales, compresión, transparencia y usos típicos — UD2</div>
+      <div class="module-tags">
+        <span class="tag">JPG · PNG · GIF</span><span class="tag">TIFF · RAW · PSD</span>
+        <span class="tag">WEBP · SVG · PDF</span><span class="tag">Vectorial</span><span class="tag">Canal Alpha</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Tabla Completa de Formatos de Imagen</div>
+    <table class="comp-table">
+      <thead>
+        <tr><th>Formato</th><th>Tipo</th><th>Compresión</th><th>Transparencia</th><th>Uso típico</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="badge badge-orange">JPG / JPEG</span></td><td>Bitmap</td><td><span class="badge badge-red">Con pérdida</span></td><td><span class="badge badge-red">No</span></td><td>Fotografías, web — archivos ligeros</td></tr>
+        <tr><td><span class="badge badge-yellow">GIF</span></td><td>Bitmap</td><td>Limitado (256 colores)</td><td><span class="badge badge-yellow">Básica (1 bit)</span></td><td>Animaciones simples, web</td></tr>
+        <tr><td><span class="badge badge-blue">PNG</span></td><td>Bitmap</td><td><span class="badge badge-green">Sin pérdida</span></td><td><span class="badge badge-green">Sí (canal alfa)</span></td><td>Logos, gráficos web, transparencias</td></tr>
+        <tr><td><span class="badge badge-green">TIFF</span></td><td>Bitmap</td><td><span class="badge badge-green">Sin pérdida</span></td><td><span class="badge badge-green">Sí</span></td><td>Fotografía pro, impresión — archivos grandes</td></tr>
+        <tr><td><span class="badge badge-gray">RAW</span></td><td>Bitmap</td><td>Sin compresión</td><td><span class="badge badge-red">No</span></td><td>Fotografía profesional (CR2, NEF, ARW)</td></tr>
+        <tr><td><span class="badge badge-purple">PSD</span></td><td>Bitmap</td><td>Editable</td><td><span class="badge badge-green">Sí + capas</span></td><td>Adobe Photoshop — edición profesional</td></tr>
+        <tr><td><span class="badge badge-green">WEBP</span></td><td>Bitmap</td><td>Con/sin pérdida</td><td><span class="badge badge-green">Sí + animación</span></td><td>Web, optimización — desarrollado por Google</td></tr>
+        <tr><td><span class="badge badge-orange">PDF</span></td><td>Mixto</td><td>Variable</td><td><span class="badge badge-green">Sí</span></td><td>Documentos, impresión, universal</td></tr>
+        <tr><td><span class="badge badge-yellow">EPS</span></td><td>Vectorial</td><td>Variable</td><td><span class="badge badge-green">Sí</span></td><td>Imprenta, logos clásicos</td></tr>
+        <tr><td><span class="badge badge-purple">AI</span></td><td>Vectorial</td><td>Editable</td><td><span class="badge badge-green">Sí</span></td><td>Adobe Illustrator — diseño</td></tr>
+        <tr><td><span class="badge badge-blue">SVG</span></td><td>Vectorial</td><td>Texto/XML</td><td><span class="badge badge-green">Sí</span></td><td>Web, iconos, animaciones — escalable sin pérdida</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="panel">
+      <div class="panel-title">Mapa de Bits (Rasterizado)</div>
+      <div class="info-card" style="margin-bottom:12px">
+        <div class="info-card-title">¿Qué es un bitmap?</div>
+        <p>Imagen formada por una cuadrícula de <strong>píxeles</strong>. Cada píxel tiene un color definido. La calidad está limitada por la resolución: si se amplía pierde nitidez (pixelación). Son los formatos de fotografía habituales.</p>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+        <div style="font-size:11px;color:var(--text3);margin-bottom:10px;letter-spacing:0.2px">CUÁNDO USAR CADA FORMATO BITMAP</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.9">
+          📸 <strong>Fotografías / web:</strong> JPG (pequeño tamaño)<br>
+          🎨 <strong>Gráficos con transparencia:</strong> PNG<br>
+          🎬 <strong>Animaciones simples web:</strong> GIF o WEBP<br>
+          🖨️ <strong>Impresión de alta calidad:</strong> TIFF<br>
+          📷 <strong>Edición fotográfica:</strong> RAW → PSD<br>
+          🌐 <strong>Web optimizada moderna:</strong> WEBP
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Gráficos Vectoriales</div>
+      <div class="info-card" style="margin-bottom:12px">
+        <div class="info-card-title">¿Qué es un vectorial?</div>
+        <p>Imagen basada en <strong>ecuaciones matemáticas</strong> (trazados, curvas, formas geométricas). <strong>Escala sin pérdida</strong> a cualquier tamaño. Ideal para logos, iconos y tipografía. No apta para fotografías.</p>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+        <div style="font-size:11px;color:var(--text3);margin-bottom:10px;letter-spacing:0.2px">CUÁNDO USAR CADA FORMATO VECTORIAL</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.9">
+          🌐 <strong>Web, iconos, animaciones:</strong> SVG<br>
+          🎨 <strong>Diseño / edición Adobe:</strong> AI<br>
+          🖨️ <strong>Impresión / imprenta:</strong> EPS o PDF<br>
+          📄 <strong>Documentos multiformato:</strong> PDF
+        </div>
+      </div>
+      <div class="note note-green" style="margin-top:14px">Los gráficos vectoriales pueden contener imágenes bitmap embebidas. Los PDFs mezclan texto, vectores y bitmaps en un mismo documento.</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Comparativa Compresión y Calidad</div>
+    <div style="display:flex;flex-direction:column;gap:12px;padding:8px 0">
+      <div>
+        <div class="vis-bar-label"><span>JPG (con pérdida)</span><span style="color:var(--accent4)">Alta compresión, baja calidad relativa</span></div>
+        <div class="vis-bar-track"><div class="vis-bar-fill" style="width:85%;background:linear-gradient(90deg,var(--accent4),rgba(255,107,53,.4))"></div></div>
+      </div>
+      <div>
+        <div class="vis-bar-label"><span>WEBP (optimizado)</span><span style="color:var(--accent5)">Buen balance</span></div>
+        <div class="vis-bar-track"><div class="vis-bar-fill" style="width:60%;background:linear-gradient(90deg,var(--accent5),rgba(240,192,64,.4))"></div></div>
+      </div>
+      <div>
+        <div class="vis-bar-label"><span>PNG (sin pérdida)</span><span style="color:var(--accent)">Sin pérdida, mayor tamaño</span></div>
+        <div class="vis-bar-track"><div class="vis-bar-fill" style="width:40%;background:linear-gradient(90deg,var(--accent),rgba(0,212,255,.4))"></div></div>
+      </div>
+      <div>
+        <div class="vis-bar-label"><span>TIFF / RAW (sin compresión)</span><span style="color:var(--accent3)">Máxima calidad</span></div>
+        <div class="vis-bar-track"><div class="vis-bar-fill" style="width:10%;background:linear-gradient(90deg,var(--accent3),rgba(0,255,136,.4))"></div></div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--text3);margin-top:8px">Barra = nivel de compresión (más barra = más comprimido = archivo más pequeño pero posible pérdida de calidad)</div>
+  </div>
+</section>
+
+<!-- ═══ MÓDULO 6 — DISTRIBUCIÓN & ROUTING ═══ -->
+<section class="module" id="m6">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+
+  <div class="module-header">
+    <div class="module-icon">🔀</div>
+    <div>
+      <div class="module-title">Distribución &amp; Routing</div>
+      <div class="module-desc">Matrices, splitters, conversores, escaladores y flujo de señal AV — UD2</div>
+      <div class="module-tags">
+        <span class="tag">Matriz</span><span class="tag">Splitter</span><span class="tag">Conversor</span>
+        <span class="tag">Switch</span><span class="tag">Escalador</span><span class="tag">Mezcladora</span>
+      </div>
+    </div>
+  </div>
+  <div class="grid-3">
+    <div class="info-card">
+      <div class="info-card-title" style="color:var(--accent)">🔀 Matriz (Matrix)</div>
+      <p>Permite enrutar cualquier entrada a cualquier salida de forma flexible. Ej: 8 entradas × 8 salidas. Fundamental en instalaciones AV complejas y salas de control broadcast.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title" style="color:var(--accent3)">📤 Splitter (Distribuidor)</div>
+      <p>Duplica una señal de entrada en múltiples salidas idénticas. Un splitter HDMI 1:4 manda la misma imagen a 4 pantallas simultáneamente. Activo o pasivo.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title" style="color:var(--accent4)">🔄 Conversor</div>
+      <p>Transforma señales entre estándares: HDMI → SDI, SDI → HDMI, analógico → digital. Imprescindible al mezclar equipos de consumer y broadcast.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title" style="color:var(--accent5)">🔀 Switch</div>
+      <p>Permite seleccionar entre múltiples entradas y enviarlas a una o varias salidas. A diferencia de la matriz, suele ser una operación de selección simple (A/B switch).</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title" style="color:var(--purple)">📐 Escalador (Scaler)</div>
+      <p>Cambia la resolución o el formato de una señal: upscale (SD→HD), downscale (4K→HD), conversión de frame rate, cambio de aspect ratio. Muy usado en mezcladores de vídeo.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title" style="color:var(--accent6)">🎛️ Mezcladora de Vídeo</div>
+      <p>Combina múltiples fuentes de vídeo en tiempo real. Permite transiciones, efectos, incrustaciones y keying. Esencial en producción en directo, retransmisiones y eventos.</p>
+    </div>
+  </div>
+  <div class="panel section-gap">
+    <div class="panel-title">Flujo Típico de Señal AV en un Evento</div>
+    <div class="diagram-wrap">
+      <div class="diagram-row">
+        <div class="diag-node source">Cámara 1</div>
+        <div class="diag-arrow">→</div>
+        <div class="diag-node source">Cámara 2</div>
+        <div class="diag-arrow">→</div>
+        <div class="diag-node source">PC / Laptop</div>
+        <div class="diag-arrow">→</div>
+        <div class="diag-node source">Reproductor</div>
+      </div>
+      <div class="diagram-row"><div class="diag-arrow" style="padding-left:30px">↓↓↓↓</div></div>
+      <div class="diagram-row">
+        <div class="diag-node process">Mezcladora Vídeo</div>
+        <div class="diag-arrow">→</div>
+        <div class="diag-node process">Escalador/Conversor</div>
+        <div class="diag-arrow">→</div>
+        <div class="diag-node device">Matriz / Splitter</div>
+      </div>
+      <div class="diagram-row"><div class="diag-arrow" style="padding-left:30px">↓</div></div>
+      <div class="diagram-row">
+        <div class="diag-node output">Proyector</div>
+        <div class="diag-arrow">+</div>
+        <div class="diag-node output">Pantalla LED</div>
+        <div class="diag-arrow">+</div>
+        <div class="diag-node output">Stream</div>
+        <div class="diag-arrow">+</div>
+        <div class="diag-node output">Grabación</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MÓDULO 7 — PROYECCIÓN ═══ -->
+<section class="module" id="m7">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+
+  <div class="module-header">
+    <div class="module-icon">📽️</div>
+    <div>
+      <div class="module-title">Proyección</div>
+      <div class="module-desc">Lúmenes ANSI/ISO/LED, throw ratio, tipos de lente, keystone, lens shift, LCD/DLP/Láser — UD3</div>
+      <div class="module-tags">
+        <span class="tag">Lúmenes ANSI/ISO</span><span class="tag">Throw Ratio</span>
+        <span class="tag">Keystone · Lens Shift</span><span class="tag">LCD · DLP · Láser</span>
+        <span class="tag">Focus · Zoom · Crop</span>
+      </div>
+    </div>
+  </div>
+  <div class="inner-tabs">
+    <div class="inner-tab active" data-inner="p_lum">Lúmenes &amp; Brillo</div>
+    <div class="inner-tab" data-inner="p_calc">Calculadora Throw Ratio</div>
+    <div class="inner-tab" data-inner="p_lens">Ópticas &amp; Ajustes</div>
+    <div class="inner-tab" data-inner="p_tech">LCD · DLP · Láser</div>
+    <div class="inner-tab" data-inner="p_visual">Simulador Visual</div>
+  </div>
+
+  <div class="inner-pane active" id="p_lum">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Lúmenes ANSI / ISO / LED — Calculadora</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Ejercicio 3.1: convierte entre los diferentes estándares de medición de brillo.</p>
+        <div class="calc-row">
+          <div class="field"><label>Valor conocido</label><input type="number" id="lum_val" value="5000" min="1"></div>
+          <div class="field"><label>Estándar de entrada</label>
+            <select id="lum_std">
+              <option value="ansi">Lúmenes ANSI</option>
+              <option value="iso">Lúmenes ISO</option>
+              <option value="led">Lúmenes LED (estimado)</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn" onclick="calcLumens()">CONVERTIR</button>
+        <div id="lum_result" style="margin-top:16px;display:none">
+          <div class="result-grid">
+            <div class="result-box"><div class="result-val" id="lum_ansi">—</div><div class="result-label">Lúmenes ANSI</div></div>
+            <div class="result-box green"><div class="result-val" id="lum_iso">—</div><div class="result-label">Lúmenes ISO</div></div>
+            <div class="result-box orange"><div class="result-val" id="lum_led">—</div><div class="result-label">Lúmenes LED aprox.</div></div>
+          </div>
+          <div class="note" id="lum_note" style="margin-top:12px"></div>
+        </div>
+        <div class="formula" style="margin-top:16px">ISO = ANSI × 0.8<br>LED ≈ ANSI × 2.5–4 (estimado marketing)</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Diferencias entre Estándares</div>
+        <table class="comp-table">
+          <thead><tr><th>Estándar</th><th>Rigor</th><th>Comparabilidad</th><th>Nota</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-blue">ANSI</span></td>
+              <td>Alto</td><td><span class="badge badge-green">Fiable</span></td>
+              <td>Extendido históricamente. Margen para interpretaciones comerciales.</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-green">ISO</span></td>
+              <td>Muy alto</td><td><span class="badge badge-green">Más riguroso</span></td>
+              <td>Integra color y uniformidad. Más moderno y global.</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-orange">LED lúmenes</span></td>
+              <td><span class="badge badge-red">No estándar</span></td><td><span class="badge badge-red">No comparable</span></td>
+              <td>Marketing. Cada fabricante mide distinto. No usar para comparar.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note note-orange" style="margin-top:12px"><strong>⚠ Importante:</strong> Los "lúmenes LED" no son un estándar oficial — son una estrategia de marketing. Siempre compara proyectores usando lúmenes ANSI o ISO. Un proyector de 3.000 lúmenes ANSI puede anunciarse como 12.000 "lúmenes LED".</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Contraste, Gamma y HDR en Proyección</div>
+      <div class="grid-3">
+        <div class="info-card">
+          <div class="info-card-title" style="color:var(--accent)">Contraste</div>
+          <p>Diferencia entre el blanco más brillante y el negro más oscuro. Ej: 10.000:1 significa que el blanco es 10.000 veces más luminoso que el negro. Más contraste = imagen más impactante.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title" style="color:var(--accent3)">Gamma</div>
+          <p>Controla cómo se representan los <strong>tonos intermedios</strong>. No afecta al brillo máximo ni mínimo. Sirve para mejorar detalles en sombras o evitar que las zonas claras se "quemen".</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title" style="color:var(--accent5)">HDR</div>
+          <p>Alto Rango Dinámico. Permite mostrar más diferencia entre zonas brillantes y oscuras. El contenido <em>debe estar grabado en HDR</em> y el área de proyección debe ser compatible.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="p_calc">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Calculadora Throw Ratio</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Ejercicio 3.2: TR = Distancia / Ancho imagen</p>
+        <div class="calc-row">
+          <div class="field"><label>Ancho de pantalla (m)</label><input type="number" id="p_sw" value="4" min="0.1" step="0.1"></div>
+          <div class="field"><label>Alto de pantalla (m)</label><input type="number" id="p_sh" value="2.25" min="0.1" step="0.1"></div>
+        </div>
+        <div class="calc-row">
+          <div class="field"><label>Throw Ratio conocido</label><input type="number" id="p_tr" value="1.5" min="0.1" step="0.01"></div>
+          <div class="field"><label>Distancia conocida (m)</label><input type="number" id="p_dist" value="6" min="0.1" step="0.1"></div>
+        </div>
+        <div class="calc-row">
+          <div class="field"><label>Lúmenes ANSI</label><input type="number" id="p_lum2" value="5000" min="1"></div>
+          <div class="field"><label>Eficiencia sala (0–1)</label><input type="number" id="p_amb" value="0.8" min="0.01" max="1" step="0.01"></div>
+        </div>
+        <button class="btn" onclick="calcProjection()">CALCULAR</button>
+        <div class="result-grid" style="margin-top:16px;">
+          <div class="result-box"><div class="result-val" id="p_calctr">—</div><div class="result-label">TR calculado</div></div>
+          <div class="result-box green"><div class="result-val" id="p_calcdist">—</div><div class="result-label">Distancia mín. (m)</div></div>
+          <div class="result-box orange"><div class="result-val" id="p_diag">—</div><div class="result-label">Diagonal (m)</div></div>
+          <div class="result-box yellow"><div class="result-val" id="p_lux">—</div><div class="result-label">Lux efectivos</div></div>
+          <div class="result-box"><div class="result-val" id="p_fc">—</div><div class="result-label">Footcandles</div></div>
+          <div class="result-box" id="p_adec_box"><div class="result-val" id="p_adecuado">—</div><div class="result-label">¿Adecuado?</div></div>
+        </div>
+        <div class="formula" style="margin-top:12px">TR = Distancia / Ancho imagen<br>Distancia = TR × Ancho</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Tipos de Lente por Throw Ratio</div>
+        <table class="comp-table">
+          <thead><tr><th>Tipo</th><th>Throw Ratio</th><th>Distancia</th><th>Uso</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge badge-purple">UST</span> Ultra Short Throw</td><td>&lt;0.4:1</td><td>Casi pegado</td><td>Espacios reducidos, pizarras</td></tr>
+            <tr><td><span class="badge badge-orange">Short Throw</span></td><td>0.4:1 – 1:1</td><td>Muy cerca</td><td>Aulas, salas pequeñas</td></tr>
+            <tr><td><span class="badge badge-green">Standard Throw</span></td><td>1.2:1 – 2.0:1</td><td>Media</td><td>Uso general, oficinas</td></tr>
+            <tr><td><span class="badge badge-blue">Long Throw</span></td><td>&gt;2.0:1</td><td>Lejos</td><td>Auditorios, grandes eventos</td></tr>
+          </tbody>
+        </table>
+        <div class="note note-yellow" style="margin-top:14px"><strong>Ejemplos Ejercicio 3.2:</strong><br>TR 2.0:1 + pantalla 3m → distancia = 2.0 × 3 = <strong>6m</strong><br>TR 0.8:1 + dist. 2.4m → ancho = 2.4 / 0.8 = <strong>3m</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="p_lens">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Keystone, Lens Shift y Corner Correction</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+            <div style="font-weight:700;color:var(--accent4);margin-bottom:8px;font-size:14px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🔲 KEYSTONE (Corrección trapezoidal)</div>
+            <p style="font-size:13px;color:var(--text2);line-height:1.6">Cuando el proyector no está perpendicular a la pantalla, la imagen aparece deformada en trapezoide. El keystone <strong>ajusta digitalmente</strong> la imagen para que vuelva a ser rectangular.<br><br>
+            ✓ Ventaja: instalación en ángulos no ideales<br>
+            ✗ Inconveniente: ajuste digital, puede perder resolución</p>
+            <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+              <span class="badge badge-blue">Vertical Keystone</span>
+              <span class="badge badge-green">Horizontal Keystone</span>
+              <span class="badge badge-yellow">Auto Keystone</span>
+            </div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+            <div style="font-weight:700;color:var(--accent3);margin-bottom:8px;font-size:14px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🔄 LENS SHIFT (Desplazamiento de lente)</div>
+            <p style="font-size:13px;color:var(--text2);line-height:1.6">Mueve físicamente la lente dentro del proyector para desplazar la imagen sin deformarla. Se expresa como % respecto al tamaño de imagen.<br><br>
+            ✓ Ajuste óptico, no digital → <strong>sin pérdida de calidad</strong><br>
+            ✗ Solo en proyectores de gama media/alta</p>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+            <div style="font-weight:700;color:var(--purple);margin-bottom:8px;font-size:14px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">📐 CORNER CORRECTION</div>
+            <p style="font-size:13px;color:var(--text2);line-height:1.6">Ajusta individualmente cada esquina de la imagen proyectada. Útil para superficies irregulares (mapping en edificios, suelos inclinados). Afecta menos calidad que el Keystone global.</p>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Focus, Zoom y Crop</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Poppins',sans-serif">🎯 FOCUS (Enfoque)</div>
+            <p style="font-size:13px;color:var(--text2)">Ajusta la <strong>nitidez</strong> de la imagen. Manual (anillo en la lente) o automático. <em>Focus = qué tan clara se ve la imagen.</em></p>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Poppins',sans-serif">🔍 ZOOM</div>
+            <p style="font-size:13px;color:var(--text2)">Cambia el <strong>tamaño</strong> de la imagen sin mover el proyector. Zoom óptico = mantiene calidad. Zoom digital = puede perder nitidez. <em>Zoom = qué tan grande se ve la imagen.</em></p>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Poppins',sans-serif">✂️ CROP (Recorte)</div>
+            <p style="font-size:13px;color:var(--text2)">Elimina parte de la imagen original, dejando visible solo una porción. No deforma, simplemente corta. Usado en mapping para ajustar ratios o enmascarar zonas.</p>
+          </div>
+        </div>
+        <div class="note" style="margin-top:14px"><strong>Diferencia clave:</strong> Focus = nitidez · Zoom = tamaño · Crop = recorte de área</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="p_tech">
+    <div class="panel">
+      <div class="panel-title">LCD vs DLP vs Láser — Comparativa de Tecnologías</div>
+      <table class="comp-table">
+        <thead><tr><th>Tecnología</th><th>Funcionamiento</th><th>Ventajas</th><th>Inconvenientes</th><th>Uso típico</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-blue">LCD</span><br><small>Liquid Crystal Display</small></td>
+            <td>Luz pasa por paneles de cristal líquido RGB</td>
+            <td>Colores vivos, buen precio, buena definición en texto</td>
+            <td>Menor contraste, mantenimiento de filtros/lámpara</td>
+            <td>Aulas, oficinas, presentaciones</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-orange">DLP</span><br><small>Digital Light Processing</small></td>
+            <td>Chip con microespejos + disco de color RGB</td>
+            <td>Alto contraste, fluidez en vídeo, portátiles</td>
+            <td>Efecto arco iris, colores menos vivos</td>
+            <td>Cine en casa, eventos medianos</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">LÁSER</span><br><small>Laser-DLP / Laser-LCD</small></td>
+            <td>Fuente de luz láser (no lámpara tradicional)</td>
+            <td>Muy brillante, larga vida útil (~20.000h), poco mantenimiento</td>
+            <td>Precio alto</td>
+            <td>Grandes eventos, mapping, instalaciones pro</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note note-green" style="margin-top:16px"><strong>Ejercicio 3.4 — Respuestas:</strong> a) LCD → Mayor saturación de color y precio más bajo · b) DLP → Mayor contraste y fluidez en vídeo · c) Láser → Más brillo y vida útil muy larga</div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Conectores de Proyector y HDBaseT</div>
+      <div class="grid-2">
+        <div>
+          <div class="panel-subtitle">Conectores habituales en proyectores</div>
+          <table class="comp-table">
+            <thead><tr><th>Conector</th><th>Señal</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td>HDMI</td><td>Digital A+V</td><td>Universal consumer</td></tr>
+              <tr><td>VGA</td><td>Analógico V</td><td>Legacy, portátiles</td></tr>
+              <tr><td>DisplayPort</td><td>Digital A+V</td><td>PC profesional</td></tr>
+              <tr><td>DVI</td><td>Digital V</td><td>PC, gráfica</td></tr>
+              <tr><td>SDI</td><td>Digital V+A</td><td>Broadcast pro</td></tr>
+              <tr><td>HDBaseT (RJ45)</td><td>Digital A+V+control</td><td>Instalaciones largas</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title" style="color:var(--accent4)">HDBaseT en Proyección</div>
+          <p>Protocolo sobre cable de red (Cat5e/Cat6) que puede transportar en un solo cable:<br><br>
+          🎥 Vídeo hasta 4K UHD sin compresión<br>
+          🔊 Audio multicanal<br>
+          🌐 Ethernet 100Mbps<br>
+          🎛️ Control (IR, RS-232, USB)<br>
+          ⚡ Alimentación hasta 100W<br><br>
+          Distancia máxima: <strong>100m con Cat6</strong><br>
+          Muy superior al HDMI convencional (10-15m).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PANE: SIMULADOR VISUAL ═══ -->
+  <div class="inner-pane" id="p_visual">
+
+    <div class="grid-2" style="align-items:start">
+      <div class="panel">
+        <div class="panel-title">Parámetros de la instalación</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Ajusta los valores y el diagrama se actualiza en tiempo real.</p>
+
+        <div class="calc-row">
+          <div class="field">
+            <label>Ancho de pantalla (m)</label>
+            <input type="number" id="vs_sw" value="4" min="0.5" max="30" step="0.1" oninput="vsUpdate()">
+          </div>
+          <div class="field">
+            <label>Alto de pantalla (m)</label>
+            <input type="number" id="vs_sh" value="2.25" min="0.3" max="20" step="0.1" oninput="vsUpdate()">
+          </div>
+        </div>
+        <div class="calc-row">
+          <div class="field">
+            <label>Distancia proyector (m)</label>
+            <input type="number" id="vs_dist" value="6" min="0.1" max="50" step="0.1" oninput="vsUpdate()">
+          </div>
+          <div class="field">
+            <label>Lúmenes ANSI del proyector</label>
+            <input type="number" id="vs_lum" value="5000" min="100" max="100000" step="100" oninput="vsUpdate()">
+          </div>
+        </div>
+        <div class="calc-row">
+          <div class="field">
+            <label>Ganancia de pantalla</label>
+            <input type="number" id="vs_gain" value="1.0" min="0.5" max="3.0" step="0.1" oninput="vsUpdate()">
+          </div>
+          <div class="field">
+            <label>Factor ambiente (0–1)</label>
+            <input type="number" id="vs_amb" value="0.85" min="0.1" max="1.0" step="0.05" oninput="vsUpdate()">
+          </div>
+        </div>
+
+        <!-- Results grid -->
+        <div class="result-grid" style="margin-top:16px" id="vs_results">
+          <div class="result-box"><div class="result-val" id="vs_tr">—</div><div class="result-label">Throw Ratio</div></div>
+          <div class="result-box green"><div class="result-val" id="vs_lux">—</div><div class="result-label">Lux en pantalla</div></div>
+          <div class="result-box orange"><div class="result-val" id="vs_diag">—</div><div class="result-label">Diagonal (m)</div></div>
+          <div class="result-box yellow"><div class="result-val" id="vs_area">—</div><div class="result-label">Área m²</div></div>
+          <div class="result-box" id="vs_type_box"><div class="result-val" id="vs_lens_type">—</div><div class="result-label">Tipo de lente</div></div>
+          <div class="result-box" id="vs_ok_box"><div class="result-val" id="vs_ok">—</div><div class="result-label">¿Suficiente brillo?</div></div>
+        </div>
+
+        <!-- Needs calculator -->
+        <div style="margin-top:16px;padding:14px;background:var(--bg2);border-radius:8px;border:1px solid var(--border)">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:8px">¿Cuántos lúmenes necesito? (norma ISO 21118)</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+            <div>
+              <div style="font-size:10px;color:var(--text3);margin-bottom:4px">Uso de la sala</div>
+              <select id="vs_uso" onchange="vsUpdate()" style="width:100%;padding:6px;background:var(--bg);border:1px solid var(--border);border-radius:5px;font-size:12px;color:var(--text)">
+                <option value="400">Sala oscurecida</option>
+                <option value="800" selected>Aula típica</option>
+                <option value="1200">Sala con luz ambiente</option>
+                <option value="2000">Exterior / mucha luz</option>
+              </select>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:flex-end">
+              <div style="font-size:10px;color:var(--text3);margin-bottom:4px">Lux mínimos</div>
+              <div style="font-size:18px;font-weight:700;color:var(--navy)" id="vs_lux_min">800</div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:flex-end">
+              <div style="font-size:10px;color:var(--text3);margin-bottom:4px">Lúmenes mínimos</div>
+              <div style="font-size:18px;font-weight:700;color:var(--navy2)" id="vs_lum_min">—</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Canvas diagram -->
+      <div class="panel" style="padding:14px">
+        <div class="panel-title">Diagrama de sala — vista superior</div>
+        <canvas id="vs_canvas" width="400" height="340" style="width:100%;border-radius:6px;background:#f8f7f4;border:1px solid var(--border)"></canvas>
+        <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px">
+          <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2)">
+            <span style="display:inline-block;width:12px;height:12px;background:#192A56;border-radius:2px"></span> Proyector
+          </div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2)">
+            <span style="display:inline-block;width:12px;height:12px;background:#F7D794;border:1px solid #e0c060;border-radius:2px"></span> Pantalla
+          </div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2)">
+            <span style="display:inline-block;width:12px;height:2px;background:rgba(25,42,86,0.3)"></span> Haz de luz
+          </div>
+        </div>
+        <div style="margin-top:10px;padding:8px 12px;background:var(--bg2);border-radius:6px;border:1px solid var(--border)">
+          <div style="font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px">Fórmulas clave</div>
+          <div style="font-family:monospace;font-size:11px;color:var(--text2);line-height:1.8">
+            TR = Distancia / Ancho<br>
+            Lux = (Lúmenes × Ganancia × Factor) / Área<br>
+            Lúmenes_min = Lux_min × Área / (Ganancia × Factor)
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+  (function(){
+    function vsUpdate() {
+      var sw   = parseFloat(document.getElementById('vs_sw').value)||4;
+      var sh   = parseFloat(document.getElementById('vs_sh').value)||2.25;
+      var dist = parseFloat(document.getElementById('vs_dist').value)||6;
+      var lum  = parseFloat(document.getElementById('vs_lum').value)||5000;
+      var gain = parseFloat(document.getElementById('vs_gain').value)||1;
+      var amb  = parseFloat(document.getElementById('vs_amb').value)||0.85;
+      var uso  = parseInt(document.getElementById('vs_uso').value)||800;
+
+      var tr   = dist / sw;
+      var area = sw * sh;
+      var diag = Math.sqrt(sw*sw + sh*sh);
+      var lux  = (lum * gain * amb) / area;
+      var lumMin = Math.ceil((uso * area) / (gain * amb));
+
+      // Lens type
+      var lensType = tr < 0.4 ? 'Ultra Short Throw' : tr < 1.0 ? 'Short Throw' : tr < 2.0 ? 'Standard Throw' : 'Long Throw';
+      var ok = lux >= uso;
+
+      document.getElementById('vs_tr').textContent         = tr.toFixed(2) + ':1';
+      document.getElementById('vs_lux').textContent        = Math.round(lux) + ' lx';
+      document.getElementById('vs_diag').textContent       = diag.toFixed(2) + ' m';
+      document.getElementById('vs_area').textContent       = area.toFixed(2) + ' m²';
+      document.getElementById('vs_lens_type').textContent  = lensType;
+      document.getElementById('vs_ok').textContent         = ok ? '✓ Sí' : '✗ No';
+      document.getElementById('vs_lux_min').textContent    = uso + ' lx';
+      document.getElementById('vs_lum_min').textContent    = lumMin.toLocaleString();
+
+      var okBox = document.getElementById('vs_ok_box');
+      okBox.style.borderColor = ok ? 'rgba(74,180,100,.5)' : 'rgba(220,80,60,.5)';
+      okBox.style.background  = ok ? 'rgba(74,180,100,.07)' : 'rgba(220,80,60,.07)';
+      document.getElementById('vs_ok').style.color = ok ? '#2a7a40' : '#b03020';
+
+      vsDrawCanvas(sw, sh, dist, tr, lum, lux, ok);
+    }
+
+    function vsDrawCanvas(sw, sh, dist, tr, lum, lux, ok) {
+      var canvas = document.getElementById('vs_canvas');
+      if (!canvas) return;
+      var ctx    = canvas.getContext('2d');
+      var W = canvas.width, H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+
+      // Background
+      ctx.fillStyle = '#f8f7f4';
+      ctx.fillRect(0, 0, W, H);
+
+      // Grid
+      ctx.strokeStyle = 'rgba(25,42,86,0.06)';
+      ctx.lineWidth = 1;
+      for (var x = 0; x < W; x += 30) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+      for (var y = 0; y < H; y += 30) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+
+      // Scale: fit both screen and distance into the canvas
+      var totalDepth = dist + 1.5;
+      var totalWidth = sw + 2;
+      var scaleX = (W - 40) / totalDepth;
+      var scaleY = (H - 60) / totalWidth;
+      var scale  = Math.min(scaleX, scaleY);
+
+      var projX  = 30;
+      var projY  = H / 2;
+      var scrX   = 30 + dist * scale;
+      var scrTopY= H/2 - (sh/2)*scale;
+      var scrBotY= H/2 + (sh/2)*scale;
+
+      // Beam (trapezoid)
+      var halfSw = (sw/2) * scale;
+      ctx.beginPath();
+      ctx.moveTo(projX, projY);
+      ctx.lineTo(scrX, projY - halfSw);
+      ctx.lineTo(scrX, projY + halfSw);
+      ctx.closePath();
+      var grad = ctx.createLinearGradient(projX, projY, scrX, projY);
+      grad.addColorStop(0, ok ? 'rgba(247,215,148,0.7)' : 'rgba(220,140,100,0.6)');
+      grad.addColorStop(1, ok ? 'rgba(247,215,148,0.15)' : 'rgba(220,140,100,0.1)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+      ctx.strokeStyle = ok ? 'rgba(200,160,50,.5)' : 'rgba(200,100,50,.5)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Screen
+      ctx.fillStyle = '#F7D794';
+      ctx.strokeStyle = '#c9a830';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.rect(scrX, projY - (sh/2)*scale, 8, sh*scale);
+      ctx.fill();
+      ctx.stroke();
+
+      // Screen label
+      ctx.fillStyle = '#192A56';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(sw.toFixed(1)+'m × '+((sh>0)?sh.toFixed(1):'?')+'m', scrX + 13, projY - 4);
+
+      // Projector
+      ctx.fillStyle = '#192A56';
+      ctx.beginPath();
+      ctx.roundRect ? ctx.roundRect(projX - 16, projY - 12, 20, 24, 4) : ctx.rect(projX-16, projY-12, 20, 24);
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 10px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('▶', projX - 6, projY + 4);
+
+      // Distance dimension line
+      ctx.strokeStyle = 'rgba(25,42,86,0.35)';
+      ctx.lineWidth   = 1;
+      ctx.setLineDash([4,3]);
+      ctx.beginPath();
+      ctx.moveTo(projX, projY + halfSw + 14);
+      ctx.lineTo(scrX, projY + halfSw + 14);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      // Arrow tips
+      ctx.fillStyle = 'rgba(25,42,86,0.5)';
+      var ay = projY + halfSw + 14;
+      ctx.beginPath(); ctx.moveTo(projX+1,ay-4); ctx.lineTo(projX+8,ay); ctx.lineTo(projX+1,ay+4); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(scrX-1,ay-4); ctx.lineTo(scrX-8,ay); ctx.lineTo(scrX-1,ay+4); ctx.fill();
+      ctx.fillStyle = '#192A56';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(dist.toFixed(1)+' m', (projX+scrX)/2, ay - 7);
+
+      // Throw ratio label
+      ctx.fillStyle = ok ? '#2a6a3a' : '#8a2020';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('TR = '+tr.toFixed(2)+':1  ·  '+Math.round(lux)+' lx', projX, 22);
+
+      // Lux bar
+      var barW = W - 60;
+      var barX = 30;
+      var barY = H - 22;
+      ctx.fillStyle = 'rgba(25,42,86,0.08)';
+      ctx.beginPath();
+      ctx.roundRect ? ctx.roundRect(barX, barY, barW, 10, 5) : ctx.rect(barX, barY, barW, 10);
+      ctx.fill();
+      var luxPct = Math.min(lux / 2000, 1);
+      ctx.fillStyle = ok ? '#4ab464' : '#e05040';
+      ctx.beginPath();
+      ctx.roundRect ? ctx.roundRect(barX, barY, barW * luxPct, 10, 5) : ctx.rect(barX, barY, barW*luxPct, 10);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(25,42,86,0.5)';
+      ctx.font = '9px sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText(Math.round(lux)+' lx / 2000 lx max', W - 28, barY - 3);
+    }
+
+    window.vsUpdate = vsUpdate;
+    setTimeout(vsUpdate, 80);
+
+    // Re-run on tab switch
+    document.querySelectorAll('.inner-tab').forEach(function(t) {
+      t.addEventListener('click', function() {
+        if (this.dataset.inner === 'p_visual') setTimeout(vsUpdate, 60);
+      });
+    });
+  })();
+  </script>
+
+</section>
+
+<!-- ═══ MÓDULO 8 — LED & MAPPING ═══ -->
+<section class="module" id="m8">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+
+  <div class="module-header">
+    <div class="module-icon">💡</div>
+    <div>
+      <div class="module-title">Pantallas LED &amp; Mapping</div>
+      <div class="module-desc">Pixel Pitch, Nits, tasa de refresco, controladora LED, mapping/grid/blending/warping — UD3</div>
+      <div class="module-tags">
+        <span class="tag">Pixel Pitch</span><span class="tag">Nits (cd/m²)</span>
+        <span class="tag">Refresh Rate</span><span class="tag">Mapping</span>
+        <span class="tag">Grid · Blending · Warping</span><span class="tag">Pixel Mapping</span>
+      </div>
+    </div>
+  </div>
+  <div class="inner-tabs">
+    <div class="inner-tab active" data-inner="l_calc">Calculadora LED</div>
+    <div class="inner-tab" data-inner="l_nits">Nits &amp; Refresco</div>
+    <div class="inner-tab" data-inner="l_map">Mapping</div>
+    <div class="inner-tab" data-inner="l_comp">LED vs Proyector</div>
+  </div>
+
+  <div class="inner-pane active" id="l_calc">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Calculadora de Pantalla LED — Pixel Pitch</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Ejercicio 3.5: calcula resolución y distancia de visión a partir del pitch y tamaño.</p>
+        <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+          <button class="btn btn-secondary" onclick="applyLedPreset(1.5)">P1.5</button>
+          <button class="btn btn-secondary" onclick="applyLedPreset(2)">P2</button>
+          <button class="btn btn-secondary" onclick="applyLedPreset(3)">P3</button>
+          <button class="btn btn-secondary" onclick="applyLedPreset(4)">P4</button>
+          <button class="btn btn-secondary" onclick="applyLedPreset(6)">P6</button>
+          <button class="btn btn-secondary" onclick="applyLedPreset(10)">P10</button>
+        </div>
+        <div class="calc-row">
+          <div class="field"><label>Pixel Pitch (mm)</label><input type="number" id="l_pp" value="4" min="0.5" step="0.5"></div>
+          <div class="field"><label>Ancho pantalla (m)</label><input type="number" id="l_w" value="8" min="0.1" step="0.1"></div>
+        </div>
+        <div class="calc-row">
+          <div class="field"><label>Alto pantalla (m)</label><input type="number" id="l_h" value="4.5" min="0.1" step="0.1"></div>
+          <div class="field"><label>FPS de contenido</label><input type="number" id="l_fps" value="30" min="1"></div>
+        </div>
+        <button class="btn" onclick="calcLED()">CALCULAR</button>
+        <div class="result-grid" style="margin-top:16px">
+          <div class="result-box"><div class="result-val" id="l_rpx">—</div><div class="result-label">Píxeles ancho</div></div>
+          <div class="result-box green"><div class="result-val" id="l_rpy">—</div><div class="result-label">Píxeles alto</div></div>
+          <div class="result-box orange"><div class="result-val" id="l_total">—</div><div class="result-label">Total píxeles</div></div>
+          <div class="result-box yellow"><div class="result-val" id="l_dmin">—</div><div class="result-label">Dist. mín. visión</div></div>
+          <div class="result-box purple"><div class="result-val" id="l_dopt">—</div><div class="result-label">Dist. óptima</div></div>
+          <div class="result-box"><div class="result-val" id="l_ppi">—</div><div class="result-label">px/metro</div></div>
+        </div>
+        <div id="l_rgb_calc" style="margin-top:14px;display:none">
+          <div class="result-box orange" style="padding:14px;text-align:center">
+            <div class="result-val" id="l_rgb_val">—</div>
+            <div class="result-label">Valores RGB/segundo enviados (millones)</div>
+          </div>
+        </div>
+        <div class="formula" style="margin-top:12px">Dist. mín. (m) ≈ Pixel Pitch (mm)<br>Valores RGB/s = px_total × 3 canales × FPS</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Pixel Pitch — Referencia</div>
+        <div class="info-card" style="margin-bottom:14px">
+          <div class="info-card-title">¿Qué es el Pixel Pitch?</div>
+          <p>Es la distancia en mm entre el <strong>centro de un píxel y el centro del píxel vecino</strong>. Se expresa como P + valor (ej: P2 = 2mm). Menor pitch = mayor resolución = imagen más nítida desde más cerca.</p>
+        </div>
+        <table class="comp-table">
+          <thead><tr><th>Pitch</th><th>Dist. mín.</th><th>Entorno</th><th>Uso</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge badge-green">P1 – P2</span></td><td>1–2 m</td><td>Indoor</td><td>Estudios TV, eventos premium</td></tr>
+            <tr><td><span class="badge badge-blue">P2 – P4</span></td><td>2–4 m</td><td>Indoor</td><td>Escenarios, discotecas, eventos</td></tr>
+            <tr><td><span class="badge badge-yellow">P4 – P6</span></td><td>4–6 m</td><td>Indoor/Semi</td><td>Festivales, auditorios</td></tr>
+            <tr><td><span class="badge badge-orange">P6 – P10</span></td><td>6–10 m</td><td>Outdoor</td><td>Estadios, exteriores</td></tr>
+            <tr><td><span class="badge badge-red">P10+</span></td><td>&gt;10 m</td><td>Outdoor</td><td>Cartelería exterior, fachadas</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="l_nits">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Nits — Brillo de Pantalla LED</div>
+        <div class="info-card" style="margin-bottom:16px">
+          <div class="info-card-title">¿Qué es un Nit?</div>
+          <p>El <strong>nit</strong> es la unidad de medida de brillo de pantalla. Equivale a 1 candela por metro cuadrado (cd/m²). Cuantos más nits, más brillante se ve la imagen.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="nits-row">
+            <div class="nits-icon" style="background:rgba(0,212,255,.1)">🏠</div>
+            <div style="flex:1">
+              <div style="font-weight:700;font-size:13px;margin-bottom:3px">Indoor — Interior</div>
+              <div style="font-size:12px;color:var(--text3)">800 – 1.500 nits</div>
+              <div class="vis-bar-track" style="margin-top:4px"><div class="vis-bar-fill" style="width:15%;background:var(--accent)"></div></div>
+            </div>
+          </div>
+          <div class="nits-row">
+            <div class="nits-icon" style="background:rgba(240,192,64,.1)">🌆</div>
+            <div style="flex:1">
+              <div style="font-weight:700;font-size:13px;margin-bottom:3px">Semi-outdoor</div>
+              <div style="font-size:12px;color:var(--text3)">2.000 – 3.000 nits</div>
+              <div class="vis-bar-track" style="margin-top:4px"><div class="vis-bar-fill" style="width:35%;background:var(--accent5)"></div></div>
+            </div>
+          </div>
+          <div class="nits-row">
+            <div class="nits-icon" style="background:rgba(255,107,53,.1)">☀️</div>
+            <div style="flex:1">
+              <div style="font-weight:700;font-size:13px;margin-bottom:3px">Outdoor — Exterior</div>
+              <div style="font-size:12px;color:var(--text3)">4.000 – 10.000 nits</div>
+              <div class="vis-bar-track" style="margin-top:4px"><div class="vis-bar-fill" style="width:100%;background:var(--accent4)"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="note note-green" style="margin-top:14px"><strong>Lúmenes vs Nits:</strong> Lúmenes miden la luz total emitida por una fuente (proyector). Nits miden la luminancia de una superficie por unidad de área (cd/m²). Un proyector de 5.000 lúmenes proyectará imagen más o menos brillante según el tamaño; una pantalla LED de 5.000 nits mantiene ese brillo uniforme en toda su superficie.</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Tasa de Refresco (Hz)</div>
+        <div class="info-card" style="margin-bottom:14px">
+          <div class="info-card-title">¿Qué es la tasa de refresco?</div>
+          <p>Indica <strong>cuántas veces por segundo</strong> la pantalla actualiza la imagen completa. Se mide en hercios (Hz). Si el refresh rate es bajo, aparecen barras negras o flicker al grabar la pantalla con una cámara.</p>
+        </div>
+        <table class="comp-table">
+          <thead><tr><th>Rango Hz</th><th>Categoría</th><th>Uso</th></tr></thead>
+          <tbody>
+            <tr><td>1.000–1.500 Hz</td><td><span class="badge badge-red">Básicas / antiguas</span></td><td>Pueden producir parpadeo visible</td></tr>
+            <tr><td>1.920–3.840 Hz</td><td><span class="badge badge-blue">Profesionales</span></td><td>Imagen fluida, sin problemas a la vista</td></tr>
+            <tr><td>&gt;4.000 Hz</td><td><span class="badge badge-green">Alta gama / Broadcast</span></td><td>Ideal para TV y retransmisiones en directo</td></tr>
+          </tbody>
+        </table>
+        <div class="note note-orange" style="margin-top:14px"><strong>Ejercicio 3.6 — Respuestas:</strong><br>
+        1. Interior discoteca → Pantalla A (1200 nits) es adecuada para interior (800-1500 nits rango normal indoor).<br>
+        2. Outdoor día → Pantalla C (6000 nits) — se necesitan mínimo 4000-5000 nits para exteriores diurnos.</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Controladora LED</div>
+      <div class="grid-2">
+        <div class="info-card">
+          <div class="info-card-title">¿Qué hace una controladora LED?</div>
+          <p>Las <strong>controladoras LED</strong> (LED controllers/processors) son dispositivos que gestionan y distribuyen la señal de vídeo hacia los módulos de una pantalla LED. Sin ellas, la pantalla no sabría cómo encender cada píxel ni cómo reconstruir la imagen.</p>
+        </div>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+          <div class="panel-subtitle" style="margin-top:0">Funciones principales</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.9">
+            📥 <strong>Recepción:</strong> HDMI, DVI, DP, SDI...<br>
+            ⚙️ <strong>Procesamiento:</strong> resolución, color, gamma, brillo<br>
+            🔀 <strong>División:</strong> reparte la señal entre módulos<br>
+            📐 <strong>Ajuste:</strong> adapta a la resolución real de la pantalla
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="l_map">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Mapping, Grid, Blending y Warping</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🏛️ MAPPING (Video Mapping)</div>
+            <p style="font-size:13px;color:var(--text2)">Técnica de usar proyectores para transformar objetos reales en superficies dinámicas. No se proyecta en pantalla plana, sino en <strong>volúmenes con formas</strong> (edificios, esculturas, escenarios). Requiere análisis del espacio, medición y software especializado.</p>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">📐 GRID (Test Pattern)</div>
+            <p style="font-size:13px;color:var(--text2)">Rejilla de líneas horizontales y verticales proyectada como <strong>guía visual de calibración</strong>. Ayuda a comprobar si la proyección está bien alineada, centrada y sin deformaciones. Punto de partida para cualquier instalación de mapping.</p>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🔀 BLENDING (Edge Blending)</div>
+            <p style="font-size:13px;color:var(--text2)">Técnica de <strong>fusionar la imagen de 2 o más proyectores</strong> para crear una imagen única y continua. El solapamiento se hace suave ajustando brillo y opacidad en la zona de unión para que no se note la línea de corte.</p>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
+            <div style="font-weight:700;color:var(--purple);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">〰️ WARPING</div>
+            <p style="font-size:13px;color:var(--text2)">Deforma digitalmente la imagen proyectada para que encaje sobre una <strong>superficie irregular</strong>. Se realiza mediante una malla (grid) con puntos de control que pueden moverse y curvarse. Es el ajuste más avanzado y flexible en proyección.</p>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Pixel Mapping</div>
+        <div class="info-card" style="margin-bottom:14px">
+          <div class="info-card-title" style="color:var(--accent4)">¿Qué es el Pixel Mapping?</div>
+          <p>Técnica que permite <strong>asignar contenido visual a un conjunto de luminarias o LEDs individuales</strong>. Por ejemplo, un par LED se comporta como un píxel dentro de nuestra composición visual.</p>
+        </div>
+        <div class="grid-2">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
+            <div style="font-weight:700;color:var(--accent);font-size:12px;margin-bottom:6px">VIDEO MAPPING</div>
+            <p style="font-size:12px;color:var(--text2)">Proyección sobre superficies (paredes, edificios, objetos)</p>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
+            <div style="font-weight:700;color:var(--accent4);font-size:12px;margin-bottom:6px">PIXEL MAPPING</div>
+            <p style="font-size:12px;color:var(--text2)">Control de LEDs individuales como si fueran píxeles de una pantalla</p>
+          </div>
+        </div>
+        <div class="panel-subtitle">Ejercicio 3.7 — Calculadora Malla LED</div>
+        <div class="calc-row">
+          <div class="field"><label>Long. tira (m)</label><input type="number" id="led_strip_len" value="5" min="0.1" step="0.1"></div>
+          <div class="field"><label>Px/metro en tira</label><input type="number" id="led_strip_ppm" value="50" min="1"></div>
+        </div>
+        <div class="calc-row">
+          <div class="field"><label>Nº tiras verticales</label><input type="number" id="led_strip_n" value="20" min="1"></div>
+          <div class="field"><label>FPS</label><input type="number" id="led_strip_fps" value="30" min="1"></div>
+        </div>
+        <button class="btn btn-orange" onclick="calcLEDStrip()">CALCULAR MALLA</button>
+        <div id="led_strip_result" style="margin-top:14px;display:none">
+          <div class="result-grid">
+            <div class="result-box"><div class="result-val" id="led_s_px_tira">—</div><div class="result-label">Px/tira</div></div>
+            <div class="result-box green"><div class="result-val" id="led_s_total_px">—</div><div class="result-label">Total px</div></div>
+            <div class="result-box orange"><div class="result-val" id="led_s_rgb_s">—</div><div class="result-label">M valores RGB/s</div></div>
+          </div>
+        </div>
+        <div class="panel-subtitle">Flujo Mapping</div>
+        <div class="diagram-wrap">
+          <div class="diagram-row">
+            <div class="diag-node source">Análisis espacio</div>
+            <div class="diag-arrow">→</div>
+            <div class="diag-node process">Modelado 3D</div>
+            <div class="diag-arrow">→</div>
+            <div class="diag-node device">Creación Grid</div>
+          </div>
+          <div class="diagram-row"><div class="diag-arrow" style="padding-left:10px">↓</div></div>
+          <div class="diagram-row">
+            <div class="diag-node device">Warping</div>
+            <div class="diag-arrow">→</div>
+            <div class="diag-node process">Contenido adaptado</div>
+            <div class="diag-arrow">→</div>
+            <div class="diag-node output">Proyección final</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-pane" id="l_comp">
+    <div class="panel">
+      <div class="panel-title">LED Wall vs Proyector — Comparativa Completa</div>
+      <table class="comp-table">
+        <thead><tr><th>Característica</th><th>Pantalla LED</th><th>Proyector</th></tr></thead>
+        <tbody>
+          <tr><td>Brillo</td><td>800–10.000 nits</td><td>3.000–50.000+ lúmenes</td></tr>
+          <tr><td>Uso con luz ambiente</td><td><span class="badge badge-green">Excelente</span></td><td><span class="badge badge-orange">Limitado (sala oscura)</span></td></tr>
+          <tr><td>Contraste</td><td>100.000:1+ (negros reales)</td><td>1.000–5.000:1</td></tr>
+          <tr><td>Resolución</td><td>Depende del pitch</td><td>FHD / 4K / 8K</td></tr>
+          <tr><td>Distancia visión mín.</td><td>Según pitch (P2 = 2m)</td><td>Throw ratio</td></tr>
+          <tr><td>Vida útil</td><td>50.000–100.000h</td><td>20.000h (láser) / 3.000h (lámpara)</td></tr>
+          <tr><td>Transportabilidad</td><td>Modular, pesada</td><td><span class="badge badge-green">Alta (UST)</span></td></tr>
+          <tr><td>Superficie</td><td>Plana</td><td>Cualquier superficie (mapping)</td></tr>
+          <tr><td>Coste instalación grande</td><td><span class="badge badge-red">Muy alto</span></td><td>Medio-alto</td></tr>
+          <tr><td>XR / In-Camera VFX</td><td><span class="badge badge-green">Ideal</span></td><td><span class="badge badge-red">No recomendado</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+</main>
+<script>
+// ═══ NAVIGATION ═══
+function goTo(id) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+  const tab = document.querySelector('.nav-tab[data-module="' + id + '"]');
+  if (tab) tab.classList.add('active');
+  const mod = document.getElementById(id);
+  if (mod) mod.classList.add('active');
+  window.scrollTo(0,0);
+  if (id === 'm3') {
+    setTimeout(() => {
+      const activeInner = mod.querySelector('.inner-tab.active');
+      if (activeInner) {
+        if (activeInner.dataset.inner === 'i_scan') animateCanvases();
+        if (activeInner.dataset.inner === 'i_gamma') drawGammaCurve();
+      }
+    }, 100);
+  }
+}
+
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    goTo(tab.dataset.module);
+    const mod = document.getElementById(tab.dataset.module);
+
+  });
+});
+
+document.querySelectorAll('.inner-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const parent = tab.closest('.module');
+    parent.querySelectorAll('.inner-tab').forEach(t => t.classList.remove('active'));
+    parent.querySelectorAll('.inner-pane').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.inner).classList.add('active');
+    if (tab.dataset.inner === 'i_scan') { cancelAnimationFrame(animFrame); animateCanvases(); }
+    else if (tab.dataset.inner === 'i_gamma') { cancelAnimationFrame(animFrame); setTimeout(drawGammaCurve, 50); }
+    else cancelAnimationFrame(animFrame);
+  });
+});
+
+// ═══ M1: RESOLUCIÓN ═══
+function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
+
+function calcResolution() {
+  const w = parseFloat(document.getElementById('r_w').value);
+  const h = parseFloat(document.getElementById('r_h').value);
+  const diag = parseFloat(document.getElementById('r_diag').value);
+  const par = parseFloat(document.getElementById('r_par').value);
+  if (!w || !h || !diag) return;
+  const total = w * h;
+  const mp = (total / 1e6).toFixed(2);
+  const g = gcd(Math.round(w), Math.round(h));
+  const ratio = w / h;
+  let ar = '';
+  if (Math.abs(ratio - 16/9) < 0.02) ar = '16:9';
+  else if (Math.abs(ratio - 4/3) < 0.02) ar = '4:3';
+  else if (Math.abs(ratio - 16/10) < 0.02) ar = '16:10';
+  else if (Math.abs(ratio - 21/9) < 0.02) ar = '21:9';
+  else if (Math.abs(ratio - 1) < 0.02) ar = '1:1';
+  else ar = `${Math.round(w/g)}:${Math.round(h/g)}`;
+  const ppi = Math.round(Math.sqrt(w*w + h*h) / diag);
+  const dw = w * par;
+  const dg = gcd(Math.round(dw), Math.round(h));
+  const darStr = par === 1 ? ar : `${Math.round(dw/dg)}:${Math.round(h/dg)}`;
+  let cls = '';
+  if (w >= 7680) cls = '8K';
+  else if (w >= 3840) cls = '4K UHD';
+  else if (w >= 2560) cls = 'QHD';
+  else if (w >= 1920) cls = 'FHD';
+  else if (w >= 1280) cls = 'HD Ready';
+  else cls = 'SD';
+  document.getElementById('res_mp').textContent = mp;
+  document.getElementById('res_ar').textContent = ar;
+  document.getElementById('res_ppi').textContent = ppi;
+  document.getElementById('res_total').textContent = (total/1e6).toFixed(1) + 'M';
+  document.getElementById('res_dap').textContent = darStr;
+  document.getElementById('res_class').textContent = cls;
+  let note = ppi > 300 ? `${ppi} PPI en ${diag}" — calidad extraordinaria (Retina).` :
+    ppi > 200 ? `${ppi} PPI en ${diag}" — excelente, uso cercano.` :
+    ppi > 100 ? `${ppi} PPI en ${diag}" — buena para monitor de trabajo.` :
+    `${ppi} PPI en ${diag}" — densidad baja, ideal para TV o proyección.`;
+  document.getElementById('res_note').style.display = 'block';
+  document.getElementById('res_note_text').textContent = note;
+  drawARVisual(w, h);
+}
+
+function drawARVisual(w, h) {
+  const ratios = [
+    {name:'4:3', w:4, h:3, c:'#00d4ff'},
+    {name:'16:9', w:16, h:9, c:'#00ff88'},
+    {name:'16:10', w:16, h:10, c:'#f0c040'},
+    {name:'Custom', w:w, h:h, c:'#ff6b35'},
+  ];
+  const container = document.getElementById('ar_visual');
+  container.innerHTML = '';
+  const maxH = 80;
+  ratios.forEach(r => {
+    const aspect = r.w / r.h;
+    const boxH = maxH;
+    const boxW = Math.round(boxH * aspect);
+    const div = document.createElement('div');
+    div.style.cssText = `width:${boxW}px;height:${boxH}px;border:2px solid ${r.c};border-radius:4px;display:flex;align-items:center;justify-content:center;background:${r.c}15;flex-shrink:0;flex-direction:column;gap:2px`;
+    div.innerHTML = `<span style="font-size:11px;font-weight:700;color:${r.c};font-family:'Poppins',sans-serif">${r.name}</span><span style="font-size:9px;color:rgba(255,255,255,.4)">${r.w}:${r.h}</span>`;
+    container.appendChild(div);
+  });
+}
+
+// ═══ M1: MCD ═══
+function calcMCD() {
+  const w = parseInt(document.getElementById('mcd_w').value);
+  const h = parseInt(document.getElementById('mcd_h').value);
+  if (!w || !h) return;
+  const g = gcd(w, h);
+  const arW = w / g, arH = h / g;
+  document.getElementById('mcd_val').textContent = g;
+  document.getElementById('mcd_ar').textContent = arW + ':' + arH;
+  // Steps
+  let steps = `${w} ÷ ${h} = ${Math.floor(w/h)} resto ${w % h}\n`;
+  let a = w, b = h;
+  while (b !== 0) {
+    const r = a % b;
+    if (r !== 0) steps += `${b} ÷ ${r} = ${Math.floor(b/r)} resto ${r}\n`;
+    else steps += `${b} ÷ ${a%b === 0 ? b : r} → MCD = ${b}`;
+    a = b; b = r;
+  }
+  document.getElementById('mcd_steps').textContent = steps;
+  // Standard name
+  const knownAR = {'16:9':'16:9 (Widescreen HD)','4:3':'4:3 (Standard SD)','16:10':'16:10 (Monitor)','21:9':'21:9 (Ultra wide)','5:4':'5:4 (PAL SD)','9:16':'9:16 (Vertical móvil)'};
+  const key = arW + ':' + arH;
+  document.getElementById('mcd_note').innerHTML = `<strong>${key}</strong> — ${knownAR[key] || 'Relación de aspecto calculada correctamente.'}`;
+  document.getElementById('mcd_result').style.display = 'block';
+}
+
+function loadMCD(w, h) {
+  document.getElementById('mcd_w').value = w;
+  document.getElementById('mcd_h').value = h;
+  calcMCD();
+}
+
+function calcScale() {
+  const w = parseInt(document.getElementById('scale_w').value);
+  const h = parseInt(document.getElementById('scale_h').value);
+  if (!w || !h) return;
+  const g = gcd(w, h);
+  const arW = w/g, arH = h/g;
+  const hw = Math.round(w/2), hh = Math.round(h/2);
+  const standards = {
+    '3840:2160': '4K UHD', '1920:1080': 'FHD 1080p', '1280:720': 'HD 720p',
+    '2560:1440': 'QHD 1440p', '720:576': 'SD PAL', '720:480': 'SD NTSC'
+  };
+  const nextKey = hw + ':' + hh;
+  document.getElementById('sc_ar').textContent = arW + ':' + arH;
+  document.getElementById('sc_next').textContent = hw + '×' + hh;
+  document.getElementById('sc_nextname').textContent = standards[nextKey] || 'Resolución ÷ 2';
+  document.getElementById('scale_result').style.display = 'block';
+}
+
+// ═══ M1: PAR ═══
+function calcPAR() {
+  const sarW = parseInt(document.getElementById('par_sarw').value);
+  const sarH = parseInt(document.getElementById('par_sarh').value);
+  const darW = parseInt(document.getElementById('par_darw').value);
+  const darH = parseInt(document.getElementById('par_darh').value);
+  if (!sarW || !sarH || !darW || !darH) return;
+  const gS = gcd(sarW, sarH);
+  const sarRatio = sarW/sarH;
+  const darRatio = darW/darH;
+  const par = darRatio / sarRatio;
+  const gs = gcd(sarW, sarH);
+  document.getElementById('par_sar_ratio').textContent = (sarW/gs) + ':' + (sarH/gs);
+  document.getElementById('par_dar_val').textContent = darW + ':' + darH;
+  document.getElementById('par_par_val').textContent = par.toFixed(4) + ':1';
+  let note = '';
+  if (Math.abs(par - 1) < 0.01) note = '✅ PAR = 1:1 → Píxeles CUADRADOS. El SAR y el DAR coinciden.';
+  else if (par > 1) note = `⚠️ PAR = ${par.toFixed(3)} > 1 → Píxeles RECTANGULARES horizontales. Cada píxel almacenado se muestra más ancho.`;
+  else note = `⚠️ PAR = ${par.toFixed(3)} < 1 → Píxeles RECTANGULARES verticales. Cada píxel almacenado se muestra más alto.`;
+  document.getElementById('par_note').innerHTML = note;
+  document.getElementById('par_result').style.display = 'block';
+}
+
+// ═══ M2: FOCAL ═══
+function updateFocalInputs() {
+  const mode = document.getElementById('focal_mode').value;
+  document.getElementById('focal_u_wrap').style.display = mode === 'u' ? 'none' : '';
+  document.getElementById('focal_v_wrap').style.display = mode === 'v' ? 'none' : '';
+  document.getElementById('focal_f_wrap').style.display = mode === 'f' ? 'none' : '';
+}
+
+function calcFocal() {
+  const mode = document.getElementById('focal_mode').value;
+  const u = parseFloat(document.getElementById('focal_u').value);
+  const v = parseFloat(document.getElementById('focal_v').value);
+  const fIn = parseFloat(document.getElementById('focal_f_in').value);
+  let result, label;
+  const angles = {
+    7: '≈ 14mm gran angular extremo', 14: '≈ gran angular', 24: '≈ gran angular',
+    35: '≈ semi gran angular', 50: '≈ normal/ojo humano', 85: '≈ retrato',
+    135: '≈ tele corto', 200: '≈ teleobjetivo'
+  };
+  if (mode === 'f') {
+    result = 1 / (1/u + 1/v);
+    label = 'f — Distancia focal (cm)';
+  } else if (mode === 'u') {
+    result = 1 / (1/fIn - 1/v);
+    label = 'u — Distancia objeto→lente (cm)';
+  } else {
+    result = 1 / (1/fIn - 1/u);
+    label = 'v — Distancia lente→imagen (cm)';
+  }
+  if (!isFinite(result) || result <= 0) {
+    document.getElementById('focal_out_val').textContent = 'Error';
+    document.getElementById('focal_out_mm').textContent = '—';
+    document.getElementById('focal_note').innerHTML = '⚠ Valores inválidos. Verifica que 1/f = 1/u + 1/v con valores positivos.';
+    document.getElementById('focal_result').style.display = 'block';
+    return;
+  }
+  const mm = result * 10;
+  document.getElementById('focal_out_val').textContent = result.toFixed(2) + ' cm';
+  document.getElementById('focal_out_label').textContent = label;
+  document.getElementById('focal_out_mm').textContent = mm.toFixed(1) + ' mm';
+  // Find angle hint
+  let hint = '';
+  const closest = Object.keys(angles).sort((a,b) => Math.abs(a-mm) - Math.abs(b-mm))[0];
+  if (Math.abs(closest - mm) < 20) hint = angles[closest];
+  document.getElementById('focal_note').innerHTML = `Resultado: <strong>${result.toFixed(2)} cm = ${mm.toFixed(1)} mm</strong>${hint ? ' — ' + hint : ''}`;
+  document.getElementById('focal_result').style.display = 'block';
+}
+
+function calcApertureDiam() {
+  const focal = parseFloat(document.getElementById('ap_focal').value);
+  const fnum = parseFloat(document.getElementById('ap_fnum').value);
+  const d = focal / fnum;
+  const area = Math.PI * Math.pow(d/2, 2);
+  document.getElementById('ap_diam').textContent = d.toFixed(1) + ' mm';
+  document.getElementById('ap_area').textContent = area.toFixed(1) + ' mm²';
+}
+
+// ═══ M2: DOF ═══
+function calcDOF() {
+  const f = parseFloat(document.getElementById('d_f').value);
+  const ap = parseFloat(document.getElementById('d_ap').value);
+  const dist = parseFloat(document.getElementById('d_dist').value) * 1000;
+  const diag = parseFloat(document.getElementById('d_sensor').value);
+  const coc = diag / 1500;
+  const fn = f * f / (ap * coc);
+  const near = (fn * dist) / (fn + dist);
+  const far = (fn * dist) / (fn - dist);
+  const dof = far > 0 ? (far - near) : Infinity;
+  const aov = 2 * Math.atan(36 / (2 * f)) * (180 / Math.PI);
+  const eq35 = (43.27 / diag) * f;
+  document.getElementById('d_hn').textContent = (fn/1000).toFixed(1);
+  document.getElementById('d_near').textContent = (near/1000).toFixed(2);
+  document.getElementById('d_far').textContent = far > 0 ? (far/1000).toFixed(2) : '∞';
+  document.getElementById('d_dof').textContent = dof === Infinity ? '∞' : (dof/1000).toFixed(2);
+  document.getElementById('d_aov').textContent = aov.toFixed(1) + '°';
+  document.getElementById('d_eq35').textContent = eq35.toFixed(0) + ' mm';
+  const bar = document.getElementById('dof_bar');
+  if (dof !== Infinity && fn > 0) {
+    const pct = Math.min(95, (dof/fn) * 100);
+    bar.style.left = `${(50 - pct/2)}%`;
+    bar.style.width = `${pct}%`;
+  } else {
+    bar.style.left = '5%'; bar.style.width = '90%';
+  }
+}
+
+function renderFstops() {
+  const stops = [1, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22];
+  const container = document.getElementById('fstops_vis');
+  container.innerHTML = '';
+  stops.forEach((s, i) => {
+    const div = document.createElement('div');
+    const size = Math.max(28, 56 - i * 4);
+    div.style.cssText = `width:${size}px;height:${size}px;border-radius:50%;background:rgba(25,42,86,${0.08+(10-i)*0.07});border:1px solid rgba(25,42,86,0.15);display:flex;align-items:center;justify-content:center;font-size:${size>34?11:9}px;color:var(--navy);font-family:'Poppins',sans-serif;`;
+    div.textContent = `f/${s}`;
+    container.appendChild(div);
+  });
+}
+renderFstops();
+
+// ═══ M3: CANVAS ANIMATIONS ═══
+let animFrame;
+function drawProgressive() {
+  const canvas = document.getElementById('prog_canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  const lines = 16;
+  const lh = H / lines;
+  for (let i = 0; i < lines; i++) {
+    const progress = (Date.now() / 800 + i / lines) % 1;
+    const alpha = Math.max(0, 1 - progress * 2);
+    ctx.fillStyle = `rgba(0,212,255,${0.2 + alpha * 0.6})`;
+    ctx.fillRect(0, i * lh, W * (1 - progress), lh - 1);
+  }
+}
+function drawInterlaced() {
+  const canvas = document.getElementById('inter_canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  const lines = 16;
+  const lh = H / lines;
+  const frame = Math.floor(Date.now() / 400) % 2;
+  for (let i = 0; i < lines; i++) {
+    if (i % 2 === frame) {
+      const progress = (Date.now() / 600) % 1;
+      ctx.fillStyle = `rgba(237,166,163,${0.3 + Math.sin(Date.now()/300 + i)*0.2})`;
+      ctx.fillRect(0, i * lh, W * (1 - progress*0.3), lh - 1);
+    } else {
+      ctx.fillStyle = 'rgba(237,166,163,0.06)';
+      ctx.fillRect(0, i * lh, W, lh - 1);
+    }
+  }
+}
+function animateCanvases() {
+  drawProgressive(); drawInterlaced();
+  animFrame = requestAnimationFrame(animateCanvases);
+}
+function drawGammaCurve() {
+  const canvas = document.getElementById('gamma_canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    ctx.beginPath(); ctx.moveTo(i*W/4,0); ctx.lineTo(i*W/4,H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,i*H/4); ctx.lineTo(W,i*H/4); ctx.stroke();
+  }
+  [{gamma:1.0,color:'#cccccc',label:'Linear (γ=1.0)'},{gamma:2.2,color:'#192A56',label:'sRGB (γ=2.2)'},{gamma:2.4,color:'#2a9d6f',label:'Rec.709 (γ=2.4)'},{gamma:2.6,color:'#c4841e',label:'DCI (γ=2.6)'}].forEach(c => {
+    ctx.beginPath(); ctx.strokeStyle = c.color; ctx.lineWidth = 2;
+    for (let x = 0; x <= W; x++) {
+      const nx = x/W, ny = Math.pow(nx, c.gamma);
+      x === 0 ? ctx.moveTo(x, H - ny*H) : ctx.lineTo(x, H - ny*H);
+    }
+    ctx.stroke();
+    ctx.fillStyle = c.color; ctx.font = '500 11px Poppins';
+    ctx.fillText(c.label, 8, H - Math.pow(0.5, c.gamma)*H - 4);
+  });
+  ctx.fillStyle = 'rgba(255,255,255,0.3)'; ctx.font = '500 10px Poppins';
+  ctx.fillText('Input →', W - 52, H - 5);
+  ctx.save(); ctx.translate(14, 80); ctx.rotate(-Math.PI/2);
+  ctx.fillText('Output', 0, 0); ctx.restore();
+}
+
+// ═══ M7: LÚMENES ═══
+function calcLumens() {
+  const val = parseFloat(document.getElementById('lum_val').value);
+  const std = document.getElementById('lum_std').value;
+  if (!val) return;
+  let ansi, iso, led;
+  if (std === 'ansi') { ansi = val; iso = val * 0.8; led = val * 3; }
+  else if (std === 'iso') { iso = val; ansi = val / 0.8; led = ansi * 3; }
+  else { led = val; ansi = led / 3; iso = ansi * 0.8; }
+  document.getElementById('lum_ansi').textContent = Math.round(ansi).toLocaleString();
+  document.getElementById('lum_iso').textContent = Math.round(iso).toLocaleString();
+  document.getElementById('lum_led').textContent = '~' + Math.round(led).toLocaleString();
+  let note = `${Math.round(ansi)} lúmenes ANSI = ${Math.round(iso)} lúmenes ISO (ISO = ANSI × 0.8). `;
+  if (ansi < 2000) note += 'Adecuado para salas pequeñas con control de luz.';
+  else if (ansi < 5000) note += 'Apto para salas medianas con buena oscuridad.';
+  else note += 'Proyector de alta gama para grandes eventos o espacios bien iluminados.';
+  document.getElementById('lum_note').textContent = note;
+  document.getElementById('lum_result').style.display = 'block';
+}
+
+// ═══ M7: THROW RATIO ═══
+function calcProjection() {
+  const sw = parseFloat(document.getElementById('p_sw').value);
+  const sh = parseFloat(document.getElementById('p_sh').value);
+  const tr = parseFloat(document.getElementById('p_tr').value);
+  const dist = parseFloat(document.getElementById('p_dist').value);
+  const lum = parseFloat(document.getElementById('p_lum2').value);
+  const amb = parseFloat(document.getElementById('p_amb').value);
+  const calcTR = (dist / sw).toFixed(2);
+  const calcDist = (tr * sw).toFixed(2);
+  const diag = Math.sqrt(sw*sw + sh*sh).toFixed(2);
+  const area = sw * sh;
+  const effLux = Math.round(lum * amb / area);
+  const fc = (effLux / 10.764).toFixed(1);
+  let adecuado = effLux >= 150 ? '✓ Sí' : effLux >= 80 ? '⚠ Justo' : '✗ No';
+  document.getElementById('p_calctr').textContent = calcTR;
+  document.getElementById('p_calcdist').textContent = calcDist + ' m';
+  document.getElementById('p_diag').textContent = diag + ' m';
+  document.getElementById('p_lux').textContent = effLux;
+  document.getElementById('p_fc').textContent = fc;
+  document.getElementById('p_adecuado').textContent = adecuado;
+}
+
+// ═══ M8: LED ═══
+function applyLedPreset(val) {
+  document.getElementById('l_pp').value = val;
+}
+
+function calcLED() {
+  const pp = parseFloat(document.getElementById('l_pp').value);
+  const w = parseFloat(document.getElementById('l_w').value);
+  const h = parseFloat(document.getElementById('l_h').value);
+  const fps = parseFloat(document.getElementById('l_fps').value) || 30;
+  const ppM = pp / 1000;
+  const rpx = Math.round(w / ppM);
+  const rpy = Math.round(h / ppM);
+  const total = rpx * rpy;
+  const dmin = (pp).toFixed(1);
+  const dopt = (pp * 2).toFixed(0);
+  const ppm = Math.round(1000 / pp);
+  document.getElementById('l_rpx').textContent = rpx.toLocaleString();
+  document.getElementById('l_rpy').textContent = rpy.toLocaleString();
+  document.getElementById('l_total').textContent = (total/1e6).toFixed(2) + 'M';
+  document.getElementById('l_dmin').textContent = dmin + ' m';
+  document.getElementById('l_dopt').textContent = dopt + ' m';
+  document.getElementById('l_ppi').textContent = ppm;
+  const rgbPerSec = total * 3 * fps;
+  document.getElementById('l_rgb_val').textContent = (rgbPerSec/1e6).toFixed(1) + 'M';
+  document.getElementById('l_rgb_calc').style.display = 'block';
+}
+
+function calcLEDStrip() {
+  const len = parseFloat(document.getElementById('led_strip_len').value);
+  const ppm = parseFloat(document.getElementById('led_strip_ppm').value);
+  const n = parseFloat(document.getElementById('led_strip_n').value);
+  const fps = parseFloat(document.getElementById('led_strip_fps').value);
+  const pxTira = len * ppm;
+  const totalPx = pxTira * n;
+  const rgbS = totalPx * 3 * fps;
+  document.getElementById('led_s_px_tira').textContent = pxTira.toLocaleString();
+  document.getElementById('led_s_total_px').textContent = totalPx.toLocaleString();
+  document.getElementById('led_s_rgb_s').textContent = (rgbS/1e6).toFixed(1) + 'M';
+  document.getElementById('led_strip_result').style.display = 'block';
+}
+
+// ═══ M9: QUIZ ═══
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ═══ INIT ═══
+calcResolution();
+calcDOF();
+calcProjection();
+calcLED();
+drawARVisual(1920, 1080);
+
+// ═══ SIMULADOR DE SEÑAL ═══
+const SIM_CODECS = {
+  rawhd:    { name:'RAW sin comprimir', type:'Sin compresión', desc:'Sin ninguna compresión. Máxima calidad, tamaño gigantesco. Solo viable con almacenamiento NVMe o RAID de alta velocidad.', ratio:1, lossy:false, hdr:true, containers:'DPX / EXR / TIFF' },
+  prores422:{ name:'Apple ProRes 422', type:'Intraframe', desc:'Codec de edición profesional de Apple. Compresión solo dentro de cada frame. Edición rápida y scrubbing fluido. Estándar en producción televisiva.', ratio:0.12, lossy:false, hdr:true, containers:'MOV' },
+  prores444:{ name:'Apple ProRes 4444', type:'Intraframe', desc:'Variante ProRes con 4:4:4 y canal alfa. Máxima fidelidad cromática para composición y efectos visuales.', ratio:0.18, lossy:false, hdr:true, containers:'MOV' },
+  dnxhd:    { name:'Avid DNxHD/DNxHR', type:'Intraframe', desc:'Equivalente Avid al ProRes. Diseñado para flujos Avid Media Composer. DNxHR para resoluciones mayores de 1080p.', ratio:0.10, lossy:false, hdr:false, containers:'MXF / MOV' },
+  h264:     { name:'H.264 / AVC', type:'Interframe', desc:'El codec más extendido. Compresión entre frames logrando ratios muy altos. Excelente compatibilidad universal. Limitado en HDR.', ratio:0.005, lossy:true, hdr:false, containers:'MP4 / MKV / MOV' },
+  h265:     { name:'H.265 / HEVC', type:'Interframe', desc:'Doble eficiencia que H.264. Mismo bitrate = doble de calidad. Soporte HDR nativo. Estándar para 4K streaming.', ratio:0.003, lossy:true, hdr:true, containers:'MP4 / MKV' },
+  av1:      { name:'AV1', type:'Interframe', desc:'Codec libre de patentes de AOMedia. 30% más eficiente que HEVC. Adoptado por YouTube y Netflix. Codificación lenta pero decodificación rápida.', ratio:0.002, lossy:true, hdr:true, containers:'WebM / MP4' },
+  vp9:      { name:'VP9', type:'Interframe', desc:'Codec libre de Google. Principal formato de YouTube durante años. En proceso de sustitución por AV1.', ratio:0.0035, lossy:true, hdr:false, containers:'WebM / MKV' },
+  webm:     { name:'VP8 / WebM', type:'Interframe', desc:'Primera generación Google. Menor complejidad que VP9. Compatibilidad web universal pero eficiencia inferior.', ratio:0.006, lossy:true, hdr:false, containers:'WebM' },
+};
+let simFPS = 30, simBit = 10, simChroma = '4:2:2';
+
+function simSetFPS(v,btn) { simFPS=v; document.querySelectorAll('#s_fps_group .sim-toggle-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); simUpdate(); }
+function simSetBit(v,btn) { simBit=v; document.querySelectorAll('#s_bit_group .sim-toggle-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); simUpdate(); }
+function simSetChroma(v,btn) { simChroma=v; document.querySelectorAll('#s_chroma_group .sim-toggle-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); simUpdate(); }
+
+function simGCF(a,b){return b===0?a:simGCF(b,a%b);}
+function simAR(w,h){const d=simGCF(w,h),rw=w/d,rh=h/d;if(rw===16&&rh===9)return'16:9';if(rw===4&&rh===3)return'4:3';return rw+':'+rh;}
+
+function simUpdate() {
+  const [W,H] = document.getElementById('s_res').value.split(',').map(Number);
+  const codecKey = document.getElementById('s_codec').value;
+  const dur = Number(document.getElementById('s_dur').value);
+  const codec = SIM_CODECS[codecKey];
+  document.getElementById('s_dur_val').textContent = dur + ' min';
+
+  const chromaF = simChroma==='4:4:4'?3:simChroma==='4:2:2'?2:1.5;
+  const rawMbps = W*H*simFPS*simBit*chromaF/1e6;
+  let finalMbps = rawMbps * codec.ratio * 1.0;
+  if(finalMbps < 0.5) finalMbps = 0.5;
+
+  const sizeMB = (finalMbps * dur * 60) / 8;
+  const sizeGB = sizeMB / 1024;
+  const frameKB = (finalMbps * 1000) / (simFPS * 8);
+
+  // Resolution viz
+  const scale = Math.min(200/W, 130/H);
+  const vw = Math.round(W*scale), vh = Math.round(H*scale);
+  const outer = document.getElementById('s_res_outer');
+  outer.style.width=vw+'px'; outer.style.height=vh+'px';
+  outer.style.borderColor = finalMbps>100?'#ef4444':finalMbps>40?'#f59e0b':finalMbps>8?'#3B82F6':'#10b981';
+  document.getElementById('s_res_text').textContent = W+'×'+H+'\n'+simFPS+'fps';
+  document.getElementById('s_label_w').textContent = W+' px';
+  document.getElementById('s_label_h').textContent = H+' px';
+  document.getElementById('s_ar').textContent = simAR(W,H);
+  document.getElementById('s_mp').textContent = (W*H/1e6).toFixed(2);
+
+  // Quality pill
+  let qc,qt;
+  if(codec.ratio<0.005){qc='q-pro';qt='Profesional';}
+  else if(finalMbps>40){qc='q-bc';qt='Broadcast';}
+  else if(finalMbps>8){qc='q-st';qt='Streaming';}
+  else{qc='q-web';qt='Web / Móvil';}
+  document.getElementById('s_quality_pill').className='sim-quality-pill '+qc;
+  document.getElementById('s_quality_text').textContent=qt;
+
+  // Metrics
+  document.getElementById('s_bitrate').innerHTML = finalMbps>=1000?(finalMbps/1000).toFixed(2)+'<span class="sim-metric-unit"> Gbps</span>':finalMbps.toFixed(1)+'<span class="sim-metric-unit"> Mbps</span>';
+  document.getElementById('s_bitrate_sub').textContent = 'RAW: '+rawMbps.toFixed(0)+' Mbps';
+  document.getElementById('s_size').innerHTML = sizeGB>=1?sizeGB.toFixed(2)+'<span class="sim-metric-unit"> GB</span>':sizeMB.toFixed(0)+'<span class="sim-metric-unit"> MB</span>';
+  document.getElementById('s_size_sub').textContent = dur+' min de metraje';
+  document.getElementById('s_frame').innerHTML = frameKB.toFixed(1)+'<span class="sim-metric-unit"> KB</span>';
+  document.getElementById('s_frame_sub').textContent = W+'×'+H+' @ '+simFPS+'fps';
+  document.getElementById('s_bw').innerHTML = (finalMbps*1.15).toFixed(1)+'<span class="sim-metric-unit"> Mbps</span>';
+
+  // Bitrate bar
+  const pct = Math.min((Math.log10(finalMbps+1)/Math.log10(401))*100,100);
+  const bar = document.getElementById('s_bitrate_bar');
+  bar.style.width=pct+'%';
+  bar.style.background=finalMbps>100?'#ef4444':finalMbps>40?'#f59e0b':finalMbps>8?'#3B82F6':'#10b981';
+
+  // Codec card
+  document.getElementById('s_codec_card').innerHTML = `
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+      <strong style="font-size:14px;color:var(--navy)">${codec.name}</strong>
+      <span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;background:rgba(59,130,246,.12);color:#3B82F6">${codec.type}</span>
+      <span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;${codec.lossy?'background:rgba(239,68,68,.12);color:#ef4444':'background:rgba(16,185,129,.12);color:#10b981'}">${codec.lossy?'Con pérdidas':'Sin pérdidas'}</span>
+    </div>
+    <p style="font-size:11px;line-height:1.6;color:var(--text2);margin-bottom:10px">${codec.desc}</p>
+    <div class="codec-props-row">
+      <div class="codec-prop-chip"><div class="codec-prop-chip-label">Contenedores</div><div class="codec-prop-chip-val">${codec.containers}</div></div>
+      <div class="codec-prop-chip"><div class="codec-prop-chip-label">HDR</div><div class="codec-prop-chip-val">${codec.hdr?'✅ Sí':'❌ No'}</div></div>
+      <div class="codec-prop-chip"><div class="codec-prop-chip-label">Muestreo</div><div class="codec-prop-chip-val">${simChroma}</div></div>
+      <div class="codec-prop-chip"><div class="codec-prop-chip-label">Color</div><div class="codec-prop-chip-val">${simBit} bit</div></div>
+    </div>
+  `;
+
+  // Signal path
+  const steps = ['Fuente',codec.containers.split('/')[0].trim(),codec.name.split('/')[0].trim(),W+'×'+H,simFPS+'fps',simBit+' bit',simChroma,finalMbps.toFixed(1)+' Mbps'];
+  document.getElementById('s_sig_path').innerHTML = steps.map((s,i)=>`${i>0?'<span class="sig-arr">→</span>':''}<div class="sig-node active">${s}</div>`).join('');
+
+  // Warns
+  const warns=[];
+  if(finalMbps>200) warns.push('⚠️ Bitrate muy alto. Requiere almacenamiento NVMe o RAID.');
+  if(simFPS===120&&W>=3840) warns.push('⚠️ 4K a 120fps es extremadamente exigente para el hardware.');
+  if(!codec.hdr&&simBit>=10) warns.push('ℹ️ El codec no soporta HDR aunque la profundidad de color sea alta.');
+  document.getElementById('s_warns').innerHTML = warns.map(w=>`<div class="sim-warn">${w}</div>`).join('');
+}
+simUpdate();
+</script>
+<style id="avl-nav-style">
+  #avl-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(30,29,27,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 40px;
+    padding: 7px 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);
+    font-family: 'Poppins', -apple-system, sans-serif;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .avl-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.75);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .18s, color .18s, transform .18s;
+    flex-shrink: 0;
+    font-size: 13px;
+    line-height: 1;
+  }
+  .avl-nav-btn:hover {
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    transform: scale(1.08);
+  }
+  .avl-nav-btn.avl-nav-home {
+    background: #6B9A6B;
+    opacity: .9;
+  }
+  .avl-nav-btn.avl-nav-home:hover {
+    opacity: 1;
+    background: #6B9A6B;
+  }
+  .avl-nav-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255,255,255,0.12);
+    flex-shrink: 0;
+  }
+  .avl-nav-info {
+    padding: 0 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    min-width: 130px;
+    text-align: center;
+  }
+  .avl-nav-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -.1px;
+  }
+  .avl-nav-app {
+    font-size: 9px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+  .avl-nav-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 0 4px;
+  }
+  .avl-nav-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: background .2s, transform .2s;
+    cursor: default;
+  }
+  .avl-nav-dot.avl-active {
+    background: #6B9A6B;
+    transform: scale(1.3);
+  }
+  .avl-nav-btn svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 480px) {
+    #avl-nav { bottom: 12px; padding: 6px 8px; gap: 4px; }
+    .avl-nav-info { min-width: 100px; }
+    .avl-nav-label { font-size: 10px; }
+    .avl-nav-dots { display: none; }
+  }
+</style>
+
+
+<div id="avl-nav">
+  <!-- Home -->
+  <a class="avl-nav-btn avl-nav-home" href="index.html" title="Volver al índice">
+    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 8L8 2l6 6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4 6v7h3v-3h2v3h3V6" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+
+  <div class="avl-nav-divider"></div>
+
+  <!-- Prev -->
+  <button class="avl-nav-btn" disabled style="opacity:.25;cursor:default"><svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <!-- Info -->
+  <div class="avl-nav-info">
+    <div class="avl-nav-label">Fundamentos de Imagen</div>
+    <div class="avl-nav-app">Imagen & Vídeo</div>
+  </div>
+
+  <!-- Dots -->
+  <div class="avl-nav-dots">
+    <div class="avl-nav-dot avl-active"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+  </div>
+
+  <!-- Next -->
+  <a class="avl-nav-btn" href="illustrator.html" title="Diseño Vectorial"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+</div>
+
+</body></html>
