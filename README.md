@@ -1,6 +1,6 @@
-# AVV Master Suite 🎬
+# AVV Lab 🎬
 
-Disponible en: https://suiteavv.netlify.app/
+Disponible en: https://javitatay.github.io/AVV/
 
 **Animación Visual en Vivo · CFGM Video DJ**
 
@@ -12,27 +12,26 @@ Plataforma educativa con 6 suites interactivas de estudio para el ciclo formativ
 
 | Suite | Archivo | Contenido |
 |---|---|---|
-| 🎥 Fundamentos de Imagen | `VIDEO_SUITE_V2_19_15_38.html` | Resolución, óptica, vídeo técnico |
-| 🖊️ Diseño Vectorial | `ILLUSTRATOR_SUITE_EDU.html` | Adobe Illustrator, Bézier, grafismo |
-| 🎛️ VJing & Mapping | `RESOLUME_ARENA_SUITE_EDU_19_08_59.html` | Resolume Arena, clips, outputs |
-| ✨ Motion Graphics | `after-effects-suite.html` | After Effects, keyframes, FX |
-| 💡 Iluminación | `ILUMINACION_SUITE_V1.html` | Luz, DMX, escenarios |
-| 🎚️ Control DMX | `MAGICQ_SUITE_EDU_V4_18_56_43.html` | MagicQ, consola, cuelists |
+| 🎥 Fundamentos de Imagen | `video.html` | Resolución, óptica, vídeo técnico, simulador de señal |
+| 🖊️ Diseño Vectorial | `illustrator.html` | Adobe Illustrator, Bézier, grafismo |
+| 🎛️ VJing & Mapping | `resolume.html` | Resolume Arena, clips, efectos, outputs |
+| ✨ Motion Graphics | `after-effects.html` | After Effects, keyframes, FX |
+| 💡 Iluminación | `iluminacion.html` | Luz, DMX, escenarios, calculadora escénica |
+| 🎚️ Control DMX | `magicq.html` | MagicQ, consola, cuelists |
 
 ---
 
 ## Estructura del repositorio
 
 ```
-avl-suite/
-├── index.html                              ← Página de inicio
-├── after-effects-suite.html
-├── ILLUSTRATOR_SUITE_EDU.html
-├── ILUMINACION_SUITE_V1.html
-├── MAGICQ_SUITE_EDU_V4_18_56_43.html
-├── RESOLUME_ARENA_SUITE_EDU_19_08_59.html
-├── VIDEO_SUITE_V2_19_15_38.html
-├── netlify.toml                            ← Configuración de Netlify
+AVV/
+├── index.html          ← Página de inicio
+├── video.html
+├── illustrator.html
+├── resolume.html
+├── after-effects.html
+├── iluminacion.html
+├── magicq.html
 └── README.md
 ```
 
@@ -45,6 +44,7 @@ Todos los archivos son HTML autocontenidos (sin dependencias externas de servido
 - HTML + CSS + JavaScript vanilla (sin frameworks)
 - Fuentes: [Poppins](https://fonts.google.com/specimen/Poppins) + [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) via Google Fonts
 - Sin base de datos · Sin backend · 100% estático
+- Desplegado con GitHub Pages
 
 ---
 
