@@ -498,6 +498,57 @@ canvas { border-radius: 8px; }
 .module.active > * { animation: fadeUp .22s ease both; }
 .module.active > *:nth-child(2) { animation-delay: .05s; }
 .module.active > *:nth-child(3) { animation-delay: .09s; }
+
+/* ── CALCULADORA DE ILUMINACIÓN ── */
+.calc-tab-bar { display:flex; gap:4px; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:4px; margin-bottom:20px; flex-wrap:wrap; }
+.calc-tab-btn { padding:7px 16px; border:none; border-radius:7px; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; color:var(--text2); background:transparent; cursor:pointer; transition:all .2s; white-space:nowrap; }
+.calc-tab-btn.active { background:#fff; color:var(--navy); box-shadow:var(--shadow); }
+.calc-tab-pane { display:none; }
+.calc-tab-pane.active { display:block; }
+.calc-2col { display:grid; grid-template-columns:300px 1fr; gap:16px; align-items:start; }
+@media(max-width:820px){ .calc-2col { grid-template-columns:1fr; } }
+.calc-results { display:flex; flex-direction:column; gap:14px; }
+.calc-range-row { display:flex; align-items:center; gap:10px; }
+.calc-range-row input[type=range] { flex:1; height:4px; -webkit-appearance:none; appearance:none; background:var(--border); border-radius:4px; outline:none; }
+.calc-range-row input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; height:15px; border-radius:50%; background:var(--yellow); cursor:pointer; }
+.calc-rval { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; color:var(--accent); min-width:58px; text-align:right; }
+.calc-select { width:100%; padding:8px 10px; border:1.5px solid var(--border); border-radius:7px; font-family:'Poppins',sans-serif; font-size:12px; color:var(--text); background:var(--bg); appearance:none; }
+.calc-input { width:100%; padding:8px 10px; border:1.5px solid var(--border); border-radius:7px; font-family:'Poppins',sans-serif; font-size:12px; color:var(--text); background:var(--bg); }
+.calc-field-label { font-size:10px; font-weight:700; color:var(--text2); text-transform:uppercase; letter-spacing:.5px; margin-bottom:5px; display:block; }
+.calc-field { margin-bottom:14px; }
+.calc-divider { border:none; border-top:1px solid var(--border); margin:14px 0; }
+.calc-big-result { background:linear-gradient(135deg,var(--navy),var(--navy2)); border-radius:12px; padding:18px 20px; color:#fff; display:flex; align-items:center; gap:16px; }
+.calc-big-num { font-family:'JetBrains Mono',monospace; font-size:42px; font-weight:600; color:var(--yellow); line-height:1; }
+.calc-big-unit { font-size:16px; color:rgba(255,255,255,.6); margin-left:3px; }
+.calc-big-label { font-size:12px; color:rgba(255,255,255,.65); margin-top:4px; }
+.calc-metrics { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+.calc-mc { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:10px 12px; position:relative; overflow:hidden; }
+.calc-mc::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; border-radius:3px 0 0 3px; }
+.calc-mc.cy::before { background:var(--yellow); }
+.calc-mc.cg::before { background:#10b981; }
+.calc-mc.cb::before { background:#3B82F6; }
+.calc-mc.cp::before { background:#8b5cf6; }
+.calc-mn { font-size:9px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:.4px; margin-bottom:3px; }
+.calc-mv { font-family:'JetBrains Mono',monospace; font-size:17px; font-weight:600; color:var(--text); line-height:1; }
+.calc-mu { font-size:10px; color:var(--text2); margin-left:2px; }
+.calc-ms { font-size:9px; color:var(--text3); margin-top:2px; }
+.calc-stage { background:#0a0a1a; border-radius:8px; padding:10px; }
+.calc-stage svg { width:100%; height:auto; display:block; }
+.calc-warn { background:rgba(245,158,11,.08); border:1px solid rgba(245,158,11,.25); border-radius:7px; padding:8px 12px; font-size:11px; color:#92400e; margin-top:6px; }
+.calc-info-box { background:rgba(247,215,148,.12); border:1px solid rgba(247,215,148,.3); border-radius:8px; padding:12px 14px; font-size:12px; line-height:1.6; color:var(--navy); }
+.calc-info-box strong { color:var(--navy2); }
+.calc-focos-list { display:flex; flex-direction:column; gap:6px; }
+.calc-foco-row { display:flex; align-items:center; gap:8px; background:var(--bg2); border:1px solid var(--border); border-radius:7px; padding:8px 10px; }
+.calc-foco-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.calc-foco-name { font-size:11px; font-weight:600; color:var(--text); flex:1; }
+.calc-foco-val  { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text2); }
+.lux-table { width:100%; border-collapse:collapse; font-size:11px; }
+.lux-table th { background:var(--bg2); border-bottom:2px solid var(--border); padding:7px 10px; text-align:left; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.4px; color:var(--text2); }
+.lux-table td { padding:7px 10px; border-bottom:1px solid var(--border); vertical-align:middle; }
+.lux-table tr:last-child td { border-bottom:none; }
+.cok  { background:rgba(16,185,129,.12); color:#10b981; padding:2px 7px; border-radius:10px; font-size:9px; font-weight:700; }
+.cwarn{ background:rgba(245,158,11,.12); color:#d97706; padding:2px 7px; border-radius:10px; font-size:9px; font-weight:700; }
+.cbad { background:rgba(239,68,68,.12);  color:#ef4444; padding:2px 7px; border-radius:10px; font-size:9px; font-weight:700; }
 </style>
 </head>
 <body>
@@ -523,6 +574,7 @@ canvas { border-radius: 8px; }
   <div class="nav-tab" data-module="m6"><span class="nav-num">6</span> Atributos &amp; Canales</div>
   <div class="nav-tab" data-module="m7"><span class="nav-num">7</span> Rigging &amp; Seguridad</div>
   <div class="nav-tab" data-module="m8"><span class="nav-num">8</span> Protocolo DMX</div>
+  <div class="nav-tab" data-module="m9"><span class="nav-num">⚙</span> Calculadora</div>
 </nav>
 
 <main class="main">
@@ -631,6 +683,18 @@ canvas { border-radius: 8px; }
       <div class="card-tags">
         <span class="card-tag">DMX-512</span><span class="card-tag">Address</span>
         <span class="card-tag">Fixture</span><span class="card-tag">ART-NET</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-yellow" onclick="goTo('m9')">
+      <div class="card-num">Herramienta</div>
+      <span class="card-icon">🔢</span>
+      <div class="card-title">Calculadora Escénica</div>
+      <div class="card-desc">Calcula throw, cobertura del haz, lux en escena, focos necesarios y carga eléctrica de tu diseño de iluminación.</div>
+      <div class="card-tags">
+        <span class="card-tag">Throw</span><span class="card-tag">Cobertura</span>
+        <span class="card-tag">Lux</span><span class="card-tag">Eléctrico</span>
       </div>
       <div class="card-arrow">→</div>
     </div>
@@ -2403,6 +2467,257 @@ canvas { border-radius: 8px; }
 </section>
 
 
+<!-- ═══ MÓDULO 9 — CALCULADORA ESCÉNICA ═══ -->
+<section class="module" id="m9">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+
+  <div class="module-header">
+    <div class="module-icon">🔢</div>
+    <div>
+      <div class="module-title">Calculadora de Iluminación Escénica</div>
+      <div class="module-desc">Herramienta interactiva — Throw · Cobertura del haz · Carga eléctrica</div>
+      <div class="module-tags">
+        <span class="tag">Distancia Throw</span><span class="tag">Ángulo de apertura</span>
+        <span class="tag">Lux</span><span class="tag">Cobertura</span><span class="tag">Potencia</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="calc-tab-bar">
+    <button class="calc-tab-btn active" onclick="calcOpenTab('throw',this)">🎯 Distancia Throw</button>
+    <button class="calc-tab-btn" onclick="calcOpenTab('cobertura',this)">💡 Cobertura del Haz</button>
+    <button class="calc-tab-btn" onclick="calcOpenTab('electrico',this)">⚡ Carga Eléctrica</button>
+    <button class="calc-tab-btn" onclick="calcOpenTab('referencia',this)">📋 Referencia de Focos</button>
+  </div>
+
+  <!-- ── TAB THROW ── -->
+  <div class="calc-tab-pane active" id="ct_throw">
+    <div class="calc-2col">
+      <div class="panel">
+        <div class="panel-title">⚙️ Parámetros del foco</div>
+
+        <div class="calc-field">
+          <label class="calc-field-label">Tipo de foco</label>
+          <select id="ct_tipo" class="calc-select" onchange="calcApplyPreset()">
+            <optgroup label="Fresnel"><option value="fresnel_med" selected>Fresnel 1kW</option><option value="fresnel_small">Fresnel 650W</option><option value="fresnel_large">Fresnel 2kW</option></optgroup>
+            <optgroup label="Profile"><option value="profile_25">Profile 25°</option><option value="profile_50">Profile 50°</option><option value="profile_90">Profile 90°</option></optgroup>
+            <optgroup label="PAR"><option value="par64_vnsp">PAR 64 VNSP</option><option value="par64_sp">PAR 64 SP</option><option value="par64_wfl">PAR 64 WFL</option></optgroup>
+            <optgroup label="Moving Head"><option value="mh_spot">MH Spot 575W</option><option value="mh_beam">MH Beam 200W</option><option value="mh_wash">MH Wash LED</option></optgroup>
+            <optgroup label="LED"><option value="led_bar">LED Bar</option><option value="led_zoom">LED Fresnel Zoom</option></optgroup>
+          </select>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-field-label">Ángulo de apertura</label>
+          <div class="calc-range-row"><input type="range" id="ct_angulo" min="5" max="120" value="25" oninput="calcThrowUpdate()"><span class="calc-rval" id="ct_angulo_v">25°</span></div>
+        </div>
+        <div class="calc-field">
+          <label class="calc-field-label">Distancia throw (metros)</label>
+          <div class="calc-range-row"><input type="range" id="ct_dist" min="1" max="30" value="8" step="0.5" oninput="calcThrowUpdate()"><span class="calc-rval" id="ct_dist_v">8 m</span></div>
+        </div>
+        <div class="calc-field">
+          <label class="calc-field-label">Intensidad (candelas)</label>
+          <div class="calc-range-row"><input type="range" id="ct_cd" min="500" max="200000" value="20000" step="500" oninput="calcThrowUpdate()"><span class="calc-rval" id="ct_cd_v">20.000 cd</span></div>
+        </div>
+        <div class="calc-divider"></div>
+        <div class="calc-field">
+          <label class="calc-field-label">Altura de montaje (metros)</label>
+          <div class="calc-range-row"><input type="range" id="ct_alt" min="2" max="20" value="6" step="0.5" oninput="calcThrowUpdate()"><span class="calc-rval" id="ct_alt_v">6 m</span></div>
+        </div>
+        <div class="calc-field">
+          <label class="calc-field-label">Posición horizontal (metros del centro)</label>
+          <div class="calc-range-row"><input type="range" id="ct_hor" min="0" max="10" value="3" step="0.5" oninput="calcThrowUpdate()"><span class="calc-rval" id="ct_hor_v">3 m</span></div>
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="calc-big-result">
+          <div>
+            <div style="font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Diámetro de cobertura</div>
+            <div style="display:flex;align-items:baseline;gap:3px"><div class="calc-big-num" id="ct_diam">—</div><div class="calc-big-unit">m</div></div>
+            <div class="calc-big-label" id="ct_diam_sub"></div>
+          </div>
+          <div style="margin-left:auto;text-align:right">
+            <div style="font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Iluminancia</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:var(--yellow)" id="ct_lux">—</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.6)">lux en centro del haz</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">📊 Cálculos derivados</div>
+          <div class="calc-metrics">
+            <div class="calc-mc cy"><div class="calc-mn">Ángulo de incidencia</div><div class="calc-mv" id="ct_inc">—<span class="calc-mu">°</span></div><div class="calc-ms">respecto a la vertical</div></div>
+            <div class="calc-mc cg"><div class="calc-mn">Radio del haz</div><div class="calc-mv" id="ct_radio">—<span class="calc-mu">m</span></div><div class="calc-ms">en el plano de trabajo</div></div>
+            <div class="calc-mc cb"><div class="calc-mn">Área iluminada</div><div class="calc-mv" id="ct_area">—<span class="calc-mu">m²</span></div><div class="calc-ms">elipse proyectada</div></div>
+            <div class="calc-mc cp"><div class="calc-mn">Throw ratio</div><div class="calc-mv" id="ct_tr">—</div><div class="calc-ms">distancia / diámetro</div></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">🎨 Diagrama de montaje</div>
+          <div class="calc-stage"><svg id="ct_svg" viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg"></svg></div>
+        </div>
+
+        <div class="panel" style="padding:0">
+          <div class="panel-title" style="padding:12px 16px;border-bottom:1px solid var(--border)">📋 Niveles de referencia (lux)</div>
+          <table class="lux-table"><thead><tr><th>Aplicación</th><th>Rango lux</th><th>Estado</th></tr></thead><tbody id="ct_lux_table"></tbody></table>
+        </div>
+
+        <div id="ct_warns"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB COBERTURA ── -->
+  <div class="calc-tab-pane" id="ct_cobertura">
+    <div class="calc-2col">
+      <div class="panel">
+        <div class="panel-title">⚙️ Diseño del espacio</div>
+        <div class="calc-field"><label class="calc-field-label">Ancho del escenario (m)</label><div class="calc-range-row"><input type="range" id="cc_ancho" min="3" max="40" value="12" step="0.5" oninput="calcCobUpdate()"><span class="calc-rval" id="cc_ancho_v">12 m</span></div></div>
+        <div class="calc-field"><label class="calc-field-label">Profundidad del escenario (m)</label><div class="calc-range-row"><input type="range" id="cc_prof" min="3" max="30" value="8" step="0.5" oninput="calcCobUpdate()"><span class="calc-rval" id="cc_prof_v">8 m</span></div></div>
+        <div class="calc-field"><label class="calc-field-label">Ángulo de apertura por foco (°)</label><div class="calc-range-row"><input type="range" id="cc_ang" min="10" max="90" value="35" oninput="calcCobUpdate()"><span class="calc-rval" id="cc_ang_v">35°</span></div></div>
+        <div class="calc-field"><label class="calc-field-label">Altura de la barra (m)</label><div class="calc-range-row"><input type="range" id="cc_alt" min="3" max="20" value="7" step="0.5" oninput="calcCobUpdate()"><span class="calc-rval" id="cc_alt_v">7 m</span></div></div>
+        <div class="calc-field"><label class="calc-field-label">Solapamiento deseado (%)</label><div class="calc-range-row"><input type="range" id="cc_ov" min="0" max="50" value="20" oninput="calcCobUpdate()"><span class="calc-rval" id="cc_ov_v">20%</span></div></div>
+      </div>
+      <div class="calc-results">
+        <div class="calc-big-result">
+          <div>
+            <div style="font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Focos necesarios</div>
+            <div style="display:flex;align-items:baseline;gap:3px"><div class="calc-big-num" id="cc_n">—</div><div class="calc-big-unit">focos</div></div>
+            <div class="calc-big-label" id="cc_n_sub"></div>
+          </div>
+          <div style="margin-left:auto;text-align:right">
+            <div style="font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Separación</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:var(--yellow)" id="cc_sep">—</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.6)">metros entre focos</div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">📊 Distribución calculada</div>
+          <div class="calc-metrics">
+            <div class="calc-mc cy"><div class="calc-mn">Cobertura por foco</div><div class="calc-mv" id="cc_cob">—<span class="calc-mu">m</span></div><div class="calc-ms">diámetro en suelo</div></div>
+            <div class="calc-mc cg"><div class="calc-mn">Área total escenario</div><div class="calc-mv" id="cc_area">—<span class="calc-mu">m²</span></div></div>
+            <div class="calc-mc cb"><div class="calc-mn">m² por foco</div><div class="calc-mv" id="cc_m2">—<span class="calc-mu">m²</span></div><div class="calc-ms">área útil efectiva</div></div>
+            <div class="calc-mc cp"><div class="calc-mn">Cobertura total</div><div class="calc-mv" id="cc_pct">—<span class="calc-mu">%</span></div><div class="calc-ms">del escenario</div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">💡 Distribución por barras</div>
+          <div class="calc-focos-list" id="cc_barras"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">ℹ️ Recomendación de diseño</div>
+          <div class="calc-info-box" id="cc_info"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB ELÉCTRICO ── -->
+  <div class="calc-tab-pane" id="ct_electrico">
+    <div class="calc-2col">
+      <div class="panel">
+        <div class="panel-title">⚙️ Inventario de equipos</div>
+        <div class="calc-field">
+          <label class="calc-field-label">Focos halógenos convencionales</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div><div style="font-size:9px;color:var(--text3);margin-bottom:3px">Cantidad</div><input type="number" id="ce_hal_n" class="calc-input" value="10" min="0" oninput="calcElecUpdate()"></div>
+            <div><div style="font-size:9px;color:var(--text3);margin-bottom:3px">W/unidad</div><input type="number" id="ce_hal_w" class="calc-input" value="1000" min="100" step="100" oninput="calcElecUpdate()"></div>
+          </div>
+        </div>
+        <div class="calc-field">
+          <label class="calc-field-label">Moving heads / Robóticos</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div><div style="font-size:9px;color:var(--text3);margin-bottom:3px">Cantidad</div><input type="number" id="ce_mh_n" class="calc-input" value="6" min="0" oninput="calcElecUpdate()"></div>
+            <div><div style="font-size:9px;color:var(--text3);margin-bottom:3px">W/unidad</div><input type="number" id="ce_mh_w" class="calc-input" value="575" min="50" step="50" oninput="calcElecUpdate()"></div>
+          </div>
+        </div>
+        <div class="calc-field">
+          <label class="calc-field-label">Fixtures LED</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div><div style="font-size:9px;color:var(--text3);margin-bottom:3px">Cantidad</div><input type="number" id="ce_led_n" class="calc-input" value="12" min="0" oninput="calcElecUpdate()"></div>
+            <div><div style="font-size:9px;color:var(--text3);margin-bottom:3px">W/unidad</div><input type="number" id="ce_led_w" class="calc-input" value="150" min="10" step="10" oninput="calcElecUpdate()"></div>
+          </div>
+        </div>
+        <div class="calc-field">
+          <label class="calc-field-label">Otros equipos (strobes, haze…) — W total</label>
+          <input type="number" id="ce_otros" class="calc-input" value="800" min="0" step="100" oninput="calcElecUpdate()">
+        </div>
+        <div class="calc-divider"></div>
+        <div class="calc-field">
+          <label class="calc-field-label">Tensión de la instalación</label>
+          <select id="ce_tension" class="calc-select" onchange="calcElecUpdate()">
+            <option value="230">230V monofásico</option>
+            <option value="400" selected>400V trifásico</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label class="calc-field-label">Factor de simultaneidad (%)</label>
+          <div class="calc-range-row"><input type="range" id="ce_sim" min="50" max="100" value="85" oninput="calcElecUpdate()"><span class="calc-rval" id="ce_sim_v">85%</span></div>
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="calc-big-result">
+          <div>
+            <div style="font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Potencia total</div>
+            <div style="display:flex;align-items:baseline;gap:3px"><div class="calc-big-num" id="ce_kw">—</div><div class="calc-big-unit">kW</div></div>
+            <div class="calc-big-label" id="ce_kw_sub"></div>
+          </div>
+          <div style="margin-left:auto;text-align:right">
+            <div style="font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Intensidad</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:var(--yellow)" id="ce_amp">—</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.6)" id="ce_amp_label">A @ 400V trifásico</div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">📊 Desglose y dimensionado</div>
+          <div class="calc-metrics">
+            <div class="calc-mc cy"><div class="calc-mn">Circuitos (16A)</div><div class="calc-mv" id="ce_circ">—</div></div>
+            <div class="calc-mc cg"><div class="calc-mn">Diferencial recomendado</div><div class="calc-mv" id="ce_dif">—<span class="calc-mu">A</span></div></div>
+            <div class="calc-mc cb"><div class="calc-mn">Coste / hora</div><div class="calc-mv" id="ce_cost">—<span class="calc-mu">€/h</span></div><div class="calc-ms">a 0,18 €/kWh</div></div>
+            <div class="calc-mc cp"><div class="calc-mn">Generador mínimo</div><div class="calc-mv" id="ce_gen">—<span class="calc-mu">kVA</span></div></div>
+          </div>
+        </div>
+        <div id="ce_warns"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB REFERENCIA ── -->
+  <div class="calc-tab-pane" id="ct_referencia">
+    <div class="panel" style="overflow-x:auto">
+      <div class="panel-title">📋 Tipos de foco — Referencia técnica</div>
+      <table class="lux-table" style="min-width:600px">
+        <thead><tr><th>Tipo</th><th>Ángulo típico</th><th>Potencia</th><th>Throw</th><th>Uso principal</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Fresnel</strong></td><td>10°–60° ajustable</td><td>650W–2kW</td><td>3–12m</td><td>Iluminación general, wash suave</td></tr>
+          <tr><td><strong>Profile / Elipsoidal</strong></td><td>15°–90°</td><td>500W–2kW</td><td>5–20m</td><td>Spotlights, gobos, recortes nítidos</td></tr>
+          <tr><td><strong>PAR 64</strong></td><td>5°–75° (fijo)</td><td>500W–1kW</td><td>5–15m</td><td>Backlights, efectos, color</td></tr>
+          <tr><td><strong>Moving Head Spot</strong></td><td>8°–25° zoom</td><td>250W–700W</td><td>8–25m</td><td>Efectos dinámicos, gobos</td></tr>
+          <tr><td><strong>Moving Head Beam</strong></td><td>0,5°–4°</td><td>200W–700W</td><td>10–40m</td><td>Haces aéreos paralelos</td></tr>
+          <tr><td><strong>Moving Head Wash</strong></td><td>20°–60° zoom</td><td>150W–700W</td><td>4–15m</td><td>Iluminación general motorizada RGBW</td></tr>
+          <tr><td><strong>LED PAR</strong></td><td>15°–45°</td><td>18W–150W</td><td>3–10m</td><td>Uplighting, wash de color</td></tr>
+          <tr><td><strong>LED Bar</strong></td><td>30°–60°/segmento</td><td>60W–200W</td><td>1–6m</td><td>Ciclorama, suelo, bordes de escenario</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel section-gap">
+      <div class="panel-title">📐 Fórmulas esenciales</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+        <div class="calc-info-box"><strong>Diámetro del haz</strong><br>D = 2 × d × tan(α/2)</div>
+        <div class="calc-info-box"><strong>Iluminancia (lux)</strong><br>E = I (cd) / d² — ley inversa del cuadrado</div>
+        <div class="calc-info-box"><strong>Throw ratio</strong><br>TR = distancia / diámetro del haz</div>
+        <div class="calc-info-box"><strong>Intensidad monofásica</strong><br>I = P / (V × cos φ)</div>
+        <div class="calc-info-box"><strong>Intensidad trifásica</strong><br>I = P / (√3 × V × cos φ)</div>
+        <div class="calc-info-box"><strong>Focos necesarios</strong><br>N = Área / (A_foco × (1 – solapamiento))</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
 
 </main>
 
@@ -2562,6 +2877,185 @@ function calcDMX() {
 
 // ═══ INIT ═══
 calcLIC();
+
+// ═══ CALCULADORA ESCÉNICA ═══
+function calcOpenTab(id, btn) {
+  document.querySelectorAll('.calc-tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.calc-tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('ct_'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+const CALC_PRESETS = {
+  fresnel_small:{a:30,cd:8000}, fresnel_med:{a:25,cd:20000}, fresnel_large:{a:20,cd:50000},
+  profile_25:{a:25,cd:30000}, profile_50:{a:50,cd:15000}, profile_90:{a:90,cd:6000},
+  par64_vnsp:{a:5,cd:80000}, par64_sp:{a:12,cd:50000}, par64_wfl:{a:50,cd:15000},
+  mh_spot:{a:15,cd:100000}, mh_beam:{a:3,cd:200000}, mh_wash:{a:40,cd:12000},
+  led_bar:{a:40,cd:3000}, led_zoom:{a:35,cd:10000},
+};
+
+function calcApplyPreset() {
+  const p = CALC_PRESETS[document.getElementById('ct_tipo').value];
+  if(!p) return;
+  document.getElementById('ct_angulo').value = p.a;
+  document.getElementById('ct_cd').value = p.cd;
+  calcThrowUpdate();
+}
+
+function calcThrowUpdate() {
+  const ang  = +document.getElementById('ct_angulo').value;
+  const dist = +document.getElementById('ct_dist').value;
+  const cd   = +document.getElementById('ct_cd').value;
+  const alt  = +document.getElementById('ct_alt').value;
+  const hor  = +document.getElementById('ct_hor').value;
+
+  document.getElementById('ct_angulo_v').textContent = ang+'°';
+  document.getElementById('ct_dist_v').textContent   = dist+' m';
+  document.getElementById('ct_cd_v').textContent     = cd.toLocaleString('es')+' cd';
+  document.getElementById('ct_alt_v').textContent    = alt+' m';
+  document.getElementById('ct_hor_v').textContent    = hor+' m';
+
+  const throwR = Math.sqrt(hor*hor+alt*alt);
+  const radio  = throwR * Math.tan((ang/2)*Math.PI/180);
+  const diam   = radio*2;
+  const incRad = Math.atan2(hor,alt);
+  const inc    = incRad*180/Math.PI;
+  const lux    = cd/(throwR*throwR);
+  const area   = Math.PI*radio*radio / Math.cos(incRad);
+  const tr     = throwR/diam;
+
+  document.getElementById('ct_diam').textContent     = diam.toFixed(2);
+  document.getElementById('ct_diam_sub').textContent = 'Radio: '+radio.toFixed(2)+'m · Throw: '+throwR.toFixed(1)+'m';
+  document.getElementById('ct_lux').textContent      = Math.round(lux).toLocaleString('es');
+  document.getElementById('ct_inc').innerHTML  = inc.toFixed(1)+'<span class="calc-mu">°</span>';
+  document.getElementById('ct_radio').innerHTML= radio.toFixed(2)+'<span class="calc-mu">m</span>';
+  document.getElementById('ct_area').innerHTML = area.toFixed(1)+'<span class="calc-mu">m²</span>';
+  document.getElementById('ct_tr').textContent = tr.toFixed(2);
+
+  // SVG
+  const svg = document.getElementById('ct_svg');
+  const W=480,H=280, scl=Math.min((W*0.65)/(hor+diam/2+1),(H*0.7)/(alt+1));
+  const ox=40, gy=H-35, fx=ox+hor*scl, fy=gy-alt*scl;
+  const cx=ox, r1x=cx-(diam/2)*scl, r2x=cx+(diam/2)*scl;
+  const luxC=lux>2000?'#fbbf24':lux>800?'#34d399':'#60a5fa';
+  svg.innerHTML=`
+    <line x1="20" y1="${gy}" x2="${W-10}" y2="${gy}" stroke="#334155" stroke-width="2"/>
+    <text x="22" y="${gy+14}" fill="#64748b" font-size="10" font-family="monospace">Plano de escena</text>
+    <line x1="${fx}" y1="${fy}" x2="${fx}" y2="${gy}" stroke="#334155" stroke-width="1" stroke-dasharray="4,3"/>
+    <line x1="${fx}" y1="${fy}" x2="${cx}" y2="${gy}" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6,3"/>
+    <line x1="${fx}" y1="${fy}" x2="${r1x}" y2="${gy}" stroke="${luxC}" stroke-width="1.5" opacity=".7"/>
+    <line x1="${fx}" y1="${fy}" x2="${r2x}" y2="${gy}" stroke="${luxC}" stroke-width="1.5" opacity=".7"/>
+    <rect x="${r1x}" y="${gy-4}" width="${r2x-r1x}" height="5" fill="${luxC}" opacity=".5" rx="2"/>
+    <circle cx="${fx}" cy="${fy}" r="8" fill="#f59e0b" opacity=".9"/>
+    <text x="${fx}" y="${fy+4}" text-anchor="middle" fill="#000" font-size="9">💡</text>
+    <text x="${fx+10}" y="${(fy+gy)/2}" fill="#f59e0b" font-size="10" font-family="monospace">${throwR.toFixed(1)}m</text>
+    <text x="${r1x}" y="${gy-8}" fill="${luxC}" font-size="10" font-family="monospace">${diam.toFixed(1)}m ⬌</text>
+    <rect x="${W-105}" y="10" width="90" height="34" fill="rgba(245,158,11,.15)" rx="5" stroke="rgba(245,158,11,.4)" stroke-width="1"/>
+    <text x="${W-60}" y="23" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="monospace">ILUMINANCIA</text>
+    <text x="${W-60}" y="38" text-anchor="middle" fill="${luxC}" font-size="13" font-weight="bold" font-family="monospace">${Math.round(lux)} lux</text>
+  `;
+
+  // Lux reference table
+  const refs=[
+    {uso:'Actuación musical',min:1000,max:5000},
+    {uso:'Teatro general',min:500,max:1500},
+    {uso:'Conferencias',min:300,max:800},
+    {uso:'Grabación HD',min:800,max:3000},
+    {uso:'Grabación 4K',min:1500,max:5000},
+  ];
+  document.getElementById('ct_lux_table').innerHTML=refs.map(r=>{
+    let cls,txt;
+    if(lux>=r.min&&lux<=r.max){cls='cok';txt='✅ Adecuado';}
+    else if(lux<r.min){cls='cwarn';txt='⬇️ Bajo';}
+    else{cls='cwarn';txt='⬆️ Alto';}
+    return`<tr><td>${r.uso}</td><td>${r.min}–${r.max} lux</td><td><span class="${cls}">${txt}</span></td></tr>`;
+  }).join('');
+
+  // Warns
+  const warns=[];
+  if(inc>45) warns.push('⚠️ Ángulo de incidencia alto ('+inc.toFixed(0)+'°). Las sombras serán muy pronunciadas.');
+  if(lux<300) warns.push('⚠️ Iluminancia muy baja. Insuficiente para grabación de vídeo.');
+  document.getElementById('ct_warns').innerHTML=warns.map(w=>`<div class="calc-warn">${w}</div>`).join('');
+}
+
+function calcCobUpdate() {
+  const ancho = +document.getElementById('cc_ancho').value;
+  const prof  = +document.getElementById('cc_prof').value;
+  const ang   = +document.getElementById('cc_ang').value;
+  const alt   = +document.getElementById('cc_alt').value;
+  const ov    = +document.getElementById('cc_ov').value/100;
+
+  document.getElementById('cc_ancho_v').textContent = ancho+' m';
+  document.getElementById('cc_prof_v').textContent  = prof+' m';
+  document.getElementById('cc_ang_v').textContent   = ang+'°';
+  document.getElementById('cc_alt_v').textContent   = alt+' m';
+  document.getElementById('cc_ov_v').textContent    = (ov*100).toFixed(0)+'%';
+
+  const diam    = 2*alt*Math.tan((ang/2)*Math.PI/180);
+  const cobEf   = diam*(1-ov);
+  const nAncho  = Math.ceil(ancho/cobEf);
+  const sep     = ancho/nAncho;
+  const barras  = Math.ceil(prof/cobEf);
+  const total   = nAncho*barras;
+  const area    = ancho*prof;
+  const areaFoco= Math.PI*(diam/2)*(diam/2)*(1-ov*ov);
+  const pct     = Math.min(total*areaFoco/area*100,100);
+
+  document.getElementById('cc_n').textContent   = total;
+  document.getElementById('cc_n_sub').textContent= nAncho+' por barra × '+barras+' barras';
+  document.getElementById('cc_sep').textContent = sep.toFixed(2);
+  document.getElementById('cc_cob').innerHTML   = diam.toFixed(1)+'<span class="calc-mu">m</span>';
+  document.getElementById('cc_area').innerHTML  = area.toFixed(0)+'<span class="calc-mu">m²</span>';
+  document.getElementById('cc_m2').innerHTML    = areaFoco.toFixed(1)+'<span class="calc-mu">m²</span>';
+  document.getElementById('cc_pct').innerHTML   = pct.toFixed(0)+'<span class="calc-mu">%</span>';
+
+  const colors=['#f59e0b','#3b82f6','#10b981','#8b5cf6','#ef4444','#06b6d4'];
+  document.getElementById('cc_barras').innerHTML=Array.from({length:Math.min(barras,5)},(_, b)=>`
+    <div class="calc-foco-row">
+      <div class="calc-foco-dot" style="background:${colors[b%colors.length]}"></div>
+      <div class="calc-foco-name">Barra ${b+1} — ${nAncho} focos</div>
+      <div class="calc-foco-val">Prof: ${((b+0.5)*(prof/barras)).toFixed(1)}m</div>
+    </div>`).join('')+(barras>5?`<div style="text-align:center;font-size:10px;color:var(--text3);padding:4px">+ ${barras-5} barras adicionales</div>`:'');
+
+  document.getElementById('cc_info').innerHTML=`Con <strong>${total} focos</strong> a <strong>${ang}°</strong> desde <strong>${alt}m</strong> de altura conseguirás una cobertura del <strong>${pct.toFixed(0)}%</strong> del escenario de ${ancho}×${prof}m.${pct<80?' <strong style="color:#ef4444">⚠️ Cobertura insuficiente — aumenta el ángulo o añade más focos.</strong>':''}`;
+}
+
+function calcElecUpdate() {
+  const halN=+document.getElementById('ce_hal_n').value||0, halW=+document.getElementById('ce_hal_w').value||0;
+  const mhN =+document.getElementById('ce_mh_n').value||0,  mhW =+document.getElementById('ce_mh_w').value||0;
+  const ledN=+document.getElementById('ce_led_n').value||0, ledW=+document.getElementById('ce_led_w').value||0;
+  const otros=+document.getElementById('ce_otros').value||0;
+  const tension=+document.getElementById('ce_tension').value;
+  const sim=+document.getElementById('ce_sim').value/100;
+  document.getElementById('ce_sim_v').textContent=Math.round(sim*100)+'%';
+  document.getElementById('ce_amp_label').textContent='A @ '+tension+'V '+(tension===230?'monofásico':'trifásico');
+
+  const wTotal=(halN*halW+mhN*mhW+ledN*ledW+otros)*sim;
+  const kW=wTotal/1000;
+  const fp=0.85;
+  const amp=tension===230?wTotal/(230*fp):wTotal/(Math.sqrt(3)*400*fp);
+  const circ=Math.ceil(amp/16);
+  const dif=amp<=25?25:amp<=40?40:amp<=63?63:amp<=100?100:160;
+  const kVA=kW/fp*1.25;
+
+  document.getElementById('ce_kw').textContent   = kW.toFixed(2);
+  document.getElementById('ce_kw_sub').textContent= 'Con factor de simultaneidad '+Math.round(sim*100)+'%';
+  document.getElementById('ce_amp').textContent  = amp.toFixed(1);
+  document.getElementById('ce_circ').textContent = circ;
+  document.getElementById('ce_dif').innerHTML    = dif+'<span class="calc-mu">A</span>';
+  document.getElementById('ce_cost').innerHTML   = (kW*0.18).toFixed(2)+'<span class="calc-mu">€/h</span>';
+  document.getElementById('ce_gen').innerHTML    = kVA.toFixed(1)+'<span class="calc-mu">kVA</span>';
+
+  const warns=[];
+  if(amp>100) warns.push('⚠️ Intensidad superior a 100A. Requiere instalación industrial trifásica y generador de gran potencia.');
+  if(kVA>100) warns.push('⚠️ Necesitas generador de más de '+kVA.toFixed(0)+' kVA. Planifica el suministro eléctrico con antelación.');
+  document.getElementById('ce_warns').innerHTML=warns.map(w=>`<div class="calc-warn">${w}</div>`).join('');
+}
+
+// Init calculators
+calcThrowUpdate();
+calcCobUpdate();
+calcElecUpdate();
 </script>
 
 <style id="avl-nav-style">

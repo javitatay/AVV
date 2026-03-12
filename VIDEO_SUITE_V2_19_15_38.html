@@ -435,6 +435,87 @@ canvas { border-radius: 8px; }
 .module.active > * { animation: fadeUp .22s ease both; }
 .module.active > *:nth-child(2) { animation-delay: .05s; }
 .module.active > *:nth-child(3) { animation-delay: .09s; }
+
+/* ── SIMULADOR DE SEÑAL ── */
+.sim-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 820px) { .sim-grid { grid-template-columns: 1fr; } }
+.sim-results-stack { display: flex; flex-direction: column; gap: 14px; }
+.sim-toggle-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.sim-toggle-btn {
+  padding: 5px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px; font-weight: 500;
+  color: var(--text2); background: var(--bg);
+  cursor: pointer; transition: all .2s;
+}
+.sim-toggle-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.resolution-viz {
+  background: #0a0a0f; border-radius: 8px;
+  padding: 14px; min-height: 160px;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.res-outer {
+  background: #1a1a2e; border: 2px solid #333;
+  position: relative; display: flex; align-items: center; justify-content: center;
+  transition: all .4s ease; max-width: 100%;
+}
+.res-inner-text { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: rgba(255,255,255,.7); text-align: center; }
+.res-scanlines { position: absolute; inset:0; background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.15) 2px,rgba(0,0,0,.15) 4px); pointer-events:none; border-radius:6px; }
+.res-label-w,.res-label-h { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--yellow); position:absolute; }
+.res-label-w { bottom:-16px; left:50%; transform:translateX(-50%); }
+.res-label-h { right:-36px; top:50%; transform:translateY(-50%) rotate(90deg); }
+.sim-metrics-grid { display: grid; grid-template-columns: repeat(2,1fr); gap:8px; }
+.sim-metric {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px; position: relative; overflow:hidden;
+}
+.sim-metric::before { content:''; position:absolute; top:0;left:0; width:3px;height:100%; border-radius:3px 0 0 3px; }
+.sim-metric.blue::before   { background:#3B82F6; }
+.sim-metric.green::before  { background:#10b981; }
+.sim-metric.orange::before { background:#f59e0b; }
+.sim-metric.red::before    { background:#ef4444; }
+.sim-metric-name  { font-size:9px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:.4px; margin-bottom:3px; }
+.sim-metric-value { font-family:'JetBrains Mono',monospace; font-size:18px; font-weight:600; color:var(--text); line-height:1; }
+.sim-metric-unit  { font-size:10px; color:var(--text2); margin-left:2px; }
+.sim-metric-sub   { font-size:9px; color:var(--text3); margin-top:2px; }
+.bitrate-track { height:6px; background:var(--border); border-radius:3px; overflow:hidden; margin-top:6px; }
+.bitrate-fill  { height:100%; border-radius:3px; transition:width .4s ease,background .4s ease; }
+.codec-info-card {
+  background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(59,130,246,.03));
+  border:1px solid rgba(59,130,246,.2); border-radius:8px; padding:12px 14px;
+}
+.codec-props-row { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+.codec-prop-chip {
+  background:#fff; border:1px solid var(--border);
+  border-radius:6px; padding:4px 8px;
+}
+.codec-prop-chip-label { font-size:8px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:.3px; }
+.codec-prop-chip-val   { font-size:11px; font-weight:700; color:var(--text); }
+.sim-quality-pill {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:4px 12px; border-radius:16px; font-size:11px; font-weight:600;
+}
+.sim-quality-pill .dot { width:7px;height:7px;border-radius:50%; }
+.q-pro  { background:rgba(16,185,129,.12); color:#10b981; }
+.q-pro  .dot { background:#10b981; }
+.q-bc   { background:rgba(245,158,11,.12); color:#f59e0b; }
+.q-bc   .dot { background:#f59e0b; }
+.q-st   { background:rgba(59,130,246,.12); color:#3B82F6; }
+.q-st   .dot { background:#3B82F6; }
+.q-web  { background:rgba(156,163,175,.12); color:#6b7280; }
+.q-web  .dot { background:#9ca3af; }
+.sim-warn { background:rgba(245,158,11,.08); border:1px solid rgba(245,158,11,.25); border-radius:7px; padding:8px 12px; font-size:11px; color:#92400e; margin-top:6px; }
+.sig-path { display:flex; align-items:center; gap:3px; flex-wrap:wrap; padding:8px 0; }
+.sig-node { background:var(--bg2); border:1.5px solid var(--border); border-radius:6px; padding:4px 10px; font-size:10px; font-weight:600; color:var(--text); white-space:nowrap; }
+.sig-node.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+.sig-arr { color:var(--text3); font-size:12px; }
 </style>
 </head>
 <body>
@@ -1018,6 +1099,7 @@ canvas { border-radius: 8px; }
     <div class="inner-tab" data-inner="i_pal">PAL / NTSC / SECAM</div>
     <div class="inner-tab" data-inner="i_gamma">Gamma &amp; HDR</div>
     <div class="inner-tab" data-inner="i_alpha">Canal Alpha</div>
+    <div class="inner-tab" data-inner="i_simulador">📡 Simulador de Señal</div>
   </div>
 
   <div class="inner-pane active" id="i_scan">
@@ -1163,6 +1245,158 @@ canvas { border-radius: 8px; }
       </div>
     </div>
   </div>
+
+  <!-- ── SIMULADOR DE SEÑAL ── -->
+  <div class="inner-pane" id="i_simulador">
+    <div class="note note-yellow" style="margin-bottom:18px">
+      <strong>📡 Simulador interactivo:</strong> Configura los parámetros de tu señal y observa en tiempo real cómo afectan al bitrate, tamaño de archivo y calidad.
+    </div>
+    <div class="sim-grid">
+      <!-- Controles -->
+      <div class="panel">
+        <div class="panel-title">⚙️ Parámetros de señal</div>
+
+        <div style="margin-bottom:14px">
+          <div class="form-label" style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Resolución</div>
+          <select id="s_res" onchange="simUpdate()" style="width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:'Poppins',sans-serif;font-size:12px;color:var(--text);background:var(--bg)">
+            <option value="640,360">nHD — 640×360</option>
+            <option value="1280,720">HD — 1280×720</option>
+            <option value="1920,1080" selected>Full HD — 1920×1080</option>
+            <option value="2560,1440">QHD — 2560×1440</option>
+            <option value="3840,2160">4K UHD — 3840×2160</option>
+            <option value="7680,4320">8K UHD — 7680×4320</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:14px">
+          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Frame Rate</div>
+          <div class="sim-toggle-row" id="s_fps_group">
+            <button class="sim-toggle-btn" onclick="simSetFPS(24,this)">24fps</button>
+            <button class="sim-toggle-btn" onclick="simSetFPS(25,this)">25fps</button>
+            <button class="sim-toggle-btn active" onclick="simSetFPS(30,this)">30fps</button>
+            <button class="sim-toggle-btn" onclick="simSetFPS(50,this)">50fps</button>
+            <button class="sim-toggle-btn" onclick="simSetFPS(60,this)">60fps</button>
+            <button class="sim-toggle-btn" onclick="simSetFPS(120,this)">120fps</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px">
+          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Profundidad de color</div>
+          <div class="sim-toggle-row" id="s_bit_group">
+            <button class="sim-toggle-btn" onclick="simSetBit(8,this)">8 bit</button>
+            <button class="sim-toggle-btn active" onclick="simSetBit(10,this)">10 bit</button>
+            <button class="sim-toggle-btn" onclick="simSetBit(12,this)">12 bit</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px">
+          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Muestreo de color</div>
+          <div class="sim-toggle-row" id="s_chroma_group">
+            <button class="sim-toggle-btn" onclick="simSetChroma('4:2:0',this)">4:2:0</button>
+            <button class="sim-toggle-btn active" onclick="simSetChroma('4:2:2',this)">4:2:2</button>
+            <button class="sim-toggle-btn" onclick="simSetChroma('4:4:4',this)">4:4:4</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px">
+          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Codec</div>
+          <select id="s_codec" onchange="simUpdate()" style="width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:'Poppins',sans-serif;font-size:12px;color:var(--text);background:var(--bg)">
+            <optgroup label="Broadcast / Edición">
+              <option value="prores422">Apple ProRes 422</option>
+              <option value="prores444">Apple ProRes 4444</option>
+              <option value="dnxhd">Avid DNxHD</option>
+              <option value="rawhd">RAW sin comprimir</option>
+            </optgroup>
+            <optgroup label="Producción">
+              <option value="h264" selected>H.264 / AVC</option>
+              <option value="h265">H.265 / HEVC</option>
+              <option value="av1">AV1</option>
+            </optgroup>
+            <optgroup label="Streaming / Web">
+              <option value="vp9">VP9</option>
+              <option value="webm">WebM (VP8)</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div style="border-top:1px solid var(--border);margin:14px 0 14px"></div>
+
+        <div style="margin-bottom:14px">
+          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Duración del clip</div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <input type="range" id="s_dur" min="1" max="120" value="10" oninput="simUpdate()" style="flex:1;height:4px;-webkit-appearance:none;appearance:none;background:var(--border);border-radius:4px;outline:none">
+            <span id="s_dur_val" style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--accent);min-width:55px;text-align:right">10 min</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Resultados -->
+      <div class="sim-results-stack">
+
+        <!-- Visualizador -->
+        <div class="panel">
+          <div class="panel-title">🖥️ Vista de resolución</div>
+          <div class="resolution-viz">
+            <div class="res-outer" id="s_res_outer">
+              <div class="res-scanlines"></div>
+              <div class="res-inner-text" id="s_res_text">1920×1080</div>
+              <div class="res-label-w" id="s_label_w">1920 px</div>
+              <div class="res-label-h" id="s_label_h">1080 px</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <div id="s_quality_pill" class="sim-quality-pill q-st"><span class="dot"></span><span id="s_quality_text">Streaming</span></div>
+            <span style="font-size:11px;color:var(--text2)">Aspect ratio: <strong id="s_ar">16:9</strong></span>
+            <span style="font-size:11px;color:var(--text2)">Megapíxeles: <strong id="s_mp">2.07</strong></span>
+          </div>
+        </div>
+
+        <!-- Métricas -->
+        <div class="panel">
+          <div class="panel-title">📊 Métricas calculadas</div>
+          <div class="sim-metrics-grid">
+            <div class="sim-metric blue">
+              <div class="sim-metric-name">Bitrate estimado</div>
+              <div class="sim-metric-value" id="s_bitrate">—<span class="sim-metric-unit">Mbps</span></div>
+              <div class="sim-metric-sub" id="s_bitrate_sub"></div>
+              <div class="bitrate-track"><div class="bitrate-fill" id="s_bitrate_bar" style="width:0%;background:#3B82F6"></div></div>
+            </div>
+            <div class="sim-metric green">
+              <div class="sim-metric-name">Tamaño de archivo</div>
+              <div class="sim-metric-value" id="s_size">—</div>
+              <div class="sim-metric-sub" id="s_size_sub"></div>
+            </div>
+            <div class="sim-metric orange">
+              <div class="sim-metric-name">Datos por frame</div>
+              <div class="sim-metric-value" id="s_frame">—<span class="sim-metric-unit">KB</span></div>
+              <div class="sim-metric-sub" id="s_frame_sub"></div>
+            </div>
+            <div class="sim-metric red">
+              <div class="sim-metric-name">Ancho de banda</div>
+              <div class="sim-metric-value" id="s_bw">—<span class="sim-metric-unit">Mbps</span></div>
+              <div class="sim-metric-sub">para streaming</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Codec info -->
+        <div class="panel">
+          <div class="panel-title">🧩 Información del codec</div>
+          <div class="codec-info-card" id="s_codec_card"></div>
+        </div>
+
+        <!-- Flujo señal -->
+        <div class="panel">
+          <div class="panel-title">🔗 Flujo de la señal</div>
+          <div class="sig-path" id="s_sig_path"></div>
+          <div id="s_warns"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- ═══ MÓDULO 4 — CONECTORES & CODECS ═══ -->
@@ -2929,6 +3163,108 @@ calcDOF();
 calcProjection();
 calcLED();
 drawARVisual(1920, 1080);
+
+// ═══ SIMULADOR DE SEÑAL ═══
+const SIM_CODECS = {
+  rawhd:    { name:'RAW sin comprimir', type:'Sin compresión', desc:'Sin ninguna compresión. Máxima calidad, tamaño gigantesco. Solo viable con almacenamiento NVMe o RAID de alta velocidad.', ratio:1, lossy:false, hdr:true, containers:'DPX / EXR / TIFF' },
+  prores422:{ name:'Apple ProRes 422', type:'Intraframe', desc:'Codec de edición profesional de Apple. Compresión solo dentro de cada frame. Edición rápida y scrubbing fluido. Estándar en producción televisiva.', ratio:0.12, lossy:false, hdr:true, containers:'MOV' },
+  prores444:{ name:'Apple ProRes 4444', type:'Intraframe', desc:'Variante ProRes con 4:4:4 y canal alfa. Máxima fidelidad cromática para composición y efectos visuales.', ratio:0.18, lossy:false, hdr:true, containers:'MOV' },
+  dnxhd:    { name:'Avid DNxHD/DNxHR', type:'Intraframe', desc:'Equivalente Avid al ProRes. Diseñado para flujos Avid Media Composer. DNxHR para resoluciones mayores de 1080p.', ratio:0.10, lossy:false, hdr:false, containers:'MXF / MOV' },
+  h264:     { name:'H.264 / AVC', type:'Interframe', desc:'El codec más extendido. Compresión entre frames logrando ratios muy altos. Excelente compatibilidad universal. Limitado en HDR.', ratio:0.005, lossy:true, hdr:false, containers:'MP4 / MKV / MOV' },
+  h265:     { name:'H.265 / HEVC', type:'Interframe', desc:'Doble eficiencia que H.264. Mismo bitrate = doble de calidad. Soporte HDR nativo. Estándar para 4K streaming.', ratio:0.003, lossy:true, hdr:true, containers:'MP4 / MKV' },
+  av1:      { name:'AV1', type:'Interframe', desc:'Codec libre de patentes de AOMedia. 30% más eficiente que HEVC. Adoptado por YouTube y Netflix. Codificación lenta pero decodificación rápida.', ratio:0.002, lossy:true, hdr:true, containers:'WebM / MP4' },
+  vp9:      { name:'VP9', type:'Interframe', desc:'Codec libre de Google. Principal formato de YouTube durante años. En proceso de sustitución por AV1.', ratio:0.0035, lossy:true, hdr:false, containers:'WebM / MKV' },
+  webm:     { name:'VP8 / WebM', type:'Interframe', desc:'Primera generación Google. Menor complejidad que VP9. Compatibilidad web universal pero eficiencia inferior.', ratio:0.006, lossy:true, hdr:false, containers:'WebM' },
+};
+let simFPS = 30, simBit = 10, simChroma = '4:2:2';
+
+function simSetFPS(v,btn) { simFPS=v; document.querySelectorAll('#s_fps_group .sim-toggle-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); simUpdate(); }
+function simSetBit(v,btn) { simBit=v; document.querySelectorAll('#s_bit_group .sim-toggle-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); simUpdate(); }
+function simSetChroma(v,btn) { simChroma=v; document.querySelectorAll('#s_chroma_group .sim-toggle-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); simUpdate(); }
+
+function simGCF(a,b){return b===0?a:simGCF(b,a%b);}
+function simAR(w,h){const d=simGCF(w,h),rw=w/d,rh=h/d;if(rw===16&&rh===9)return'16:9';if(rw===4&&rh===3)return'4:3';return rw+':'+rh;}
+
+function simUpdate() {
+  const [W,H] = document.getElementById('s_res').value.split(',').map(Number);
+  const codecKey = document.getElementById('s_codec').value;
+  const dur = Number(document.getElementById('s_dur').value);
+  const codec = SIM_CODECS[codecKey];
+  document.getElementById('s_dur_val').textContent = dur + ' min';
+
+  const chromaF = simChroma==='4:4:4'?3:simChroma==='4:2:2'?2:1.5;
+  const rawMbps = W*H*simFPS*simBit*chromaF/1e6;
+  let finalMbps = rawMbps * codec.ratio * 1.0;
+  if(finalMbps < 0.5) finalMbps = 0.5;
+
+  const sizeMB = (finalMbps * dur * 60) / 8;
+  const sizeGB = sizeMB / 1024;
+  const frameKB = (finalMbps * 1000) / (simFPS * 8);
+
+  // Resolution viz
+  const scale = Math.min(200/W, 130/H);
+  const vw = Math.round(W*scale), vh = Math.round(H*scale);
+  const outer = document.getElementById('s_res_outer');
+  outer.style.width=vw+'px'; outer.style.height=vh+'px';
+  outer.style.borderColor = finalMbps>100?'#ef4444':finalMbps>40?'#f59e0b':finalMbps>8?'#3B82F6':'#10b981';
+  document.getElementById('s_res_text').textContent = W+'×'+H+'\n'+simFPS+'fps';
+  document.getElementById('s_label_w').textContent = W+' px';
+  document.getElementById('s_label_h').textContent = H+' px';
+  document.getElementById('s_ar').textContent = simAR(W,H);
+  document.getElementById('s_mp').textContent = (W*H/1e6).toFixed(2);
+
+  // Quality pill
+  let qc,qt;
+  if(codec.ratio<0.005){qc='q-pro';qt='Profesional';}
+  else if(finalMbps>40){qc='q-bc';qt='Broadcast';}
+  else if(finalMbps>8){qc='q-st';qt='Streaming';}
+  else{qc='q-web';qt='Web / Móvil';}
+  document.getElementById('s_quality_pill').className='sim-quality-pill '+qc;
+  document.getElementById('s_quality_text').textContent=qt;
+
+  // Metrics
+  document.getElementById('s_bitrate').innerHTML = finalMbps>=1000?(finalMbps/1000).toFixed(2)+'<span class="sim-metric-unit"> Gbps</span>':finalMbps.toFixed(1)+'<span class="sim-metric-unit"> Mbps</span>';
+  document.getElementById('s_bitrate_sub').textContent = 'RAW: '+rawMbps.toFixed(0)+' Mbps';
+  document.getElementById('s_size').innerHTML = sizeGB>=1?sizeGB.toFixed(2)+'<span class="sim-metric-unit"> GB</span>':sizeMB.toFixed(0)+'<span class="sim-metric-unit"> MB</span>';
+  document.getElementById('s_size_sub').textContent = dur+' min de metraje';
+  document.getElementById('s_frame').innerHTML = frameKB.toFixed(1)+'<span class="sim-metric-unit"> KB</span>';
+  document.getElementById('s_frame_sub').textContent = W+'×'+H+' @ '+simFPS+'fps';
+  document.getElementById('s_bw').innerHTML = (finalMbps*1.15).toFixed(1)+'<span class="sim-metric-unit"> Mbps</span>';
+
+  // Bitrate bar
+  const pct = Math.min((Math.log10(finalMbps+1)/Math.log10(401))*100,100);
+  const bar = document.getElementById('s_bitrate_bar');
+  bar.style.width=pct+'%';
+  bar.style.background=finalMbps>100?'#ef4444':finalMbps>40?'#f59e0b':finalMbps>8?'#3B82F6':'#10b981';
+
+  // Codec card
+  document.getElementById('s_codec_card').innerHTML = `
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+      <strong style="font-size:14px;color:var(--navy)">${codec.name}</strong>
+      <span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;background:rgba(59,130,246,.12);color:#3B82F6">${codec.type}</span>
+      <span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;${codec.lossy?'background:rgba(239,68,68,.12);color:#ef4444':'background:rgba(16,185,129,.12);color:#10b981'}">${codec.lossy?'Con pérdidas':'Sin pérdidas'}</span>
+    </div>
+    <p style="font-size:11px;line-height:1.6;color:var(--text2);margin-bottom:10px">${codec.desc}</p>
+    <div class="codec-props-row">
+      <div class="codec-prop-chip"><div class="codec-prop-chip-label">Contenedores</div><div class="codec-prop-chip-val">${codec.containers}</div></div>
+      <div class="codec-prop-chip"><div class="codec-prop-chip-label">HDR</div><div class="codec-prop-chip-val">${codec.hdr?'✅ Sí':'❌ No'}</div></div>
+      <div class="codec-prop-chip"><div class="codec-prop-chip-label">Muestreo</div><div class="codec-prop-chip-val">${simChroma}</div></div>
+      <div class="codec-prop-chip"><div class="codec-prop-chip-label">Color</div><div class="codec-prop-chip-val">${simBit} bit</div></div>
+    </div>
+  `;
+
+  // Signal path
+  const steps = ['Fuente',codec.containers.split('/')[0].trim(),codec.name.split('/')[0].trim(),W+'×'+H,simFPS+'fps',simBit+' bit',simChroma,finalMbps.toFixed(1)+' Mbps'];
+  document.getElementById('s_sig_path').innerHTML = steps.map((s,i)=>`${i>0?'<span class="sig-arr">→</span>':''}<div class="sig-node active">${s}</div>`).join('');
+
+  // Warns
+  const warns=[];
+  if(finalMbps>200) warns.push('⚠️ Bitrate muy alto. Requiere almacenamiento NVMe o RAID.');
+  if(simFPS===120&&W>=3840) warns.push('⚠️ 4K a 120fps es extremadamente exigente para el hardware.');
+  if(!codec.hdr&&simBit>=10) warns.push('ℹ️ El codec no soporta HDR aunque la profundidad de color sea alta.');
+  document.getElementById('s_warns').innerHTML = warns.map(w=>`<div class="sim-warn">${w}</div>`).join('');
+}
+simUpdate();
 </script>
 <style id="avl-nav-style">
   #avl-nav {
