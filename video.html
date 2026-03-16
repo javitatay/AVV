@@ -108,7 +108,8 @@ body {
 .nav-tab.active .nav-num { background: var(--yellow); color: var(--navy); }
 
 /* ── MAIN ── */
-.main { padding: 32px; max-width: 1380px; margin: 0 auto; }
+.main { padding: 32px 32px 100px; max-width: 1380px; margin: 0 auto; }
+  html { scroll-padding-top: 110px; }
 .module { display: none; }
 .module.active { display: block; }
 
@@ -517,6 +518,7 @@ canvas { border-radius: 8px; }
 .sig-node.active { background:var(--accent); border-color:var(--accent); color:#fff; }
 .sig-arr { color:var(--text3); font-size:12px; }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -1100,6 +1102,7 @@ canvas { border-radius: 8px; }
     <div class="inner-tab" data-inner="i_gamma">Gamma &amp; HDR</div>
     <div class="inner-tab" data-inner="i_alpha">Canal Alpha</div>
     <div class="inner-tab" data-inner="i_simulador">📡 Simulador de Señal</div>
+    <div class="inner-tab" data-inner="i_compat">🗂 Compatibilidad</div>
   </div>
 
   <div class="inner-pane active" id="i_scan">
@@ -1396,6 +1399,189 @@ canvas { border-radius: 8px; }
       </div>
     </div>
   </div>
+
+  <!-- ── PESTAÑA: COMPATIBILIDAD ─────────────────────────── -->
+  <div class="inner-pane" id="i_compat">
+    <div style="margin-bottom:18px;">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:6px;">Códec ↔ Contenedor</h3>
+      <p style="font-size:12px;color:var(--text-2);line-height:1.6;">Cada contenedor (formato de archivo) puede alojar distintos códecs. Esta tabla muestra qué combinaciones son posibles, cuáles son las más comunes en producción y para qué uso están pensadas.</p>
+    </div>
+
+    <!-- Leyenda -->
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:18px;font-size:11px;">
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:#4A7A6A;display:inline-block;"></span> Compatible y habitual</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:#6B9A6B;opacity:.4;display:inline-block;"></span> Compatible pero raro</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:#E2DED6;display:inline-block;border:1px solid #ccc;"></span> Incompatible</span>
+    </div>
+
+    <!-- Tabla principal -->
+    <div style="overflow-x:auto;">
+      <table id="compatTable" style="width:100%;border-collapse:collapse;font-size:11.5px;">
+        <thead>
+          <tr>
+            <th style="text-align:left;padding:10px 12px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;font-size:10px;letter-spacing:.8px;text-transform:uppercase;min-width:120px;position:sticky;left:0;z-index:2;">Códec</th>
+            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.mp4</th>
+            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.mov</th>
+            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.mxf</th>
+            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.avi</th>
+            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.mkv</th>
+            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.webm</th>
+            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.ts</th>
+            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;min-width:160px;">Uso principal</th>
+          </tr>
+        </thead>
+        <tbody id="compatBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Ficha de detalle -->
+    <div id="compatDetail" style="display:none;margin-top:20px;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:18px 20px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <span id="detailTitle" style="font-size:14px;font-weight:700;"></span>
+        <button onclick="document.getElementById('compatDetail').style.display='none'" style="background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:10px;cursor:pointer;">✕ cerrar</button>
+      </div>
+      <div id="detailBody" style="font-size:12px;color:var(--text-2);line-height:1.7;display:grid;grid-template-columns:1fr 1fr;gap:12px;"></div>
+    </div>
+
+    <!-- Nota -->
+    <div style="margin-top:20px;padding:12px 16px;background:var(--accent-lt);border-radius:10px;border-left:3px solid var(--accent);font-size:11px;color:var(--text-2);line-height:1.6;">
+      <strong style="color:var(--accent);">💡 Recuerda:</strong> El contenedor define el "sobre" y el códec define cómo está comprimida la imagen dentro. Un mismo archivo .mp4 puede contener H.264, H.265 o incluso ProRes (en macOS). Haz clic en cualquier fila para ver más detalles del códec.
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    const CODECS = [
+      {
+        name: 'H.264 (AVC)',
+        mp4:'✦', mov:'✦', mxf:'○', avi:'○', mkv:'✦', webm:'—', ts:'✦',
+        uso: 'Distribución web, streaming, redes sociales',
+        desc: 'El códec más extendido del mundo. Excelente relación calidad/peso. Estándar en cámaras de consumo y semiprofesionales.',
+        compresion: 'Alta (lossy)', bitrate: '2–50 Mbps', edicion: 'Media — genera calor en CPU', hdr: 'No nativo',
+        color: ['#4A7A6A','#4A7A6A','#6B9A6B','#6B9A6B','#4A7A6A',null,'#4A7A6A']
+      },
+      {
+        name: 'H.265 (HEVC)',
+        mp4:'✦', mov:'✦', mxf:'—', avi:'—', mkv:'✦', webm:'—', ts:'✦',
+        uso: '4K streaming, dispositivos móviles, entrega',
+        desc: 'Sucesor de H.264 con el doble de eficiencia. Mismo aspecto a la mitad del peso. Requiere hardware compatible para decodificar.',
+        compresion: 'Muy alta (lossy)', bitrate: '4–80 Mbps', edicion: 'Baja — muy exigente en CPU/GPU', hdr: 'HDR10, Dolby Vision',
+        color: ['#4A7A6A','#4A7A6A',null,null,'#4A7A6A',null,'#4A7A6A']
+      },
+      {
+        name: 'AV1',
+        mp4:'✦', mov:'—', mxf:'—', avi:'—', mkv:'✦', webm:'✦', ts:'—',
+        uso: 'Streaming eficiente (YouTube, Netflix), web',
+        desc: 'Códec abierto de nueva generación. Supera a H.265 en eficiencia. Decodificación por hardware aún limitada, pero creciente.',
+        compresion: 'Muy alta (lossy)', bitrate: '2–60 Mbps', edicion: 'Muy baja — codificación lentísima', hdr: 'HDR10, HLG',
+        color: ['#4A7A6A',null,null,null,'#4A7A6A','#4A7A6A',null]
+      },
+      {
+        name: 'VP9',
+        mp4:'○', mov:'—', mxf:'—', avi:'—', mkv:'✦', webm:'✦', ts:'—',
+        uso: 'YouTube, navegadores web',
+        desc: 'Desarrollo de Google. Alternativa abierta a H.265. Muy usado en YouTube junto a Opus. Buena calidad sin royalties.',
+        compresion: 'Alta (lossy)', bitrate: '2–50 Mbps', edicion: 'Baja', hdr: 'HDR10',
+        color: ['#6B9A6B',null,null,null,'#4A7A6A','#4A7A6A',null]
+      },
+      {
+        name: 'ProRes 422',
+        mp4:'—', mov:'✦', mxf:'✦', avi:'—', mkv:'○', webm:'—', ts:'—',
+        uso: 'Edición profesional, postproducción',
+        desc: 'Códec de Apple para producción. Muestreo de croma 4:2:2. Poco comprimido, ideal para edición no lineal fluida.',
+        compresion: 'Baja (lossy)', bitrate: '100–220 Mbps', edicion: 'Muy alta — fluida en cualquier NLE', hdr: 'Compatible',
+        color: [null,'#4A7A6A','#4A7A6A',null,'#6B9A6B',null,null]
+      },
+      {
+        name: 'ProRes 4444',
+        mp4:'—', mov:'✦', mxf:'○', avi:'—', mkv:'—', webm:'—', ts:'—',
+        uso: 'Composición, VFX, canal alpha',
+        desc: 'Variante ProRes con canal alpha y croma 4:4:4. Calidad casi RAW. Imprescindible para grafismos con transparencia.',
+        compresion: 'Muy baja (lossy)', bitrate: '330–500 Mbps', edicion: 'Muy alta', hdr: 'Compatible',
+        color: [null,'#4A7A6A','#6B9A6B',null,null,null,null]
+      },
+      {
+        name: 'DNxHD / DNxHR',
+        mp4:'—', mov:'✦', mxf:'✦', avi:'○', mkv:'—', webm:'—', ts:'—',
+        uso: 'Edición profesional (Avid, entornos broadcast)',
+        desc: 'Equivalente de Avid al ProRes. Muy usado en broadcast y televisión. DNxHR amplía el soporte a 4K y HDR.',
+        compresion: 'Baja (lossy)', bitrate: '115–440 Mbps', edicion: 'Muy alta', hdr: 'DNxHR sí',
+        color: [null,'#4A7A6A','#4A7A6A','#6B9A6B',null,null,null]
+      },
+      {
+        name: 'RAW (Cinema DNG / R3D)',
+        mp4:'—', mov:'○', mxf:'○', avi:'—', mkv:'—', webm:'—', ts:'—',
+        uso: 'Cine digital, máxima calidad en cámara',
+        desc: 'Sin compresión de imagen. Datos directos del sensor. Máxima flexibilidad en color grading pero archivos enormes.',
+        compresion: 'Sin compresión / lossless', bitrate: '500 Mbps – varios GB/s', edicion: 'Requiere GPU dedicada', hdr: 'Nativo (full dynamic range)',
+        color: [null,'#6B9A6B','#6B9A6B',null,null,null,null]
+      },
+      {
+        name: 'MPEG-2',
+        mp4:'○', mov:'○', mxf:'✦', avi:'○', mkv:'○', webm:'—', ts:'✦',
+        uso: 'DVD, broadcast tradicional, MPEG-TS',
+        desc: 'Estándar heredado de los años 90. Base del DVD y del broadcast analógico/digital. Aún presente en emisión televisiva.',
+        compresion: 'Media (lossy)', bitrate: '4–80 Mbps', edicion: 'Media', hdr: 'No',
+        color: ['#6B9A6B','#6B9A6B','#4A7A6A','#6B9A6B','#6B9A6B',null,'#4A7A6A']
+      },
+      {
+        name: 'DXV 3',
+        mp4:'—', mov:'—', mxf:'—', avi:'○', mkv:'—', webm:'—', ts:'—',
+        uso: 'VJing en Resolume Arena / Avenue',
+        desc: 'Códec propietario de Resolume optimizado para reproducción en tiempo real desde GPU. Permite múltiples capas a alta resolución sin saturar la CPU. Solo funciona dentro del ecosistema Resolume — no es apto para edición convencional.',
+        compresion: 'Media (lossy)', bitrate: '100–400 Mbps', edicion: 'No apto — exclusivo de Resolume', hdr: 'No',
+        color: [null,null,null,'#6B9A6B',null,null,null]
+      },
+    ];
+
+    const containers = ['mp4','mov','mxf','avi','mkv','webm','ts'];
+    const colKeys   = ['mp4','mov','mxf','avi','mkv','webm','ts'];
+
+    function cellStyle(val, color) {
+      if (!color) return 'background:#F5F4F0;color:#ccc;';
+      const alpha = val === '○' ? '0.35' : '1';
+      return `background:${color};color:white;font-weight:700;opacity:${alpha};`;
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('compatBody');
+      tbody.innerHTML = CODECS.map((c,i) => {
+        const cells = colKeys.map((k,j) => {
+          const val = c[k];
+          const st = !c.color[j] ? 'background:#F5F4F0;color:#C8C3BC;' :
+                     val==='○' ? `background:${c.color[j]};color:white;opacity:.5;` :
+                                 `background:${c.color[j]};color:white;`;
+          return `<td style="padding:10px 8px;border:1px solid var(--border);text-align:center;${st}">${val}</td>`;
+        }).join('');
+        return `<tr style="cursor:pointer;" onclick="showDetail(${i})">
+          <td style="padding:10px 12px;border:1px solid var(--border);font-weight:600;background:var(--surface);position:sticky;left:0;">${c.name}</td>
+          ${cells}
+          <td style="padding:10px 12px;border:1px solid var(--border);font-size:10.5px;color:var(--text-2);">${c.uso}</td>
+        </tr>`;
+      }).join('');
+    }
+
+    window.showDetail = function(i) {
+      const c = CODECS[i];
+      document.getElementById('detailTitle').textContent = c.name;
+      document.getElementById('detailBody').innerHTML = `
+        <div><strong style="color:var(--text-1);display:block;margin-bottom:4px;">Descripción</strong>${c.desc}</div>
+        <div>
+          <strong style="color:var(--text-1);display:block;margin-bottom:4px;">Datos técnicos</strong>
+          <span style="display:block;">🗜 Compresión: ${c.compresion}</span>
+          <span style="display:block;">📊 Bitrate típico: ${c.bitrate}</span>
+          <span style="display:block;">✂️ Rendimiento en edición: ${c.edicion}</span>
+          <span style="display:block;">🌟 Soporte HDR: ${c.hdr}</span>
+        </div>
+      `;
+      document.getElementById('compatDetail').style.display = 'block';
+      document.getElementById('compatDetail').scrollIntoView({behavior:'smooth', block:'nearest'});
+    };
+
+    renderTable();
+  })();
+  </script>
+
 
 </section>
 
@@ -1870,65 +2056,587 @@ canvas { border-radius: 8px; }
       </div>
     </div>
   </div>
-  <div class="grid-3">
-    <div class="info-card">
-      <div class="info-card-title" style="color:var(--accent)">🔀 Matriz (Matrix)</div>
-      <p>Permite enrutar cualquier entrada a cualquier salida de forma flexible. Ej: 8 entradas × 8 salidas. Fundamental en instalaciones AV complejas y salas de control broadcast.</p>
+
+  <!-- Inner tabs -->
+  <div class="inner-tabs">
+    <div class="inner-tab active" data-inner="i_routing_teoria">📖 Teoría</div>
+    <div class="inner-tab" data-inner="i_routing_builder">🔌 Constructor de Diagramas</div>
+  </div>
+
+  <!-- ── PESTAÑA: TEORÍA ──────────────────────────────────────── -->
+  <div class="inner-pane active" id="i_routing_teoria">
+    <div class="grid-3">
+      <div class="info-card">
+        <div class="info-card-title" style="color:var(--accent)">🔀 Matriz (Matrix)</div>
+        <p>Permite enrutar cualquier entrada a cualquier salida de forma flexible. Ej: 8 entradas × 8 salidas. Fundamental en instalaciones AV complejas y salas de control broadcast.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title" style="color:var(--accent3)">📤 Splitter (Distribuidor)</div>
+        <p>Duplica una señal de entrada en múltiples salidas idénticas. Un splitter HDMI 1:4 manda la misma imagen a 4 pantallas simultáneamente. Activo o pasivo.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title" style="color:var(--accent4)">🔄 Conversor</div>
+        <p>Transforma señales entre estándares: HDMI → SDI, SDI → HDMI, analógico → digital. Imprescindible al mezclar equipos de consumer y broadcast.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title" style="color:var(--accent5)">🔀 Switch</div>
+        <p>Permite seleccionar entre múltiples entradas y enviarlas a una o varias salidas. A diferencia de la matriz, suele ser una operación de selección simple (A/B switch).</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title" style="color:var(--purple)">📐 Escalador (Scaler)</div>
+        <p>Cambia la resolución o el formato de una señal: upscale (SD→HD), downscale (4K→HD), conversión de frame rate, cambio de aspect ratio. Muy usado en mezcladores de vídeo.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title" style="color:var(--accent6)">🎛️ Mezcladora de Vídeo</div>
+        <p>Combina múltiples fuentes de vídeo en tiempo real. Permite transiciones, efectos, incrustaciones y keying. Esencial en producción en directo, retransmisiones y eventos.</p>
+      </div>
     </div>
-    <div class="info-card">
-      <div class="info-card-title" style="color:var(--accent3)">📤 Splitter (Distribuidor)</div>
-      <p>Duplica una señal de entrada en múltiples salidas idénticas. Un splitter HDMI 1:4 manda la misma imagen a 4 pantallas simultáneamente. Activo o pasivo.</p>
-    </div>
-    <div class="info-card">
-      <div class="info-card-title" style="color:var(--accent4)">🔄 Conversor</div>
-      <p>Transforma señales entre estándares: HDMI → SDI, SDI → HDMI, analógico → digital. Imprescindible al mezclar equipos de consumer y broadcast.</p>
-    </div>
-    <div class="info-card">
-      <div class="info-card-title" style="color:var(--accent5)">🔀 Switch</div>
-      <p>Permite seleccionar entre múltiples entradas y enviarlas a una o varias salidas. A diferencia de la matriz, suele ser una operación de selección simple (A/B switch).</p>
-    </div>
-    <div class="info-card">
-      <div class="info-card-title" style="color:var(--purple)">📐 Escalador (Scaler)</div>
-      <p>Cambia la resolución o el formato de una señal: upscale (SD→HD), downscale (4K→HD), conversión de frame rate, cambio de aspect ratio. Muy usado en mezcladores de vídeo.</p>
-    </div>
-    <div class="info-card">
-      <div class="info-card-title" style="color:var(--accent6)">🎛️ Mezcladora de Vídeo</div>
-      <p>Combina múltiples fuentes de vídeo en tiempo real. Permite transiciones, efectos, incrustaciones y keying. Esencial en producción en directo, retransmisiones y eventos.</p>
+    <div class="panel section-gap">
+      <div class="panel-title">Flujo Típico de Señal AV en un Evento</div>
+      <div class="diagram-wrap">
+        <div class="diagram-row">
+          <div class="diag-node source">Cámara 1</div>
+          <div class="diag-arrow">→</div>
+          <div class="diag-node source">Cámara 2</div>
+          <div class="diag-arrow">→</div>
+          <div class="diag-node source">PC / Laptop</div>
+          <div class="diag-arrow">→</div>
+          <div class="diag-node source">Reproductor</div>
+        </div>
+        <div class="diagram-row"><div class="diag-arrow" style="padding-left:30px">↓↓↓↓</div></div>
+        <div class="diagram-row">
+          <div class="diag-node process">Mezcladora Vídeo</div>
+          <div class="diag-arrow">→</div>
+          <div class="diag-node process">Escalador/Conversor</div>
+          <div class="diag-arrow">→</div>
+          <div class="diag-node device">Matriz / Splitter</div>
+        </div>
+        <div class="diagram-row"><div class="diag-arrow" style="padding-left:30px">↓</div></div>
+        <div class="diagram-row">
+          <div class="diag-node output">Proyector</div>
+          <div class="diag-arrow">+</div>
+          <div class="diag-node output">Pantalla LED</div>
+          <div class="diag-arrow">+</div>
+          <div class="diag-node output">Stream</div>
+          <div class="diag-arrow">+</div>
+          <div class="diag-node output">Grabación</div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="panel section-gap">
-    <div class="panel-title">Flujo Típico de Señal AV en un Evento</div>
-    <div class="diagram-wrap">
-      <div class="diagram-row">
-        <div class="diag-node source">Cámara 1</div>
-        <div class="diag-arrow">→</div>
-        <div class="diag-node source">Cámara 2</div>
-        <div class="diag-arrow">→</div>
-        <div class="diag-node source">PC / Laptop</div>
-        <div class="diag-arrow">→</div>
-        <div class="diag-node source">Reproductor</div>
+
+  <!-- ── PESTAÑA: CONSTRUCTOR ─────────────────────────────────── -->
+  <div class="inner-pane" id="i_routing_builder">
+
+    <style>
+      #routingApp { display:flex; gap:0; border:1.5px solid var(--border); border-radius:12px; overflow:hidden; background:var(--surface); min-height:560px; }
+
+      /* Palette */
+      #routingPalette { width:170px; flex-shrink:0; background:var(--surface-2); border-right:1.5px solid var(--border); overflow-y:auto; padding:12px 10px; display:flex; flex-direction:column; gap:10px; }
+      .rp-category { font-size:9px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:var(--text-2); padding:0 2px; margin-top:4px; }
+      .rp-item { display:flex; align-items:center; gap:8px; padding:7px 9px; border-radius:8px; cursor:pointer; font-size:11px; font-weight:600; border:1.5px solid transparent; transition:all .15s; background:#fff; }
+      .rp-item:hover { transform:translateX(2px); box-shadow:0 2px 8px rgba(0,0,0,.1); }
+      .rp-icon { font-size:15px; line-height:1; }
+
+      /* Toolbar */
+      #routingToolbar { display:flex; align-items:center; gap:8px; padding:10px 14px; background:var(--surface); border-bottom:1.5px solid var(--border); flex-wrap:wrap; }
+      .rt-btn { padding:5px 12px; border-radius:7px; border:1.5px solid var(--border); background:var(--surface-2); font-size:11px; font-weight:600; cursor:pointer; transition:all .12s; color:var(--text-1); }
+      .rt-btn:hover { background:var(--border); }
+      .rt-btn.danger { border-color:#E07070; color:#C04040; }
+      .rt-btn.danger:hover { background:#FFF0F0; }
+      .rt-btn.primary { border-color:var(--accent); color:var(--accent); }
+      .rt-btn.primary:hover { background:var(--accent-lt); }
+      .rt-hint { font-size:10px; color:var(--text-2); margin-left:auto; }
+
+      /* Canvas area */
+      #routingCanvasWrap { flex:1; display:flex; flex-direction:column; min-width:0; }
+      #routingCanvas { position:relative; flex:1; overflow:hidden; background:
+        radial-gradient(circle, #d0d8e4 1px, transparent 1px);
+        background-size:24px 24px;
+        background-color:#F8F9FB;
+        cursor:default; min-height:480px; }
+      #routingConnSVG { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:visible; }
+      #routingConnSVG .rc { pointer-events:stroke; cursor:pointer; }
+
+      /* Blocks */
+      .rb { position:absolute; border-radius:10px; cursor:move; user-select:none; box-shadow:0 2px 10px rgba(0,0,0,.12); transition:box-shadow .15s; z-index:5; }
+      .rb:hover { box-shadow:0 4px 18px rgba(0,0,0,.18); }
+      .rb.rb-selected { box-shadow:0 0 0 3px var(--accent), 0 4px 18px rgba(0,0,0,.18); z-index:10; }
+      .rb-head { padding:7px 9px 6px; border-radius:8px 8px 0 0; display:flex; align-items:center; gap:6px; }
+      .rb-label { font-size:10.5px; font-weight:700; color:#fff; flex:1; }
+      .rb-port { position:absolute; border-radius:50%; z-index:12; transition:transform .1s, background .1s; }
+      .rb-port:hover { transform:scale(1.4); }
+      .rb-port-in { background:#fff; }
+      .rb-port-out { background:#4A7A6A; }
+      .rb-port.pending-target { background:#FFD700 !important; }
+      .rb-port-label { position:absolute; font-size:8px; color:var(--text-2); white-space:nowrap; pointer-events:none; }
+
+      /* Selected conn highlight */
+      .rc-selected { stroke:#E07030 !important; stroke-width:3px !important; }
+
+      /* Empty state */
+      #routingEmpty { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none; opacity:.5; gap:8px; }
+      #routingEmpty .re-icon { font-size:40px; }
+      #routingEmpty .re-text { font-size:12px; color:var(--text-2); text-align:center; line-height:1.5; }
+
+      /* Delete hint */
+      #routingDeleteHint { position:absolute; bottom:10px; right:12px; font-size:10px; color:var(--text-2); background:rgba(255,255,255,.85); padding:4px 10px; border-radius:20px; pointer-events:none; opacity:0; transition:opacity .2s; }
+      #routingDeleteHint.visible { opacity:1; }
+    </style>
+
+    <div id="routingApp">
+      <!-- Palette -->
+      <div id="routingPalette">
+        <div class="rp-category">Fuentes</div>
+        <div class="rp-item" data-rtype="camara" style="border-color:#6B9A6B;" onclick="RB.add('camara')"><span class="rp-icon">📷</span>Cámara</div>
+        <div class="rp-item" data-rtype="pc" style="border-color:#6B9A6B;" onclick="RB.add('pc')"><span class="rp-icon">💻</span>PC / Laptop</div>
+        <div class="rp-item" data-rtype="reprod" style="border-color:#6B9A6B;" onclick="RB.add('reprod')"><span class="rp-icon">📀</span>Reproductor</div>
+        <div class="rp-item" data-rtype="sdiIn" style="border-color:#6B9A6B;" onclick="RB.add('sdiIn')"><span class="rp-icon">🎥</span>Cámara SDI</div>
+
+        <div class="rp-category">Routing</div>
+        <div class="rp-item" data-rtype="m44" style="border-color:#4A7A6A;" onclick="RB.add('m44')"><span class="rp-icon">🔀</span>Matriz 4×4</div>
+        <div class="rp-item" data-rtype="m88" style="border-color:#4A7A6A;" onclick="RB.add('m88')"><span class="rp-icon">🔀</span>Matriz 8×8</div>
+        <div class="rp-item" data-rtype="sp12" style="border-color:#4A7A6A;" onclick="RB.add('sp12')"><span class="rp-icon">📤</span>Splitter 1:2</div>
+        <div class="rp-item" data-rtype="sp14" style="border-color:#4A7A6A;" onclick="RB.add('sp14')"><span class="rp-icon">📤</span>Splitter 1:4</div>
+        <div class="rp-item" data-rtype="sw" style="border-color:#4A7A6A;" onclick="RB.add('sw')"><span class="rp-icon">🔃</span>Switch A/B</div>
+
+        <div class="rp-category">Proceso</div>
+        <div class="rp-item" data-rtype="mezcl" style="border-color:#A06B4A;" onclick="RB.add('mezcl')"><span class="rp-icon">🎛️</span>Mezcladora</div>
+        <div class="rp-item" data-rtype="scaler" style="border-color:#A06B4A;" onclick="RB.add('scaler')"><span class="rp-icon">📐</span>Escalador</div>
+        <div class="rp-item" data-rtype="cvhs" style="border-color:#A06B4A;" onclick="RB.add('cvhs')"><span class="rp-icon">🔄</span>Conv. HDMI→SDI</div>
+        <div class="rp-item" data-rtype="cvsh" style="border-color:#A06B4A;" onclick="RB.add('cvsh')"><span class="rp-icon">🔄</span>Conv. SDI→HDMI</div>
+
+        <div class="rp-category">Salidas</div>
+        <div class="rp-item" data-rtype="proy" style="border-color:#6B7FA3;" onclick="RB.add('proy')"><span class="rp-icon">📽️</span>Proyector</div>
+        <div class="rp-item" data-rtype="led" style="border-color:#6B7FA3;" onclick="RB.add('led')"><span class="rp-icon">🖥️</span>Pantalla LED</div>
+        <div class="rp-item" data-rtype="monitor" style="border-color:#6B7FA3;" onclick="RB.add('monitor')"><span class="rp-icon">🖥️</span>Monitor</div>
+        <div class="rp-item" data-rtype="stream" style="border-color:#6B7FA3;" onclick="RB.add('stream')"><span class="rp-icon">📡</span>Stream</div>
+        <div class="rp-item" data-rtype="grab" style="border-color:#6B7FA3;" onclick="RB.add('grab')"><span class="rp-icon">⏺️</span>Grabación</div>
       </div>
-      <div class="diagram-row"><div class="diag-arrow" style="padding-left:30px">↓↓↓↓</div></div>
-      <div class="diagram-row">
-        <div class="diag-node process">Mezcladora Vídeo</div>
-        <div class="diag-arrow">→</div>
-        <div class="diag-node process">Escalador/Conversor</div>
-        <div class="diag-arrow">→</div>
-        <div class="diag-node device">Matriz / Splitter</div>
-      </div>
-      <div class="diagram-row"><div class="diag-arrow" style="padding-left:30px">↓</div></div>
-      <div class="diagram-row">
-        <div class="diag-node output">Proyector</div>
-        <div class="diag-arrow">+</div>
-        <div class="diag-node output">Pantalla LED</div>
-        <div class="diag-arrow">+</div>
-        <div class="diag-node output">Stream</div>
-        <div class="diag-arrow">+</div>
-        <div class="diag-node output">Grabación</div>
+
+      <!-- Right: toolbar + canvas -->
+      <div id="routingCanvasWrap">
+        <div id="routingToolbar">
+          <button class="rt-btn primary" onclick="RB.exportJSON()">💾 Guardar</button>
+          <button class="rt-btn" onclick="RB.importJSON()">📂 Cargar</button>
+          <button class="rt-btn" id="rtBtnDelete" onclick="RB.deleteSelected()" style="display:none;">🗑 Borrar seleccionado</button>
+          <button class="rt-btn" id="rtBtnRename" onclick="RB.renameSelected()" style="display:none;">✏️ Renombrar</button>
+          <button class="rt-btn danger" onclick="RB.clearAll()">✕ Limpiar todo</button>
+          <span class="rt-hint">Haz clic en un elemento para seleccionarlo · Conecta los puertos · Supr para borrar</span>
+        </div>
+        <div id="routingCanvas">
+          <svg id="routingConnSVG" xmlns="http://www.w3.org/2000/svg"></svg>
+          <div id="routingEmpty">
+            <div class="re-icon">🔀</div>
+            <div class="re-text">Haz clic en cualquier elemento<br>de la paleta para añadirlo al lienzo</div>
+          </div>
+          <div id="routingDeleteHint">Supr / Delete — eliminar</div>
+        </div>
       </div>
     </div>
+
+    <script>
+    (function() {
+      const DEFS = {
+        camara: { label:'Cámara',         cat:'source',  icon:'📷', ins:0, outs:1 },
+        pc:     { label:'PC / Laptop',    cat:'source',  icon:'💻', ins:0, outs:1 },
+        reprod: { label:'Reproductor',    cat:'source',  icon:'📀', ins:0, outs:1 },
+        sdiIn:  { label:'Cámara SDI',     cat:'source',  icon:'🎥', ins:0, outs:1 },
+        m44:    { label:'Matriz 4×4',     cat:'routing', icon:'🔀', ins:4, outs:4 },
+        m88:    { label:'Matriz 8×8',     cat:'routing', icon:'🔀', ins:8, outs:8 },
+        sp12:   { label:'Splitter 1:2',   cat:'routing', icon:'📤', ins:1, outs:2 },
+        sp14:   { label:'Splitter 1:4',   cat:'routing', icon:'📤', ins:1, outs:4 },
+        sw:     { label:'Switch A/B',     cat:'routing', icon:'🔃', ins:2, outs:1 },
+        mezcl:  { label:'Mezcladora',     cat:'process', icon:'🎛️', ins:4, outs:2 },
+        scaler: { label:'Escalador',      cat:'process', icon:'📐', ins:1, outs:1 },
+        cvhs:   { label:'Conv. HDMI→SDI', cat:'process', icon:'🔄', ins:1, outs:1 },
+        cvsh:   { label:'Conv. SDI→HDMI', cat:'process', icon:'🔄', ins:1, outs:1 },
+        proy:   { label:'Proyector',      cat:'output',  icon:'📽️', ins:1, outs:0 },
+        led:    { label:'Pantalla LED',   cat:'output',  icon:'🖥️', ins:1, outs:0 },
+        monitor:{ label:'Monitor',        cat:'output',  icon:'🖥️', ins:1, outs:0 },
+        stream: { label:'Stream',         cat:'output',  icon:'📡', ins:1, outs:0 },
+        grab:   { label:'Grabación',      cat:'output',  icon:'⏺️', ins:1, outs:0 },
+      };
+
+      const CAT_COLOR = { source:'#6B9A6B', routing:'#4A7A6A', process:'#A06B4A', output:'#6B7FA3' };
+      const BLOCK_W = 148;
+      const PORT_R  = 6;
+      const PORT_SP = 24;
+      const HEAD_H  = 38;
+      const PAD_B   = 14;
+
+      let blocks = [], conns = [], selId = null, pending = null, drag = null, mouse = {x:0,y:0}, uid = 0;
+      let canvas, svg, pendingPath;
+
+      function bh(b) { return HEAD_H + Math.max(b.ins, b.outs, 1) * PORT_SP + PAD_B; }
+      function pY(h, count, i) {
+        const top = HEAD_H, zone = h - HEAD_H - PAD_B;
+        return top + zone / Math.max(count,1) * (i + 0.5);
+      }
+      function portPos(b, side, i) {
+        const h = bh(b);
+        const x = side === 'out' ? b.x + BLOCK_W : b.x;
+        const y = b.y + pY(h, side === 'out' ? b.outs : b.ins, i);
+        return {x, y};
+      }
+
+      function init() {
+        canvas = document.getElementById('routingCanvas');
+        svg    = document.getElementById('routingConnSVG');
+        if (!canvas || canvas._rbInit) return;
+        canvas._rbInit = true;
+
+        canvas.addEventListener('mousemove', onMove);
+        canvas.addEventListener('mouseup', () => { drag = null; });
+        canvas.addEventListener('click', e => {
+          if (e.target === canvas || e.target === svg) { sel(null); cancelPending(); }
+        });
+        document.addEventListener('keydown', onKey);
+        render();
+      }
+
+      function add(type) {
+        init();
+        const d = DEFS[type]; if (!d) return;
+        const b = { id:'b'+(++uid), type, ...d, label:d.label,
+          x: 30 + Math.floor(Math.random()*220),
+          y: 30 + Math.floor(Math.random()*180) };
+        blocks.push(b);
+        renderBlock(b);
+        renderConns();
+        updateEmpty();
+      }
+
+      function renderBlock(b) {
+        let el = document.getElementById('rb_'+b.id);
+        const h = bh(b);
+        const col = CAT_COLOR[b.cat];
+        if (!el) {
+          el = document.createElement('div');
+          el.className = 'rb';
+          el.id = 'rb_'+b.id;
+          el.dataset.bid = b.id;
+          el.style.width = BLOCK_W+'px';
+
+          // Head
+          const head = document.createElement('div');
+          head.className = 'rb-head';
+          head.innerHTML = `<span style="font-size:16px">${b.icon}</span><span class="rb-label">${b.label}</span>`;
+          el.appendChild(head);
+
+          // Drag
+          el.addEventListener('mousedown', e => {
+            if (e.target.classList.contains('rb-port')) return;
+            e.stopPropagation();
+            sel(b.id);
+            const r = canvas.getBoundingClientRect();
+            drag = { id:b.id, ox: e.clientX - r.left - b.x, oy: e.clientY - r.top - b.y };
+          });
+
+          // Rename on dblclick
+          head.addEventListener('dblclick', e => {
+            e.stopPropagation();
+            const v = prompt('Nombre:', b.label);
+            if (v && v.trim()) { b.label = v.trim(); head.querySelector('.rb-label').textContent = b.label; }
+          });
+
+          canvas.appendChild(el);
+        }
+
+        const head = el.querySelector('.rb-head');
+        head.style.background = col;
+        el.style.border = `2px solid ${col}`;
+        el.style.borderRadius = '10px';
+        el.style.height = h+'px';
+        el.style.left = b.x+'px';
+        el.style.top  = b.y+'px';
+        el.classList.toggle('rb-selected', selId === b.id);
+
+        // Ports
+        el.querySelectorAll('.rb-port').forEach(p => p.remove());
+
+        for (let i = 0; i < b.ins; i++) {
+          const py = pY(h, b.ins, i);
+          const port = makePort(b, 'in', i, py, col);
+          el.appendChild(port);
+        }
+        for (let i = 0; i < b.outs; i++) {
+          const py = pY(h, b.outs, i);
+          const port = makePort(b, 'out', i, py, col);
+          el.appendChild(port);
+        }
+      }
+
+      function makePort(b, side, i, py, col) {
+        const port = document.createElement('div');
+        port.className = 'rb-port rb-port-'+side;
+        port.style.cssText = `width:${PORT_R*2}px;height:${PORT_R*2}px;top:${py-PORT_R}px;` +
+          (side==='in'
+            ? `left:${-PORT_R-1}px;background:#fff;border:2px solid ${col};`
+            : `right:${-PORT_R-1}px;background:${col};border:2px solid #fff;`);
+        port.title = side === 'in' ? `Entrada ${i+1}` : `Salida ${i+1}`;
+
+        port.addEventListener('mousedown', e => {
+          e.stopPropagation();
+          if (side === 'out') {
+            startPending(b.id, i);
+          } else if (pending) {
+            finishPending(b.id, i);
+          }
+        });
+
+        // Highlight on pending
+        port._side = side;
+        port._blockId = b.id;
+        port._portIdx = i;
+        return port;
+      }
+
+      function startPending(blockId, portIdx) {
+        pending = { blockId, portIdx };
+        if (!pendingPath) {
+          pendingPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+          pendingPath.setAttribute('stroke','#4A7A6A');
+          pendingPath.setAttribute('stroke-width','2');
+          pendingPath.setAttribute('stroke-dasharray','7 3');
+          pendingPath.setAttribute('fill','none');
+          pendingPath.setAttribute('opacity','0.8');
+          svg.appendChild(pendingPath);
+        }
+        // Highlight all input ports as targets
+        canvas.querySelectorAll('.rb-port-in').forEach(p => {
+          if (p._blockId !== blockId) p.classList.add('pending-target');
+        });
+        updatePendingPath();
+      }
+
+      function finishPending(blockId, portIdx) {
+        if (!pending || pending.blockId === blockId) { cancelPending(); return; }
+        const dup = conns.find(c =>
+          c.fb === pending.blockId && c.fp === pending.portIdx &&
+          c.tb === blockId && c.tp === portIdx
+        );
+        if (!dup) {
+          conns.push({ id:'c'+(++uid), fb:pending.blockId, fp:pending.portIdx, tb:blockId, tp:portIdx });
+        }
+        cancelPending();
+        renderConns();
+      }
+
+      function cancelPending() {
+        pending = null;
+        if (pendingPath) { pendingPath.remove(); pendingPath = null; }
+        canvas.querySelectorAll('.rb-port-in').forEach(p => p.classList.remove('pending-target'));
+      }
+
+      function updatePendingPath() {
+        if (!pending || !pendingPath) return;
+        const b = blocks.find(b => b.id === pending.blockId); if (!b) return;
+        const p = portPos(b, 'out', pending.portIdx);
+        const tx = mouse.x, ty = mouse.y;
+        const dx = Math.max(40, Math.abs(tx-p.x)*0.5);
+        pendingPath.setAttribute('d', `M${p.x},${p.y} C${p.x+dx},${p.y} ${tx-dx},${ty} ${tx},${ty}`);
+      }
+
+      function renderConns() {
+        svg.querySelectorAll('.rc').forEach(e => e.remove());
+        conns.forEach(c => {
+          const from = blocks.find(b => b.id === c.fb);
+          const to   = blocks.find(b => b.id === c.tb);
+          if (!from || !to) return;
+          const fp = portPos(from, 'out', c.fp);
+          const tp = portPos(to,   'in',  c.tp);
+          const dx = Math.max(40, Math.abs(tp.x-fp.x)*0.5);
+          const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+          path.setAttribute('d', `M${fp.x},${fp.y} C${fp.x+dx},${fp.y} ${tp.x-dx},${tp.y} ${tp.x},${tp.y}`);
+          const isSel = selId === c.id;
+          path.setAttribute('stroke', isSel ? '#E07030' : '#6B7FA3');
+          path.setAttribute('stroke-width', isSel ? '3' : '2');
+          path.setAttribute('fill','none');
+          path.setAttribute('opacity', isSel ? '1' : '0.7');
+          path.setAttribute('class','rc');
+          path.dataset.cid = c.id;
+          path.style.cursor = 'pointer';
+          path.addEventListener('click', e => { e.stopPropagation(); sel(c.id); });
+
+          // Arrowhead
+          const angle = Math.atan2(tp.y - fp.y, tp.x - fp.x);
+          const ax = tp.x - Math.cos(angle)*10;
+          const ay = tp.y - Math.sin(angle)*10;
+          const arrow = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+          const pts = [
+            [tp.x, tp.y],
+            [ax + Math.sin(angle)*5, ay - Math.cos(angle)*5],
+            [ax - Math.sin(angle)*5, ay + Math.cos(angle)*5],
+          ].map(p => p.join(',')).join(' ');
+          arrow.setAttribute('points', pts);
+          arrow.setAttribute('fill', isSel ? '#E07030' : '#6B7FA3');
+          arrow.setAttribute('class','rc');
+          arrow.dataset.cid = c.id;
+          arrow.style.cursor = 'pointer';
+          arrow.addEventListener('click', e => { e.stopPropagation(); sel(c.id); });
+          svg.appendChild(path);
+          svg.appendChild(arrow);
+        });
+      }
+
+      function render() {
+        blocks.forEach(b => renderBlock(b));
+        renderConns();
+        updateEmpty();
+        updateToolbar();
+      }
+
+      function sel(id) {
+        selId = id;
+        blocks.forEach(b => {
+          const el = document.getElementById('rb_'+b.id);
+          if (el) el.classList.toggle('rb-selected', selId === b.id);
+        });
+        renderConns();
+        updateToolbar();
+        const hint = document.getElementById('routingDeleteHint');
+        if (hint) hint.classList.toggle('visible', !!id);
+      }
+
+      function updateToolbar() {
+        const del    = document.getElementById('rtBtnDelete');
+        const rename = document.getElementById('rtBtnRename');
+        const isBlock = selId && selId.startsWith('b');
+        const isConn  = selId && selId.startsWith('c');
+        if (del)    del.style.display    = (isBlock||isConn) ? '' : 'none';
+        if (rename) rename.style.display = isBlock ? '' : 'none';
+      }
+
+      function updateEmpty() {
+        const el = document.getElementById('routingEmpty');
+        if (el) el.style.display = blocks.length ? 'none' : 'flex';
+      }
+
+      function onMove(e) {
+        const r = canvas.getBoundingClientRect();
+        mouse = { x: e.clientX-r.left, y: e.clientY-r.top };
+        if (drag) {
+          const b = blocks.find(b => b.id === drag.id); if (!b) return;
+          b.x = Math.max(0, mouse.x - drag.ox);
+          b.y = Math.max(0, mouse.y - drag.oy);
+          const el = document.getElementById('rb_'+b.id);
+          if (el) { el.style.left=b.x+'px'; el.style.top=b.y+'px'; }
+          renderConns();
+        }
+        if (pending) updatePendingPath();
+      }
+
+      function onKey(e) {
+        const pane = document.getElementById('i_routing_builder');
+        if (!pane || !pane.classList.contains('active')) return;
+        if ((e.key==='Delete'||e.key==='Backspace') && selId) {
+          e.preventDefault();
+          deleteById(selId);
+        }
+        if (e.key==='Escape') { cancelPending(); sel(null); }
+      }
+
+      function deleteById(id) {
+        if (id.startsWith('b')) {
+          conns = conns.filter(c => c.fb!==id && c.tb!==id);
+          blocks = blocks.filter(b => b.id!==id);
+          document.getElementById('rb_'+id)?.remove();
+        } else {
+          conns = conns.filter(c => c.id!==id);
+        }
+        sel(null);
+        renderConns();
+        updateEmpty();
+      }
+
+      // Public API
+      window.RB = {
+        add,
+        deleteSelected() { if (selId) deleteById(selId); },
+        renameSelected() {
+          if (!selId || !selId.startsWith('b')) return;
+          const b = blocks.find(b=>b.id===selId); if (!b) return;
+          const v = prompt('Nombre:', b.label);
+          if (v&&v.trim()) {
+            b.label = v.trim();
+            const lbl = document.querySelector('#rb_'+b.id+' .rb-label');
+            if (lbl) lbl.textContent = b.label;
+          }
+        },
+        clearAll() {
+          if (!confirm('¿Borrar todo el diagrama?')) return;
+          blocks=[]; conns=[];
+          canvas.querySelectorAll('.rb').forEach(e=>e.remove());
+          svg.querySelectorAll('.rc').forEach(e=>e.remove());
+          cancelPending(); sel(null); updateEmpty();
+        },
+        exportJSON() {
+          const wrap = document.getElementById('routingCanvas');
+          // Temporarily hide UI hints for cleaner export
+          const hint = document.getElementById('routingDeleteHint');
+          const empty = document.getElementById('routingEmpty');
+          const prevHint = hint ? hint.style.opacity : '';
+          if (hint) hint.style.opacity = '0';
+          // Show a brief loading state on the button
+          const btn = document.querySelector('[onclick="RB.exportJSON()"]');
+          if (btn) { btn.textContent = '⏳ Exportando...'; btn.disabled = true; }
+          html2canvas(wrap, {
+            backgroundColor: '#F8F9FB',
+            scale: 2,
+            useCORS: true,
+            logging: false,
+          }).then(canvas => {
+            const a = document.createElement('a');
+            a.download = 'diagrama-routing.jpg';
+            a.href = canvas.toDataURL('image/jpeg', 0.92);
+            a.click();
+          }).catch(err => {
+            alert('Error al exportar: ' + err.message);
+          }).finally(() => {
+            if (hint) hint.style.opacity = prevHint;
+            if (btn) { btn.textContent = '💾 Guardar'; btn.disabled = false; }
+          });
+        },
+        importJSON() {
+          const inp = document.createElement('input');
+          inp.type='file'; inp.accept='.json';
+          inp.onchange = e => {
+            const f = e.target.files[0]; if (!f) return;
+            const rd = new FileReader();
+            rd.onload = ev => {
+              try {
+                const d = JSON.parse(ev.target.result);
+                blocks=d.blocks||[]; conns=d.conns||[];
+                uid = Math.max(0,...[...blocks,...conns].map(x=>parseInt((x.id||'0').slice(1))||0));
+                canvas.querySelectorAll('.rb').forEach(e=>e.remove());
+                sel(null); render();
+              } catch { alert('Error al cargar el archivo JSON.'); }
+            };
+            rd.readAsText(f);
+          };
+          inp.click();
+        }
+      };
+
+      // Auto-init when tab is clicked
+      document.querySelector('[data-inner="i_routing_builder"]')
+        ?.addEventListener('click', () => setTimeout(init, 30));
+
+    })();
+    </script>
+
+    <div style="margin-top:14px;padding:10px 14px;background:var(--accent-lt);border-radius:10px;border-left:3px solid var(--accent);font-size:11px;color:var(--text-2);line-height:1.6;">
+      <strong style="color:var(--accent);">💡 Cómo usar:</strong>
+      Haz clic en cualquier dispositivo de la paleta izquierda para añadirlo al lienzo.
+      Arrastra los bloques para organizarlos. Conecta una <strong>salida</strong> (puerto derecho, verde) con una <strong>entrada</strong> (puerto izquierdo, blanco).
+      Haz doble clic en un bloque para renombrarlo. Selecciona cualquier elemento y pulsa <kbd style="padding:1px 5px;border:1px solid #ccc;border-radius:3px;font-family:monospace;">Supr</kbd> para borrarlo.
+      Guarda tu diagrama con <strong>💾 Guardar</strong> y recupéralo con <strong>📂 Cargar</strong>.
+    </div>
   </div>
+
 </section>
+
 
 <!-- ═══ MÓDULO 7 — PROYECCIÓN ═══ -->
 <section class="module" id="m7">
@@ -2717,7 +3425,12 @@ function goTo(id) {
   if (tab) tab.classList.add('active');
   const mod = document.getElementById(id);
   if (mod) mod.classList.add('active');
-  window.scrollTo(0,0);
+  // Keep scroll-padding-top in sync with actual sticky bar height
+  const topbar = document.querySelector('header') || document.querySelector('.top-bar');
+  const navbar = document.querySelector('.nav-bar');
+  const stickyH = (topbar ? topbar.offsetHeight : 56) + (navbar ? navbar.offsetHeight : 47);
+  document.documentElement.style.scrollPaddingTop = stickyH + 'px';
+  window.scrollTo({top: 0, behavior: 'instant'});
   if (id === 'm3') {
     setTimeout(() => {
       const activeInner = mod.querySelector('.inner-tab.active');

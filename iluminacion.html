@@ -108,7 +108,8 @@ body {
 .nav-tab.active .nav-num { background: var(--yellow); color: var(--navy); }
 
 /* ── MAIN ── */
-.main { padding: 32px; max-width: 1380px; margin: 0 auto; }
+.main { padding: 32px 32px 100px; max-width: 1380px; margin: 0 auto; }
+  html { scroll-padding-top: 110px; }
 .module { display: none; }
 .module.active { display: block; }
 
@@ -2728,7 +2729,9 @@ function goTo(id) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.querySelector(`[data-module="${id}"]`).classList.add('active');
-  window.scrollTo(0, 0);
+  window.scrollTo({top:0,behavior:'instant'});
+  const _nb=document.querySelector('.nav-bar'),_hd=document.querySelector('header');
+  document.documentElement.style.scrollPaddingTop=((_hd?_hd.offsetHeight:56)+(_nb?_nb.offsetHeight:47))+'px';
   if (id === 'm8') { buildDMXVis(); }
   if (id === 'm5') { setTimeout(() => drawBeam('wash'), 100); }
 }
