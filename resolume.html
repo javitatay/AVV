@@ -284,6 +284,7 @@ body{font-family:var(--font);background:var(--bg0);color:var(--t1);overflow-x:hi
 
     <div class="nav-lbl">// HERRAMIENTAS · TIEMPO</div>
     <div class="nav-item" onclick="go('tool-bpm')"><span class="nav-ic">♫</span>Duración de Loop</div>
+    <div class="nav-item" onclick="go('tool-bpmsync')"><span class="nav-ic">🎵</span>Sincronización BPM</div>
     <div class="nav-item" onclick="go('tool-dxv')"><span class="nav-ic">⧉</span>Estimador Tamaño DXV</div>
 
   </nav>
@@ -1921,6 +1922,369 @@ PingPong → efecto rebote</div>
     </table>
   </div>
 </div>
+</section>
+
+<!-- ██ TOOL: BPM SYNC ██ -->
+<section class="page" id="page-tool-bpmsync">
+<div class="ptag">// HERRAMIENTAS · TIEMPO</div>
+<div class="ptitle">SINCRONIZACIÓN <span>BPM / MÚSICA-IMAGEN</span></div>
+<div class="pdesc">Comprende cómo se estructura el tiempo musical y cómo sincronizar el contenido visual con el ritmo. Teoría de compases, beats y subdivisiones aplicada al VJing en Resolume.</div>
+
+<!-- TEORÍA -->
+<div class="tool-wrap">
+  <div class="tool-title">🎼 Estructura del tiempo musical</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px">
+    <div style="background:var(--bg3);border:1px solid var(--b2);border-radius:8px;padding:16px">
+      <div style="font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-family:var(--mono)">BPM</div>
+      <p style="font-size:14px;color:var(--t2);line-height:1.65"><strong>Beats Per Minute.</strong> Mide la velocidad del pulso musical. A 120 BPM hay 120 pulsaciones por minuto → 1 pulso cada 500 ms. Es el valor central de toda sincronización visual.</p>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--b2);border-radius:8px;padding:16px">
+      <div style="font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-family:var(--mono)">BEAT / PULSO</div>
+      <p style="font-size:14px;color:var(--t2);line-height:1.65">La <strong>unidad mínima</strong> del ritmo. En 4/4 hay 4 beats por compás. Cada beat dura <code style="background:var(--bg1);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:12px">60000 / BPM</code> milisegundos.</p>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--b2);border-radius:8px;padding:16px">
+      <div style="font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-family:var(--mono)">BAR / COMPÁS</div>
+      <p style="font-size:14px;color:var(--t2);line-height:1.65">Agrupación de beats. En <strong>4/4</strong> (el más común en electrónica) 1 bar = 4 beats. Los loops de VJing suelen medir <strong>1, 2, 4, 8 o 16 bars</strong> para encajar perfectamente.</p>
+    </div>
+  </div>
+
+  <!-- Visual beat grid -->
+  <div style="margin-bottom:18px">
+    <div style="font-size:10px;color:var(--t2);letter-spacing:1.2px;text-transform:uppercase;font-family:var(--mono);margin-bottom:10px;font-weight:700">VISUALIZACIÓN DE ESTRUCTURA RÍTMICA (4/4)</div>
+    <div style="background:#0E1A16;border:1px solid rgba(42,106,88,.3);border-radius:8px;padding:16px;overflow-x:auto">
+      <svg id="beatGridSVG" viewBox="0 0 640 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:400px;display:block"></svg>
+    </div>
+    <div style="display:flex;gap:16px;margin-top:8px;font-size:11px;color:var(--t1);flex-wrap:wrap">
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:#2A6A58;border-radius:2px;display:inline-block"></span>Beat 1 (downbeat)</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:rgba(42,106,88,.65);border-radius:2px;display:inline-block"></span>Beats 2, 3, 4</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:rgba(42,106,88,.35);border-radius:2px;display:inline-block"></span>Corcheas (1/2 beat)</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:rgba(42,106,88,.15);border-radius:2px;display:inline-block"></span>Semicorcheas (1/4 beat)</span>
+    </div>
+  </div>
+
+  <!-- Subdivision table theory -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+    <div>
+      <div style="font-size:10px;color:var(--t3);letter-spacing:1.2px;text-transform:uppercase;font-family:var(--mono);margin-bottom:8px">NOMENCLATURA SUBDIVISIONES</div>
+      <table class="result-table">
+        <thead><tr><th>ES</th><th>EN</th><th>Valor</th><th>Por compás 4/4</th></tr></thead>
+        <tbody>
+          <tr><td>Redonda</td><td class="hl-g">Whole note</td><td>4 beats</td><td>1</td></tr>
+          <tr><td>Blanca</td><td class="hl-g">Half note</td><td>2 beats</td><td>2</td></tr>
+          <tr><td>Negra</td><td class="hl-g">Quarter note</td><td>1 beat</td><td>4</td></tr>
+          <tr><td>Corchea</td><td class="hl-g">Eighth note</td><td>1/2 beat</td><td>8</td></tr>
+          <tr><td>Semicorchea</td><td class="hl-g">Sixteenth note</td><td>1/4 beat</td><td>16</td></tr>
+          <tr><td>Compás</td><td class="hl-g">Bar / Measure</td><td>4 beats</td><td>1</td></tr>
+          <tr><td>Frase</td><td class="hl-g">Phrase</td><td>4 bars</td><td>4 compases</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div style="font-size:10px;color:var(--t3);letter-spacing:1.2px;text-transform:uppercase;font-family:var(--mono);margin-bottom:8px">ESTRUCTURAS TÍPICAS EN MÚSICA ELECTRÓNICA</div>
+      <table class="result-table">
+        <thead><tr><th>Estructura</th><th>Bars</th><th>Cuándo cambiar clip</th></tr></thead>
+        <tbody>
+          <tr><td>Intro / Outro</td><td>8–32</td><td>Cada 8 bars</td></tr>
+          <tr><td>Breakdown</td><td>8–16</td><td>En bar 1 del breakdown</td></tr>
+          <tr><td>Build-up</td><td>4–8</td><td>Cambio intenso cada 2 bars</td></tr>
+          <tr><td class="hl-g">Drop</td><td>16–32</td><td>Golpe en el beat 1 del drop</td></tr>
+          <tr><td>Verse / Estrofa</td><td>8–16</td><td>Cada 4 bars</td></tr>
+          <tr><td>Chorus / Estribillo</td><td>8–16</td><td>Sincronizado con beat 1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- SIMULADOR INTERACTIVO -->
+<div class="tool-wrap">
+  <div class="tool-title">🎛 Simulador de sincronización visual</div>
+  <p style="font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:16px">Introduce el BPM de tu pista y la duración del clip visual. El simulador te dice si el clip encaja perfectamente en la estructura rítmica y cuál es el número de compases ideal.</p>
+
+  <div class="tool-row" style="flex-wrap:wrap">
+    <div class="tool-field"><label>BPM de la pista</label>
+      <input class="tool-input" type="number" id="sync_bpm" value="128" min="60" max="200" oninput="syncCalc()">
+    </div>
+    <div class="tool-field"><label>Duración del clip (segundos)</label>
+      <input class="tool-input" type="number" id="sync_dur" value="8" min="0.5" max="120" step="0.5" oninput="syncCalc()">
+    </div>
+    <div class="tool-field"><label>Compás</label>
+      <select class="tool-select" id="sync_sig" onchange="syncCalc()">
+        <option value="4" selected>4/4 — House, Techno, EDM</option>
+        <option value="3">3/4 — Vals</option>
+        <option value="2">2/4 — Marcha</option>
+      </select>
+    </div>
+    <div class="tool-field"><label>Modo de sincronización</label>
+      <select class="tool-select" id="sync_mode" onchange="syncCalc()">
+        <option value="beat">Beat Snap — 1 Bar</option>
+        <option value="phrase">Frase — 4 Bars</option>
+        <option value="manual">Manual (libre)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="tool-result" id="syncResult" style="margin-top:16px">
+    <!-- Filled by JS -->
+  </div>
+
+  <!-- Visual timeline -->
+  <div style="margin-top:18px">
+    <div style="font-size:10px;color:var(--t2);letter-spacing:1.2px;text-transform:uppercase;font-family:var(--mono);margin-bottom:8px;font-weight:700">VISUALIZACIÓN DE ENCAJE DEL CLIP EN LA ESTRUCTURA MUSICAL</div>
+    <div style="background:#0E1A16;border:1px solid rgba(42,106,88,.3);border-radius:8px;padding:12px;overflow-x:auto">
+      <canvas id="syncCanvas" height="100" style="width:100%;min-width:360px;display:block;border-radius:4px"></canvas>
+    </div>
+    <div id="syncWarning" style="margin-top:10px;font-size:13px;color:var(--t2);line-height:1.6"></div>
+  </div>
+</div>
+
+<!-- FLUJO EN RESOLUME -->
+<div class="tool-wrap">
+  <div class="tool-title">📋 Flujo de sincronización en Resolume Arena</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div>
+      <div class="step-list" style="counter-reset:steps">
+        <div style="display:flex;gap:12px;margin-bottom:12px;align-items:flex-start">
+          <div style="width:26px;height:26px;border-radius:50%;background:var(--green);color:#000;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
+          <p style="font-size:14px;color:var(--t2);line-height:1.65;padding-top:2px">Activa el <strong>Master Clock</strong> en Resolume (barra superior, icono de reloj). Introduce el BPM de tu sesión o activa <strong>Tap Tempo</strong> golpeando al ritmo de la música.</p>
+        </div>
+        <div style="display:flex;gap:12px;margin-bottom:12px;align-items:flex-start">
+          <div style="width:26px;height:26px;border-radius:50%;background:var(--green);color:#000;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+          <p style="font-size:14px;color:var(--t2);line-height:1.65;padding-top:2px">En el <strong>Clip Inspector → Transport</strong>, activa <strong>BPM Sync</strong>. El clip adaptará su velocidad de reproducción al BPM global automáticamente.</p>
+        </div>
+        <div style="display:flex;gap:12px;margin-bottom:12px;align-items:flex-start">
+          <div style="width:26px;height:26px;border-radius:50%;background:var(--green);color:#000;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
+          <p style="font-size:14px;color:var(--t2);line-height:1.65;padding-top:2px">Configura <strong>Beat Snap</strong> al valor que corresponda (1 Bar, 2 Bars, 1 Phrase…). Resolume esperará al siguiente punto de cuantización antes de lanzar el clip.</p>
+        </div>
+        <div style="display:flex;gap:12px;margin-bottom:12px;align-items:flex-start">
+          <div style="width:26px;height:26px;border-radius:50%;background:var(--green);color:#000;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div>
+          <p style="font-size:14px;color:var(--t2);line-height:1.65;padding-top:2px">Ajusta el <strong>Loop Point</strong> del clip para que su duración sea exactamente N compases. Usa la calculadora de Duración de Loop para obtener los valores exactos en frames.</p>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="box box-g">
+        <h4>✅ Clip sincronizado correctamente</h4>
+        <p>El clip tiene una duración de <strong>N compases exactos</strong>, el BPM Sync está activo, y el Beat Snap está configurado. Resultado: el clip siempre empieza y termina a tiempo, sin deriva.</p>
+      </div>
+      <div class="box" style="border-left-color:var(--green-line)">
+        <h4>⚡ Tip: Audio Reactive</h4>
+        <p>Complementa la sincronización manual con el <strong>FFT Audio Reactive</strong>: asigna el análisis de frecuencias (graves, medios, agudos) a parámetros del clip. El grave moverá la opacidad, el agudo la velocidad, etc. Sincronización orgánica sin BPM fijo.</p>
+      </div>
+      <div class="box" style="border-left-color:#f59e0b">
+        <h4>⚠ Clips con duración incorrecta</h4>
+        <p>Si el clip no dura exactamente N bars, la imagen se <strong>desplaza gradualmente</strong> respecto al beat tras cada repetición del loop. Se llama <em>phase drift</em>. La solución es exportar el clip con la duración exacta calculada.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── Beat grid SVG ──────────────────────────────────────────────────
+(function(){
+  const svg = document.getElementById('beatGridSVG');
+  if (!svg) return;
+  const W=640, H=120, bars=2, bpb=4;
+  const barW = W/bars;
+  let html = '';
+  // Background
+  html += `<rect width="${W}" height="${H}" fill="#0E1A16" rx="6"/>`;
+  // 16th note grid
+  const div16 = barW/bpb/4;
+  for(let i=0;i<bars*bpb*4;i++){
+    const x=i*div16;
+    const isBar=i%(bpb*4)===0, isBeat=i%4===0, isEighth=i%2===0;
+    const op=isBar?0.3:isBeat?0.12:isEighth?0.06:0.03;
+    html+=`<line x1="${x}" y1="0" x2="${x}" y2="${H}" stroke="rgba(0,184,148,${op})" stroke-width="${isBar?2:1}"/>`;
+  }
+  // Bar labels
+  for(let b=0;b<bars;b++){
+    html+=`<text x="${b*barW+8}" y="14" font-size="9" fill="rgba(255,255,255,.85)" font-family="monospace" font-weight="bold">BAR ${b+1}</text>`;
+  }
+  // Subdivisions visual rows
+  const rows=[
+    {label:'Whole (1)',divs:1,y:28,h:12,color:'rgba(0,184,148,.9)'},
+    {label:'Half (1/2)',divs:2,y:44,h:10,color:'rgba(0,184,148,.65)'},
+    {label:'Quarter (1/4)',divs:4,y:58,h:9,color:'rgba(0,184,148,.5)'},
+    {label:'Eighth (1/8)',divs:8,y:71,h:7,color:'rgba(0,184,148,.3)'},
+    {label:'Sixteenth (1/16)',divs:16,y:82,h:5,color:'rgba(0,184,148,.15)'},
+  ];
+  rows.forEach(r=>{
+    const cellW=W/(bars*r.divs/bpb*bpb);
+    // Actually: total cells = bars * r.divs
+    const totCells=bars*r.divs;
+    const cw=W/totCells;
+    for(let i=0;i<totCells;i++){
+      const x=i*cw+1;
+      const isBeat1=i%(r.divs)===0&&i%(r.divs*bars/bars)===0;
+      html+=`<rect x="${x}" y="${r.y}" width="${cw-2}" height="${r.h}" fill="${r.color}" rx="1"/>`;
+    }
+    html+=`<rect x="2" y="${r.y+1}" width="${r.label.length*4.8+6}" height="${r.h-2}" fill="rgba(0,0,0,.45)" rx="1"/>`;
+    html+=`<text x="4" y="${r.y+r.h-2}" font-size="7.5" fill="rgba(255,255,255,.92)" font-family="monospace">${r.label}</text>`;
+  });
+  svg.innerHTML = html;
+})();
+
+// ─── Sync calculator ─────────────────────────────────────────────────
+function syncCalc() {
+  const bpm   = +document.getElementById('sync_bpm').value || 128;
+  const dur   = +document.getElementById('sync_dur').value || 8;
+  const sig   = +document.getElementById('sync_sig').value || 4;
+  const mode  = document.getElementById('sync_mode').value;
+
+  const beatMs   = 60000 / bpm;
+  const barMs    = beatMs * sig;
+  const barSec   = barMs / 1000;
+
+  const exactBars = dur / barSec;
+  const nearBars  = Math.round(exactBars);
+  const nearDur   = nearBars * barSec;
+  const drift     = Math.abs(dur - nearDur);
+  const driftPct  = (drift / nearDur) * 100;
+  const phraseBars = 4;
+  const nearPhrase = Math.round(exactBars / phraseBars) * phraseBars || phraseBars;
+  const nearPhraseDur = nearPhrase * barSec;
+
+  const isSynced = driftPct < 1;
+
+  // Result panel
+  const resultEl = document.getElementById('syncResult');
+  const statusColor = isSynced ? 'var(--green)' : '#f59e0b';
+  const statusIcon  = isSynced ? '✅' : '⚠️';
+  const statusText  = isSynced ? 'SINCRONIZADO' : 'DERIVA DETECTADA';
+
+  resultEl.innerHTML = `
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:14px">
+      <div class="result-item">
+        <div class="result-label">1 Beat</div>
+        <div class="result-value" style="font-size:20px">${beatMs.toFixed(0)}</div>
+        <div class="result-unit">ms</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">1 Bar (${sig}/4)</div>
+        <div class="result-value" style="font-size:20px">${barSec.toFixed(3)}</div>
+        <div class="result-unit">segundos</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Compases exactos</div>
+        <div class="result-value" style="font-size:20px;color:${statusColor}">${exactBars.toFixed(2)}</div>
+        <div class="result-unit">bars</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Bars redondeados</div>
+        <div class="result-value" style="font-size:20px">${nearBars}</div>
+        <div class="result-unit">bars ideales</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Duración ideal</div>
+        <div class="result-value" style="font-size:20px">${nearDur.toFixed(3)}</div>
+        <div class="result-unit">segundos</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Deriva por loop</div>
+        <div class="result-value" style="font-size:20px;color:${driftPct<1?'var(--green)':driftPct<5?'#f59e0b':'#ef4444'}">${driftPct.toFixed(2)}</div>
+        <div class="result-unit">%</div>
+      </div>
+    </div>
+    <div style="padding:12px 16px;background:${isSynced?'rgba(0,184,148,.1)':'rgba(245,158,11,.1)'};border-radius:8px;border-left:3px solid ${statusColor};font-size:13px;color:var(--t2)">
+      ${statusIcon} <strong style="color:${statusColor}">${statusText}</strong> — 
+      ${isSynced
+        ? `Tu clip de ${dur}s encaja perfectamente en <strong>${nearBars} bars</strong> a ${bpm} BPM. ✓ Usa Beat Snap = ${nearBars <= 2 ? nearBars + ' Bar' : nearBars + ' Bars'} en Resolume.`
+        : `Tu clip de ${dur}s <strong>no encaja exactamente</strong>. Deriva: ${drift.toFixed(3)}s por loop (${driftPct.toFixed(1)}%). 
+           Ajusta la duración a <strong>${nearDur.toFixed(3)}s (${nearBars} bars)</strong> o a <strong>${nearPhraseDur.toFixed(3)}s (${nearPhrase} bars)</strong>.`
+      }
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:var(--t3);font-family:var(--mono)">
+      → Duración exportar: <strong style="color:var(--green)">${nearDur.toFixed(3)}s</strong> · 
+      Frames @25fps: <strong style="color:var(--green)">${Math.round(nearDur*25)}</strong> · 
+      Frames @30fps: <strong style="color:var(--green)">${Math.round(nearDur*30)}</strong> · 
+      Frase (${nearPhrase} bars): <strong style="color:var(--green)">${nearPhraseDur.toFixed(3)}s</strong>
+    </div>
+  `;
+
+  // Draw canvas timeline
+  drawSyncCanvas(bpm, dur, sig, nearBars, barSec, driftPct);
+}
+
+function drawSyncCanvas(bpm, dur, sig, nearBars, barSec, driftPct) {
+  const canvas = document.getElementById('syncCanvas');
+  if (!canvas) return;
+  const W = canvas.offsetWidth || 600;
+  canvas.width = W;
+  canvas.height = 100;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,W,100);
+  ctx.fillStyle = '#0E1A16';
+  ctx.fillRect(0,0,W,100);
+
+  const totalBars = Math.max(nearBars * 2, 8);
+  const barPx = W / totalBars;
+  const beatPx = barPx / sig;
+
+  // Bar grid
+  for(let b=0;b<=totalBars;b++){
+    const x = b * barPx;
+    ctx.strokeStyle = b%4===0 ? 'rgba(255,255,255,.35)' : 'rgba(255,255,255,.08)';
+    ctx.lineWidth = b%4===0 ? 1.5 : 0.5;
+    ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,90); ctx.stroke();
+    if(b < totalBars) {
+      ctx.fillStyle = 'rgba(255,255,255,.8)';
+      ctx.font = 'bold 11px monospace';
+      ctx.fillText('B'+(b+1), x+4, 14);
+    }
+  }
+
+  // Beat marks
+  for(let b=0;b<totalBars*sig;b++){
+    const x = b * beatPx;
+    ctx.fillStyle = 'rgba(255,255,255,.18)';
+    ctx.fillRect(x,14,1,8);
+  }
+
+  // Clip blocks - show how the clip drifts over multiple loops
+  const clipPx = (dur / (barSec * totalBars)) * W;
+  const colors = ['rgba(0,184,148,.7)', 'rgba(0,184,148,.5)', 'rgba(0,184,148,.3)', 'rgba(0,184,148,.2)'];
+  let startX = 0;
+  for(let i=0; i<4 && startX < W+10; i++){
+    const cw = clipPx - 2;
+    ctx.fillStyle = colors[Math.min(i, colors.length-1)];
+    ctx.fillRect(startX+1, 25, cw, 20);
+    ctx.fillStyle = 'rgba(255,255,255,.95)';
+    ctx.font = 'bold 12px monospace';
+    if(cw > 40) ctx.fillText(`clip ${i+1}`, startX+6, 40);
+    startX += clipPx;
+  }
+
+  // Ideal clip blocks
+  const idealPx = (nearBars * barSec / (barSec * totalBars)) * W;
+  let startIdeal = 0;
+  for(let i=0; i<4 && startIdeal < W+10; i++){
+    ctx.strokeStyle = 'rgba(0,220,180,.6)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(startIdeal+1, 50, idealPx-2, 16);
+    ctx.fillStyle = 'rgba(255,255,255,.85)';
+    ctx.font = 'bold 11px monospace';
+    if(idealPx > 50) ctx.fillText(`ideal ${i+1}`, startIdeal+6, 63);
+    startIdeal += idealPx;
+  }
+
+  // Labels
+  ctx.fillStyle = 'rgba(255,255,255,.85)';
+  ctx.font = 'bold 12px monospace';
+  ctx.fillText('▶ Tu clip (actual)', 4, 88);
+  ctx.fillStyle = 'rgba(180,255,230,.85)';
+  ctx.fillText('◻ Duración ideal', 180, 88);
+  ctx.fillStyle = 'rgba(255,255,255,.45)';
+  ctx.fillText(`${totalBars} bars mostrados`, W-110, 88);
+}
+
+// Init
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', syncCalc);
+} else {
+  syncCalc();
+}
+</script>
 </section>
 
 <!-- ██ TOOL: BPM LOOP ██ -->

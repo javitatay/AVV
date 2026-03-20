@@ -285,6 +285,12 @@
     .gterm-def {
       font-size: 12px; color: var(--text-2); line-height: 1.55;
     }
+    .gterm-en {
+      font-size: 9.5px; font-family: 'JetBrains Mono', monospace;
+      color: var(--accent); letter-spacing: .3px;
+      background: var(--accent-lt); border: 1px solid rgba(74,122,106,.18);
+      border-radius: 4px; padding: 1px 7px; display: inline-block; margin-top: 2px;
+    }
     .gterm[hidden] { display: none !important; }
 
     .glosario-empty {
@@ -917,70 +923,70 @@
   // ── Glosario data ─────────────────────────────────────────
   const TERMINOS = [
     // ── VÍDEO ──────────────────────────────────────────────
-    { suite:'video', color:'#6B9A6B', nombre:'Resolución', def:'Número de píxeles que componen una imagen, expresado como anchura × altura (ej. 1920×1080). A mayor resolución, mayor detalle y peso de archivo.', ilus:'resolucion' },
-    { suite:'video', color:'#6B9A6B', nombre:'Frame Rate (fps)', def:'Número de fotogramas mostrados por segundo. 25 fps es el estándar europeo. A mayor fps, el movimiento es más fluido pero el archivo más pesado.', ilus:'framerate' },
-    { suite:'video', color:'#6B9A6B', nombre:'Canal Alpha', def:'Cuarto canal de una imagen (RGBA) que define la transparencia píxel a píxel. Valor 0 = totalmente transparente, 255 = totalmente opaco.', ilus:'alpha' },
-    { suite:'video', color:'#6B9A6B', nombre:'Chroma Subsampling', def:'Reducción de la información de color (croma) respecto a la luminancia. 4:4:4 conserva todo el color, 4:2:0 lo reduce a la mitad para ahorrar espacio.', ilus:'chroma' },
-    { suite:'video', color:'#6B9A6B', nombre:'Códec', def:'Algoritmo que comprime y descomprime vídeo. H.264 es eficiente para distribución, ProRes conserva calidad para edición, RAW no aplica compresión.', ilus:'nulo' },
-    { suite:'video', color:'#6B9A6B', nombre:'Bitrate', def:'Cantidad de datos procesados por segundo (Mbps). Mayor bitrate = mayor calidad y mayor tamaño de archivo. Clave para determinar el peso final del vídeo.', ilus:'nulo' },
-    { suite:'video', color:'#6B9A6B', nombre:'Relación de aspecto', def:'Proporción entre anchura y altura del cuadro. 16:9 es el estándar widescreen actual. 4:3 era el estándar analógico. 21:9 es cinematográfico.', ilus:'nulo' },
-    { suite:'video', color:'#6B9A6B', nombre:'Profundidad de color', def:'Bits por canal de color. 8 bits = 256 tonos por canal, 10 bits = 1024. Mayor profundidad reduce el banding y permite mejor gradación en postproducción.', ilus:'nulo' },
-    { suite:'video', color:'#6B9A6B', nombre:'Gamma', def:'Curva de codificación del brillo que compensa la percepción no lineal del ojo humano. sRGB usa gamma 2.2, el cine usa curvas logarítmicas (Log C, S-Log).', ilus:'nulo' },
-    { suite:'video', color:'#6B9A6B', nombre:'HDR', def:'High Dynamic Range. Rango más amplio entre el negro más oscuro y el blanco más brillante. Requiere pantallas compatibles y codificación específica (HDR10, Dolby Vision).', ilus:'nulo' },
-    { suite:'video', color:'#6B9A6B', nombre:'Entrelazado', def:'Sistema de captura/reproducción que muestra líneas pares e impares alternadas por campo (50i = 50 campos/s). El modo progresivo (50p) muestra el fotograma completo.', ilus:'nulo' },
+    { suite:'video', color:'#6B9A6B', nombre:'Resolución', def:'Número de píxeles que componen una imagen, expresado como anchura × altura (ej. 1920×1080). A mayor resolución, mayor detalle y peso de archivo.', ilus:'resolucion' , en:'Resolution'},
+    { suite:'video', color:'#6B9A6B', nombre:'Frame Rate (fps)', def:'Número de fotogramas mostrados por segundo. 25 fps es el estándar europeo. A mayor fps, el movimiento es más fluido pero el archivo más pesado.', ilus:'framerate' , es:'Cadencia de fotogramas'},
+    { suite:'video', color:'#6B9A6B', nombre:'Canal Alpha', def:'Cuarto canal de una imagen (RGBA) que define la transparencia píxel a píxel. Valor 0 = totalmente transparente, 255 = totalmente opaco.', ilus:'alpha' , en:'Alpha Channel'},
+    { suite:'video', color:'#6B9A6B', nombre:'Chroma Subsampling', def:'Reducción de la información de color (croma) respecto a la luminancia. 4:4:4 conserva todo el color, 4:2:0 lo reduce a la mitad para ahorrar espacio.', ilus:'chroma' , es:'Submuestreo de croma'},
+    { suite:'video', color:'#6B9A6B', nombre:'Códec', def:'Algoritmo que comprime y descomprime vídeo. H.264 es eficiente para distribución, ProRes conserva calidad para edición, RAW no aplica compresión.', ilus:'nulo' , en:'Codec'},
+    { suite:'video', color:'#6B9A6B', nombre:'Bitrate', def:'Cantidad de datos procesados por segundo (Mbps). Mayor bitrate = mayor calidad y mayor tamaño de archivo. Clave para determinar el peso final del vídeo.', ilus:'nulo' , es:'Tasa de bits'},
+    { suite:'video', color:'#6B9A6B', nombre:'Relación de aspecto', def:'Proporción entre anchura y altura del cuadro. 16:9 es el estándar widescreen actual. 4:3 era el estándar analógico. 21:9 es cinematográfico.', ilus:'nulo' , en:'Aspect Ratio'},
+    { suite:'video', color:'#6B9A6B', nombre:'Profundidad de color', def:'Bits por canal de color. 8 bits = 256 tonos por canal, 10 bits = 1024. Mayor profundidad reduce el banding y permite mejor gradación en postproducción.', ilus:'nulo' , en:'Bit Depth'},
+    { suite:'video', color:'#6B9A6B', nombre:'Gamma', def:'Curva de codificación del brillo que compensa la percepción no lineal del ojo humano. sRGB usa gamma 2.2, el cine usa curvas logarítmicas (Log C, S-Log).', ilus:'nulo' , es:'Corrección gamma'},
+    { suite:'video', color:'#6B9A6B', nombre:'HDR', def:'High Dynamic Range. Rango más amplio entre el negro más oscuro y el blanco más brillante. Requiere pantallas compatibles y codificación específica (HDR10, Dolby Vision).', ilus:'nulo' , es:'Alto rango dinámico'},
+    { suite:'video', color:'#6B9A6B', nombre:'Entrelazado', def:'Sistema de captura/reproducción que muestra líneas pares e impares alternadas por campo (50i = 50 campos/s). El modo progresivo (50p) muestra el fotograma completo.', ilus:'nulo' , en:'Interlaced'},
 
     // ── ILLUSTRATOR ────────────────────────────────────────
-    { suite:'illustrator', color:'#A06B4A', nombre:'Curva Bézier', def:'Curva matemática definida por anclas y mangos que controlan su curvatura. Base del dibujo vectorial en Illustrator y en la mayoría de programas de diseño.', ilus:'bezier' },
-    { suite:'illustrator', color:'#A06B4A', nombre:'Vector vs Raster', def:'Los gráficos vectoriales son fórmulas matemáticas escalables a cualquier tamaño sin perder calidad. Los rasterizados (píxeles) pierden calidad al ampliarlos.', ilus:'vector' },
-    { suite:'illustrator', color:'#A06B4A', nombre:'Ancla (nodo)', def:'Punto que define el inicio, fin o inflexión de un trazado vectorial. Puede ser de esquina (sin curva) o suave (con mangos de curva).', ilus:'nulo' },
-    { suite:'illustrator', color:'#A06B4A', nombre:'Trazado (path)', def:'Línea o forma definida por una secuencia de anclas y segmentos. Puede ser abierto (línea) o cerrado (forma). Base de todos los objetos en Illustrator.', ilus:'nulo' },
-    { suite:'illustrator', color:'#A06B4A', nombre:'Relleno y Trazo', def:'El relleno es el color interior de una forma. El trazo es su contorno. Ambos admiten colores sólidos, degradados o patrones de forma independiente.', ilus:'nulo' },
-    { suite:'illustrator', color:'#A06B4A', nombre:'Capa', def:'Nivel de organización que agrupa objetos. Las capas pueden ocultarse, bloquearse o reordenarse. Las superiores se dibujan encima de las inferiores.', ilus:'nulo' },
-    { suite:'illustrator', color:'#A06B4A', nombre:'Máscara de recorte', def:'Objeto superior que recorta la visibilidad de los objetos inferiores. Solo se ve lo que queda dentro de la forma de la máscara.', ilus:'nulo' },
-    { suite:'illustrator', color:'#A06B4A', nombre:'Objeto inteligente', def:'Objeto que conserva sus datos originales al transformarlo. Permite editar el contenido sin pérdida de calidad y actualiza todas las instancias.', ilus:'nulo' },
+    { suite:'illustrator', color:'#A06B4A', nombre:'Curva Bézier', def:'Curva matemática definida por anclas y mangos que controlan su curvatura. Base del dibujo vectorial en Illustrator y en la mayoría de programas de diseño.', ilus:'bezier' , en:'Bézier Curve'},
+    { suite:'illustrator', color:'#A06B4A', nombre:'Vector vs Raster', def:'Los gráficos vectoriales son fórmulas matemáticas escalables a cualquier tamaño sin perder calidad. Los rasterizados (píxeles) pierden calidad al ampliarlos.', ilus:'vector' , es:'Vector vs Trama'},
+    { suite:'illustrator', color:'#A06B4A', nombre:'Ancla (nodo)', def:'Punto que define el inicio, fin o inflexión de un trazado vectorial. Puede ser de esquina (sin curva) o suave (con mangos de curva).', ilus:'nulo' , en:'Anchor Point'},
+    { suite:'illustrator', color:'#A06B4A', nombre:'Trazado (path)', def:'Línea o forma definida por una secuencia de anclas y segmentos. Puede ser abierto (línea) o cerrado (forma). Base de todos los objetos en Illustrator.', ilus:'nulo' , en:'Path'},
+    { suite:'illustrator', color:'#A06B4A', nombre:'Relleno y Trazo', def:'El relleno es el color interior de una forma. El trazo es su contorno. Ambos admiten colores sólidos, degradados o patrones de forma independiente.', ilus:'nulo' , en:'Fill & Stroke'},
+    { suite:'illustrator', color:'#A06B4A', nombre:'Capa', def:'Nivel de organización que agrupa objetos. Las capas pueden ocultarse, bloquearse o reordenarse. Las superiores se dibujan encima de las inferiores.', ilus:'nulo' , en:'Layer'},
+    { suite:'illustrator', color:'#A06B4A', nombre:'Máscara de recorte', def:'Objeto superior que recorta la visibilidad de los objetos inferiores. Solo se ve lo que queda dentro de la forma de la máscara.', ilus:'nulo' , en:'Clipping Mask'},
+    { suite:'illustrator', color:'#A06B4A', nombre:'Objeto inteligente', def:'Objeto que conserva sus datos originales al transformarlo. Permite editar el contenido sin pérdida de calidad y actualiza todas las instancias.', ilus:'nulo' , en:'Smart Object'},
 
     // ── RESOLUME ───────────────────────────────────────────
-    { suite:'resolume', color:'#4A7A6A', nombre:'Blend Mode', def:'Modo de fusión que determina cómo se mezcla una capa con las capas inferiores. Screen aclara, Multiply oscurece, Add suma los valores de color.', ilus:'blend' },
-    { suite:'resolume', color:'#4A7A6A', nombre:'Clip', def:'Unidad básica de contenido en Resolume: un archivo de vídeo, imagen o generador cargado en una celda. Se puede reproducir, loopar y procesar en tiempo real.', ilus:'nulo' },
-    { suite:'resolume', color:'#4A7A6A', nombre:'Deck', def:'Conjunto de columnas y clips organizado como una escena o acto del show. Puedes preparar varios decks y alternar entre ellos durante la actuación.', ilus:'nulo' },
-    { suite:'resolume', color:'#4A7A6A', nombre:'Composición', def:'Lienzo principal de Resolume donde se mezclan todas las capas activas. Define resolución y framerate del output final que se envía a pantallas o proyectores.', ilus:'nulo' },
-    { suite:'resolume', color:'#4A7A6A', nombre:'Output', def:'Señal de vídeo final que Resolume envía a una pantalla, proyector o interfaz de captura. Se configura en resolución, posición y zona de la composición.', ilus:'nulo' },
-    { suite:'resolume', color:'#4A7A6A', nombre:'BPM Sync', def:'Sincronización del contenido y efectos con el tempo musical en pulsaciones por minuto. Permite que transiciones, flashes o cambios de clip ocurran en el beat.', ilus:'nulo' },
-    { suite:'resolume', color:'#4A7A6A', nombre:'Crossfader', def:'Control que mezcla entre dos columnas o decks de forma gradual. Asignas columnas a lado A y lado B, y el fader central controla la transición.', ilus:'nulo' },
-    { suite:'resolume', color:'#4A7A6A', nombre:'Warp / Mesh', def:'Herramienta de deformación de la imagen que permite ajustar la proyección a superficies irregulares moviendo puntos de una malla de control.', ilus:'nulo' },
+    { suite:'resolume', color:'#4A7A6A', nombre:'Blend Mode', def:'Modo de fusión que determina cómo se mezcla una capa con las capas inferiores. Screen aclara, Multiply oscurece, Add suma los valores de color.', ilus:'blend' , es:'Modo de fusión'},
+    { suite:'resolume', color:'#4A7A6A', nombre:'Clip', def:'Unidad básica de contenido en Resolume: un archivo de vídeo, imagen o generador cargado en una celda. Se puede reproducir, loopar y procesar en tiempo real.', ilus:'nulo' , es:'Fragmento / Clip'},
+    { suite:'resolume', color:'#4A7A6A', nombre:'Deck', def:'Conjunto de columnas y clips organizado como una escena o acto del show. Puedes preparar varios decks y alternar entre ellos durante la actuación.', ilus:'nulo' , es:'Bloque de clips'},
+    { suite:'resolume', color:'#4A7A6A', nombre:'Composición', def:'Lienzo principal de Resolume donde se mezclan todas las capas activas. Define resolución y framerate del output final que se envía a pantallas o proyectores.', ilus:'nulo' , en:'Composition'},
+    { suite:'resolume', color:'#4A7A6A', nombre:'Output', def:'Señal de vídeo final que Resolume envía a una pantalla, proyector o interfaz de captura. Se configura en resolución, posición y zona de la composición.', ilus:'nulo' , es:'Salida'},
+    { suite:'resolume', color:'#4A7A6A', nombre:'BPM Sync', def:'Sincronización del contenido y efectos con el tempo musical en pulsaciones por minuto. Permite que transiciones, flashes o cambios de clip ocurran en el beat.', ilus:'nulo' , es:'Sincronización de tempo'},
+    { suite:'resolume', color:'#4A7A6A', nombre:'Crossfader', def:'Control que mezcla entre dos columnas o decks de forma gradual. Asignas columnas a lado A y lado B, y el fader central controla la transición.', ilus:'nulo' , es:'Mezclador cruzado'},
+    { suite:'resolume', color:'#4A7A6A', nombre:'Warp / Mesh', def:'Herramienta de deformación de la imagen que permite ajustar la proyección a superficies irregulares moviendo puntos de una malla de control.', ilus:'nulo' , es:'Deformación / Malla'},
 
     // ── AFTER EFFECTS ──────────────────────────────────────
-    { suite:'aftereffects', color:'#6B7FA3', nombre:'Keyframe', def:'Marca en la línea de tiempo que registra el valor de una propiedad en un instante. La animación se genera automáticamente interpolando entre keyframes.', ilus:'keyframe' },
-    { suite:'aftereffects', color:'#6B7FA3', nombre:'Interpolación', def:'Cálculo automático de los valores intermedios entre dos keyframes. Lineal mantiene velocidad constante; Easy Ease suaviza la entrada y salida del movimiento.', ilus:'interpolacion' },
-    { suite:'aftereffects', color:'#6B7FA3', nombre:'Precomposición', def:'Agrupación de capas en una composición anidada que actúa como una sola capa. Permite aplicar efectos a un grupo y mantener el proyecto organizado.', ilus:'precomp' },
-    { suite:'aftereffects', color:'#6B7FA3', nombre:'Track Matte', def:'Técnica donde una capa define la transparencia (máscara) de la capa inmediatamente inferior. Permite recortes animados complejos sin necesidad de máscaras dibujadas.', ilus:'nulo' },
-    { suite:'aftereffects', color:'#6B7FA3', nombre:'Motion Blur', def:'Desenfoque aplicado a los elementos en movimiento para simular la persistencia retiniana. Aporta naturalidad a las animaciones y las hace más cinematográficas.', ilus:'nulo' },
-    { suite:'aftereffects', color:'#6B7FA3', nombre:'Expression', def:'Código JavaScript que controla propiedades de forma dinámica sin keyframes manuales. Ejemplo: wiggle(2,30) hace vibrar aleatoriamente una capa.', ilus:'nulo' },
-    { suite:'aftereffects', color:'#6B7FA3', nombre:'Null Object', def:'Capa invisible sin imagen que actúa como padre de otras capas. Permite controlar posición, rotación y escala de un grupo desde un único punto de control.', ilus:'nulo' },
-    { suite:'aftereffects', color:'#6B7FA3', nombre:'Render', def:'Proceso de exportación final que convierte la composición en un archivo de vídeo. La configuración de códec, resolución y framerate determina la calidad y el peso.', ilus:'nulo' },
+    { suite:'aftereffects', color:'#6B7FA3', nombre:'Keyframe', def:'Marca en la línea de tiempo que registra el valor de una propiedad en un instante. La animación se genera automáticamente interpolando entre keyframes.', ilus:'keyframe' , es:'Fotograma clave'},
+    { suite:'aftereffects', color:'#6B7FA3', nombre:'Interpolación', def:'Cálculo automático de los valores intermedios entre dos keyframes. Lineal mantiene velocidad constante; Easy Ease suaviza la entrada y salida del movimiento.', ilus:'interpolacion' , en:'Interpolation'},
+    { suite:'aftereffects', color:'#6B7FA3', nombre:'Precomposición', def:'Agrupación de capas en una composición anidada que actúa como una sola capa. Permite aplicar efectos a un grupo y mantener el proyecto organizado.', ilus:'precomp' , en:'Pre-composition'},
+    { suite:'aftereffects', color:'#6B7FA3', nombre:'Track Matte', def:'Técnica donde una capa define la transparencia (máscara) de la capa inmediatamente inferior. Permite recortes animados complejos sin necesidad de máscaras dibujadas.', ilus:'nulo' , es:'Máscara de seguimiento'},
+    { suite:'aftereffects', color:'#6B7FA3', nombre:'Motion Blur', def:'Desenfoque aplicado a los elementos en movimiento para simular la persistencia retiniana. Aporta naturalidad a las animaciones y las hace más cinematográficas.', ilus:'nulo' , es:'Desenfoque de movimiento'},
+    { suite:'aftereffects', color:'#6B7FA3', nombre:'Expression', def:'Código JavaScript que controla propiedades de forma dinámica sin keyframes manuales. Ejemplo: wiggle(2,30) hace vibrar aleatoriamente una capa.', ilus:'nulo' , es:'Expresión dinámica'},
+    { suite:'aftereffects', color:'#6B7FA3', nombre:'Null Object', def:'Capa invisible sin imagen que actúa como padre de otras capas. Permite controlar posición, rotación y escala de un grupo desde un único punto de control.', ilus:'nulo' , es:'Objeto nulo'},
+    { suite:'aftereffects', color:'#6B7FA3', nombre:'Render', def:'Proceso de exportación final que convierte la composición en un archivo de vídeo. La configuración de códec, resolución y framerate determina la calidad y el peso.', ilus:'nulo' , es:'Renderizado / Exportar'},
 
     // ── ILUMINACIÓN ────────────────────────────────────────
-    { suite:'iluminacion', color:'#A06B6B', nombre:'Temperatura de color', def:'Característica de la luz expresada en Kelvin (K). Tonos cálidos (~3200K) tienen dominante naranja-amarilla; fríos (~5600K-6500K) tienen dominante azul-blanca.', ilus:'tempcolor' },
+    { suite:'iluminacion', color:'#A06B6B', nombre:'Temperatura de color', def:'Característica de la luz expresada en Kelvin (K). Tonos cálidos (~3200K) tienen dominante naranja-amarilla; fríos (~5600K-6500K) tienen dominante azul-blanca.', ilus:'tempcolor' , en:'Color Temperature'},
     { suite:'iluminacion', color:'#A06B6B', nombre:'Lux', def:'Unidad de iluminancia: cantidad de lúmenes que inciden sobre 1 m² de superficie. Mide la luz que realmente recibe el objeto o el escenario.', ilus:'lux' },
-    { suite:'iluminacion', color:'#A06B6B', nombre:'Throw Ratio', def:'Relación entre la distancia de proyección y el diámetro del haz (TR = d/∅). Un TR de 1:1 proyecta un haz igual de ancho que la distancia a la que está.', ilus:'throw' },
-    { suite:'iluminacion', color:'#A06B6B', nombre:'Gobo', def:'Plantilla metálica o de cristal que se inserta en el foco para proyectar patrones (estrellas, hojas, logotipos…) sobre el escenario o la pantalla de fondo.', ilus:'gobo' },
-    { suite:'iluminacion', color:'#A06B6B', nombre:'Candela (cd)', def:'Unidad de intensidad luminosa. Mide la potencia de la luz en una dirección concreta. Los focos con mayor candela iluminan más lejos.', ilus:'nulo' },
-    { suite:'iluminacion', color:'#A06B6B', nombre:'Lumen (lm)', def:'Unidad de flujo luminoso total emitido por una fuente en todas las direcciones. No tiene en cuenta hacia dónde va la luz, solo cuánta se emite.', ilus:'nulo' },
-    { suite:'iluminacion', color:'#A06B6B', nombre:'Ángulo de haz', def:'Apertura del cono de luz de un foco, medido en grados. Haces estrechos (~10°) dan focos precisos; haces amplios (~60°) iluminan áreas grandes.', ilus:'nulo' },
-    { suite:'iluminacion', color:'#A06B6B', nombre:'CRI (Ra)', def:'Color Rendering Index. Escala 0-100 que mide la fidelidad de color de una fuente respecto a la luz natural. CRI > 90 es recomendable para espectáculos.', ilus:'nulo' },
-    { suite:'iluminacion', color:'#A06B6B', nombre:'Par LED', def:'Luminaria de escenario con LEDs de colores (RGB, RGBW). Mezcla colores aditivamente para generar cualquier tono. Bajo consumo y larga vida útil.', ilus:'nulo' },
-    { suite:'iluminacion', color:'#A06B6B', nombre:'Fresnel', def:'Tipo de foco con lente estriada que produce un haz suave y difuso, de bordes graduales. Ideal para iluminación general de escenario y ciclorama.', ilus:'nulo' },
+    { suite:'iluminacion', color:'#A06B6B', nombre:'Throw Ratio', def:'Relación entre la distancia de proyección y el diámetro del haz (TR = d/∅). Un TR de 1:1 proyecta un haz igual de ancho que la distancia a la que está.', ilus:'throw' , es:'Relación de proyección'},
+    { suite:'iluminacion', color:'#A06B6B', nombre:'Gobo', def:'Plantilla metálica o de cristal que se inserta en el foco para proyectar patrones (estrellas, hojas, logotipos…) sobre el escenario o la pantalla de fondo.', ilus:'gobo' , es:'Plantilla de proyección'},
+    { suite:'iluminacion', color:'#A06B6B', nombre:'Candela (cd)', def:'Unidad de intensidad luminosa. Mide la potencia de la luz en una dirección concreta. Los focos con mayor candela iluminan más lejos.', ilus:'nulo' , en:'Candela (cd)'},
+    { suite:'iluminacion', color:'#A06B6B', nombre:'Lumen (lm)', def:'Unidad de flujo luminoso total emitido por una fuente en todas las direcciones. No tiene en cuenta hacia dónde va la luz, solo cuánta se emite.', ilus:'nulo' , en:'Lumen (lm)'},
+    { suite:'iluminacion', color:'#A06B6B', nombre:'Ángulo de haz', def:'Apertura del cono de luz de un foco, medido en grados. Haces estrechos (~10°) dan focos precisos; haces amplios (~60°) iluminan áreas grandes.', ilus:'nulo' , en:'Beam Angle'},
+    { suite:'iluminacion', color:'#A06B6B', nombre:'CRI (Ra)', def:'Color Rendering Index. Escala 0-100 que mide la fidelidad de color de una fuente respecto a la luz natural. CRI > 90 es recomendable para espectáculos.', ilus:'nulo' , es:'Índice reproducción cromática'},
+    { suite:'iluminacion', color:'#A06B6B', nombre:'Par LED', def:'Luminaria de escenario con LEDs de colores (RGB, RGBW). Mezcla colores aditivamente para generar cualquier tono. Bajo consumo y larga vida útil.', ilus:'nulo' , en:'PAR LED'},
+    { suite:'iluminacion', color:'#A06B6B', nombre:'Fresnel', def:'Tipo de foco con lente estriada que produce un haz suave y difuso, de bordes graduales. Ideal para iluminación general de escenario y ciclorama.', ilus:'nulo' , es:'Lente Fresnel'},
 
     // ── MAGICQ ─────────────────────────────────────────────
-    { suite:'magicq', color:'#7A6BA3', nombre:'DMX', def:'Digital Multiplex. Protocolo estándar de control de luminarias de espectáculo. Transmite hasta 512 canales de 0-255 por universo mediante cable XLR de 5 pines.', ilus:'dmx' },
-    { suite:'magicq', color:'#7A6BA3', nombre:'Patch', def:'Asignación de canales DMX a cada fixture de la instalación. En MagicQ defines qué tipo de foco es, cuántos canales ocupa y en qué dirección DMX empieza.', ilus:'patch' },
-    { suite:'magicq', color:'#7A6BA3', nombre:'Cuelist', def:'Lista ordenada de cues (escenas) que se reproduce secuencialmente. Cada cue puede tener fade in/out, tiempo de espera y nivel de prioridad distintos.', ilus:'cuelist' },
-    { suite:'magicq', color:'#7A6BA3', nombre:'Universo DMX', def:'Canal de comunicación independiente que puede transportar hasta 512 canales DMX. Instalaciones grandes usan múltiples universos (MagicQ soporta hasta 64).', ilus:'nulo' },
-    { suite:'magicq', color:'#7A6BA3', nombre:'Paleta', def:'Valor predefinido y reutilizable de una propiedad (color, posición, gobos…). Permite cambiar el color de todos los focos asignados a esa paleta de un solo toque.', ilus:'nulo' },
-    { suite:'magicq', color:'#7A6BA3', nombre:'Chase', def:'Secuencia de estados que MagicQ reproduce cíclicamente y a tempo. Permite crear perseguidas, flashes y patrones rítmicos sincronizados con la música.', ilus:'nulo' },
-    { suite:'magicq', color:'#7A6BA3', nombre:'Playback', def:'Fader o botón de la consola al que se asigna una cuelist. Al subirlo o pulsarlo, activa esa cuelist con la intensidad del fader como master.', ilus:'nulo' },
-    { suite:'magicq', color:'#7A6BA3', nombre:'Fixture', def:'Luminaria o dispositivo DMX individual dado de alta en MagicQ. Cada fixture tiene su perfil de canales (pan, tilt, color, dimmer…) definido en la librería.', ilus:'nulo' },
-    { suite:'magicq', color:'#7A6BA3', nombre:'Fade Time', def:'Tiempo en segundos que tarda una propiedad en transicionar entre dos valores. Fade in suaviza la entrada; fade out la salida. Fundamental para el ritmo del show.', ilus:'nulo' },
+    { suite:'magicq', color:'#7A6BA3', nombre:'DMX', def:'Digital Multiplex. Protocolo estándar de control de luminarias de espectáculo. Transmite hasta 512 canales de 0-255 por universo mediante cable XLR de 5 pines.', ilus:'dmx' , es:'Multiplexado digital'},
+    { suite:'magicq', color:'#7A6BA3', nombre:'Patch', def:'Asignación de canales DMX a cada fixture de la instalación. En MagicQ defines qué tipo de foco es, cuántos canales ocupa y en qué dirección DMX empieza.', ilus:'patch' , es:'Asignación de canales'},
+    { suite:'magicq', color:'#7A6BA3', nombre:'Cuelist', def:'Lista ordenada de cues (escenas) que se reproduce secuencialmente. Cada cue puede tener fade in/out, tiempo de espera y nivel de prioridad distintos.', ilus:'cuelist' , es:'Lista de escenas'},
+    { suite:'magicq', color:'#7A6BA3', nombre:'Universo DMX', def:'Canal de comunicación independiente que puede transportar hasta 512 canales DMX. Instalaciones grandes usan múltiples universos (MagicQ soporta hasta 64).', ilus:'nulo' , en:'DMX Universe'},
+    { suite:'magicq', color:'#7A6BA3', nombre:'Paleta', def:'Valor predefinido y reutilizable de una propiedad (color, posición, gobos…). Permite cambiar el color de todos los focos asignados a esa paleta de un solo toque.', ilus:'nulo' , en:'Palette'},
+    { suite:'magicq', color:'#7A6BA3', nombre:'Chase', def:'Secuencia de estados que MagicQ reproduce cíclicamente y a tempo. Permite crear perseguidas, flashes y patrones rítmicos sincronizados con la música.', ilus:'nulo' , es:'Secuencia rítmica'},
+    { suite:'magicq', color:'#7A6BA3', nombre:'Playback', def:'Fader o botón de la consola al que se asigna una cuelist. Al subirlo o pulsarlo, activa esa cuelist con la intensidad del fader como master.', ilus:'nulo' , es:'Reproducción'},
+    { suite:'magicq', color:'#7A6BA3', nombre:'Fixture', def:'Luminaria o dispositivo DMX individual dado de alta en MagicQ. Cada fixture tiene su perfil de canales (pan, tilt, color, dimmer…) definido en la librería.', ilus:'nulo' , es:'Luminaria'},
+    { suite:'magicq', color:'#7A6BA3', nombre:'Fade Time', def:'Tiempo en segundos que tarda una propiedad en transicionar entre dos valores. Fade in suaviza la entrada; fade out la salida. Fundamental para el ritmo del show.', ilus:'nulo' , es:'Tiempo de transición'},
   ];
 
   // ── Render cards ──────────────────────────────────────────
@@ -996,6 +1002,7 @@
         ${ilusHTML}
         <div class="gterm-name">${t.nombre}</div>
         <div class="gterm-def">${t.def}</div>
+        ${t.en ? `<span class="gterm-en">EN · ${t.en}</span>` : t.es ? `<span class="gterm-en" style="background:rgba(74,122,106,.08);color:#5C5954;border-color:rgba(74,122,106,.15)">ES · ${t.es}</span>` : ''}
       </div>`;
     }).join('');
   }
@@ -1004,7 +1011,7 @@
 
   // ── Abrir suites en pestaña nueva ─────────────────────────
   document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', function(e) {
+    entListener('click', function(e) {
       e.preventDefault();
       window.open(this.getAttribute('href'), '_blank');
     });
