@@ -346,6 +346,7 @@ input:focus, select:focus { border-color: var(--navy); }
 }
 .comp-table tr:last-child td { border-bottom: none; }
 .comp-table tr:hover td { background: var(--bg2); }
+.comp-table td.hl { color: var(--accent3); font-weight: 600; background: rgba(107,154,107,.06); }
 
 /* ── BADGES ── */
 .badge {
@@ -1615,6 +1616,7 @@ canvas { border-radius: 8px; }
     <div class="inner-tab" data-inner="c_codecs">Formatos &amp; Codecs</div>
     <div class="inner-tab" data-inner="c_audio">Audio</div>
     <div class="inner-tab" data-inner="c_vj">Codecs VJ · Live</div>
+    <div class="inner-tab" data-inner="c_ndi">🌐 NDI</div>
   </div>
 
   <div class="inner-pane active" id="c_conn">
@@ -1946,6 +1948,194 @@ canvas { border-radius: 8px; }
     </div>
 
   </div><!-- /c_vj -->
+  <div class="inner-pane" id="c_ndi">
+
+    <div class="panel">
+      <div class="panel-title">¿Qué es NDI?</div>
+      <div class="grid-2">
+        <div class="info-card">
+          <div class="info-card-title">Network Device Interface</div>
+          <p><strong>NDI</strong> (Network Device Interface) es un protocolo de vídeo IP desarrollado por NewTek que permite transmitir vídeo, audio y metadatos en alta calidad a través de una red Ethernet estándar. A diferencia de HDMI o SDI, no requiere cableado dedicado de vídeo — usa la misma red de datos.</p>
+          <p style="margin-top:10px">Cada dispositivo NDI en la red se <strong>anuncia automáticamente</strong> (mDNS) y es descubierto por el resto sin configuración manual. Es el estándar de facto en producción en vivo moderna, educación, esports y espectáculos.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">Por qué importa en espectáculos en vivo</div>
+          <p>En un montaje AV un técnico de vídeo puede distribuir <strong>múltiples señales de cámara, señales de PC y monitores de backstage</strong> sobre el cableado de red existente. Resolume Arena soporta NDI nativamente como fuente de entrada.</p>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:12px">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--accent3);font-size:16px">✓</span> Sin cableado SDI ni HDMI de larga distancia</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--accent3);font-size:16px">✓</span> Escalable — añadir fuentes sin nueva infraestructura</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--accent3);font-size:16px">✓</span> Latencia ~16 ms en NDI Full (aceptable para lip-sync)</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--accent3);font-size:16px">✓</span> Software gratuito: NDI Tools</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel section-gap">
+      <div class="panel-title">NDI vs HDMI vs SDI — Comparativa</div>
+      <div class="ox">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Característica</th>
+              <th style="color:var(--accent4)">HDMI</th>
+              <th style="color:var(--accent2)">SDI</th>
+              <th style="color:var(--accent3)">NDI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Tipo de señal</td><td>Digital (cobre)</td><td>Digital coaxial</td><td class="hl">IP sobre Ethernet</td></tr>
+            <tr><td>Distancia máxima</td><td>~15 m</td><td>~100 m</td><td class="hl">Ilimitada (red)</td></tr>
+            <tr><td>Latencia típica</td><td>~5 ms</td><td>~1 ms</td><td class="hl">~16 ms (Full) / ~100 ms (HX)</td></tr>
+            <tr><td>Ancho de banda</td><td>3–48 Gbps</td><td>3G-SDI: 3 Gbps</td><td class="hl">125 Mbps (Full)</td></tr>
+            <tr><td>Coste cable/metro</td><td>€10–45</td><td>€90–275</td><td class="hl">€5–18 (Cat6)</td></tr>
+            <tr><td>Múltiples destinos</td><td>Con splitter</td><td>Con splitter</td><td class="hl">Nativo (Multicast)</td></tr>
+            <tr><td>Compresión</td><td>Sin compresión</td><td>Sin compresión</td><td class="hl">SpeedHQ / H.264 / H.265</td></tr>
+            <tr><td>Escalabilidad</td>
+              <td><span style="color:#aaa">★☆☆☆☆</span></td>
+              <td><span style="color:#f59e0b">★★☆☆☆</span></td>
+              <td class="hl"><span style="color:var(--accent3)">★★★★★</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel section-gap">
+      <div class="panel-title">Versiones NDI</div>
+      <div class="ox">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Versión</th><th>Codec</th><th>Bitrate 1080p30</th><th>Latencia</th><th>Fuentes en 1 Gbps</th><th>Uso recomendado</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="hl"><strong>NDI Full</strong></td>
+              <td>SpeedHQ (intra-frame)</td>
+              <td><strong>125 Mbps</strong></td>
+              <td>~16 ms</td>
+              <td>~6</td>
+              <td>Producción broadcast, directo crítico</td>
+            </tr>
+            <tr>
+              <td>NDI|HX</td>
+              <td>H.264 (inter-frame)</td>
+              <td>15 Mbps</td>
+              <td>~100 ms</td>
+              <td>~10</td>
+              <td>Educación, corporativo, WiFi</td>
+            </tr>
+            <tr>
+              <td>NDI|HX2</td>
+              <td>H.265 / HEVC</td>
+              <td>12 Mbps</td>
+              <td>~100 ms</td>
+              <td>~15</td>
+              <td>Teatros, eventos medianos</td>
+            </tr>
+            <tr>
+              <td>NDI|HX3</td>
+              <td>H.265 optimizado</td>
+              <td>8 Mbps</td>
+              <td>~100 ms</td>
+              <td>20+</td>
+              <td>WAN, esports, redes limitadas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note" style="margin-top:12px">💡 <strong>NDI Full</strong> es la única versión con latencia aceptable para lip-sync en directo (~16 ms). Las variantes HX priorizan eficiencia de red sobre latencia.</div>
+    </div>
+
+    <div class="panel section-gap">
+      <div class="panel-title">Modos de transmisión</div>
+      <div class="grid-2">
+        <div class="info-card" style="border-left:3px solid var(--accent3)">
+          <div class="info-card-title" style="color:var(--accent3)">Unicast (1:1) — Por defecto</div>
+          <p>Comunicación punto a punto. Cada receptor recibe su propio flujo de datos. <strong>4 receptores = 4 × 125 Mbps = 500 Mbps</strong>. Simple y compatible con cualquier switch.</p>
+        </div>
+        <div class="info-card" style="border-left:3px solid var(--accent2)">
+          <div class="info-card-title" style="color:var(--accent2)">Multicast (1:N) — Eficiente</div>
+          <p>Una sola fuente, múltiples receptores comparten el mismo flujo. <strong>4 receptores = solo 125 Mbps total.</strong> Requiere switch con <em>IGMP Snooping</em> activado. Ahorro del 40–60% en ancho de banda.</p>
+        </div>
+        <div class="info-card" style="border-left:3px solid var(--accent4)">
+          <div class="info-card-title" style="color:var(--accent4)">Broadcast (1:ALL) — Solo discovery</div>
+          <p>Envía a todos los dispositivos. Usado internamente por NDI para descubrimiento automático (mDNS). <strong>Nunca para vídeo</strong> — satura la red.</p>
+        </div>
+        <div class="info-card" style="border-left:3px solid var(--purple)">
+          <div class="info-card-title" style="color:var(--purple)">Regla de red</div>
+          <p>Calcular el ancho de banda total necesario y añadir <strong>30–40% de margen</strong>. Usar switch gestionado (<em>managed</em>) para activar QoS y IGMP. Red dedicada recomendada separada del tráfico de datos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel section-gap">
+      <div class="panel-title">NDI Tools — Software gratuito</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">
+        <div class="info-card" style="padding:12px 14px">
+          <div style="font-size:11px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">Webcam</div>
+          <p style="font-size:13px">Convierte cualquier fuente NDI en webcam virtual para usar en Zoom, Teams, OBS…</p>
+        </div>
+        <div class="info-card" style="padding:12px 14px">
+          <div style="font-size:11px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">Studio Monitor</div>
+          <p style="font-size:13px">Monitor universal NDI. Recibe cualquier fuente de la red sin configuración. Ideal para backstage.</p>
+        </div>
+        <div class="info-card" style="padding:12px 14px">
+          <div style="font-size:11px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">Screen Capture</div>
+          <p style="font-size:13px">Envía el escritorio o una ventana como fuente NDI. Útil para compartir señal de Resolume a otros equipos.</p>
+        </div>
+        <div class="info-card" style="padding:12px 14px">
+          <div style="font-size:11px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">Bridge</div>
+          <p style="font-size:13px">Permite enviar NDI sobre WAN (Internet). Útil para conexiones entre sedes o streaming remoto.</p>
+        </div>
+        <div class="info-card" style="padding:12px 14px">
+          <div style="font-size:11px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">Test Patterns</div>
+          <p style="font-size:13px">Genera patrones de prueba como fuente NDI. Imprescindible para verificar la cadena antes del evento.</p>
+        </div>
+        <div class="info-card" style="padding:12px 14px">
+          <div style="font-size:11px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">Access Manager</div>
+          <p style="font-size:13px">Controla qué fuentes NDI son visibles en la red. Permite gestionar permisos de acceso entre dispositivos.</p>
+        </div>
+      </div>
+      <div class="note" style="margin-top:12px">🔗 Descarga gratuita en <strong>ndi.video/tools</strong> · Plugins para After Effects, Premiere Pro y VLC también disponibles.</div>
+    </div>
+
+    <div class="panel section-gap">
+      <div class="panel-title">Caso de uso — Espectáculos en vivo</div>
+      <div class="grid-2">
+        <div>
+          <div class="info-card" style="border-left:3px solid var(--accent3)">
+            <div class="info-card-title">Configuración típica — Teatro / Evento</div>
+            <p style="margin-bottom:8px">Para una producción con 4–6 cámaras y múltiples monitores de control:</p>
+            <div style="display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--text2)">
+              <div>📷 <strong>3× cámaras NDI Full</strong> — wide, medium, close · 375 Mbps</div>
+              <div>📷 <strong>2× PTZ NDI|HX2</strong> — backstage, camerinos · 24 Mbps</div>
+              <div>🖥 <strong>4× Studio Monitor</strong> — backstage, cabina luz, sonido, dirección</div>
+              <div>🎬 <strong>vMix / Resolume</strong> — recibe todas las fuentes NDI</div>
+              <div>🌐 <strong>NDI Screen Capture</strong> — comparte señal del operador VJ</div>
+              <div>📡 <strong>Red dedicada Gigabit</strong> con QoS para vídeo</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="info-card" style="padding:12px 14px">
+            <div style="font-size:11px;font-weight:700;color:var(--accent3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px">Ancho de banda total estimado</div>
+            <div style="font-family:monospace;font-size:13px;color:var(--text1);line-height:1.8">
+              3 × NDI Full = 375 Mbps<br>
+              2 × NDI|HX2 = 24 Mbps<br>
+              Margen 35% = +135 Mbps<br>
+              <span style="color:var(--accent3);font-weight:700">Total ≈ 534 Mbps → Switch 1 Gbps ✓</span>
+            </div>
+          </div>
+          <div class="info-card" style="padding:12px 14px;border-left:3px solid #f59e0b">
+            <div style="font-size:11px;font-weight:700;color:#9A6000;letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px">⚠ Puntos críticos</div>
+            <p style="font-size:13px;color:var(--text2);line-height:1.65">NDI Full para señales donde el lip-sync sea crítico. Nunca mezclar tráfico NDI con WiFi de producción. Switch <em>managed</em> obligatorio si usas Multicast.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /c_ndi -->
 
 </section>
 
@@ -2220,6 +2410,14 @@ canvas { border-radius: 8px; }
         <div class="rp-item" data-rtype="monitor" style="border-color:#6B7FA3;" onclick="RB.add('monitor')"><span class="rp-icon">🖥️</span>Monitor</div>
         <div class="rp-item" data-rtype="stream" style="border-color:#6B7FA3;" onclick="RB.add('stream')"><span class="rp-icon">📡</span>Stream</div>
         <div class="rp-item" data-rtype="grab" style="border-color:#6B7FA3;" onclick="RB.add('grab')"><span class="rp-icon">⏺️</span>Grabación</div>
+
+        <div class="rp-category" style="color:#7C3AED;border-color:#7C3AED22">NDI · IP Video</div>
+        <div class="rp-item" data-rtype="ndiCam"    style="border-color:#7C3AED;" onclick="RB.add('ndiCam')"><span class="rp-icon">📡</span>Cámara NDI</div>
+        <div class="rp-item" data-rtype="ndiScrn"   style="border-color:#7C3AED;" onclick="RB.add('ndiScrn')"><span class="rp-icon">🖥️</span>Screen Capture</div>
+        <div class="rp-item" data-rtype="ndiSwitch" style="border-color:#7C3AED;" onclick="RB.add('ndiSwitch')"><span class="rp-icon">🔀</span>Switch NDI</div>
+        <div class="rp-item" data-rtype="ndiMon"    style="border-color:#7C3AED;" onclick="RB.add('ndiMon')"><span class="rp-icon">📺</span>Studio Monitor</div>
+        <div class="rp-item" data-rtype="ndiRec"    style="border-color:#7C3AED;" onclick="RB.add('ndiRec')"><span class="rp-icon">⏺️</span>NDI Recorder</div>
+        <div class="rp-item" data-rtype="ndiBridge" style="border-color:#7C3AED;" onclick="RB.add('ndiBridge')"><span class="rp-icon">🌐</span>NDI Bridge</div>
       </div>
 
       <!-- Right: toolbar + canvas -->
@@ -2264,9 +2462,16 @@ canvas { border-radius: 8px; }
         monitor:{ label:'Monitor',        cat:'output',  icon:'🖥️', ins:1, outs:0 },
         stream: { label:'Stream',         cat:'output',  icon:'📡', ins:1, outs:0 },
         grab:   { label:'Grabación',      cat:'output',  icon:'⏺️', ins:1, outs:0 },
+        // NDI
+        ndiCam:   { label:'Cámara NDI',      cat:'ndi',    icon:'📡', ins:0,  outs:1 },
+        ndiScrn:  { label:'NDI Screen Cap',  cat:'ndi',    icon:'🖥️', ins:0,  outs:1 },
+        ndiSwitch:{ label:'Switch NDI',      cat:'ndi',    icon:'🔀', ins:4,  outs:4 },
+        ndiMon:   { label:'Studio Monitor',  cat:'ndi',    icon:'📺', ins:1,  outs:0 },
+        ndiRec:   { label:'NDI Recorder',    cat:'ndi',    icon:'⏺️', ins:1,  outs:0 },
+        ndiBridge:{ label:'NDI Bridge',      cat:'ndi',    icon:'🌐', ins:1,  outs:1 },
       };
 
-      const CAT_COLOR = { source:'#6B9A6B', routing:'#4A7A6A', process:'#A06B4A', output:'#6B7FA3' };
+      const CAT_COLOR = { source:'#6B9A6B', routing:'#4A7A6A', process:'#A06B4A', output:'#6B7FA3', ndi:'#7C3AED' };
       const BLOCK_W = 148;
       const PORT_R  = 6;
       const PORT_SP = 24;
