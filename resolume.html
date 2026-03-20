@@ -18,11 +18,11 @@ Herramienta educativa independiente.
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --green:       #00B894;
-  --green-dim:   #0F8B8D;
-  --green-glow:  rgba(0,184,148,.10);
-  --green-line:  rgba(0,184,148,.30);
-  --bg0: #F8F9FA; --bg1: #FFFFFF; --bg2: #EEF0F2;
+  --green:       #2A6A58;
+  --green-dim:   #1E5244;
+  --green-glow:  rgba(42,106,88,.10);
+  --green-line:  rgba(42,106,88,.30);
+  --bg0: #FFFFFF; --bg1: #FFFFFF; --bg2: #EEF0F2;
   --bg3: #F4F5F7; --bg4: #FFFFFF; --bg5: #E5E7EB;
   --t1: #2D3436; --t2: #636E72; --t3: #9EA8B3;
   --b1: #DFE3E8; --b2: #C8D0D8;
@@ -62,7 +62,7 @@ body{font-family:var(--font);background:var(--bg0);color:var(--t1);overflow-x:hi
 .content{
     padding-bottom: 90px;scroll-padding-top: 48px;
   overflow-y:auto;background:var(--bg0)}
-.page{display:none;padding:28px 30px 80px}
+.page{display:none;padding:34px 44px 80px;max-width:1400px;margin:0 auto}
 .page.active{display:block}
 
 /* ─ PAGE HEADER ─ */
@@ -3728,6 +3728,168 @@ document.addEventListener('DOMContentLoaded', () => {
   .page-nav{flex-direction:column;gap:6px}
   .bg{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
 }
+
+
+/* ═══ ILLUSTRATOR-STYLE VISUAL OVERRIDE — RESOLUME ═══════════════════ */
+:root {
+  --il-accent:     #2A6A58;
+  --il-accent-dim: #1E5244;
+  --il-accent-glow:#4A8A76;
+  --il-amber:      #3D7A68;
+  --il-bg-void:    #FFFFFF;
+  --il-bg-deep:    #F0F6F4;
+  --il-bg-raised:  #F7FBFA;
+  --il-border:     #D4E8E2;
+  --il-border-mid: #B8D8D0;
+  --il-text-pri:   #0D2922;
+  --il-text-sec:   #2A4A42;
+  --il-text-dim:   #7A9E96;
+}
+
+/* — Body & background — */
+body { background: var(--il-bg-void); color: var(--il-text-pri); }
+
+/* — Sidebar — */
+.sb {
+  background: var(--il-bg-deep) !important;
+  border-right: 1px solid var(--il-border) !important;
+}
+.sb-head {
+  padding: 22px 18px 16px !important;
+  border-bottom: 1px solid var(--il-border) !important;
+  text-align: center;
+}
+.sb-brand { justify-content: center; }
+.sb-name {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 18px !important; font-weight: 800 !important;
+  color: var(--il-accent) !important;
+  letter-spacing: 1.5px !important; text-transform: uppercase !important;
+}
+.sb-sub {
+  font-size: 10px !important; color: var(--il-text-dim) !important;
+  letter-spacing: 2.5px !important; text-transform: uppercase !important;
+  margin-top: 2px !important;
+}
+.sb-ver {
+  display: inline-block; margin-top: 8px;
+  padding: 2px 10px; border-radius: 3px;
+  background: rgba(42,106,88,.10); border: 1px solid rgba(42,106,88,.18);
+  font-size: 10px; color: var(--il-amber);
+  letter-spacing: 1px; font-family: 'JetBrains Mono', monospace;
+}
+
+/* — Nav labels & items — */
+.nav-lbl {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 9px !important; letter-spacing: 2px !important;
+  text-transform: uppercase !important; color: var(--il-text-dim) !important;
+  padding: 8px 10px 5px !important;
+  border-bottom: 1px solid var(--il-border) !important;
+  margin-bottom: 4px !important;
+}
+.nav-item {
+  color: var(--il-text-sec) !important;
+  border-radius: 4px !important; border: 1px solid transparent !important;
+  transition: all .15s !important;
+}
+.nav-item:hover {
+  background: var(--il-bg-raised) !important;
+  color: var(--il-text-pri) !important;
+  border-color: var(--il-border-mid) !important;
+}
+.nav-item.active {
+  background: rgba(42,106,88,.10) !important;
+  color: var(--il-accent) !important;
+  border-color: rgba(42,106,88,.20) !important;
+  font-weight: 600 !important;
+}
+.nav-badge {
+  background: var(--il-accent) !important;
+  color: #fff !important;
+}
+
+/* — Content area — */
+.content { background: var(--il-bg-void) !important; }
+
+/* — Page — */
+.page { background: var(--il-bg-void); }
+
+/* — Page header — */
+.ptag {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 11px !important; color: var(--il-accent) !important;
+  letter-spacing: 2px !important; text-transform: uppercase !important;
+  margin-bottom: 8px !important;
+}
+.ptitle {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 36px !important; font-weight: 800 !important;
+  color: var(--il-text-pri) !important;
+  letter-spacing: 0.5px !important; text-transform: uppercase !important;
+  line-height: 1.05 !important;
+}
+.ptitle span { color: var(--il-accent) !important; }
+.pdesc { color: var(--il-text-sec) !important; }
+
+/* Page header underline (wrap ptag+ptitle in .page-hd or target first child) */
+.page > .ptag { position: relative; padding-bottom: 0; }
+.page { padding-top: 34px !important; }
+
+/* — Panels — */
+.panel {
+  background: #FFFFFF !important;
+  border: 1px solid var(--il-border) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 1px 4px rgba(42,106,88,.07) !important;
+}
+/* tool-title → panel-title style */
+.tool-title {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 13px !important; font-weight: 700 !important;
+  color: var(--il-accent) !important;
+  text-transform: uppercase !important; letter-spacing: 1.5px !important;
+  margin-bottom: 14px !important;
+  padding-bottom: 10px !important;
+  border-bottom: none !important;
+  display: flex !important; align-items: center !important; gap: 10px !important;
+}
+.tool-title::before {
+  content: '' !important; display: inline-block !important;
+  width: 3px !important; height: 16px !important;
+  background: var(--il-accent) !important; border-radius: 2px !important;
+  flex-shrink: 0 !important;
+}
+
+/* — Boxes — */
+.box {
+  background: var(--il-bg-raised) !important;
+  border: 1px solid var(--il-border) !important;
+  border-left: 3px solid var(--il-accent) !important;
+  border-radius: 4px !important;
+}
+.box h4 { color: var(--il-amber) !important; }
+
+/* — Steps — */
+.snum { background: var(--il-accent) !important; color: #fff !important; }
+
+/* — Tables — */
+.result-table th { color: var(--il-amber) !important; }
+.result-table td.hl-g { color: var(--il-accent) !important; }
+
+/* — Exercises — */
+.ex-head { background: rgba(42,106,88,.07) !important; border-bottom-color: var(--il-border) !important; }
+.ex-num  { background: var(--il-accent) !important; color: #fff !important; }
+.ex-dot  { color: var(--il-accent) !important; border-color: var(--il-border) !important; }
+
+/* — Tool inputs — */
+.tool-input:focus, .tool-select:focus { border-color: var(--il-accent) !important; }
+.tool-btn {
+  background: var(--il-accent) !important;
+  color: #fff !important;
+}
+.tool-btn:hover { background: var(--il-accent-dim) !important; }
+.result-item .result-value { color: var(--il-accent) !important; }
 
 </style>
 

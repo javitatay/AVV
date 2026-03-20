@@ -265,7 +265,9 @@ Este proyecto es una herramienta educativa independiente.
         /* ─── PAGES ─── */
         .page {
             display: none;
-            padding: 32px;
+            padding: 34px 44px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
             animation: fadeIn 0.3s ease;
         }
 
@@ -4260,6 +4262,126 @@ function renderGlossaryVisual() {
   .fixture-grid { grid-template-columns: 1fr 1fr; }
   .channel-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); }
 }
+
+
+/* ═══ ILLUSTRATOR-STYLE VISUAL OVERRIDE — MAGICQ ═════════════════════ */
+:root {
+  --il-accent:     #1A40B0;
+  --il-accent-dim: #122E82;
+  --il-bg-void:    #FFFFFF;
+  --il-bg-deep:    #EEF1FA;
+  --il-bg-raised:  #F5F7FD;
+  --il-border:     #D8DCF0;
+  --il-border-mid: #C0C8E8;
+  --il-text-pri:   #0D1540;
+  --il-text-sec:   #2A3560;
+  --il-text-dim:   #7080B0;
+}
+
+/* — Body — */
+body { background: var(--il-bg-void) !important; color: var(--il-text-pri) !important; }
+
+/* — Sidebar — */
+.sidebar {
+  background: var(--il-bg-deep) !important;
+  border-right: 1px solid var(--il-border) !important;
+}
+.sidebar-header {
+  border-bottom: 1px solid var(--il-border) !important;
+}
+.sidebar-title {
+  font-size: 18px !important; font-weight: 800 !important;
+  letter-spacing: 1.5px !important; text-transform: uppercase !important;
+  color: var(--il-accent) !important;
+}
+.sidebar-subtitle {
+  color: var(--il-text-dim) !important;
+  letter-spacing: 2.5px !important;
+}
+.sidebar-version {
+  background: rgba(26,64,176,.10) !important;
+  border: 1px solid rgba(26,64,176,.18) !important;
+  color: var(--il-accent) !important;
+}
+
+/* — Nav — */
+.nav-section-label {
+  color: var(--il-text-dim) !important;
+  border-bottom: 1px solid var(--il-border) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+.nav-item {
+  color: var(--il-text-sec) !important;
+  border: 1px solid transparent !important;
+  border-radius: 4px !important;
+}
+.nav-item:hover {
+  background: var(--il-bg-raised) !important;
+  color: var(--il-text-pri) !important;
+  border-color: var(--il-border-mid) !important;
+}
+.nav-item.active {
+  background: rgba(26,64,176,.10) !important;
+  color: var(--il-accent) !important;
+  border-color: rgba(26,64,176,.20) !important;
+  font-weight: 600 !important;
+}
+.nav-item.active::before { background: var(--il-accent) !important; }
+.nav-badge { background: var(--il-accent) !important; }
+
+/* — Content — */
+.content-area { background: var(--il-bg-void) !important; }
+.page { background: var(--il-bg-void) !important; }
+
+/* — Page header — */
+.page-tag {
+  font-family: 'JetBrains Mono', monospace !important;
+  color: var(--il-accent) !important;
+  letter-spacing: 2px !important;
+}
+.page-title {
+  font-weight: 800 !important; text-transform: uppercase !important;
+  letter-spacing: 0.5px !important; color: var(--il-text-pri) !important;
+}
+.page-title span { color: var(--il-accent) !important; }
+.page-header::after { background: var(--il-accent) !important; }
+.page-desc { color: var(--il-text-sec) !important; }
+
+/* — Panels — */
+.panel {
+  background: #FFFFFF !important;
+  border: 1px solid var(--il-border) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 1px 4px rgba(26,64,176,.05) !important;
+}
+.panel-title {
+  color: var(--il-accent) !important;
+  font-weight: 700 !important; text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+}
+.panel-title::before { background: var(--il-accent) !important; }
+.panel-subtitle { color: var(--il-text-dim) !important; }
+
+/* — Info boxes — */
+.info-box { border-left-color: var(--il-accent) !important; }
+.info-box h4 { color: var(--il-accent) !important; }
+.warn-box h4 { color: #8A5000 !important; }
+.ok-box h4   { color: #005C30 !important; }
+
+/* — Exercises — */
+.exercise-num    { background: var(--il-accent) !important; }
+.exercise-header { background: rgba(26,64,176,.08) !important; border-bottom-color: var(--il-border) !important; }
+
+/* — Feature cards — */
+.feature-card::before { background: var(--il-accent) !important; }
+.feature-card:hover   { border-color: rgba(26,64,176,.22) !important; }
+
+/* — Stat / result — */
+.stat-value   { color: var(--il-accent) !important; }
+.result-value { color: var(--il-accent) !important; }
+
+/* — Universe badges — */
+.universe-badge.u1 { background: rgba(26,64,176,.12) !important; color: #1A40B0 !important; border-color: rgba(26,64,176,.30) !important; }
 
 </style>
 

@@ -174,8 +174,9 @@ body {
     background: var(--bg-void);
 }
 .main {
-    padding: 28px 36px 80px;
-    max-width: none;
+    padding: 34px 44px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 /* ─── MOBILE BTN (hamburger) ──────────────────────────────── */
@@ -3459,6 +3460,129 @@ function cvLoop(ts){
   .callout { padding: 10px 12px; font-size: 13px; }
   .dif     { font-size: 9px; }
   .kf-row  { flex-direction: column; gap: 6px; }
+}
+
+
+/* ═══ ILLUSTRATOR-STYLE VISUAL OVERRIDE — AFTER EFFECTS ══════════════ */
+:root {
+  --il-accent:     #3548C8;
+  --il-accent-dim: #2538A0;
+  --il-accent-glow:#5568E0;
+  --il-amber:      #3548C8;
+  --il-bg-void:    #F8F9FC;
+  --il-bg-deep:    #ECEEF8;
+  --il-bg-raised:  #F3F4FB;
+  --il-border:     #D8DBF0;
+  --il-border-mid: #C4C9E8;
+  --il-text-pri:   #111630;
+  --il-text-sec:   #3A4070;
+  --il-text-dim:   #7880B0;
+}
+
+/* — Sidebar — */
+.sidebar {
+  background: var(--il-bg-deep) !important;
+  border-right: 1px solid var(--il-border) !important;
+}
+/* Logo box */
+.logo {
+  border-bottom: 1px solid var(--il-border) !important;
+  padding: 22px 18px 16px !important;
+  text-align: center !important;
+}
+.logo-icon { background: var(--il-accent) !important; }
+.logo-title {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 16px !important; font-weight: 800 !important;
+  color: var(--il-accent) !important;
+  letter-spacing: 1.5px !important; text-transform: uppercase !important;
+  text-align: center !important;
+}
+.logo-sub {
+  font-size: 10px !important; color: var(--il-text-dim) !important;
+  letter-spacing: 2px !important; text-align: center !important;
+}
+.logo-badge {
+  background: rgba(53,72,200,.10) !important;
+  border: 1px solid rgba(53,72,200,.18) !important;
+  color: var(--il-accent) !important;
+}
+
+/* — Nav — */
+.nav-label {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 9px !important; letter-spacing: 2px !important;
+  border-bottom: 1px solid var(--il-border) !important;
+  color: var(--il-text-dim) !important;
+  padding-bottom: 5px !important;
+}
+.nav-item {
+  color: var(--il-text-sec) !important;
+  border-radius: 4px !important;
+  border: 1px solid transparent !important;
+}
+.nav-item:hover {
+  background: var(--il-bg-raised) !important;
+  border-color: var(--il-border-mid) !important;
+  color: var(--il-text-pri) !important;
+}
+.nav-item.active {
+  background: rgba(53,72,200,.10) !important;
+  color: var(--il-accent) !important;
+  border-color: rgba(53,72,200,.20) !important;
+  font-weight: 600 !important;
+}
+.nav-item.active::before { background: var(--il-accent) !important; }
+
+/* — Content — */
+.content-area { background: var(--il-bg-void) !important; }
+.main { background: var(--il-bg-void); }
+
+/* — Section titles (≈ page-title in Illustrator) — */
+.sec-title {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 800 !important; text-transform: uppercase !important;
+  letter-spacing: 0.5px !important; color: var(--il-text-pri) !important;
+  position: relative !important; padding-bottom: 16px !important;
+  margin-bottom: 24px !important;
+}
+.sec-title::after {
+  content: '' !important; position: absolute !important;
+  bottom: 0 !important; left: 0 !important;
+  width: 56px !important; height: 2px !important;
+  background: var(--il-accent) !important;
+}
+.sec-title span { color: var(--il-accent) !important; }
+.sec-tag {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 11px !important; color: var(--il-accent) !important;
+  letter-spacing: 2px !important; text-transform: uppercase !important;
+  margin-bottom: 8px !important;
+}
+
+/* — Panels (using .panel class which AE doesn't have — add via callout) — */
+.callout {
+  border-radius: 4px !important;
+  border-width: 1px !important; border-style: solid !important;
+}
+.callout.info    { background: rgba(53,72,200,.07) !important; border-color: rgba(53,72,200,.18) !important; border-left: 3px solid var(--il-accent) !important; color: var(--il-accent-dim) !important; }
+.callout.tip     { border-left-width: 3px !important; }
+.callout.warn    { border-left-width: 3px !important; }
+.callout.success { border-left-width: 3px !important; }
+
+/* — Hero — */
+.hero-title { color: var(--il-text-pri) !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; }
+.hero-title span, .hero-title .hl { color: var(--il-accent) !important; }
+
+/* — Tags — */
+.tag.info, .tag.ra { background: rgba(53,72,200,.10) !important; color: var(--il-accent) !important; border-color: rgba(53,72,200,.20) !important; }
+
+/* — Panels that exist — */
+[class*="panel"] {
+  background: #FFFFFF;
+  border: 1px solid var(--il-border);
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(53,72,200,.05);
 }
 
 </style>
