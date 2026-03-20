@@ -4244,6 +4244,33 @@ function renderGlossaryVisual() {
     .avl-nav-dots { display: none; }
   }
 
+
+/* ── UNIFIED BOXES — MagicQ ─────────────────────────────────── */
+.info-box, .warn-box, .ok-box {
+  border-radius: 4px !important;
+  padding: 14px 16px !important;
+  margin-bottom: 14px !important;
+  border-left-width: 3px !important;
+}
+.info-box h4, .warn-box h4, .ok-box h4 {
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+  letter-spacing: .8px !important;
+  margin-bottom: 8px !important;
+}
+.info-box p, .info-box li,
+.warn-box p, .warn-box li,
+.ok-box  p, .ok-box  li { font-size: 15px !important; line-height: 1.7 !important; }
+
+/* ── UNIFIED PAGE HEADER — MagicQ ──────────────────────────── */
+.page-header::after { width: 56px !important; }
+.page-title {
+  font-size: 36px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.5px !important;
+}
+.page-tag { font-size: 11px !important; letter-spacing: 2px !important; }
+
 /* ═══ RESPONSIVE ADDITIONS — MAGICQ ═════════════════════════════════ */
 @media (max-width: 1280px) {
   .content-area { padding-left: 0; }

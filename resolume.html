@@ -4044,6 +4044,46 @@ document.addEventListener('DOMContentLoaded', () => {
     .avl-nav-dots { display: none; }
   }
 
+
+/* ── UNIFIED PAGE HEADER — Resolume ─────────────────────────── */
+.page > .ptag { display: block; margin-bottom: 8px; }
+.page > .ptitle {
+  position: relative;
+  padding-bottom: 18px;
+  margin-bottom: 10px;
+}
+.page > .ptitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 56px; height: 2px;
+  background: var(--green);
+  border-radius: 1px;
+}
+
+/* ── UNIFIED BOXES — Resolume ───────────────────────────────── */
+.box {
+  border-left: 3px solid var(--b2) !important;
+  border-radius: 4px !important;
+  padding: 14px 16px !important;
+  margin-bottom: 14px;
+}
+.box h4 {
+  font-family: var(--font) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .8px !important;
+  margin-bottom: 8px !important;
+}
+.box p, .box ul, .box ol { font-size: 15px !important; line-height: 1.7 !important; }
+.box-g { background: rgba(42,106,88,.07) !important; border-color: rgba(42,106,88,.2) !important; border-left-color: var(--green) !important; }
+.box-g h4 { color: var(--green) !important; }
+.box-y { background: rgba(180,130,0,.06) !important; border-color: rgba(180,130,0,.2) !important; border-left-color: #B08000 !important; }
+.box-y h4 { color: #8A6000 !important; }
+.box-r { background: rgba(160,24,44,.05) !important; border-color: rgba(160,24,44,.18) !important; border-left-color: #A0182C !important; }
+.box-r h4 { color: #A0182C !important; }
+
 /* ═══ RESPONSIVE — RESOLUME ══════════════════════════════════════════ */
 /* Hamburger button */
 .hamburger{display:none;position:fixed;top:10px;left:10px;z-index:200;

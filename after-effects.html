@@ -3435,6 +3435,57 @@ function cvLoop(ts){
     .avl-nav-dots { display: none; }
   }
 
+
+/* ── UNIFIED PAGE HEADER — After Effects ───────────────────── */
+.sec-title {
+  font-size: 30px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1.05 !important;
+  color: var(--text-primary) !important;
+  position: relative !important;
+  padding-bottom: 18px !important;
+  margin-bottom: 20px !important;
+}
+.sec-title::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important; left: 0 !important;
+  width: 56px !important; height: 2px !important;
+  background: var(--ae-blue) !important;
+  border-radius: 1px !important;
+}
+.sec-title span { color: var(--ae-blue) !important; }
+.sec-tag {
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  color: var(--ae-blue) !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+
+/* ── UNIFIED BOXES — After Effects ─────────────────────────── */
+.callout {
+  border-radius: 4px !important;
+  padding: 14px 16px !important;
+  margin-bottom: 14px !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-left-width: 3px !important;
+}
+.callout h4, .callout strong:first-child {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .8px !important;
+  margin-bottom: 6px !important;
+  display: block !important;
+}
+.callout p, .callout li { font-size: 15px !important; line-height: 1.7 !important; }
+
 /* ═══ RESPONSIVE ADDITIONS — AFTER EFFECTS ══════════════════════════ */
 /* Medium: 1024–1280px */
 @media (max-width: 1280px) {
