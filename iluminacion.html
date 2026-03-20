@@ -416,22 +416,60 @@ input:focus, select:focus { border-color: var(--navy); }
 }
 .kelvin-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); font-weight: 600; margin-top: 4px; }
 
-/* ── DMX CHANNEL VIS ── */
-.dmx-channels {
-  display: flex; gap: 4px; flex-wrap: wrap;
-  padding: 14px; background: var(--navy); border-radius: 10px;
+/* ── DMX UNIVERSE SIMULATOR ── */
+#dmxSim { background:var(--navy); border-radius:12px; padding:16px; }
+#dmxSim .ds-toolbar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:14px; }
+#dmxSim .ds-toolbar select, #dmxSim .ds-toolbar input[type=number] {
+  padding:5px 9px; border-radius:7px; border:1px solid rgba(255,255,255,.25);
+  background:#1e2d4a; color:#fff; font-size:11px; font-family:'Poppins',sans-serif;
+  -webkit-appearance:none; appearance:none;
+}
+#dmxSim .ds-toolbar select option {
+  background:#1e2d4a; color:#fff;
+}
+#dmxSim .ds-btn {
+  padding:5px 12px; border-radius:7px; border:1px solid rgba(247,215,148,.35);
+  background:rgba(247,215,148,.1); color:var(--yellow); font-size:11px; font-weight:600;
+  cursor:pointer; font-family:'Poppins',sans-serif; transition:all .15s;
+}
+#dmxSim .ds-btn:hover { background:rgba(247,215,148,.22); }
+#dmxSim .ds-btn.danger { border-color:rgba(237,166,163,.35); background:rgba(237,166,163,.1); color:var(--pink); }
+#dmxSim .ds-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,34px);
+  gap:3px; padding:10px; background:rgba(0,0,0,.25); border-radius:8px;
+  max-height:280px; overflow-y:auto;
 }
 .dmx-ch {
-  width: 38px; height: 38px; border-radius: 5px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  font-size: 8px; font-weight: 600; cursor: default;
-  transition: transform .1s;
+  width:34px; height:34px; border-radius:5px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  font-size:7.5px; font-weight:700; cursor:pointer;
+  transition:transform .08s, background .1s;
+  position:relative; user-select:none;
 }
-.dmx-ch:hover { transform: scale(1.1); }
-.dmx-ch.used   { background: rgba(247,215,148,.25); border: 1px solid rgba(247,215,148,.4); color: var(--yellow); }
-.dmx-ch.free   { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); color: rgba(255,255,255,.2); }
-.dmx-ch.active { background: var(--yellow); border: 1px solid var(--yellow2); color: var(--navy); }
+.dmx-ch:hover { transform:scale(1.12); z-index:2; }
+.dmx-ch.free   { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.2); }
+.dmx-ch.used   { border:2px solid; }
+.dmx-ch .ch-val { font-size:6px; opacity:.75; margin-top:1px; }
+#dmxSim .ds-detail {
+  margin-top:12px; padding:12px 14px; background:rgba(0,0,0,.2);
+  border-radius:8px; display:none; border:1px solid rgba(255,255,255,.08);
+}
+#dmxSim .ds-detail.visible { display:block; }
+#dmxSim .ds-detail h4 { font-size:11px; font-weight:700; color:var(--yellow); margin-bottom:8px; }
+#dmxSim .ds-slider-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:10px; color:rgba(255,255,255,.7); }
+#dmxSim .ds-slider-row label { min-width:110px; }
+#dmxSim .ds-slider-row input[type=range] { flex:1; height:4px; accent-color:var(--yellow); }
+#dmxSim .ds-slider-row .ds-val { font-family:'JetBrains Mono',monospace; min-width:30px; text-align:right; font-size:10px; color:var(--yellow); }
+#dmxSim .ds-fixtures { margin-top:10px; display:flex; gap:6px; flex-wrap:wrap; }
+#dmxSim .ds-fx-chip {
+  padding:3px 10px; border-radius:20px; font-size:10px; font-weight:600;
+  cursor:pointer; border:1.5px solid; transition:all .15s;
+}
+#dmxSim .ds-fx-chip.sel { box-shadow:0 0 0 2px rgba(255,255,255,.3); }
+#dmxSim .ds-legend { display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; font-size:10px; color:rgba(255,255,255,.45); }
+#dmxSim .ds-legend span { display:flex; align-items:center; gap:4px; }
+#dmxSim .ds-legend i { width:10px; height:10px; border-radius:2px; display:inline-block; }
 
 /* ── SPECTRUM VIS ── */
 .spectrum-bar {
@@ -1897,6 +1935,7 @@ canvas { border-radius: 8px; }
     <div class="inner-tab" onclick="switchTab('dmx','splitters')">Splitters &amp; Nodos</div>
     <div class="inner-tab" onclick="switchTab('dmx','artnet')">ART-NET</div>
     <div class="inner-tab" onclick="switchTab('dmx','calc_dmx')">🧮 Calculadora</div>
+    <div class="inner-tab" onclick="switchTab('dmx','patch')">🗺️ Patch Visual</div>
   </div>
 
   <div class="inner-pane active" id="dmx_protocolo">
@@ -1922,13 +1961,43 @@ canvas { border-radius: 8px; }
           </div>
         </div>
       </div>
-      <div class="panel">
-        <div class="panel-title">Visualización de universo DMX</div>
-        <p style="font-size:11.5px; color:var(--text2); margin-bottom:12px;">512 canales en un universo. Los canales marcados en amarillo están en uso por un fixture de ejemplo.</p>
-        <div class="dmx-channels" id="dmxVis"></div>
-        <div style="margin-top:10px; display:flex; gap:8px; align-items:center; font-size:11px; color:rgba(255,255,255,.5); background:var(--navy); padding:8px 12px; border-radius:6px;">
-          <span style="width:12px;height:12px;background:rgba(247,215,148,.25);border:1px solid rgba(247,215,148,.4);border-radius:3px;display:inline-block;"></span> En uso
-          <span style="width:12px;height:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:3px;display:inline-block;margin-left:8px;"></span> Libre
+      <div class="panel" style="grid-column:1/-1">
+        <div class="panel-title">🎛 Simulador de Universo DMX</div>
+        <p style="font-size:12px; color:var(--text2); margin-bottom:14px;">Un universo DMX-512 tiene 512 canales. Añade fixtures, asígnales una dirección de inicio y ajusta sus parámetros con los sliders. Haz clic en cualquier canal para ver qué fixture lo ocupa.</p>
+
+        <div id="dmxSim">
+          <!-- Toolbar -->
+          <div class="ds-toolbar">
+            <select id="ds_fxType">
+              <option value="dimmer">Dimmer (1ch)</option>
+              <option value="rgb">RGB PAR (3ch)</option>
+              <option value="rgbw">RGBW (4ch)</option>
+              <option value="spot5">Spot (5ch)</option>
+              <option value="moving">Moving Head (16ch)</option>
+              <option value="led8">Barra LED (8ch)</option>
+            </select>
+            <input type="number" id="ds_addr" min="1" max="512" value="1" style="width:72px" placeholder="Addr">
+            <button class="ds-btn" onclick="DMX.addFixture()">+ Añadir fixture</button>
+            <button class="ds-btn danger" onclick="DMX.clearAll()">✕ Limpiar</button>
+            <span style="font-size:10px;color:rgba(255,255,255,.3);margin-left:auto">Clic en canal = detalle</span>
+          </div>
+
+          <!-- Fixtures chips -->
+          <div class="ds-fixtures" id="ds_chips"></div>
+
+          <!-- 512 channel grid -->
+          <div class="ds-grid" id="ds_grid"></div>
+
+          <!-- Legend -->
+          <div class="ds-legend" id="ds_legend">
+            <span><i style="background:rgba(255,255,255,.08)"></i> Libre</span>
+          </div>
+
+          <!-- Channel detail panel -->
+          <div class="ds-detail" id="ds_detail">
+            <h4 id="ds_detail_title">Canal —</h4>
+            <div id="ds_sliders"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -2244,8 +2313,8 @@ canvas { border-radius: 8px; }
     </div>
   </div>
 
-    <!-- ═══ HERRAMIENTA: SIMULADOR VISUAL DE PATCH DMX ═══ -->
-    <div class="panel" style="margin-top:24px">
+  <div class="inner-pane" id="dmx_patch">
+    <div class="panel">
       <div class="panel-title">🗺️ Simulador Visual de Patch — Mapa de Universo</div>
       <p style="font-size:13px;color:var(--text2);margin-bottom:18px">Construye el patch de tu instalación y visualiza cómo se reparten los canales en el universo DMX. Cada fixture se muestra con un color distinto en el mapa de 512 canales.</p>
 
@@ -2464,6 +2533,8 @@ canvas { border-radius: 8px; }
       ilRender();
     })();
     </script>
+
+  </div><!-- /dmx_patch -->
 
 </section>
 
@@ -2821,31 +2892,154 @@ function drawBeam(type) {
 setTimeout(() => drawBeam('wash'), 200);
 
 // ═══ M8: DMX VISUALIZER ═══
-function buildDMXVis() {
-  const container = document.getElementById('dmxVis');
-  if (!container) return;
-  container.innerHTML = '';
-  const usedStart = 101, usedLen = 16;
-  for (let i = 1; i <= 64; i++) {
-    const div = document.createElement('div');
-    div.className = 'dmx-ch';
-    if (i >= usedStart && i < usedStart + usedLen) {
-      div.className += ' active';
-      div.innerHTML = `<span>${i}</span><span style="font-size:7px;opacity:.7;">Fx</span>`;
-    } else if (i === usedStart - 1 || i === usedStart + usedLen) {
-      div.className += ' used';
-      div.innerHTML = `<span>${i}</span>`;
-    } else {
-      div.className += ' free';
-      div.innerHTML = `<span>${i}</span>`;
-    }
-    container.appendChild(div);
+function buildDMXVis() { DMX.init(); }
+
+(function(){
+  const FX_DEFS = {
+    dimmer:  { label:'Dimmer',       chs:1,  color:'#F7D794', params:['Intensidad'] },
+    rgb:     { label:'RGB PAR',      chs:3,  color:'#EDA6A3', params:['Rojo','Verde','Azul'] },
+    rgbw:    { label:'RGBW',         chs:4,  color:'#B0C4EE', params:['Rojo','Verde','Azul','Blanco'] },
+    spot5:   { label:'Spot 5ch',     chs:5,  color:'#A8D8A8', params:['Intensidad','Estrobo','R','G','B'] },
+    moving:  { label:'Moving Head',  chs:16, color:'#C3B1E1', params:['Pan','Pan Fine','Tilt','Tilt Fine','Velocidad','Intensidad','Estrobo','R','G','B','W','Gobo','Gobo Rot.','Prisma','Focus','Reset'] },
+    led8:    { label:'Barra LED 8ch',chs:8,  color:'#FFDAB9', params:['R','G','B','W','Intensidad','Estrobo','Modo','Velocidad'] },
+  };
+
+  let fixtures = [], selFx = null, chVals = new Array(513).fill(0), uid = 0;
+
+  function colorAlpha(hex, a) {
+    const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+    return `rgba(${r},${g},${b},${a})`;
   }
-  const dots = document.createElement('div');
-  dots.style.cssText = 'color:rgba(255,255,255,.2);font-size:14px;padding:10px;align-self:center;';
-  dots.textContent = '··· 448 canales más ···';
-  container.appendChild(dots);
-}
+
+  function renderGrid() {
+    const grid = document.getElementById('ds_grid'); if (!grid) return;
+    grid.innerHTML = '';
+    for (let i = 1; i <= 512; i++) {
+      const fx = fixtures.find(f => i >= f.addr && i < f.addr + FX_DEFS[f.type].chs);
+      const ch = document.createElement('div');
+      ch.className = 'dmx-ch ' + (fx ? 'used' : 'free');
+      const val = chVals[i];
+      const pct = Math.round(val/255*100);
+      if (fx) {
+        const col = FX_DEFS[fx.type].color;
+        ch.style.background = colorAlpha(col, 0.15 + (val/255)*0.55);
+        ch.style.borderColor = colorAlpha(col, 0.5 + (val/255)*0.4);
+        ch.style.color = col;
+      }
+      ch.innerHTML = `<span>${i}</span><span class="ch-val">${val}</span>`;
+      ch.title = fx ? `${fx.label} · ch relativo ${i - fx.addr + 1} · ${FX_DEFS[fx.type].params[i-fx.addr] || '?'} = ${val}` : `Canal ${i} · Libre`;
+      ch.onclick = () => showDetail(i, fx);
+      // Bar: vertical fill inside cell
+      ch.style.background = fx
+        ? `linear-gradient(to top, ${colorAlpha(FX_DEFS[fx.type].color, 0.55)} ${pct}%, ${colorAlpha(FX_DEFS[fx.type].color, 0.08)} ${pct}%)`
+        : `rgba(255,255,255,0.04)`;
+      grid.appendChild(ch);
+    }
+  }
+
+  function renderChips() {
+    const el = document.getElementById('ds_chips'); if (!el) return;
+    el.innerHTML = fixtures.map(f => {
+      const d = FX_DEFS[f.type];
+      const isSel = selFx && selFx.id === f.id;
+      return `<div class="ds-fx-chip${isSel?' sel':''}"
+        style="color:${d.color};border-color:${colorAlpha(d.color,.5)};background:${colorAlpha(d.color,.1)}"
+        onclick="DMX.selectFx('${f.id}')">
+        ${d.label} @${f.addr}
+        <span onclick="event.stopPropagation();DMX.removeFx('${f.id}')" style="margin-left:4px;opacity:.6;font-size:9px">✕</span>
+      </div>`;
+    }).join('');
+  }
+
+  function renderLegend() {
+    const el = document.getElementById('ds_legend'); if (!el) return;
+    const items = [`<span><i style="background:rgba(255,255,255,.08)"></i> Libre</span>`];
+    fixtures.forEach(f => {
+      const d = FX_DEFS[f.type];
+      items.push(`<span><i style="background:${colorAlpha(d.color,.5)}"></i> ${f.label} @${f.addr}</span>`);
+    });
+    el.innerHTML = items.join('');
+  }
+
+  function showDetail(ch, fx) {
+    const panel = document.getElementById('ds_detail');
+    const title = document.getElementById('ds_detail_title');
+    const sliders = document.getElementById('ds_sliders');
+    if (!fx) {
+      title.textContent = `Canal ${ch} — Libre (valor: ${chVals[ch]})`;
+      sliders.innerHTML = `<div style="font-size:11px;color:rgba(255,255,255,.4);padding:4px 0">Este canal no está asignado a ningún fixture.</div>`;
+    } else {
+      const d = FX_DEFS[fx.type];
+      title.textContent = `${fx.label} (${d.label}) — dirección @${fx.addr}`;
+      sliders.innerHTML = d.params.map((p, i) => {
+        const absC = fx.addr + i;
+        const v = chVals[absC];
+        return `<div class="ds-slider-row">
+          <label>Ch ${absC} · ${p}</label>
+          <input type="range" min="0" max="255" value="${v}"
+            oninput="DMX.setVal(${absC},this.value);this.nextElementSibling.textContent=this.value">
+          <span class="ds-val">${v}</span>
+        </div>`;
+      }).join('');
+    }
+    panel.classList.add('visible');
+  }
+
+  function refresh() { renderGrid(); renderChips(); renderLegend(); }
+
+  window.DMX = {
+    init() {
+      if (document.getElementById('ds_grid')?.children.length) return;
+      refresh();
+    },
+    addFixture() {
+      const type = document.getElementById('ds_fxType').value;
+      const addr = parseInt(document.getElementById('ds_addr').value);
+      const d = FX_DEFS[type];
+      if (!d || addr < 1 || addr + d.chs - 1 > 512) {
+        alert(`Dirección inválida. ${d.label} necesita ${d.chs} canales (máx. dir: ${513-d.chs}).`);
+        return;
+      }
+      // Check overlap
+      const overlap = fixtures.find(f => {
+        const fd = FX_DEFS[f.type];
+        return addr < f.addr + fd.chs && addr + d.chs > f.addr;
+      });
+      if (overlap) { alert(`Conflicto con "${overlap.label}" en dirección @${overlap.addr}.`); return; }
+      const id = 'fx'+(++uid);
+      fixtures.push({ id, type, addr, label: d.label+' '+uid });
+      // Suggest next free address
+      const nextFree = addr + d.chs;
+      if (nextFree <= 512) document.getElementById('ds_addr').value = nextFree;
+      refresh();
+    },
+    removeFx(id) {
+      const fx = fixtures.find(f=>f.id===id);
+      if (fx) {
+        const d = FX_DEFS[fx.type];
+        for (let i = fx.addr; i < fx.addr + d.chs; i++) chVals[i] = 0;
+      }
+      fixtures = fixtures.filter(f=>f.id!==id);
+      if (selFx && selFx.id===id) { selFx=null; document.getElementById('ds_detail').classList.remove('visible'); }
+      refresh();
+    },
+    selectFx(id) {
+      selFx = fixtures.find(f=>f.id===id) || null;
+      renderChips();
+      if (selFx) showDetail(selFx.addr, selFx);
+    },
+    setVal(ch, v) {
+      chVals[ch] = parseInt(v);
+      renderGrid();
+    },
+    clearAll() {
+      if (!confirm('¿Borrar todos los fixtures?')) return;
+      fixtures=[]; selFx=null; chVals=new Array(513).fill(0);
+      document.getElementById('ds_detail').classList.remove('visible');
+      refresh();
+    }
+  };
+})();
 
 // ═══ M8: DMX CALC ═══
 function calcDMX() {
