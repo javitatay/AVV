@@ -31,7 +31,7 @@ Herramienta educativa independiente.
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg0);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:14px}
+body{font-family:var(--font);background:var(--bg0);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.7}
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:var(--bg1)}
 ::-webkit-scrollbar-thumb{background:var(--b2);border-radius:3px}
@@ -69,7 +69,7 @@ body{font-family:var(--font);background:var(--bg0);color:var(--t1);overflow-x:hi
 .ptag{font-size:9px;color:var(--green);letter-spacing:2.5px;text-transform:uppercase;font-family:var(--mono);font-weight:700;margin-bottom:5px}
 .ptitle{font-size:34px;font-weight:900;letter-spacing:-1.5px;line-height:1.05;margin-bottom:8px}
 .ptitle span{color:var(--green)}
-.pdesc{font-size:14px;color:var(--t2);line-height:1.75;margin-bottom:24px;max-width:640px}
+.pdesc{font-size:16px;color:var(--t2);line-height:1.75;margin-bottom:24px;max-width:640px}
 .divider{height:1px;background:var(--b1);margin:18px 0}
 
 /* ─ HERO ─ */
@@ -95,7 +95,7 @@ body{font-family:var(--font);background:var(--bg0);color:var(--t1);overflow-x:hi
 /* ─ BOXES ─ */
 .box{background:var(--bg3);border:1px solid var(--b2);border-radius:var(--r);padding:13px}
 .box h4{font-size:12px;font-weight:700;margin-bottom:7px}
-.box p,.box ul,.box ol{font-size:13.5px;color:var(--t2);line-height:1.75}
+.box p,.box ul,.box ol{font-size:15px;color:var(--t2);line-height:1.75}
 .box ul,.box ol{padding-left:16px}
 .box-g{background:rgba(0,184,148,.07);border-color:rgba(0,184,148,.2)}
 .box-g h4{color:var(--green)}
@@ -121,7 +121,7 @@ body{font-family:var(--font);background:var(--bg0);color:var(--t1);overflow-x:hi
 .steps{display:flex;flex-direction:column;gap:8px;margin:12px 0}
 .step{display:flex;gap:12px;align-items:flex-start}
 .snum{width:24px;min-width:24px;height:24px;background:var(--green);color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-top:1px;flex-shrink:0}
-.step p{font-size:13px;color:var(--t2);line-height:1.65}
+.step p{font-size:15px;color:var(--t2);line-height:1.7}
 .step p strong{color:var(--t1)}
 
 /* ─ CODE ─ */
@@ -168,7 +168,7 @@ body{font-family:var(--font);background:var(--bg0);color:var(--t1);overflow-x:hi
 .ex-sub{font-size:11px;color:var(--t3);margin-top:2px}
 .ex-body{padding:20px}
 .ex-list{display:flex;flex-direction:column;gap:7px}
-.ex-item{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--t2);line-height:1.6}
+.ex-item{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--t2);line-height:1.65}
 .ex-dot{width:20px;min-width:20px;height:20px;background:var(--bg3);border:1px solid var(--b2);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;color:var(--green);font-family:var(--mono);flex-shrink:0;margin-top:1px}
 
 /* ─ GLOSARIO ─ */
@@ -3679,6 +3679,56 @@ document.addEventListener('DOMContentLoaded', () => {
     .avl-nav-label { font-size: 10px; }
     .avl-nav-dots { display: none; }
   }
+
+/* ═══ RESPONSIVE — RESOLUME ══════════════════════════════════════════ */
+/* Hamburger button */
+.hamburger{display:none;position:fixed;top:10px;left:10px;z-index:200;
+  width:38px;height:38px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--b2);
+  flex-direction:column;align-items:center;justify-content:center;
+  gap:5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.hamburger span{display:block;width:18px;height:2px;
+  background:var(--t1);border-radius:2px;transition:transform .22s,opacity .22s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.overlay-mob{display:none;position:fixed;inset:0;z-index:95;background:rgba(0,0,0,.5)}
+.overlay-mob.visible{display:block}
+
+@media (max-width: 1280px) {
+  .app{gap:0}
+  .content{padding:28px 28px 90px}
+}
+@media (max-width: 1024px) {
+  .content{padding:24px 20px 90px}
+  .g3,.g4{grid-template-columns:1fr 1fr}
+  .ptitle{font-size:28px}
+}
+@media (max-width: 860px) {
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;top:0;left:0;height:100vh;z-index:150;
+    transform:translateX(-100%);transition:transform .26s cubic-bezier(.4,0,.2,1)}
+  .sidebar.open{transform:translateX(0)}
+  .hamburger{display:flex}
+  .content{padding:24px 20px 90px;padding-top:60px}
+  .ptitle{font-size:26px}
+  .pdesc{font-size:15px}
+}
+@media (max-width: 640px) {
+  .content{padding:16px 14px 90px;padding-top:58px}
+  .ptitle{font-size:22px}
+  .pdesc{font-size:14px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .box p,.box ul{font-size:14px}
+  .step p{font-size:14px}
+  .ex-item{font-size:13px}
+  .tool-wrap{padding:16px}
+  .tool-row{flex-direction:column}
+  .ptag{font-size:9px}
+  .page-nav{flex-direction:column;gap:6px}
+  .bg{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
+}
+
 </style>
 
 
@@ -3717,5 +3767,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </div>
 
+
+<!-- Hamburger mobile nav -->
+<button class="hamburger" id="resHamburger" aria-label="Menú">
+  <span></span><span></span><span></span>
+</button>
+<div class="overlay-mob" id="resMobOverlay"></div>
+<script>
+(function(){
+  const btn = document.getElementById('resHamburger');
+  const overlay = document.getElementById('resMobOverlay');
+  const sidebar = document.querySelector('.sidebar');
+  if (!btn || !sidebar) return;
+  function toggle(open) {
+    sidebar.classList.toggle('open', open);
+    btn.classList.toggle('open', open);
+    overlay.classList.toggle('visible', open);
+  }
+  btn.addEventListener('click', () => toggle(!sidebar.classList.contains('open')));
+  overlay.addEventListener('click', () => toggle(false));
+  // Close on nav item click (mobile)
+  sidebar.querySelectorAll('.nav-item, [onclick]').forEach(el =>
+    el.addEventListener('click', () => { if (window.innerWidth <= 860) toggle(false); })
+  );
+})();
+</script>
 </body>
 </html>

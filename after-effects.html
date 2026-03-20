@@ -59,8 +59,8 @@ body {
     background: var(--bg-void);
     color: var(--text-primary);
     overflow-x: hidden;
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 16px;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -231,7 +231,7 @@ h3.sub {
     margin-bottom: 12px; text-transform: uppercase;
     letter-spacing: .8px; font-family: var(--font-mono);
 }
-p.body { font-size: 14px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 14px; }
+p.body { font-size: 16px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 14px; }
 .sep { height: 1px; background: var(--border-dark); margin: 24px 0; }
 
 /* ─── GRID ────────────────────────────────────────────────── */
@@ -3433,6 +3433,34 @@ function cvLoop(ts){
     .avl-nav-label { font-size: 10px; }
     .avl-nav-dots { display: none; }
   }
+
+/* ═══ RESPONSIVE ADDITIONS — AFTER EFFECTS ══════════════════════════ */
+/* Medium: 1024–1280px */
+@media (max-width: 1280px) {
+  .main   { padding: 24px 28px 80px; }
+  .g2, .g3, .g4 { gap: 14px; }
+}
+/* Tablet: 768–1024px */
+@media (max-width: 1024px) {
+  .main   { padding: 20px 22px 80px; }
+  .g3, .g4 { grid-template-columns: 1fr 1fr; }
+  .sec-title  { font-size: 26px; }
+  .hero-title { font-size: 30px; }
+  .quick-grid { grid-template-columns: repeat(3, 1fr); }
+}
+/* Mobile handled by existing 860px query + these additions */
+@media (max-width: 640px) {
+  .main   { padding: 16px 14px 80px; }
+  .sec-title  { font-size: 20px; }
+  .hero-title { font-size: 22px; }
+  p.body  { font-size: 15px; }
+  .g2, .g3, .g4 { grid-template-columns: 1fr; gap: 10px; }
+  .quick-grid   { grid-template-columns: 1fr 1fr; }
+  .callout { padding: 10px 12px; font-size: 13px; }
+  .dif     { font-size: 9px; }
+  .kf-row  { flex-direction: column; gap: 6px; }
+}
+
 </style>
 
 <div id="avl-nav">

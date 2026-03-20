@@ -43,7 +43,7 @@ Este proyecto es una herramienta educativa independiente.
         }
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-primary); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-primary); overflow-x: hidden; -webkit-font-smoothing: antialiased; font-size: 16px; line-height: 1.7; }
 
         /* SCROLLBAR */
         ::-webkit-scrollbar { width: 5px; }
@@ -142,7 +142,7 @@ Este proyecto es una herramienta educativa independiente.
         .page-tag { font-family: var(--font-mono); font-size: 11px; color: var(--ai-orange); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
         .page-title { font-family: var(--font-head); font-size: 36px; font-weight: 800; color: var(--text-primary); letter-spacing: 0.5px; text-transform: uppercase; line-height: 1; }
         .page-title span { color: var(--ai-orange); }
-        .page-desc { font-size: 14.5px; color: var(--text-secondary); margin-top: 10px; font-weight: 400; line-height: 1.65; max-width: 680px; }
+        .page-desc { font-size: 16px; color: var(--text-secondary); margin-top: 10px; font-weight: 400; line-height: 1.65; max-width: 680px; }
 
         /* PANELS */
         .panel { background: var(--bg-surface); border: 1px solid var(--border-dark); border-radius: 6px; padding: 24px; margin-bottom: 20px; position: relative; box-shadow: 0 1px 4px rgba(59,8,8,0.06); }
@@ -159,17 +159,17 @@ Este proyecto es una herramienta educativa independiente.
         /* INFO BOXES */
         .info-box { background: rgba(59,8,8,0.07); border: 1px solid rgba(59,8,8,0.15); border-left: 3px solid var(--ai-orange); border-radius: 4px; padding: 16px; margin-bottom: 14px; }
         .info-box h4 { color: var(--ai-amber); font-family: var(--font-head); font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .info-box p, .info-box li { color: var(--text-secondary); font-size: 13.5px; line-height: 1.65; }
+        .info-box p, .info-box li { color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
         .info-box ul { padding-left: 16px; }
         .info-box li { margin-bottom: 4px; }
 
         .warn-box { background: rgba(200,120,0,0.07); border: 1px solid rgba(200,120,0,0.15); border-left: 3px solid #C87800; border-radius: 4px; padding: 16px; margin-bottom: 14px; }
         .warn-box h4 { color: #9A6000; font-family: var(--font-head); font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .warn-box p, .warn-box li { color: var(--text-secondary); font-size: 13.5px; line-height: 1.65; }
+        .warn-box p, .warn-box li { color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
 
         .ok-box { background: rgba(0,140,70,0.06); border: 1px solid rgba(0,140,70,0.18); border-left: 3px solid #007840; border-radius: 4px; padding: 16px; margin-bottom: 14px; }
         .ok-box h4 { color: #005C30; font-family: var(--font-head); font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .ok-box p, .ok-box li { color: var(--text-secondary); font-size: 13.5px; line-height: 1.65; }
+        .ok-box p, .ok-box li { color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
 
         /* STEP LIST */
         .step-list { counter-reset: steps; }
@@ -3754,6 +3754,27 @@ Este proyecto es una herramienta educativa independiente.
     .avl-nav-label { font-size: 10px; }
     .avl-nav-dots { display: none; }
   }
+
+/* ═══ RESPONSIVE ADDITIONS — ILLUSTRATOR ════════════════════════════ */
+@media (max-width: 1280px) {
+  .content-area .main { padding: 24px 28px 80px; }
+}
+@media (max-width: 1024px) {
+  .content-area .main { padding: 20px 20px 80px; }
+  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+  .page-title { font-size: 26px; }
+}
+@media (max-width: 640px) {
+  .content-area .main, .main { padding: 16px 14px 80px !important; }
+  .page-title  { font-size: 20px; }
+  .page-desc   { font-size: 14px !important; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .info-box p, .warn-box p, .ok-box p { font-size: 14px; }
+  .ai-table    { font-size: 12px; }
+  .step-item   { gap: 10px; }
+  .top-bar     { padding: 6px 14px; }
+}
+
 </style>
 
 

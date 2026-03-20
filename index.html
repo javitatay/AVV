@@ -34,6 +34,8 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
       background: var(--bg);
       color: var(--text-1);
       min-height: 100vh;
@@ -307,7 +309,34 @@
       .section-header { padding: 0 18px 16px; }
       .glosario-grid { grid-template-columns: 1fr 1fr; }
     }
-  </style>
+  
+/* ═══ RESPONSIVE — INDEX ═══════════════════════════════════════════ */
+/* Tablet: 640–1024px */
+@media (max-width: 1024px) {
+  .hero-bar   { gap: 16px; padding: 0 20px; }
+  .hero-title { font-size: 17px; }
+  .grid       { grid-template-columns: repeat(2, 1fr); padding: 0 16px 40px; gap: 16px; }
+  .suite-card { padding: 20px 18px; }
+}
+/* Mobile: < 640px */
+@media (max-width: 640px) {
+  .hero-bar   { flex-direction: column; align-items: flex-start; gap: 8px;
+                padding: 10px 16px; height: auto; }
+  .hero-title { font-size: 15px; }
+  .hero-stats { gap: 10px; flex-wrap: wrap; }
+  .hero-stat  { font-size: 11px; }
+  .hero-divider { display: none; }
+  .grid       { grid-template-columns: 1fr; padding: 0 12px 40px; gap: 12px; }
+  .suite-card { padding: 18px 16px; }
+  .card-title { font-size: 17px; }
+  .card-desc  { font-size: 14px; }
+  .section-header h2 { font-size: 13px; }
+  .glosario-grid { grid-template-columns: 1fr 1fr; }
+  .contact-section { padding: 20px 16px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 12px; }
+}
+
+</style>
 </head>
 <body>
 
@@ -470,9 +499,9 @@
           <span class="contact-name">Javier Tatay Rubio</span>
         </div>
       </div>
-      <a class="contact-link" href="mailto:j.tatayrubio@edu.gva.es">
+      <a class="contact-link" href="/cdn-cgi/l/email-protection#355f1b415441544c4740575c5a755051401b5243541b5046">
         <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.7"/><path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-        j.tatayrubio@edu.gva.es
+        <span class="__cf_email__" data-cfemail="cfa5e1bbaebbaeb6bdbaada6a08faaabbae1a8b9aee1aabc">[email&#160;protected]</span>
       </a>
     </div>
   </div>
@@ -519,7 +548,7 @@
     </div>
   </div>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── Abrir / cerrar modal ──────────────────────────────────
   function abrirGlosario() {
     document.getElementById('glosarioOverlay').classList.add('open');
@@ -973,13 +1002,4 @@
 
   renderGlosario();
 
-  // ── Abrir suites en pestaña nueva ─────────────────────────
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.open(this.getAttribute('href'), '_blank');
-    });
-  });
-  </script>
-</body>
-</html>
+  // ── Abrir suites en pestaña nueva ─────────────────�

@@ -29,6 +29,8 @@
 }
 
 body {
+  font-size: 16px;
+  line-height: 1.7;
   font-family: 'Poppins', sans-serif;
   background: var(--bg);
   color: var(--text);
@@ -204,7 +206,7 @@ body {
   font-size: 15px; font-weight: 700; color: var(--navy);
   margin-bottom: 6px;
 }
-.card-desc { font-size: 13.5px; color: var(--text2); line-height: 1.65; font-weight: 400; }
+.card-desc { font-size: 15px; color: var(--text2); line-height: 1.7; font-weight: 400; }
 .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
 .card-tag {
   font-size: 10px; font-weight: 500;
@@ -372,7 +374,7 @@ input:focus, select:focus { border-color: var(--navy); }
   border-radius: 8px; padding: 18px;
 }
 .info-card-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
-.info-card p { font-size: 13.5px; color: var(--text2); line-height: 1.65; font-weight: 400; }
+.info-card p { font-size: 15px; color: var(--text2); line-height: 1.7; font-weight: 400; }
 
 /* ── FORMULA ── */
 .formula {
@@ -3363,6 +3365,55 @@ calcElecUpdate();
     .avl-nav-label { font-size: 10px; }
     .avl-nav-dots { display: none; }
   }
+
+/* ═══ RESPONSIVE — TOP-NAV SUITES ══════════════════════════════════ */
+/* Base font */
+body { font-size: 16px; line-height: 1.7; }
+
+/* Tablet: 768–1024px */
+@media (max-width: 1024px) {
+  .main       { padding: 24px 24px 100px; }
+  .module-title { font-size: 19px; }
+  .calc-row-3 { grid-template-columns: 1fr 1fr; }
+  .result-grid-4 { grid-template-columns: 1fr 1fr; }
+  .sim-grid   { grid-template-columns: 1fr; }
+  .grid-3     { grid-template-columns: 1fr 1fr; }
+}
+/* Mobile: < 640px */
+@media (max-width: 640px) {
+  .top-header { padding: 0 14px; height: 50px; }
+  .logo-text  { font-size: 13px; }
+  .logo-sub   { display: none; }
+  .header-badge { display: none; }
+  .nav-bar    { padding: 0 10px; }
+  .nav-tab    { padding: 10px 10px; font-size: 11px; }
+  .nav-num    { display: none; }
+  .main       { padding: 16px 14px 100px; }
+  .module-title  { font-size: 17px; }
+  .module-desc   { font-size: 13px; }
+  .card-desc     { font-size: 14px; }
+  .info-card p   { font-size: 14px; }
+  .panel-title   { font-size: 13px; }
+  .inner-tabs    { gap: 3px; }
+  .inner-tab     { padding: 7px 10px; font-size: 11px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .calc-row   { grid-template-columns: 1fr; }
+  .calc-row-3 { grid-template-columns: 1fr; }
+  .result-grid   { grid-template-columns: 1fr 1fr; }
+  .result-grid-4 { grid-template-columns: 1fr 1fr; }
+  .sim-grid      { grid-template-columns: 1fr; }
+  .sim-toggle-row { gap: 4px; }
+  .sim-toggle-btn { padding: 5px 9px; font-size: 10px; }
+  .diagram-wrap   { overflow-x: auto; }
+  .module-header  { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .back-btn       { font-size: 12px; }
+}
+/* Very small: < 400px */
+@media (max-width: 400px) {
+  .nav-tab    { padding: 10px 7px; font-size: 10px; }
+  .main       { padding: 12px 10px 100px; }
+}
+
 </style>
 
 

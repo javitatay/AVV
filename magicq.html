@@ -58,6 +58,8 @@ Este proyecto es una herramienta educativa independiente.
             color: var(--text-primary);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            font-size: 16px;
+            line-height: 1.7;
         }
 
         /* ─── SCROLLBAR ─── */
@@ -1260,12 +1262,12 @@ Este proyecto es una herramienta educativa independiente.
 
                 <div class="panel panel-orange">
                     <div class="panel-title">¿Qué es MagicQ?</div>
-                    <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:12px;">
+                    <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:14px;">
                         <strong>MagicQ</strong> es el software y sistema de control de iluminación desarrollado por <strong>ChamSys Ltd.</strong>
                         Disponible tanto como software para PC/Mac como en consolas hardware dedicadas, es una de las plataformas
                         más utilizadas en iluminación escénica profesional por su potencia, flexibilidad y coste accesible.
                     </p>
-                    <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;">
+                    <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;">
                         Esta suite educativa cubre desde los conceptos básicos de la interfaz hasta la programación avanzada
                         de cues, playbacks, efectos y paletas, siguiendo el plan de estudios de la asignatura.
                     </p>
@@ -1499,7 +1501,7 @@ Este proyecto es una herramienta educativa independiente.
                 <div class="panel-title">Layout y ventana central</div>
                 <div class="grid-2">
                     <div>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:14px;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:14px;">
                             La <strong>ventana central</strong> (pantalla) de MagicQ es completamente configurable. 
                             Puedes dividirla en múltiples <strong>layouts</strong> con las ventanas que necesitas visibles simultáneamente.
                         </p>
@@ -1542,7 +1544,7 @@ Este proyecto es una herramienta educativa independiente.
                 <div class="panel-title">Línea de Comandos (Programmer)</div>
                 <div class="grid-2">
                     <div>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:14px;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:14px;">
                             La <strong>línea de comandos</strong> (Command Line) es la zona de texto donde MagicQ 
                             muestra en tiempo real todo lo que vas ejecutando. Es tu "feedback" de lo que está recibiendo la consola.
                         </p>
@@ -1583,7 +1585,7 @@ Este proyecto es una herramienta educativa independiente.
                 <div class="panel-title">¿Qué es el SETUP?</div>
                 <div class="grid-2">
                     <div>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:14px;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:14px;">
                             SETUP es el <strong>centro nervioso de MagicQ</strong>. A diferencia del resto de ventanas que 
                             programan luces, SETUP configura el <em>entorno donde se programa</em>. 
                             No produce salida DMX directamente, pero define cómo funciona todo.
@@ -1703,12 +1705,12 @@ Este proyecto es una herramienta educativa independiente.
                 <div class="panel-title">¿Qué es el Visualiser?</div>
                 <div class="grid-2">
                     <div>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:12px;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:14px;">
                             El <strong>Visualiser</strong> de MagicQ es un entorno de previsualización 3D integrado 
                             que permite simular un escenario real y ver el comportamiento de los focos 
                             <strong>sin necesidad de tenerlos físicamente</strong>.
                         </p>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;">
                             Funciona en <strong>tiempo real</strong> y está directamente vinculado al patch 
                             y a la programación del show. Cualquier cambio en el patch o en el programmer 
                             se refleja inmediatamente en el Visualiser.
@@ -1774,7 +1776,7 @@ Este proyecto es una herramienta educativa independiente.
 
             <div class="panel">
                 <div class="panel-title">Columna 'Model' y personalización</div>
-                <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:16px;">
+                <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:16px;">
                     Mediante la columna <strong>'Model'</strong> en la tabla de Attach Objects, puedes cambiar la forma 3D 
                     del elemento. Esto permite usar modelos diferentes para distintas trusses, 
                     o asignar el modelo exacto del fabricante si está disponible.
@@ -1813,12 +1815,12 @@ Este proyecto es una herramienta educativa independiente.
                 <div class="panel-title">¿Qué es el protocolo DMX512?</div>
                 <div class="grid-2">
                     <div>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:12px;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:14px;">
                             <strong>DMX512</strong> (Digital Multiplex) es el protocolo estándar de la industria 
                             para el control de iluminación escénica. Cada línea DMX 
                             (un <strong>universo</strong>) transporta exactamente <strong>512 canales</strong>.
                         </p>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;">
                             Cada canal es un valor entre <span class="cmd">0</span> y <span class="cmd">255</span> 
                             (8 bits). El valor 0 = mínimo/apagado, 255 = máximo.
                         </p>
@@ -1929,7 +1931,7 @@ Este proyecto es una herramienta educativa independiente.
 
             <div class="panel panel-orange">
                 <div class="panel-title">¿Qué es el Patch?</div>
-                <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:16px;">
+                <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:16px;">
                     El <strong>Patch</strong> es el proceso mediante el cual le dices a la consola qué aparatos tienes 
                     y dónde están conectados. Traduce el mundo físico (luces y cables) al mundo lógico (control en consola). 
                     <strong>Patch = relación entre fixtures y direcciones DMX</strong> (universos y canales).
@@ -2103,7 +2105,7 @@ Este proyecto es una herramienta educativa independiente.
                 <div class="panel-title">¿Qué es un Grupo?</div>
                 <div class="grid-2">
                     <div>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:12px;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:14px;">
                             Un <strong>Grupo</strong> en MagicQ es un conjunto de fixtures agrupados para facilitar 
                             su selección y control. Los grupos <strong>guardan qué fixtures</strong>, no valores de intensidad ni posición.
                         </p>
@@ -2186,11 +2188,11 @@ Este proyecto es una herramienta educativa independiente.
                 <div class="panel-title">LOCATE — Posición Neutra de Trabajo</div>
                 <div class="grid-2">
                     <div>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:12px;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:14px;">
                             <strong>LOCATE</strong> lleva los fixtures seleccionados a un <strong>estado conocido y neutro</strong>, 
                             cargando sus valores por defecto. Es el punto de partida para trabajar con un foco.
                         </p>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;">
                             Piensa en LOCATE como <em>"poner el foco en posición segura para trabajar"</em> 
                             antes de editar sus atributos.
                         </p>
@@ -2226,7 +2228,7 @@ Este proyecto es una herramienta educativa independiente.
                 <div class="panel-title">Paletas de Posición (POS)</div>
                 <div class="grid-2">
                     <div>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:12px;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:14px;">
                             Una <strong>Posición</strong> es una paleta de tipo POS que guarda los valores de 
                             <strong>PAN y TILT</strong> de uno o varios fixtures. Son referencias reutilizables 
                             que puedes aplicar en múltiples cues.
@@ -2257,7 +2259,7 @@ Este proyecto es una herramienta educativa independiente.
 
             <div class="panel">
                 <div class="panel-title">Efectos Automáticos (FX)</div>
-                <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:16px;">
+                <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:16px;">
                     Los <strong>Effects (FX)</strong> son movimientos o variaciones automáticas que MagicQ aplica 
                     a uno o varios parámetros en el tiempo. MagicQ incluye una librería predeterminada lista para usar.
                 </p>
@@ -2442,7 +2444,7 @@ Este proyecto es una herramienta educativa independiente.
 
             <div class="panel">
                 <div class="panel-title">Grabar una Cue List (múltiples pasos)</div>
-                <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:16px;">
+                <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:16px;">
                     Una <strong>Cue List</strong> (pila de cues) permite tener varios pasos/escenas secuenciados 
                     en un solo playback. Las páginas acumulan cues y playbacks.
                 </p>
@@ -2509,7 +2511,7 @@ Este proyecto es una herramienta educativa independiente.
                 <div class="panel-title">Color Picker</div>
                 <div class="grid-2">
                     <div>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:12px;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:14px;">
                             El <strong>Color Picker</strong> es una herramienta gráfica que permite seleccionar 
                             colores de forma visual, sin pensar en valores DMX ni en ruedas de color físicas.
                         </p>
@@ -2558,7 +2560,7 @@ Este proyecto es una herramienta educativa independiente.
 
             <div class="panel">
                 <div class="panel-title">Sistema de Paletas</div>
-                <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:16px;">
+                <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:16px;">
                     Una <strong>paleta</strong> es un valor reutilizable de uno o varios parámetros, 
                     independiente de las cues. En vez de grabar valores "crudos" en cada cue, 
                     grabas <em>referencias</em> que se actualizan globalmente.
@@ -2656,12 +2658,12 @@ Este proyecto es una herramienta educativa independiente.
                 <div class="panel-title">¿Qué es un Executor?</div>
                 <div class="grid-2">
                     <div>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:12px;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:14px;">
                             Un <strong>executor</strong> es un elemento de control que permite 
                             ejecutar (lanzar, detener o modificar) una acción del show. 
                             Son el <em>interfaz entre lo programado y el directo</em>.
                         </p>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:12px;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:14px;">
                             Acceso: <span class="cmd">EXEC</span> → define el tamaño de la rejilla.
                         </p>
                         <div class="info-box">
@@ -2720,7 +2722,7 @@ Este proyecto es una herramienta educativa independiente.
                 <div class="panel-title">¿Qué es MagicQ Remote?</div>
                 <div class="grid-2">
                     <div>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:12px;">
+                        <p style="color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:14px;">
                             <strong>MagicQ Remote</strong> es una aplicación de control remoto que permite 
                             manejar una mesa o software MagicQ <strong>a distancia</strong> desde un 
                             dispositivo móvil o tablet (iOS / Android) conectado a la misma red.
@@ -4241,6 +4243,26 @@ function renderGlossaryVisual() {
     .avl-nav-label { font-size: 10px; }
     .avl-nav-dots { display: none; }
   }
+
+/* ═══ RESPONSIVE ADDITIONS — MAGICQ ═════════════════════════════════ */
+@media (max-width: 1280px) {
+  .content-area { padding-left: 0; }
+  .main, .content-area .main { padding: 24px 24px 90px; }
+}
+@media (max-width: 1024px) {
+  .main, .content-area .main { padding: 20px 18px 90px; }
+  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+  .page-title { font-size: 26px; }
+}
+@media (max-width: 640px) {
+  .main, .content-area .main { padding: 16px 14px 90px !important; }
+  .page-title  { font-size: 20px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .info-box p  { font-size: 14px; }
+  .fixture-grid { grid-template-columns: 1fr 1fr; }
+  .channel-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); }
+}
+
 </style>
 
 
