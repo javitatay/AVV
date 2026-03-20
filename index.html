@@ -994,3 +994,21 @@
       return `<div class="gterm" data-suite="${t.suite}" data-search="${(t.nombre+' '+t.def).toLowerCase()}" style="--tc:${t.color}">
         <span class="gterm-suite">${t.suite.toUpperCase().replace('AFTEREFFECTS','AFTER EFFECTS').replace('ILUMINACION','ILUMINACIÓN')}</span>
         ${ilusHTML}
+        <div class="gterm-name">${t.nombre}</div>
+        <div class="gterm-def">${t.def}</div>
+      </div>`;
+    }).join('');
+  }
+
+  renderGlosario();
+
+  // ── Abrir suites en pestaña nueva ─────────────────────────
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.open(this.getAttribute('href'), '_blank');
+    });
+  });
+  </script>
+</body>
+</html>
