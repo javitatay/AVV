@@ -840,7 +840,160 @@ Click derecho     → menú opciones del clip<br>
     <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4A7A6A;box-shadow:0 0 8px #4A7A6A88;flex-shrink:0"></span>
     <span style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#7AB09A">Diagrama interactivo — Cadena de composición Resolume</span>
   </div>
-  <iframe src="diagrama-resolume-chain.html" style="width:100%;height:820px;border:none;border:1px solid rgba(74,122,106,.25);border-top:none;border-radius:0 0 12px 12px;display:block;" loading="lazy" title="Cadena de Composición Resolume"></iframe>
+  <div style="border:1px solid rgba(74,122,106,.25);border-top:none;border-radius:0 0 12px 12px;background:#0E1A16;padding:28px 20px 24px;overflow-x:auto;">
+
+    <!-- CSS del diagrama -->
+    <style>
+      .rchain { display:flex; align-items:stretch; gap:0; width:max-content; min-width:100%; justify-content:center; }
+      .rchain-col { display:flex; flex-direction:column; align-items:center; gap:8px; }
+      .rchain-node {
+        border-radius:10px; padding:14px 18px; cursor:pointer;
+        transition:transform .18s, box-shadow .18s;
+        text-align:center; position:relative;
+        min-width:140px;
+      }
+      .rchain-node:hover { transform:translateY(-3px); }
+      .rchain-node.rn-active { box-shadow:0 0 0 2px #4A7A6A, 0 0 24px rgba(74,122,106,.5); }
+      .rchain-node .rn-icon { font-size:24px; margin-bottom:6px; display:block; }
+      .rchain-node .rn-title { font-size:12px; font-weight:700; letter-spacing:.3px; }
+      .rchain-node .rn-sub   { font-size:9px; opacity:.65; margin-top:3px; letter-spacing:.5px; text-transform:uppercase; }
+      .rchain-node .rn-badge {
+        position:absolute; top:-8px; left:50%; transform:translateX(-50%);
+        background:#4A7A6A; color:#fff; font-size:8px; font-weight:700;
+        padding:2px 8px; border-radius:20px; letter-spacing:.8px; white-space:nowrap;
+      }
+      /* Arrows between columns */
+      .rchain-arr { display:flex; align-items:center; padding:0 8px; color:rgba(74,122,106,.6); font-size:22px; align-self:center; }
+      /* Detail panel */
+      #rchain-detail {
+        margin-top:22px; border-radius:10px; padding:16px 20px;
+        background:rgba(74,122,106,.12); border:1px solid rgba(74,122,106,.28);
+        transition:opacity .2s; min-height:90px;
+      }
+      #rchain-detail .rd-title { font-size:13px; font-weight:700; color:#7AB09A; margin-bottom:8px; }
+      #rchain-detail .rd-body  { font-size:11.5px; color:rgba(255,255,255,.75); line-height:1.7; }
+      #rchain-detail .rd-props { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+      #rchain-detail .rd-prop  {
+        background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12);
+        border-radius:6px; padding:4px 10px; font-size:10px; color:rgba(255,255,255,.65);
+      }
+      #rchain-detail .rd-prop strong { color:#7AB09A; }
+      /* Sub-clips inside Layer col */
+      .rchain-clip {
+        border-radius:7px; padding:8px 12px; text-align:center;
+        font-size:10px; font-weight:600; cursor:pointer;
+        transition:transform .15s, opacity .15s; min-width:110px;
+        opacity:.7; border:1px solid rgba(255,255,255,.1);
+      }
+      .rchain-clip:hover { transform:scale(1.04); opacity:1; }
+      .rchain-clip.clip-active { opacity:1; border-color:rgba(74,122,106,.6); }
+      .rchain-label { font-size:9px; color:rgba(255,255,255,.35); letter-spacing:.8px; text-transform:uppercase; margin-bottom:4px; }
+    </style>
+
+    <!-- Diagrama -->
+    <div class="rchain" id="resolumeChain">
+
+      <!-- COL 1: Fuentes / Clips -->
+      <div class="rchain-col">
+        <div class="rchain-label">Fuentes</div>
+        <div class="rchain-clip clip-active" style="background:#1A2E22;color:#7AB09A;" onclick="rcDetail('clip-video')">🎬 Clip Vídeo</div>
+        <div class="rchain-clip" style="background:#1A2830;color:#7AABB0;" onclick="rcDetail('clip-gen')">⚡ Clip Generativo</div>
+        <div class="rchain-clip" style="background:#2A2420;color:#B09A7A;" onclick="rcDetail('clip-imagen')">🖼 Imagen/GIF</div>
+      </div>
+
+      <div class="rchain-arr">→</div>
+
+      <!-- COL 2: Layer -->
+      <div class="rchain-col">
+        <div class="rchain-label">Capa</div>
+        <div class="rchain-node rn-active" style="background:#12241C;color:#fff;" onclick="rcDetail('layer')" id="rn-layer">
+          <span class="rn-badge">LAYER</span>
+          <span class="rn-icon">📋</span>
+          <div class="rn-title">Layer</div>
+          <div class="rn-sub">Orden · Blend · Opacidad</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:4px;">
+          <div class="rchain-clip" style="background:#1A1A2A;color:#9A7AB0;font-size:9px;" onclick="rcDetail('blend')">⊞ Blend Mode</div>
+          <div class="rchain-clip" style="background:#2A1A1A;color:#B07A7A;font-size:9px;" onclick="rcDetail('bypass')">⏸ Bypass / Solo</div>
+          <div class="rchain-clip" style="background:#1A2220;color:#7AB09A;font-size:9px;" onclick="rcDetail('opacity')">◐ Opacidad</div>
+        </div>
+      </div>
+
+      <div class="rchain-arr">→</div>
+
+      <!-- COL 3: Composition -->
+      <div class="rchain-col">
+        <div class="rchain-label">Composición</div>
+        <div class="rchain-node" style="background:#1C1A2C;color:#fff;" onclick="rcDetail('composition')" id="rn-comp">
+          <span class="rn-badge" style="background:#7A6BA3;">COMPOSITION</span>
+          <span class="rn-icon">🎞</span>
+          <div class="rn-title">Composition</div>
+          <div class="rn-sub">BPM · FPS · Resolución</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:4px;">
+          <div class="rchain-clip" style="background:#1A1A2A;color:#9A7AB0;font-size:9px;" onclick="rcDetail('deck')">🎴 Deck</div>
+          <div class="rchain-clip" style="background:#1A1A2A;color:#9A7AB0;font-size:9px;" onclick="rcDetail('col')">⬛ Columna / Escena</div>
+        </div>
+      </div>
+
+      <div class="rchain-arr">→</div>
+
+      <!-- COL 4: Output -->
+      <div class="rchain-col">
+        <div class="rchain-label">Salida</div>
+        <div class="rchain-node" style="background:#1E1812;color:#fff;" onclick="rcDetail('output')" id="rn-output">
+          <span class="rn-badge" style="background:#A06B4A;">OUTPUT</span>
+          <span class="rn-icon">📺</span>
+          <div class="rn-title">Advanced Output</div>
+          <div class="rn-sub">Pantalla · Slice · Warp</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:4px;">
+          <div class="rchain-clip" style="background:#2A1E12;color:#B09A7A;font-size:9px;" onclick="rcDetail('screen')">🖥 Screen</div>
+          <div class="rchain-clip" style="background:#2A1E12;color:#B09A7A;font-size:9px;" onclick="rcDetail('slice')">✂️ Slice</div>
+          <div class="rchain-clip" style="background:#2A1E12;color:#B09A7A;font-size:9px;" onclick="rcDetail('warp')">🔷 Warp</div>
+        </div>
+      </div>
+
+    </div><!-- /rchain -->
+
+    <!-- Detail panel -->
+    <div id="rchain-detail">
+      <div class="rd-title">👆 Haz clic en cualquier elemento para ver sus detalles</div>
+      <div class="rd-body">La cadena de señal de Resolume va de izquierda a derecha: las fuentes alimentan capas, las capas se combinan en la composición, y ésta se enruta al output físico.</div>
+    </div>
+
+    <script>
+    const RC_DATA = {
+      'clip-video':  { icon:'🎬', title:'Clip de Vídeo', body:'Archivo de vídeo (DXV, H.264, HAP…) alojado en una celda del grid. Al activarse, Resolume lo decodifica y envía a la capa. Cada clip tiene sus propios parámetros de velocidad, loop y efectos.', props:['Formatos: DXV · HAP · H.264','Loop / Bounce / Ping-pong','Speed · In/Out point','Efectos de clip propios'] },
+      'clip-gen':    { icon:'⚡', title:'Clip Generativo (Source)', body:'Fuente de vídeo generada en tiempo real por Resolume: Gradiente, Sólido, Ruido, Forma, etc. No requiere archivo externo. Se comporta igual que un clip de vídeo en cuanto a parámetros.', props:['Sin archivo externo','Parámetros en tiempo real','Compatible con efectos','Sincronizable al BPM'] },
+      'clip-imagen': { icon:'🖼', title:'Imagen / GIF', body:'Imagen estática (PNG, JPG) o GIF animado importado al grid. Resolume lo trata como un clip más. Los GIF se reproducen en bucle automáticamente.', props:['PNG · JPG · GIF','GIF animado en bucle','Admite canal alpha (PNG)','Convertible a DXV para mayor rendimiento'] },
+      'layer':       { icon:'📋', title:'Layer (Capa)', body:'Una capa agrupa clips en una fila horizontal del grid. Las capas se apilan verticalmente: la inferior es el fondo, la superior queda encima. El render va de abajo a arriba.', props:['Apilamiento de abajo a arriba','Blend mode por capa','Opacidad independiente','Efectos de capa propios','Botones: Bypass · Solo · Crossfader'] },
+      'blend':       { icon:'⊞', title:'Blend Mode (Modo de fusión)', body:'Define cómo se mezcla visualmente esta capa con las inferiores. Add suma los píxeles (útil para efectos de luz). Multiply oscurece. Screen aclara. El valor "50" al 50% atenúa el efecto.', props:['Add · Multiply · Screen','Opaque · Subtractive','Lighten · Darken','Valor 50% reduce intensidad del blend'] },
+      'bypass':      { icon:'⏸', title:'Bypass / Solo', body:'Bypass (botón B): desactiva la capa sin eliminarla. Mantiene clips y configuración. Solo (botón S): muestra únicamente esa capa y oculta las demás temporalmente.', props:['B = Bypass (invisible pero activa)','S = Solo (sólo esa capa visible)','Atajo: clic en cabecera del layer','No afecta a la configuración de clips'] },
+      'opacity':     { icon:'◐', title:'Opacidad de capa', body:'Controla la transparencia global de la capa de 0 a 255 (o 0%–100%). Distinto del blend mode: la opacidad simplemente atenúa todo lo que hay en la capa por igual.', props:['Rango: 0–255','MIDI/OSC mappeable','Independiente por capa','Compatible con automation'] },
+      'composition': { icon:'🎞', title:'Composition (Composición)', body:'Es el "proyecto" activo de Resolume. Contiene todos los decks, capas y clips. Define el BPM global, los FPS de salida y la resolución de la composición. Solo puede haber una activa a la vez.', props:['Un solo archivo .avc','BPM · FPS · Resolución global','Múltiples decks dentro','Sincronización de audio global'] },
+      'deck':        { icon:'🎴', title:'Deck', body:'Conjunto de columnas y capas dentro de la composición. Puedes tener varios decks y cambiar entre ellos en directo. Cada deck puede tener sus propios clips y configuración de layers.', props:['Múltiples decks por composición','Cambio instantáneo en directo','Organización temática','Cada deck puede tener diferente nº de columnas'] },
+      'col':         { icon:'⬛', title:'Columna / Escena', body:'Una columna activa simultáneamente los clips de todas las capas que estén en esa posición vertical. Es el equivalente a una "escena" en otros softwares de VJ. El trigger es global para toda la composición.', props:['Trigger simultáneo de todos los clips','BPM-syncable','Nombre de columna configurable','Corresponde a una "escena" temática'] },
+      'output':      { icon:'📺', title:'Advanced Output', body:'Módulo de Resolume que gestiona cómo se envía la señal compuesta a las salidas físicas (pantallas, proyectores, procesadores LED). Aquí se definen screens, slices y transformaciones geométricas.', props:['Screens = salidas físicas','Slices = zonas del canvas','Warp = corrección geométrica','Softedge · Crop · Rotation'] },
+      'screen':      { icon:'🖥', title:'Screen', body:'Representa una salida física: una pantalla, un proyector o un procesador LED conectado al ordenador. Se le asigna un monitor del sistema y un área del canvas de Resolume.', props:['Un screen = una salida física','Asignable a cualquier monitor','Puede contener varios slices','Resolución independiente'] },
+      'slice':       { icon:'✂️', title:'Slice (Corte)', body:'Zona rectangular del canvas de la composición que se asigna a una parte de un screen. Permite dividir el output en zonas y aplicarles transformaciones independientes (warp, rotación, crop).', props:['Zona del canvas → zona del screen','Transformaciones independientes','Esencial para mapping no convencional','Combinable con softedge'] },
+      'warp':        { icon:'🔷', title:'Warp (Corrección geométrica)', body:'Herramienta de deformación de la imagen por puntos de control. Permite adaptar la proyección a superficies no planas o corregir la geometría de un proyector desalineado.', props:['Grid de puntos de control','Bezier handles','Por slice independiente','Esencial para projection mapping'] },
+    };
+
+    window.rcDetail = function(key) {
+      const d = RC_DATA[key]; if (!d) return;
+      const panel = document.getElementById('rchain-detail');
+      panel.innerHTML = `
+        <div class="rd-title">${d.icon} ${d.title}</div>
+        <div class="rd-body">${d.body}</div>
+        <div class="rd-props">${d.props.map(p=>`<div class="rd-prop">${p}</div>`).join('')}</div>
+      `;
+      panel.style.opacity='0';
+      setTimeout(()=>{ panel.style.opacity='1'; }, 10);
+    };
+    </script>
+
+  </div>
 </div>
 <!-- ═══ FIN DIAGRAMA ═══ -->
 
