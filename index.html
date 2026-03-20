@@ -58,6 +58,30 @@
     .topbar-name { font-size: 14px; font-weight:700; letter-spacing:-.2px; }
     .topbar-sub  { font-size: 11px; color:var(--text-3); }
     .topbar-badge { font-size: 10px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--accent); background:var(--accent-lt); border:1px solid rgba(74,122,106,.18); border-radius:20px; padding:3px 10px; }
+    .topbar-search { position:relative; flex:1; max-width:320px; }
+    .topbar-search input {
+      width:100%; padding:6px 14px 6px 34px;
+      background:var(--surface); border:1.5px solid var(--border);
+      border-radius:20px; font-family:inherit; font-size:13px;
+      color:var(--text-1); outline:none; transition:var(--transition);
+    }
+    .topbar-search input:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-lt); }
+    .topbar-search input::placeholder { color:var(--text-3); }
+    .topbar-search svg { position:absolute; left:11px; top:50%; transform:translateY(-50%); width:14px; height:14px; color:var(--text-3); pointer-events:none; }
+    .search-dropdown {
+      display:none; position:absolute; top:calc(100% + 6px); left:0; right:0;
+      background:var(--surface); border:1.5px solid var(--border); border-radius:12px;
+      box-shadow:0 8px 24px rgba(0,0,0,.1); max-height:320px; overflow-y:auto; z-index:200;
+    }
+    .search-dropdown.visible { display:block; }
+    .search-item { display:flex; align-items:center; gap:10px; padding:10px 14px; cursor:pointer; border-bottom:1px solid var(--border); transition:background var(--transition); text-decoration:none; }
+    .search-item:last-child { border-bottom:none; }
+    .search-item:hover { background:var(--accent-lt); }
+    .search-item-suite { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+    .search-item-name { font-size:13px; font-weight:600; color:var(--text-1); }
+    .search-item-def { font-size:11px; color:var(--text-2); flex:1; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+    .search-item-tag { font-size:10px; color:var(--text-3); background:var(--surface-2); border:1px solid var(--border); border-radius:6px; padding:1px 7px; flex-shrink:0; white-space:nowrap; }
+    .search-no-results { padding:16px; text-align:center; color:var(--text-3); font-size:13px; }
 
     /* ─── HERO (franja horizontal) ─── */
     .hero {
@@ -359,6 +383,15 @@
         <div class="topbar-sub">Animación Visual en Vivo</div>
       </div>
     </a>
+    <div class="topbar-search">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <input type="text" id="globalSearch" placeholder="Buscar en todas las suites…"
+        oninput="globalSearchFn(this.value)"
+        onfocus="if(this.value) document.getElementById('searchDrop').classList.add('visible')"
+        onblur="setTimeout(()=>document.getElementById('searchDrop').classList.remove('visible'),200)"
+        autocomplete="off">
+      <div class="search-dropdown" id="searchDrop"></div>
+    </div>
     <span class="topbar-badge">CFGM Video DJ</span>
   </header>
 
@@ -494,7 +527,22 @@
   </div>
 
   <!-- CONTACT -->
-  <div class="contact">
+  <div class="contact" style="display:flex;flex-direction:column;gap:10px;">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="contact-icon" style="background:#F0F4F8;">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="var(--accent)" stroke-width="1.7" fill="var(--accent)" fill-opacity=".1"/><path d="M8 7h8M8 11h8M8 15h5" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <div class="contact-text">
+          <span class="contact-label">Módulo · Información oficial</span>
+          <span class="contact-name">Animación Visual en Vivo · 195h · 2º CFGM Video DJ</span>
+        </div>
+      </div>
+      <a class="contact-link" href="https://github.com/javitatay/AVV" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Ver en GitHub
+      </a>
+    </div>
     <div class="contact-inner">
       <div class="contact-left">
         <div class="contact-icon">
@@ -1008,6 +1056,52 @@
   }
 
   renderGlosario();
+
+
+  // ── Global search ──────────────────────────────────────────────────
+  const SUITE_URLS = {
+    video:        { url:'video.html',         color:'#6B9A6B', label:'Imagen & Vídeo' },
+    illustrator:  { url:'illustrator.html',   color:'#A06B4A', label:'Illustrator' },
+    resolume:     { url:'resolume.html',       color:'#4A7A6A', label:'Resolume' },
+    aftereffects: { url:'after-effects.html', color:'#6B7FA3', label:'After Effects' },
+    iluminacion:  { url:'iluminacion.html',   color:'#A06B6B', label:'Iluminación' },
+    magicq:       { url:'magicq.html',         color:'#7A6BA3', label:'MagicQ' },
+  };
+
+  function globalSearchFn(q) {
+    const drop = document.getElementById('searchDrop');
+    q = q.trim().toLowerCase();
+    if (q.length < 2) { drop.classList.remove('visible'); return; }
+
+    const results = TERMINOS.filter(t =>
+      t.nombre.toLowerCase().includes(q) ||
+      t.def.toLowerCase().includes(q) ||
+      (t.en && t.en.toLowerCase().includes(q)) ||
+      (t.es && t.es.toLowerCase().includes(q))
+    ).slice(0, 8);
+
+    if (!results.length) {
+      drop.innerHTML = '<div class="search-no-results">Sin resultados para <strong>' + q + '</strong></div>';
+    } else {
+      drop.innerHTML = results.map(t => {
+        const s = SUITE_URLS[t.suite] || {};
+        const badge = t.en ? `<span class="search-item-tag">EN: ${t.en}</span>` : t.es ? `<span class="search-item-tag">ES: ${t.es}</span>` : '';
+        return `<a class="search-item" href="${s.url || '#'}" target="_blank">
+          <span class="search-item-suite" style="background:${t.color}"></span>
+          <span class="search-item-name">${t.nombre}</span>
+          <span class="search-item-def">${t.def.slice(0,60)}…</span>
+          ${badge}
+          <span class="search-item-tag" style="color:${t.color};border-color:${t.color}22">${s.label || t.suite}</span>
+        </a>`;
+      }).join('');
+    }
+    drop.classList.add('visible');
+  }
+
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('searchDrop')?.classList.remove('visible');
+  });
 
   // ── Abrir suites en pestaña nueva ─────────────────────────
   document.querySelectorAll('.card').forEach(card => {
