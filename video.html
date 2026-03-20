@@ -210,7 +210,7 @@ body {
   font-size: 15px; font-weight: 700; color: var(--navy);
   margin-bottom: 6px;
 }
-.card-desc { font-size: 12px; color: var(--text2); line-height: 1.55; font-weight: 400; }
+.card-desc { font-size: 13.5px; color: var(--text2); line-height: 1.65; font-weight: 400; }
 .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
 .card-tag {
   font-size: 10px; font-weight: 500;
@@ -380,7 +380,7 @@ input:focus, select:focus { border-color: var(--navy); }
   border-radius: 8px; padding: 18px;
 }
 .info-card-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
-.info-card p { font-size: 12.5px; color: var(--text2); line-height: 1.65; font-weight: 400; }
+.info-card p { font-size: 13.5px; color: var(--text2); line-height: 1.65; font-weight: 400; }
 
 /* ── FORMULA ── */
 .formula {
@@ -883,7 +883,7 @@ canvas { border-radius: 8px; }
             <div style="background:rgba(0,100,255,.6);border-radius:4px;padding:8px 12px;color:var(--white)">B</div>
             <div style="background:rgba(255,255,255,.3);border:1px dashed rgba(255,255,255,.4);border-radius:4px;padding:8px 12px;color:var(--white)">α</div>
           </div>
-          <p style="font-size:12px;color:var(--text2)">A los 3 canales RGB (rojo, verde, azul) se añade un 4.º canal <strong>Alfa</strong> que define la opacidad (0 = transparente, 255 = opaco).</p>
+          <p style="font-size:13.5px;color:var(--text2)">A los 3 canales RGB (rojo, verde, azul) se añade un 4.º canal <strong>Alfa</strong> que define la opacidad (0 = transparente, 255 = opaco).</p>
         </div>
         <div class="note" style="margin-top:12px"><strong>Formatos con soporte Alpha:</strong> PNG (canal alfa real), TIFF, PSD, WEBP, GIF (transparencia binaria, sin alfa real), MOV ProRes 4444.</div>
       </div>
@@ -1410,7 +1410,7 @@ canvas { border-radius: 8px; }
   <div class="inner-pane" id="i_compat">
     <div style="margin-bottom:18px;">
       <h3 style="font-size:15px;font-weight:700;margin-bottom:6px;">Códec ↔ Contenedor</h3>
-      <p style="font-size:12px;color:var(--text-2);line-height:1.6;">Cada contenedor (formato de archivo) puede alojar distintos códecs. Esta tabla muestra qué combinaciones son posibles, cuáles son las más comunes en producción y para qué uso están pensadas.</p>
+      <p style="font-size:13.5px;color:var(--text-2);line-height:1.6;">Cada contenedor (formato de archivo) puede alojar distintos códecs. Esta tabla muestra qué combinaciones son posibles, cuáles son las más comunes en producción y para qué uso están pensadas.</p>
     </div>
 
     <!-- Leyenda -->
@@ -1709,11 +1709,11 @@ canvas { border-radius: 8px; }
         <div class="grid-2">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
             <div style="font-weight:700;color:var(--accent);margin-bottom:8px;font-size:13px">INTRA-FRAME</div>
-            <p style="font-size:12px;color:var(--text2)">Comprime <strong>cada frame individualmente</strong>. Cada fotograma tiene toda la información de píxeles.<br>✓ Menor procesamiento<br>✗ Archivos más pesados<br>Ej: ProRes, DNxHD, MJPEG</p>
+            <p style="font-size:13.5px;color:var(--text2)">Comprime <strong>cada frame individualmente</strong>. Cada fotograma tiene toda la información de píxeles.<br>✓ Menor procesamiento<br>✗ Archivos más pesados<br>Ej: ProRes, DNxHD, MJPEG</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
             <div style="font-weight:700;color:var(--accent5);margin-bottom:8px;font-size:13px">INTER-FRAME</div>
-            <p style="font-size:12px;color:var(--text2)">Se basa en la <strong>similitud entre frames</strong> (I, P, B frames). Sólo guarda los cambios.<br>✓ Menor peso<br>✗ Mayor procesamiento<br>Ej: H.264, H.265, MPEG-4</p>
+            <p style="font-size:13.5px;color:var(--text2)">Se basa en la <strong>similitud entre frames</strong> (I, P, B frames). Sólo guarda los cambios.<br>✓ Menor peso<br>✗ Mayor procesamiento<br>Ej: H.264, H.265, MPEG-4</p>
           </div>
         </div>
       </div>
@@ -3352,11 +3352,11 @@ canvas { border-radius: 8px; }
         <div class="grid-2">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
             <div style="font-weight:700;color:var(--accent);font-size:12px;margin-bottom:6px">VIDEO MAPPING</div>
-            <p style="font-size:12px;color:var(--text2)">Proyección sobre superficies (paredes, edificios, objetos)</p>
+            <p style="font-size:13.5px;color:var(--text2)">Proyección sobre superficies (paredes, edificios, objetos)</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
             <div style="font-weight:700;color:var(--accent4);font-size:12px;margin-bottom:6px">PIXEL MAPPING</div>
-            <p style="font-size:12px;color:var(--text2)">Control de LEDs individuales como si fueran píxeles de una pantalla</p>
+            <p style="font-size:13.5px;color:var(--text2)">Control de LEDs individuales como si fueran píxeles de una pantalla</p>
           </div>
         </div>
         <div class="panel-subtitle">Ejercicio 3.7 — Calculadora Malla LED</div>
