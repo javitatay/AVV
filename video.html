@@ -698,6 +698,7 @@ canvas { border-radius: 8px; }
     <div class="inner-tab" data-inner="m1_mcd">Calculadora MCD</div>
     <div class="inner-tab" data-inner="m1_par">DAR / SAR / PAR</div>
     <div class="inner-tab" data-inner="m1_ref">Referencia</div>
+    <div class="inner-tab" data-inner="m1_rescomp">📐 Resoluciones</div>
   </div>
 
   <!-- TAB 1: RESOLUCIÓN & PPI -->
@@ -906,6 +907,100 @@ canvas { border-radius: 8px; }
       </div>
     </div>
   </div>
+
+
+  <div class="inner-pane" id="m1_rescomp">
+    <div class="panel">
+      <div class="panel-title">Comparativa visual de resoluciones</div>
+      <p style="font-size:14px;color:var(--text2);margin-bottom:20px">Todos los rectángulos están a escala real relativa entre sí. Observa cómo 4K es exactamente 4 veces más píxeles que 1080p.</p>
+      <div style="position:relative;width:100%;overflow-x:auto">
+        <svg id="resSvg" viewBox="0 0 820 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:820px;display:block;margin:0 auto"></svg>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--text2)">
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:8px;background:#E2DED6;border:1px solid #ccc;display:inline-block"></span>SD 720×576</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:8px;background:#D4E8F0;border:1px solid #6B7FA3;display:inline-block"></span>HD 1280×720</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:8px;background:#D4EDD4;border:1px solid #6B9A6B;display:inline-block"></span>Full HD 1920×1080</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:8px;background:#F0E8D4;border:1px solid #A06B4A;display:inline-block"></span>2K 2048×1080</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:8px;background:#EDE4F4;border:1px solid #7A6BA3;display:inline-block"></span>4K 3840×2160</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:8px;background:#F4D4D4;border:1px solid #A06B6B;display:inline-block"></span>8K 7680×4320</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    const svg = document.getElementById('resSvg');
+    if (!svg) return;
+    const resolutions = [
+      { name:'8K', w:7680, h:4320, fill:'#F4D4D4', stroke:'#A06B6B', label:'8K · 7680×4320', sub:'33.2 MP · 16:9' },
+      { name:'4K', w:3840, h:2160, fill:'#EDE4F4', stroke:'#7A6BA3', label:'4K UHD · 3840×2160', sub:'8.3 MP · ×4 vs 1080p' },
+      { name:'2K', w:2048, h:1080, fill:'#F0E8D4', stroke:'#A06B4A', label:'2K DCI · 2048×1080', sub:'2.2 MP · Cine digital' },
+      { name:'FHD',w:1920, h:1080, fill:'#D4EDD4', stroke:'#6B9A6B', label:'Full HD · 1920×1080', sub:'2.07 MP · Estándar HD' },
+      { name:'HD', w:1280, h:720,  fill:'#D4E8F0', stroke:'#6B7FA3', label:'HD · 1280×720', sub:'0.92 MP · 720p' },
+      { name:'SD', w:720,  h:576,  fill:'#E2DED6', stroke:'#9B9590', label:'SD · 720×576', sub:'0.41 MP · PAL' },
+    ];
+    // Layout: side-by-side proportional bars, clearly labeled
+    const VW=820, VH=420;
+    svg.setAttribute('viewBox', `0 0 ${VW} ${VH}`);
+    const COL_W = VW / resolutions.length;  // ~137px per column
+    const MAX_H = VH - 80;  // leave 80px for label area at bottom
+    const maxPx = resolutions[0].w * resolutions[0].h; // 8K pixels = reference
+
+    let html = `<rect width="${VW}" height="${VH}" fill="#F5F4F0" rx="6"/>`;
+
+    resolutions.forEach((r, i) => {
+      const mp = r.w * r.h;
+      const barH = Math.max(18, (mp / maxPx) * MAX_H);
+      const barW = COL_W - 16;
+      const x = i * COL_W + 8;
+      const y = VH - 60 - barH;
+
+      // Bar
+      html += `<rect x="${x}" y="${y}" width="${barW}" height="${barH}"
+        fill="${r.fill}" stroke="${r.stroke}" stroke-width="1.5" rx="3"/>`;
+
+      // MP label inside bar (if tall enough)
+      const mpLabel = (mp/1e6).toFixed(1) + ' MP';
+      if (barH > 28) {
+        html += `<text x="${x + barW/2}" y="${y + 18}"
+          font-size="10" font-family="monospace" font-weight="700"
+          text-anchor="middle" fill="${r.stroke}">${mpLabel}</text>`;
+      }
+
+      // Resolution label inside bar
+      const res = r.w + '×' + r.h;
+      if (barH > 44) {
+        html += `<text x="${x + barW/2}" y="${y + 32}"
+          font-size="9" font-family="monospace"
+          text-anchor="middle" fill="${r.stroke}" opacity=".8">${res}</text>`;
+      }
+
+      // Name label below bar
+      html += `<text x="${x + barW/2}" y="${VH - 42}"
+        font-size="11" font-family="monospace" font-weight="700"
+        text-anchor="middle" fill="${r.stroke}">${r.name}</text>`;
+
+      // Pixel count label
+      html += `<text x="${x + barW/2}" y="${VH - 28}"
+        font-size="9" font-family="monospace"
+        text-anchor="middle" fill="${r.stroke}" opacity=".75">${mpLabel}</text>`;
+
+      // Ratio vs FHD
+      const ratio = mp / (1920*1080);
+      const ratioTxt = ratio < 1 ? '×' + ratio.toFixed(2) : '×' + ratio.toFixed(1);
+      html += `<text x="${x + barW/2}" y="${VH - 14}"
+        font-size="8.5" font-family="monospace"
+        text-anchor="middle" fill="${r.stroke}" opacity=".6">${ratioTxt} vs FHD</text>`;
+    });
+
+    // Baseline
+    html += `<line x1="4" y1="${VH-60}" x2="${VW-4}" y2="${VH-60}"
+      stroke="#9B9590" stroke-width="1" stroke-dasharray="3,3"/>`;
+
+    svg.innerHTML = html;
+  })();
+  </script>
+
 </section>
 
 <!-- ═══ MÓDULO 2 — ÓPTICA & DOF ═══ -->
@@ -928,6 +1023,7 @@ canvas { border-radius: 8px; }
     <div class="inner-tab active" data-inner="m2_focal">Distancia Focal</div>
     <div class="inner-tab" data-inner="m2_dof">Profundidad de Campo</div>
     <div class="inner-tab" data-inner="m2_exp">Triángulo de Exposición</div>
+    <div class="inner-tab" data-inner="m2_dofvis">🎥 Simulador DOF</div>
   </div>
 
   <!-- TAB: DISTANCIA FOCAL -->
@@ -1062,6 +1158,164 @@ canvas { border-radius: 8px; }
       </div>
     </div>
   </div>
+
+
+  <div class="inner-pane" id="m2_dofvis">
+    <div class="panel">
+      <div class="panel-title">Simulador visual de profundidad de campo</div>
+      <p style="font-size:14px;color:var(--text2);margin-bottom:16px">Mueve los sliders y observa cómo cambia la zona nítida (verde) en la escena. La zona gris es el desenfoque (bokeh).</p>
+      <div style="display:grid;grid-template-columns:260px 1fr;gap:24px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="field">
+            <label>Focal (mm): <strong id="dv_f_val">50</strong></label>
+            <input type="range" id="dv_f" min="14" max="300" value="50" oninput="dofVisCalc()" style="width:100%">
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3)"><span>14mm gran angular</span><span>300mm teleobjetivo</span></div>
+          </div>
+          <div class="field">
+            <label>Apertura (f/): <strong id="dv_ap_val">2.8</strong></label>
+            <input type="range" id="dv_ap" min="1" max="22" value="2.8" step="0.1" oninput="dofVisCalc()" style="width:100%">
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3)"><span>f/1 (abierto)</span><span>f/22 (cerrado)</span></div>
+          </div>
+          <div class="field">
+            <label>Distancia sujeto (m): <strong id="dv_dist_val">3</strong></label>
+            <input type="range" id="dv_dist" min="0.5" max="20" value="3" step="0.5" oninput="dofVisCalc()" style="width:100%">
+          </div>
+          <div class="field">
+            <label>Sensor</label>
+            <select id="dv_sensor" onchange="dofVisCalc()" class="tool-select" style="width:100%">
+              <option value="0.029">Full Frame (35mm)</option>
+              <option value="0.019" selected>APS-C (Canon)</option>
+              <option value="0.017">Micro 4/3</option>
+            </select>
+          </div>
+          <div id="dofVisStats" style="background:var(--bg2);border-radius:8px;padding:12px;font-size:12px;color:var(--text2);line-height:1.9"></div>
+        </div>
+        <div>
+          <canvas id="dofVisCanvas" height="260" style="width:100%;display:block;border-radius:8px;background:#1a1a2e"></canvas>
+          <div style="margin-top:10px;display:flex;gap:16px;font-size:11px;color:var(--text2)">
+            <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:rgba(107,154,107,.9);border-radius:2px;display:inline-block"></span>Zona nítida (DOF)</span>
+            <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:rgba(160,107,107,.5);border-radius:2px;display:inline-block"></span>Desenfocado (bokeh)</span>
+            <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:#f59e0b;border-radius:2px;display:inline-block"></span>Cámara</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  function dofVisCalc() {
+    const f    = +document.getElementById('dv_f').value;
+    const ap   = +document.getElementById('dv_ap').value;
+    const dist = +document.getElementById('dv_dist').value;
+    const coc  = +document.getElementById('dv_sensor').value;
+    document.getElementById('dv_f_val').textContent    = f + 'mm';
+    document.getElementById('dv_ap_val').textContent   = 'f/' + ap;
+    document.getElementById('dv_dist_val').textContent = dist + 'm';
+
+    const fM = f / 1000, distM = dist;
+    const hn = (fM * fM) / (ap * coc) + fM;
+    const near = (distM * (hn - fM)) / (hn + distM - 2 * fM);
+    const far  = distM >= hn ? Infinity : (distM * (hn - fM)) / (hn - distM);
+    const dof  = far === Infinity ? Infinity : far - near;
+
+    const nearM = Math.max(0, near).toFixed(2);
+    const farM  = far === Infinity ? '∞' : far.toFixed(2);
+    const dofM  = dof === Infinity ? '∞' : dof.toFixed(2) + ' m';
+
+    document.getElementById('dofVisStats').innerHTML = `
+      <div><strong>Hiperfocal:</strong> ${hn.toFixed(1)} m</div>
+      <div><strong>Límite cercano:</strong> ${nearM} m</div>
+      <div><strong>Límite lejano:</strong> ${farM} m</div>
+      <div style="color:var(--accent3);font-weight:700"><strong>DOF total:</strong> ${dofM}</div>
+      <div style="margin-top:6px;font-size:11px;color:var(--text3)">${ap<=2.8?'⚠ DOF muy reducida — fondo muy desenfocado':ap>=11?'✓ DOF amplia — todo en foco':'DOF moderada'}</div>
+    `;
+
+    // Draw canvas
+    const canvas = document.getElementById('dofVisCanvas');
+    if (!canvas) return;
+    const W = canvas.offsetWidth || 500;
+    canvas.width = W; canvas.height = 260;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,W,260);
+
+    // Background scene
+    const grad = ctx.createLinearGradient(0,0,W,0);
+    grad.addColorStop(0,'#0d1117'); grad.addColorStop(1,'#1e2d4a');
+    ctx.fillStyle = grad; ctx.fillRect(0,0,W,260);
+
+    // Ground line
+    ctx.strokeStyle = 'rgba(255,255,255,.1)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(0,220); ctx.lineTo(W,220); ctx.stroke();
+
+    // Scene scale: cam at x=60, max scene = 20m → W-80px
+    const camX = 60, sceneW = W - 100;
+    const maxDist = Math.max(20, dist * 2.5);
+    const toX = (m) => camX + (m / maxDist) * sceneW;
+
+    // Bokeh region before near
+    const nearX = toX(near);
+    const subjectX = toX(dist);
+    const farX = far === Infinity ? W - 20 : Math.min(W-20, toX(far));
+
+    // Far bokeh
+    if (farX < W - 20) {
+      ctx.fillStyle = 'rgba(160,107,107,.25)';
+      ctx.fillRect(farX, 0, W-20-farX, 220);
+      ctx.fillStyle = 'rgba(160,107,107,.5)';
+      ctx.fillRect(farX, 0, 3, 220);
+    }
+    // Near bokeh
+    if (nearX > camX) {
+      ctx.fillStyle = 'rgba(160,107,107,.25)';
+      ctx.fillRect(camX, 0, nearX-camX, 220);
+    }
+    // DOF zone
+    ctx.fillStyle = 'rgba(107,154,107,.2)';
+    ctx.fillRect(nearX, 0, farX-nearX, 220);
+    ctx.strokeStyle = 'rgba(107,154,107,.8)'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(nearX, 0); ctx.lineTo(nearX, 220); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(farX, 0); ctx.lineTo(farX, 220); ctx.stroke();
+
+    // Distance markers
+    [1,2,3,5,7,10,15,20].filter(d=>d<=maxDist).forEach(d => {
+      const x = toX(d);
+      ctx.strokeStyle = 'rgba(255,255,255,.1)'; ctx.lineWidth = 0.5;
+      ctx.beginPath(); ctx.moveTo(x,200); ctx.lineTo(x,220); ctx.stroke();
+      ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.font = '9px monospace';
+      ctx.fillText(d+'m', x-8, 235);
+    });
+
+    // Subject marker
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 20px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('👤', subjectX, 200);
+    ctx.font = '10px monospace'; ctx.fillStyle = '#fff';
+    ctx.fillText(`${dist}m`, subjectX, 245);
+    ctx.textAlign = 'left';
+
+    // DOF labels
+    ctx.fillStyle = 'rgba(107,154,107,.9)'; ctx.font = 'bold 9px monospace';
+    const midDof = (nearX + Math.min(farX, W-20)) / 2;
+    ctx.textAlign = 'center';
+    ctx.fillText('ZONA NÍTIDA', midDof, 15);
+    if (dof !== Infinity) ctx.fillText(dofM, midDof, 26);
+    ctx.textAlign = 'left';
+
+    // Camera
+    ctx.font = '22px sans-serif'; ctx.fillText('📷', camX-28, 208);
+
+    // FOV lines
+    const fovAngle = 2 * Math.atan((0.024 / 2) / (f / 1000));
+    const spread = Math.tan(fovAngle/2) * (W-camX) * 0.4;
+    ctx.strokeStyle = 'rgba(245,158,11,.4)'; ctx.lineWidth = 1;
+    ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.moveTo(camX, 110); ctx.lineTo(W-20, 110-spread); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(camX, 110); ctx.lineTo(W-20, 110+spread); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', dofVisCalc);
+  else dofVisCalc();
+  </script>
 
   <!-- TAB: EXPOSICIÓN -->
   <div class="inner-pane" id="m2_exp">
@@ -1614,9 +1868,11 @@ canvas { border-radius: 8px; }
     <div class="inner-tab active" data-inner="c_conn">Conectores</div>
     <div class="inner-tab" data-inner="c_hdcp">HDCP</div>
     <div class="inner-tab" data-inner="c_codecs">Formatos &amp; Codecs</div>
+    <div class="inner-tab" data-inner="c_arbol">🌳 Elige tu Codec</div>
     <div class="inner-tab" data-inner="c_audio">Audio</div>
     <div class="inner-tab" data-inner="c_vj">Codecs VJ · Live</div>
     <div class="inner-tab" data-inner="c_ndi">🌐 NDI</div>
+    <div class="inner-tab" data-inner="c_flujo">🔗 Flujo AV</div>
   </div>
 
   <div class="inner-pane active" id="c_conn">
@@ -1690,6 +1946,139 @@ canvas { border-radius: 8px; }
       <div class="note note-orange" style="margin-top:16px"><strong>⚠ Implicación práctica:</strong> En producción audiovisual en directo, el HDCP puede causar problemas si las señales de dispositivos de consumo (reproductores Blu-ray, consolas) pasan por matrices o mezcladores que no lo soportan. Es habitual usar equipos broadcast con splitters/conversores HDCP-compliant.</div>
     </div>
   </div>
+
+
+  <div class="inner-pane" id="c_arbol">
+    <div class="panel">
+      <div class="panel-title">Árbol de decisión — ¿Qué codec usar?</div>
+      <p style="font-size:14px;color:var(--text2);margin-bottom:20px">Responde las preguntas para encontrar el codec adecuado para tu situación.</p>
+      <div id="codecTree" style="max-width:640px"></div>
+    </div>
+  </div>
+
+  <script>
+  const CODEC_TREE = {
+    q: '¿Cuál es el destino principal de tu vídeo?',
+    opts: [
+      { label: 'Edición / Postproducción', next: {
+        q: '¿Con qué sistema trabajas?',
+        opts: [
+          { label:'Apple (Mac / Final Cut)', result: { name:'Apple ProRes 422 / 4444', color:'#6B9A6B',
+            desc:'Codec intraframe de Apple. Cada frame se comprime de forma independiente — edición fluida y scrubbing rápido. ProRes 422 para entrega, ProRes 4444 si necesitas canal alfa o composición.',
+            specs:'Contenedor: .mov · Bitrate: 220–500 Mbps (422 HQ 1080p) · Sin pérdidas visuales',
+            usa:'Post de televisión, cine, spots publicitarios'
+          }},
+          { label:'Avid Media Composer', result: { name:'Avid DNxHD / DNxHR', color:'#4A7A6A',
+            desc:'Equivalente al ProRes en el ecosistema Avid. DNxHD para 1080p/720p, DNxHR para resoluciones 4K+. Intraframe, edición fluida.',
+            specs:'Contenedor: .mxf / .mov · Bitrate: 115–185 Mbps (DNxHD 1080p)',
+            usa:'Producción broadcast, noticias, documentales'
+          }},
+          { label:'Premiere / DaVinci / Resolve', result: { name:'H.264 / H.265 a bitrate alto', color:'#6B7FA3',
+            desc:'Para edición en software no optimizado para ProRes, H.264 o H.265 a bitrate alto (≥50 Mbps) ofrece buena calidad. Para VFX o corrección de color, mejor exportar a ProRes o DPX primero.',
+            specs:'Contenedor: .mp4 / .mov · Bitrate recomendado: ≥50 Mbps para edición',
+            usa:'Producción indie, youtubers, social media'
+          }},
+        ]
+      }},
+      { label: 'Distribución / Streaming', next: {
+        q: '¿Dónde se va a visualizar?',
+        opts: [
+          { label:'Web / YouTube / Redes', result: { name:'H.264 (AVC)', color:'#A06B4A',
+            desc:'El codec más compatible del mundo. Funciona en todos los dispositivos, navegadores y plataformas. H.264 Baseline/Main profile para máxima compatibilidad.',
+            specs:'Contenedor: .mp4 · Bitrate: 4–20 Mbps (1080p) · Compresión interframe',
+            usa:'YouTube, Vimeo, redes sociales, web'
+          }},
+          { label:'4K streaming / Netflix / Disney+', result: { name:'H.265 (HEVC)', color:'#7A6BA3',
+            desc:'Doble eficiencia que H.264 al mismo bitrate. Estándar para 4K HDR. Requiere más CPU para codificar pero decodificación acelerada en hardware moderno.',
+            specs:'Contenedor: .mp4 / .mkv · Bitrate: 8–25 Mbps (4K) · Soporte HDR10/Dolby Vision',
+            usa:'4K streaming, Blu-ray UHD, plataformas premium'
+          }},
+          { label:'Web / Open Source', result: { name:'AV1', color:'#6B9A6B',
+            desc:'Codec libre de patentes de AOMedia. 30% más eficiente que HEVC. Adopción creciente en YouTube y Netflix. Codificación lenta pero decodificación hardware disponible en hardware moderno.',
+            specs:'Contenedor: .webm / .mp4 · Sin royalties · Soporte HDR',
+            usa:'YouTube 4K, streaming web, aplicaciones de código abierto'
+          }},
+        ]
+      }},
+      { label: 'VJing / Espectáculo en vivo', next: {
+        q: '¿Usas Resolume Arena?',
+        opts: [
+          { label:'Sí — Resolume Arena', result: { name:'DXV 3 (Resolume)', color:'#4A7A6A',
+            desc:'Codec propietario de Resolume optimizado para decodificación GPU. La reproducción de múltiples capas en tiempo real sin carga de CPU. Convierte tus clips con el conversor incluido en Resolume.',
+            specs:'Contenedor: .avi · Decodificación GPU · Calidad visual excelente',
+            usa:'VJing con Resolume Arena — máximo rendimiento en directo'
+          }},
+          { label:'Sí — Resolume (WiFi/red)', result: { name:'HAP / HAP Q', color:'#A06B6B',
+            desc:'Alternativa a DXV con compresión más agresiva. HAP tiene el menor tamaño de archivo, HAP Q mayor calidad. También decodificación por GPU. Compatible con otros softwares como VDMX.',
+            specs:'Contenedor: .mov · Decodificación GPU · HAP: buena calidad / HAP Q: alta calidad',
+            usa:'VJing con múltiples capas, ordenadores con menos GPU'
+          }},
+          { label:'No — otro software', result: { name:'Apple ProRes 422 LT', color:'#6B9A6B',
+            desc:'Para mediaservers y software VJ que no soporten DXV/HAP, ProRes 422 LT es el mejor equilibrio entre calidad, tamaño y velocidad de decodificación. Ampliamente compatible.',
+            specs:'Contenedor: .mov · Bitrate: ~100 Mbps · Intraframe — scrubbing perfecto',
+            usa:'Pandoras Box, Hippotizer, Notch, vMix, otros mediaservers'
+          }},
+        ]
+      }},
+      { label: 'Archivo sin pérdidas', result: { name:'RAW / ProRes 4444 XQ / DPX', color:'#9B9590',
+        desc:'Para archivo máster sin comprimir o con la mínima compresión posible. DPX para cine, ProRes 4444 XQ para vídeo broadcast de máxima calidad. Archivos muy grandes — requiere RAID/NVMe.',
+        specs:'DPX: sin compresión · ProRes 4444 XQ: ~500 Mbps · Contenedor: .dpx / .mov',
+        usa:'Máster de cine, archivo institucional, composición VFX'
+      }},
+    ]
+  };
+
+  function renderCodecTree(node, depth) {
+    const el = document.getElementById('codecTree');
+    if (!el) return;
+
+    if (node.result) {
+      const r = node.result;
+      el.innerHTML = `
+        <div style="background:var(--bg2);border-radius:10px;padding:20px;border-left:4px solid ${r.color};animation:fadeUp .3s ease">
+          <div style="font-size:10px;font-weight:700;color:${r.color};letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">✓ CODEC RECOMENDADO</div>
+          <div style="font-size:20px;font-weight:800;color:var(--text1);margin-bottom:10px">${r.name}</div>
+          <p style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:12px">${r.desc}</p>
+          <div style="font-size:12px;color:var(--text3);font-family:monospace;background:var(--bg1);border-radius:6px;padding:8px 12px;margin-bottom:12px">${r.specs}</div>
+          <div style="font-size:13px;color:var(--text2)">💼 <strong>Uso típico:</strong> ${r.usa}</div>
+          <button onclick="resetCodecTree()" style="margin-top:16px;padding:8px 18px;background:var(--accent-lt);color:var(--accent);border:1px solid rgba(74,122,106,.2);border-radius:8px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600">↩ Volver al inicio</button>
+        </div>`;
+      return;
+    }
+
+    const trail = window._codecTrail || [];
+    let breadcrumb = trail.length ? `<div style="font-size:11px;color:var(--text3);margin-bottom:12px">${trail.join(' › ')}</div>` : '';
+
+    el.innerHTML = `
+      ${breadcrumb}
+      <div style="font-size:16px;font-weight:700;color:var(--text1);margin-bottom:16px">${node.q}</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        ${node.opts.map((opt,i) => `
+          <button onclick="codecTreeStep(${i})" style="text-align:left;padding:12px 16px;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;font-size:14px;color:var(--text1);transition:.15s;font-weight:500"
+            onmouseover="this.style.borderColor='var(--accent)';this.style.background='var(--accent-lt)'"
+            onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--surface)'">
+            ${opt.label}
+          </button>
+        `).join('')}
+      </div>`;
+    window._codecCurrent = node;
+  }
+
+  function codecTreeStep(i) {
+    const opt = window._codecCurrent.opts[i];
+    window._codecTrail = window._codecTrail || [];
+    window._codecTrail.push(opt.label);
+    renderCodecTree(opt.next || opt);
+  }
+
+  function resetCodecTree() {
+    window._codecTrail = [];
+    renderCodecTree(CODEC_TREE, 0);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', resetCodecTree);
+  else resetCodecTree();
+  </script>
 
   <div class="inner-pane" id="c_codecs">
     <div class="grid-2">
@@ -2136,6 +2525,70 @@ canvas { border-radius: 8px; }
     </div>
 
   </div><!-- /c_ndi -->
+  <div class="inner-pane" id="c_flujo">
+    <div class="panel">
+      <div class="panel-title">Diagrama de flujo de señal AV</div>
+      <p style="font-size:14px;color:var(--text2);margin-bottom:16px">Haz clic en cada nodo para ver sus detalles. La señal recorre este camino desde la fuente hasta la pantalla.</p>
+      <div style="overflow-x:auto">
+        <svg id="avFlowSvg" viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:600px;display:block;cursor:pointer"></svg>
+      </div>
+      <div id="avFlowDetail" style="margin-top:16px;background:var(--bg2);border-radius:8px;padding:14px 18px;border-left:3px solid var(--accent);min-height:54px;font-size:14px;color:var(--text2);display:none"></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    const svg = document.getElementById('avFlowSvg');
+    if (!svg) return;
+    const nodes = [
+      { id:'fuente',    x:40,   label:'📷',  name:'Fuente',      color:'#6B9A6B', detail:'<strong>Fuente de señal:</strong> cámara, PC, reproductor, señal NDI… Genera la imagen en raw o comprimida. Define la resolución y framerate de partida.' },
+      { id:'captura',   x:160,  label:'🎛️',  name:'Captura',     color:'#4A7A6A', detail:'<strong>Tarjeta de captura / interfaz:</strong> convierte la señal HDMI/SDI/NDI en datos digitales procesables por el PC. Ej: Blackmagic DeckLink, Magewell.' },
+      { id:'codec',     x:280,  label:'⚙️',  name:'Codec',       color:'#A06B4A', detail:'<strong>Codec:</strong> algoritmo de compresión/descompresión. Determina calidad, tamaño y compatibilidad. ProRes para edición, H.264/H.265 para distribución, DXV/HAP para VJing en tiempo real.' },
+      { id:'contenedor',x:400,  label:'📦',  name:'Contenedor',  color:'#6B7FA3', detail:'<strong>Contenedor (wrapper):</strong> archivo que empaqueta el codec + audio + metadatos. .mp4 (universal), .mov (Apple/Pro), .mxf (broadcast), .webm (web). El contenedor NO define la calidad — sí el codec.' },
+      { id:'distrib',   x:520,  label:'🔀',  name:'Distribución',color:'#7A6BA3', detail:'<strong>Distribución y routing:</strong> la señal se encamina hacia uno o varios destinos. Splitters, matrices, NDI, HDMI over IP. Aquí se decide quién recibe qué señal.' },
+      { id:'proceso',   x:640,  label:'🎬',  name:'Proceso/Mezcla',color:'#A06B6B',detail:'<strong>Procesado en vivo:</strong> software como Resolume Arena recibe la señal, aplica efectos, blend modes, outputs configurados. También mezcladores hardware como ATEM.' },
+      { id:'salida',    x:760,  label:'🖥️',  name:'Salida',      color:'#6B9A6B', detail:'<strong>Salida / display:</strong> proyector, pantalla LED, monitor, stream RTMP, grabación. Cada destino tiene requisitos de resolución, framerate y conector distintos.' },
+    ];
+    const CY=110, NW=90, NH=54, R=6;
+    let html = '';
+
+    // Arrows
+    for(let i=0;i<nodes.length-1;i++){
+      const x1=nodes[i].x+NW, x2=nodes[i+1].x, mx=(x1+x2)/2;
+      html += `<path d="M${x1} ${CY} C${mx} ${CY} ${mx} ${CY} ${x2} ${CY}" stroke="rgba(0,0,0,.15)" stroke-width="2" fill="none" marker-end="url(#arr)"/>`;
+    }
+    html += `<defs><marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="rgba(0,0,0,.25)"/></marker></defs>`;
+
+    nodes.forEach((n,i) => {
+      const x=n.x, y=CY-NH/2;
+      html += `<g class="av-node" data-id="${n.id}" onclick="avFlowClick('${n.id}')" style="cursor:pointer">
+        <rect x="${x}" y="${y}" width="${NW}" height="${NH}" rx="${R}" fill="${n.color}" fill-opacity=".12" stroke="${n.color}" stroke-width="1.5"/>
+        <text x="${x+NW/2}" y="${y+18}" text-anchor="middle" font-size="16">${n.label}</text>
+        <text x="${x+NW/2}" y="${y+36}" text-anchor="middle" font-size="10" fill="${n.color}" font-weight="700" font-family="monospace">${n.name}</text>
+        <rect x="${x}" y="${y+NH-6}" width="${NW}" height="6" rx="${R}" fill="${n.color}" opacity=".6"/>
+      </g>`;
+    });
+    svg.innerHTML = html;
+
+    // Store detail data
+    window._avNodes = {};
+    nodes.forEach(n => window._avNodes[n.id] = n);
+  })();
+
+  function avFlowClick(id) {
+    const n = window._avNodes[id];
+    if (!n) return;
+    const detail = document.getElementById('avFlowDetail');
+    detail.style.display = 'block';
+    detail.style.borderColor = n.color;
+    detail.innerHTML = `<div style="font-size:11px;color:${n.color};font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">${n.name}</div>${n.detail}`;
+    // Highlight
+    document.querySelectorAll('#avFlowSvg .av-node rect:first-child').forEach(r => r.setAttribute('fill-opacity','.1'));
+    const g = document.querySelector(`#avFlowSvg [data-id="${id}"] rect:first-child`);
+    if(g) g.setAttribute('fill-opacity','.3');
+  }
+  </script>
+
 
 </section>
 

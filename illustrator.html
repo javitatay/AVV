@@ -1018,6 +1018,20 @@ Este proyecto es una herramienta educativa independiente.
         <p class="page-desc">El color es fundamental en el diseño gráfico. Illustrator ofrece modos de color profesionales (CMYK para imprenta, RGB para pantalla), muestras Pantone, degradados y completo control del relleno y trazo.</p>
     </div>
 
+    <div class="panel" style="margin-bottom:24px;">
+        <div class="panel-title">Modelos de color — RGB, CMYK y HSB</div>
+        <p style="font-size:14px;color:var(--text-secondary);margin-bottom:14px;">Haz clic en un modelo para ver cómo mezcla colores. <strong>RGB</strong> es para pantalla, <strong>CMYK</strong> para imprenta, <strong>HSB</strong> para selección intuitiva.</p>
+        <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+            <button onclick="colorModelShow('rgb')"  id="cmbtn_rgb"  style="padding:7px 16px;border-radius:20px;border:1.5px solid var(--border-mid);background:var(--ai-orange);color:#fff;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;">🖥 RGB (pantalla)</button>
+            <button onclick="colorModelShow('cmyk')" id="cmbtn_cmyk" style="padding:7px 16px;border-radius:20px;border:1.5px solid var(--border-mid);background:transparent;color:var(--text-primary);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;">🖨 CMYK (imprenta)</button>
+            <button onclick="colorModelShow('hsb')"  id="cmbtn_hsb"  style="padding:7px 16px;border-radius:20px;border:1.5px solid var(--border-mid);background:transparent;color:var(--text-primary);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;">🎨 HSB (intuitivo)</button>
+        </div>
+        <div style="display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start;">
+            <canvas id="colorModelCanvas" style="width:300px;height:300px;display:block;border-radius:8px;background:#111;"></canvas>
+            <div id="colorModelDesc" style="font-size:14px;color:var(--text-secondary);line-height:1.75;"></div>
+        </div>
+    </div>
+
     <div class="grid-2" style="margin-bottom:20px;">
         <div class="panel panel-orange">
             <div class="panel-title">🎨 Relleno & Trazo</div>
@@ -1481,6 +1495,20 @@ Este proyecto es una herramienta educativa independiente.
         <div class="page-tag">// Episodio 10 · The Bezier Game</div>
         <div class="page-title">Pluma & <span>Curvatura</span></div>
         <p class="page-desc">La herramienta Pluma es la más poderosa y precisa de Illustrator. Permite crear cualquier forma mediante trazados Bézier. Su dominio es fundamental para el diseño vectorial profesional.</p>
+    </div>
+
+    <div class="panel" style="margin-bottom:24px;">
+        <div class="panel-title">Anatomía interactiva de la curva Bézier</div>
+        <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px;">Arrastra los <strong style="color:#c87800">mangos naranjas</strong> para modificar la curvatura en tiempo real.</p>
+        <div style="background:#1a0a04;border-radius:10px;padding:16px;">
+            <canvas id="bezierCanvas" style="width:100%;height:260px;display:block;cursor:crosshair;border-radius:6px;touch-action:none;"></canvas>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:12px;">
+            <div class="info-box"><h4>Ancla (anchor)</h4><p>Punto fijo que define inicio o fin del segmento. Círculo blanco en el canvas.</p></div>
+            <div class="info-box"><h4>Mango (handle)</h4><p>Controla dirección y suavidad de la curva. Punto naranja — arrástralo.</p></div>
+            <div class="info-box"><h4>Tangente</h4><p>Línea entre ancla y mango. Define la dirección de la curva en ese punto.</p></div>
+            <div class="info-box"><h4>Segmento</h4><p>La curva entre dos anclas, definida matemáticamente por sus mangos.</p></div>
+        </div>
     </div>
 
     <div class="grid-2" style="margin-bottom:20px;">
@@ -3438,6 +3466,8 @@ Este proyecto es una herramienta educativa independiente.
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
         const target = document.getElementById('page-' + id);
         if (target) target.classList.add('active');
+        if (id === 'pluma') requestAnimationFrame(initBezierCanvas);
+        if (id === 'color') requestAnimationFrame(function(){ colorModelShow('rgb'); });
         document.querySelectorAll('.nav-item').forEach(n => {
             if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) {
                 n.classList.add('active');
@@ -3643,6 +3673,128 @@ Este proyecto es una herramienta educativa independiente.
             if (wrapper && !wrapper.contains(e.target)) closeSearch();
         });
     });
+
+    // ── Bézier canvas ─────────────────────────────────────────────
+    var _bezierInit = false;
+    function initBezierCanvas() {
+        if (_bezierInit) return;
+        var canvas = document.getElementById('bezierCanvas');
+        if (!canvas || !canvas.offsetWidth) return;
+        _bezierInit = true;
+        var dpr = window.devicePixelRatio || 1;
+        var W = canvas.offsetWidth, H = canvas.offsetHeight || 260;
+        canvas.width = W * dpr; canvas.height = H * dpr;
+        var ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+        var pts = [{x:W*.10,y:H*.75},{x:W*.28,y:H*.12},{x:W*.62,y:H*.88},{x:W*.90,y:H*.28}];
+        var drag = null;
+        function drawBez() {
+            ctx.clearRect(0,0,W,H); ctx.fillStyle='#1a0a04'; ctx.fillRect(0,0,W,H);
+            ctx.strokeStyle='rgba(255,255,255,.04)'; ctx.lineWidth=1;
+            for(var gx=0;gx<W;gx+=40){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,H);ctx.stroke();}
+            for(var gy=0;gy<H;gy+=40){ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(W,gy);ctx.stroke();}
+            ctx.strokeStyle='rgba(200,120,0,.5)'; ctx.lineWidth=1; ctx.setLineDash([3,3]);
+            ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);ctx.lineTo(pts[1].x,pts[1].y);ctx.stroke();
+            ctx.beginPath();ctx.moveTo(pts[3].x,pts[3].y);ctx.lineTo(pts[2].x,pts[2].y);ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.strokeStyle='#f97316'; ctx.lineWidth=3;
+            ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);
+            ctx.bezierCurveTo(pts[1].x,pts[1].y,pts[2].x,pts[2].y,pts[3].x,pts[3].y);ctx.stroke();
+            [pts[1],pts[2]].forEach(function(p,i){
+                ctx.fillStyle='#c87800';ctx.beginPath();ctx.arc(p.x,p.y,7,0,Math.PI*2);ctx.fill();
+                ctx.strokeStyle='#f59e0b';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(p.x,p.y,7,0,Math.PI*2);ctx.stroke();
+                ctx.fillStyle='rgba(255,179,0,.85)';ctx.font='10px monospace';ctx.fillText('Mango '+(i+1),p.x+10,p.y-9);
+            });
+            [pts[0],pts[3]].forEach(function(p,i){
+                ctx.fillStyle='white';ctx.beginPath();ctx.arc(p.x,p.y,8,0,Math.PI*2);ctx.fill();
+                ctx.strokeStyle='#c87800';ctx.lineWidth=2;ctx.beginPath();ctx.arc(p.x,p.y,8,0,Math.PI*2);ctx.stroke();
+                ctx.fillStyle='rgba(255,255,255,.75)';ctx.font='10px monospace';
+                ctx.fillText(i===0?'Ancla A':'Ancla B',p.x+12,p.y+4);
+            });
+            ctx.fillStyle='rgba(255,255,255,.25)';ctx.font='10px monospace';
+            ctx.fillText('← arrastra los mangos naranjas',10,H-10);
+        }
+        function bezXY(e){var r=canvas.getBoundingClientRect();var s=e.touches?e.touches[0]:e;return{x:(s.clientX-r.left)*(W/r.width),y:(s.clientY-r.top)*(H/r.height)};}
+        function bezHit(p,e){var q=bezXY(e);return Math.sqrt((p.x-q.x)*(p.x-q.x)+(p.y-q.y)*(p.y-q.y))<14;}
+        canvas.addEventListener('mousedown',function(e){[1,2].forEach(function(i){if(bezHit(pts[i],e))drag=i;});});
+        canvas.addEventListener('mousemove',function(e){if(drag===null)return;var p=bezXY(e);pts[drag].x=Math.max(0,Math.min(W,p.x));pts[drag].y=Math.max(0,Math.min(H,p.y));drawBez();});
+        canvas.addEventListener('mouseup',function(){drag=null;});
+        canvas.addEventListener('touchstart',function(e){e.preventDefault();[1,2].forEach(function(i){if(bezHit(pts[i],e))drag=i;});},{passive:false});
+        canvas.addEventListener('touchmove',function(e){e.preventDefault();if(drag===null)return;var p=bezXY(e);pts[drag].x=Math.max(0,Math.min(W,p.x));pts[drag].y=Math.max(0,Math.min(H,p.y));drawBez();},{passive:false});
+        canvas.addEventListener('touchend',function(){drag=null;});
+        drawBez();
+    }
+
+    // ── Color model canvas ─────────────────────────────────────────
+    var _colorMode = '';
+    function colorModelShow(mode) {
+        _colorMode = mode;
+        ['rgb','cmyk','hsb'].forEach(function(m){
+            var b=document.getElementById('cmbtn_'+m);if(!b)return;
+            b.style.background=m===mode?'var(--ai-orange)':'transparent';
+            b.style.color=m===mode?'#fff':'var(--text-primary)';
+        });
+        var canvas=document.getElementById('colorModelCanvas');
+        var desc=document.getElementById('colorModelDesc');
+        if(!canvas||!desc)return;
+        var W=300,H=300;canvas.width=W;canvas.height=H;
+        var ctx=canvas.getContext('2d');
+        ctx.clearRect(0,0,W,H);
+        if(mode==='rgb'){
+            ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);
+            var cx=W/2,cy=H/2,r=85;
+            var ci=[{x:cx,y:cy-52,c:'rgba(255,0,0,.72)'},{x:cx-46,y:cy+30,c:'rgba(0,255,0,.72)'},{x:cx+46,y:cy+30,c:'rgba(0,0,255,.72)'}];
+            ctx.globalCompositeOperation='screen';
+            ci.forEach(function(o){ctx.fillStyle=o.c;ctx.beginPath();ctx.arc(o.x,o.y,r,0,Math.PI*2);ctx.fill();});
+            ctx.globalCompositeOperation='source-over';
+            ctx.font='bold 13px monospace';ctx.textAlign='center';ctx.fillStyle='#fff';
+            ctx.fillText('R',cx,cy-105);ctx.fillText('G',cx-88,cy+70);ctx.fillText('B',cx+88,cy+70);
+            ctx.font='9px monospace';ctx.fillStyle='rgba(255,255,255,.7)';
+            ctx.fillText('Amarillo',cx,cy+56);ctx.fillText('Cian',cx-60,cy-26);ctx.fillText('Magenta',cx+60,cy-26);ctx.fillText('BLANCO',cx,cy+8);
+            ctx.textAlign='left';
+            desc.innerHTML='<strong style="color:#f87171">Modelo aditivo RGB</strong><br><br>Suma luz de colores. Los tres juntos dan <strong>blanco</strong>. Base de pantallas, monitores y proyectores.<br><br>• R+G = Amarillo &nbsp;• R+B = Magenta &nbsp;• G+B = Cian<br>• R+G+B = Blanco<br><br><em>Usa RGB en Illustrator para diseño de pantalla, web y vídeo.</em>';
+        }
+        if(mode==='cmyk'){
+            ctx.fillStyle='#f5f5f0';ctx.fillRect(0,0,W,H);
+            var cx2=W/2,cy2=H/2,r2=82;
+            var c2=[{x:cx2,y:cy2-48,c:'rgba(0,200,200,.8)'},{x:cx2-42,y:cy2+28,c:'rgba(200,0,200,.8)'},{x:cx2+42,y:cy2+28,c:'rgba(200,200,0,.8)'}];
+            ctx.globalCompositeOperation='multiply';
+            c2.forEach(function(o){ctx.fillStyle=o.c;ctx.beginPath();ctx.arc(o.x,o.y,r2,0,Math.PI*2);ctx.fill();});
+            ctx.globalCompositeOperation='source-over';
+            ctx.font='bold 13px monospace';ctx.textAlign='center';ctx.fillStyle='#333';
+            ctx.fillText('C',cx2,cy2-100);ctx.fillText('M',cx2-86,cy2+68);ctx.fillText('Y',cx2+86,cy2+68);
+            ctx.font='9px monospace';ctx.fillStyle='rgba(0,0,0,.6)';
+            ctx.fillText('Azul',cx2,cy2+50);ctx.fillText('Rojo',cx2-58,cy2-22);ctx.fillText('Verde',cx2+58,cy2-22);ctx.fillText('NEGRO',cx2,cy2+6);
+            ctx.globalCompositeOperation='multiply';
+            ctx.fillStyle='rgba(0,0,0,.9)';ctx.beginPath();ctx.arc(cx2+108,cy2-80,24,0,Math.PI*2);ctx.fill();
+            ctx.globalCompositeOperation='source-over';
+            ctx.fillStyle='#fff';ctx.font='bold 14px monospace';ctx.fillText('K',cx2+108,cy2-74);
+            ctx.textAlign='left';
+            desc.innerHTML='<strong style="color:#333">Modelo sustractivo CMYK</strong><br><br>Mezcla tintas que absorben luz. Los tres juntos dan <strong>negro</strong>. Usado en imprenta.<br><br>• C+M = Azul &nbsp;• C+Y = Verde &nbsp;• M+Y = Rojo<br>• C+M+Y = Negro (impuro) → por eso existe la tinta <strong>K</strong><br><br><em>Usa CMYK en Illustrator si tu diseño va a imprimirse en papel.</em>';
+        }
+        if(mode==='hsb'){
+            ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);
+            for(var a=0;a<360;a++){
+                var rd1=(a-1)*Math.PI/180,rd2=(a+1)*Math.PI/180,ri=58,ro=128;
+                ctx.beginPath();
+                ctx.moveTo(W/2+ri*Math.cos(rd1),H/2+ri*Math.sin(rd1));
+                ctx.lineTo(W/2+ro*Math.cos(rd1),H/2+ro*Math.sin(rd1));
+                ctx.lineTo(W/2+ro*Math.cos(rd2),H/2+ro*Math.sin(rd2));
+                ctx.lineTo(W/2+ri*Math.cos(rd2),H/2+ri*Math.sin(rd2));
+                ctx.closePath();ctx.fillStyle='hsl('+a+',100%,50%)';ctx.fill();
+            }
+            var grd=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,58);
+            grd.addColorStop(0,'white');grd.addColorStop(1,'rgba(255,255,255,0)');
+            ctx.fillStyle=grd;ctx.beginPath();ctx.arc(W/2,H/2,58,0,Math.PI*2);ctx.fill();
+            ctx.fillStyle='rgba(255,255,255,.9)';ctx.font='bold 10px monospace';ctx.textAlign='center';
+            ctx.fillText('H: Tono 0–360°',W/2,H/2-8);ctx.fillText('S: Saturación',W/2,H/2+8);ctx.fillText('B: Brillo',W/2,H/2+22);
+            var ang={0:'Rojo',60:'Amarillo',120:'Verde',180:'Cian',240:'Azul',300:'Magenta'};
+            ctx.font='8px monospace';
+            Object.keys(ang).forEach(function(a2){var rd=+a2*Math.PI/180,rr=145;ctx.fillStyle='hsl('+a2+',60%,65%)';ctx.fillText(ang[a2],W/2+rr*Math.cos(rd),H/2+rr*Math.sin(rd)+4);});
+            ctx.textAlign='left';
+            desc.innerHTML='<strong style="color:var(--ai-orange)">Modelo HSB</strong><br><br>Modelo perceptual. Más intuitivo para elegir colores.<br><br>• <strong>H</strong>ue (Tono): 0–360° en el espectro<br>• <strong>S</strong>aturation: intensidad, 0–100%<br>• <strong>B</strong>rightness: luminosidad, 0–100%<br><br><em>El selector de Illustrator usa HSB. Ideal para ajustar tonos manteniendo saturación.</em>';
+        }
+    }
 </script>
 
 

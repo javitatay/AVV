@@ -2365,7 +2365,61 @@ Este proyecto es una herramienta educativa independiente.
                 <div class="page-desc">Sistema de grabación de escenas y ejecución en tiempo real durante el espectáculo.</div>
             </div>
 
-            <div class="panel panel-orange">
+            
+            <div class="panel" style="margin-bottom:24px">
+                <div class="panel-title">Flujo completo de programación de show</div>
+                <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">Cada etapa construye sobre la anterior. Haz clic en un bloque para ver qué hace y cómo se accede en MagicQ.</p>
+                <div style="overflow-x:auto">
+                  <svg id="mq_flow" viewBox="0 0 800 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:580px;display:block"></svg>
+                </div>
+                <div id="mq_flow_detail" style="margin-top:14px;background:var(--bg-light);border-radius:8px;padding:14px 18px;border-left:3px solid var(--mq-orange);font-size:14px;color:var(--text-secondary);display:none;line-height:1.7"></div>
+            </div>
+
+            <script>
+            (function(){
+              const svg = document.getElementById('mq_flow');
+              if (!svg) return;
+              const steps = [
+                { name:'PATCH',   icon:'🔌', color:'#1A40B0',
+                  desc:'<strong>Patch:</strong> asigna cada fixture a sus canales DMX. <br>Acceso: <code>PATCH</code> → New → selecciona perfil de fixture → asigna dirección DMX.<br>Sin patch, la consola no sabe qué foco controla cada canal.' },
+                { name:'GROUPS',  icon:'👥', color:'#2A6A58',
+                  desc:'<strong>Grupos:</strong> agrupa fixtures para seleccionarlos rápidamente. <br>Acceso: Selecciona fixtures → <code>GROUP</code> → Record → dale nombre.<br>Ejemplo: «All PAR», «Front Wash», «Moving Heads».' },
+                { name:'PALETAS', icon:'🎨', color:'#4A7A6A',
+                  desc:'<strong>Paletas:</strong> valores reutilizables de color, posición o beam. <br>Acceso: Ajusta parámetros en Programmer → <code>COL/POS/BEAM</code> → Record → nombre.<br>Al actualizar la paleta, todos los cues que la usan se actualizan automáticamente.' },
+                { name:'PROGRAMMER',icon:'✏️',color:'#7A6BA3',
+                  desc:'<strong>Programmer:</strong> área de trabajo temporal donde modificas los fixtures antes de grabar. <br>Selecciona grupo → activa intensidad con encoder → ajusta color/posición.<br>El Programmer siempre tiene prioridad sobre los Playbacks.' },
+                { name:'CUE',     icon:'📸', color:'#A06B4A',
+                  desc:'<strong>Cue:</strong> fotografía del estado de iluminación en un momento. Guarda intensidades, colores, posiciones y tiempos de fade. <br>Acceso: Con Programmer activo → <code>RECORD</code> → selecciona Playback.' },
+                { name:'CUE LIST',icon:'📋', color:'#A06B6B',
+                  desc:'<strong>Cue List:</strong> lista ordenada de cues en un Playback. Se ejecuta con GO. Puede ser manual, automática (Chase) o por tiempo. <br>Acceso: <code>CUE LIST</code> → view cues → ajusta tiempos de fade y delay.' },
+                { name:'PLAYBACK',icon:'▶️', color:'#1A40B0',
+                  desc:'<strong>Playback:</strong> fader físico o botón que ejecuta una Cue List. Al subir el fader se activa el master de intensidad. <br>Acceso: Los 10 faders principales + páginas de Playback. <code>EXEC</code> para acceso extendido.' },
+              ];
+              const W=800, pad=10, bw=(W-(steps.length-1)*pad)/steps.length, bh=72, cy=20;
+              let html='';
+              steps.forEach((s,i)=>{
+                const x=i*(bw+pad);
+                html+=`<defs><linearGradient id="mqg_${i}" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="${s.color}" stop-opacity=".25"/><stop offset="100%" stop-color="${s.color}" stop-opacity=".08"/></linearGradient></defs>`;
+                html+=`<g onclick="mqFlowClick(${i})" style="cursor:pointer">
+                  <rect x="${x}" y="${cy}" width="${bw}" height="${bh}" rx="6" fill="url(#mqg_${i})" stroke="${s.color}" stroke-width="1.5"/>
+                  <rect x="${x}" y="${cy+bh-5}" width="${bw}" height="5" rx="3" fill="${s.color}" opacity=".7"/>
+                  <text x="${x+bw/2}" y="${cy+22}" text-anchor="middle" font-size="18">${s.icon}</text>
+                  <text x="${x+bw/2}" y="${cy+44}" text-anchor="middle" font-size="10" fill="${s.color}" font-family="monospace" font-weight="700">${s.name}</text>
+                  ${i<steps.length-1?`<text x="${x+bw+pad/2}" y="${cy+bh/2+5}" text-anchor="middle" font-size="14" fill="${s.color}" opacity=".5">›</text>`:''}
+                </g>`;
+              });
+              svg.innerHTML=html;
+              window._mqSteps=steps;
+            })();
+            function mqFlowClick(i){
+              const s=window._mqSteps[i]; if(!s) return;
+              const d=document.getElementById('mq_flow_detail');
+              d.style.display='block'; d.style.borderColor=s.color;
+              d.innerHTML=`<div style="font-size:10px;font-weight:700;color:${s.color};letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px">${s.icon} ${s.name}</div>${s.desc}`;
+            }
+            </script>
+
+<div class="panel panel-orange">
                 <div class="panel-title">Conceptos fundamentales</div>
                 <div class="grid-2">
                     <div class="info-box">

@@ -1017,6 +1017,59 @@ canvas { border-radius: 8px; }
     <div class="kelvin-labels">
       <span>1800K</span><span>2700K</span><span>3200K</span><span>4500K</span><span>5600K</span><span>6500K</span><span>9000K</span>
     </div>
+
+    <div style="margin:20px 0 0;background:#0d0d0d;border-radius:10px;padding:20px;overflow-x:auto">
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;font-family:monospace">SIMULADOR DE TEMPERATURA DE COLOR — haz clic en un valor</div>
+      <div style="display:flex;flex-direction:column;gap:10px" id="kelvSim">
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      const el = document.getElementById('kelvSim');
+      if (!el) return;
+      const sources = [
+        { k:1800, name:'Vela / Llama',      hex:'#FF8C20', rgb:'255,140,32',  desc:'Luz muy cálida, naranja intensa. Usada en teatro para escenas íntimas o de época. Efecto de fuego.' },
+        { k:2700, name:'Halógena / Tungsteno',hex:'#FFB347',rgb:'255,179,71',desc:'Estándar doméstico y de estudio vintage. Cálida y agradable. Base de focos PAR de tungsteno clásicos.' },
+        { k:3200, name:'Lámparas de estudio (HMI)',hex:'#FFC87A',rgb:'255,200,122',desc:'El estándar de estudio cinematográfico y TV. Temperatura cálida profesional. Muy común en rodajes.' },
+        { k:4000, name:'LED neutro',          hex:'#FFE4A8', rgb:'255,228,168', desc:'LED de temperatura neutra, entre cálido y frío. Usado en espacios de trabajo y museos. Muy natural.' },
+        { k:5600, name:'Luz de día / Flash',  hex:'#FFF8EC', rgb:'255,248,236', desc:'El estándar internacional para luz de día. Focos HMI para exteriores, flash fotográfico. Balance neutro.' },
+        { k:6500, name:'Nublado / Overcast',  hex:'#EEF4FF', rgb:'238,244,255', desc:'Cielo cubierto, fría y difusa. Muchos LED «luz día» usan 6500K. Referencia para monitores de color.' },
+        { k:9000, name:'Cielo azul despejado',hex:'#C8DCFF', rgb:'200,220,255', desc:'Muy frío, azulado. Cielo despejado en exteriores sin sol directo. Crea sensación de frío, noche o misterio.' },
+      ];
+
+      el.innerHTML = sources.map((s,i) => `
+        <div onclick="kelvClick(${i})" id="kelv_${i}" style="display:flex;align-items:center;gap:12px;cursor:pointer;border-radius:6px;padding:6px 10px;transition:.15s"
+          onmouseover="this.style.background='rgba(255,255,255,.05)'"
+          onmouseout="this.style.background='transparent'">
+          <div style="width:36px;height:36px;border-radius:6px;background:rgb(${s.rgb});flex-shrink:0;box-shadow:0 0 12px rgba(${s.rgb},.5)"></div>
+          <div style="flex:1">
+            <div style="color:rgba(255,255,255,.9);font-size:13px;font-weight:700;font-family:monospace">${s.k}K</div>
+            <div style="color:rgba(255,255,255,.4);font-size:11px">${s.name}</div>
+          </div>
+          <div style="width:80px;height:8px;border-radius:4px;background:linear-gradient(90deg,rgb(${sources[0].rgb}),rgb(${s.rgb}));opacity:.7"></div>
+          <div id="kbar_${i}" style="font-size:10px;color:rgba(255,255,255,.3);font-family:monospace;width:24px">▶</div>
+        </div>
+      `).join('') + `<div id="kelvDetail" style="margin-top:10px;padding:12px 14px;background:rgba(255,255,255,.05);border-radius:8px;font-size:13px;color:rgba(255,255,255,.7);line-height:1.65;display:none"></div>`;
+
+      window._kelvData = sources;
+    })();
+
+    function kelvClick(i) {
+      const s = window._kelvData[i];
+      const d = document.getElementById('kelvDetail');
+      d.style.display='block';
+      d.style.borderLeft=`3px solid rgb(${s.rgb.replace(/,/g,',')})`;
+      d.innerHTML = `<strong style="color:rgb(${s.rgb})">${s.k}K — ${s.name}</strong><br>${s.desc}`;
+      // Highlight
+      window._kelvData.forEach((_,j) => {
+        const row = document.getElementById('kelv_'+j);
+        if(row) row.style.background = j===i ? 'rgba(255,255,255,.08)' : 'transparent';
+      });
+    }
+    </script>
+
+
     <table class="comp-table" style="margin-top:16px;">
       <thead><tr><th>Rango (ºK)</th><th>Apariencia</th><th>Referencia</th><th>Uso en espectáculos</th></tr></thead>
       <tbody>
@@ -1503,6 +1556,84 @@ canvas { border-radius: 8px; }
       </table>
     </div>
   </div>
+
+  <div class="panel" style="margin-top:24px">
+    <div class="panel-title">Perfiles de haz — comparativa visual</div>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:16px;line-height:1.65">Cada tipo de foco produce un perfil de haz diferente. Haz clic en un foco para ver sus características y usos.</p>
+    <div style="overflow-x:auto">
+      <svg id="focoSvg" viewBox="0 0 780 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:580px;display:block"></svg>
+    </div>
+    <div id="focoDetail" style="margin-top:14px;background:var(--bg2);border-radius:8px;padding:14px 18px;border-left:3px solid var(--navy);font-size:14px;color:var(--text2);display:none;line-height:1.7"></div>
+  </div>
+
+  <script>
+  (function(){
+    const svg = document.getElementById('focoSvg');
+    if (!svg) return;
+    const focos = [
+      { name:'PAR 64',    angle:30, sharp:0.1, color:'#f59e0b', icon:'⬤',
+        desc:'<strong>PAR 64:</strong> Reflector parabólico. Haz amplio y potente, bordes muy suaves sin definición. Ideal para iluminar áreas grandes o ciclorama. Sin posibilidad de recortar el haz.',
+        tags:['Haz duro','Gran superficie','Sin recorte']},
+      { name:'Fresnel',   angle:40, sharp:0.05,color:'#6B9A6B', icon:'◎',
+        desc:'<strong>Fresnel:</strong> Lente estriada que produce un haz difuso con bordes muy graduales. Perfecto para iluminación general de escenario. El ángulo es ajustable moviendo la lámpara.',
+        tags:['Bordes suaves','Angulo ajustable','Iluminación general']},
+      { name:'PC Plano',  angle:20, sharp:0.3, color:'#4A7A6A', icon:'◉',
+        desc:'<strong>PC (Plano Convexo):</strong> Similar al Fresnel pero con haz más definido y concentrado. La lente plano-convexa da bordes más precisos. Versátil para iluminación de actor o escena.',
+        tags:['Bordes semidefinidos','Versátil','Haz concentrado']},
+      { name:'Recorte',   angle:15, sharp:0.9, color:'#3548C8', icon:'◈',
+        desc:'<strong>Recorte / Perfil:</strong> El foco de mayor precisión. Bordes nítidos y ajustables con cuchillas internas. Admite gobos para proyectar formas. Esencial en teatro y ópera.',
+        tags:['Bordes nítidos','Con gobos','Alta precisión']},
+      { name:'Moving Head',angle:18,sharp:0.75,color:'#7A6BA3', icon:'◐',
+        desc:'<strong>Moving Head:</strong> Robótico con pan/tilt motorizado. Control DMX de posición, color, gobo, zoom e iris. El foco más versátil y dinámico del espectáculo moderno.',
+        tags:['Pan/Tilt','Color cambiable','Control DMX']},
+      { name:'PAR LED',   angle:35, sharp:0.15,color:'#A06B6B', icon:'✦',
+        desc:'<strong>PAR LED:</strong> Versión LED del PAR clásico. Mezcla RGBW sin filtros, bajo consumo y larga vida. El haz suave lo hace ideal para iluminación de ambiente y color de relleno.',
+        tags:['RGBW sin filtros','Bajo consumo','Ambiente/Relleno']},
+    ];
+
+    const CY=160, spacing=780/focos.length;
+    let html = '';
+    focos.forEach((f,i) => {
+      const cx = spacing*i + spacing/2;
+      const halfAngle = (f.angle/2) * Math.PI/180;
+      const beamLen = 120;
+      const x1 = cx - Math.tan(halfAngle)*beamLen;
+      const x2 = cx + Math.tan(halfAngle)*beamLen;
+      // Glow beam
+      const grad = `beam_${i}`;
+      html += `<defs><radialGradient id="${grad}" cx="50%" cy="0%" r="100%"><stop offset="0%" stop-color="${f.color}" stop-opacity=".4"/><stop offset="100%" stop-color="${f.color}" stop-opacity="0"/></radialGradient></defs>`;
+      html += `<polygon points="${cx},${CY-beamLen} ${x2},${CY} ${x1},${CY}" fill="url(#${grad})"/>`;
+      // Sharp edge overlay
+      if (f.sharp > 0.5) {
+        html += `<line x1="${cx}" y1="${CY-beamLen}" x2="${x1}" y2="${CY}" stroke="${f.color}" stroke-width="${f.sharp*2}" opacity=".5"/>`;
+        html += `<line x1="${cx}" y1="${CY-beamLen}" x2="${x2}" y2="${CY}" stroke="${f.color}" stroke-width="${f.sharp*2}" opacity=".5"/>`;
+      }
+      // Floor line
+      html += `<line x1="${x1-10}" y1="${CY}" x2="${x2+10}" y2="${CY}" stroke="${f.color}" stroke-width="3" stroke-linecap="round" opacity=".6"/>`;
+      // Foco body
+      html += `<g onclick="focoClick(${i})" style="cursor:pointer">
+        <rect x="${cx-14}" y="${CY-beamLen-22}" width="28" height="20" rx="4" fill="${f.color}" fill-opacity=".2" stroke="${f.color}" stroke-width="1.5"/>
+        <circle cx="${cx}" cy="${CY-beamLen-10}" r="6" fill="${f.color}" opacity=".8"/>
+        <text x="${cx}" y="${CY+16}" text-anchor="middle" font-size="10" fill="${f.color}" font-family="monospace" font-weight="700">${f.name}</text>
+        <text x="${cx}" y="${CY+27}" text-anchor="middle" font-size="9" fill="${f.color}" font-family="monospace" opacity=".6">${f.angle}°</text>
+      </g>`;
+    });
+    svg.innerHTML = html;
+    window._focoData = focos;
+  })();
+
+  function focoClick(i) {
+    const f = window._focoData[i];
+    if (!f) return;
+    const d = document.getElementById('focoDetail');
+    d.style.display='block'; d.style.borderColor=f.color;
+    d.innerHTML = `<div style="font-size:11px;font-weight:700;color:${f.color};letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">${f.name} · ${f.angle}° de apertura</div>
+      ${f.desc}<div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
+      ${f.tags.map(t=>`<span style="font-size:10px;padding:2px 8px;background:${f.color}22;color:${f.color};border-radius:10px;border:1px solid ${f.color}44;font-weight:600">${t}</span>`).join('')}</div>`;
+  }
+  </script>
+
+
 </section>
 
 
