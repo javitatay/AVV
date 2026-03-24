@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Iluminación Suite — Espectáculos en Directo</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -31,7 +31,10 @@
 body {
   font-size: 16px;
   line-height: 1.7;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -285,14 +288,14 @@ input[type=number], select {
   background: var(--bg2); border: 1px solid var(--border);
   border-radius: 6px; color: var(--text);
   padding: 8px 11px; font-size: 13px;
-  font-family: 'Poppins', sans-serif; font-weight: 400;
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif; font-weight: 400;
   width: 100%; outline: none; transition: border-color .15s;
 }
 input:focus, select:focus { border-color: var(--navy); }
 .btn {
   background: var(--navy); color: var(--white); border: none;
   border-radius: 7px; padding: 9px 20px;
-  font-family: 'Poppins', sans-serif; font-weight: 600;
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif; font-weight: 600;
   font-size: 12px; cursor: pointer; width: 100%; margin-top: 8px;
   transition: opacity .15s;
 }
@@ -423,7 +426,7 @@ input:focus, select:focus { border-color: var(--navy); }
 #dmxSim .ds-toolbar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:14px; }
 #dmxSim .ds-toolbar select, #dmxSim .ds-toolbar input[type=number] {
   padding:5px 9px; border-radius:7px; border:1px solid rgba(255,255,255,.25);
-  background:#1e2d4a; color:#fff; font-size:11px; font-family:'Poppins',sans-serif;
+  background:#1e2d4a; color:#fff; font-size:11px; font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
   -webkit-appearance:none; appearance:none;
 }
 #dmxSim .ds-toolbar select option {
@@ -432,7 +435,7 @@ input:focus, select:focus { border-color: var(--navy); }
 #dmxSim .ds-btn {
   padding:5px 12px; border-radius:7px; border:1px solid rgba(247,215,148,.35);
   background:rgba(247,215,148,.1); color:var(--yellow); font-size:11px; font-weight:600;
-  cursor:pointer; font-family:'Poppins',sans-serif; transition:all .15s;
+  cursor:pointer; font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif; transition:all .15s;
 }
 #dmxSim .ds-btn:hover { background:rgba(247,215,148,.22); }
 #dmxSim .ds-btn.danger { border-color:rgba(237,166,163,.35); background:rgba(237,166,163,.1); color:var(--pink); }
@@ -542,7 +545,7 @@ canvas { border-radius: 8px; }
 
 /* ── CALCULADORA DE ILUMINACIÓN ── */
 .calc-tab-bar { display:flex; gap:4px; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:4px; margin-bottom:20px; flex-wrap:wrap; }
-.calc-tab-btn { padding:7px 16px; border:none; border-radius:7px; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; color:var(--text2); background:transparent; cursor:pointer; transition:all .2s; white-space:nowrap; }
+.calc-tab-btn { padding:7px 16px; border:none; border-radius:7px; font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif; font-size:12px; font-weight:600; color:var(--text2); background:transparent; cursor:pointer; transition:all .2s; white-space:nowrap; }
 .calc-tab-btn.active { background:#fff; color:var(--navy); box-shadow:var(--shadow); }
 .calc-tab-pane { display:none; }
 .calc-tab-pane.active { display:block; }
@@ -553,8 +556,8 @@ canvas { border-radius: 8px; }
 .calc-range-row input[type=range] { flex:1; height:4px; -webkit-appearance:none; appearance:none; background:var(--border); border-radius:4px; outline:none; }
 .calc-range-row input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; height:15px; border-radius:50%; background:var(--yellow); cursor:pointer; }
 .calc-rval { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; color:var(--accent); min-width:58px; text-align:right; }
-.calc-select { width:100%; padding:8px 10px; border:1.5px solid var(--border); border-radius:7px; font-family:'Poppins',sans-serif; font-size:12px; color:var(--text); background:var(--bg); appearance:none; }
-.calc-input { width:100%; padding:8px 10px; border:1.5px solid var(--border); border-radius:7px; font-family:'Poppins',sans-serif; font-size:12px; color:var(--text); background:var(--bg); }
+.calc-select { width:100%; padding:8px 10px; border:1.5px solid var(--border); border-radius:7px; font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif; font-size:12px; color:var(--text); background:var(--bg); appearance:none; }
+.calc-input { width:100%; padding:8px 10px; border:1.5px solid var(--border); border-radius:7px; font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif; font-size:12px; color:var(--text); background:var(--bg); }
 .calc-field-label { font-size:10px; font-weight:700; color:var(--text2); text-transform:uppercase; letter-spacing:.5px; margin-bottom:5px; display:block; }
 .calc-field { margin-bottom:14px; }
 .calc-divider { border:none; border-top:1px solid var(--border); margin:14px 0; }

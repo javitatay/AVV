@@ -15,7 +15,7 @@ Herramienta educativa independiente.
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Resolume Arena — Suite Educativa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
   --green:       #2A6A58;
@@ -26,12 +26,15 @@ Herramienta educativa independiente.
   --bg3: #F4F5F7; --bg4: #FFFFFF; --bg5: #E5E7EB;
   --t1: #2D3436; --t2: #636E72; --t3: #9EA8B3;
   --b1: #DFE3E8; --b2: #C8D0D8;
-  --r: 6px; --font:'Poppins',sans-serif; --mono:'Poppins','Courier New',monospace;
+  --r: 6px; --font:'Inter', 'Poppins', system-ui, -apple-system, sans-serif; --mono:'Poppins','Courier New',monospace;
   --sb: 260px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg0);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.7}
+body{  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+font-family:var(--font);background:var(--bg0);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.7}
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:var(--bg1)}
 ::-webkit-scrollbar-thumb{background:var(--b2);border-radius:3px}
@@ -839,7 +842,7 @@ Click derecho     → menú opciones del clip<br>
 <div style="margin:28px 0 24px;">
   <div style="background:rgba(74,122,106,.12);border:1px solid rgba(74,122,106,.25);border-radius:12px 12px 0 0;padding:8px 16px;display:flex;align-items:center;gap:10px;">
     <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4A7A6A;box-shadow:0 0 8px #4A7A6A88;flex-shrink:0"></span>
-    <span style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#7AB09A">Diagrama interactivo — Cadena de composición Resolume</span>
+    <span style="font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#7AB09A">Diagrama interactivo — Cadena de composición Resolume</span>
   </div>
   <div style="border:1px solid rgba(74,122,106,.25);border-top:none;border-radius:0 0 12px 12px;background:#0E1A16;padding:28px 20px 24px;overflow-x:auto;">
 
@@ -4165,7 +4168,7 @@ body { background: var(--il-bg-void); color: var(--il-text-pri); }
 }
 .sb-brand { justify-content: center; }
 .sb-name {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif !important;
   font-size: 18px !important; font-weight: 800 !important;
   color: var(--il-accent) !important;
   letter-spacing: 1.5px !important; text-transform: uppercase !important;
@@ -4227,7 +4230,7 @@ body { background: var(--il-bg-void); color: var(--il-text-pri); }
   margin-bottom: 8px !important;
 }
 .ptitle {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif !important;
   font-size: 36px !important; font-weight: 800 !important;
   color: var(--il-text-pri) !important;
   letter-spacing: 0.5px !important; text-transform: uppercase !important;
@@ -4249,7 +4252,7 @@ body { background: var(--il-bg-void); color: var(--il-text-pri); }
 }
 /* tool-title → panel-title style */
 .tool-title {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif !important;
   font-size: 13px !important; font-weight: 700 !important;
   color: var(--il-accent) !important;
   text-transform: uppercase !important; letter-spacing: 1.5px !important;

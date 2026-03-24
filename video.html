@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Video Suite — Imagen & Vídeo</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -37,7 +37,10 @@
 body {
   font-size: 16px;
   line-height: 1.7;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -291,14 +294,14 @@ input[type=number], select {
   background: var(--bg2); border: 1px solid var(--border);
   border-radius: 6px; color: var(--text);
   padding: 8px 11px; font-size: 13px;
-  font-family: 'Poppins', sans-serif; font-weight: 400;
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif; font-weight: 400;
   width: 100%; outline: none; transition: border-color .15s;
 }
 input:focus, select:focus { border-color: var(--navy); }
 .btn {
   background: var(--navy); color: var(--white); border: none;
   border-radius: 7px; padding: 9px 20px;
-  font-family: 'Poppins', sans-serif; font-weight: 600;
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif; font-weight: 600;
   font-size: 12px; cursor: pointer; width: 100%; margin-top: 8px;
   transition: opacity .15s;
 }
@@ -460,7 +463,7 @@ canvas { border-radius: 8px; }
   padding: 5px 12px;
   border: 1.5px solid var(--border);
   border-radius: 20px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
   font-size: 11px; font-weight: 500;
   color: var(--text2); background: var(--bg);
   cursor: pointer; transition: all .2s;
@@ -790,7 +793,7 @@ canvas { border-radius: 8px; }
           <div class="note" id="mcd_note" style="margin-top:12px"></div>
           <div style="margin-top:16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;" id="mcd_steps_wrap">
             <div class="panel-subtitle" style="margin:0 0 10px">Pasos del cálculo</div>
-            <div id="mcd_steps" style="font-family:'Poppins',sans-serif;font-size:12px;color:var(--accent3);line-height:1.8"></div>
+            <div id="mcd_steps" style="font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;font-size:12px;color:var(--accent3);line-height:1.8"></div>
           </div>
         </div>
       </div>
@@ -881,7 +884,7 @@ canvas { border-radius: 8px; }
           <p>Define la <strong>opacidad de cada píxel</strong> en una imagen. Actúa como máscara de transparencia que permite mezclar capas, imágenes o fondos opacos con imágenes con distintos grados de transparencia.</p>
         </div>
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-          <div style="display:flex;gap:8px;margin-bottom:12px;font-family:'Poppins',sans-serif;font-size:12px">
+          <div style="display:flex;gap:8px;margin-bottom:12px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;font-size:12px">
             <div style="background:rgba(255,68,85,.6);border-radius:4px;padding:8px 12px;color:var(--white)">R</div>
             <div style="background:rgba(0,255,136,.6);border-radius:4px;padding:8px 12px;color:var(--white)">G</div>
             <div style="background:rgba(0,100,255,.6);border-radius:4px;padding:8px 12px;color:var(--white)">B</div>
@@ -940,61 +943,58 @@ canvas { border-radius: 8px; }
       { name:'SD', w:720,  h:576,  fill:'#E2DED6', stroke:'#9B9590', label:'SD · 720×576', sub:'0.41 MP · PAL' },
     ];
     // Layout: side-by-side proportional bars, clearly labeled
-    const VW=820, VH=420;
+    const VW=820, VH=440;
     svg.setAttribute('viewBox', `0 0 ${VW} ${VH}`);
-    const COL_W = VW / resolutions.length;  // ~137px per column
-    const MAX_H = VH - 80;  // leave 80px for label area at bottom
+    const COL_W = VW / resolutions.length;
+    const MAX_H = VH - 110;  // leave 110px for 3-row label area + margin
     const maxPx = resolutions[0].w * resolutions[0].h; // 8K pixels = reference
 
     let html = `<rect width="${VW}" height="${VH}" fill="#F5F4F0" rx="6"/>`;
 
     resolutions.forEach((r, i) => {
       const mp = r.w * r.h;
-      const barH = Math.max(18, (mp / maxPx) * MAX_H);
-      const barW = COL_W - 16;
-      const x = i * COL_W + 8;
-      const y = VH - 60 - barH;
+      const barH = Math.max(14, (mp / maxPx) * MAX_H);
+      const barW = COL_W - 12;
+      const x = i * COL_W + 6;
+      const y = VH - 90 - barH;   // leave 90px at bottom for labels
 
       // Bar
       html += `<rect x="${x}" y="${y}" width="${barW}" height="${barH}"
         fill="${r.fill}" stroke="${r.stroke}" stroke-width="1.5" rx="3"/>`;
 
-      // MP label inside bar (if tall enough)
+      // MP label inside bar (only if bar is tall enough to fit it clearly)
       const mpLabel = (mp/1e6).toFixed(1) + ' MP';
-      if (barH > 28) {
-        html += `<text x="${x + barW/2}" y="${y + 18}"
+      if (barH > 32) {
+        html += `<text x="${x + barW/2}" y="${y + 16}"
           font-size="10" font-family="monospace" font-weight="700"
           text-anchor="middle" fill="${r.stroke}">${mpLabel}</text>`;
       }
-
-      // Resolution label inside bar
-      const res = r.w + '×' + r.h;
-      if (barH > 44) {
-        html += `<text x="${x + barW/2}" y="${y + 32}"
-          font-size="9" font-family="monospace"
-          text-anchor="middle" fill="${r.stroke}" opacity=".8">${res}</text>`;
+      if (barH > 52) {
+        const res = r.w + '×' + r.h;
+        html += `<text x="${x + barW/2}" y="${y + 30}"
+          font-size="8.5" font-family="monospace"
+          text-anchor="middle" fill="${r.stroke}" opacity=".75">${res}</text>`;
       }
 
-      // Name label below bar
-      html += `<text x="${x + barW/2}" y="${VH - 42}"
+      // Label area below baseline: 3 rows × 18px = 54px — name / ratio / MP
+      const LY = VH - 86;   // row 1: name
+      html += `<text x="${x + barW/2}" y="${LY}"
         font-size="11" font-family="monospace" font-weight="700"
         text-anchor="middle" fill="${r.stroke}">${r.name}</text>`;
 
-      // Pixel count label
-      html += `<text x="${x + barW/2}" y="${VH - 28}"
-        font-size="9" font-family="monospace"
-        text-anchor="middle" fill="${r.stroke}" opacity=".75">${mpLabel}</text>`;
-
-      // Ratio vs FHD
       const ratio = mp / (1920*1080);
       const ratioTxt = ratio < 1 ? '×' + ratio.toFixed(2) : '×' + ratio.toFixed(1);
-      html += `<text x="${x + barW/2}" y="${VH - 14}"
+      html += `<text x="${x + barW/2}" y="${LY + 16}"
+        font-size="9" font-family="monospace"
+        text-anchor="middle" fill="${r.stroke}" opacity=".8">${ratioTxt} vs FHD</text>`;
+
+      html += `<text x="${x + barW/2}" y="${LY + 30}"
         font-size="8.5" font-family="monospace"
-        text-anchor="middle" fill="${r.stroke}" opacity=".6">${ratioTxt} vs FHD</text>`;
+        text-anchor="middle" fill="${r.stroke}" opacity=".6">${mpLabel}</text>`;
     });
 
     // Baseline
-    html += `<line x1="4" y1="${VH-60}" x2="${VW-4}" y2="${VH-60}"
+    html += `<line x1="4" y1="${VH-90}" x2="${VW-4}" y2="${VH-90}"
       stroke="#9B9590" stroke-width="1" stroke-dasharray="3,3"/>`;
 
     svg.innerHTML = html;
@@ -1524,7 +1524,7 @@ canvas { border-radius: 8px; }
 
         <div style="margin-bottom:14px">
           <div class="form-label" style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Resolución</div>
-          <select id="s_res" onchange="simUpdate()" style="width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:'Poppins',sans-serif;font-size:12px;color:var(--text);background:var(--bg)">
+          <select id="s_res" onchange="simUpdate()" style="width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;font-size:12px;color:var(--text);background:var(--bg)">
             <option value="640,360">nHD — 640×360</option>
             <option value="1280,720">HD — 1280×720</option>
             <option value="1920,1080" selected>Full HD — 1920×1080</option>
@@ -1566,7 +1566,7 @@ canvas { border-radius: 8px; }
 
         <div style="margin-bottom:14px">
           <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Codec</div>
-          <select id="s_codec" onchange="simUpdate()" style="width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:'Poppins',sans-serif;font-size:12px;color:var(--text);background:var(--bg)">
+          <select id="s_codec" onchange="simUpdate()" style="width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;font-size:12px;color:var(--text);background:var(--bg)">
             <optgroup label="Broadcast / Edición">
               <option value="prores422">Apple ProRes 422</option>
               <option value="prores444">Apple ProRes 4444</option>
@@ -3448,7 +3448,7 @@ canvas { border-radius: 8px; }
         <div class="panel-title">Keystone, Lens Shift y Corner Correction</div>
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent4);margin-bottom:8px;font-size:14px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🔲 KEYSTONE (Corrección trapezoidal)</div>
+            <div style="font-weight:700;color:var(--accent4);margin-bottom:8px;font-size:14px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">🔲 KEYSTONE (Corrección trapezoidal)</div>
             <p style="font-size:13px;color:var(--text2);line-height:1.6">Cuando el proyector no está perpendicular a la pantalla, la imagen aparece deformada en trapezoide. El keystone <strong>ajusta digitalmente</strong> la imagen para que vuelva a ser rectangular.<br><br>
             ✓ Ventaja: instalación en ángulos no ideales<br>
             ✗ Inconveniente: ajuste digital, puede perder resolución</p>
@@ -3459,13 +3459,13 @@ canvas { border-radius: 8px; }
             </div>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent3);margin-bottom:8px;font-size:14px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🔄 LENS SHIFT (Desplazamiento de lente)</div>
+            <div style="font-weight:700;color:var(--accent3);margin-bottom:8px;font-size:14px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">🔄 LENS SHIFT (Desplazamiento de lente)</div>
             <p style="font-size:13px;color:var(--text2);line-height:1.6">Mueve físicamente la lente dentro del proyector para desplazar la imagen sin deformarla. Se expresa como % respecto al tamaño de imagen.<br><br>
             ✓ Ajuste óptico, no digital → <strong>sin pérdida de calidad</strong><br>
             ✗ Solo en proyectores de gama media/alta</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--purple);margin-bottom:8px;font-size:14px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">📐 CORNER CORRECTION</div>
+            <div style="font-weight:700;color:var(--purple);margin-bottom:8px;font-size:14px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">📐 CORNER CORRECTION</div>
             <p style="font-size:13px;color:var(--text2);line-height:1.6">Ajusta individualmente cada esquina de la imagen proyectada. Útil para superficies irregulares (mapping en edificios, suelos inclinados). Afecta menos calidad que el Keystone global.</p>
           </div>
         </div>
@@ -3474,15 +3474,15 @@ canvas { border-radius: 8px; }
         <div class="panel-title">Focus, Zoom y Crop</div>
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Poppins',sans-serif">🎯 FOCUS (Enfoque)</div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif">🎯 FOCUS (Enfoque)</div>
             <p style="font-size:13px;color:var(--text2)">Ajusta la <strong>nitidez</strong> de la imagen. Manual (anillo en la lente) o automático. <em>Focus = qué tan clara se ve la imagen.</em></p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Poppins',sans-serif">🔍 ZOOM</div>
+            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif">🔍 ZOOM</div>
             <p style="font-size:13px;color:var(--text2)">Cambia el <strong>tamaño</strong> de la imagen sin mover el proyector. Zoom óptico = mantiene calidad. Zoom digital = puede perder nitidez. <em>Zoom = qué tan grande se ve la imagen.</em></p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Poppins',sans-serif">✂️ CROP (Recorte)</div>
+            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif">✂️ CROP (Recorte)</div>
             <p style="font-size:13px;color:var(--text2)">Elimina parte de la imagen original, dejando visible solo una porción. No deforma, simplemente corta. Usado en mapping para ajustar ratios o enmascarar zonas.</p>
           </div>
         </div>
@@ -3986,19 +3986,19 @@ canvas { border-radius: 8px; }
         <div class="panel-title">Mapping, Grid, Blending y Warping</div>
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🏛️ MAPPING (Video Mapping)</div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">🏛️ MAPPING (Video Mapping)</div>
             <p style="font-size:13px;color:var(--text2)">Técnica de usar proyectores para transformar objetos reales en superficies dinámicas. No se proyecta en pantalla plana, sino en <strong>volúmenes con formas</strong> (edificios, esculturas, escenarios). Requiere análisis del espacio, medición y software especializado.</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">📐 GRID (Test Pattern)</div>
+            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">📐 GRID (Test Pattern)</div>
             <p style="font-size:13px;color:var(--text2)">Rejilla de líneas horizontales y verticales proyectada como <strong>guía visual de calibración</strong>. Ayuda a comprobar si la proyección está bien alineada, centrada y sin deformaciones. Punto de partida para cualquier instalación de mapping.</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🔀 BLENDING (Edge Blending)</div>
+            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">🔀 BLENDING (Edge Blending)</div>
             <p style="font-size:13px;color:var(--text2)">Técnica de <strong>fusionar la imagen de 2 o más proyectores</strong> para crear una imagen única y continua. El solapamiento se hace suave ajustando brillo y opacidad en la zona de unión para que no se note la línea de corte.</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--purple);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">〰️ WARPING</div>
+            <div style="font-weight:700;color:var(--purple);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">〰️ WARPING</div>
             <p style="font-size:13px;color:var(--text2)">Deforma digitalmente la imagen proyectada para que encaje sobre una <strong>superficie irregular</strong>. Se realiza mediante una malla (grid) con puntos de control que pueden moverse y curvarse. Es el ajuste más avanzado y flexible en proyección.</p>
           </div>
         </div>
@@ -4191,7 +4191,7 @@ function drawARVisual(w, h) {
     const boxW = Math.round(boxH * aspect);
     const div = document.createElement('div');
     div.style.cssText = `width:${boxW}px;height:${boxH}px;border:2px solid ${r.c};border-radius:4px;display:flex;align-items:center;justify-content:center;background:${r.c}15;flex-shrink:0;flex-direction:column;gap:2px`;
-    div.innerHTML = `<span style="font-size:11px;font-weight:700;color:${r.c};font-family:'Poppins',sans-serif">${r.name}</span><span style="font-size:9px;color:rgba(255,255,255,.4)">${r.w}:${r.h}</span>`;
+    div.innerHTML = `<span style="font-size:11px;font-weight:700;color:${r.c};font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif">${r.name}</span><span style="font-size:9px;color:rgba(255,255,255,.4)">${r.w}:${r.h}</span>`;
     container.appendChild(div);
   });
 }
@@ -4362,7 +4362,7 @@ function renderFstops() {
   stops.forEach((s, i) => {
     const div = document.createElement('div');
     const size = Math.max(28, 56 - i * 4);
-    div.style.cssText = `width:${size}px;height:${size}px;border-radius:50%;background:rgba(25,42,86,${0.08+(10-i)*0.07});border:1px solid rgba(25,42,86,0.15);display:flex;align-items:center;justify-content:center;font-size:${size>34?11:9}px;color:var(--navy);font-family:'Poppins',sans-serif;`;
+    div.style.cssText = `width:${size}px;height:${size}px;border-radius:50%;background:rgba(25,42,86,${0.08+(10-i)*0.07});border:1px solid rgba(25,42,86,0.15);display:flex;align-items:center;justify-content:center;font-size:${size>34?11:9}px;color:var(--navy);font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;`;
     div.textContent = `f/${s}`;
     container.appendChild(div);
   });

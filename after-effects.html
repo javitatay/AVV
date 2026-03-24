@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>After Effects — Guía Didáctica FP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ─── VARIABLES ─────────────────────────────────────────── */
 :root {
@@ -28,8 +28,8 @@
     --border-mid:     #C4C9E8;
     --border-accent:  rgba(53,72,200,0.28);
     --shadow-base:    0 1px 3px rgba(53,72,200,.06), 0 4px 12px rgba(53,72,200,.04);
-    --font-head:      'Poppins', sans-serif;
-    --font-body:      'Poppins', sans-serif;
+    --font-head:      'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+    --font-body:      'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
     --font-mono:      'JetBrains Mono', monospace;
     /* colour aliases used by existing content classes */
     --surface:   #FFFFFF;
@@ -55,7 +55,10 @@
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
 body {
-    font-family: var(--font-body);
+      text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+font-family: var(--font-body);
     background: var(--bg-void);
     color: var(--text-primary);
     overflow-x: hidden;
@@ -3543,7 +3546,7 @@ function cvLoop(ts){
 }
 .logo-icon { background: var(--il-accent) !important; }
 .logo-title {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif !important;
   font-size: 16px !important; font-weight: 800 !important;
   color: var(--il-accent) !important;
   letter-spacing: 1.5px !important; text-transform: uppercase !important;
@@ -3591,7 +3594,7 @@ function cvLoop(ts){
 
 /* — Section titles (≈ page-title in Illustrator) — */
 .sec-title {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif !important;
   font-weight: 800 !important; text-transform: uppercase !important;
   letter-spacing: 0.5px !important; color: var(--il-text-pri) !important;
   position: relative !important; padding-bottom: 16px !important;

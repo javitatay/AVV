@@ -15,7 +15,7 @@ Este proyecto es una herramienta educativa independiente.
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Illustrator Suite — Plataforma Educativa FP</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --ai-orange:     #3b0808;
@@ -37,13 +37,16 @@ Este proyecto es una herramienta educativa independiente.
             --border-dark:   #E8D0D0;
             --border-mid:    #D4B0B0;
             --border-orange: rgba(59,8,8,0.25);
-            --font-head:     'Poppins', sans-serif;
-            --font-body:     'Poppins', sans-serif;
+            --font-head:     'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+            --font-body:     'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
             --font-mono:     'JetBrains Mono', monospace;
         }
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-primary); overflow-x: hidden; -webkit-font-smoothing: antialiased; font-size: 16px; line-height: 1.7; }
+        body {   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+font-family: var(--font-body); background: var(--bg-void); color: var(--text-primary); overflow-x: hidden; -webkit-font-smoothing: antialiased; font-size: 16px; line-height: 1.7; }
 
         /* SCROLLBAR */
         ::-webkit-scrollbar { width: 5px; }
