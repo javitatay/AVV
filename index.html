@@ -195,7 +195,7 @@
     .contact-text { display:flex; flex-direction:column; gap:1px; }
     .contact-label { font-size: 11.5px; font-weight:500; letter-spacing:.8px; text-transform:uppercase; color:var(--text-3); }
     .contact-name { font-size: 14px; font-weight:600; color:var(--text-1); }
-    .contact-link { display:flex; align-items:center; gap:8px; font-size: 13px; font-weight:500; color:var(--accent); text-decoration:none; padding:8px 16px; background:var(--accent-lt); border:1px solid rgba(74,122,106,.2); border-radius:10px; transition:var(--transition); }
+    .contact-link { display:flex; align-items:center; gap:8px; font-size: 13px; font-weight:500; cursor:pointer; color:var(--accent); text-decoration:none; padding:8px 16px; background:var(--accent-lt); border:1px solid rgba(74,122,106,.2); border-radius:10px; transition:var(--transition); }
     .contact-link:hover { background:var(--accent); color:#fff; }
     .contact-link svg { width:15px; height:15px; }
 
@@ -589,10 +589,12 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
           <span class="contact-name">Javier Tatay Rubio</span>
         </div>
       </div>
-      <a class="contact-link" href="/cdn-cgi/l/email-protection#93f9bde7f2e7f2eae1e6f1fafcb5b0a5a7a8f6f7e6bdf4e5f2bdf6e0">
+      <button class="contact-link" type="button" id="emailBtn"
+        onclick="enviarEmail()"
+        title="Escribir a j.tatayrubio@edu.gva.es">
         <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.7"/><path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-        j.tatayrubio&#64;edu.gva.es
-      </a>
+        <span id="emailBtnLabel">j.tatayrubio@edu.gva.es</span>
+      </button>
     </div>
   </div>
 
@@ -1139,10 +1141,36 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     if (e.key === 'Escape') document.getElementById('searchDrop')?.classList.remove('visible');
   });
 
+  // ── Email con fallback clipboard ─────────────────────────
+  function enviarEmail() {
+    var email = 'j.tatayrubio@edu.gva.es';
+    var label = document.getElementById('emailBtnLabel');
+    // 1. Intenta abrir el cliente de correo
+    var a = document.createElement('a');
+    a.href = 'mailto:' + email;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    // 2. Copia al portapapeles como fallback
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(function() {
+        if (label) {
+          label.textContent = '✓ Email copiado';
+          setTimeout(function() { label.textContent = email; }, 2500);
+        }
+      }).catch(function() {
+        // clipboard failed silently
+      });
+    }
+  }
+
   // ── Abrir suites en pestaña nueva ─────────────────────────
-  document.querySelectorAll('.card').forEach(card => {entListener('click', function(e) {
+  document.querySelectorAll('.card').forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (!href || href.startsWith('mailto:')) return; // let mailto work natively
       e.preventDefault();
-      window.open(this.getAttribute('href'), '_blank');
+      window.open(href, '_blank');
     });
   });
   </script>
