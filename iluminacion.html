@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Iluminación Suite — Espectáculos en Directo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,7 +42,7 @@ body {
   color: var(--text);
   min-height: 100vh;
   font-size: 14px;
-  line-height: 1.55;
+  line-height: 1.65;
 }
 
 /* ── HEADER ── */
@@ -64,7 +67,7 @@ body {
   flex-shrink: 0;
 }
 .logo-text { font-weight: 600; font-size: 15px; color: var(--white); letter-spacing: 0.3px; }
-.logo-sub  { font-size: 10px; color: rgba(252,251,251,.45); font-weight: 400; margin-top: 1px; }
+.logo-sub  { font-size: 11px; color: rgba(252,251,251,.45); font-weight: 400; margin-top: 1px; }
 .header-badge {
   background: rgba(252,251,251,.1);
   border: 1px solid rgba(252,251,251,.18);
@@ -108,7 +111,7 @@ body {
   background: rgba(252,251,251,.08);
   border-radius: 4px;
   display: inline-flex; align-items: center; justify-content: center;
-  font-size: 9px; font-weight: 600; color: rgba(252,251,251,.4);
+  font-size: 11px; font-weight: 600; color: rgba(252,251,251,.4);
 }
 .nav-tab.active .nav-num { background: var(--yellow); color: var(--navy); }
 
@@ -200,7 +203,7 @@ body {
 .card-accent-navy::before   { background: var(--navy); }
 
 .card-num {
-  font-size: 10px; font-weight: 700; color: var(--text3);
+  font-size: 11px; font-weight: 700; color: var(--text3);
   letter-spacing: 1px; text-transform: uppercase;
   margin-bottom: 10px;
 }
@@ -212,7 +215,7 @@ body {
 .card-desc { font-size: 15px; color: var(--text2); line-height: 1.7; font-weight: 400; }
 .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
 .card-tag {
-  font-size: 10px; font-weight: 500;
+  font-size: 11px; font-weight: 500;
   padding: 2px 8px; border-radius: 3px;
   background: var(--bg2); color: var(--text3);
 }
@@ -325,13 +328,13 @@ input:focus, select:focus { border-color: var(--navy); }
 .result-box.yellow .result-val { color: #8a6c1a; }
 .result-box.purple .result-val { color: #5c3fbf; }
 .result-box.red    .result-val { color: #b02a2a; }
-.result-label { font-size: 10px; font-weight: 600; color: var(--text3); }
+.result-label { font-size: 11px; font-weight: 600; color: var(--text3); }
 
 /* ── TABLES ── */
 .comp-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
 .comp-table th {
   background: var(--bg2); color: var(--text3);
-  font-size: 10px; font-weight: 700; letter-spacing: 0.4px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.4px;
   text-transform: uppercase; padding: 9px 12px;
   text-align: left; border-bottom: 1px solid var(--border);
 }
@@ -344,7 +347,7 @@ input:focus, select:focus { border-color: var(--navy); }
 
 /* ── BADGES ── */
 .badge {
-  display: inline-block; font-size: 10px; font-weight: 600;
+  display: inline-block; font-size: 11px; font-weight: 600;
   padding: 2px 8px; border-radius: 4px;
 }
 .badge-blue   { background: rgba(25,42,86,.08);  border: 1px solid rgba(25,42,86,.2);  color: var(--navy); }
@@ -419,7 +422,7 @@ input:focus, select:focus { border-color: var(--navy); }
   background: linear-gradient(to right, #ff8c1a, #ffbb44, #ffeebb, #ffffff, #cce0ff, #99c2ff, #6699ff);
   position: relative; border: 1px solid var(--border);
 }
-.kelvin-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); font-weight: 600; margin-top: 4px; }
+.kelvin-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); font-weight: 600; margin-top: 4px; }
 
 /* ── DMX UNIVERSE SIMULATOR ── */
 #dmxSim { background:var(--navy); border-radius:12px; padding:16px; }
@@ -462,17 +465,17 @@ input:focus, select:focus { border-color: var(--navy); }
 }
 #dmxSim .ds-detail.visible { display:block; }
 #dmxSim .ds-detail h4 { font-size:11px; font-weight:700; color:var(--yellow); margin-bottom:8px; }
-#dmxSim .ds-slider-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:10px; color:rgba(255,255,255,.7); }
+#dmxSim .ds-slider-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size: 11px; color:rgba(255,255,255,.7); }
 #dmxSim .ds-slider-row label { min-width:110px; }
 #dmxSim .ds-slider-row input[type=range] { flex:1; height:4px; accent-color:var(--yellow); }
-#dmxSim .ds-slider-row .ds-val { font-family:'JetBrains Mono',monospace; min-width:30px; text-align:right; font-size:10px; color:var(--yellow); }
+#dmxSim .ds-slider-row .ds-val { font-family:'JetBrains Mono',monospace; min-width:30px; text-align:right; font-size: 11px; color:var(--yellow); }
 #dmxSim .ds-fixtures { margin-top:10px; display:flex; gap:6px; flex-wrap:wrap; }
 #dmxSim .ds-fx-chip {
-  padding:3px 10px; border-radius:20px; font-size:10px; font-weight:600;
+  padding:3px 10px; border-radius:20px; font-size: 11px; font-weight:600;
   cursor:pointer; border:1.5px solid; transition:all .15s;
 }
 #dmxSim .ds-fx-chip.sel { box-shadow:0 0 0 2px rgba(255,255,255,.3); }
-#dmxSim .ds-legend { display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; font-size:10px; color:rgba(255,255,255,.45); }
+#dmxSim .ds-legend { display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; font-size: 11px; color:rgba(255,255,255,.45); }
 #dmxSim .ds-legend span { display:flex; align-items:center; gap:4px; }
 #dmxSim .ds-legend i { width:10px; height:10px; border-radius:2px; display:inline-block; }
 
@@ -482,7 +485,7 @@ input:focus, select:focus { border-color: var(--navy); }
   background: linear-gradient(to right, #8b00ff 0%, #4b0082 10%, #0000ff 20%, #00c0ff 35%, #00ff00 50%, #ffff00 65%, #ff7f00 80%, #ff0000 100%);
   border: 1px solid var(--border); position: relative;
 }
-.spectrum-nm { display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); font-weight: 600; margin-top: 3px; }
+.spectrum-nm { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); font-weight: 600; margin-top: 3px; }
 
 /* ── LIGHT BEAM VIS ── */
 .beam-demo {
@@ -506,7 +509,7 @@ canvas { border-radius: 8px; }
 .foco-card .foco-desc { font-size: 11.5px; color: var(--text2); line-height: 1.6; }
 .foco-card .foco-type {
   position: absolute; top: 14px; right: 14px;
-  font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 3px;
+  font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 3px;
 }
 .foco-hard  { background: rgba(25,42,86,.08); color: var(--navy); border: 1px solid rgba(25,42,86,.15); }
 .foco-soft  { background: rgba(42,157,111,.1); color: #1e7a52; border: 1px solid rgba(42,157,111,.25); }
@@ -519,7 +522,7 @@ canvas { border-radius: 8px; }
   background: var(--bg2); border: 1px solid var(--border);
   border-radius: 9px; padding: 16px;
 }
-.attr-ch { font-size: 10px; font-weight: 700; color: var(--text3); letter-spacing: 0.5px; margin-bottom: 6px; }
+.attr-ch { font-size: 11px; font-weight: 700; color: var(--text3); letter-spacing: 0.5px; margin-bottom: 6px; }
 .attr-name { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
 .attr-desc { font-size: 11.5px; color: var(--text2); line-height: 1.6; }
 
@@ -558,7 +561,7 @@ canvas { border-radius: 8px; }
 .calc-rval { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; color:var(--accent); min-width:58px; text-align:right; }
 .calc-select { width:100%; padding:8px 10px; border:1.5px solid var(--border); border-radius:7px; font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif; font-size:12px; color:var(--text); background:var(--bg); appearance:none; }
 .calc-input { width:100%; padding:8px 10px; border:1.5px solid var(--border); border-radius:7px; font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif; font-size:12px; color:var(--text); background:var(--bg); }
-.calc-field-label { font-size:10px; font-weight:700; color:var(--text2); text-transform:uppercase; letter-spacing:.5px; margin-bottom:5px; display:block; }
+.calc-field-label { font-size: 11px; font-weight:700; color:var(--text2); text-transform:uppercase; letter-spacing:.5px; margin-bottom:5px; display:block; }
 .calc-field { margin-bottom:14px; }
 .calc-divider { border:none; border-top:1px solid var(--border); margin:14px 0; }
 .calc-big-result { background:linear-gradient(135deg,var(--navy),var(--navy2)); border-radius:12px; padding:18px 20px; color:#fff; display:flex; align-items:center; gap:16px; }
@@ -572,10 +575,10 @@ canvas { border-radius: 8px; }
 .calc-mc.cg::before { background:#10b981; }
 .calc-mc.cb::before { background:#3B82F6; }
 .calc-mc.cp::before { background:#8b5cf6; }
-.calc-mn { font-size:9px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:.4px; margin-bottom:3px; }
+.calc-mn { font-size: 11px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:.4px; margin-bottom:3px; }
 .calc-mv { font-family:'JetBrains Mono',monospace; font-size:17px; font-weight:600; color:var(--text); line-height:1; }
-.calc-mu { font-size:10px; color:var(--text2); margin-left:2px; }
-.calc-ms { font-size:9px; color:var(--text3); margin-top:2px; }
+.calc-mu { font-size: 11px; color:var(--text2); margin-left:2px; }
+.calc-ms { font-size: 11px; color:var(--text3); margin-top:2px; }
 .calc-stage { background:#0a0a1a; border-radius:8px; padding:10px; }
 .calc-stage svg { width:100%; height:auto; display:block; }
 .calc-warn { background:rgba(245,158,11,.08); border:1px solid rgba(245,158,11,.25); border-radius:7px; padding:8px 12px; font-size:11px; color:#92400e; margin-top:6px; }
@@ -587,12 +590,32 @@ canvas { border-radius: 8px; }
 .calc-foco-name { font-size:11px; font-weight:600; color:var(--text); flex:1; }
 .calc-foco-val  { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text2); }
 .lux-table { width:100%; border-collapse:collapse; font-size:11px; }
-.lux-table th { background:var(--bg2); border-bottom:2px solid var(--border); padding:7px 10px; text-align:left; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.4px; color:var(--text2); }
+.lux-table th { background:var(--bg2); border-bottom:2px solid var(--border); padding:7px 10px; text-align:left; font-size: 11px; font-weight:700; text-transform:uppercase; letter-spacing:.4px; color:var(--text2); }
 .lux-table td { padding:7px 10px; border-bottom:1px solid var(--border); vertical-align:middle; }
 .lux-table tr:last-child td { border-bottom:none; }
-.cok  { background:rgba(16,185,129,.12); color:#10b981; padding:2px 7px; border-radius:10px; font-size:9px; font-weight:700; }
-.cwarn{ background:rgba(245,158,11,.12); color:#d97706; padding:2px 7px; border-radius:10px; font-size:9px; font-weight:700; }
-.cbad { background:rgba(239,68,68,.12);  color:#ef4444; padding:2px 7px; border-radius:10px; font-size:9px; font-weight:700; }
+.cok  { background:rgba(16,185,129,.12); color:#10b981; padding:2px 7px; border-radius:10px; font-size: 11px; font-weight:700; }
+.cwarn{ background:rgba(245,158,11,.12); color:#d97706; padding:2px 7px; border-radius:10px; font-size: 11px; font-weight:700; }
+.cbad { background:rgba(239,68,68,.12);  color:#ef4444; padding:2px 7px; border-radius:10px; font-size: 11px; font-weight:700; }
+
+/* ── Inter typography optimisation ── */
+h1, h2, h3, .page-title, .ptitle, .sec-title, .module-title, .panel-title {
+  letter-spacing: -0.02em;
+}
+h4, .panel-subtitle, .ptl, .h-sub {
+  letter-spacing: -0.01em;
+}
+p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
+  line-height: 1.7;
+}
+
+/* ── Readable line length (72ch) for prose ── */
+.page-desc, .pdesc, .sec-desc, .landing-desc,
+.info-card > p, .info-box > p, .warn-box > p, .ok-box > p,
+.callout > p, .box > p, .panel > p,
+.card-desc, .module-desc, .hero p,
+.note, .note-yellow, .note-blue {
+  max-width: 72ch;
+}
 </style>
 </head>
 <body>
@@ -3537,14 +3560,14 @@ body { font-size: 16px; line-height: 1.7; }
   .result-grid-4 { grid-template-columns: 1fr 1fr; }
   .sim-grid      { grid-template-columns: 1fr; }
   .sim-toggle-row { gap: 4px; }
-  .sim-toggle-btn { padding: 5px 9px; font-size: 10px; }
+  .sim-toggle-btn { padding: 5px 9px; font-size: 11px; }
   .diagram-wrap   { overflow-x: auto; }
   .module-header  { flex-direction: column; align-items: flex-start; gap: 8px; }
   .back-btn       { font-size: 12px; }
 }
 /* Very small: < 400px */
 @media (max-width: 400px) {
-  .nav-tab    { padding: 10px 7px; font-size: 10px; }
+  .nav-tab    { padding: 10px 7px; font-size: 11px; }
   .main       { padding: 12px 10px 100px; }
 }
 

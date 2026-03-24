@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVV Lab — Animación Visual en Vivo · CFGM Video DJ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -60,7 +63,7 @@
     .topbar-logo svg { width:15px; height:15px; }
     .topbar-name { font-size: 14px; font-weight:700; letter-spacing:-.2px; }
     .topbar-sub  { font-size: 11px; color:var(--text-3); }
-    .topbar-badge { font-size: 10px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--accent); background:var(--accent-lt); border:1px solid rgba(74,122,106,.18); border-radius:20px; padding:3px 10px; }
+    .topbar-badge { font-size: 11px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--accent); background:var(--accent-lt); border:1px solid rgba(74,122,106,.18); border-radius:20px; padding:3px 10px; }
     .topbar-search { position:relative; flex:1; max-width:320px; }
     .topbar-search input {
       width:100%; padding:6px 14px 6px 34px;
@@ -83,7 +86,7 @@
     .search-item-suite { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
     .search-item-name { font-size:13px; font-weight:600; color:var(--text-1); }
     .search-item-def { font-size:11px; color:var(--text-2); flex:1; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
-    .search-item-tag { font-size:10px; color:var(--text-3); background:var(--surface-2); border:1px solid var(--border); border-radius:6px; padding:1px 7px; flex-shrink:0; white-space:nowrap; }
+    .search-item-tag { font-size: 11px; color:var(--text-3); background:var(--surface-2); border:1px solid var(--border); border-radius:6px; padding:1px 7px; flex-shrink:0; white-space:nowrap; }
     .search-no-results { padding:16px; text-align:center; color:var(--text-3); font-size:13px; }
 
     /* ─── HERO (franja horizontal) ─── */
@@ -102,7 +105,7 @@
     .hero-stats { display:flex; align-items:center; gap:20px; }
     .hero-stat { display:flex; align-items:baseline; gap:4px; }
     .hero-stat-n { font-size: 18px; font-weight:700; color:var(--text-1); letter-spacing:-.5px; }
-    .hero-stat-l { font-size: 10.5px; font-weight:500; letter-spacing:.6px; text-transform:uppercase; color:var(--text-3); }
+    .hero-stat-l { font-size: 11.5px; font-weight:500; letter-spacing:.6px; text-transform:uppercase; color:var(--text-3); }
 
     /* ─── SECTION HEADER ─── */
     .section-header {
@@ -165,13 +168,13 @@
     .card-icon { width:42px; height:42px; background:var(--icon-bg,var(--accent-lt)); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .card-icon svg { width:24px; height:24px; }
     .card-icon img { width:32px; height:32px; border-radius:7px; object-fit:contain; }
-    .card-ud { font-size: 10.5px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--card-color); opacity:.8; }
+    .card-ud { font-size: 11.5px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--card-color); opacity:.8; }
     .card-app { font-size: 11px; font-weight:500; letter-spacing:.3px; text-transform:uppercase; opacity:.7; margin-bottom:8px; }
     .card-title { font-size: 19px; font-weight:700; letter-spacing:-.4px; line-height:1.2; margin-bottom:10px; }
     .card-desc { font-size: 13px; color:var(--text-2); line-height:1.65; flex:1; margin-bottom:18px; }
     .card-footer { display:flex; align-items:center; justify-content:space-between; padding-top:14px; border-top:1px solid var(--border); }
     .card-tags { display:flex; flex-wrap:wrap; gap:5px; }
-    .card-tag { font-size: 10px; font-weight:500; padding:2px 8px; border-radius:8px; background:var(--surface-2); color:var(--text-2); border:1px solid var(--border); }
+    .card-tag { font-size: 11px; font-weight:500; padding:2px 8px; border-radius:8px; background:var(--surface-2); color:var(--text-2); border:1px solid var(--border); }
     .card-btn { display:flex; align-items:center; gap:4px; font-size: 12px; font-weight:600; transition:gap var(--transition); flex-shrink:0; }
     .card-btn svg { width:14px; height:14px; }
     .card:hover .card-btn { gap:7px; }
@@ -190,7 +193,7 @@
     .contact-icon { width:36px; height:36px; background:var(--accent-lt); border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .contact-icon svg { width:18px; height:18px; }
     .contact-text { display:flex; flex-direction:column; gap:1px; }
-    .contact-label { font-size: 10.5px; font-weight:500; letter-spacing:.8px; text-transform:uppercase; color:var(--text-3); }
+    .contact-label { font-size: 11.5px; font-weight:500; letter-spacing:.8px; text-transform:uppercase; color:var(--text-3); }
     .contact-name { font-size: 14px; font-weight:600; color:var(--text-1); }
     .contact-link { display:flex; align-items:center; gap:8px; font-size: 13px; font-weight:500; color:var(--accent); text-decoration:none; padding:8px 16px; background:var(--accent-lt); border:1px solid rgba(74,122,106,.2); border-radius:10px; transition:var(--transition); }
     .contact-link:hover { background:var(--accent); color:#fff; }
@@ -291,7 +294,7 @@
     .gterm:hover { border-color: var(--tc); box-shadow: 0 4px 16px rgba(0,0,0,.07); }
     .gterm-suite {
       display: inline-flex; align-items: center;
-      font-size: 9.5px; font-weight: 700; letter-spacing: .8px;
+      font-size: 11px; font-weight: 700; letter-spacing: .8px;
       text-transform: uppercase; color: var(--tc);
       gap: 4px;
     }
@@ -310,10 +313,10 @@
       font-size: 15px; font-weight: 700; letter-spacing: -.3px; color: var(--text-1);
     }
     .gterm-def {
-      font-size: 12px; color: var(--text-2); line-height: 1.55;
+      font-size: 12px; color: var(--text-2); line-height: 1.65;
     }
     .gterm-en {
-      font-size: 9.5px; font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; font-family: 'JetBrains Mono', monospace;
       color: var(--accent); letter-spacing: .3px;
       background: var(--accent-lt); border: 1px solid rgba(74,122,106,.18);
       border-radius: 4px; padding: 1px 7px; display: inline-block; margin-top: 2px;
@@ -369,6 +372,36 @@
   .contact-grid { grid-template-columns: 1fr; gap: 12px; }
 }
 
+
+/* ── Inter typography optimisation ── */
+h1, h2, h3, .page-title, .ptitle, .sec-title, .module-title, .panel-title {
+  letter-spacing: -0.02em;
+}
+h4, .panel-subtitle, .ptl, .h-sub {
+  letter-spacing: -0.01em;
+}
+p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
+  line-height: 1.7;
+}
+
+/* ── Tabular numerals for calculator outputs ── */
+.result-value, .result-val, .result-item,
+.calc-val, .calc-result,
+td, th,
+.sim-metric-val, .stat-val, .hero-stat-n,
+code, .mono, [class*="mono"], [style*="font-family:monospace"],
+.tool-input, .tool-select {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Readable line length (72ch) for prose ── */
+.page-desc, .pdesc, .sec-desc, .landing-desc,
+.info-card > p, .info-box > p, .warn-box > p, .ok-box > p,
+.callout > p, .box > p, .panel > p,
+.card-desc, .module-desc, .hero p,
+.note, .note-yellow, .note-blue {
+  max-width: 72ch;
+}
 </style>
 </head>
 <body>
@@ -605,7 +638,7 @@
     </div>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
   // ── Abrir / cerrar modal ──────────────────────────────────
   function abrirGlosario() {
     document.getElementById('glosarioOverlay').classList.add('open');
@@ -1107,5 +1140,11 @@
   });
 
   // ── Abrir suites en pestaña nueva ─────────────────────────
-  document.querySelectorAll('.card').forEach(card => {
-    
+  document.querySelectorAll('.card').forEach(card => {entListener('click', function(e) {
+      e.preventDefault();
+      window.open(this.getAttribute('href'), '_blank');
+    });
+  });
+  </script>
+</body>
+</html>
