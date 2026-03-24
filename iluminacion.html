@@ -616,6 +616,8 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
 .note, .note-yellow, .note-blue {
   max-width: 72ch;
 }
+
+
 </style>
 </head>
 <body>
@@ -628,7 +630,7 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       <div class="logo-sub">Espectáculos en Directo · UD 4 · 5</div>
     </div>
   </div>
-  <div class="header-badge">v1.0 · 8 módulos</div>
+    <div class="header-badge">v1.0 · 8 módulos</div>
 </header>
 
 <nav class="nav-bar" id="navBar">
@@ -3571,6 +3573,20 @@ body { font-size: 16px; line-height: 1.7; }
   .main       { padding: 12px 10px 100px; }
 }
 
+
+/* ── Back button ── */
+.avl-nav-btn.avl-nav-back {
+  background: rgba(255,255,255,0.08);
+  position: relative;
+}
+.avl-nav-btn.avl-nav-back:hover {
+  background: rgba(255,255,255,0.18);
+}
+.avl-nav-btn.avl-nav-back[data-hidden="true"] {
+  opacity: .2;
+  pointer-events: none;
+  cursor: default;
+}
 </style>
 
 
@@ -3583,6 +3599,15 @@ body { font-size: 16px; line-height: 1.7; }
     </svg>
   </a>
 
+  <!-- Back to last suite -->
+  <button class="avl-nav-btn avl-nav-back" id="avl-back-btn"
+          onclick="avlGoBack()" title="Volver a la última suite"
+          data-hidden="true">
+    <svg viewBox="0 0 16 16" fill="none">
+      <path d="M13 5 L8 5 C6 5 4 7 4 9 L4 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 10 L4 12 L6 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
   <div class="avl-nav-divider"></div>
 
   <!-- Prev -->
@@ -3609,5 +3634,61 @@ body { font-size: 16px; line-height: 1.7; }
 
 </div>
 
+
+
+<script>
+(function(){
+  var PAGES = {
+    'video.html':        'Imagen & Vídeo',
+    'illustrator.html':  'Illustrator',
+    'resolume.html':     'Resolume',
+    'after-effects.html':'After Effects',
+    'iluminacion.html':  'Iluminación',
+    'magicq.html':       'MagicQ',
+    'index.html':        'Inicio'
+  };
+
+  // Register this page as visited
+  var current = location.pathname.split('/').pop() || 'index.html';
+  var history  = JSON.parse(sessionStorage.getItem('avv-history') || '[]');
+  if (history[history.length - 1] !== current) {
+    history.push(current);
+    if (history.length > 20) history.shift();
+    sessionStorage.setItem('avv-history', JSON.stringify(history));
+  }
+
+  // Set up back button
+  function updateBackBtn() {
+    var btn = document.getElementById('avl-back-btn');
+    if (!btn) return;
+    // Find last different page in history
+    var prev = null;
+    for (var i = history.length - 2; i >= 0; i--) {
+      if (history[i] !== current) { prev = history[i]; break; }
+    }
+    if (prev) {
+      btn.setAttribute('data-hidden', 'false');
+      btn.title = 'Volver a ' + (PAGES[prev] || prev);
+      btn.setAttribute('data-href', prev);
+    } else {
+      btn.setAttribute('data-hidden', 'true');
+      btn.title = '';
+    }
+  }
+
+  window.avlGoBack = function() {
+    var btn = document.getElementById('avl-back-btn');
+    if (!btn || btn.getAttribute('data-hidden') === 'true') return;
+    var href = btn.getAttribute('data-href');
+    if (href) window.location.href = href;
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateBackBtn);
+  } else {
+    updateBackBtn();
+  }
+})();
+</script>
 </body>
 </html>
