@@ -554,14 +554,6 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 
   </main>
 
-  <!-- DIVIDER -->
-  <div class="divider">
-    <div class="divider-line"></div>
-    <div class="divider-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#9B9590" stroke-width="1.6"/><path d="M12 8v4l2.5 2.5" stroke="#9B9590" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-    <div class="divider-text">Cada suite se abre en una nueva pestaña · Vuelve aquí para navegar entre herramientas</div>
-    <div class="divider-line"></div>
-  </div>
-
   <!-- CONTACT -->
   <div class="contact" style="display:flex;flex-direction:column;gap:10px;">
     <div class="contact-inner">
@@ -589,12 +581,10 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
           <span class="contact-name">Javier Tatay Rubio</span>
         </div>
       </div>
-      <button class="contact-link" type="button" id="emailBtn"
-        onclick="enviarEmail()"
-        title="Escribir a j.tatayrubio@edu.gva.es">
+      <a class="contact-link" href="mailto:j.tatayrubio@edu.gva.es" id="emailBtn">
         <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.7"/><path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         <span id="emailBtnLabel">j.tatayrubio@edu.gva.es</span>
-      </button>
+      </a>
     </div>
   </div>
 
@@ -640,9 +630,10 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     </div>
   </div>
 
-  <script>
+<script>
   // ── Abrir / cerrar modal ──────────────────────────────────
   function abrirGlosario() {
+    console.log('Abriendo glosario...');
     document.getElementById('glosarioOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
     setTimeout(() => document.getElementById('glosarioSearch').focus(), 300);
@@ -1091,6 +1082,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
         ${t.en ? `<span class="gterm-en">EN · ${t.en}</span>` : t.es ? `<span class="gterm-en" style="background:rgba(74,122,106,.08);color:#5C5954;border-color:rgba(74,122,106,.15)">ES · ${t.es}</span>` : ''}
       </div>`;
     }).join('');
+    console.log('Glosario renderizado:', TERMINOS.length, 'términos');
   }
 
   renderGlosario();
@@ -1140,29 +1132,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') document.getElementById('searchDrop')?.classList.remove('visible');
   });
-
-  // ── Email con fallback clipboard ─────────────────────────
-  function enviarEmail() {
-    var email = 'j.tatayrubio@edu.gva.es';
-    var label = document.getElementById('emailBtnLabel');
-    // 1. Intenta abrir el cliente de correo
-    var a = document.createElement('a');
-    a.href = 'mailto:' + email;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    // 2. Copia al portapapeles como fallback
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(email).then(function() {
-        if (label) {
-          label.textContent = '✓ Email copiado';
-          setTimeout(function() { label.textContent = email; }, 2500);
-        }
-      }).catch(function() {
-        // clipboard failed silently
-      });
-    }
-  }
-  </script>
+</script>
 </body>
 </html>
+
