@@ -8,7 +8,7 @@
 
 ### Badges
 
-![version](https://img.shields.io/badge/version-1.0.0-blue) ![platforms](https://img.shields.io/badge/platforms-Desktop%20%7C%20Tablet%20%7C%20Mobile-brightgreen) ![license](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-orange)
+![version](https://img.shields.io/badge/version-2.4.0-blue) ![platforms](https://img.shields.io/badge/platforms-Claude-purple) ![license](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-orange)
 
 ---
 
@@ -172,3 +172,5 @@ open index.html   # macOS
 ---
 
 *Material docente de uso educativo · 2026*
+
+**Version:** 2.4.0 | **Built with:** Claude AI
