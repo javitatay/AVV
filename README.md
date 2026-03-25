@@ -6,6 +6,12 @@
 
 ---
 
+### Badges
+
+![version](https://img.shields.io/badge/version-1.0.0-blue) ![platforms](https://img.shields.io/badge/platforms-Desktop%20%7C%20Tablet%20%7C%20Mobile-brightgreen) ![license](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-orange)
+
+---
+
 ## Descripción
 
 AVV Lab es una suite de 6 herramientas educativas en HTML independientes, accesibles desde una landing page central. Cada suite cubre un software o área temática del módulo, con contenido teórico, calculadoras interactivas, diagramas, simuladores y quizzes de autoevaluación.
