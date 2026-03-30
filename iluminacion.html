@@ -372,7 +372,7 @@ input:focus, select:focus { border-color: var(--navy); }
   color: var(--white);
 }
 .inner-pane { display: none; }
-.inner-pane.active { display: block; }
+.inner-pane.active { display: block; margin-top: 20px; }
 
 /* ── INFO CARDS ── */
 .info-card {
@@ -643,7 +643,8 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
   <div class="nav-tab" data-module="m6"><span class="nav-num">6</span> Atributos &amp; Canales</div>
   <div class="nav-tab" data-module="m7"><span class="nav-num">7</span> Rigging &amp; Seguridad</div>
   <div class="nav-tab" data-module="m8"><span class="nav-num">8</span> Protocolo DMX</div>
-  <div class="nav-tab" data-module="m9"><span class="nav-num">⚙</span> Calculadora</div>
+  <div class="nav-tab" data-module="m9"><span class="nav-num">9</span> Redes IP</div>
+  <div class="nav-tab" data-module="m10"><span class="nav-num">⚙</span> Calculadora</div>
 </nav>
 
 <main class="main">
@@ -756,7 +757,7 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       <div class="card-arrow">→</div>
     </div>
 
-    <div class="module-card card-accent-yellow" onclick="goTo('m9')">
+    <div class="module-card card-accent-yellow" onclick="goTo('m10')">
       <div class="card-num">Herramienta</div>
       <span class="card-icon">🔢</span>
       <div class="card-title">Calculadora Escénica</div>
@@ -764,6 +765,18 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       <div class="card-tags">
         <span class="card-tag">Throw</span><span class="card-tag">Cobertura</span>
         <span class="card-tag">Lux</span><span class="card-tag">Eléctrico</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="module-card card-accent-navy" onclick="goTo('m9')">
+      <div class="card-num">Módulo 09 · UD5</div>
+      <span class="card-icon">🌐</span>
+      <div class="card-title">Redes IP</div>
+      <div class="card-desc">Qué es una red, dirección IP, subred, router y switch. Fundamentos para entender ART-NET y sACN en producción.</div>
+      <div class="card-tags">
+        <span class="card-tag">IP · Subred</span><span class="card-tag">Router · Switch</span>
+        <span class="card-tag">ART-NET</span><span class="card-tag">sACN</span>
       </div>
       <div class="card-arrow">→</div>
     </div>
@@ -2700,8 +2713,8 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
 </section>
 
 
-<!-- ═══ MÓDULO 9 — CALCULADORA ESCÉNICA ═══ -->
-<section class="module" id="m9">
+<!-- ═══ MÓDULO 10 — CALCULADORA ESCÉNICA ═══ -->
+<section class="module" id="m10">
   <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
 
   <div class="module-header">
@@ -2950,6 +2963,393 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
   </div>
 
 </section>
+
+
+<!-- ═══ MÓDULO 9 — REDES IP ═══ -->
+<section class="module" id="m9">
+  <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
+
+  <div class="module-header">
+    <div class="module-icon">🌐</div>
+    <div>
+      <div class="module-title">Redes IP — Fundamentos</div>
+      <div class="module-desc">Qué es una red, cómo funciona y por qué importa en iluminación escénica — UD5</div>
+      <div class="module-tags">
+        <span class="tag">Dirección IP</span><span class="tag tag-yellow">Subred</span>
+        <span class="tag tag-pink">Router · Switch</span><span class="tag">ART-NET · sACN</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-tabs" id="tabs_ip">
+    <div class="inner-tab active" onclick="switchTab('ip','intro')">¿Qué es una red?</div>
+    <div class="inner-tab" onclick="switchTab('ip','ip')">Dirección IP</div>
+    <div class="inner-tab" onclick="switchTab('ip','subred')">Subred &amp; Máscara</div>
+    <div class="inner-tab" onclick="switchTab('ip','dispositivos')">Router &amp; Switch</div>
+    <div class="inner-tab" onclick="switchTab('ip','artnet')">ART-NET &amp; sACN</div>
+    <div class="inner-tab" onclick="switchTab('ip','config')">🔧 Configuración práctica</div>
+  </div>
+
+  <!-- ¿QUÉ ES UNA RED? -->
+  <div class="inner-pane active" id="ip_intro">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Una red como un barrio</div>
+        <div class="info-card">
+          <div class="info-card-title">¿Qué es una red informática?</div>
+          <p>Un conjunto de dispositivos conectados que pueden intercambiar información entre sí. En iluminación escénica la necesitamos porque <strong>ART-NET y sACN envían señal DMX a través de cable de red</strong> en lugar de cable XLR.</p>
+        </div>
+        <div class="step-list" style="margin-top:16px">
+          <div class="step-item">
+            <div class="step-num">🏠</div>
+            <p><strong>Cada dispositivo es una casa</strong> — consola, nodo DMX, ordenador. Cada uno tiene una dirección única para que los datos lleguen al sitio correcto.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">🏘️</div>
+            <p><strong>La red local (LAN) es el barrio</strong> — todos los dispositivos del mismo barrio se comunican directamente sin intermediarios.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">📬</div>
+            <p><strong>La dirección IP es el número de casa</strong> — identifica de forma única cada dispositivo para que los datos lleguen al destino correcto.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">🔌</div>
+            <p><strong>El switch es la regleta</strong> — conecta varios dispositivos al mismo tiempo dentro del mismo barrio.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">🚦</div>
+            <p><strong>El router es la oficina de correos</strong> — conecta tu red local con el exterior (Internet) y puede repartir direcciones IP automáticamente.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Tipos de red</div>
+        <table class="comp-table">
+          <thead><tr><th>Tipo</th><th>Alcance</th><th>Ejemplo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>LAN</strong> — Local Area Network</td><td>Una sala, un edificio</td><td>La red del teatro</td></tr>
+            <tr><td><strong>WAN</strong> — Wide Area Network</td><td>Ciudades, países</td><td>Internet</td></tr>
+            <tr><td><strong>WiFi</strong> — Wireless LAN</td><td>~50 metros</td><td>Red inalámbrica</td></tr>
+          </tbody>
+        </table>
+
+        <div class="note note-yellow" style="margin-top:16px">
+          <strong>⚠ En espectáculos usa siempre cable Ethernet</strong> — el WiFi puede sufrir interferencias y pérdida de paquetes que arruinan la señal DMX en directo.
+        </div>
+
+        <div class="panel-subtitle" style="margin-top:20px">Velocidades habituales</div>
+        <table class="comp-table">
+          <thead><tr><th>Estándar</th><th>Velocidad</th><th>Cable mínimo</th></tr></thead>
+          <tbody>
+            <tr><td>Fast Ethernet</td><td>100 Mbps</td><td>CAT5e</td></tr>
+            <tr style="background:rgba(74,122,106,.08)"><td><strong>Gigabit Ethernet ✓</strong></td><td><strong>1.000 Mbps</strong></td><td>CAT5e / CAT6</td></tr>
+            <tr><td>10 Gigabit</td><td>10.000 Mbps</td><td>CAT6A / CAT7</td></tr>
+          </tbody>
+        </table>
+        <div class="info-card" style="margin-top:12px">
+          <div class="info-card-title">Para ART-NET y sACN</div>
+          <p>Gigabit (1G) es más que suficiente. Cada universo DMX ocupa apenas 0,5 Mbps — un switch Gigabit puede manejar cientos de universos simultáneos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECCIÓN IP -->
+  <div class="inner-pane" id="ip_ip">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">¿Qué es una dirección IP?</div>
+        <div class="info-card">
+          <div class="info-card-title">Definición</div>
+          <p>La dirección IP es el identificador único de cada dispositivo en una red. Sin ella no puede enviar ni recibir datos. Es como el DNI del dispositivo dentro de su red.</p>
+        </div>
+
+        <div class="panel-subtitle" style="margin-top:20px">IPv4 — el formato más común</div>
+        <div style="background:var(--bg3);border-radius:10px;padding:20px 16px;text-align:center;margin:12px 0;border:1px solid var(--border)">
+          <div style="font-size:28px;font-weight:800;letter-spacing:3px;color:var(--navy);font-family:monospace">192 . 168 . 1 . 10</div>
+          <div style="display:flex;justify-content:space-around;margin-top:8px;font-size:11px;color:var(--text2)">
+            <span>Red</span><span>Red</span><span>Subred</span><span>Dispositivo</span>
+          </div>
+        </div>
+
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <p>Son <strong>4 números</strong> separados por puntos, cada uno entre 0 y 255.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <p>Los primeros números identifican la <strong>red</strong>. El último identifica el <strong>dispositivo concreto</strong>.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <p>Dos dispositivos en la misma red deben compartir los números de red pero tener diferente número de dispositivo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Rangos de IP privada</div>
+        <p style="font-size:14px;color:var(--text2);margin-bottom:12px">Las redes locales usan rangos reservados para uso interno — nunca accesibles desde Internet:</p>
+        <table class="comp-table">
+          <thead><tr><th>Rango</th><th>Uso típico</th></tr></thead>
+          <tbody>
+            <tr><td><code>10.0.0.0 – 10.255.255.255</code></td><td>Redes grandes · festivales</td></tr>
+            <tr><td><code>172.16.0.0 – 172.31.255.255</code></td><td>Redes medianas</td></tr>
+            <tr style="background:rgba(74,122,106,.08)"><td><code>192.168.0.0 – 192.168.255.255</code></td><td><strong>Doméstico y pequeños espectáculos</strong></td></tr>
+            <tr style="background:rgba(74,122,106,.08)"><td><code>2.0.0.0 – 2.255.255.255</code></td><td><strong>ART-NET recomendado</strong></td></tr>
+          </tbody>
+        </table>
+
+        <div class="info-card" style="margin-top:16px">
+          <div class="info-card-title">Dirección de broadcast: .255</div>
+          <p>Cuando el último número es <strong>255</strong> (ej: 2.0.0.<strong>255</strong>) el mensaje se envía a <em>todos</em> los dispositivos de la red a la vez. ART-NET lo usa para descubrir nodos automáticamente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBRED & MÁSCARA -->
+  <div class="inner-pane" id="ip_subred">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">¿Qué es la máscara de subred?</div>
+        <div class="info-card">
+          <div class="info-card-title">Para qué sirve</div>
+          <p>La máscara le dice a cada dispositivo qué parte de la IP identifica la red y qué parte identifica el dispositivo. Sin ella los equipos no saben si un mensaje va a alguien de su mismo barrio o a otra ciudad.</p>
+        </div>
+
+        <div class="panel-subtitle" style="margin-top:20px">La más habitual: 255.255.255.0 (/24)</div>
+
+        <div style="background:var(--bg3);border-radius:8px;padding:14px;margin:12px 0;font-size:13px;font-family:monospace;border:1px solid var(--border)">
+          <div style="color:var(--navy)">IP A: 192.168.<strong style="color:var(--accent)">1</strong>.10</div>
+          <div style="color:var(--navy)">IP B: 192.168.<strong style="color:var(--accent)">1</strong>.25</div>
+          <div style="color:var(--text2);margin-top:4px">Máscara: 255.255.255.0</div>
+          <div style="color:var(--accent3);font-weight:700;margin-top:4px">→ Mismo barrio ✓ — se comunican</div>
+        </div>
+
+        <div style="background:var(--bg3);border-radius:8px;padding:14px;margin:12px 0;font-size:13px;font-family:monospace;border:1px solid var(--border)">
+          <div style="color:var(--navy)">IP A: 192.168.<strong style="color:var(--pink2)">1</strong>.10</div>
+          <div style="color:var(--navy)">IP C: 192.168.<strong style="color:var(--pink2)">2</strong>.10</div>
+          <div style="color:var(--text2);margin-top:4px">Máscara: 255.255.255.0</div>
+          <div style="color:var(--pink2);font-weight:700;margin-top:4px">→ Barrios distintos ✗ — necesitan router</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Máscaras más comunes</div>
+        <table class="comp-table">
+          <thead><tr><th>Máscara</th><th>Notación</th><th>Dispositivos</th><th>Uso</th></tr></thead>
+          <tbody>
+            <tr style="background:rgba(74,122,106,.08)"><td><code>255.255.255.0</code></td><td><strong>/24</strong></td><td>254</td><td>Espectáculos</td></tr>
+            <tr style="background:rgba(74,122,106,.08)"><td><code>255.0.0.0</code></td><td><strong>/8</strong></td><td>16 millones</td><td>ART-NET (2.x.x.x)</td></tr>
+            <tr><td><code>255.255.0.0</code></td><td>/16</td><td>65.534</td><td>Redes medianas</td></tr>
+          </tbody>
+        </table>
+
+        <div class="note" style="margin-top:16px">
+          <strong>Regla práctica para ART-NET:</strong><br>
+          Todos los equipos en el rango <code>2.0.0.x</code> con máscara <code>255.0.0.0</code> — exactamente lo que especifica la documentación oficial de ART-NET.
+        </div>
+
+        <div class="info-card" style="margin-top:16px">
+          <div class="info-card-title">¿Por qué /24 tiene 254 dispositivos?</div>
+          <p>El último octeto tiene 8 bits → 2⁸ = 256 combinaciones. Se restan 2 (la dirección de red .0 y el broadcast .255) = <strong>254 dispositivos</strong> utilizables.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROUTER & SWITCH -->
+  <div class="inner-pane" id="ip_dispositivos">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">🔌 Switch — el distribuidor local</div>
+        <div class="info-card">
+          <div class="info-card-title">¿Qué hace?</div>
+          <p>Conecta varios equipos en la misma red local. Tiene múltiples puertos Ethernet y distribuye los datos al puerto correcto. <strong>No asigna IPs</strong> — solo interconecta dispositivos.</p>
+        </div>
+        <div class="step-list" style="margin-top:16px">
+          <div class="step-item">
+            <div class="step-num">✓</div>
+            <p>En espectáculos es el corazón de la red: <strong>Consola → Switch → Nodos DMX → Focos</strong>.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">✓</div>
+            <p>Velocidad recomendada: <strong>Gigabit</strong>. Suficiente para decenas de universos ART-NET simultáneos.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">✓</div>
+            <p>Modelos económicos y fiables: Netgear GS308, TP-Link TL-SG108 (8 puertos Gigabit).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">🌍 Router — la puerta al exterior</div>
+        <div class="info-card">
+          <div class="info-card-title">¿Qué hace?</div>
+          <p>Conecta redes distintas entre sí — habitualmente tu red local con Internet. En una red de espectáculos pura <strong>el router no es imprescindible</strong> si no se necesita Internet.</p>
+        </div>
+        <div class="step-list" style="margin-top:16px">
+          <div class="step-item">
+            <div class="step-num">✓</div>
+            <p><strong>DHCP</strong> — puede repartir IPs automáticamente a los dispositivos que se conectan.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">⚠</div>
+            <p><strong>Peligro en producción:</strong> si el DHCP cambia la IP de un nodo DMX durante el show, la consola pierde el contacto con ese nodo.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">✓</div>
+            <p><strong>Solución:</strong> desactiva el DHCP y asigna IPs fijas (estáticas) a todos los equipos antes del show.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:20px">
+      <div class="panel-title">Switch vs Router — diferencias clave</div>
+      <table class="comp-table">
+        <thead><tr><th></th><th>Switch</th><th>Router</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Función</strong></td><td>Conecta dispositivos en la misma red</td><td>Conecta redes diferentes entre sí</td></tr>
+          <tr><td><strong>¿Asigna IPs?</strong></td><td>No</td><td>Sí (si DHCP activo)</td></tr>
+          <tr><td><strong>¿Necesario en shows?</strong></td><td>Sí, siempre</td><td>Solo si hay Internet</td></tr>
+          <tr><td><strong>Puertos típicos</strong></td><td>5 / 8 / 16 / 24 puertos</td><td>4 LAN + 1 WAN</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ART-NET & sACN -->
+  <div class="inner-pane" id="ip_artnet">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">ART-NET</div>
+        <div class="info-card">
+          <div class="info-card-title">¿Qué es?</div>
+          <p>Protocolo que transporta universos DMX-512 a través de Ethernet. Creado por Artistic Licence en 1998. Abierto y gratuito. Hasta <strong>32.768 universos</strong> en la misma red.</p>
+        </div>
+        <div class="step-list" style="margin-top:16px">
+          <div class="step-item">
+            <div class="step-num">📋</div>
+            <p><strong>IP recomendada:</strong> rango <code>2.x.x.x</code> o <code>10.x.x.x</code> con máscara <code>255.0.0.0</code>. La especificación oficial lo indica expresamente.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">📢</div>
+            <p><strong>Usa broadcast</strong> por defecto — envía los datos a todos los dispositivos de la red. Simple y compatible con casi todo el hardware.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">✓</div>
+            <p>Compatible con MagicQ, grandMA, ETC Eos, Resolume Arena y la mayoría de consolas y software de iluminación.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">sACN (E1.31)</div>
+        <div class="info-card">
+          <div class="info-card-title">¿Qué es?</div>
+          <p>Streaming Architecture for Control Networks. Estándar ANSI E1.31. Más moderno que ART-NET. Hasta <strong>63.999 universos</strong>.</p>
+        </div>
+        <div class="step-list" style="margin-top:16px">
+          <div class="step-item">
+            <div class="step-num">📋</div>
+            <p><strong>IP:</strong> cualquier rango privado válido. Sin restricciones de rango como ART-NET.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">🎯</div>
+            <p><strong>Usa multicast</strong> — envía los datos solo a los dispositivos suscritos a ese universo. Más eficiente en redes grandes.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">✓</div>
+            <p>Preferido en instalaciones grandes y permanentes. Requiere switch con soporte multicast IGMP.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:20px">
+      <div class="panel-title">ART-NET vs sACN — comparativa</div>
+      <table class="comp-table">
+        <thead><tr><th></th><th>ART-NET 4</th><th>sACN (E1.31)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Universos</strong></td><td>32.768</td><td>63.999</td></tr>
+          <tr><td><strong>Método envío</strong></td><td>Broadcast / Unicast</td><td>Multicast / Unicast</td></tr>
+          <tr><td><strong>IP recomendada</strong></td><td>2.x.x.x / 10.x.x.x</td><td>Cualquier privada</td></tr>
+          <tr><td><strong>Puerto UDP</strong></td><td>6454</td><td>5568</td></tr>
+          <tr><td><strong>Uso típico</strong></td><td>Giras, festivales</td><td>Instalaciones fijas</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CONFIGURACIÓN PRÁCTICA -->
+  <div class="inner-pane" id="ip_config">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Ejemplo de red ART-NET típica</div>
+        <p style="font-size:14px;color:var(--text2);margin-bottom:12px">Consola MagicQ + 4 nodos DMX + PC de control, todos en el mismo switch Gigabit:</p>
+        <table class="comp-table">
+          <thead><tr><th>Dispositivo</th><th>IP</th><th>Máscara</th></tr></thead>
+          <tbody>
+            <tr style="background:rgba(74,122,106,.08)"><td><strong>Consola MagicQ</strong></td><td><code>2.0.0.1</code></td><td><code>255.0.0.0</code></td></tr>
+            <tr><td>Nodo DMX 1</td><td><code>2.0.0.10</code></td><td><code>255.0.0.0</code></td></tr>
+            <tr><td>Nodo DMX 2</td><td><code>2.0.0.11</code></td><td><code>255.0.0.0</code></td></tr>
+            <tr><td>Nodo DMX 3</td><td><code>2.0.0.12</code></td><td><code>255.0.0.0</code></td></tr>
+            <tr><td>Nodo DMX 4</td><td><code>2.0.0.13</code></td><td><code>255.0.0.0</code></td></tr>
+            <tr><td>PC control</td><td><code>2.0.0.100</code></td><td><code>255.0.0.0</code></td></tr>
+          </tbody>
+        </table>
+        <div class="note" style="margin-top:12px">Todos en el rango <code>2.x.x.x</code> con máscara <code>255.0.0.0</code> — tal como recomienda la especificación ART-NET.</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Pasos de configuración</div>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <p><strong>Conecta todos los equipos al switch</strong> con cable Ethernet CAT5e o superior.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <p><strong>Asigna IP estática</strong> a cada dispositivo. En Windows: Configuración → Red → Adaptador Ethernet → IPv4 → Manual.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <p><strong>Configura los nodos DMX</strong> desde su app web: IP, máscara y universo ART-NET asignado a cada salida.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <p><strong>En MagicQ:</strong> Setup → Network → ART-NET enabled. La consola detecta los nodos automáticamente.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <p><strong>Verifica</strong> desde terminal del PC: <code>ping 2.0.0.10</code>. Si responde, el nodo está accesible.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:20px">
+      <div class="panel-title">Errores comunes y soluciones</div>
+      <table class="comp-table">
+        <thead><tr><th>Problema</th><th>Causa probable</th><th>Solución</th></tr></thead>
+        <tbody>
+          <tr><td>La consola no ve los nodos</td><td>IPs en subredes distintas</td><td>Verificar que todos tienen el mismo rango y máscara</td></tr>
+          <tr><td>Focos parpadean o se cortan</td><td>Cable defectuoso o switch lento</td><td>Cambiar cable, usar switch Gigabit dedicado</td></tr>
+          <tr><td>Un nodo desaparece en mitad del show</td><td>DHCP cambió su IP</td><td>Desactivar DHCP y usar IPs estáticas</td></tr>
+          <tr><td>PC no ve nodos pero consola sí</td><td>Firewall bloqueando ART-NET</td><td>Permitir puerto UDP 6454 en el firewall</td></tr>
+          <tr><td>Latencia visible en los focos</td><td>WiFi o cable de baja calidad</td><td>Usar siempre Ethernet directo al switch</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</section>
+
 
 
 </main>
