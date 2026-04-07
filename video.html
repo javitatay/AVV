@@ -4,10 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Video Suite — Imagen & Vídeo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -29,26 +26,15 @@
   --text2:   #4a5a82;
   --text3:   #8896b5;
   --shadow:  0 1px 3px rgba(25,42,86,.08), 0 4px 16px rgba(25,42,86,.06);
-  --accent:   #4A7A6A;
-  --accent-lt:#e8f2ee;
-  --surface:  #FCFBFB;
-  --surface-2:#f4f3f0;
-  --text-1:   #192A56;
-  --text-2:   #4a5a82;
 }
 
 body {
-  font-size: 16px;
-  line-height: 1.7;
-  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Poppins', sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
 /* ── HEADER ── */
@@ -73,7 +59,7 @@ body {
   flex-shrink: 0;
 }
 .logo-text { font-weight: 600; font-size: 15px; color: var(--white); letter-spacing: 0.3px; }
-.logo-sub  { font-size: 11px; color: rgba(252,251,251,.45); font-weight: 400; margin-top: 1px; }
+.logo-sub  { font-size: 10px; color: rgba(252,251,251,.45); font-weight: 400; margin-top: 1px; }
 .header-badge {
   background: rgba(252,251,251,.1);
   border: 1px solid rgba(252,251,251,.18);
@@ -117,13 +103,12 @@ body {
   background: rgba(252,251,251,.08);
   border-radius: 4px;
   display: inline-flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 600; color: rgba(252,251,251,.4);
+  font-size: 9px; font-weight: 600; color: rgba(252,251,251,.4);
 }
 .nav-tab.active .nav-num { background: var(--yellow); color: var(--navy); }
 
 /* ── MAIN ── */
-.main { padding: 32px 32px 100px; max-width: 1380px; margin: 0 auto; }
-  html { scroll-padding-top: 110px; }
+.main { padding: 32px; max-width: 1380px; margin: 0 auto; }
 .module { display: none; }
 .module.active { display: block; }
 
@@ -209,7 +194,7 @@ body {
 .card-accent-navy::before   { background: var(--navy); }
 
 .card-num {
-  font-size: 11px; font-weight: 700; color: var(--text3);
+  font-size: 10px; font-weight: 700; color: var(--text3);
   letter-spacing: 1px; text-transform: uppercase;
   margin-bottom: 10px;
 }
@@ -218,10 +203,10 @@ body {
   font-size: 15px; font-weight: 700; color: var(--navy);
   margin-bottom: 6px;
 }
-.card-desc { font-size: 15px; color: var(--text2); line-height: 1.7; font-weight: 400; }
+.card-desc { font-size: 12px; color: var(--text2); line-height: 1.55; font-weight: 400; }
 .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
 .card-tag {
-  font-size: 11px; font-weight: 500;
+  font-size: 10px; font-weight: 500;
   padding: 2px 8px; border-radius: 3px;
   background: var(--bg2); color: var(--text3);
 }
@@ -297,14 +282,14 @@ input[type=number], select {
   background: var(--bg2); border: 1px solid var(--border);
   border-radius: 6px; color: var(--text);
   padding: 8px 11px; font-size: 13px;
-  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif; font-weight: 400;
+  font-family: 'Poppins', sans-serif; font-weight: 400;
   width: 100%; outline: none; transition: border-color .15s;
 }
 input:focus, select:focus { border-color: var(--navy); }
 .btn {
   background: var(--navy); color: var(--white); border: none;
   border-radius: 7px; padding: 9px 20px;
-  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif; font-weight: 600;
+  font-family: 'Poppins', sans-serif; font-weight: 600;
   font-size: 12px; cursor: pointer; width: 100%; margin-top: 8px;
   transition: opacity .15s;
 }
@@ -336,13 +321,13 @@ input:focus, select:focus { border-color: var(--navy); }
 .result-box.yellow .result-val { color: #8a6c1a; }
 .result-box.purple .result-val { color: #5c3fbf; }
 .result-box.red    .result-val { color: #b02a2a; }
-.result-label { font-size: 11px; font-weight: 600; color: var(--text3); }
+.result-label { font-size: 10px; font-weight: 600; color: var(--text3); }
 
 /* ── TABLES ── */
 .comp-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
 .comp-table th {
   background: var(--bg2); color: var(--text3);
-  font-size: 11px; font-weight: 700; letter-spacing: 0.4px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.4px;
   text-transform: uppercase; padding: 9px 12px;
   text-align: left; border-bottom: 1px solid var(--border);
 }
@@ -352,11 +337,10 @@ input:focus, select:focus { border-color: var(--navy); }
 }
 .comp-table tr:last-child td { border-bottom: none; }
 .comp-table tr:hover td { background: var(--bg2); }
-.comp-table td.hl { color: var(--accent3); font-weight: 600; background: rgba(107,154,107,.06); }
 
 /* ── BADGES ── */
 .badge {
-  display: inline-block; font-size: 11px; font-weight: 600;
+  display: inline-block; font-size: 10px; font-weight: 600;
   padding: 2px 8px; border-radius: 4px;
 }
 .badge-blue   { background: rgba(25,42,86,.08);  border: 1px solid rgba(25,42,86,.2);  color: var(--navy); }
@@ -389,7 +373,7 @@ input:focus, select:focus { border-color: var(--navy); }
   border-radius: 8px; padding: 18px;
 }
 .info-card-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
-.info-card p { font-size: 15px; color: var(--text2); line-height: 1.7; font-weight: 400; }
+.info-card p { font-size: 12.5px; color: var(--text2); line-height: 1.65; font-weight: 400; }
 
 /* ── FORMULA ── */
 .formula {
@@ -452,110 +436,125 @@ canvas { border-radius: 8px; }
 .module.active > *:nth-child(2) { animation-delay: .05s; }
 .module.active > *:nth-child(3) { animation-delay: .09s; }
 
-/* ── SIMULADOR DE SEÑAL ── */
-.sim-grid {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 16px;
-  align-items: start;
-}
-@media (max-width: 820px) { .sim-grid { grid-template-columns: 1fr; } }
-.sim-results-stack { display: flex; flex-direction: column; gap: 14px; }
-.sim-toggle-row { display: flex; gap: 6px; flex-wrap: wrap; }
-.sim-toggle-btn {
-  padding: 5px 12px;
-  border: 1.5px solid var(--border);
-  border-radius: 20px;
-  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
-  font-size: 11px; font-weight: 500;
-  color: var(--text2); background: var(--bg);
-  cursor: pointer; transition: all .2s;
-}
-.sim-toggle-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-.resolution-viz {
-  background: #0a0a0f; border-radius: 8px;
-  padding: 14px; min-height: 160px;
-  display: flex; align-items: center; justify-content: center; overflow: hidden;
-}
-.res-outer {
-  background: #1a1a2e; border: 2px solid #333;
-  position: relative; display: flex; align-items: center; justify-content: center;
-  transition: all .4s ease; max-width: 100%;
-}
-.res-inner-text { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: rgba(255,255,255,.7); text-align: center; }
-.res-scanlines { position: absolute; inset:0; background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.15) 2px,rgba(0,0,0,.15) 4px); pointer-events:none; border-radius:6px; }
-.res-label-w,.res-label-h { font-family:'JetBrains Mono',monospace; font-size: 11px; color:var(--yellow); position:absolute; }
-.res-label-w { bottom:-16px; left:50%; transform:translateX(-50%); }
-.res-label-h { right:-36px; top:50%; transform:translateY(-50%) rotate(90deg); }
-.sim-metrics-grid { display: grid; grid-template-columns: repeat(2,1fr); gap:8px; }
-.sim-metric {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 8px; padding: 10px 12px; position: relative; overflow:hidden;
-}
-.sim-metric::before { content:''; position:absolute; top:0;left:0; width:3px;height:100%; border-radius:3px 0 0 3px; }
-.sim-metric.blue::before   { background:#3B82F6; }
-.sim-metric.green::before  { background:#10b981; }
-.sim-metric.orange::before { background:#f59e0b; }
-.sim-metric.red::before    { background:#ef4444; }
-.sim-metric-name  { font-size: 11px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:.4px; margin-bottom:3px; }
-.sim-metric-value { font-family:'JetBrains Mono',monospace; font-size:18px; font-weight:600; color:var(--text); line-height:1; }
-.sim-metric-unit  { font-size: 11px; color:var(--text2); margin-left:2px; }
-.sim-metric-sub   { font-size: 11px; color:var(--text3); margin-top:2px; }
-.bitrate-track { height:6px; background:var(--border); border-radius:3px; overflow:hidden; margin-top:6px; }
-.bitrate-fill  { height:100%; border-radius:3px; transition:width .4s ease,background .4s ease; }
-.codec-info-card {
-  background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(59,130,246,.03));
-  border:1px solid rgba(59,130,246,.2); border-radius:8px; padding:12px 14px;
-}
-.codec-props-row { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
-.codec-prop-chip {
-  background:#fff; border:1px solid var(--border);
-  border-radius:6px; padding:4px 8px;
-}
-.codec-prop-chip-label { font-size:10px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:.3px; }
-.codec-prop-chip-val   { font-size:11px; font-weight:700; color:var(--text); }
-.sim-quality-pill {
-  display:inline-flex; align-items:center; gap:5px;
-  padding:4px 12px; border-radius:16px; font-size:11px; font-weight:600;
-}
-.sim-quality-pill .dot { width:7px;height:7px;border-radius:50%; }
-.q-pro  { background:rgba(16,185,129,.12); color:#10b981; }
-.q-pro  .dot { background:#10b981; }
-.q-bc   { background:rgba(245,158,11,.12); color:#f59e0b; }
-.q-bc   .dot { background:#f59e0b; }
-.q-st   { background:rgba(59,130,246,.12); color:#3B82F6; }
-.q-st   .dot { background:#3B82F6; }
-.q-web  { background:rgba(156,163,175,.12); color:#6b7280; }
-.q-web  .dot { background:#9ca3af; }
-.sim-warn { background:rgba(245,158,11,.08); border:1px solid rgba(245,158,11,.25); border-radius:7px; padding:8px 12px; font-size:11px; color:#92400e; margin-top:6px; }
-.sig-path { display:flex; align-items:center; gap:3px; flex-wrap:wrap; padding:8px 0; }
-.sig-node { background:var(--bg2); border:1.5px solid var(--border); border-radius:6px; padding:4px 10px; font-size: 11px; font-weight:600; color:var(--text); white-space:nowrap; }
-.sig-node.active { background:var(--accent); border-color:var(--accent); color:#fff; }
-.sig-arr { color:var(--text3); font-size:12px; }
+.exp-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 20px; align-items: start; }
+@media(max-width: 720px) { .exp-wrap { grid-template-columns: 1fr; } }
 
-/* ── Inter typography optimisation ── */
-h1, h2, h3, .page-title, .ptitle, .sec-title, .module-title, .panel-title {
-  letter-spacing: -0.02em;
+.exp-scene-wrap {
+  position: relative; border-radius: 12px; overflow: hidden;
+  aspect-ratio: 16/9; background: #000; width: 100%;
 }
-h4, .panel-subtitle, .ptl, .h-sub {
-  letter-spacing: -0.01em;
+.exp-noise {
+  position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px; transition: opacity .2s;
 }
-p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
-  line-height: 1.7;
+.exp-luma { position: absolute; inset: 0; pointer-events: none; transition: background .15s; }
+.exp-ev-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: rgba(0,0,0,.65); backdrop-filter: blur(6px);
+  border-radius: 7px; padding: 5px 11px;
+  font-size: 12px; font-weight: 700; color: #fff; font-family: monospace;
 }
+.exp-light-badge {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(0,0,0,.55); border-radius: 7px; padding: 5px 10px;
+  font-size: 11px; color: rgba(255,255,255,.85); font-family: monospace;
+}
+.exp-histogram {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 42px;
+  background: rgba(0,0,0,.5); display: flex; align-items: flex-end;
+  gap: 1px; padding: 4px 6px 0;
+}
+.exp-histo-bar { flex: 1; border-radius: 1px 1px 0 0; transition: height .2s; }
 
-/* ── Readable line length (72ch) for prose ── */
-.page-desc, .pdesc, .sec-desc, .landing-desc,
-.info-card > p, .info-box > p, .warn-box > p, .ok-box > p,
-.callout > p, .box > p, .panel > p,
-.card-desc, .module-desc, .hero p,
-.note, .note-yellow, .note-blue {
-  max-width: 72ch;
+.exp-controls { display: flex; flex-direction: column; gap: 12px; }
+.exp-ctrl-block { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 13px 15px; }
+.exp-ctrl-title { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text3); margin-bottom: 9px; }
+.exp-ctrl-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 9px; }
+.exp-ctrl-row:last-child { margin-bottom: 0; }
+.exp-ctrl-label { display: flex; justify-content: space-between; font-size: 13px; color: var(--text2); }
+.exp-ctrl-label strong { color: var(--navy); font-variant-numeric: tabular-nums; min-width: 68px; text-align: right; }
+.exp-slider-hints { display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); margin-top: 2px; }
+
+.exp-light-presets { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 9px; }
+.exp-light-btn {
+  padding: 4px 9px; font-size: 11px; font-weight: 600; border-radius: 12px;
+  border: 1.5px solid var(--border2); background: var(--surface);
+  color: var(--text2); cursor: pointer; font-family: inherit; transition: .15s;
 }
+.exp-light-btn:hover, .exp-light-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+.exp-ev-meter { position: relative; height: 10px; background: var(--bg3); border-radius: 5px; margin-top: 6px; border: 1px solid var(--border); }
+.exp-ev-meter-fill { position: absolute; top: 0; bottom: 0; left: 50%; border-radius: 5px; transition: width .15s, background .15s; }
+.exp-ev-center { position: absolute; top: -3px; bottom: -3px; left: 50%; width: 2px; background: var(--text3); border-radius: 1px; transform: translateX(-50%); }
+.exp-ev-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); margin-top: 3px; }
+
+.exp-advice { border-radius: 8px; padding: 10px 13px; font-size: 12px; line-height: 1.6; border-left: 3px solid var(--accent); background: var(--accent-lt); color: var(--text2); }
+.exp-advice.over  { border-color: var(--pink2); background: rgba(229,142,139,.08); }
+.exp-advice.under { border-color: #6B7FA3; background: rgba(107,127,163,.08); }
+.exp-rule180 { margin-top: 10px; font-size: 12px; padding: 8px 12px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); color: var(--text2); line-height: 1.5; }
 
 
+.exp-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 20px; align-items: start; }
+@media(max-width: 720px) { .exp-wrap { grid-template-columns: 1fr; } }
+
+.exp-scene-wrap {
+  position: relative; border-radius: 12px; overflow: hidden;
+  aspect-ratio: 16/9; background: #000; width: 100%;
+}
+.exp-noise {
+  position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px; transition: opacity .2s;
+}
+.exp-luma { position: absolute; inset: 0; pointer-events: none; transition: background .15s; }
+.exp-ev-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: rgba(0,0,0,.65); backdrop-filter: blur(6px);
+  border-radius: 7px; padding: 5px 11px;
+  font-size: 12px; font-weight: 700; color: #fff; font-family: monospace;
+}
+.exp-light-badge {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(0,0,0,.55); border-radius: 7px; padding: 5px 10px;
+  font-size: 11px; color: rgba(255,255,255,.85); font-family: monospace;
+}
+.exp-histogram {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 42px;
+  background: rgba(0,0,0,.5); display: flex; align-items: flex-end;
+  gap: 1px; padding: 4px 6px 0;
+}
+.exp-histo-bar { flex: 1; border-radius: 1px 1px 0 0; transition: height .2s; }
+
+.exp-controls { display: flex; flex-direction: column; gap: 12px; }
+.exp-ctrl-block { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 13px 15px; }
+.exp-ctrl-title { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text3); margin-bottom: 9px; }
+.exp-ctrl-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 9px; }
+.exp-ctrl-row:last-child { margin-bottom: 0; }
+.exp-ctrl-label { display: flex; justify-content: space-between; font-size: 13px; color: var(--text2); }
+.exp-ctrl-label strong { color: var(--navy); font-variant-numeric: tabular-nums; min-width: 68px; text-align: right; }
+.exp-slider-hints { display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); margin-top: 2px; }
+
+.exp-light-presets { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 9px; }
+.exp-light-btn {
+  padding: 4px 9px; font-size: 11px; font-weight: 600; border-radius: 12px;
+  border: 1.5px solid var(--border2); background: var(--surface);
+  color: var(--text2); cursor: pointer; font-family: inherit; transition: .15s;
+}
+.exp-light-btn:hover, .exp-light-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+.exp-ev-meter { position: relative; height: 10px; background: var(--bg3); border-radius: 5px; margin-top: 6px; border: 1px solid var(--border); }
+.exp-ev-meter-fill { position: absolute; top: 0; bottom: 0; left: 50%; border-radius: 5px; transition: width .15s, background .15s; }
+.exp-ev-center { position: absolute; top: -3px; bottom: -3px; left: 50%; width: 2px; background: var(--text3); border-radius: 1px; transform: translateX(-50%); }
+.exp-ev-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); margin-top: 3px; }
+
+.exp-advice { border-radius: 8px; padding: 10px 13px; font-size: 12px; line-height: 1.6; border-left: 3px solid var(--accent); background: var(--accent-lt); color: var(--text2); }
+.exp-advice.over  { border-color: var(--pink2); background: rgba(229,142,139,.08); }
+.exp-advice.under { border-color: #6B7FA3; background: rgba(107,127,163,.08); }
+.exp-rule180 { margin-top: 10px; font-size: 12px; padding: 8px 12px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); color: var(--text2); line-height: 1.5; }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -567,7 +566,7 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       <div class="logo-sub">Imagen &amp; Vídeo · UD 1 · 2 · 3</div>
     </div>
   </div>
-    <div class="header-badge">v2.2 · 8 módulos</div>
+  <div class="header-badge">v2.2 · 8 módulos</div>
 </header>
 
 <nav class="nav-bar" id="navBar">
@@ -726,7 +725,6 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
     <div class="inner-tab" data-inner="m1_mcd">Calculadora MCD</div>
     <div class="inner-tab" data-inner="m1_par">DAR / SAR / PAR</div>
     <div class="inner-tab" data-inner="m1_ref">Referencia</div>
-    <div class="inner-tab" data-inner="m1_rescomp">📐 Resoluciones</div>
   </div>
 
   <!-- TAB 1: RESOLUCIÓN & PPI -->
@@ -818,7 +816,7 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
           <div class="note" id="mcd_note" style="margin-top:12px"></div>
           <div style="margin-top:16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;" id="mcd_steps_wrap">
             <div class="panel-subtitle" style="margin:0 0 10px">Pasos del cálculo</div>
-            <div id="mcd_steps" style="font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;font-size:12px;color:var(--accent3);line-height:1.8"></div>
+            <div id="mcd_steps" style="font-family:'Poppins',sans-serif;font-size:12px;color:var(--accent3);line-height:1.8"></div>
           </div>
         </div>
       </div>
@@ -909,13 +907,13 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
           <p>Define la <strong>opacidad de cada píxel</strong> en una imagen. Actúa como máscara de transparencia que permite mezclar capas, imágenes o fondos opacos con imágenes con distintos grados de transparencia.</p>
         </div>
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-          <div style="display:flex;gap:8px;margin-bottom:12px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;font-size:12px">
+          <div style="display:flex;gap:8px;margin-bottom:12px;font-family:'Poppins',sans-serif;font-size:12px">
             <div style="background:rgba(255,68,85,.6);border-radius:4px;padding:8px 12px;color:var(--white)">R</div>
             <div style="background:rgba(0,255,136,.6);border-radius:4px;padding:8px 12px;color:var(--white)">G</div>
             <div style="background:rgba(0,100,255,.6);border-radius:4px;padding:8px 12px;color:var(--white)">B</div>
             <div style="background:rgba(255,255,255,.3);border:1px dashed rgba(255,255,255,.4);border-radius:4px;padding:8px 12px;color:var(--white)">α</div>
           </div>
-          <p style="font-size:13.5px;color:var(--text2)">A los 3 canales RGB (rojo, verde, azul) se añade un 4.º canal <strong>Alfa</strong> que define la opacidad (0 = transparente, 255 = opaco).</p>
+          <p style="font-size:12px;color:var(--text2)">A los 3 canales RGB (rojo, verde, azul) se añade un 4.º canal <strong>Alfa</strong> que define la opacidad (0 = transparente, 255 = opaco).</p>
         </div>
         <div class="note" style="margin-top:12px"><strong>Formatos con soporte Alpha:</strong> PNG (canal alfa real), TIFF, PSD, WEBP, GIF (transparencia binaria, sin alfa real), MOV ProRes 4444.</div>
       </div>
@@ -935,97 +933,6 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       </div>
     </div>
   </div>
-
-
-  <div class="inner-pane" id="m1_rescomp">
-    <div class="panel">
-      <div class="panel-title">Comparativa visual de resoluciones</div>
-      <p style="font-size:14px;color:var(--text2);margin-bottom:20px">Todos los rectángulos están a escala real relativa entre sí. Observa cómo 4K es exactamente 4 veces más píxeles que 1080p.</p>
-      <div style="position:relative;width:100%;overflow-x:auto">
-        <svg id="resSvg" viewBox="0 0 820 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:820px;display:block;margin:0 auto"></svg>
-      </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--text2)">
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:8px;background:#E2DED6;border:1px solid #ccc;display:inline-block"></span>SD 720×576</span>
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:8px;background:#D4E8F0;border:1px solid #6B7FA3;display:inline-block"></span>HD 1280×720</span>
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:8px;background:#D4EDD4;border:1px solid #6B9A6B;display:inline-block"></span>Full HD 1920×1080</span>
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:8px;background:#F0E8D4;border:1px solid #A06B4A;display:inline-block"></span>2K 2048×1080</span>
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:8px;background:#EDE4F4;border:1px solid #7A6BA3;display:inline-block"></span>4K 3840×2160</span>
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:8px;background:#F4D4D4;border:1px solid #A06B6B;display:inline-block"></span>8K 7680×4320</span>
-      </div>
-    </div>
-  </div>
-
-  <script>
-  (function(){
-    const svg = document.getElementById('resSvg');
-    if (!svg) return;
-    const resolutions = [
-      { name:'8K', w:7680, h:4320, fill:'#F4D4D4', stroke:'#A06B6B', label:'8K · 7680×4320', sub:'33.2 MP · 16:9' },
-      { name:'4K', w:3840, h:2160, fill:'#EDE4F4', stroke:'#7A6BA3', label:'4K UHD · 3840×2160', sub:'8.3 MP · ×4 vs 1080p' },
-      { name:'2K', w:2048, h:1080, fill:'#F0E8D4', stroke:'#A06B4A', label:'2K DCI · 2048×1080', sub:'2.2 MP · Cine digital' },
-      { name:'FHD',w:1920, h:1080, fill:'#D4EDD4', stroke:'#6B9A6B', label:'Full HD · 1920×1080', sub:'2.07 MP · Estándar HD' },
-      { name:'HD', w:1280, h:720,  fill:'#D4E8F0', stroke:'#6B7FA3', label:'HD · 1280×720', sub:'0.92 MP · 720p' },
-      { name:'SD', w:720,  h:576,  fill:'#E2DED6', stroke:'#9B9590', label:'SD · 720×576', sub:'0.41 MP · PAL' },
-    ];
-    // Layout: side-by-side proportional bars, clearly labeled
-    const VW=820, VH=440;
-    svg.setAttribute('viewBox', `0 0 ${VW} ${VH}`);
-    const COL_W = VW / resolutions.length;
-    const MAX_H = VH - 110;  // leave 110px for 3-row label area + margin
-    const maxPx = resolutions[0].w * resolutions[0].h; // 8K pixels = reference
-
-    let html = `<rect width="${VW}" height="${VH}" fill="#F5F4F0" rx="6"/>`;
-
-    resolutions.forEach((r, i) => {
-      const mp = r.w * r.h;
-      const barH = Math.max(14, (mp / maxPx) * MAX_H);
-      const barW = COL_W - 12;
-      const x = i * COL_W + 6;
-      const y = VH - 90 - barH;   // leave 90px at bottom for labels
-
-      // Bar
-      html += `<rect x="${x}" y="${y}" width="${barW}" height="${barH}"
-        fill="${r.fill}" stroke="${r.stroke}" stroke-width="1.5" rx="3"/>`;
-
-      // MP label inside bar (only if bar is tall enough to fit it clearly)
-      const mpLabel = (mp/1e6).toFixed(1) + ' MP';
-      if (barH > 32) {
-        html += `<text x="${x + barW/2}" y="${y + 16}"
-          font-size="10" font-family="monospace" font-weight="700"
-          text-anchor="middle" fill="${r.stroke}">${mpLabel}</text>`;
-      }
-      if (barH > 52) {
-        const res = r.w + '×' + r.h;
-        html += `<text x="${x + barW/2}" y="${y + 30}"
-          font-size="8.5" font-family="monospace"
-          text-anchor="middle" fill="${r.stroke}" opacity=".75">${res}</text>`;
-      }
-
-      // Label area below baseline: 3 rows × 18px = 54px — name / ratio / MP
-      const LY = VH - 86;   // row 1: name
-      html += `<text x="${x + barW/2}" y="${LY}"
-        font-size="11" font-family="monospace" font-weight="700"
-        text-anchor="middle" fill="${r.stroke}">${r.name}</text>`;
-
-      const ratio = mp / (1920*1080);
-      const ratioTxt = ratio < 1 ? '×' + ratio.toFixed(2) : '×' + ratio.toFixed(1);
-      html += `<text x="${x + barW/2}" y="${LY + 16}"
-        font-size="9" font-family="monospace"
-        text-anchor="middle" fill="${r.stroke}" opacity=".8">${ratioTxt} vs FHD</text>`;
-
-      html += `<text x="${x + barW/2}" y="${LY + 30}"
-        font-size="8.5" font-family="monospace"
-        text-anchor="middle" fill="${r.stroke}" opacity=".6">${mpLabel}</text>`;
-    });
-
-    // Baseline
-    html += `<line x1="4" y1="${VH-90}" x2="${VW-4}" y2="${VH-90}"
-      stroke="#9B9590" stroke-width="1" stroke-dasharray="3,3"/>`;
-
-    svg.innerHTML = html;
-  })();
-  </script>
-
 </section>
 
 <!-- ═══ MÓDULO 2 — ÓPTICA & DOF ═══ -->
@@ -1048,7 +955,6 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
     <div class="inner-tab active" data-inner="m2_focal">Distancia Focal</div>
     <div class="inner-tab" data-inner="m2_dof">Profundidad de Campo</div>
     <div class="inner-tab" data-inner="m2_exp">Triángulo de Exposición</div>
-    <div class="inner-tab" data-inner="m2_dofvis">🎥 Simulador DOF</div>
   </div>
 
   <!-- TAB: DISTANCIA FOCAL -->
@@ -1184,166 +1090,9 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
     </div>
   </div>
 
-
-  <div class="inner-pane" id="m2_dofvis">
-    <div class="panel">
-      <div class="panel-title">Simulador visual de profundidad de campo</div>
-      <p style="font-size:14px;color:var(--text2);margin-bottom:16px">Mueve los sliders y observa cómo cambia la zona nítida (verde) en la escena. La zona gris es el desenfoque (bokeh).</p>
-      <div style="display:grid;grid-template-columns:260px 1fr;gap:24px;align-items:start">
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="field">
-            <label>Focal (mm): <strong id="dv_f_val">50</strong></label>
-            <input type="range" id="dv_f" min="14" max="300" value="50" oninput="dofVisCalc()" style="width:100%">
-            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3)"><span>14mm gran angular</span><span>300mm teleobjetivo</span></div>
-          </div>
-          <div class="field">
-            <label>Apertura (f/): <strong id="dv_ap_val">2.8</strong></label>
-            <input type="range" id="dv_ap" min="1" max="22" value="2.8" step="0.1" oninput="dofVisCalc()" style="width:100%">
-            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3)"><span>f/1 (abierto)</span><span>f/22 (cerrado)</span></div>
-          </div>
-          <div class="field">
-            <label>Distancia sujeto (m): <strong id="dv_dist_val">3</strong></label>
-            <input type="range" id="dv_dist" min="0.5" max="20" value="3" step="0.5" oninput="dofVisCalc()" style="width:100%">
-          </div>
-          <div class="field">
-            <label>Sensor</label>
-            <select id="dv_sensor" onchange="dofVisCalc()" class="tool-select" style="width:100%">
-              <option value="0.029">Full Frame (35mm)</option>
-              <option value="0.019" selected>APS-C (Canon)</option>
-              <option value="0.017">Micro 4/3</option>
-            </select>
-          </div>
-          <div id="dofVisStats" style="background:var(--bg2);border-radius:8px;padding:12px;font-size:12px;color:var(--text2);line-height:1.9"></div>
-        </div>
-        <div>
-          <canvas id="dofVisCanvas" height="260" style="width:100%;display:block;border-radius:8px;background:#1a1a2e"></canvas>
-          <div style="margin-top:10px;display:flex;gap:16px;font-size:11px;color:var(--text2)">
-            <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:rgba(107,154,107,.9);border-radius:2px;display:inline-block"></span>Zona nítida (DOF)</span>
-            <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:rgba(160,107,107,.5);border-radius:2px;display:inline-block"></span>Desenfocado (bokeh)</span>
-            <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:#f59e0b;border-radius:2px;display:inline-block"></span>Cámara</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-  function dofVisCalc() {
-    const f    = +document.getElementById('dv_f').value;
-    const ap   = +document.getElementById('dv_ap').value;
-    const dist = +document.getElementById('dv_dist').value;
-    const coc  = +document.getElementById('dv_sensor').value;
-    document.getElementById('dv_f_val').textContent    = f + 'mm';
-    document.getElementById('dv_ap_val').textContent   = 'f/' + ap;
-    document.getElementById('dv_dist_val').textContent = dist + 'm';
-
-    const fM = f / 1000, distM = dist;
-    const hn = (fM * fM) / (ap * coc) + fM;
-    const near = (distM * (hn - fM)) / (hn + distM - 2 * fM);
-    const far  = distM >= hn ? Infinity : (distM * (hn - fM)) / (hn - distM);
-    const dof  = far === Infinity ? Infinity : far - near;
-
-    const nearM = Math.max(0, near).toFixed(2);
-    const farM  = far === Infinity ? '∞' : far.toFixed(2);
-    const dofM  = dof === Infinity ? '∞' : dof.toFixed(2) + ' m';
-
-    document.getElementById('dofVisStats').innerHTML = `
-      <div><strong>Hiperfocal:</strong> ${hn.toFixed(1)} m</div>
-      <div><strong>Límite cercano:</strong> ${nearM} m</div>
-      <div><strong>Límite lejano:</strong> ${farM} m</div>
-      <div style="color:var(--accent3);font-weight:700"><strong>DOF total:</strong> ${dofM}</div>
-      <div style="margin-top:6px;font-size:11px;color:var(--text3)">${ap<=2.8?'⚠ DOF muy reducida — fondo muy desenfocado':ap>=11?'✓ DOF amplia — todo en foco':'DOF moderada'}</div>
-    `;
-
-    // Draw canvas
-    const canvas = document.getElementById('dofVisCanvas');
-    if (!canvas) return;
-    const W = canvas.offsetWidth || 500;
-    canvas.width = W; canvas.height = 260;
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0,0,W,260);
-
-    // Background scene
-    const grad = ctx.createLinearGradient(0,0,W,0);
-    grad.addColorStop(0,'#0d1117'); grad.addColorStop(1,'#1e2d4a');
-    ctx.fillStyle = grad; ctx.fillRect(0,0,W,260);
-
-    // Ground line
-    ctx.strokeStyle = 'rgba(255,255,255,.1)'; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(0,220); ctx.lineTo(W,220); ctx.stroke();
-
-    // Scene scale: cam at x=60, max scene = 20m → W-80px
-    const camX = 60, sceneW = W - 100;
-    const maxDist = Math.max(20, dist * 2.5);
-    const toX = (m) => camX + (m / maxDist) * sceneW;
-
-    // Bokeh region before near
-    const nearX = toX(near);
-    const subjectX = toX(dist);
-    const farX = far === Infinity ? W - 20 : Math.min(W-20, toX(far));
-
-    // Far bokeh
-    if (farX < W - 20) {
-      ctx.fillStyle = 'rgba(160,107,107,.25)';
-      ctx.fillRect(farX, 0, W-20-farX, 220);
-      ctx.fillStyle = 'rgba(160,107,107,.5)';
-      ctx.fillRect(farX, 0, 3, 220);
-    }
-    // Near bokeh
-    if (nearX > camX) {
-      ctx.fillStyle = 'rgba(160,107,107,.25)';
-      ctx.fillRect(camX, 0, nearX-camX, 220);
-    }
-    // DOF zone
-    ctx.fillStyle = 'rgba(107,154,107,.2)';
-    ctx.fillRect(nearX, 0, farX-nearX, 220);
-    ctx.strokeStyle = 'rgba(107,154,107,.8)'; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(nearX, 0); ctx.lineTo(nearX, 220); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(farX, 0); ctx.lineTo(farX, 220); ctx.stroke();
-
-    // Distance markers
-    [1,2,3,5,7,10,15,20].filter(d=>d<=maxDist).forEach(d => {
-      const x = toX(d);
-      ctx.strokeStyle = 'rgba(255,255,255,.1)'; ctx.lineWidth = 0.5;
-      ctx.beginPath(); ctx.moveTo(x,200); ctx.lineTo(x,220); ctx.stroke();
-      ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.font = '9px monospace';
-      ctx.fillText(d+'m', x-8, 235);
-    });
-
-    // Subject marker
-    ctx.fillStyle = '#fff'; ctx.font = 'bold 20px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText('👤', subjectX, 200);
-    ctx.font = '10px monospace'; ctx.fillStyle = '#fff';
-    ctx.fillText(`${dist}m`, subjectX, 245);
-    ctx.textAlign = 'left';
-
-    // DOF labels
-    ctx.fillStyle = 'rgba(107,154,107,.9)'; ctx.font = 'bold 9px monospace';
-    const midDof = (nearX + Math.min(farX, W-20)) / 2;
-    ctx.textAlign = 'center';
-    ctx.fillText('ZONA NÍTIDA', midDof, 15);
-    if (dof !== Infinity) ctx.fillText(dofM, midDof, 26);
-    ctx.textAlign = 'left';
-
-    // Camera
-    ctx.font = '22px sans-serif'; ctx.fillText('📷', camX-28, 208);
-
-    // FOV lines
-    const fovAngle = 2 * Math.atan((0.024 / 2) / (f / 1000));
-    const spread = Math.tan(fovAngle/2) * (W-camX) * 0.4;
-    ctx.strokeStyle = 'rgba(245,158,11,.4)'; ctx.lineWidth = 1;
-    ctx.setLineDash([4,3]);
-    ctx.beginPath(); ctx.moveTo(camX, 110); ctx.lineTo(W-20, 110-spread); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(camX, 110); ctx.lineTo(W-20, 110+spread); ctx.stroke();
-    ctx.setLineDash([]);
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', dofVisCalc);
-  else dofVisCalc();
-  </script>
-
   <!-- TAB: EXPOSICIÓN -->
   <div class="inner-pane" id="m2_exp">
+
     <div class="panel">
       <div class="panel-title">El Triángulo de Exposición</div>
       <div class="grid-3">
@@ -1365,7 +1114,75 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       </div>
       <div class="note" style="margin-top:20px"><strong>Relación entre los tres factores:</strong> Si subimos el ISO para compensar poca luz, ganamos exposición pero añadimos ruido. Si abrimos el diafragma ganamos luz pero reducimos el DOF. Si reducimos la velocidad de obturación ganamos luz pero arriesgamos motion blur. El equilibrio entre los tres define la exposición correcta.</div>
     </div>
-  </div>
+  
+
+    <div class="panel" style="margin-top:0">
+      <div class="panel-title">Simulador interactivo — Triángulo de Exposición</div>
+      <p style="font-size:14px;color:var(--text2);margin-bottom:18px">Ajusta los controles y observa cómo cambia la exposición en tiempo real.</p>
+      <div class="exp-wrap">
+          <div>
+            <div class="exp-scene-wrap" id="expScene">
+              <canvas id="expCanvas" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+              <div class="exp-noise" id="expNoise"></div>
+              <div class="exp-luma" id="expLuma"></div>
+              <div class="exp-ev-badge" id="expEvBadge">EV 0</div>
+              <div class="exp-light-badge" id="expLightBadge">⛅ Nublado</div>
+              <div class="exp-histogram" id="expHistogram"></div>
+            </div>
+            <div class="exp-rule180" id="expRule180"></div>
+          </div>
+          <div class="exp-controls">
+            <div class="exp-ctrl-block">
+              <div class="exp-ctrl-title">Condición de luz</div>
+              <div class="exp-light-presets">
+                <button class="exp-light-btn" onclick="expSetLight(-3,this)">🌑 Noche</button>
+                <button class="exp-light-btn" onclick="expSetLight(0,this)">🏠 Interior</button>
+                <button class="exp-light-btn active" onclick="expSetLight(3,this)">⛅ Nublado</button>
+                <button class="exp-light-btn" onclick="expSetLight(7,this)">☀️ Exterior</button>
+              </div>
+              <div class="exp-ctrl-row">
+                <div class="exp-ctrl-label"><span>Luz ambiente</span><strong id="expLightVal">+3 EV</strong></div>
+                <input type="range" id="expLight" min="-5" max="10" value="3" step="0.5" oninput="expCalc()" style="width:100%">
+              </div>
+            </div>
+            <div class="exp-ctrl-block" style="border-left:3px solid #8896b5">
+              <div class="exp-ctrl-title">⏱ Velocidad obturación</div>
+              <div class="exp-ctrl-row">
+                <div class="exp-ctrl-label"><span>Tiempo</span><strong id="expShutterVal">1/60 s</strong></div>
+                <input type="range" id="expShutter" min="0" max="12" value="6" step="1" oninput="expCalc()" style="width:100%">
+              </div>
+              <div class="exp-slider-hints"><span>1" lento</span><span>1/4000 rápido</span></div>
+            </div>
+            <div class="exp-ctrl-block" style="border-left:3px solid var(--accent)">
+              <div class="exp-ctrl-title">📐 Apertura diafragma</div>
+              <div class="exp-ctrl-row">
+                <div class="exp-ctrl-label"><span>f/stop</span><strong id="expApertureVal">f/4</strong></div>
+                <input type="range" id="expAperture" min="0" max="8" value="3" step="1" oninput="expCalc()" style="width:100%">
+              </div>
+              <div class="exp-slider-hints"><span>f/1.4 abierto</span><span>f/22 cerrado</span></div>
+            </div>
+            <div class="exp-ctrl-block" style="border-left:3px solid #7A6BA3">
+              <div class="exp-ctrl-title">⚡ Sensibilidad ISO</div>
+              <div class="exp-ctrl-row">
+                <div class="exp-ctrl-label"><span>ISO</span><strong id="expISOVal">ISO 100</strong></div>
+                <input type="range" id="expISO" min="0" max="8" value="0" step="1" oninput="expCalc()" style="width:100%">
+              </div>
+              <div class="exp-slider-hints"><span>ISO 100 limpio</span><span>ISO 25600 ruidoso</span></div>
+            </div>
+            <div class="exp-ctrl-block">
+              <div class="exp-ctrl-title">Exposímetro (EV)</div>
+              <div class="exp-ev-meter">
+                <div class="exp-ev-meter-fill" id="expEvFill"></div>
+                <div class="exp-ev-center"></div>
+              </div>
+              <div class="exp-ev-labels"><span>-3 subexp.</span><span>0 correcto</span><span>+3 sobrexp.</span></div>
+            </div>
+            <div class="exp-advice" id="expAdvice">Ajusta los controles para ver el resultado.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 </section>
 
 <!-- ═══ MÓDULO 3 — SEÑAL DE VÍDEO ═══ -->
@@ -1389,8 +1206,6 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
     <div class="inner-tab" data-inner="i_pal">PAL / NTSC / SECAM</div>
     <div class="inner-tab" data-inner="i_gamma">Gamma &amp; HDR</div>
     <div class="inner-tab" data-inner="i_alpha">Canal Alpha</div>
-    <div class="inner-tab" data-inner="i_simulador">📡 Simulador de Señal</div>
-    <div class="inner-tab" data-inner="i_compat">🗂 Compatibilidad</div>
   </div>
 
   <div class="inner-pane active" id="i_scan">
@@ -1426,6 +1241,8 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
           <tr><td>Ancho de banda</td><td>Mayor</td><td><span class="badge badge-green">Menor</span></td></tr>
         </tbody>
       </table>
+    </div>
+  </div>
     </div>
   </div>
 
@@ -1536,341 +1353,6 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       </div>
     </div>
   </div>
-
-  <!-- ── SIMULADOR DE SEÑAL ── -->
-  <div class="inner-pane" id="i_simulador">
-    <div class="note note-yellow" style="margin-bottom:18px">
-      <strong>📡 Simulador interactivo:</strong> Configura los parámetros de tu señal y observa en tiempo real cómo afectan al bitrate, tamaño de archivo y calidad.
-    </div>
-    <div class="sim-grid">
-      <!-- Controles -->
-      <div class="panel">
-        <div class="panel-title">⚙️ Parámetros de señal</div>
-
-        <div style="margin-bottom:14px">
-          <div class="form-label" style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Resolución</div>
-          <select id="s_res" onchange="simUpdate()" style="width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;font-size:12px;color:var(--text);background:var(--bg)">
-            <option value="640,360">nHD — 640×360</option>
-            <option value="1280,720">HD — 1280×720</option>
-            <option value="1920,1080" selected>Full HD — 1920×1080</option>
-            <option value="2560,1440">QHD — 2560×1440</option>
-            <option value="3840,2160">4K UHD — 3840×2160</option>
-            <option value="7680,4320">8K UHD — 7680×4320</option>
-          </select>
-        </div>
-
-        <div style="margin-bottom:14px">
-          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Frame Rate</div>
-          <div class="sim-toggle-row" id="s_fps_group">
-            <button class="sim-toggle-btn" onclick="simSetFPS(24,this)">24fps</button>
-            <button class="sim-toggle-btn" onclick="simSetFPS(25,this)">25fps</button>
-            <button class="sim-toggle-btn active" onclick="simSetFPS(30,this)">30fps</button>
-            <button class="sim-toggle-btn" onclick="simSetFPS(50,this)">50fps</button>
-            <button class="sim-toggle-btn" onclick="simSetFPS(60,this)">60fps</button>
-            <button class="sim-toggle-btn" onclick="simSetFPS(120,this)">120fps</button>
-          </div>
-        </div>
-
-        <div style="margin-bottom:14px">
-          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Profundidad de color</div>
-          <div class="sim-toggle-row" id="s_bit_group">
-            <button class="sim-toggle-btn" onclick="simSetBit(8,this)">8 bit</button>
-            <button class="sim-toggle-btn active" onclick="simSetBit(10,this)">10 bit</button>
-            <button class="sim-toggle-btn" onclick="simSetBit(12,this)">12 bit</button>
-          </div>
-        </div>
-
-        <div style="margin-bottom:14px">
-          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Muestreo de color</div>
-          <div class="sim-toggle-row" id="s_chroma_group">
-            <button class="sim-toggle-btn" onclick="simSetChroma('4:2:0',this)">4:2:0</button>
-            <button class="sim-toggle-btn active" onclick="simSetChroma('4:2:2',this)">4:2:2</button>
-            <button class="sim-toggle-btn" onclick="simSetChroma('4:4:4',this)">4:4:4</button>
-          </div>
-        </div>
-
-        <div style="margin-bottom:14px">
-          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Codec</div>
-          <select id="s_codec" onchange="simUpdate()" style="width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;font-size:12px;color:var(--text);background:var(--bg)">
-            <optgroup label="Broadcast / Edición">
-              <option value="prores422">Apple ProRes 422</option>
-              <option value="prores444">Apple ProRes 4444</option>
-              <option value="dnxhd">Avid DNxHD</option>
-              <option value="rawhd">RAW sin comprimir</option>
-            </optgroup>
-            <optgroup label="Producción">
-              <option value="h264" selected>H.264 / AVC</option>
-              <option value="h265">H.265 / HEVC</option>
-              <option value="av1">AV1</option>
-            </optgroup>
-            <optgroup label="Streaming / Web">
-              <option value="vp9">VP9</option>
-              <option value="webm">WebM (VP8)</option>
-            </optgroup>
-          </select>
-        </div>
-
-        <div style="border-top:1px solid var(--border);margin:14px 0 14px"></div>
-
-        <div style="margin-bottom:14px">
-          <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Duración del clip</div>
-          <div style="display:flex;align-items:center;gap:10px">
-            <input type="range" id="s_dur" min="1" max="120" value="10" oninput="simUpdate()" style="flex:1;height:4px;-webkit-appearance:none;appearance:none;background:var(--border);border-radius:4px;outline:none">
-            <span id="s_dur_val" style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--accent);min-width:55px;text-align:right">10 min</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Resultados -->
-      <div class="sim-results-stack">
-
-        <!-- Visualizador -->
-        <div class="panel">
-          <div class="panel-title">🖥️ Vista de resolución</div>
-          <div class="resolution-viz">
-            <div class="res-outer" id="s_res_outer">
-              <div class="res-scanlines"></div>
-              <div class="res-inner-text" id="s_res_text">1920×1080</div>
-              <div class="res-label-w" id="s_label_w">1920 px</div>
-              <div class="res-label-h" id="s_label_h">1080 px</div>
-            </div>
-          </div>
-          <div style="margin-top:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-            <div id="s_quality_pill" class="sim-quality-pill q-st"><span class="dot"></span><span id="s_quality_text">Streaming</span></div>
-            <span style="font-size:11px;color:var(--text2)">Aspect ratio: <strong id="s_ar">16:9</strong></span>
-            <span style="font-size:11px;color:var(--text2)">Megapíxeles: <strong id="s_mp">2.07</strong></span>
-          </div>
-        </div>
-
-        <!-- Métricas -->
-        <div class="panel">
-          <div class="panel-title">📊 Métricas calculadas</div>
-          <div class="sim-metrics-grid">
-            <div class="sim-metric blue">
-              <div class="sim-metric-name">Bitrate estimado</div>
-              <div class="sim-metric-value" id="s_bitrate">—<span class="sim-metric-unit">Mbps</span></div>
-              <div class="sim-metric-sub" id="s_bitrate_sub"></div>
-              <div class="bitrate-track"><div class="bitrate-fill" id="s_bitrate_bar" style="width:0%;background:#3B82F6"></div></div>
-            </div>
-            <div class="sim-metric green">
-              <div class="sim-metric-name">Tamaño de archivo</div>
-              <div class="sim-metric-value" id="s_size">—</div>
-              <div class="sim-metric-sub" id="s_size_sub"></div>
-            </div>
-            <div class="sim-metric orange">
-              <div class="sim-metric-name">Datos por frame</div>
-              <div class="sim-metric-value" id="s_frame">—<span class="sim-metric-unit">KB</span></div>
-              <div class="sim-metric-sub" id="s_frame_sub"></div>
-            </div>
-            <div class="sim-metric red">
-              <div class="sim-metric-name">Ancho de banda</div>
-              <div class="sim-metric-value" id="s_bw">—<span class="sim-metric-unit">Mbps</span></div>
-              <div class="sim-metric-sub">para streaming</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Codec info -->
-        <div class="panel">
-          <div class="panel-title">🧩 Información del codec</div>
-          <div class="codec-info-card" id="s_codec_card"></div>
-        </div>
-
-        <!-- Flujo señal -->
-        <div class="panel">
-          <div class="panel-title">🔗 Flujo de la señal</div>
-          <div class="sig-path" id="s_sig_path"></div>
-          <div id="s_warns"></div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ── PESTAÑA: COMPATIBILIDAD ─────────────────────────── -->
-  <div class="inner-pane" id="i_compat">
-    <div style="margin-bottom:18px;">
-      <h3 style="font-size:15px;font-weight:700;margin-bottom:6px;">Códec ↔ Contenedor</h3>
-      <p style="font-size:13.5px;color:var(--text-2);line-height:1.6;">Cada contenedor (formato de archivo) puede alojar distintos códecs. Esta tabla muestra qué combinaciones son posibles, cuáles son las más comunes en producción y para qué uso están pensadas.</p>
-    </div>
-
-    <!-- Leyenda -->
-    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:18px;font-size:11px;">
-      <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:#4A7A6A;display:inline-block;"></span> Compatible y habitual</span>
-      <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:#6B9A6B;opacity:.4;display:inline-block;"></span> Compatible pero raro</span>
-      <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:#E2DED6;display:inline-block;border:1px solid #ccc;"></span> Incompatible</span>
-    </div>
-
-    <!-- Tabla principal -->
-    <div style="overflow-x:auto;">
-      <table id="compatTable" style="width:100%;border-collapse:collapse;font-size:11.5px;">
-        <thead>
-          <tr>
-            <th style="text-align:left;padding:10px 12px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;font-size:10px;letter-spacing:.8px;text-transform:uppercase;min-width:120px;position:sticky;left:0;z-index:2;">Códec</th>
-            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.mp4</th>
-            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.mov</th>
-            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.mxf</th>
-            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.avi</th>
-            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.mkv</th>
-            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.webm</th>
-            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;">.ts</th>
-            <th style="padding:10px 8px;background:var(--surface-2);border:1px solid var(--border);font-weight:700;text-align:center;min-width:160px;">Uso principal</th>
-          </tr>
-        </thead>
-        <tbody id="compatBody"></tbody>
-      </table>
-    </div>
-
-    <!-- Ficha de detalle -->
-    <div id="compatDetail" style="display:none;margin-top:20px;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:18px 20px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-        <span id="detailTitle" style="font-size:14px;font-weight:700;"></span>
-        <button onclick="document.getElementById('compatDetail').style.display='none'" style="background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:10px;cursor:pointer;">✕ cerrar</button>
-      </div>
-      <div id="detailBody" style="font-size:12px;color:var(--text-2);line-height:1.7;display:grid;grid-template-columns:1fr 1fr;gap:12px;"></div>
-    </div>
-
-    <!-- Nota -->
-    <div style="margin-top:20px;padding:12px 16px;background:var(--accent-lt);border-radius:10px;border-left:3px solid var(--accent);font-size:11px;color:var(--text-2);line-height:1.6;">
-      <strong style="color:var(--accent);">💡 Recuerda:</strong> El contenedor define el "sobre" y el códec define cómo está comprimida la imagen dentro. Un mismo archivo .mp4 puede contener H.264, H.265 o incluso ProRes (en macOS). Haz clic en cualquier fila para ver más detalles del códec.
-    </div>
-  </div>
-
-  <script>
-  (function() {
-    const CODECS = [
-      {
-        name: 'H.264 (AVC)',
-        mp4:'✦', mov:'✦', mxf:'○', avi:'○', mkv:'✦', webm:'—', ts:'✦',
-        uso: 'Distribución web, streaming, redes sociales',
-        desc: 'El códec más extendido del mundo. Excelente relación calidad/peso. Estándar en cámaras de consumo y semiprofesionales.',
-        compresion: 'Alta (lossy)', bitrate: '2–50 Mbps', edicion: 'Media — genera calor en CPU', hdr: 'No nativo',
-        color: ['#4A7A6A','#4A7A6A','#6B9A6B','#6B9A6B','#4A7A6A',null,'#4A7A6A']
-      },
-      {
-        name: 'H.265 (HEVC)',
-        mp4:'✦', mov:'✦', mxf:'—', avi:'—', mkv:'✦', webm:'—', ts:'✦',
-        uso: '4K streaming, dispositivos móviles, entrega',
-        desc: 'Sucesor de H.264 con el doble de eficiencia. Mismo aspecto a la mitad del peso. Requiere hardware compatible para decodificar.',
-        compresion: 'Muy alta (lossy)', bitrate: '4–80 Mbps', edicion: 'Baja — muy exigente en CPU/GPU', hdr: 'HDR10, Dolby Vision',
-        color: ['#4A7A6A','#4A7A6A',null,null,'#4A7A6A',null,'#4A7A6A']
-      },
-      {
-        name: 'AV1',
-        mp4:'✦', mov:'—', mxf:'—', avi:'—', mkv:'✦', webm:'✦', ts:'—',
-        uso: 'Streaming eficiente (YouTube, Netflix), web',
-        desc: 'Códec abierto de nueva generación. Supera a H.265 en eficiencia. Decodificación por hardware aún limitada, pero creciente.',
-        compresion: 'Muy alta (lossy)', bitrate: '2–60 Mbps', edicion: 'Muy baja — codificación lentísima', hdr: 'HDR10, HLG',
-        color: ['#4A7A6A',null,null,null,'#4A7A6A','#4A7A6A',null]
-      },
-      {
-        name: 'VP9',
-        mp4:'○', mov:'—', mxf:'—', avi:'—', mkv:'✦', webm:'✦', ts:'—',
-        uso: 'YouTube, navegadores web',
-        desc: 'Desarrollo de Google. Alternativa abierta a H.265. Muy usado en YouTube junto a Opus. Buena calidad sin royalties.',
-        compresion: 'Alta (lossy)', bitrate: '2–50 Mbps', edicion: 'Baja', hdr: 'HDR10',
-        color: ['#6B9A6B',null,null,null,'#4A7A6A','#4A7A6A',null]
-      },
-      {
-        name: 'ProRes 422',
-        mp4:'—', mov:'✦', mxf:'✦', avi:'—', mkv:'○', webm:'—', ts:'—',
-        uso: 'Edición profesional, postproducción',
-        desc: 'Códec de Apple para producción. Muestreo de croma 4:2:2. Poco comprimido, ideal para edición no lineal fluida.',
-        compresion: 'Baja (lossy)', bitrate: '100–220 Mbps', edicion: 'Muy alta — fluida en cualquier NLE', hdr: 'Compatible',
-        color: [null,'#4A7A6A','#4A7A6A',null,'#6B9A6B',null,null]
-      },
-      {
-        name: 'ProRes 4444',
-        mp4:'—', mov:'✦', mxf:'○', avi:'—', mkv:'—', webm:'—', ts:'—',
-        uso: 'Composición, VFX, canal alpha',
-        desc: 'Variante ProRes con canal alpha y croma 4:4:4. Calidad casi RAW. Imprescindible para grafismos con transparencia.',
-        compresion: 'Muy baja (lossy)', bitrate: '330–500 Mbps', edicion: 'Muy alta', hdr: 'Compatible',
-        color: [null,'#4A7A6A','#6B9A6B',null,null,null,null]
-      },
-      {
-        name: 'DNxHD / DNxHR',
-        mp4:'—', mov:'✦', mxf:'✦', avi:'○', mkv:'—', webm:'—', ts:'—',
-        uso: 'Edición profesional (Avid, entornos broadcast)',
-        desc: 'Equivalente de Avid al ProRes. Muy usado en broadcast y televisión. DNxHR amplía el soporte a 4K y HDR.',
-        compresion: 'Baja (lossy)', bitrate: '115–440 Mbps', edicion: 'Muy alta', hdr: 'DNxHR sí',
-        color: [null,'#4A7A6A','#4A7A6A','#6B9A6B',null,null,null]
-      },
-      {
-        name: 'RAW (Cinema DNG / R3D)',
-        mp4:'—', mov:'○', mxf:'○', avi:'—', mkv:'—', webm:'—', ts:'—',
-        uso: 'Cine digital, máxima calidad en cámara',
-        desc: 'Sin compresión de imagen. Datos directos del sensor. Máxima flexibilidad en color grading pero archivos enormes.',
-        compresion: 'Sin compresión / lossless', bitrate: '500 Mbps – varios GB/s', edicion: 'Requiere GPU dedicada', hdr: 'Nativo (full dynamic range)',
-        color: [null,'#6B9A6B','#6B9A6B',null,null,null,null]
-      },
-      {
-        name: 'MPEG-2',
-        mp4:'○', mov:'○', mxf:'✦', avi:'○', mkv:'○', webm:'—', ts:'✦',
-        uso: 'DVD, broadcast tradicional, MPEG-TS',
-        desc: 'Estándar heredado de los años 90. Base del DVD y del broadcast analógico/digital. Aún presente en emisión televisiva.',
-        compresion: 'Media (lossy)', bitrate: '4–80 Mbps', edicion: 'Media', hdr: 'No',
-        color: ['#6B9A6B','#6B9A6B','#4A7A6A','#6B9A6B','#6B9A6B',null,'#4A7A6A']
-      },
-      {
-        name: 'DXV 3',
-        mp4:'—', mov:'—', mxf:'—', avi:'○', mkv:'—', webm:'—', ts:'—',
-        uso: 'VJing en Resolume Arena / Avenue',
-        desc: 'Códec propietario de Resolume optimizado para reproducción en tiempo real desde GPU. Permite múltiples capas a alta resolución sin saturar la CPU. Solo funciona dentro del ecosistema Resolume — no es apto para edición convencional.',
-        compresion: 'Media (lossy)', bitrate: '100–400 Mbps', edicion: 'No apto — exclusivo de Resolume', hdr: 'No',
-        color: [null,null,null,'#6B9A6B',null,null,null]
-      },
-    ];
-
-    const containers = ['mp4','mov','mxf','avi','mkv','webm','ts'];
-    const colKeys   = ['mp4','mov','mxf','avi','mkv','webm','ts'];
-
-    function cellStyle(val, color) {
-      if (!color) return 'background:#F5F4F0;color:#ccc;';
-      const alpha = val === '○' ? '0.35' : '1';
-      return `background:${color};color:white;font-weight:700;opacity:${alpha};`;
-    }
-
-    function renderTable() {
-      const tbody = document.getElementById('compatBody');
-      tbody.innerHTML = CODECS.map((c,i) => {
-        const cells = colKeys.map((k,j) => {
-          const val = c[k];
-          const st = !c.color[j] ? 'background:#F5F4F0;color:#C8C3BC;' :
-                     val==='○' ? `background:${c.color[j]};color:white;opacity:.5;` :
-                                 `background:${c.color[j]};color:white;`;
-          return `<td style="padding:10px 8px;border:1px solid var(--border);text-align:center;${st}">${val}</td>`;
-        }).join('');
-        return `<tr style="cursor:pointer;" onclick="showDetail(${i})">
-          <td style="padding:10px 12px;border:1px solid var(--border);font-weight:600;background:var(--surface);position:sticky;left:0;">${c.name}</td>
-          ${cells}
-          <td style="padding:10px 12px;border:1px solid var(--border);font-size:10.5px;color:var(--text-2);">${c.uso}</td>
-        </tr>`;
-      }).join('');
-    }
-
-    window.showDetail = function(i) {
-      const c = CODECS[i];
-      document.getElementById('detailTitle').textContent = c.name;
-      document.getElementById('detailBody').innerHTML = `
-        <div><strong style="color:var(--text-1);display:block;margin-bottom:4px;">Descripción</strong>${c.desc}</div>
-        <div>
-          <strong style="color:var(--text-1);display:block;margin-bottom:4px;">Datos técnicos</strong>
-          <span style="display:block;">🗜 Compresión: ${c.compresion}</span>
-          <span style="display:block;">📊 Bitrate típico: ${c.bitrate}</span>
-          <span style="display:block;">✂️ Rendimiento en edición: ${c.edicion}</span>
-          <span style="display:block;">🌟 Soporte HDR: ${c.hdr}</span>
-        </div>
-      `;
-      document.getElementById('compatDetail').style.display = 'block';
-      document.getElementById('compatDetail').scrollIntoView({behavior:'smooth', block:'nearest'});
-    };
-
-    renderTable();
-  })();
-  </script>
-
-
 </section>
 
 <!-- ═══ MÓDULO 4 — CONECTORES & CODECS ═══ -->
@@ -1893,11 +1375,8 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
     <div class="inner-tab active" data-inner="c_conn">Conectores</div>
     <div class="inner-tab" data-inner="c_hdcp">HDCP</div>
     <div class="inner-tab" data-inner="c_codecs">Formatos &amp; Codecs</div>
-    <div class="inner-tab" data-inner="c_arbol">🌳 Elige tu Codec</div>
     <div class="inner-tab" data-inner="c_audio">Audio</div>
     <div class="inner-tab" data-inner="c_vj">Codecs VJ · Live</div>
-    <div class="inner-tab" data-inner="c_ndi">🌐 NDI</div>
-    <div class="inner-tab" data-inner="c_flujo">🔗 Flujo AV</div>
   </div>
 
   <div class="inner-pane active" id="c_conn">
@@ -1972,139 +1451,6 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
     </div>
   </div>
 
-
-  <div class="inner-pane" id="c_arbol">
-    <div class="panel">
-      <div class="panel-title">Árbol de decisión — ¿Qué codec usar?</div>
-      <p style="font-size:14px;color:var(--text2);margin-bottom:20px">Responde las preguntas para encontrar el codec adecuado para tu situación.</p>
-      <div id="codecTree" style="max-width:640px"></div>
-    </div>
-  </div>
-
-  <script>
-  const CODEC_TREE = {
-    q: '¿Cuál es el destino principal de tu vídeo?',
-    opts: [
-      { label: 'Edición / Postproducción', next: {
-        q: '¿Con qué sistema trabajas?',
-        opts: [
-          { label:'Apple (Mac / Final Cut)', result: { name:'Apple ProRes 422 / 4444', color:'#6B9A6B',
-            desc:'Codec intraframe de Apple. Cada frame se comprime de forma independiente — edición fluida y scrubbing rápido. ProRes 422 para entrega, ProRes 4444 si necesitas canal alfa o composición.',
-            specs:'Contenedor: .mov · Bitrate: 220–500 Mbps (422 HQ 1080p) · Sin pérdidas visuales',
-            usa:'Post de televisión, cine, spots publicitarios'
-          }},
-          { label:'Avid Media Composer', result: { name:'Avid DNxHD / DNxHR', color:'#4A7A6A',
-            desc:'Equivalente al ProRes en el ecosistema Avid. DNxHD para 1080p/720p, DNxHR para resoluciones 4K+. Intraframe, edición fluida.',
-            specs:'Contenedor: .mxf / .mov · Bitrate: 115–185 Mbps (DNxHD 1080p)',
-            usa:'Producción broadcast, noticias, documentales'
-          }},
-          { label:'Premiere / DaVinci / Resolve', result: { name:'H.264 / H.265 a bitrate alto', color:'#6B7FA3',
-            desc:'Para edición en software no optimizado para ProRes, H.264 o H.265 a bitrate alto (≥50 Mbps) ofrece buena calidad. Para VFX o corrección de color, mejor exportar a ProRes o DPX primero.',
-            specs:'Contenedor: .mp4 / .mov · Bitrate recomendado: ≥50 Mbps para edición',
-            usa:'Producción indie, youtubers, social media'
-          }},
-        ]
-      }},
-      { label: 'Distribución / Streaming', next: {
-        q: '¿Dónde se va a visualizar?',
-        opts: [
-          { label:'Web / YouTube / Redes', result: { name:'H.264 (AVC)', color:'#A06B4A',
-            desc:'El codec más compatible del mundo. Funciona en todos los dispositivos, navegadores y plataformas. H.264 Baseline/Main profile para máxima compatibilidad.',
-            specs:'Contenedor: .mp4 · Bitrate: 4–20 Mbps (1080p) · Compresión interframe',
-            usa:'YouTube, Vimeo, redes sociales, web'
-          }},
-          { label:'4K streaming / Netflix / Disney+', result: { name:'H.265 (HEVC)', color:'#7A6BA3',
-            desc:'Doble eficiencia que H.264 al mismo bitrate. Estándar para 4K HDR. Requiere más CPU para codificar pero decodificación acelerada en hardware moderno.',
-            specs:'Contenedor: .mp4 / .mkv · Bitrate: 8–25 Mbps (4K) · Soporte HDR10/Dolby Vision',
-            usa:'4K streaming, Blu-ray UHD, plataformas premium'
-          }},
-          { label:'Web / Open Source', result: { name:'AV1', color:'#6B9A6B',
-            desc:'Codec libre de patentes de AOMedia. 30% más eficiente que HEVC. Adopción creciente en YouTube y Netflix. Codificación lenta pero decodificación hardware disponible en hardware moderno.',
-            specs:'Contenedor: .webm / .mp4 · Sin royalties · Soporte HDR',
-            usa:'YouTube 4K, streaming web, aplicaciones de código abierto'
-          }},
-        ]
-      }},
-      { label: 'VJing / Espectáculo en vivo', next: {
-        q: '¿Usas Resolume Arena?',
-        opts: [
-          { label:'Sí — Resolume Arena', result: { name:'DXV 3 (Resolume)', color:'#4A7A6A',
-            desc:'Codec propietario de Resolume optimizado para decodificación GPU. La reproducción de múltiples capas en tiempo real sin carga de CPU. Convierte tus clips con el conversor incluido en Resolume.',
-            specs:'Contenedor: .avi · Decodificación GPU · Calidad visual excelente',
-            usa:'VJing con Resolume Arena — máximo rendimiento en directo'
-          }},
-          { label:'Sí — Resolume (WiFi/red)', result: { name:'HAP / HAP Q', color:'#A06B6B',
-            desc:'Alternativa a DXV con compresión más agresiva. HAP tiene el menor tamaño de archivo, HAP Q mayor calidad. También decodificación por GPU. Compatible con otros softwares como VDMX.',
-            specs:'Contenedor: .mov · Decodificación GPU · HAP: buena calidad / HAP Q: alta calidad',
-            usa:'VJing con múltiples capas, ordenadores con menos GPU'
-          }},
-          { label:'No — otro software', result: { name:'Apple ProRes 422 LT', color:'#6B9A6B',
-            desc:'Para mediaservers y software VJ que no soporten DXV/HAP, ProRes 422 LT es el mejor equilibrio entre calidad, tamaño y velocidad de decodificación. Ampliamente compatible.',
-            specs:'Contenedor: .mov · Bitrate: ~100 Mbps · Intraframe — scrubbing perfecto',
-            usa:'Pandoras Box, Hippotizer, Notch, vMix, otros mediaservers'
-          }},
-        ]
-      }},
-      { label: 'Archivo sin pérdidas', result: { name:'RAW / ProRes 4444 XQ / DPX', color:'#9B9590',
-        desc:'Para archivo máster sin comprimir o con la mínima compresión posible. DPX para cine, ProRes 4444 XQ para vídeo broadcast de máxima calidad. Archivos muy grandes — requiere RAID/NVMe.',
-        specs:'DPX: sin compresión · ProRes 4444 XQ: ~500 Mbps · Contenedor: .dpx / .mov',
-        usa:'Máster de cine, archivo institucional, composición VFX'
-      }},
-    ]
-  };
-
-  function renderCodecTree(node, depth) {
-    const el = document.getElementById('codecTree');
-    if (!el) return;
-
-    if (node.result) {
-      const r = node.result;
-      el.innerHTML = `
-        <div style="background:var(--bg2);border-radius:10px;padding:20px;border-left:4px solid ${r.color};animation:fadeUp .3s ease">
-          <div style="font-size:10px;font-weight:700;color:${r.color};letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">✓ CODEC RECOMENDADO</div>
-          <div style="font-size:20px;font-weight:800;color:var(--text1);margin-bottom:10px">${r.name}</div>
-          <p style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:12px">${r.desc}</p>
-          <div style="font-size:12px;color:var(--text3);font-family:monospace;background:var(--bg1);border-radius:6px;padding:8px 12px;margin-bottom:12px">${r.specs}</div>
-          <div style="font-size:13px;color:var(--text2)">💼 <strong>Uso típico:</strong> ${r.usa}</div>
-          <button onclick="resetCodecTree()" style="margin-top:16px;padding:8px 18px;background:var(--accent-lt);color:var(--accent);border:1px solid rgba(74,122,106,.2);border-radius:8px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600">↩ Volver al inicio</button>
-        </div>`;
-      return;
-    }
-
-    const trail = window._codecTrail || [];
-    let breadcrumb = trail.length ? `<div style="font-size:11px;color:var(--text3);margin-bottom:12px">${trail.join(' › ')}</div>` : '';
-
-    el.innerHTML = `
-      ${breadcrumb}
-      <div style="font-size:16px;font-weight:700;color:var(--text1);margin-bottom:16px">${node.q}</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        ${node.opts.map((opt,i) => `
-          <button onclick="codecTreeStep(${i})" style="text-align:left;padding:12px 16px;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;font-size:14px;color:var(--text1);transition:.15s;font-weight:500"
-            onmouseover="this.style.borderColor='var(--accent)';this.style.background='var(--accent-lt)'"
-            onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--surface)'">
-            ${opt.label}
-          </button>
-        `).join('')}
-      </div>`;
-    window._codecCurrent = node;
-  }
-
-  function codecTreeStep(i) {
-    const opt = window._codecCurrent.opts[i];
-    window._codecTrail = window._codecTrail || [];
-    window._codecTrail.push(opt.label);
-    renderCodecTree(opt.next || opt);
-  }
-
-  function resetCodecTree() {
-    window._codecTrail = [];
-    renderCodecTree(CODEC_TREE, 0);
-  }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', resetCodecTree);
-  else resetCodecTree();
-  </script>
-
   <div class="inner-pane" id="c_codecs">
     <div class="grid-2">
       <div class="panel">
@@ -2127,11 +1473,11 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
         <div class="grid-2">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
             <div style="font-weight:700;color:var(--accent);margin-bottom:8px;font-size:13px">INTRA-FRAME</div>
-            <p style="font-size:13.5px;color:var(--text2)">Comprime <strong>cada frame individualmente</strong>. Cada fotograma tiene toda la información de píxeles.<br>✓ Menor procesamiento<br>✗ Archivos más pesados<br>Ej: ProRes, DNxHD, MJPEG</p>
+            <p style="font-size:12px;color:var(--text2)">Comprime <strong>cada frame individualmente</strong>. Cada fotograma tiene toda la información de píxeles.<br>✓ Menor procesamiento<br>✗ Archivos más pesados<br>Ej: ProRes, DNxHD, MJPEG</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
             <div style="font-weight:700;color:var(--accent5);margin-bottom:8px;font-size:13px">INTER-FRAME</div>
-            <p style="font-size:13.5px;color:var(--text2)">Se basa en la <strong>similitud entre frames</strong> (I, P, B frames). Sólo guarda los cambios.<br>✓ Menor peso<br>✗ Mayor procesamiento<br>Ej: H.264, H.265, MPEG-4</p>
+            <p style="font-size:12px;color:var(--text2)">Se basa en la <strong>similitud entre frames</strong> (I, P, B frames). Sólo guarda los cambios.<br>✓ Menor peso<br>✗ Mayor procesamiento<br>Ej: H.264, H.265, MPEG-4</p>
           </div>
         </div>
       </div>
@@ -2362,258 +1708,6 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
     </div>
 
   </div><!-- /c_vj -->
-  <div class="inner-pane" id="c_ndi">
-
-    <div class="panel">
-      <div class="panel-title">¿Qué es NDI?</div>
-      <div class="grid-2">
-        <div class="info-card">
-          <div class="info-card-title">Network Device Interface</div>
-          <p><strong>NDI</strong> (Network Device Interface) es un protocolo de vídeo IP desarrollado por NewTek que permite transmitir vídeo, audio y metadatos en alta calidad a través de una red Ethernet estándar. A diferencia de HDMI o SDI, no requiere cableado dedicado de vídeo — usa la misma red de datos.</p>
-          <p style="margin-top:10px">Cada dispositivo NDI en la red se <strong>anuncia automáticamente</strong> (mDNS) y es descubierto por el resto sin configuración manual. Es el estándar de facto en producción en vivo moderna, educación, esports y espectáculos.</p>
-        </div>
-        <div class="info-card">
-          <div class="info-card-title">Por qué importa en espectáculos en vivo</div>
-          <p>En un montaje AV un técnico de vídeo puede distribuir <strong>múltiples señales de cámara, señales de PC y monitores de backstage</strong> sobre el cableado de red existente. Resolume Arena soporta NDI nativamente como fuente de entrada.</p>
-          <div style="display:flex;flex-direction:column;gap:6px;margin-top:12px">
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--accent3);font-size:16px">✓</span> Sin cableado SDI ni HDMI de larga distancia</div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--accent3);font-size:16px">✓</span> Escalable — añadir fuentes sin nueva infraestructura</div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--accent3);font-size:16px">✓</span> Latencia ~16 ms en NDI Full (aceptable para lip-sync)</div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--accent3);font-size:16px">✓</span> Software gratuito: NDI Tools</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel section-gap">
-      <div class="panel-title">NDI vs HDMI vs SDI — Comparativa</div>
-      <div class="ox">
-        <table class="comp-table">
-          <thead>
-            <tr>
-              <th>Característica</th>
-              <th style="color:var(--accent4)">HDMI</th>
-              <th style="color:var(--accent2)">SDI</th>
-              <th style="color:var(--accent3)">NDI</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Tipo de señal</td><td>Digital (cobre)</td><td>Digital coaxial</td><td class="hl">IP sobre Ethernet</td></tr>
-            <tr><td>Distancia máxima</td><td>~15 m</td><td>~100 m</td><td class="hl">Ilimitada (red)</td></tr>
-            <tr><td>Latencia típica</td><td>~5 ms</td><td>~1 ms</td><td class="hl">~16 ms (Full) / ~100 ms (HX)</td></tr>
-            <tr><td>Ancho de banda</td><td>3–48 Gbps</td><td>3G-SDI: 3 Gbps</td><td class="hl">125 Mbps (Full)</td></tr>
-            <tr><td>Coste cable/metro</td><td>€10–45</td><td>€90–275</td><td class="hl">€5–18 (Cat6)</td></tr>
-            <tr><td>Múltiples destinos</td><td>Con splitter</td><td>Con splitter</td><td class="hl">Nativo (Multicast)</td></tr>
-            <tr><td>Compresión</td><td>Sin compresión</td><td>Sin compresión</td><td class="hl">SpeedHQ / H.264 / H.265</td></tr>
-            <tr><td>Escalabilidad</td>
-              <td><span style="color:#aaa">★☆☆☆☆</span></td>
-              <td><span style="color:#f59e0b">★★☆☆☆</span></td>
-              <td class="hl"><span style="color:var(--accent3)">★★★★★</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="panel section-gap">
-      <div class="panel-title">Versiones NDI</div>
-      <div class="ox">
-        <table class="comp-table">
-          <thead>
-            <tr><th>Versión</th><th>Codec</th><th>Bitrate 1080p30</th><th>Latencia</th><th>Fuentes en 1 Gbps</th><th>Uso recomendado</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="hl"><strong>NDI Full</strong></td>
-              <td>SpeedHQ (intra-frame)</td>
-              <td><strong>125 Mbps</strong></td>
-              <td>~16 ms</td>
-              <td>~6</td>
-              <td>Producción broadcast, directo crítico</td>
-            </tr>
-            <tr>
-              <td>NDI|HX</td>
-              <td>H.264 (inter-frame)</td>
-              <td>15 Mbps</td>
-              <td>~100 ms</td>
-              <td>~10</td>
-              <td>Educación, corporativo, WiFi</td>
-            </tr>
-            <tr>
-              <td>NDI|HX2</td>
-              <td>H.265 / HEVC</td>
-              <td>12 Mbps</td>
-              <td>~100 ms</td>
-              <td>~15</td>
-              <td>Teatros, eventos medianos</td>
-            </tr>
-            <tr>
-              <td>NDI|HX3</td>
-              <td>H.265 optimizado</td>
-              <td>8 Mbps</td>
-              <td>~100 ms</td>
-              <td>20+</td>
-              <td>WAN, esports, redes limitadas</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="note" style="margin-top:12px">💡 <strong>NDI Full</strong> es la única versión con latencia aceptable para lip-sync en directo (~16 ms). Las variantes HX priorizan eficiencia de red sobre latencia.</div>
-    </div>
-
-    <div class="panel section-gap">
-      <div class="panel-title">Modos de transmisión</div>
-      <div class="grid-2">
-        <div class="info-card" style="border-left:3px solid var(--accent3)">
-          <div class="info-card-title" style="color:var(--accent3)">Unicast (1:1) — Por defecto</div>
-          <p>Comunicación punto a punto. Cada receptor recibe su propio flujo de datos. <strong>4 receptores = 4 × 125 Mbps = 500 Mbps</strong>. Simple y compatible con cualquier switch.</p>
-        </div>
-        <div class="info-card" style="border-left:3px solid var(--accent2)">
-          <div class="info-card-title" style="color:var(--accent2)">Multicast (1:N) — Eficiente</div>
-          <p>Una sola fuente, múltiples receptores comparten el mismo flujo. <strong>4 receptores = solo 125 Mbps total.</strong> Requiere switch con <em>IGMP Snooping</em> activado. Ahorro del 40–60% en ancho de banda.</p>
-        </div>
-        <div class="info-card" style="border-left:3px solid var(--accent4)">
-          <div class="info-card-title" style="color:var(--accent4)">Broadcast (1:ALL) — Solo discovery</div>
-          <p>Envía a todos los dispositivos. Usado internamente por NDI para descubrimiento automático (mDNS). <strong>Nunca para vídeo</strong> — satura la red.</p>
-        </div>
-        <div class="info-card" style="border-left:3px solid var(--purple)">
-          <div class="info-card-title" style="color:var(--purple)">Regla de red</div>
-          <p>Calcular el ancho de banda total necesario y añadir <strong>30–40% de margen</strong>. Usar switch gestionado (<em>managed</em>) para activar QoS y IGMP. Red dedicada recomendada separada del tráfico de datos.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel section-gap">
-      <div class="panel-title">NDI Tools — Software gratuito</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">
-        <div class="info-card" style="padding:12px 14px">
-          <div style="font-size:11px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">Webcam</div>
-          <p style="font-size:13px">Convierte cualquier fuente NDI en webcam virtual para usar en Zoom, Teams, OBS…</p>
-        </div>
-        <div class="info-card" style="padding:12px 14px">
-          <div style="font-size:11px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">Studio Monitor</div>
-          <p style="font-size:13px">Monitor universal NDI. Recibe cualquier fuente de la red sin configuración. Ideal para backstage.</p>
-        </div>
-        <div class="info-card" style="padding:12px 14px">
-          <div style="font-size:11px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">Screen Capture</div>
-          <p style="font-size:13px">Envía el escritorio o una ventana como fuente NDI. Útil para compartir señal de Resolume a otros equipos.</p>
-        </div>
-        <div class="info-card" style="padding:12px 14px">
-          <div style="font-size:11px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">Bridge</div>
-          <p style="font-size:13px">Permite enviar NDI sobre WAN (Internet). Útil para conexiones entre sedes o streaming remoto.</p>
-        </div>
-        <div class="info-card" style="padding:12px 14px">
-          <div style="font-size:11px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">Test Patterns</div>
-          <p style="font-size:13px">Genera patrones de prueba como fuente NDI. Imprescindible para verificar la cadena antes del evento.</p>
-        </div>
-        <div class="info-card" style="padding:12px 14px">
-          <div style="font-size:11px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">Access Manager</div>
-          <p style="font-size:13px">Controla qué fuentes NDI son visibles en la red. Permite gestionar permisos de acceso entre dispositivos.</p>
-        </div>
-      </div>
-      <div class="note" style="margin-top:12px">🔗 Descarga gratuita en <strong>ndi.video/tools</strong> · Plugins para After Effects, Premiere Pro y VLC también disponibles.</div>
-    </div>
-
-    <div class="panel section-gap">
-      <div class="panel-title">Caso de uso — Espectáculos en vivo</div>
-      <div class="grid-2">
-        <div>
-          <div class="info-card" style="border-left:3px solid var(--accent3)">
-            <div class="info-card-title">Configuración típica — Teatro / Evento</div>
-            <p style="margin-bottom:8px">Para una producción con 4–6 cámaras y múltiples monitores de control:</p>
-            <div style="display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--text2)">
-              <div>📷 <strong>3× cámaras NDI Full</strong> — wide, medium, close · 375 Mbps</div>
-              <div>📷 <strong>2× PTZ NDI|HX2</strong> — backstage, camerinos · 24 Mbps</div>
-              <div>🖥 <strong>4× Studio Monitor</strong> — backstage, cabina luz, sonido, dirección</div>
-              <div>🎬 <strong>vMix / Resolume</strong> — recibe todas las fuentes NDI</div>
-              <div>🌐 <strong>NDI Screen Capture</strong> — comparte señal del operador VJ</div>
-              <div>📡 <strong>Red dedicada Gigabit</strong> con QoS para vídeo</div>
-            </div>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <div class="info-card" style="padding:12px 14px">
-            <div style="font-size:11px;font-weight:700;color:var(--accent3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px">Ancho de banda total estimado</div>
-            <div style="font-family:monospace;font-size:13px;color:var(--text1);line-height:1.8">
-              3 × NDI Full = 375 Mbps<br>
-              2 × NDI|HX2 = 24 Mbps<br>
-              Margen 35% = +135 Mbps<br>
-              <span style="color:var(--accent3);font-weight:700">Total ≈ 534 Mbps → Switch 1 Gbps ✓</span>
-            </div>
-          </div>
-          <div class="info-card" style="padding:12px 14px;border-left:3px solid #f59e0b">
-            <div style="font-size:11px;font-weight:700;color:#9A6000;letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px">⚠ Puntos críticos</div>
-            <p style="font-size:13px;color:var(--text2);line-height:1.65">NDI Full para señales donde el lip-sync sea crítico. Nunca mezclar tráfico NDI con WiFi de producción. Switch <em>managed</em> obligatorio si usas Multicast.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /c_ndi -->
-  <div class="inner-pane" id="c_flujo">
-    <div class="panel">
-      <div class="panel-title">Diagrama de flujo de señal AV</div>
-      <p style="font-size:14px;color:var(--text2);margin-bottom:16px">Haz clic en cada nodo para ver sus detalles. La señal recorre este camino desde la fuente hasta la pantalla.</p>
-      <div style="overflow-x:auto">
-        <svg id="avFlowSvg" viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:600px;display:block;cursor:pointer"></svg>
-      </div>
-      <div id="avFlowDetail" style="margin-top:16px;background:var(--bg2);border-radius:8px;padding:14px 18px;border-left:3px solid var(--accent);min-height:54px;font-size:14px;color:var(--text2);display:none"></div>
-    </div>
-  </div>
-
-  <script>
-  (function(){
-    const svg = document.getElementById('avFlowSvg');
-    if (!svg) return;
-    const nodes = [
-      { id:'fuente',    x:40,   label:'📷',  name:'Fuente',      color:'#6B9A6B', detail:'<strong>Fuente de señal:</strong> cámara, PC, reproductor, señal NDI… Genera la imagen en raw o comprimida. Define la resolución y framerate de partida.' },
-      { id:'captura',   x:160,  label:'🎛️',  name:'Captura',     color:'#4A7A6A', detail:'<strong>Tarjeta de captura / interfaz:</strong> convierte la señal HDMI/SDI/NDI en datos digitales procesables por el PC. Ej: Blackmagic DeckLink, Magewell.' },
-      { id:'codec',     x:280,  label:'⚙️',  name:'Codec',       color:'#A06B4A', detail:'<strong>Codec:</strong> algoritmo de compresión/descompresión. Determina calidad, tamaño y compatibilidad. ProRes para edición, H.264/H.265 para distribución, DXV/HAP para VJing en tiempo real.' },
-      { id:'contenedor',x:400,  label:'📦',  name:'Contenedor',  color:'#6B7FA3', detail:'<strong>Contenedor (wrapper):</strong> archivo que empaqueta el codec + audio + metadatos. .mp4 (universal), .mov (Apple/Pro), .mxf (broadcast), .webm (web). El contenedor NO define la calidad — sí el codec.' },
-      { id:'distrib',   x:520,  label:'🔀',  name:'Distribución',color:'#7A6BA3', detail:'<strong>Distribución y routing:</strong> la señal se encamina hacia uno o varios destinos. Splitters, matrices, NDI, HDMI over IP. Aquí se decide quién recibe qué señal.' },
-      { id:'proceso',   x:640,  label:'🎬',  name:'Proceso/Mezcla',color:'#A06B6B',detail:'<strong>Procesado en vivo:</strong> software como Resolume Arena recibe la señal, aplica efectos, blend modes, outputs configurados. También mezcladores hardware como ATEM.' },
-      { id:'salida',    x:760,  label:'🖥️',  name:'Salida',      color:'#6B9A6B', detail:'<strong>Salida / display:</strong> proyector, pantalla LED, monitor, stream RTMP, grabación. Cada destino tiene requisitos de resolución, framerate y conector distintos.' },
-    ];
-    const CY=110, NW=90, NH=54, R=6;
-    let html = '';
-
-    // Arrows
-    for(let i=0;i<nodes.length-1;i++){
-      const x1=nodes[i].x+NW, x2=nodes[i+1].x, mx=(x1+x2)/2;
-      html += `<path d="M${x1} ${CY} C${mx} ${CY} ${mx} ${CY} ${x2} ${CY}" stroke="rgba(0,0,0,.15)" stroke-width="2" fill="none" marker-end="url(#arr)"/>`;
-    }
-    html += `<defs><marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="rgba(0,0,0,.25)"/></marker></defs>`;
-
-    nodes.forEach((n,i) => {
-      const x=n.x, y=CY-NH/2;
-      html += `<g class="av-node" data-id="${n.id}" onclick="avFlowClick('${n.id}')" style="cursor:pointer">
-        <rect x="${x}" y="${y}" width="${NW}" height="${NH}" rx="${R}" fill="${n.color}" fill-opacity=".12" stroke="${n.color}" stroke-width="1.5"/>
-        <text x="${x+NW/2}" y="${y+18}" text-anchor="middle" font-size="16">${n.label}</text>
-        <text x="${x+NW/2}" y="${y+36}" text-anchor="middle" font-size="10" fill="${n.color}" font-weight="700" font-family="monospace">${n.name}</text>
-        <rect x="${x}" y="${y+NH-6}" width="${NW}" height="6" rx="${R}" fill="${n.color}" opacity=".6"/>
-      </g>`;
-    });
-    svg.innerHTML = html;
-
-    // Store detail data
-    window._avNodes = {};
-    nodes.forEach(n => window._avNodes[n.id] = n);
-  })();
-
-  function avFlowClick(id) {
-    const n = window._avNodes[id];
-    if (!n) return;
-    const detail = document.getElementById('avFlowDetail');
-    detail.style.display = 'block';
-    detail.style.borderColor = n.color;
-    detail.innerHTML = `<div style="font-size:11px;color:${n.color};font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">${n.name}</div>${n.detail}`;
-    // Highlight
-    document.querySelectorAll('#avFlowSvg .av-node rect:first-child').forEach(r => r.setAttribute('fill-opacity','.1'));
-    const g = document.querySelector(`#avFlowSvg [data-id="${id}"] rect:first-child`);
-    if(g) g.setAttribute('fill-opacity','.3');
-  }
-  </script>
-
 
 </section>
 
@@ -2732,602 +1826,65 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       </div>
     </div>
   </div>
-
-  <!-- Inner tabs -->
-  <div class="inner-tabs">
-    <div class="inner-tab active" data-inner="i_routing_teoria">📖 Teoría</div>
-    <div class="inner-tab" data-inner="i_routing_builder">🔌 Constructor de Diagramas</div>
-  </div>
-
-  <!-- ── PESTAÑA: TEORÍA ──────────────────────────────────────── -->
-  <div class="inner-pane active" id="i_routing_teoria">
-    <div class="grid-3">
-      <div class="info-card">
-        <div class="info-card-title" style="color:var(--accent)">🔀 Matriz (Matrix)</div>
-        <p>Permite enrutar cualquier entrada a cualquier salida de forma flexible. Ej: 8 entradas × 8 salidas. Fundamental en instalaciones AV complejas y salas de control broadcast.</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title" style="color:var(--accent3)">📤 Splitter (Distribuidor)</div>
-        <p>Duplica una señal de entrada en múltiples salidas idénticas. Un splitter HDMI 1:4 manda la misma imagen a 4 pantallas simultáneamente. Activo o pasivo.</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title" style="color:var(--accent4)">🔄 Conversor</div>
-        <p>Transforma señales entre estándares: HDMI → SDI, SDI → HDMI, analógico → digital. Imprescindible al mezclar equipos de consumer y broadcast.</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title" style="color:var(--accent5)">🔀 Switch</div>
-        <p>Permite seleccionar entre múltiples entradas y enviarlas a una o varias salidas. A diferencia de la matriz, suele ser una operación de selección simple (A/B switch).</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title" style="color:var(--purple)">📐 Escalador (Scaler)</div>
-        <p>Cambia la resolución o el formato de una señal: upscale (SD→HD), downscale (4K→HD), conversión de frame rate, cambio de aspect ratio. Muy usado en mezcladores de vídeo.</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title" style="color:var(--accent6)">🎛️ Mezcladora de Vídeo</div>
-        <p>Combina múltiples fuentes de vídeo en tiempo real. Permite transiciones, efectos, incrustaciones y keying. Esencial en producción en directo, retransmisiones y eventos.</p>
-      </div>
+  <div class="grid-3">
+    <div class="info-card">
+      <div class="info-card-title" style="color:var(--accent)">🔀 Matriz (Matrix)</div>
+      <p>Permite enrutar cualquier entrada a cualquier salida de forma flexible. Ej: 8 entradas × 8 salidas. Fundamental en instalaciones AV complejas y salas de control broadcast.</p>
     </div>
-    <div class="panel section-gap">
-      <div class="panel-title">Flujo Típico de Señal AV en un Evento</div>
-      <div class="diagram-wrap">
-        <div class="diagram-row">
-          <div class="diag-node source">Cámara 1</div>
-          <div class="diag-arrow">→</div>
-          <div class="diag-node source">Cámara 2</div>
-          <div class="diag-arrow">→</div>
-          <div class="diag-node source">PC / Laptop</div>
-          <div class="diag-arrow">→</div>
-          <div class="diag-node source">Reproductor</div>
-        </div>
-        <div class="diagram-row"><div class="diag-arrow" style="padding-left:30px">↓↓↓↓</div></div>
-        <div class="diagram-row">
-          <div class="diag-node process">Mezcladora Vídeo</div>
-          <div class="diag-arrow">→</div>
-          <div class="diag-node process">Escalador/Conversor</div>
-          <div class="diag-arrow">→</div>
-          <div class="diag-node device">Matriz / Splitter</div>
-        </div>
-        <div class="diagram-row"><div class="diag-arrow" style="padding-left:30px">↓</div></div>
-        <div class="diagram-row">
-          <div class="diag-node output">Proyector</div>
-          <div class="diag-arrow">+</div>
-          <div class="diag-node output">Pantalla LED</div>
-          <div class="diag-arrow">+</div>
-          <div class="diag-node output">Stream</div>
-          <div class="diag-arrow">+</div>
-          <div class="diag-node output">Grabación</div>
-        </div>
+    <div class="info-card">
+      <div class="info-card-title" style="color:var(--accent3)">📤 Splitter (Distribuidor)</div>
+      <p>Duplica una señal de entrada en múltiples salidas idénticas. Un splitter HDMI 1:4 manda la misma imagen a 4 pantallas simultáneamente. Activo o pasivo.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title" style="color:var(--accent4)">🔄 Conversor</div>
+      <p>Transforma señales entre estándares: HDMI → SDI, SDI → HDMI, analógico → digital. Imprescindible al mezclar equipos de consumer y broadcast.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title" style="color:var(--accent5)">🔀 Switch</div>
+      <p>Permite seleccionar entre múltiples entradas y enviarlas a una o varias salidas. A diferencia de la matriz, suele ser una operación de selección simple (A/B switch).</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title" style="color:var(--purple)">📐 Escalador (Scaler)</div>
+      <p>Cambia la resolución o el formato de una señal: upscale (SD→HD), downscale (4K→HD), conversión de frame rate, cambio de aspect ratio. Muy usado en mezcladores de vídeo.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title" style="color:var(--accent6)">🎛️ Mezcladora de Vídeo</div>
+      <p>Combina múltiples fuentes de vídeo en tiempo real. Permite transiciones, efectos, incrustaciones y keying. Esencial en producción en directo, retransmisiones y eventos.</p>
+    </div>
+  </div>
+  <div class="panel section-gap">
+    <div class="panel-title">Flujo Típico de Señal AV en un Evento</div>
+    <div class="diagram-wrap">
+      <div class="diagram-row">
+        <div class="diag-node source">Cámara 1</div>
+        <div class="diag-arrow">→</div>
+        <div class="diag-node source">Cámara 2</div>
+        <div class="diag-arrow">→</div>
+        <div class="diag-node source">PC / Laptop</div>
+        <div class="diag-arrow">→</div>
+        <div class="diag-node source">Reproductor</div>
+      </div>
+      <div class="diagram-row"><div class="diag-arrow" style="padding-left:30px">↓↓↓↓</div></div>
+      <div class="diagram-row">
+        <div class="diag-node process">Mezcladora Vídeo</div>
+        <div class="diag-arrow">→</div>
+        <div class="diag-node process">Escalador/Conversor</div>
+        <div class="diag-arrow">→</div>
+        <div class="diag-node device">Matriz / Splitter</div>
+      </div>
+      <div class="diagram-row"><div class="diag-arrow" style="padding-left:30px">↓</div></div>
+      <div class="diagram-row">
+        <div class="diag-node output">Proyector</div>
+        <div class="diag-arrow">+</div>
+        <div class="diag-node output">Pantalla LED</div>
+        <div class="diag-arrow">+</div>
+        <div class="diag-node output">Stream</div>
+        <div class="diag-arrow">+</div>
+        <div class="diag-node output">Grabación</div>
       </div>
     </div>
   </div>
-
-  <!-- ── PESTAÑA: CONSTRUCTOR ─────────────────────────────────── -->
-  <div class="inner-pane" id="i_routing_builder">
-
-    <style>
-      #routingApp { display:flex; gap:0; border:1.5px solid var(--border); border-radius:12px; overflow:hidden; background:var(--surface); min-height:560px; }
-
-      /* Palette */
-      #routingPalette { width:170px; flex-shrink:0; background:var(--surface-2); border-right:1.5px solid var(--border); overflow-y:auto; padding:12px 10px; display:flex; flex-direction:column; gap:10px; }
-      .rp-category { font-size: 11px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:var(--text-2); padding:0 2px; margin-top:4px; }
-      .rp-item { display:flex; align-items:center; gap:8px; padding:7px 9px; border-radius:8px; cursor:pointer; font-size:11px; font-weight:600; border:1.5px solid transparent; transition:all .15s; background:#fff; }
-      .rp-item:hover { transform:translateX(2px); box-shadow:0 2px 8px rgba(0,0,0,.1); }
-      .rp-icon { font-size:15px; line-height:1; }
-
-      /* Toolbar */
-      #routingToolbar { display:flex; align-items:center; gap:8px; padding:10px 14px; background:var(--surface); border-bottom:1.5px solid var(--border); flex-wrap:wrap; }
-      .rt-btn { padding:5px 12px; border-radius:7px; border:1.5px solid var(--border); background:var(--surface-2); font-size:11px; font-weight:600; cursor:pointer; transition:all .12s; color:var(--text-1); }
-      .rt-btn:hover { background:var(--border); }
-      .rt-btn.danger { border-color:#E07070; color:#C04040; }
-      .rt-btn.danger:hover { background:#FFF0F0; }
-      .rt-btn.primary { border-color:var(--accent); color:var(--accent); }
-      .rt-btn.primary:hover { background:var(--accent-lt); }
-      .rt-hint { font-size: 11px; color:var(--text-2); margin-left:auto; }
-
-      /* Canvas area */
-      #routingCanvasWrap { flex:1; display:flex; flex-direction:column; min-width:0; }
-      #routingCanvas { position:relative; flex:1; overflow:hidden; background:
-        radial-gradient(circle, #d0d8e4 1px, transparent 1px);
-        background-size:24px 24px;
-        background-color:#F8F9FB;
-        cursor:default; min-height:480px; }
-      #routingConnSVG { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:visible; }
-      #routingConnSVG .rc { pointer-events:stroke; cursor:pointer; }
-
-      /* Blocks */
-      .rb { position:absolute; border-radius:10px; cursor:move; user-select:none; box-shadow:0 2px 10px rgba(0,0,0,.12); transition:box-shadow .15s; z-index:5; }
-      .rb:hover { box-shadow:0 4px 18px rgba(0,0,0,.18); }
-      .rb.rb-selected { box-shadow:0 0 0 3px var(--accent), 0 4px 18px rgba(0,0,0,.18); z-index:10; }
-      .rb-head { padding:7px 9px 6px; border-radius:8px 8px 0 0; display:flex; align-items:center; gap:6px; }
-      .rb-label { font-size: 11.5px; font-weight:700; color:#fff; flex:1; }
-      .rb-port { position:absolute; border-radius:50%; z-index:12; transition:transform .1s, background .1s; }
-      .rb-port:hover { transform:scale(1.4); }
-      .rb-port-in { background:#fff; }
-      .rb-port-out { background:#4A7A6A; }
-      .rb-port.pending-target { background:#FFD700 !important; }
-      .rb-port-label { position:absolute; font-size:10px; color:var(--text-2); white-space:nowrap; pointer-events:none; }
-
-      /* Selected conn highlight */
-      .rc-selected { stroke:#E07030 !important; stroke-width:3px !important; }
-
-      /* Empty state */
-      #routingEmpty { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none; opacity:.5; gap:8px; }
-      #routingEmpty .re-icon { font-size:40px; }
-      #routingEmpty .re-text { font-size:12px; color:var(--text-2); text-align:center; line-height:1.5; }
-
-      /* Delete hint */
-      #routingDeleteHint { position:absolute; bottom:10px; right:12px; font-size: 11px; color:var(--text-2); background:rgba(255,255,255,.85); padding:4px 10px; border-radius:20px; pointer-events:none; opacity:0; transition:opacity .2s; }
-      #routingDeleteHint.visible { opacity:1; }
-    </style>
-
-    <div id="routingApp">
-      <!-- Palette -->
-      <div id="routingPalette">
-        <div class="rp-category">Fuentes</div>
-        <div class="rp-item" data-rtype="camara" style="border-color:#6B9A6B;" onclick="RB.add('camara')"><span class="rp-icon">📷</span>Cámara</div>
-        <div class="rp-item" data-rtype="pc" style="border-color:#6B9A6B;" onclick="RB.add('pc')"><span class="rp-icon">💻</span>PC / Laptop</div>
-        <div class="rp-item" data-rtype="reprod" style="border-color:#6B9A6B;" onclick="RB.add('reprod')"><span class="rp-icon">📀</span>Reproductor</div>
-        <div class="rp-item" data-rtype="sdiIn" style="border-color:#6B9A6B;" onclick="RB.add('sdiIn')"><span class="rp-icon">🎥</span>Cámara SDI</div>
-
-        <div class="rp-category">Routing</div>
-        <div class="rp-item" data-rtype="m44" style="border-color:#4A7A6A;" onclick="RB.add('m44')"><span class="rp-icon">🔀</span>Matriz 4×4</div>
-        <div class="rp-item" data-rtype="m88" style="border-color:#4A7A6A;" onclick="RB.add('m88')"><span class="rp-icon">🔀</span>Matriz 8×8</div>
-        <div class="rp-item" data-rtype="sp12" style="border-color:#4A7A6A;" onclick="RB.add('sp12')"><span class="rp-icon">📤</span>Splitter 1:2</div>
-        <div class="rp-item" data-rtype="sp14" style="border-color:#4A7A6A;" onclick="RB.add('sp14')"><span class="rp-icon">📤</span>Splitter 1:4</div>
-        <div class="rp-item" data-rtype="sw" style="border-color:#4A7A6A;" onclick="RB.add('sw')"><span class="rp-icon">🔃</span>Switch A/B</div>
-
-        <div class="rp-category">Proceso</div>
-        <div class="rp-item" data-rtype="mezcl" style="border-color:#A06B4A;" onclick="RB.add('mezcl')"><span class="rp-icon">🎛️</span>Mezcladora</div>
-        <div class="rp-item" data-rtype="scaler" style="border-color:#A06B4A;" onclick="RB.add('scaler')"><span class="rp-icon">📐</span>Escalador</div>
-        <div class="rp-item" data-rtype="cvhs" style="border-color:#A06B4A;" onclick="RB.add('cvhs')"><span class="rp-icon">🔄</span>Conv. HDMI→SDI</div>
-        <div class="rp-item" data-rtype="cvsh" style="border-color:#A06B4A;" onclick="RB.add('cvsh')"><span class="rp-icon">🔄</span>Conv. SDI→HDMI</div>
-
-        <div class="rp-category">Salidas</div>
-        <div class="rp-item" data-rtype="proy" style="border-color:#6B7FA3;" onclick="RB.add('proy')"><span class="rp-icon">📽️</span>Proyector</div>
-        <div class="rp-item" data-rtype="led" style="border-color:#6B7FA3;" onclick="RB.add('led')"><span class="rp-icon">🖥️</span>Pantalla LED</div>
-        <div class="rp-item" data-rtype="monitor" style="border-color:#6B7FA3;" onclick="RB.add('monitor')"><span class="rp-icon">🖥️</span>Monitor</div>
-        <div class="rp-item" data-rtype="stream" style="border-color:#6B7FA3;" onclick="RB.add('stream')"><span class="rp-icon">📡</span>Stream</div>
-        <div class="rp-item" data-rtype="grab" style="border-color:#6B7FA3;" onclick="RB.add('grab')"><span class="rp-icon">⏺️</span>Grabación</div>
-
-        <div class="rp-category" style="color:#7C3AED;border-color:#7C3AED22">NDI · IP Video</div>
-        <div class="rp-item" data-rtype="ndiCam"    style="border-color:#7C3AED;" onclick="RB.add('ndiCam')"><span class="rp-icon">📡</span>Cámara NDI</div>
-        <div class="rp-item" data-rtype="ndiScrn"   style="border-color:#7C3AED;" onclick="RB.add('ndiScrn')"><span class="rp-icon">🖥️</span>Screen Capture</div>
-        <div class="rp-item" data-rtype="ndiSwitch" style="border-color:#7C3AED;" onclick="RB.add('ndiSwitch')"><span class="rp-icon">🔀</span>Switch NDI</div>
-        <div class="rp-item" data-rtype="ndiMon"    style="border-color:#7C3AED;" onclick="RB.add('ndiMon')"><span class="rp-icon">📺</span>Studio Monitor</div>
-        <div class="rp-item" data-rtype="ndiRec"    style="border-color:#7C3AED;" onclick="RB.add('ndiRec')"><span class="rp-icon">⏺️</span>NDI Recorder</div>
-        <div class="rp-item" data-rtype="ndiBridge" style="border-color:#7C3AED;" onclick="RB.add('ndiBridge')"><span class="rp-icon">🌐</span>NDI Bridge</div>
-      </div>
-
-      <!-- Right: toolbar + canvas -->
-      <div id="routingCanvasWrap">
-        <div id="routingToolbar">
-          <button class="rt-btn primary" onclick="RB.exportJSON()">💾 Guardar</button>
-          <button class="rt-btn" onclick="RB.importJSON()">📂 Cargar</button>
-          <button class="rt-btn" id="rtBtnDelete" onclick="RB.deleteSelected()" style="display:none;">🗑 Borrar seleccionado</button>
-          <button class="rt-btn" id="rtBtnRename" onclick="RB.renameSelected()" style="display:none;">✏️ Renombrar</button>
-          <button class="rt-btn danger" onclick="RB.clearAll()">✕ Limpiar todo</button>
-          <span class="rt-hint">Haz clic en un elemento para seleccionarlo · Conecta los puertos · Supr para borrar</span>
-        </div>
-        <div id="routingCanvas">
-          <svg id="routingConnSVG" xmlns="http://www.w3.org/2000/svg"></svg>
-          <div id="routingEmpty">
-            <div class="re-icon">🔀</div>
-            <div class="re-text">Haz clic en cualquier elemento<br>de la paleta para añadirlo al lienzo</div>
-          </div>
-          <div id="routingDeleteHint">Supr / Delete — eliminar</div>
-        </div>
-      </div>
-    </div>
-
-    <script>
-    (function() {
-      const DEFS = {
-        camara: { label:'Cámara',         cat:'source',  icon:'📷', ins:0, outs:1 },
-        pc:     { label:'PC / Laptop',    cat:'source',  icon:'💻', ins:0, outs:1 },
-        reprod: { label:'Reproductor',    cat:'source',  icon:'📀', ins:0, outs:1 },
-        sdiIn:  { label:'Cámara SDI',     cat:'source',  icon:'🎥', ins:0, outs:1 },
-        m44:    { label:'Matriz 4×4',     cat:'routing', icon:'🔀', ins:4, outs:4 },
-        m88:    { label:'Matriz 8×8',     cat:'routing', icon:'🔀', ins:8, outs:8 },
-        sp12:   { label:'Splitter 1:2',   cat:'routing', icon:'📤', ins:1, outs:2 },
-        sp14:   { label:'Splitter 1:4',   cat:'routing', icon:'📤', ins:1, outs:4 },
-        sw:     { label:'Switch A/B',     cat:'routing', icon:'🔃', ins:2, outs:1 },
-        mezcl:  { label:'Mezcladora',     cat:'process', icon:'🎛️', ins:4, outs:2 },
-        scaler: { label:'Escalador',      cat:'process', icon:'📐', ins:1, outs:1 },
-        cvhs:   { label:'Conv. HDMI→SDI', cat:'process', icon:'🔄', ins:1, outs:1 },
-        cvsh:   { label:'Conv. SDI→HDMI', cat:'process', icon:'🔄', ins:1, outs:1 },
-        proy:   { label:'Proyector',      cat:'output',  icon:'📽️', ins:1, outs:0 },
-        led:    { label:'Pantalla LED',   cat:'output',  icon:'🖥️', ins:1, outs:0 },
-        monitor:{ label:'Monitor',        cat:'output',  icon:'🖥️', ins:1, outs:0 },
-        stream: { label:'Stream',         cat:'output',  icon:'📡', ins:1, outs:0 },
-        grab:   { label:'Grabación',      cat:'output',  icon:'⏺️', ins:1, outs:0 },
-        // NDI
-        ndiCam:   { label:'Cámara NDI',      cat:'ndi',    icon:'📡', ins:0,  outs:1 },
-        ndiScrn:  { label:'NDI Screen Cap',  cat:'ndi',    icon:'🖥️', ins:0,  outs:1 },
-        ndiSwitch:{ label:'Switch NDI',      cat:'ndi',    icon:'🔀', ins:4,  outs:4 },
-        ndiMon:   { label:'Studio Monitor',  cat:'ndi',    icon:'📺', ins:1,  outs:0 },
-        ndiRec:   { label:'NDI Recorder',    cat:'ndi',    icon:'⏺️', ins:1,  outs:0 },
-        ndiBridge:{ label:'NDI Bridge',      cat:'ndi',    icon:'🌐', ins:1,  outs:1 },
-      };
-
-      const CAT_COLOR = { source:'#6B9A6B', routing:'#4A7A6A', process:'#A06B4A', output:'#6B7FA3', ndi:'#7C3AED' };
-      const BLOCK_W = 148;
-      const PORT_R  = 6;
-      const PORT_SP = 24;
-      const HEAD_H  = 38;
-      const PAD_B   = 14;
-
-      let blocks = [], conns = [], selId = null, pending = null, drag = null, mouse = {x:0,y:0}, uid = 0;
-      let canvas, svg, pendingPath;
-
-      function bh(b) { return HEAD_H + Math.max(b.ins, b.outs, 1) * PORT_SP + PAD_B; }
-      function pY(h, count, i) {
-        const top = HEAD_H, zone = h - HEAD_H - PAD_B;
-        return top + zone / Math.max(count,1) * (i + 0.5);
-      }
-      function portPos(b, side, i) {
-        const h = bh(b);
-        const x = side === 'out' ? b.x + BLOCK_W : b.x;
-        const y = b.y + pY(h, side === 'out' ? b.outs : b.ins, i);
-        return {x, y};
-      }
-
-      function init() {
-        canvas = document.getElementById('routingCanvas');
-        svg    = document.getElementById('routingConnSVG');
-        if (!canvas || canvas._rbInit) return;
-        canvas._rbInit = true;
-
-        canvas.addEventListener('mousemove', onMove);
-        canvas.addEventListener('mouseup', () => { drag = null; });
-        canvas.addEventListener('click', e => {
-          if (e.target === canvas || e.target === svg) { sel(null); cancelPending(); }
-        });
-        document.addEventListener('keydown', onKey);
-        render();
-      }
-
-      function add(type) {
-        init();
-        const d = DEFS[type]; if (!d) return;
-        const b = { id:'b'+(++uid), type, ...d, label:d.label,
-          x: 30 + Math.floor(Math.random()*220),
-          y: 30 + Math.floor(Math.random()*180) };
-        blocks.push(b);
-        renderBlock(b);
-        renderConns();
-        updateEmpty();
-      }
-
-      function renderBlock(b) {
-        let el = document.getElementById('rb_'+b.id);
-        const h = bh(b);
-        const col = CAT_COLOR[b.cat];
-        if (!el) {
-          el = document.createElement('div');
-          el.className = 'rb';
-          el.id = 'rb_'+b.id;
-          el.dataset.bid = b.id;
-          el.style.width = BLOCK_W+'px';
-
-          // Head
-          const head = document.createElement('div');
-          head.className = 'rb-head';
-          head.innerHTML = `<span style="font-size:16px">${b.icon}</span><span class="rb-label">${b.label}</span>`;
-          el.appendChild(head);
-
-          // Drag
-          el.addEventListener('mousedown', e => {
-            if (e.target.classList.contains('rb-port')) return;
-            e.stopPropagation();
-            sel(b.id);
-            const r = canvas.getBoundingClientRect();
-            drag = { id:b.id, ox: e.clientX - r.left - b.x, oy: e.clientY - r.top - b.y };
-          });
-
-          // Rename on dblclick
-          head.addEventListener('dblclick', e => {
-            e.stopPropagation();
-            const v = prompt('Nombre:', b.label);
-            if (v && v.trim()) { b.label = v.trim(); head.querySelector('.rb-label').textContent = b.label; }
-          });
-
-          canvas.appendChild(el);
-        }
-
-        const head = el.querySelector('.rb-head');
-        head.style.background = col;
-        el.style.border = `2px solid ${col}`;
-        el.style.borderRadius = '10px';
-        el.style.height = h+'px';
-        el.style.left = b.x+'px';
-        el.style.top  = b.y+'px';
-        el.classList.toggle('rb-selected', selId === b.id);
-
-        // Ports
-        el.querySelectorAll('.rb-port').forEach(p => p.remove());
-
-        for (let i = 0; i < b.ins; i++) {
-          const py = pY(h, b.ins, i);
-          const port = makePort(b, 'in', i, py, col);
-          el.appendChild(port);
-        }
-        for (let i = 0; i < b.outs; i++) {
-          const py = pY(h, b.outs, i);
-          const port = makePort(b, 'out', i, py, col);
-          el.appendChild(port);
-        }
-      }
-
-      function makePort(b, side, i, py, col) {
-        const port = document.createElement('div');
-        port.className = 'rb-port rb-port-'+side;
-        port.style.cssText = `width:${PORT_R*2}px;height:${PORT_R*2}px;top:${py-PORT_R}px;` +
-          (side==='in'
-            ? `left:${-PORT_R-1}px;background:#fff;border:2px solid ${col};`
-            : `right:${-PORT_R-1}px;background:${col};border:2px solid #fff;`);
-        port.title = side === 'in' ? `Entrada ${i+1}` : `Salida ${i+1}`;
-
-        port.addEventListener('mousedown', e => {
-          e.stopPropagation();
-          if (side === 'out') {
-            startPending(b.id, i);
-          } else if (pending) {
-            finishPending(b.id, i);
-          }
-        });
-
-        // Highlight on pending
-        port._side = side;
-        port._blockId = b.id;
-        port._portIdx = i;
-        return port;
-      }
-
-      function startPending(blockId, portIdx) {
-        pending = { blockId, portIdx };
-        if (!pendingPath) {
-          pendingPath = document.createElementNS('http://www.w3.org/2000/svg','path');
-          pendingPath.setAttribute('stroke','#4A7A6A');
-          pendingPath.setAttribute('stroke-width','2');
-          pendingPath.setAttribute('stroke-dasharray','7 3');
-          pendingPath.setAttribute('fill','none');
-          pendingPath.setAttribute('opacity','0.8');
-          svg.appendChild(pendingPath);
-        }
-        // Highlight all input ports as targets
-        canvas.querySelectorAll('.rb-port-in').forEach(p => {
-          if (p._blockId !== blockId) p.classList.add('pending-target');
-        });
-        updatePendingPath();
-      }
-
-      function finishPending(blockId, portIdx) {
-        if (!pending || pending.blockId === blockId) { cancelPending(); return; }
-        const dup = conns.find(c =>
-          c.fb === pending.blockId && c.fp === pending.portIdx &&
-          c.tb === blockId && c.tp === portIdx
-        );
-        if (!dup) {
-          conns.push({ id:'c'+(++uid), fb:pending.blockId, fp:pending.portIdx, tb:blockId, tp:portIdx });
-        }
-        cancelPending();
-        renderConns();
-      }
-
-      function cancelPending() {
-        pending = null;
-        if (pendingPath) { pendingPath.remove(); pendingPath = null; }
-        canvas.querySelectorAll('.rb-port-in').forEach(p => p.classList.remove('pending-target'));
-      }
-
-      function updatePendingPath() {
-        if (!pending || !pendingPath) return;
-        const b = blocks.find(b => b.id === pending.blockId); if (!b) return;
-        const p = portPos(b, 'out', pending.portIdx);
-        const tx = mouse.x, ty = mouse.y;
-        const dx = Math.max(40, Math.abs(tx-p.x)*0.5);
-        pendingPath.setAttribute('d', `M${p.x},${p.y} C${p.x+dx},${p.y} ${tx-dx},${ty} ${tx},${ty}`);
-      }
-
-      function renderConns() {
-        svg.querySelectorAll('.rc').forEach(e => e.remove());
-        conns.forEach(c => {
-          const from = blocks.find(b => b.id === c.fb);
-          const to   = blocks.find(b => b.id === c.tb);
-          if (!from || !to) return;
-          const fp = portPos(from, 'out', c.fp);
-          const tp = portPos(to,   'in',  c.tp);
-          const dx = Math.max(40, Math.abs(tp.x-fp.x)*0.5);
-          const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-          path.setAttribute('d', `M${fp.x},${fp.y} C${fp.x+dx},${fp.y} ${tp.x-dx},${tp.y} ${tp.x},${tp.y}`);
-          const isSel = selId === c.id;
-          path.setAttribute('stroke', isSel ? '#E07030' : '#6B7FA3');
-          path.setAttribute('stroke-width', isSel ? '3' : '2');
-          path.setAttribute('fill','none');
-          path.setAttribute('opacity', isSel ? '1' : '0.7');
-          path.setAttribute('class','rc');
-          path.dataset.cid = c.id;
-          path.style.cursor = 'pointer';
-          path.addEventListener('click', e => { e.stopPropagation(); sel(c.id); });
-
-          // Arrowhead
-          const angle = Math.atan2(tp.y - fp.y, tp.x - fp.x);
-          const ax = tp.x - Math.cos(angle)*10;
-          const ay = tp.y - Math.sin(angle)*10;
-          const arrow = document.createElementNS('http://www.w3.org/2000/svg','polygon');
-          const pts = [
-            [tp.x, tp.y],
-            [ax + Math.sin(angle)*5, ay - Math.cos(angle)*5],
-            [ax - Math.sin(angle)*5, ay + Math.cos(angle)*5],
-          ].map(p => p.join(',')).join(' ');
-          arrow.setAttribute('points', pts);
-          arrow.setAttribute('fill', isSel ? '#E07030' : '#6B7FA3');
-          arrow.setAttribute('class','rc');
-          arrow.dataset.cid = c.id;
-          arrow.style.cursor = 'pointer';
-          arrow.addEventListener('click', e => { e.stopPropagation(); sel(c.id); });
-          svg.appendChild(path);
-          svg.appendChild(arrow);
-        });
-      }
-
-      function render() {
-        blocks.forEach(b => renderBlock(b));
-        renderConns();
-        updateEmpty();
-        updateToolbar();
-      }
-
-      function sel(id) {
-        selId = id;
-        blocks.forEach(b => {
-          const el = document.getElementById('rb_'+b.id);
-          if (el) el.classList.toggle('rb-selected', selId === b.id);
-        });
-        renderConns();
-        updateToolbar();
-        const hint = document.getElementById('routingDeleteHint');
-        if (hint) hint.classList.toggle('visible', !!id);
-      }
-
-      function updateToolbar() {
-        const del    = document.getElementById('rtBtnDelete');
-        const rename = document.getElementById('rtBtnRename');
-        const isBlock = selId && selId.startsWith('b');
-        const isConn  = selId && selId.startsWith('c');
-        if (del)    del.style.display    = (isBlock||isConn) ? '' : 'none';
-        if (rename) rename.style.display = isBlock ? '' : 'none';
-      }
-
-      function updateEmpty() {
-        const el = document.getElementById('routingEmpty');
-        if (el) el.style.display = blocks.length ? 'none' : 'flex';
-      }
-
-      function onMove(e) {
-        const r = canvas.getBoundingClientRect();
-        mouse = { x: e.clientX-r.left, y: e.clientY-r.top };
-        if (drag) {
-          const b = blocks.find(b => b.id === drag.id); if (!b) return;
-          b.x = Math.max(0, mouse.x - drag.ox);
-          b.y = Math.max(0, mouse.y - drag.oy);
-          const el = document.getElementById('rb_'+b.id);
-          if (el) { el.style.left=b.x+'px'; el.style.top=b.y+'px'; }
-          renderConns();
-        }
-        if (pending) updatePendingPath();
-      }
-
-      function onKey(e) {
-        const pane = document.getElementById('i_routing_builder');
-        if (!pane || !pane.classList.contains('active')) return;
-        if ((e.key==='Delete'||e.key==='Backspace') && selId) {
-          e.preventDefault();
-          deleteById(selId);
-        }
-        if (e.key==='Escape') { cancelPending(); sel(null); }
-      }
-
-      function deleteById(id) {
-        if (id.startsWith('b')) {
-          conns = conns.filter(c => c.fb!==id && c.tb!==id);
-          blocks = blocks.filter(b => b.id!==id);
-          document.getElementById('rb_'+id)?.remove();
-        } else {
-          conns = conns.filter(c => c.id!==id);
-        }
-        sel(null);
-        renderConns();
-        updateEmpty();
-      }
-
-      // Public API
-      window.RB = {
-        add,
-        deleteSelected() { if (selId) deleteById(selId); },
-        renameSelected() {
-          if (!selId || !selId.startsWith('b')) return;
-          const b = blocks.find(b=>b.id===selId); if (!b) return;
-          const v = prompt('Nombre:', b.label);
-          if (v&&v.trim()) {
-            b.label = v.trim();
-            const lbl = document.querySelector('#rb_'+b.id+' .rb-label');
-            if (lbl) lbl.textContent = b.label;
-          }
-        },
-        clearAll() {
-          if (!confirm('¿Borrar todo el diagrama?')) return;
-          blocks=[]; conns=[];
-          canvas.querySelectorAll('.rb').forEach(e=>e.remove());
-          svg.querySelectorAll('.rc').forEach(e=>e.remove());
-          cancelPending(); sel(null); updateEmpty();
-        },
-        exportJSON() {
-          const wrap = document.getElementById('routingCanvas');
-          // Temporarily hide UI hints for cleaner export
-          const hint = document.getElementById('routingDeleteHint');
-          const empty = document.getElementById('routingEmpty');
-          const prevHint = hint ? hint.style.opacity : '';
-          if (hint) hint.style.opacity = '0';
-          // Show a brief loading state on the button
-          const btn = document.querySelector('[onclick="RB.exportJSON()"]');
-          if (btn) { btn.textContent = '⏳ Exportando...'; btn.disabled = true; }
-          html2canvas(wrap, {
-            backgroundColor: '#F8F9FB',
-            scale: 2,
-            useCORS: true,
-            logging: false,
-          }).then(canvas => {
-            const a = document.createElement('a');
-            a.download = 'diagrama-routing.jpg';
-            a.href = canvas.toDataURL('image/jpeg', 0.92);
-            a.click();
-          }).catch(err => {
-            alert('Error al exportar: ' + err.message);
-          }).finally(() => {
-            if (hint) hint.style.opacity = prevHint;
-            if (btn) { btn.textContent = '💾 Guardar'; btn.disabled = false; }
-          });
-        },
-        importJSON() {
-          const inp = document.createElement('input');
-          inp.type='file'; inp.accept='.json';
-          inp.onchange = e => {
-            const f = e.target.files[0]; if (!f) return;
-            const rd = new FileReader();
-            rd.onload = ev => {
-              try {
-                const d = JSON.parse(ev.target.result);
-                blocks=d.blocks||[]; conns=d.conns||[];
-                uid = Math.max(0,...[...blocks,...conns].map(x=>parseInt((x.id||'0').slice(1))||0));
-                canvas.querySelectorAll('.rb').forEach(e=>e.remove());
-                sel(null); render();
-              } catch { alert('Error al cargar el archivo JSON.'); }
-            };
-            rd.readAsText(f);
-          };
-          inp.click();
-        }
-      };
-
-      // Auto-init when tab is clicked
-      document.querySelector('[data-inner="i_routing_builder"]')
-        ?.addEventListener('click', () => setTimeout(init, 30));
-
-    })();
-    </script>
-
-    <div style="margin-top:14px;padding:10px 14px;background:var(--accent-lt);border-radius:10px;border-left:3px solid var(--accent);font-size:11px;color:var(--text-2);line-height:1.6;">
-      <strong style="color:var(--accent);">💡 Cómo usar:</strong>
-      Haz clic en cualquier dispositivo de la paleta izquierda para añadirlo al lienzo.
-      Arrastra los bloques para organizarlos. Conecta una <strong>salida</strong> (puerto derecho, verde) con una <strong>entrada</strong> (puerto izquierdo, blanco).
-      Haz doble clic en un bloque para renombrarlo. Selecciona cualquier elemento y pulsa <kbd style="padding:1px 5px;border:1px solid #ccc;border-radius:3px;font-family:monospace;">Supr</kbd> para borrarlo.
-      Guarda tu diagrama con <strong>💾 Guardar</strong> y recupéralo con <strong>📂 Cargar</strong>.
-    </div>
-  </div>
-
 </section>
-
 
 <!-- ═══ MÓDULO 7 — PROYECCIÓN ═══ -->
 <section class="module" id="m7">
@@ -3350,7 +1907,6 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
     <div class="inner-tab" data-inner="p_calc">Calculadora Throw Ratio</div>
     <div class="inner-tab" data-inner="p_lens">Ópticas &amp; Ajustes</div>
     <div class="inner-tab" data-inner="p_tech">LCD · DLP · Láser</div>
-    <div class="inner-tab" data-inner="p_visual">Simulador Visual</div>
   </div>
 
   <div class="inner-pane active" id="p_lum">
@@ -3473,7 +2029,7 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
         <div class="panel-title">Keystone, Lens Shift y Corner Correction</div>
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent4);margin-bottom:8px;font-size:14px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">🔲 KEYSTONE (Corrección trapezoidal)</div>
+            <div style="font-weight:700;color:var(--accent4);margin-bottom:8px;font-size:14px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🔲 KEYSTONE (Corrección trapezoidal)</div>
             <p style="font-size:13px;color:var(--text2);line-height:1.6">Cuando el proyector no está perpendicular a la pantalla, la imagen aparece deformada en trapezoide. El keystone <strong>ajusta digitalmente</strong> la imagen para que vuelva a ser rectangular.<br><br>
             ✓ Ventaja: instalación en ángulos no ideales<br>
             ✗ Inconveniente: ajuste digital, puede perder resolución</p>
@@ -3484,13 +2040,13 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
             </div>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent3);margin-bottom:8px;font-size:14px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">🔄 LENS SHIFT (Desplazamiento de lente)</div>
+            <div style="font-weight:700;color:var(--accent3);margin-bottom:8px;font-size:14px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🔄 LENS SHIFT (Desplazamiento de lente)</div>
             <p style="font-size:13px;color:var(--text2);line-height:1.6">Mueve físicamente la lente dentro del proyector para desplazar la imagen sin deformarla. Se expresa como % respecto al tamaño de imagen.<br><br>
             ✓ Ajuste óptico, no digital → <strong>sin pérdida de calidad</strong><br>
             ✗ Solo en proyectores de gama media/alta</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--purple);margin-bottom:8px;font-size:14px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">📐 CORNER CORRECTION</div>
+            <div style="font-weight:700;color:var(--purple);margin-bottom:8px;font-size:14px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">📐 CORNER CORRECTION</div>
             <p style="font-size:13px;color:var(--text2);line-height:1.6">Ajusta individualmente cada esquina de la imagen proyectada. Útil para superficies irregulares (mapping en edificios, suelos inclinados). Afecta menos calidad que el Keystone global.</p>
           </div>
         </div>
@@ -3499,15 +2055,15 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
         <div class="panel-title">Focus, Zoom y Crop</div>
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif">🎯 FOCUS (Enfoque)</div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Poppins',sans-serif">🎯 FOCUS (Enfoque)</div>
             <p style="font-size:13px;color:var(--text2)">Ajusta la <strong>nitidez</strong> de la imagen. Manual (anillo en la lente) o automático. <em>Focus = qué tan clara se ve la imagen.</em></p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif">🔍 ZOOM</div>
+            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Poppins',sans-serif">🔍 ZOOM</div>
             <p style="font-size:13px;color:var(--text2)">Cambia el <strong>tamaño</strong> de la imagen sin mover el proyector. Zoom óptico = mantiene calidad. Zoom digital = puede perder nitidez. <em>Zoom = qué tan grande se ve la imagen.</em></p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif">✂️ CROP (Recorte)</div>
+            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Poppins',sans-serif">✂️ CROP (Recorte)</div>
             <p style="font-size:13px;color:var(--text2)">Elimina parte de la imagen original, dejando visible solo una porción. No deforma, simplemente corta. Usado en mapping para ajustar ratios o enmascarar zonas.</p>
           </div>
         </div>
@@ -3578,275 +2134,6 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       </div>
     </div>
   </div>
-
-  <!-- ═══ PANE: SIMULADOR VISUAL ═══ -->
-  <div class="inner-pane" id="p_visual">
-
-    <div class="grid-2" style="align-items:start">
-      <div class="panel">
-        <div class="panel-title">Parámetros de la instalación</div>
-        <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Ajusta los valores y el diagrama se actualiza en tiempo real.</p>
-
-        <div class="calc-row">
-          <div class="field">
-            <label>Ancho de pantalla (m)</label>
-            <input type="number" id="vs_sw" value="4" min="0.5" max="30" step="0.1" oninput="vsUpdate()">
-          </div>
-          <div class="field">
-            <label>Alto de pantalla (m)</label>
-            <input type="number" id="vs_sh" value="2.25" min="0.3" max="20" step="0.1" oninput="vsUpdate()">
-          </div>
-        </div>
-        <div class="calc-row">
-          <div class="field">
-            <label>Distancia proyector (m)</label>
-            <input type="number" id="vs_dist" value="6" min="0.1" max="50" step="0.1" oninput="vsUpdate()">
-          </div>
-          <div class="field">
-            <label>Lúmenes ANSI del proyector</label>
-            <input type="number" id="vs_lum" value="5000" min="100" max="100000" step="100" oninput="vsUpdate()">
-          </div>
-        </div>
-        <div class="calc-row">
-          <div class="field">
-            <label>Ganancia de pantalla</label>
-            <input type="number" id="vs_gain" value="1.0" min="0.5" max="3.0" step="0.1" oninput="vsUpdate()">
-          </div>
-          <div class="field">
-            <label>Factor ambiente (0–1)</label>
-            <input type="number" id="vs_amb" value="0.85" min="0.1" max="1.0" step="0.05" oninput="vsUpdate()">
-          </div>
-        </div>
-
-        <!-- Results grid -->
-        <div class="result-grid" style="margin-top:16px" id="vs_results">
-          <div class="result-box"><div class="result-val" id="vs_tr">—</div><div class="result-label">Throw Ratio</div></div>
-          <div class="result-box green"><div class="result-val" id="vs_lux">—</div><div class="result-label">Lux en pantalla</div></div>
-          <div class="result-box orange"><div class="result-val" id="vs_diag">—</div><div class="result-label">Diagonal (m)</div></div>
-          <div class="result-box yellow"><div class="result-val" id="vs_area">—</div><div class="result-label">Área m²</div></div>
-          <div class="result-box" id="vs_type_box"><div class="result-val" id="vs_lens_type">—</div><div class="result-label">Tipo de lente</div></div>
-          <div class="result-box" id="vs_ok_box"><div class="result-val" id="vs_ok">—</div><div class="result-label">¿Suficiente brillo?</div></div>
-        </div>
-
-        <!-- Needs calculator -->
-        <div style="margin-top:16px;padding:14px;background:var(--bg2);border-radius:8px;border:1px solid var(--border)">
-          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:8px">¿Cuántos lúmenes necesito? (norma ISO 21118)</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
-            <div>
-              <div style="font-size:10px;color:var(--text3);margin-bottom:4px">Uso de la sala</div>
-              <select id="vs_uso" onchange="vsUpdate()" style="width:100%;padding:6px;background:var(--bg);border:1px solid var(--border);border-radius:5px;font-size:12px;color:var(--text)">
-                <option value="400">Sala oscurecida</option>
-                <option value="800" selected>Aula típica</option>
-                <option value="1200">Sala con luz ambiente</option>
-                <option value="2000">Exterior / mucha luz</option>
-              </select>
-            </div>
-            <div style="display:flex;flex-direction:column;justify-content:flex-end">
-              <div style="font-size:10px;color:var(--text3);margin-bottom:4px">Lux mínimos</div>
-              <div style="font-size:18px;font-weight:700;color:var(--navy)" id="vs_lux_min">800</div>
-            </div>
-            <div style="display:flex;flex-direction:column;justify-content:flex-end">
-              <div style="font-size:10px;color:var(--text3);margin-bottom:4px">Lúmenes mínimos</div>
-              <div style="font-size:18px;font-weight:700;color:var(--navy2)" id="vs_lum_min">—</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Canvas diagram -->
-      <div class="panel" style="padding:14px">
-        <div class="panel-title">Diagrama de sala — vista superior</div>
-        <canvas id="vs_canvas" width="400" height="340" style="width:100%;border-radius:6px;background:#f8f7f4;border:1px solid var(--border)"></canvas>
-        <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px">
-          <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2)">
-            <span style="display:inline-block;width:12px;height:12px;background:#192A56;border-radius:2px"></span> Proyector
-          </div>
-          <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2)">
-            <span style="display:inline-block;width:12px;height:12px;background:#F7D794;border:1px solid #e0c060;border-radius:2px"></span> Pantalla
-          </div>
-          <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2)">
-            <span style="display:inline-block;width:12px;height:2px;background:rgba(25,42,86,0.3)"></span> Haz de luz
-          </div>
-        </div>
-        <div style="margin-top:10px;padding:8px 12px;background:var(--bg2);border-radius:6px;border:1px solid var(--border)">
-          <div style="font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px">Fórmulas clave</div>
-          <div style="font-family:monospace;font-size:11px;color:var(--text2);line-height:1.8">
-            TR = Distancia / Ancho<br>
-            Lux = (Lúmenes × Ganancia × Factor) / Área<br>
-            Lúmenes_min = Lux_min × Área / (Ganancia × Factor)
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <script>
-  (function(){
-    function vsUpdate() {
-      var sw   = parseFloat(document.getElementById('vs_sw').value)||4;
-      var sh   = parseFloat(document.getElementById('vs_sh').value)||2.25;
-      var dist = parseFloat(document.getElementById('vs_dist').value)||6;
-      var lum  = parseFloat(document.getElementById('vs_lum').value)||5000;
-      var gain = parseFloat(document.getElementById('vs_gain').value)||1;
-      var amb  = parseFloat(document.getElementById('vs_amb').value)||0.85;
-      var uso  = parseInt(document.getElementById('vs_uso').value)||800;
-
-      var tr   = dist / sw;
-      var area = sw * sh;
-      var diag = Math.sqrt(sw*sw + sh*sh);
-      var lux  = (lum * gain * amb) / area;
-      var lumMin = Math.ceil((uso * area) / (gain * amb));
-
-      // Lens type
-      var lensType = tr < 0.4 ? 'Ultra Short Throw' : tr < 1.0 ? 'Short Throw' : tr < 2.0 ? 'Standard Throw' : 'Long Throw';
-      var ok = lux >= uso;
-
-      document.getElementById('vs_tr').textContent         = tr.toFixed(2) + ':1';
-      document.getElementById('vs_lux').textContent        = Math.round(lux) + ' lx';
-      document.getElementById('vs_diag').textContent       = diag.toFixed(2) + ' m';
-      document.getElementById('vs_area').textContent       = area.toFixed(2) + ' m²';
-      document.getElementById('vs_lens_type').textContent  = lensType;
-      document.getElementById('vs_ok').textContent         = ok ? '✓ Sí' : '✗ No';
-      document.getElementById('vs_lux_min').textContent    = uso + ' lx';
-      document.getElementById('vs_lum_min').textContent    = lumMin.toLocaleString();
-
-      var okBox = document.getElementById('vs_ok_box');
-      okBox.style.borderColor = ok ? 'rgba(74,180,100,.5)' : 'rgba(220,80,60,.5)';
-      okBox.style.background  = ok ? 'rgba(74,180,100,.07)' : 'rgba(220,80,60,.07)';
-      document.getElementById('vs_ok').style.color = ok ? '#2a7a40' : '#b03020';
-
-      vsDrawCanvas(sw, sh, dist, tr, lum, lux, ok);
-    }
-
-    function vsDrawCanvas(sw, sh, dist, tr, lum, lux, ok) {
-      var canvas = document.getElementById('vs_canvas');
-      if (!canvas) return;
-      var ctx    = canvas.getContext('2d');
-      var W = canvas.width, H = canvas.height;
-      ctx.clearRect(0, 0, W, H);
-
-      // Background
-      ctx.fillStyle = '#f8f7f4';
-      ctx.fillRect(0, 0, W, H);
-
-      // Grid
-      ctx.strokeStyle = 'rgba(25,42,86,0.06)';
-      ctx.lineWidth = 1;
-      for (var x = 0; x < W; x += 30) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
-      for (var y = 0; y < H; y += 30) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
-
-      // Scale: fit both screen and distance into the canvas
-      var totalDepth = dist + 1.5;
-      var totalWidth = sw + 2;
-      var scaleX = (W - 40) / totalDepth;
-      var scaleY = (H - 60) / totalWidth;
-      var scale  = Math.min(scaleX, scaleY);
-
-      var projX  = 30;
-      var projY  = H / 2;
-      var scrX   = 30 + dist * scale;
-      var scrTopY= H/2 - (sh/2)*scale;
-      var scrBotY= H/2 + (sh/2)*scale;
-
-      // Beam (trapezoid)
-      var halfSw = (sw/2) * scale;
-      ctx.beginPath();
-      ctx.moveTo(projX, projY);
-      ctx.lineTo(scrX, projY - halfSw);
-      ctx.lineTo(scrX, projY + halfSw);
-      ctx.closePath();
-      var grad = ctx.createLinearGradient(projX, projY, scrX, projY);
-      grad.addColorStop(0, ok ? 'rgba(247,215,148,0.7)' : 'rgba(220,140,100,0.6)');
-      grad.addColorStop(1, ok ? 'rgba(247,215,148,0.15)' : 'rgba(220,140,100,0.1)');
-      ctx.fillStyle = grad;
-      ctx.fill();
-      ctx.strokeStyle = ok ? 'rgba(200,160,50,.5)' : 'rgba(200,100,50,.5)';
-      ctx.lineWidth = 1;
-      ctx.stroke();
-
-      // Screen
-      ctx.fillStyle = '#F7D794';
-      ctx.strokeStyle = '#c9a830';
-      ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      ctx.rect(scrX, projY - (sh/2)*scale, 8, sh*scale);
-      ctx.fill();
-      ctx.stroke();
-
-      // Screen label
-      ctx.fillStyle = '#192A56';
-      ctx.font = 'bold 11px sans-serif';
-      ctx.textAlign = 'left';
-      ctx.fillText(sw.toFixed(1)+'m × '+((sh>0)?sh.toFixed(1):'?')+'m', scrX + 13, projY - 4);
-
-      // Projector
-      ctx.fillStyle = '#192A56';
-      ctx.beginPath();
-      ctx.roundRect ? ctx.roundRect(projX - 16, projY - 12, 20, 24, 4) : ctx.rect(projX-16, projY-12, 20, 24);
-      ctx.fill();
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 10px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('▶', projX - 6, projY + 4);
-
-      // Distance dimension line
-      ctx.strokeStyle = 'rgba(25,42,86,0.35)';
-      ctx.lineWidth   = 1;
-      ctx.setLineDash([4,3]);
-      ctx.beginPath();
-      ctx.moveTo(projX, projY + halfSw + 14);
-      ctx.lineTo(scrX, projY + halfSw + 14);
-      ctx.stroke();
-      ctx.setLineDash([]);
-      // Arrow tips
-      ctx.fillStyle = 'rgba(25,42,86,0.5)';
-      var ay = projY + halfSw + 14;
-      ctx.beginPath(); ctx.moveTo(projX+1,ay-4); ctx.lineTo(projX+8,ay); ctx.lineTo(projX+1,ay+4); ctx.fill();
-      ctx.beginPath(); ctx.moveTo(scrX-1,ay-4); ctx.lineTo(scrX-8,ay); ctx.lineTo(scrX-1,ay+4); ctx.fill();
-      ctx.fillStyle = '#192A56';
-      ctx.font = 'bold 12px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(dist.toFixed(1)+' m', (projX+scrX)/2, ay - 7);
-
-      // Throw ratio label
-      ctx.fillStyle = ok ? '#2a6a3a' : '#8a2020';
-      ctx.font = 'bold 11px sans-serif';
-      ctx.textAlign = 'left';
-      ctx.fillText('TR = '+tr.toFixed(2)+':1  ·  '+Math.round(lux)+' lx', projX, 22);
-
-      // Lux bar
-      var barW = W - 60;
-      var barX = 30;
-      var barY = H - 22;
-      ctx.fillStyle = 'rgba(25,42,86,0.08)';
-      ctx.beginPath();
-      ctx.roundRect ? ctx.roundRect(barX, barY, barW, 10, 5) : ctx.rect(barX, barY, barW, 10);
-      ctx.fill();
-      var luxPct = Math.min(lux / 2000, 1);
-      ctx.fillStyle = ok ? '#4ab464' : '#e05040';
-      ctx.beginPath();
-      ctx.roundRect ? ctx.roundRect(barX, barY, barW * luxPct, 10, 5) : ctx.rect(barX, barY, barW*luxPct, 10);
-      ctx.fill();
-      ctx.fillStyle = 'rgba(25,42,86,0.5)';
-      ctx.font = '9px sans-serif';
-      ctx.textAlign = 'right';
-      ctx.fillText(Math.round(lux)+' lx / 2000 lx max', W - 28, barY - 3);
-    }
-
-    window.vsUpdate = vsUpdate;
-    setTimeout(vsUpdate, 80);
-
-    // Re-run on tab switch
-    document.querySelectorAll('.inner-tab').forEach(function(t) {
-      t.addEventListener('click', function() {
-        if (this.dataset.inner === 'p_visual') setTimeout(vsUpdate, 60);
-      });
-    });
-  })();
-  </script>
-
 </section>
 
 <!-- ═══ MÓDULO 8 — LED & MAPPING ═══ -->
@@ -4011,19 +2298,19 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
         <div class="panel-title">Mapping, Grid, Blending y Warping</div>
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">🏛️ MAPPING (Video Mapping)</div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🏛️ MAPPING (Video Mapping)</div>
             <p style="font-size:13px;color:var(--text2)">Técnica de usar proyectores para transformar objetos reales en superficies dinámicas. No se proyecta en pantalla plana, sino en <strong>volúmenes con formas</strong> (edificios, esculturas, escenarios). Requiere análisis del espacio, medición y software especializado.</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">📐 GRID (Test Pattern)</div>
+            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">📐 GRID (Test Pattern)</div>
             <p style="font-size:13px;color:var(--text2)">Rejilla de líneas horizontales y verticales proyectada como <strong>guía visual de calibración</strong>. Ayuda a comprobar si la proyección está bien alineada, centrada y sin deformaciones. Punto de partida para cualquier instalación de mapping.</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">🔀 BLENDING (Edge Blending)</div>
+            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🔀 BLENDING (Edge Blending)</div>
             <p style="font-size:13px;color:var(--text2)">Técnica de <strong>fusionar la imagen de 2 o más proyectores</strong> para crear una imagen única y continua. El solapamiento se hace suave ajustando brillo y opacidad en la zona de unión para que no se note la línea de corte.</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--purple);margin-bottom:6px;font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;letter-spacing:0.2px">〰️ WARPING</div>
+            <div style="font-weight:700;color:var(--purple);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">〰️ WARPING</div>
             <p style="font-size:13px;color:var(--text2)">Deforma digitalmente la imagen proyectada para que encaje sobre una <strong>superficie irregular</strong>. Se realiza mediante una malla (grid) con puntos de control que pueden moverse y curvarse. Es el ajuste más avanzado y flexible en proyección.</p>
           </div>
         </div>
@@ -4037,11 +2324,11 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
         <div class="grid-2">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
             <div style="font-weight:700;color:var(--accent);font-size:12px;margin-bottom:6px">VIDEO MAPPING</div>
-            <p style="font-size:13.5px;color:var(--text2)">Proyección sobre superficies (paredes, edificios, objetos)</p>
+            <p style="font-size:12px;color:var(--text2)">Proyección sobre superficies (paredes, edificios, objetos)</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px">
             <div style="font-weight:700;color:var(--accent4);font-size:12px;margin-bottom:6px">PIXEL MAPPING</div>
-            <p style="font-size:13.5px;color:var(--text2)">Control de LEDs individuales como si fueran píxeles de una pantalla</p>
+            <p style="font-size:12px;color:var(--text2)">Control de LEDs individuales como si fueran píxeles de una pantalla</p>
           </div>
         </div>
         <div class="panel-subtitle">Ejercicio 3.7 — Calculadora Malla LED</div>
@@ -4105,8 +2392,422 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
   </div>
 </section>
 
-
+-e 
 </main>
+
+<script>
+const SHUTTERS=[1,1/2,1/4,1/8,1/15,1/30,1/60,1/125,1/250,1/500,1/1000,1/2000,1/4000];
+const S_LABELS=['1"','1/2','1/4','1/8','1/15','1/30','1/60','1/125','1/250','1/500','1/1000','1/2000','1/4000'];
+const FSTOPS=[1.4,2,2.8,4,5.6,8,11,16,22];
+const F_LABELS=['f/1.4','f/2','f/2.8','f/4','f/5.6','f/8','f/11','f/16','f/22'];
+const ISOS=[100,200,400,800,1600,3200,6400,12800,25600];
+const LIGHT_NAMES={'-5':'🌑 Noche','-3':'🌃 Noche urbana','0':'🏠 Interior','1':'🏠 Estudio','2':'🌥 Muy nublado','3':'⛅ Nublado','5':'☀️ Sol suave','7':'☀️ Sol directo','9':'🌞 Muy brillante','10':'🌟 Extremo'};
+
+let animId=null;
+
+function mulberry32(s){return function(){s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};}
+
+function resize(){
+  const cv=document.getElementById('expCanvas'),sc=document.getElementById('expScene');
+  if(!cv||!sc||!sc.offsetWidth) return;
+  cv.width=sc.offsetWidth; cv.height=sc.offsetHeight;
+}
+
+function draw(shutterSec,ev){
+  const cv=document.getElementById('expCanvas');
+  if(!cv) return;
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  if(!W||!H) return;
+  ctx.clearRect(0,0,W,H);
+
+  // Background
+  const bg=ctx.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,'#090612'); bg.addColorStop(0.5,'#16082a'); bg.addColorStop(1,'#06040c');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+
+  // Floor
+  const fl=ctx.createLinearGradient(0,H*.72,0,H);
+  fl.addColorStop(0,'#1a1030'); fl.addColorStop(1,'#06040c');
+  ctx.fillStyle=fl; ctx.fillRect(0,H*.72,W,H*.28);
+
+  // Crowd
+  const rng=mulberry32(42);
+  for(let i=0;i<90;i++){
+    const cx=rng()*W,cy=H*.5+rng()*H*.2,r=1+rng()*2,a=.2+rng()*.5;
+    ctx.fillStyle=`rgba(255,${160+Math.floor(rng()*95)},${60+Math.floor(rng()*100)},${a})`;
+    ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.fill();
+  }
+
+  // Spotlights
+  [[W*.18,'180,200,255'],[W*.5,'255,210,130'],[W*.82,'190,130,255']].forEach(([sx,col])=>{
+    const g=ctx.createRadialGradient(sx,0,0,sx,0,H);
+    g.addColorStop(0,`rgba(${col},.22)`); g.addColorStop(1,`rgba(${col},0)`);
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  });
+
+  // Performer
+  const t=Date.now()/1000;
+  const px=W*.5+Math.sin(t*1.1)*W*.04;
+  const baseY=H*.72, pH=H*.42, pW=pH*.28;
+
+  // Motion blur ghosts
+  const mPx=shutterSec>=1/30?Math.min(W*.08,shutterSec*W*1.5):0;
+  if(mPx>2){
+    const gh=Math.min(8,Math.round(mPx/8));
+    for(let g=gh;g>0;g--){ctx.globalAlpha=(1-g/gh)*.4; drawPerson(ctx,px+g*mPx/gh,baseY,pW,pH);}
+    ctx.globalAlpha=1;
+  }
+  drawPerson(ctx,px,baseY,pW,pH);
+
+  // Reflection
+  ctx.save(); ctx.globalAlpha=.12; ctx.translate(0,baseY*2); ctx.scale(1,-.22);
+  drawPerson(ctx,px,baseY,pW,pH); ctx.restore();
+
+  // Lens flares
+  [W*.18,W*.5,W*.82].forEach(sx=>{
+    const g=ctx.createRadialGradient(sx,H*.05,0,sx,H*.05,28);
+    g.addColorStop(0,'rgba(255,255,255,.7)'); g.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(sx,H*.05,28,0,Math.PI*2); ctx.fill();
+  });
+}
+
+function drawPerson(ctx,x,baseY,w,h){
+  const bg=ctx.createLinearGradient(x,baseY-h,x,baseY);
+  bg.addColorStop(0,'#d07840'); bg.addColorStop(.4,'#a04820'); bg.addColorStop(1,'#1a0808');
+  ctx.fillStyle=bg; ctx.fillRect(x-w/2,baseY-h*.6,w,h*.6);
+  ctx.fillStyle='#18100a';
+  ctx.fillRect(x-w/2,baseY-h*.3,w*.44,h*.3);
+  ctx.fillRect(x+w*.06,baseY-h*.3,w*.44,h*.3);
+  ctx.fillStyle='#d4905a';
+  ctx.beginPath(); ctx.ellipse(x,baseY-h*.68,w*.22,w*.28,0,0,Math.PI*2); ctx.fill();
+  ctx.strokeStyle='#c87840'; ctx.lineWidth=w*.12; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(x+w*.45,baseY-h*.5); ctx.lineTo(x+w*.65,baseY-h*.72); ctx.stroke();
+  ctx.fillStyle='#ddd'; ctx.beginPath(); ctx.arc(x+w*.66,baseY-h*.74,w*.08,0,Math.PI*2); ctx.fill();
+}
+
+function computeEV(t,f,iso,light){return light-(Math.log2(f*f/t)-Math.log2(iso/100));}
+
+function animate(){
+  const si=+document.getElementById('expShutter').value;
+  const ai=+document.getElementById('expAperture').value;
+  const ii=+document.getElementById('expISO').value;
+  const lEV=+document.getElementById('expLight').value;
+  const ev=computeEV(SHUTTERS[si],FSTOPS[ai],ISOS[ii],lEV);
+  draw(SHUTTERS[si],ev);
+  animId=requestAnimationFrame(animate);
+}
+
+function expCalc(){
+  const si=+document.getElementById('expShutter').value;
+  const ai=+document.getElementById('expAperture').value;
+  const ii=+document.getElementById('expISO').value;
+  const lEV=+document.getElementById('expLight').value;
+  const t=SHUTTERS[si],f=FSTOPS[ai],iso=ISOS[ii];
+  const ev=computeEV(t,f,iso,lEV);
+
+  document.getElementById('expShutterVal').textContent=S_LABELS[si]+' s';
+  document.getElementById('expApertureVal').textContent=F_LABELS[ai];
+  document.getElementById('expISOVal').textContent='ISO '+iso;
+  document.getElementById('expLightVal').textContent=(lEV>=0?'+':'')+lEV+' EV';
+  document.getElementById('expLightBadge').textContent=LIGHT_NAMES[String(Math.round(lEV))]||'☀️';
+  document.getElementById('expEvBadge').textContent='EV '+(ev>=0?'+':'')+ev.toFixed(1);
+
+  const fill=document.getElementById('expEvFill');
+  const clamp=Math.max(-3,Math.min(3,ev)),pct=Math.abs(clamp)/3*50;
+  if(ev>=0){fill.style.left='50%';fill.style.right='auto';fill.style.width=pct+'%';fill.style.background=ev>2?'#e58e8b':'#f7c06e';}
+  else{fill.style.right='50%';fill.style.left='auto';fill.style.width=pct+'%';fill.style.background=ev<-2?'#6B7FA3':'#aab5cc';}
+
+  const luma=document.getElementById('expLuma');
+  luma.style.background=ev>0?`rgba(255,255,220,${Math.min(.75,ev*.15)})`:`rgba(0,0,0,${Math.min(.82,Math.abs(ev)*.16)})`;
+
+  document.getElementById('expNoise').style.opacity=Math.max(0,(ii-2)/6*.65);
+
+  buildHistogram(ev,Math.max(0,(ii-2)/6*.65));
+  buildAdvice(ev,t,f,iso);
+  buildRule180(t);
+}
+
+function expSetLight(val,btn){
+  document.getElementById('expLight').value=val;
+  document.querySelectorAll('.exp-light-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  expCalc();
+}
+
+function buildHistogram(ev,noise){
+  const hist=document.getElementById('expHistogram');
+  hist.innerHTML='';
+  for(let i=0;i<28;i++){
+    const pos=i/27,center=.5+ev*.12,width=.18+noise*.1;
+    const h=Math.exp(-.5*Math.pow((pos-center)/width,2));
+    const hPx=Math.max(3,Math.min(36,Math.round(h*36)));
+    const bar=document.createElement('div');
+    bar.className='exp-histo-bar'; bar.style.height=hPx+'px';
+    if(i>=26&&center>.8) bar.style.background='rgba(255,80,80,.9)';
+    else if(i<=1&&center<.2) bar.style.background='rgba(80,100,220,.75)';
+    else bar.style.background='rgba(255,255,255,0.6)';
+    hist.appendChild(bar);
+  }
+}
+
+function buildAdvice(ev,t,f,iso){
+  const el=document.getElementById('expAdvice');
+  let cls='exp-advice',msg='';
+  if(ev>2.5){cls+=' over';msg='🔆 <strong>Sobreexpuesto.</strong> Reduce ISO, cierra el diafragma o aumenta la velocidad.';}
+  else if(ev<-2.5){cls+=' under';msg='🔅 <strong>Subexpuesto.</strong> Sube ISO, abre el diafragma o reduce la velocidad.';}
+  else if(Math.abs(ev)<=.5) msg='✓ <strong>Exposición correcta.</strong> Histograma centrado.';
+  else if(ev>0) msg='🔆 Ligeramente sobreexpuesto ('+ev.toFixed(1)+' EV).';
+  else msg='🔅 Ligeramente subexpuesto ('+ev.toFixed(1)+' EV).';
+  if(t>=1/30&&t<=1) msg+='<br>⚠ <strong>Motion blur</strong> — velocidad lenta.';
+  if(iso>=3200) msg+='<br>⚠ <strong>Ruido digital</strong> — ISO '+iso+'.';
+  if(f>=11) msg+='<br>ℹ Difracción posible a f/'+f+'.';
+  el.className=cls; el.innerHTML=msg;
+}
+
+function buildRule180(t){
+  const el=document.getElementById('expRule180');
+  let msg='',border='var(--border2)';
+  if(Math.abs(t-1/50)<.001){msg='✅ <strong>Regla 180°:</strong> 1/50 s → <strong>25 fps</strong> (PAL)';border='var(--accent)';}
+  else if(Math.abs(t-1/60)<.001){msg='✅ <strong>Regla 180°:</strong> 1/60 s → <strong>30 fps</strong> (NTSC)';border='var(--accent)';}
+  else if(Math.abs(t-1/120)<.001){msg='✅ <strong>Regla 180°:</strong> 1/120 s → <strong>60 fps</strong>';border='var(--accent)';}
+  else if(t>=1/30){msg='⚠ Para vídeo usa <strong>1/50 s</strong> (25fps) o <strong>1/60 s</strong> (30fps).';border='var(--pink2)';}
+  else msg='ℹ <strong>Regla 180°:</strong> velocidad óptima = doble del framerate. 25fps→1/50 · 30fps→1/60';
+  el.style.borderLeft='3px solid '+border; el.innerHTML=msg;
+}
+
+
+
+// ── Exposure sim public API ─────────────────────────
+window.expSimInit = function() {
+  var scene = document.getElementById('expScene');
+  if (!scene || !scene.offsetWidth) return;
+  resize();
+  expCalc();
+  if (!window._expAnimRunning) {
+    window._expAnimRunning = true;
+    (function loop() {
+      if (!window._expAnimRunning) return;
+      var si  = +document.getElementById('expShutter').value;
+      var ai  = +document.getElementById('expAperture').value;
+      var ii  = +document.getElementById('expISO').value;
+      var lEV = +document.getElementById('expLight').value;
+      var ev  = computeEV(SHUTTERS[si], FSTOPS[ai], ISOS[ii], lEV);
+      draw(SHUTTERS[si], ev);
+      requestAnimationFrame(loop);
+    })();
+  }
+};
+window.expSimStop = function() {
+  window._expAnimRunning = false;
+};
+window.addEventListener('resize', function() {
+  if (window._expAnimRunning) resize();
+});
+
+</script>
+<script>
+const SHUTTERS=[1,1/2,1/4,1/8,1/15,1/30,1/60,1/125,1/250,1/500,1/1000,1/2000,1/4000];
+const S_LABELS=['1"','1/2','1/4','1/8','1/15','1/30','1/60','1/125','1/250','1/500','1/1000','1/2000','1/4000'];
+const FSTOPS=[1.4,2,2.8,4,5.6,8,11,16,22];
+const F_LABELS=['f/1.4','f/2','f/2.8','f/4','f/5.6','f/8','f/11','f/16','f/22'];
+const ISOS=[100,200,400,800,1600,3200,6400,12800,25600];
+const LIGHT_NAMES={'-5':'🌑 Noche','-3':'🌃 Noche urbana','0':'🏠 Interior','1':'🏠 Estudio','2':'🌥 Muy nublado','3':'⛅ Nublado','5':'☀️ Sol suave','7':'☀️ Sol directo','9':'🌞 Muy brillante','10':'🌟 Extremo'};
+
+let animId=null;
+
+function mulberry32(s){return function(){s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};}
+
+function resize(){
+  const cv=document.getElementById('expCanvas'),sc=document.getElementById('expScene');
+  if(!cv||!sc||!sc.offsetWidth) return;
+  cv.width=sc.offsetWidth; cv.height=sc.offsetHeight;
+}
+
+function draw(shutterSec,ev){
+  const cv=document.getElementById('expCanvas');
+  if(!cv) return;
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  if(!W||!H) return;
+  ctx.clearRect(0,0,W,H);
+
+  // Background
+  const bg=ctx.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,'#090612'); bg.addColorStop(0.5,'#16082a'); bg.addColorStop(1,'#06040c');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+
+  // Floor
+  const fl=ctx.createLinearGradient(0,H*.72,0,H);
+  fl.addColorStop(0,'#1a1030'); fl.addColorStop(1,'#06040c');
+  ctx.fillStyle=fl; ctx.fillRect(0,H*.72,W,H*.28);
+
+  // Crowd
+  const rng=mulberry32(42);
+  for(let i=0;i<90;i++){
+    const cx=rng()*W,cy=H*.5+rng()*H*.2,r=1+rng()*2,a=.2+rng()*.5;
+    ctx.fillStyle=`rgba(255,${160+Math.floor(rng()*95)},${60+Math.floor(rng()*100)},${a})`;
+    ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.fill();
+  }
+
+  // Spotlights
+  [[W*.18,'180,200,255'],[W*.5,'255,210,130'],[W*.82,'190,130,255']].forEach(([sx,col])=>{
+    const g=ctx.createRadialGradient(sx,0,0,sx,0,H);
+    g.addColorStop(0,`rgba(${col},.22)`); g.addColorStop(1,`rgba(${col},0)`);
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  });
+
+  // Performer
+  const t=Date.now()/1000;
+  const px=W*.5+Math.sin(t*1.1)*W*.04;
+  const baseY=H*.72, pH=H*.42, pW=pH*.28;
+
+  // Motion blur ghosts
+  const mPx=shutterSec>=1/30?Math.min(W*.08,shutterSec*W*1.5):0;
+  if(mPx>2){
+    const gh=Math.min(8,Math.round(mPx/8));
+    for(let g=gh;g>0;g--){ctx.globalAlpha=(1-g/gh)*.4; drawPerson(ctx,px+g*mPx/gh,baseY,pW,pH);}
+    ctx.globalAlpha=1;
+  }
+  drawPerson(ctx,px,baseY,pW,pH);
+
+  // Reflection
+  ctx.save(); ctx.globalAlpha=.12; ctx.translate(0,baseY*2); ctx.scale(1,-.22);
+  drawPerson(ctx,px,baseY,pW,pH); ctx.restore();
+
+  // Lens flares
+  [W*.18,W*.5,W*.82].forEach(sx=>{
+    const g=ctx.createRadialGradient(sx,H*.05,0,sx,H*.05,28);
+    g.addColorStop(0,'rgba(255,255,255,.7)'); g.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(sx,H*.05,28,0,Math.PI*2); ctx.fill();
+  });
+}
+
+function drawPerson(ctx,x,baseY,w,h){
+  const bg=ctx.createLinearGradient(x,baseY-h,x,baseY);
+  bg.addColorStop(0,'#d07840'); bg.addColorStop(.4,'#a04820'); bg.addColorStop(1,'#1a0808');
+  ctx.fillStyle=bg; ctx.fillRect(x-w/2,baseY-h*.6,w,h*.6);
+  ctx.fillStyle='#18100a';
+  ctx.fillRect(x-w/2,baseY-h*.3,w*.44,h*.3);
+  ctx.fillRect(x+w*.06,baseY-h*.3,w*.44,h*.3);
+  ctx.fillStyle='#d4905a';
+  ctx.beginPath(); ctx.ellipse(x,baseY-h*.68,w*.22,w*.28,0,0,Math.PI*2); ctx.fill();
+  ctx.strokeStyle='#c87840'; ctx.lineWidth=w*.12; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(x+w*.45,baseY-h*.5); ctx.lineTo(x+w*.65,baseY-h*.72); ctx.stroke();
+  ctx.fillStyle='#ddd'; ctx.beginPath(); ctx.arc(x+w*.66,baseY-h*.74,w*.08,0,Math.PI*2); ctx.fill();
+}
+
+function computeEV(t,f,iso,light){return light-(Math.log2(f*f/t)-Math.log2(iso/100));}
+
+function animate(){
+  const si=+document.getElementById('expShutter').value;
+  const ai=+document.getElementById('expAperture').value;
+  const ii=+document.getElementById('expISO').value;
+  const lEV=+document.getElementById('expLight').value;
+  const ev=computeEV(SHUTTERS[si],FSTOPS[ai],ISOS[ii],lEV);
+  draw(SHUTTERS[si],ev);
+  animId=requestAnimationFrame(animate);
+}
+
+function expCalc(){
+  const si=+document.getElementById('expShutter').value;
+  const ai=+document.getElementById('expAperture').value;
+  const ii=+document.getElementById('expISO').value;
+  const lEV=+document.getElementById('expLight').value;
+  const t=SHUTTERS[si],f=FSTOPS[ai],iso=ISOS[ii];
+  const ev=computeEV(t,f,iso,lEV);
+
+  document.getElementById('expShutterVal').textContent=S_LABELS[si]+' s';
+  document.getElementById('expApertureVal').textContent=F_LABELS[ai];
+  document.getElementById('expISOVal').textContent='ISO '+iso;
+  document.getElementById('expLightVal').textContent=(lEV>=0?'+':'')+lEV+' EV';
+  document.getElementById('expLightBadge').textContent=LIGHT_NAMES[String(Math.round(lEV))]||'☀️';
+  document.getElementById('expEvBadge').textContent='EV '+(ev>=0?'+':'')+ev.toFixed(1);
+
+  const fill=document.getElementById('expEvFill');
+  const clamp=Math.max(-3,Math.min(3,ev)),pct=Math.abs(clamp)/3*50;
+  if(ev>=0){fill.style.left='50%';fill.style.right='auto';fill.style.width=pct+'%';fill.style.background=ev>2?'#e58e8b':'#f7c06e';}
+  else{fill.style.right='50%';fill.style.left='auto';fill.style.width=pct+'%';fill.style.background=ev<-2?'#6B7FA3':'#aab5cc';}
+
+  const luma=document.getElementById('expLuma');
+  luma.style.background=ev>0?`rgba(255,255,220,${Math.min(.75,ev*.15)})`:`rgba(0,0,0,${Math.min(.82,Math.abs(ev)*.16)})`;
+
+  document.getElementById('expNoise').style.opacity=Math.max(0,(ii-2)/6*.65);
+
+  buildHistogram(ev,Math.max(0,(ii-2)/6*.65));
+  buildAdvice(ev,t,f,iso);
+  buildRule180(t);
+}
+
+function expSetLight(val,btn){
+  document.getElementById('expLight').value=val;
+  document.querySelectorAll('.exp-light-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  expCalc();
+}
+
+function buildHistogram(ev,noise){
+  const hist=document.getElementById('expHistogram');
+  hist.innerHTML='';
+  for(let i=0;i<28;i++){
+    const pos=i/27,center=.5+ev*.12,width=.18+noise*.1;
+    const h=Math.exp(-.5*Math.pow((pos-center)/width,2));
+    const hPx=Math.max(3,Math.min(36,Math.round(h*36)));
+    const bar=document.createElement('div');
+    bar.className='exp-histo-bar'; bar.style.height=hPx+'px';
+    if(i>=26&&center>.8) bar.style.background='rgba(255,80,80,.9)';
+    else if(i<=1&&center<.2) bar.style.background='rgba(80,100,220,.75)';
+    else bar.style.background='rgba(255,255,255,0.6)';
+    hist.appendChild(bar);
+  }
+}
+
+function buildAdvice(ev,t,f,iso){
+  const el=document.getElementById('expAdvice');
+  let cls='exp-advice',msg='';
+  if(ev>2.5){cls+=' over';msg='🔆 <strong>Sobreexpuesto.</strong> Reduce ISO, cierra el diafragma o aumenta la velocidad.';}
+  else if(ev<-2.5){cls+=' under';msg='🔅 <strong>Subexpuesto.</strong> Sube ISO, abre el diafragma o reduce la velocidad.';}
+  else if(Math.abs(ev)<=.5) msg='✓ <strong>Exposición correcta.</strong> Histograma centrado.';
+  else if(ev>0) msg='🔆 Ligeramente sobreexpuesto ('+ev.toFixed(1)+' EV).';
+  else msg='🔅 Ligeramente subexpuesto ('+ev.toFixed(1)+' EV).';
+  if(t>=1/30&&t<=1) msg+='<br>⚠ <strong>Motion blur</strong> — velocidad lenta.';
+  if(iso>=3200) msg+='<br>⚠ <strong>Ruido digital</strong> — ISO '+iso+'.';
+  if(f>=11) msg+='<br>ℹ Difracción posible a f/'+f+'.';
+  el.className=cls; el.innerHTML=msg;
+}
+
+function buildRule180(t){
+  const el=document.getElementById('expRule180');
+  let msg='',border='var(--border2)';
+  if(Math.abs(t-1/50)<.001){msg='✅ <strong>Regla 180°:</strong> 1/50 s → <strong>25 fps</strong> (PAL)';border='var(--accent)';}
+  else if(Math.abs(t-1/60)<.001){msg='✅ <strong>Regla 180°:</strong> 1/60 s → <strong>30 fps</strong> (NTSC)';border='var(--accent)';}
+  else if(Math.abs(t-1/120)<.001){msg='✅ <strong>Regla 180°:</strong> 1/120 s → <strong>60 fps</strong>';border='var(--accent)';}
+  else if(t>=1/30){msg='⚠ Para vídeo usa <strong>1/50 s</strong> (25fps) o <strong>1/60 s</strong> (30fps).';border='var(--pink2)';}
+  else msg='ℹ <strong>Regla 180°:</strong> velocidad óptima = doble del framerate. 25fps→1/50 · 30fps→1/60';
+  el.style.borderLeft='3px solid '+border; el.innerHTML=msg;
+}
+
+
+window.expSimInit = function() {
+  var sc = document.getElementById('expScene');
+  if (!sc || !sc.offsetWidth) return;
+  resize(); expCalc();
+  if (!window._expRun) {
+    window._expRun = true;
+    (function loop() {
+      if (!window._expRun) return;
+      draw(SHUTTERS[+document.getElementById('expShutter').value],
+           computeEV(SHUTTERS[+document.getElementById('expShutter').value],
+                     FSTOPS[+document.getElementById('expAperture').value],
+                     ISOS[+document.getElementById('expISO').value],
+                     +document.getElementById('expLight').value));
+      requestAnimationFrame(loop);
+    })();
+  }
+};
+window.expSimStop = function() { window._expRun = false; };
+window.addEventListener('resize', function() { if (window._expRun) resize(); });
+
+</script>
+
 <script>
 // ═══ NAVIGATION ═══
 function goTo(id) {
@@ -4116,12 +2817,7 @@ function goTo(id) {
   if (tab) tab.classList.add('active');
   const mod = document.getElementById(id);
   if (mod) mod.classList.add('active');
-  // Keep scroll-padding-top in sync with actual sticky bar height
-  const topbar = document.querySelector('header') || document.querySelector('.top-bar');
-  const navbar = document.querySelector('.nav-bar');
-  const stickyH = (topbar ? topbar.offsetHeight : 56) + (navbar ? navbar.offsetHeight : 47);
-  document.documentElement.style.scrollPaddingTop = stickyH + 'px';
-  window.scrollTo({top: 0, behavior: 'instant'});
+  window.scrollTo(0,0);
   if (id === 'm3') {
     setTimeout(() => {
       const activeInner = mod.querySelector('.inner-tab.active');
@@ -4150,7 +2846,12 @@ document.querySelectorAll('.inner-tab').forEach(tab => {
     document.getElementById(tab.dataset.inner).classList.add('active');
     if (tab.dataset.inner === 'i_scan') { cancelAnimationFrame(animFrame); animateCanvases(); }
     else if (tab.dataset.inner === 'i_gamma') { cancelAnimationFrame(animFrame); setTimeout(drawGammaCurve, 50); }
-    else cancelAnimationFrame(animFrame);
+    else if (tab.dataset.inner === 'm2_exp') {
+      cancelAnimationFrame(animFrame);
+      if (window.expSimStop) expSimStop();
+      setTimeout(function() { if (window.expSimInit) expSimInit(); }, 100);
+    }
+    else { if (window.expSimStop) expSimStop(); cancelAnimationFrame(animFrame); }
   });
 });
 
@@ -4216,7 +2917,7 @@ function drawARVisual(w, h) {
     const boxW = Math.round(boxH * aspect);
     const div = document.createElement('div');
     div.style.cssText = `width:${boxW}px;height:${boxH}px;border:2px solid ${r.c};border-radius:4px;display:flex;align-items:center;justify-content:center;background:${r.c}15;flex-shrink:0;flex-direction:column;gap:2px`;
-    div.innerHTML = `<span style="font-size:11px;font-weight:700;color:${r.c};font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif">${r.name}</span><span style="font-size:9px;color:rgba(255,255,255,.4)">${r.w}:${r.h}</span>`;
+    div.innerHTML = `<span style="font-size:11px;font-weight:700;color:${r.c};font-family:'Poppins',sans-serif">${r.name}</span><span style="font-size:9px;color:rgba(255,255,255,.4)">${r.w}:${r.h}</span>`;
     container.appendChild(div);
   });
 }
@@ -4387,7 +3088,7 @@ function renderFstops() {
   stops.forEach((s, i) => {
     const div = document.createElement('div');
     const size = Math.max(28, 56 - i * 4);
-    div.style.cssText = `width:${size}px;height:${size}px;border-radius:50%;background:rgba(25,42,86,${0.08+(10-i)*0.07});border:1px solid rgba(25,42,86,0.15);display:flex;align-items:center;justify-content:center;font-size:${size>34?11:9}px;color:var(--navy);font-family:'Inter', 'Poppins', system-ui, -apple-system, sans-serif;`;
+    div.style.cssText = `width:${size}px;height:${size}px;border-radius:50%;background:rgba(25,42,86,${0.08+(10-i)*0.07});border:1px solid rgba(25,42,86,0.15);display:flex;align-items:center;justify-content:center;font-size:${size>34?11:9}px;color:var(--navy);font-family:'Poppins',sans-serif;`;
     div.textContent = `f/${s}`;
     container.appendChild(div);
   });
@@ -4567,381 +3268,4 @@ calcDOF();
 calcProjection();
 calcLED();
 drawARVisual(1920, 1080);
-
-// ═══ SIMULADOR DE SEÑAL ═══
-const SIM_CODECS = {
-  rawhd:    { name:'RAW sin comprimir', type:'Sin compresión', desc:'Sin ninguna compresión. Máxima calidad, tamaño gigantesco. Solo viable con almacenamiento NVMe o RAID de alta velocidad.', ratio:1, lossy:false, hdr:true, containers:'DPX / EXR / TIFF' },
-  prores422:{ name:'Apple ProRes 422', type:'Intraframe', desc:'Codec de edición profesional de Apple. Compresión solo dentro de cada frame. Edición rápida y scrubbing fluido. Estándar en producción televisiva.', ratio:0.12, lossy:false, hdr:true, containers:'MOV' },
-  prores444:{ name:'Apple ProRes 4444', type:'Intraframe', desc:'Variante ProRes con 4:4:4 y canal alfa. Máxima fidelidad cromática para composición y efectos visuales.', ratio:0.18, lossy:false, hdr:true, containers:'MOV' },
-  dnxhd:    { name:'Avid DNxHD/DNxHR', type:'Intraframe', desc:'Equivalente Avid al ProRes. Diseñado para flujos Avid Media Composer. DNxHR para resoluciones mayores de 1080p.', ratio:0.10, lossy:false, hdr:false, containers:'MXF / MOV' },
-  h264:     { name:'H.264 / AVC', type:'Interframe', desc:'El codec más extendido. Compresión entre frames logrando ratios muy altos. Excelente compatibilidad universal. Limitado en HDR.', ratio:0.005, lossy:true, hdr:false, containers:'MP4 / MKV / MOV' },
-  h265:     { name:'H.265 / HEVC', type:'Interframe', desc:'Doble eficiencia que H.264. Mismo bitrate = doble de calidad. Soporte HDR nativo. Estándar para 4K streaming.', ratio:0.003, lossy:true, hdr:true, containers:'MP4 / MKV' },
-  av1:      { name:'AV1', type:'Interframe', desc:'Codec libre de patentes de AOMedia. 30% más eficiente que HEVC. Adoptado por YouTube y Netflix. Codificación lenta pero decodificación rápida.', ratio:0.002, lossy:true, hdr:true, containers:'WebM / MP4' },
-  vp9:      { name:'VP9', type:'Interframe', desc:'Codec libre de Google. Principal formato de YouTube durante años. En proceso de sustitución por AV1.', ratio:0.0035, lossy:true, hdr:false, containers:'WebM / MKV' },
-  webm:     { name:'VP8 / WebM', type:'Interframe', desc:'Primera generación Google. Menor complejidad que VP9. Compatibilidad web universal pero eficiencia inferior.', ratio:0.006, lossy:true, hdr:false, containers:'WebM' },
-};
-let simFPS = 30, simBit = 10, simChroma = '4:2:2';
-
-function simSetFPS(v,btn) { simFPS=v; document.querySelectorAll('#s_fps_group .sim-toggle-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); simUpdate(); }
-function simSetBit(v,btn) { simBit=v; document.querySelectorAll('#s_bit_group .sim-toggle-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); simUpdate(); }
-function simSetChroma(v,btn) { simChroma=v; document.querySelectorAll('#s_chroma_group .sim-toggle-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); simUpdate(); }
-
-function simGCF(a,b){return b===0?a:simGCF(b,a%b);}
-function simAR(w,h){const d=simGCF(w,h),rw=w/d,rh=h/d;if(rw===16&&rh===9)return'16:9';if(rw===4&&rh===3)return'4:3';return rw+':'+rh;}
-
-function simUpdate() {
-  const [W,H] = document.getElementById('s_res').value.split(',').map(Number);
-  const codecKey = document.getElementById('s_codec').value;
-  const dur = Number(document.getElementById('s_dur').value);
-  const codec = SIM_CODECS[codecKey];
-  document.getElementById('s_dur_val').textContent = dur + ' min';
-
-  const chromaF = simChroma==='4:4:4'?3:simChroma==='4:2:2'?2:1.5;
-  const rawMbps = W*H*simFPS*simBit*chromaF/1e6;
-  let finalMbps = rawMbps * codec.ratio * 1.0;
-  if(finalMbps < 0.5) finalMbps = 0.5;
-
-  const sizeMB = (finalMbps * dur * 60) / 8;
-  const sizeGB = sizeMB / 1024;
-  const frameKB = (finalMbps * 1000) / (simFPS * 8);
-
-  // Resolution viz
-  const scale = Math.min(200/W, 130/H);
-  const vw = Math.round(W*scale), vh = Math.round(H*scale);
-  const outer = document.getElementById('s_res_outer');
-  outer.style.width=vw+'px'; outer.style.height=vh+'px';
-  outer.style.borderColor = finalMbps>100?'#ef4444':finalMbps>40?'#f59e0b':finalMbps>8?'#3B82F6':'#10b981';
-  document.getElementById('s_res_text').textContent = W+'×'+H+'\n'+simFPS+'fps';
-  document.getElementById('s_label_w').textContent = W+' px';
-  document.getElementById('s_label_h').textContent = H+' px';
-  document.getElementById('s_ar').textContent = simAR(W,H);
-  document.getElementById('s_mp').textContent = (W*H/1e6).toFixed(2);
-
-  // Quality pill
-  let qc,qt;
-  if(codec.ratio<0.005){qc='q-pro';qt='Profesional';}
-  else if(finalMbps>40){qc='q-bc';qt='Broadcast';}
-  else if(finalMbps>8){qc='q-st';qt='Streaming';}
-  else{qc='q-web';qt='Web / Móvil';}
-  document.getElementById('s_quality_pill').className='sim-quality-pill '+qc;
-  document.getElementById('s_quality_text').textContent=qt;
-
-  // Metrics
-  document.getElementById('s_bitrate').innerHTML = finalMbps>=1000?(finalMbps/1000).toFixed(2)+'<span class="sim-metric-unit"> Gbps</span>':finalMbps.toFixed(1)+'<span class="sim-metric-unit"> Mbps</span>';
-  document.getElementById('s_bitrate_sub').textContent = 'RAW: '+rawMbps.toFixed(0)+' Mbps';
-  document.getElementById('s_size').innerHTML = sizeGB>=1?sizeGB.toFixed(2)+'<span class="sim-metric-unit"> GB</span>':sizeMB.toFixed(0)+'<span class="sim-metric-unit"> MB</span>';
-  document.getElementById('s_size_sub').textContent = dur+' min de metraje';
-  document.getElementById('s_frame').innerHTML = frameKB.toFixed(1)+'<span class="sim-metric-unit"> KB</span>';
-  document.getElementById('s_frame_sub').textContent = W+'×'+H+' @ '+simFPS+'fps';
-  document.getElementById('s_bw').innerHTML = (finalMbps*1.15).toFixed(1)+'<span class="sim-metric-unit"> Mbps</span>';
-
-  // Bitrate bar
-  const pct = Math.min((Math.log10(finalMbps+1)/Math.log10(401))*100,100);
-  const bar = document.getElementById('s_bitrate_bar');
-  bar.style.width=pct+'%';
-  bar.style.background=finalMbps>100?'#ef4444':finalMbps>40?'#f59e0b':finalMbps>8?'#3B82F6':'#10b981';
-
-  // Codec card
-  document.getElementById('s_codec_card').innerHTML = `
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
-      <strong style="font-size:14px;color:var(--navy)">${codec.name}</strong>
-      <span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;background:rgba(59,130,246,.12);color:#3B82F6">${codec.type}</span>
-      <span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;${codec.lossy?'background:rgba(239,68,68,.12);color:#ef4444':'background:rgba(16,185,129,.12);color:#10b981'}">${codec.lossy?'Con pérdidas':'Sin pérdidas'}</span>
-    </div>
-    <p style="font-size:11px;line-height:1.6;color:var(--text2);margin-bottom:10px">${codec.desc}</p>
-    <div class="codec-props-row">
-      <div class="codec-prop-chip"><div class="codec-prop-chip-label">Contenedores</div><div class="codec-prop-chip-val">${codec.containers}</div></div>
-      <div class="codec-prop-chip"><div class="codec-prop-chip-label">HDR</div><div class="codec-prop-chip-val">${codec.hdr?'✅ Sí':'❌ No'}</div></div>
-      <div class="codec-prop-chip"><div class="codec-prop-chip-label">Muestreo</div><div class="codec-prop-chip-val">${simChroma}</div></div>
-      <div class="codec-prop-chip"><div class="codec-prop-chip-label">Color</div><div class="codec-prop-chip-val">${simBit} bit</div></div>
-    </div>
-  `;
-
-  // Signal path
-  const steps = ['Fuente',codec.containers.split('/')[0].trim(),codec.name.split('/')[0].trim(),W+'×'+H,simFPS+'fps',simBit+' bit',simChroma,finalMbps.toFixed(1)+' Mbps'];
-  document.getElementById('s_sig_path').innerHTML = steps.map((s,i)=>`${i>0?'<span class="sig-arr">→</span>':''}<div class="sig-node active">${s}</div>`).join('');
-
-  // Warns
-  const warns=[];
-  if(finalMbps>200) warns.push('⚠️ Bitrate muy alto. Requiere almacenamiento NVMe o RAID.');
-  if(simFPS===120&&W>=3840) warns.push('⚠️ 4K a 120fps es extremadamente exigente para el hardware.');
-  if(!codec.hdr&&simBit>=10) warns.push('ℹ️ El codec no soporta HDR aunque la profundidad de color sea alta.');
-  document.getElementById('s_warns').innerHTML = warns.map(w=>`<div class="sim-warn">${w}</div>`).join('');
-}
-simUpdate();
-</script>
-<style id="avl-nav-style">
-  #avl-nav {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999999;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(30,29,27,0.92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 40px;
-    padding: 7px 10px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);
-    font-family: 'Poppins', -apple-system, sans-serif;
-    white-space: nowrap;
-    user-select: none;
-  }
-  .avl-nav-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.75);
-    cursor: pointer;
-    text-decoration: none;
-    transition: background .18s, color .18s, transform .18s;
-    flex-shrink: 0;
-    font-size: 13px;
-    line-height: 1;
-  }
-  .avl-nav-btn:hover {
-    background: rgba(255,255,255,0.18);
-    color: #fff;
-    transform: scale(1.08);
-  }
-  .avl-nav-btn.avl-nav-home {
-    background: #6B9A6B;
-    opacity: .9;
-  }
-  .avl-nav-btn.avl-nav-home:hover {
-    opacity: 1;
-    background: #6B9A6B;
-  }
-  .avl-nav-divider {
-    width: 1px;
-    height: 20px;
-    background: rgba(255,255,255,0.12);
-    flex-shrink: 0;
-  }
-  .avl-nav-info {
-    padding: 0 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1px;
-    min-width: 130px;
-    text-align: center;
-  }
-  .avl-nav-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: -.1px;
-  }
-  .avl-nav-app {
-    font-size: 9px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.45);
-    letter-spacing: .5px;
-    text-transform: uppercase;
-  }
-  .avl-nav-dots {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    padding: 0 4px;
-  }
-  .avl-nav-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    transition: background .2s, transform .2s;
-    cursor: default;
-  }
-  .avl-nav-dot.avl-active {
-    background: #6B9A6B;
-    transform: scale(1.3);
-  }
-  .avl-nav-btn svg {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-  }
-  @media (max-width: 480px) {
-    #avl-nav { bottom: 12px; padding: 6px 8px; gap: 4px; }
-    .avl-nav-info { min-width: 100px; }
-    .avl-nav-label { font-size: 10px; }
-    .avl-nav-dots { display: none; }
-  }
-
-/* ═══ RESPONSIVE — TOP-NAV SUITES ══════════════════════════════════ */
-/* Base font */
-body { font-size: 16px; line-height: 1.7; }
-
-/* Tablet: 768–1024px */
-@media (max-width: 1024px) {
-  .main       { padding: 24px 24px 100px; }
-  .module-title { font-size: 19px; }
-  .calc-row-3 { grid-template-columns: 1fr 1fr; }
-  .result-grid-4 { grid-template-columns: 1fr 1fr; }
-  .sim-grid   { grid-template-columns: 1fr; }
-  .grid-3     { grid-template-columns: 1fr 1fr; }
-}
-/* Mobile: < 640px */
-@media (max-width: 640px) {
-  .top-header { padding: 0 14px; height: 50px; }
-  .logo-text  { font-size: 13px; }
-  .logo-sub   { display: none; }
-  .header-badge { display: none; }
-  .nav-bar    { padding: 0 10px; }
-  .nav-tab    { padding: 10px 10px; font-size: 11px; }
-  .nav-num    { display: none; }
-  .main       { padding: 16px 14px 100px; }
-  .module-title  { font-size: 17px; }
-  .module-desc   { font-size: 13px; }
-  .card-desc     { font-size: 14px; }
-  .info-card p   { font-size: 14px; }
-  .panel-title   { font-size: 13px; }
-  .inner-tabs    { gap: 3px; }
-  .inner-tab     { padding: 7px 10px; font-size: 11px; }
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .calc-row   { grid-template-columns: 1fr; }
-  .calc-row-3 { grid-template-columns: 1fr; }
-  .result-grid   { grid-template-columns: 1fr 1fr; }
-  .result-grid-4 { grid-template-columns: 1fr 1fr; }
-  .sim-grid      { grid-template-columns: 1fr; }
-  .sim-toggle-row { gap: 4px; }
-  .sim-toggle-btn { padding: 5px 9px; font-size: 11px; }
-  .diagram-wrap   { overflow-x: auto; }
-  .module-header  { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .back-btn       { font-size: 12px; }
-}
-/* Very small: < 400px */
-@media (max-width: 400px) {
-  .nav-tab    { padding: 10px 7px; font-size: 11px; }
-  .main       { padding: 12px 10px 100px; }
-}
-
-
-/* ── Back button ── */
-.avl-nav-btn.avl-nav-back {
-  background: rgba(255,255,255,0.08);
-  position: relative;
-}
-.avl-nav-btn.avl-nav-back:hover {
-  background: rgba(255,255,255,0.18);
-}
-.avl-nav-btn.avl-nav-back[data-hidden="true"] {
-  opacity: .2;
-  pointer-events: none;
-  cursor: default;
-}
-</style>
-
-
-<div id="avl-nav">
-  <!-- Home -->
-  <a class="avl-nav-btn avl-nav-home" href="index.html" title="Volver al índice">
-    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 8L8 2l6 6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M4 6v7h3v-3h2v3h3V6" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-
-  <!-- Back to last suite -->
-  <button class="avl-nav-btn avl-nav-back" id="avl-back-btn"
-          onclick="avlGoBack()" title="Volver a la última suite"
-          data-hidden="true">
-    <svg viewBox="0 0 16 16" fill="none">
-      <path d="M13 5 L8 5 C6 5 4 7 4 9 L4 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M2 10 L4 12 L6 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <div class="avl-nav-divider"></div>
-
-  <!-- Prev -->
-  <button class="avl-nav-btn" disabled style="opacity:.25;cursor:default"><svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-
-  <!-- Info -->
-  <div class="avl-nav-info">
-    <div class="avl-nav-label">Fundamentos de Imagen</div>
-    <div class="avl-nav-app">Imagen & Vídeo</div>
-  </div>
-
-  <!-- Dots -->
-  <div class="avl-nav-dots">
-    <div class="avl-nav-dot avl-active"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-  </div>
-
-  <!-- Next -->
-  <a class="avl-nav-btn" href="illustrator.html" title="Diseño Vectorial"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-
-</div>
-
-
-
-<script>
-(function(){
-  var PAGES = {
-    'video.html':        'Imagen & Vídeo',
-    'illustrator.html':  'Illustrator',
-    'resolume.html':     'Resolume',
-    'after-effects.html':'After Effects',
-    'iluminacion.html':  'Iluminación',
-    'magicq.html':       'MagicQ',
-    'index.html':        'Inicio'
-  };
-
-  // Register this page as visited
-  var current = location.pathname.split('/').pop() || 'index.html';
-  var history  = JSON.parse(sessionStorage.getItem('avv-history') || '[]');
-  if (history[history.length - 1] !== current) {
-    history.push(current);
-    if (history.length > 20) history.shift();
-    sessionStorage.setItem('avv-history', JSON.stringify(history));
-  }
-
-  // Set up back button
-  function updateBackBtn() {
-    var btn = document.getElementById('avl-back-btn');
-    if (!btn) return;
-    // Find last different page in history
-    var prev = null;
-    for (var i = history.length - 2; i >= 0; i--) {
-      if (history[i] !== current) { prev = history[i]; break; }
-    }
-    if (prev) {
-      btn.setAttribute('data-hidden', 'false');
-      btn.title = 'Volver a ' + (PAGES[prev] || prev);
-      btn.setAttribute('data-href', prev);
-    } else {
-      btn.setAttribute('data-hidden', 'true');
-      btn.title = '';
-    }
-  }
-
-  window.avlGoBack = function() {
-    var btn = document.getElementById('avl-back-btn');
-    if (!btn || btn.getAttribute('data-hidden') === 'true') return;
-    var href = btn.getAttribute('data-href');
-    if (href) window.location.href = href;
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', updateBackBtn);
-  } else {
-    updateBackBtn();
-  }
-})();
-</script>
-</body></html>
+</script></body></html>
