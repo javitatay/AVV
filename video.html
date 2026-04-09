@@ -1789,25 +1789,118 @@ canvas { border-radius: 8px; }
 
   <div class="panel">
     <div class="panel-title">Comparativa Compresión y Calidad</div>
-    <div style="display:flex;flex-direction:column;gap:12px;padding:8px 0">
-      <div>
-        <div class="vis-bar-label"><span>JPG (con pérdida)</span><span style="color:var(--accent4)">Alta compresión, baja calidad relativa</span></div>
-        <div class="vis-bar-track"><div class="vis-bar-fill" style="width:85%;background:linear-gradient(90deg,var(--accent4),rgba(255,107,53,.4))"></div></div>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:16px">
+      Mueve el slider para ver cómo afecta la compresión a la calidad y al tamaño de archivo. Haz click en cada formato para ver sus características.
+    </p>
+
+    <!-- Slider de calidad -->
+    <div style="margin-bottom:20px">
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text2);margin-bottom:6px">
+        <span>Compresión máxima (menor calidad)</span>
+        <strong id="compQualLabel">Calidad media (50%)</strong>
+        <span>Sin compresión (mayor calidad)</span>
       </div>
-      <div>
-        <div class="vis-bar-label"><span>WEBP (optimizado)</span><span style="color:var(--accent5)">Buen balance</span></div>
-        <div class="vis-bar-track"><div class="vis-bar-fill" style="width:60%;background:linear-gradient(90deg,var(--accent5),rgba(240,192,64,.4))"></div></div>
-      </div>
-      <div>
-        <div class="vis-bar-label"><span>PNG (sin pérdida)</span><span style="color:var(--accent)">Sin pérdida, mayor tamaño</span></div>
-        <div class="vis-bar-track"><div class="vis-bar-fill" style="width:40%;background:linear-gradient(90deg,var(--accent),rgba(0,212,255,.4))"></div></div>
-      </div>
-      <div>
-        <div class="vis-bar-label"><span>TIFF / RAW (sin compresión)</span><span style="color:var(--accent3)">Máxima calidad</span></div>
-        <div class="vis-bar-track"><div class="vis-bar-fill" style="width:10%;background:linear-gradient(90deg,var(--accent3),rgba(0,255,136,.4))"></div></div>
-      </div>
+      <input type="range" id="compQualSlider" min="0" max="100" value="50"
+             oninput="compUpdate(this.value)" style="width:100%;cursor:pointer">
     </div>
-    <div style="font-size:11px;color:var(--text3);margin-top:8px">Barra = nivel de compresión (más barra = más comprimido = archivo más pequeño pero posible pérdida de calidad)</div>
+
+    <!-- Barras de formatos -->
+    <div style="display:flex;flex-direction:column;gap:10px" id="compBars"></div>
+
+    <!-- Detail panel -->
+    <div id="compDetail" style="margin-top:16px;padding:14px;border-radius:8px;background:var(--bg2);border:1px solid var(--border);font-size:13px;display:none"></div>
+
+    <script>
+    (function(){
+      var FORMATS = [
+        { name:'JPEG',  color:'var(--accent4)', loss:true,
+          desc:'Compresión con pérdida. Ideal para fotografía. A mayor compresión, aparecen artefactos de bloqueo (DCT). No admite transparencia.',
+          baseSize:120, quality:[10,95], ext:'.jpg' },
+        { name:'WebP',  color:'var(--accent5)', loss:true,
+          desc:'Formato moderno de Google. Con pérdida o sin pérdida. 25-35% más eficiente que JPEG a igual calidad. Admite transparencia y animación.',
+          baseSize:90, quality:[0,100], ext:'.webp' },
+        { name:'PNG',   color:'var(--accent)', loss:false,
+          desc:'Sin pérdida. Compresión sin degradar calidad. Admite canal alfa (transparencia). Ideal para gráficos, logos y capturas de pantalla.',
+          baseSize:400, quality:[100,100], ext:'.png' },
+        { name:'GIF',   color:'var(--purple)', loss:false,
+          desc:'Sin pérdida pero limitado a 256 colores. Admite animación y transparencia binaria. Obsoleto para fotografía, vigente para animaciones simples.',
+          baseSize:200, quality:[30,30], ext:'.gif' },
+        { name:'TIFF',  color:'var(--accent3)', loss:false,
+          desc:'Sin pérdida, alta calidad. Estándar en pre-impresión y fotografía profesional. Archivos muy grandes. Admite capas y múltiples páginas.',
+          baseSize:800, quality:[100,100], ext:'.tiff' },
+        { name:'AVIF',  color:'var(--accent6,#6B8FA3)', loss:true,
+          desc:'Formato de nueva generación (2019). Hasta 50% más eficiente que JPEG. Admite HDR, transparencia y animación. Soporte creciente en navegadores.',
+          baseSize:60, quality:[0,100], ext:'.avif' },
+      ];
+
+      var selected = null;
+
+      function getSize(fmt, q) {
+        // Simulate file size based on quality
+        if (!fmt.loss) return fmt.baseSize;
+        var ratio = fmt.baseSize * (0.1 + 0.9 * (q/100));
+        return Math.round(ratio);
+      }
+
+      function getQualPct(fmt, q) {
+        if (!fmt.loss) return 100;
+        return Math.round(fmt.quality[0] + (fmt.quality[1]-fmt.quality[0]) * (q/100));
+      }
+
+      window.compUpdate = function(val) {
+        var q = parseInt(val);
+        document.getElementById('compQualLabel').textContent =
+          q < 25 ? 'Compresión alta (' + q + '%)' :
+          q < 60 ? 'Calidad media (' + q + '%)' :
+          q < 85 ? 'Buena calidad (' + q + '%)' : 'Alta calidad (' + q + '%)';
+
+        var bars = document.getElementById('compBars');
+        bars.innerHTML = '';
+        var maxSize = Math.max.apply(null, FORMATS.map(function(f){ return getSize(f,q); }));
+
+        FORMATS.forEach(function(fmt, i) {
+          var sz   = getSize(fmt, q);
+          var qpct = getQualPct(fmt, q);
+          var barW = Math.round(sz / maxSize * 100);
+          var isSel = selected === i;
+
+          var row = document.createElement('div');
+          row.style.cssText = 'cursor:pointer;border-radius:8px;padding:8px 10px;transition:.15s;border:1.5px solid ' +
+            (isSel ? fmt.color : 'transparent') + ';background:' + (isSel ? 'var(--bg2)' : 'transparent');
+          row.onclick = function() {
+            selected = isSel ? null : i;
+            var det = document.getElementById('compDetail');
+            if (selected !== null) {
+              det.style.display = 'block';
+              det.style.borderLeft = '3px solid ' + FORMATS[selected].color;
+              det.innerHTML = '<strong style="color:' + FORMATS[selected].color + '">' +
+                FORMATS[selected].name + FORMATS[selected].ext + '</strong> — ' + FORMATS[selected].desc;
+            } else {
+              det.style.display = 'none';
+            }
+            compUpdate(document.getElementById('compQualSlider').value);
+          };
+
+          row.innerHTML =
+            '<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:5px">' +
+              '<span style="font-weight:600;color:var(--navy)">' + fmt.name +
+              (fmt.loss ? '' : ' <span style="font-size:10px;background:var(--accent-lt);color:var(--accent);border-radius:4px;padding:1px 5px">sin pérdida</span>') +
+              '</span>' +
+              '<span>' + sz + ' KB &nbsp;|&nbsp; Calidad: ' + qpct + '%</span>' +
+            '</div>' +
+            '<div style="background:var(--bg3);border-radius:4px;height:14px;overflow:hidden">' +
+              '<div style="height:100%;width:' + barW + '%;background:' + fmt.color + ';border-radius:4px;transition:width .3s ease"></div>' +
+            '</div>';
+
+          bars.appendChild(row);
+        });
+      };
+
+      // Init
+      document.addEventListener('DOMContentLoaded', function(){ compUpdate(50); });
+      if (document.readyState !== 'loading') compUpdate(50);
+    })();
+    </script>
   </div>
 </section>
 
@@ -1826,67 +1919,479 @@ canvas { border-radius: 8px; }
       </div>
     </div>
   </div>
+
   <div class="grid-3">
     <div class="info-card">
-      <div class="info-card-title" style="color:var(--accent)">🔀 Matriz (Matrix)</div>
-      <p>Permite enrutar cualquier entrada a cualquier salida de forma flexible. Ej: 8 entradas × 8 salidas. Fundamental en instalaciones AV complejas y salas de control broadcast.</p>
+      <div class="info-card-title" style="color:var(--accent)">🔀 Matriz</div>
+      <p>Enruta cualquier entrada a cualquier salida. Ej: 8×8. Fundamental en instalaciones AV complejas.</p>
     </div>
     <div class="info-card">
-      <div class="info-card-title" style="color:var(--accent3)">📤 Splitter (Distribuidor)</div>
-      <p>Duplica una señal de entrada en múltiples salidas idénticas. Un splitter HDMI 1:4 manda la misma imagen a 4 pantallas simultáneamente. Activo o pasivo.</p>
+      <div class="info-card-title" style="color:var(--accent3)">📤 Splitter</div>
+      <p>Duplica una señal en múltiples salidas idénticas. Un splitter HDMI 1:4 manda la misma imagen a 4 pantallas.</p>
     </div>
     <div class="info-card">
       <div class="info-card-title" style="color:var(--accent4)">🔄 Conversor</div>
-      <p>Transforma señales entre estándares: HDMI → SDI, SDI → HDMI, analógico → digital. Imprescindible al mezclar equipos de consumer y broadcast.</p>
+      <p>Transforma señales entre estándares: HDMI↔SDI, analógico→digital.</p>
     </div>
     <div class="info-card">
       <div class="info-card-title" style="color:var(--accent5)">🔀 Switch</div>
-      <p>Permite seleccionar entre múltiples entradas y enviarlas a una o varias salidas. A diferencia de la matriz, suele ser una operación de selección simple (A/B switch).</p>
+      <p>Selecciona entre múltiples entradas. Selección simple A/B frente a la flexibilidad de la matriz.</p>
     </div>
     <div class="info-card">
-      <div class="info-card-title" style="color:var(--purple)">📐 Escalador (Scaler)</div>
-      <p>Cambia la resolución o el formato de una señal: upscale (SD→HD), downscale (4K→HD), conversión de frame rate, cambio de aspect ratio. Muy usado en mezcladores de vídeo.</p>
+      <div class="info-card-title" style="color:var(--purple)">📐 Escalador</div>
+      <p>Cambia resolución o formato: upscale SD→HD, downscale 4K→HD, conversión de frame rate.</p>
     </div>
     <div class="info-card">
-      <div class="info-card-title" style="color:var(--accent6)">🎛️ Mezcladora de Vídeo</div>
-      <p>Combina múltiples fuentes de vídeo en tiempo real. Permite transiciones, efectos, incrustaciones y keying. Esencial en producción en directo, retransmisiones y eventos.</p>
+      <div class="info-card-title" style="color:var(--navy)">🎛️ Mezcladora</div>
+      <p>Combina múltiples fuentes en tiempo real. Transiciones, keying e incrustaciones.</p>
     </div>
   </div>
+
   <div class="panel section-gap">
-    <div class="panel-title">Flujo Típico de Señal AV en un Evento</div>
-    <div class="diagram-wrap">
-      <div class="diagram-row">
-        <div class="diag-node source">Cámara 1</div>
-        <div class="diag-arrow">→</div>
-        <div class="diag-node source">Cámara 2</div>
-        <div class="diag-arrow">→</div>
-        <div class="diag-node source">PC / Laptop</div>
-        <div class="diag-arrow">→</div>
-        <div class="diag-node source">Reproductor</div>
-      </div>
-      <div class="diagram-row"><div class="diag-arrow" style="padding-left:30px">↓↓↓↓</div></div>
-      <div class="diagram-row">
-        <div class="diag-node process">Mezcladora Vídeo</div>
-        <div class="diag-arrow">→</div>
-        <div class="diag-node process">Escalador/Conversor</div>
-        <div class="diag-arrow">→</div>
-        <div class="diag-node device">Matriz / Splitter</div>
-      </div>
-      <div class="diagram-row"><div class="diag-arrow" style="padding-left:30px">↓</div></div>
-      <div class="diagram-row">
-        <div class="diag-node output">Proyector</div>
-        <div class="diag-arrow">+</div>
-        <div class="diag-node output">Pantalla LED</div>
-        <div class="diag-arrow">+</div>
-        <div class="diag-node output">Stream</div>
-        <div class="diag-arrow">+</div>
-        <div class="diag-node output">Grabación</div>
+    <div class="panel-title">Constructor interactivo — Flujo de señal AV</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">
+      Arrastra dispositivos desde la paleta al lienzo. Para conectar: pulsa el círculo <strong>●</strong> de salida de un nodo y luego el círculo de entrada del siguiente. Doble click en un nodo para eliminarlo.
+    </p>
+
+    <style>
+    .rt-wrap { display:grid; grid-template-columns:130px 1fr; gap:12px; align-items:start; }
+    @media(max-width:600px){ .rt-wrap { grid-template-columns:1fr; } }
+    .rt-palette {
+      display:flex; flex-direction:column; gap:4px;
+      background:var(--bg2); border:1px solid var(--border);
+      border-radius:8px; padding:8px;
+    }
+    .rt-palette-title {
+      font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase;
+      color:var(--text3); margin:6px 4px 2px; 
+    }
+    .rt-palette-title:first-child { margin-top:0; }
+    .rt-item {
+      display:flex; align-items:center; gap:6px;
+      padding:5px 7px; border-radius:6px; font-size:11px; font-weight:600;
+      cursor:grab; user-select:none; border:1px solid transparent;
+      color:var(--navy); background:var(--surface); transition:.12s;
+    }
+    .rt-item:hover { border-color:var(--border2); background:var(--bg3); }
+    .rt-item:active { cursor:grabbing; }
+    .rt-canvas-wrap {
+      position:relative; border:1.5px solid var(--border2);
+      border-radius:10px; background:#f8f8f6; overflow:hidden;
+    }
+    #rtCanvas { display:block; width:100%; }
+    .rt-actions { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; align-items:center; }
+    .rt-btn {
+      padding:5px 13px; font-size:12px; border-radius:6px; cursor:pointer;
+      border:1px solid var(--border2); background:var(--surface);
+      font-family:inherit; transition:.12s;
+    }
+    .rt-btn:hover { background:var(--bg3); }
+    .rt-hint { font-size:11px; color:var(--text3); }
+    </style>
+
+    <div class="rt-wrap">
+      <!-- PALETTE -->
+      <div class="rt-palette" id="rtPalette"></div>
+
+      <!-- CANVAS -->
+      <div class="rt-canvas-wrap">
+        <canvas id="rtCanvas" height="420"></canvas>
       </div>
     </div>
+
+    <div class="rt-actions">
+      <button class="rt-btn" onclick="rtClear()">🗑 Limpiar</button>
+      <button class="rt-btn" onclick="rtExample()">📋 Ejemplo</button>
+      <button class="rt-btn" onclick="rtExport()">⬇ Exportar JPG</button>
+      <span class="rt-hint">Doble click en nodo → eliminar &nbsp;|&nbsp; Click en ● → conectar</span>
+    </div>
   </div>
+
+  <script>
+  (function(){
+
+    var CATS = [
+      { label:'Fuentes', color:'#3d6b5a', items:[
+        { icon:'📷', label:'Cámara' },
+        { icon:'💻', label:'PC/Laptop' },
+        { icon:'📀', label:'Reproductor' },
+        { icon:'📡', label:'Receptor' },
+      ]},
+      { label:'Proceso', color:'#6a5a9a', items:[
+        { icon:'🎛️', label:'Mezcladora' },
+        { icon:'🔀', label:'Matriz' },
+        { icon:'📐', label:'Escalador' },
+        { icon:'🔄', label:'Conversor' },
+        { icon:'📤', label:'Splitter' },
+        { icon:'🖥️', label:'Switch' },
+      ]},
+      { label:'Salidas', color:'#8a4a4a', items:[
+        { icon:'📽️', label:'Proyector' },
+        { icon:'🖥️', label:'Pantalla' },
+        { icon:'💡', label:'LED Wall' },
+        { icon:'🎥', label:'Grabadora' },
+        { icon:'🌐', label:'Stream' },
+      ]},
+    ];
+
+    var nodes = [], conns = [];
+    var dragNode = null, dragOX = 0, dragOY = 0;
+    var connectFrom = null;   // {node, port:'out'}
+    var mouseX = 0, mouseY = 0;
+    var nextId = 1;
+
+    var NW = 88, NH = 34, PR = 6; // node width, height, port radius
+
+    var canvas = document.getElementById('rtCanvas');
+    var ctx    = canvas.getContext('2d');
+
+    // ── Build palette ────────────────────────────────────────
+    var pal = document.getElementById('rtPalette');
+    CATS.forEach(function(cat) {
+      var title = document.createElement('div');
+      title.className = 'rt-palette-title';
+      title.textContent = cat.label;
+      pal.appendChild(title);
+
+      cat.items.forEach(function(item) {
+        var el = document.createElement('div');
+        el.className = 'rt-item';
+        el.draggable = true;
+        el.innerHTML = '<span>' + item.icon + '</span><span>' + item.label + '</span>';
+        el.style.borderLeftColor = cat.color;
+
+        el.addEventListener('dragstart', function(e) {
+          e.dataTransfer.setData('text/plain', JSON.stringify({
+            icon: item.icon, label: item.label, color: cat.color
+          }));
+        });
+        pal.appendChild(el);
+      });
+    });
+
+    // ── Canvas resize ────────────────────────────────────────
+    function resize() {
+      var wrap = canvas.parentElement;
+      var W = wrap.offsetWidth || 600;
+      var H = 420;
+      var dpr = window.devicePixelRatio || 1;
+      canvas.width  = W * dpr;
+      canvas.height = H * dpr;
+      canvas.style.width  = W + 'px';
+      canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw();
+    }
+
+    // ── Port positions ───────────────────────────────────────
+    function inPort(n)  { return { x: n.x,      y: n.y + NH/2 }; }
+    function outPort(n) { return { x: n.x + NW,  y: n.y + NH/2 }; }
+
+    function hitPort(px, py, n) {
+      var ip = inPort(n),  op = outPort(n);
+      if (Math.hypot(px-ip.x, py-ip.y) <= PR+3) return 'in';
+      if (Math.hypot(px-op.x, py-op.y) <= PR+3) return 'out';
+      return null;
+    }
+
+    function hitNode(px, py) {
+      for (var i = nodes.length-1; i >= 0; i--) {
+        var n = nodes[i];
+        if (px >= n.x-PR && px <= n.x+NW+PR && py >= n.y && py <= n.y+NH)
+          return n;
+      }
+      return null;
+    }
+
+    // ── Draw ─────────────────────────────────────────────────
+    function draw() {
+      var W = canvas.width, H = canvas.height;
+      ctx.clearRect(0,0,W,H);
+
+      // Background grid
+      ctx.strokeStyle = 'rgba(0,0,0,0.05)'; ctx.lineWidth = 1;
+      for (var gx = 0; gx < W; gx += 24) {
+        ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke();
+      }
+      for (var gy = 0; gy < H; gy += 24) {
+        ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke();
+      }
+
+      // Connections
+      ctx.setLineDash([]);
+      conns.forEach(function(c) {
+        var a = nodeById(c.from), b = nodeById(c.to);
+        if (!a || !b) return;
+        var p1 = outPort(a), p2 = inPort(b);
+        var dx = Math.abs(p2.x - p1.x) * 0.5;
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.bezierCurveTo(p1.x+dx, p1.y, p2.x-dx, p2.y, p2.x, p2.y);
+        ctx.strokeStyle = '#4A7A6A';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        // Arrow tip
+        var angle = Math.atan2(p2.y - (p2.y - (p2.y-p1.y)*0.05), 3);
+        drawArrow(p2.x, p2.y, '#4A7A6A');
+      });
+
+      // Live connection being drawn
+      if (connectFrom) {
+        var src = outPort(connectFrom);
+        var dx2 = Math.abs(mouseX - src.x) * 0.5;
+        ctx.beginPath();
+        ctx.moveTo(src.x, src.y);
+        ctx.bezierCurveTo(src.x+dx2, src.y, mouseX-dx2, mouseY, mouseX, mouseY);
+        ctx.strokeStyle = 'rgba(74,122,106,0.45)';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([5,4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
+      // Nodes
+      nodes.forEach(function(n) {
+        drawNode(n);
+      });
+    }
+
+    function drawArrow(x, y, color) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x-8, y-4);
+      ctx.lineTo(x-8, y+4);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function drawNode(n) {
+      var r = 6;
+      // Shadow
+      ctx.shadowColor = 'rgba(0,0,0,0.12)';
+      ctx.shadowBlur = 6; ctx.shadowOffsetY = 2;
+
+      // Box
+      ctx.fillStyle = '#fff';
+      ctx.strokeStyle = n.color;
+      ctx.lineWidth = 1.5;
+      roundRect(n.x, n.y, NW, NH, r);
+      ctx.fill(); ctx.stroke();
+      ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+
+      // Color accent bar on left
+      ctx.fillStyle = n.color;
+      ctx.beginPath();
+      ctx.moveTo(n.x+r, n.y);
+      ctx.lineTo(n.x+10, n.y);
+      ctx.lineTo(n.x+10, n.y+NH);
+      ctx.lineTo(n.x+r, n.y+NH);
+      ctx.arcTo(n.x, n.y+NH, n.x, n.y+NH-r, r);
+      ctx.lineTo(n.x, n.y+r);
+      ctx.arcTo(n.x, n.y, n.x+r, n.y, r);
+      ctx.closePath();
+      ctx.fill();
+
+      // Label
+      ctx.fillStyle = '#192A56';
+      ctx.font = '10px system-ui, sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(n.icon + ' ' + n.label, n.x + NW/2 + 3, n.y + NH/2);
+
+      // Ports
+      var ip = inPort(n), op = outPort(n);
+      [ [ip,'in'], [op,'out'] ].forEach(function(pair) {
+        var p = pair[0], side = pair[1];
+        var isActive = connectFrom && side === 'in';
+        ctx.fillStyle = isActive ? '#4A7A6A' : n.color;
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.arc(p.x, p.y, PR, 0, Math.PI*2);
+        ctx.fill(); ctx.stroke();
+      });
+    }
+
+    function roundRect(x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
+      ctx.lineTo(x+w,y+h-r); ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+      ctx.lineTo(x+r,y+h); ctx.arcTo(x,y+h,x,y+h-r,r);
+      ctx.lineTo(x,y+r); ctx.arcTo(x,y,x+r,y,r);
+      ctx.closePath();
+    }
+
+    function nodeById(id) { return nodes.find(function(n){return n.id===id;})||null; }
+
+    // ── Canvas events ────────────────────────────────────────
+    function canvasPos(e) {
+      var rect = canvas.getBoundingClientRect();
+      var sx = (canvas.width / (window.devicePixelRatio||1)) / rect.width;
+      var sy = (canvas.height / (window.devicePixelRatio||1)) / rect.height;
+      var cx = e.touches ? e.touches[0].clientX : e.clientX;
+      var cy = e.touches ? e.touches[0].clientY : e.clientY;
+      return { x:(cx-rect.left)*sx, y:(cy-rect.top)*sy };
+    }
+
+    canvas.addEventListener('mousedown', function(e) {
+      var p = canvasPos(e);
+      // Check ports first
+      for (var i = nodes.length-1; i >= 0; i--) {
+        var ph = hitPort(p.x, p.y, nodes[i]);
+        if (ph === 'out') {
+          // Start connection from output port
+          connectFrom = nodes[i];
+          mouseX = p.x; mouseY = p.y;
+          return;
+        }
+        if (ph === 'in' && connectFrom) {
+          // Complete connection
+          if (connectFrom.id !== nodes[i].id) {
+            // Remove existing connection to this input
+            conns = conns.filter(function(c){ return c.to !== nodes[i].id; });
+            conns.push({ from: connectFrom.id, to: nodes[i].id });
+          }
+          connectFrom = null;
+          draw(); return;
+        }
+      }
+      // Cancel connection if clicking empty space
+      if (connectFrom) { connectFrom = null; draw(); return; }
+      // Start drag
+      var n = hitNode(p.x, p.y);
+      if (n) {
+        dragNode = n;
+        dragOX = p.x - n.x; dragOY = p.y - n.y;
+      }
+    });
+
+    canvas.addEventListener('mousemove', function(e) {
+      var p = canvasPos(e);
+      mouseX = p.x; mouseY = p.y;
+      // Cursor
+      var overPort = false;
+      for (var i=0;i<nodes.length;i++) {
+        if (hitPort(p.x,p.y,nodes[i])) { overPort=true; break; }
+      }
+      canvas.style.cursor = overPort ? 'crosshair' : (dragNode ? 'grabbing' : (hitNode(p.x,p.y) ? 'grab' : 'default'));
+      if (dragNode) {
+        dragNode.x = Math.max(0, Math.min(canvas.width-NW, p.x-dragOX));
+        dragNode.y = Math.max(0, Math.min(canvas.height-NH, p.y-dragOY));
+      }
+      if (dragNode || connectFrom) draw();
+    });
+
+    canvas.addEventListener('mouseup', function(e) {
+      var p = canvasPos(e);
+      if (connectFrom) {
+        // Check if released on an input port
+        for (var i=nodes.length-1;i>=0;i--) {
+          if (hitPort(p.x,p.y,nodes[i]) === 'in' && nodes[i].id !== connectFrom.id) {
+            conns = conns.filter(function(c){ return c.to !== nodes[i].id; });
+            conns.push({ from:connectFrom.id, to:nodes[i].id });
+            connectFrom = null; draw(); dragNode = null; return;
+          }
+        }
+      }
+      dragNode = null;
+    });
+
+    canvas.addEventListener('dblclick', function(e) {
+      var p = canvasPos(e);
+      var n = hitNode(p.x,p.y);
+      if (n) {
+        nodes = nodes.filter(function(nd){ return nd.id !== n.id; });
+        conns = conns.filter(function(c){ return c.from!==n.id && c.to!==n.id; });
+        if (connectFrom && connectFrom.id===n.id) connectFrom=null;
+        draw();
+      }
+    });
+
+    // ── Drag from palette ────────────────────────────────────
+    var canvasWrap = canvas.parentElement;
+    canvasWrap.addEventListener('dragover', function(e){ e.preventDefault(); });
+    canvasWrap.addEventListener('drop', function(e) {
+      e.preventDefault();
+      var data = JSON.parse(e.dataTransfer.getData('text/plain'));
+      var rect = canvas.getBoundingClientRect();
+      var sx = canvas.width / rect.width;
+      var sy = canvas.height / rect.height;
+      var x = (e.clientX - rect.left)*sx - NW/2;
+      var y = (e.clientY - rect.top)*sy  - NH/2;
+      nodes.push({
+        id: nextId++, icon: data.icon, label: data.label,
+        color: data.color,
+        x: Math.max(PR, Math.min(canvas.width-NW-PR, x)),
+        y: Math.max(PR, Math.min(canvas.height-NH-PR, y))
+      });
+      draw();
+    });
+
+    // ── Public functions ─────────────────────────────────────
+    window.rtClear = function() {
+      nodes=[]; conns=[]; connectFrom=null; dragNode=null; nextId=1; draw();
+    };
+
+    window.rtExample = function() {
+      rtClear();
+      var W = canvas.width, col = [20, 160, 300, 440];
+      var add = function(dev, ci, x, y) {
+        nodes.push({ id:nextId++, icon:dev.icon, label:dev.label, color:dev.color, x:x, y:y });
+        return nextId-1;
+      };
+      // Fuentes
+      var c1 = add(CATS[0].items[0], 0, col[0], 40);
+      var c2 = add(CATS[0].items[1], 0, col[0], 110);
+      var c3 = add(CATS[0].items[2], 0, col[0], 180);
+      // Mezcladora
+      var mx = add(CATS[1].items[0], 1, col[1], 110);
+      // Splitter
+      var sp = add(CATS[1].items[4], 1, col[2], 110);
+      // Salidas
+      var s1 = add(CATS[2].items[0], 2, col[3], 40);
+      var s2 = add(CATS[2].items[1], 2, col[3], 110);
+      var s3 = add(CATS[2].items[4], 2, col[3], 180);
+      conns = [
+        {from:c1,to:mx},{from:c2,to:mx},{from:c3,to:mx},
+        {from:mx,to:sp},
+        {from:sp,to:s1},{from:sp,to:s2},{from:sp,to:s3}
+      ];
+      draw();
+    };
+
+    window.rtExport = function() {
+      var off = document.createElement('canvas');
+      off.width=canvas.width; off.height=canvas.height;
+      var oc=off.getContext('2d');
+      oc.fillStyle='#f8f8f6'; oc.fillRect(0,0,off.width,off.height);
+      oc.drawImage(canvas,0,0);
+      var a=document.createElement('a');
+      a.download='flujo-señal-av.jpg';
+      a.href=off.toDataURL('image/jpeg',0.92);
+      a.click();
+    };
+
+    // Trigger resize when m6 becomes active
+    var _go = window.goTo;
+    if (typeof _go === 'function') {
+      window.goTo = function(id) {
+        _go(id);
+        if (id==='m6') setTimeout(function(){ resize(); rtExample(); }, 60);
+      };
+    }
+
+    // Init
+    window.addEventListener('resize', resize);
+    if (document.readyState==='loading') {
+      document.addEventListener('DOMContentLoaded', function(){ resize(); rtExample(); });
+    } else {
+      resize(); rtExample();
+    }
+
+  })();
+  </script>
+
 </section>
 
-<!-- ═══ MÓDULO 7 — PROYECCIÓN ═══ -->
 <section class="module" id="m7">
   <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
 
@@ -2392,7 +2897,6 @@ canvas { border-radius: 8px; }
   </div>
 </section>
 
--e 
 </main>
 
 <script>
@@ -3268,4 +3772,264 @@ calcDOF();
 calcProjection();
 calcLED();
 drawARVisual(1920, 1080);
-</script></body></html>
+</script><style id="avl-nav-style">
+  #avl-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(30,29,27,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 40px;
+    padding: 7px 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);
+    font-family: 'Poppins', -apple-system, sans-serif;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .avl-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.75);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .18s, color .18s, transform .18s;
+    flex-shrink: 0;
+    font-size: 13px;
+    line-height: 1;
+  }
+  .avl-nav-btn:hover {
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    transform: scale(1.08);
+  }
+  .avl-nav-btn.avl-nav-home {
+    background: #A06B4A;
+    opacity: .9;
+  }
+  .avl-nav-btn.avl-nav-home:hover {
+    opacity: 1;
+    background: #A06B4A;
+  }
+  .avl-nav-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255,255,255,0.12);
+    flex-shrink: 0;
+  }
+  .avl-nav-info {
+    padding: 0 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    min-width: 130px;
+    text-align: center;
+  }
+  .avl-nav-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -.1px;
+  }
+  .avl-nav-app {
+    font-size: 9px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+  .avl-nav-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 0 4px;
+  }
+  .avl-nav-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: background .2s, transform .2s;
+    cursor: default;
+  }
+  .avl-nav-dot.avl-active {
+    background: #A06B4A;
+    transform: scale(1.3);
+  }
+  .avl-nav-btn svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 480px) {
+    #avl-nav { bottom: 12px; padding: 6px 8px; gap: 4px; }
+    .avl-nav-info { min-width: 100px; }
+    .avl-nav-label { font-size: 10px; }
+    .avl-nav-dots { display: none; }
+  }
+
+
+/* ── UNIFIED BOX SIZING — Illustrator (reference) ──────────── */
+.info-box, .warn-box, .ok-box {
+  border-radius: 4px !important;
+  padding: 14px 16px !important;
+  margin-bottom: 14px !important;
+  border-left-width: 3px !important;
+}
+.info-box h4, .warn-box h4, .ok-box h4 {
+  font-size: 13px !important;
+  letter-spacing: .8px !important;
+  margin-bottom: 8px !important;
+}
+
+/* ═══ RESPONSIVE ADDITIONS — ILLUSTRATOR ════════════════════════════ */
+@media (max-width: 1280px) {
+  .content-area .main { padding: 24px 28px 80px; }
+}
+@media (max-width: 1024px) {
+  .content-area .main { padding: 20px 20px 80px; }
+  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+  .page-title { font-size: 26px; }
+}
+@media (max-width: 640px) {
+  .content-area .main, .main { padding: 16px 14px 80px !important; }
+  .page-title  { font-size: 20px; }
+  .page-desc   { font-size: 14px !important; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .info-box p, .warn-box p, .ok-box p { font-size: 14px; }
+  .ai-table    { font-size: 12px; }
+  .step-item   { gap: 10px; }
+  .top-bar     { padding: 6px 14px; }
+}
+
+
+/* ── Back button ── */
+.avl-nav-btn.avl-nav-back {
+  background: rgba(255,255,255,0.08);
+  position: relative;
+}
+.avl-nav-btn.avl-nav-back:hover {
+  background: rgba(255,255,255,0.18);
+}
+.avl-nav-btn.avl-nav-back[data-hidden="true"] {
+  opacity: .2;
+  pointer-events: none;
+  cursor: default;
+}
+</style>
+
+
+<div id="avl-nav">
+  <!-- Home -->
+  <a class="avl-nav-btn avl-nav-home" href="index.html" title="Volver al índice">
+    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 8L8 2l6 6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4 6v7h3v-3h2v3h3V6" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+
+  <!-- Back to last suite -->
+  <button class="avl-nav-btn avl-nav-back" id="avl-back-btn"
+          onclick="avlGoBack()" title="Volver a la última suite"
+          data-hidden="true">
+    <svg viewBox="0 0 16 16" fill="none">
+      <path d="M13 5 L8 5 C6 5 4 7 4 9 L4 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 10 L4 12 L6 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <div class="avl-nav-divider"></div>
+
+  <!-- Prev -->
+  <a class="avl-nav-btn" href="index.html" title="Volver al índice"><svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+  <!-- Info -->
+  <div class="avl-nav-info">
+    <div class="avl-nav-label">Imagen &amp; Vídeo</div>
+    <div class="avl-nav-app">Fundamentos Imagen</div>
+  </div>
+
+  <!-- Dots -->
+  <div class="avl-nav-dots">
+    <div class="avl-nav-dot avl-active"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+    <div class="avl-nav-dot"></div>
+  </div>
+
+  <!-- Next -->
+  <a class="avl-nav-btn" href="resolume.html" title="VJing & Projection Mapping"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+</div>
+
+
+
+<script>
+(function(){
+  var PAGES = {
+    'video.html':        'Imagen & Vídeo',
+    'illustrator.html':  'Illustrator',
+    'resolume.html':     'Resolume',
+    'after-effects.html':'After Effects',
+    'iluminacion.html':  'Iluminación',
+    'magicq.html':       'MagicQ',
+    'index.html':        'Inicio'
+  };
+
+  // Register this page as visited
+  var current = location.pathname.split('/').pop() || 'index.html';
+  var history  = JSON.parse(sessionStorage.getItem('avv-history') || '[]');
+  if (history[history.length - 1] !== current) {
+    history.push(current);
+    if (history.length > 20) history.shift();
+    sessionStorage.setItem('avv-history', JSON.stringify(history));
+  }
+
+  // Set up back button
+  function updateBackBtn() {
+    var btn = document.getElementById('avl-back-btn');
+    if (!btn) return;
+    // Find last different page in history
+    var prev = null;
+    for (var i = history.length - 2; i >= 0; i--) {
+      if (history[i] !== current) { prev = history[i]; break; }
+    }
+    if (prev) {
+      btn.setAttribute('data-hidden', 'false');
+      btn.title = 'Volver a ' + (PAGES[prev] || prev);
+      btn.setAttribute('data-href', prev);
+    } else {
+      btn.setAttribute('data-hidden', 'true');
+      btn.title = '';
+    }
+  }
+
+  window.avlGoBack = function() {
+    var btn = document.getElementById('avl-back-btn');
+    if (!btn || btn.getAttribute('data-hidden') === 'true') return;
+    var href = btn.getAttribute('data-href');
+    if (href) window.location.href = href;
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateBackBtn);
+  } else {
+    updateBackBtn();
+  }
+})();
+</script>
+</body></html>
