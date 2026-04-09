@@ -554,6 +554,37 @@ canvas { border-radius: 8px; }
 .exp-advice.over  { border-color: var(--pink2); background: rgba(229,142,139,.08); }
 .exp-advice.under { border-color: #6B7FA3; background: rgba(107,127,163,.08); }
 .exp-rule180 { margin-top: 10px; font-size: 12px; padding: 8px 12px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); color: var(--text2); line-height: 1.5; }
+
+
+
+canvas { display: block; width: 100%; }
+
+button {
+  padding: 5px 14px; font-size: 12px; border-radius: 6px;
+  border: 1px solid #ccc; background: #fff; cursor: pointer; font-family: inherit;
+}
+button:hover { background: #eee; }
+small { color: #8896b5; font-size: 11px; }
+
+
+
+.shell{display:grid;grid-template-columns:136px 1fr;gap:10px;height:520px}
+.pal{background:#fff;border:1px solid #dddbd7;border-radius:10px;overflow-y:auto;padding:8px 6px;display:flex;flex-direction:column;gap:2px}
+.pcat{font-size:9px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:#8896b5;padding:8px 4px 3px}
+.pcat:first-child{padding-top:2px}
+.pit{display:flex;align-items:center;gap:6px;padding:5px 6px;border-radius:6px;font-size:11px;color:#192A56;cursor:grab;user-select:none;border-left:3px solid transparent;transition:.1s}
+.pit:hover{background:#edecea}
+.pit .ic{font-size:9px;font-weight:700;min-width:28px}
+.right{display:flex;flex-direction:column;gap:8px;height:100%}
+.cwrap{flex:1;border:1px solid #ccc9c4;border-radius:10px;background:#f7f7f5;overflow:hidden;position:relative}
+canvas{display:block}
+.acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.acts button{font-size:11px;padding:4px 11px;border-radius:6px;border:1px solid #ccc9c4;background:#fff;color:#192A56;cursor:pointer;font-family:inherit}
+.acts button:hover{background:#edecea}
+.acts span{font-size:10px;color:#8896b5}
+.einput{position:absolute;display:none;z-index:20}
+.einput input{font-size:10px;padding:2px 5px;border:1.5px solid #378ADD;border-radius:4px;outline:none;width:88px;font-family:inherit;background:#fff;color:#111}
+
 </style>
 </head>
 <body>
@@ -1907,7 +1938,6 @@ canvas { border-radius: 8px; }
 <!-- ═══ MÓDULO 6 — DISTRIBUCIÓN & ROUTING ═══ -->
 <section class="module" id="m6">
   <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
-
   <div class="module-header">
     <div class="module-icon">🔀</div>
     <div>
@@ -1919,7 +1949,6 @@ canvas { border-radius: 8px; }
       </div>
     </div>
   </div>
-
   <div class="grid-3">
     <div class="info-card">
       <div class="info-card-title" style="color:var(--accent)">🔀 Matriz</div>
@@ -1943,453 +1972,30 @@ canvas { border-radius: 8px; }
     </div>
     <div class="info-card">
       <div class="info-card-title" style="color:var(--navy)">🎛️ Mezcladora</div>
-      <p>Combina múltiples fuentes en tiempo real. Transiciones, keying e incrustaciones.</p>
+      <p>Combina múltiples fuentes en tiempo real. Transiciones, efectos e incrustaciones.</p>
     </div>
   </div>
-
   <div class="panel section-gap">
     <div class="panel-title">Constructor interactivo — Flujo de señal AV</div>
     <p style="font-size:13px;color:var(--text2);margin-bottom:14px">
-      Arrastra dispositivos desde la paleta al lienzo. Para conectar: pulsa el círculo <strong>●</strong> de salida de un nodo y luego el círculo de entrada del siguiente. Doble click en un nodo para eliminarlo.
+      Arrastra dispositivos desde la paleta al lienzo. Pulsa el círculo <strong>●</strong> de salida y luego el de entrada para conectar. Doble click para renombrar. Click derecho para eliminar.
     </p>
-
-    <style>
-    .rt-wrap { display:grid; grid-template-columns:130px 1fr; gap:12px; align-items:start; }
-    @media(max-width:600px){ .rt-wrap { grid-template-columns:1fr; } }
-    .rt-palette {
-      display:flex; flex-direction:column; gap:4px;
-      background:var(--bg2); border:1px solid var(--border);
-      border-radius:8px; padding:8px;
-    }
-    .rt-palette-title {
-      font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase;
-      color:var(--text3); margin:6px 4px 2px; 
-    }
-    .rt-palette-title:first-child { margin-top:0; }
-    .rt-item {
-      display:flex; align-items:center; gap:6px;
-      padding:5px 7px; border-radius:6px; font-size:11px; font-weight:600;
-      cursor:grab; user-select:none; border:1px solid transparent;
-      color:var(--navy); background:var(--surface); transition:.12s;
-    }
-    .rt-item:hover { border-color:var(--border2); background:var(--bg3); }
-    .rt-item:active { cursor:grabbing; }
-    .rt-canvas-wrap {
-      position:relative; border:1.5px solid var(--border2);
-      border-radius:10px; background:#f8f8f6; overflow:hidden;
-    }
-    #rtCanvas { display:block; width:100%; }
-    .rt-actions { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; align-items:center; }
-    .rt-btn {
-      padding:5px 13px; font-size:12px; border-radius:6px; cursor:pointer;
-      border:1px solid var(--border2); background:var(--surface);
-      font-family:inherit; transition:.12s;
-    }
-    .rt-btn:hover { background:var(--bg3); }
-    .rt-hint { font-size:11px; color:var(--text3); }
-    </style>
-
-    <div class="rt-wrap">
-      <!-- PALETTE -->
-      <div class="rt-palette" id="rtPalette"></div>
-
-      <!-- CANVAS -->
-      <div class="rt-canvas-wrap">
-        <canvas id="rtCanvas" height="420"></canvas>
-      </div>
+<div class="shell">
+  <div class="pal" id="pal"></div>
+  <div class="right">
+    <div class="cwrap" id="cwrap">
+      <canvas id="cv"></canvas>
+      <div class="einput" id="ei"><input id="eii"></div>
     </div>
-
-    <div class="rt-actions">
-      <button class="rt-btn" onclick="rtClear()">🗑 Limpiar</button>
-      <button class="rt-btn" onclick="rtExample()">📋 Ejemplo</button>
-      <button class="rt-btn" onclick="rtExport()">⬇ Exportar JPG</button>
-      <span class="rt-hint">Doble click en nodo → eliminar &nbsp;|&nbsp; Click en ● → conectar</span>
+    <div class="acts">
+      <button onclick="doEx()">📋 Ejemplo</button>
+      <button onclick="doClear()">🗑 Limpiar</button>
+      <button onclick="doExport()">⬇ Exportar JPG</button>
+      <span>Drag desde paleta · ● conectar · doble clic renombrar · clic derecho eliminar</span>
     </div>
   </div>
-
-  <script>
-  (function(){
-
-    var CATS = [
-      { label:'Fuentes', color:'#3d6b5a', items:[
-        { icon:'📷', label:'Cámara' },
-        { icon:'💻', label:'PC/Laptop' },
-        { icon:'📀', label:'Reproductor' },
-        { icon:'📡', label:'Receptor' },
-      ]},
-      { label:'Proceso', color:'#6a5a9a', items:[
-        { icon:'🎛️', label:'Mezcladora' },
-        { icon:'🔀', label:'Matriz' },
-        { icon:'📐', label:'Escalador' },
-        { icon:'🔄', label:'Conversor' },
-        { icon:'📤', label:'Splitter' },
-        { icon:'🖥️', label:'Switch' },
-      ]},
-      { label:'Salidas', color:'#8a4a4a', items:[
-        { icon:'📽️', label:'Proyector' },
-        { icon:'🖥️', label:'Pantalla' },
-        { icon:'💡', label:'LED Wall' },
-        { icon:'🎥', label:'Grabadora' },
-        { icon:'🌐', label:'Stream' },
-      ]},
-    ];
-
-    var nodes = [], conns = [];
-    var dragNode = null, dragOX = 0, dragOY = 0;
-    var connectFrom = null;   // {node, port:'out'}
-    var mouseX = 0, mouseY = 0;
-    var nextId = 1;
-
-    var NW = 88, NH = 34, PR = 6; // node width, height, port radius
-
-    var canvas = document.getElementById('rtCanvas');
-    var ctx    = canvas.getContext('2d');
-
-    // ── Build palette ────────────────────────────────────────
-    var pal = document.getElementById('rtPalette');
-    CATS.forEach(function(cat) {
-      var title = document.createElement('div');
-      title.className = 'rt-palette-title';
-      title.textContent = cat.label;
-      pal.appendChild(title);
-
-      cat.items.forEach(function(item) {
-        var el = document.createElement('div');
-        el.className = 'rt-item';
-        el.draggable = true;
-        el.innerHTML = '<span>' + item.icon + '</span><span>' + item.label + '</span>';
-        el.style.borderLeftColor = cat.color;
-
-        el.addEventListener('dragstart', function(e) {
-          e.dataTransfer.setData('text/plain', JSON.stringify({
-            icon: item.icon, label: item.label, color: cat.color
-          }));
-        });
-        pal.appendChild(el);
-      });
-    });
-
-    // ── Canvas resize ────────────────────────────────────────
-    function resize() {
-      var wrap = canvas.parentElement;
-      var W = wrap.offsetWidth || 600;
-      var H = 420;
-      var dpr = window.devicePixelRatio || 1;
-      canvas.width  = W * dpr;
-      canvas.height = H * dpr;
-      canvas.style.width  = W + 'px';
-      canvas.style.height = H + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      draw();
-    }
-
-    // ── Port positions ───────────────────────────────────────
-    function inPort(n)  { return { x: n.x,      y: n.y + NH/2 }; }
-    function outPort(n) { return { x: n.x + NW,  y: n.y + NH/2 }; }
-
-    function hitPort(px, py, n) {
-      var ip = inPort(n),  op = outPort(n);
-      if (Math.hypot(px-ip.x, py-ip.y) <= PR+3) return 'in';
-      if (Math.hypot(px-op.x, py-op.y) <= PR+3) return 'out';
-      return null;
-    }
-
-    function hitNode(px, py) {
-      for (var i = nodes.length-1; i >= 0; i--) {
-        var n = nodes[i];
-        if (px >= n.x-PR && px <= n.x+NW+PR && py >= n.y && py <= n.y+NH)
-          return n;
-      }
-      return null;
-    }
-
-    // ── Draw ─────────────────────────────────────────────────
-    function draw() {
-      var W = canvas.width, H = canvas.height;
-      ctx.clearRect(0,0,W,H);
-
-      // Background grid
-      ctx.strokeStyle = 'rgba(0,0,0,0.05)'; ctx.lineWidth = 1;
-      for (var gx = 0; gx < W; gx += 24) {
-        ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke();
-      }
-      for (var gy = 0; gy < H; gy += 24) {
-        ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke();
-      }
-
-      // Connections
-      ctx.setLineDash([]);
-      conns.forEach(function(c) {
-        var a = nodeById(c.from), b = nodeById(c.to);
-        if (!a || !b) return;
-        var p1 = outPort(a), p2 = inPort(b);
-        var dx = Math.abs(p2.x - p1.x) * 0.5;
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.bezierCurveTo(p1.x+dx, p1.y, p2.x-dx, p2.y, p2.x, p2.y);
-        ctx.strokeStyle = '#4A7A6A';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        // Arrow tip
-        var angle = Math.atan2(p2.y - (p2.y - (p2.y-p1.y)*0.05), 3);
-        drawArrow(p2.x, p2.y, '#4A7A6A');
-      });
-
-      // Live connection being drawn
-      if (connectFrom) {
-        var src = outPort(connectFrom);
-        var dx2 = Math.abs(mouseX - src.x) * 0.5;
-        ctx.beginPath();
-        ctx.moveTo(src.x, src.y);
-        ctx.bezierCurveTo(src.x+dx2, src.y, mouseX-dx2, mouseY, mouseX, mouseY);
-        ctx.strokeStyle = 'rgba(74,122,106,0.45)';
-        ctx.lineWidth = 1.5;
-        ctx.setLineDash([5,4]);
-        ctx.stroke();
-        ctx.setLineDash([]);
-      }
-
-      // Nodes
-      nodes.forEach(function(n) {
-        drawNode(n);
-      });
-    }
-
-    function drawArrow(x, y, color) {
-      ctx.fillStyle = color;
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-      ctx.lineTo(x-8, y-4);
-      ctx.lineTo(x-8, y+4);
-      ctx.closePath();
-      ctx.fill();
-    }
-
-    function drawNode(n) {
-      var r = 6;
-      // Shadow
-      ctx.shadowColor = 'rgba(0,0,0,0.12)';
-      ctx.shadowBlur = 6; ctx.shadowOffsetY = 2;
-
-      // Box
-      ctx.fillStyle = '#fff';
-      ctx.strokeStyle = n.color;
-      ctx.lineWidth = 1.5;
-      roundRect(n.x, n.y, NW, NH, r);
-      ctx.fill(); ctx.stroke();
-      ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
-
-      // Color accent bar on left
-      ctx.fillStyle = n.color;
-      ctx.beginPath();
-      ctx.moveTo(n.x+r, n.y);
-      ctx.lineTo(n.x+10, n.y);
-      ctx.lineTo(n.x+10, n.y+NH);
-      ctx.lineTo(n.x+r, n.y+NH);
-      ctx.arcTo(n.x, n.y+NH, n.x, n.y+NH-r, r);
-      ctx.lineTo(n.x, n.y+r);
-      ctx.arcTo(n.x, n.y, n.x+r, n.y, r);
-      ctx.closePath();
-      ctx.fill();
-
-      // Label
-      ctx.fillStyle = '#192A56';
-      ctx.font = '10px system-ui, sans-serif';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText(n.icon + ' ' + n.label, n.x + NW/2 + 3, n.y + NH/2);
-
-      // Ports
-      var ip = inPort(n), op = outPort(n);
-      [ [ip,'in'], [op,'out'] ].forEach(function(pair) {
-        var p = pair[0], side = pair[1];
-        var isActive = connectFrom && side === 'in';
-        ctx.fillStyle = isActive ? '#4A7A6A' : n.color;
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth = 1.5;
-        ctx.beginPath(); ctx.arc(p.x, p.y, PR, 0, Math.PI*2);
-        ctx.fill(); ctx.stroke();
-      });
-    }
-
-    function roundRect(x, y, w, h, r) {
-      ctx.beginPath();
-      ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
-      ctx.lineTo(x+w,y+h-r); ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
-      ctx.lineTo(x+r,y+h); ctx.arcTo(x,y+h,x,y+h-r,r);
-      ctx.lineTo(x,y+r); ctx.arcTo(x,y,x+r,y,r);
-      ctx.closePath();
-    }
-
-    function nodeById(id) { return nodes.find(function(n){return n.id===id;})||null; }
-
-    // ── Canvas events ────────────────────────────────────────
-    function canvasPos(e) {
-      var rect = canvas.getBoundingClientRect();
-      var sx = (canvas.width / (window.devicePixelRatio||1)) / rect.width;
-      var sy = (canvas.height / (window.devicePixelRatio||1)) / rect.height;
-      var cx = e.touches ? e.touches[0].clientX : e.clientX;
-      var cy = e.touches ? e.touches[0].clientY : e.clientY;
-      return { x:(cx-rect.left)*sx, y:(cy-rect.top)*sy };
-    }
-
-    canvas.addEventListener('mousedown', function(e) {
-      var p = canvasPos(e);
-      // Check ports first
-      for (var i = nodes.length-1; i >= 0; i--) {
-        var ph = hitPort(p.x, p.y, nodes[i]);
-        if (ph === 'out') {
-          // Start connection from output port
-          connectFrom = nodes[i];
-          mouseX = p.x; mouseY = p.y;
-          return;
-        }
-        if (ph === 'in' && connectFrom) {
-          // Complete connection
-          if (connectFrom.id !== nodes[i].id) {
-            // Remove existing connection to this input
-            conns = conns.filter(function(c){ return c.to !== nodes[i].id; });
-            conns.push({ from: connectFrom.id, to: nodes[i].id });
-          }
-          connectFrom = null;
-          draw(); return;
-        }
-      }
-      // Cancel connection if clicking empty space
-      if (connectFrom) { connectFrom = null; draw(); return; }
-      // Start drag
-      var n = hitNode(p.x, p.y);
-      if (n) {
-        dragNode = n;
-        dragOX = p.x - n.x; dragOY = p.y - n.y;
-      }
-    });
-
-    canvas.addEventListener('mousemove', function(e) {
-      var p = canvasPos(e);
-      mouseX = p.x; mouseY = p.y;
-      // Cursor
-      var overPort = false;
-      for (var i=0;i<nodes.length;i++) {
-        if (hitPort(p.x,p.y,nodes[i])) { overPort=true; break; }
-      }
-      canvas.style.cursor = overPort ? 'crosshair' : (dragNode ? 'grabbing' : (hitNode(p.x,p.y) ? 'grab' : 'default'));
-      if (dragNode) {
-        dragNode.x = Math.max(0, Math.min(canvas.width-NW, p.x-dragOX));
-        dragNode.y = Math.max(0, Math.min(canvas.height-NH, p.y-dragOY));
-      }
-      if (dragNode || connectFrom) draw();
-    });
-
-    canvas.addEventListener('mouseup', function(e) {
-      var p = canvasPos(e);
-      if (connectFrom) {
-        // Check if released on an input port
-        for (var i=nodes.length-1;i>=0;i--) {
-          if (hitPort(p.x,p.y,nodes[i]) === 'in' && nodes[i].id !== connectFrom.id) {
-            conns = conns.filter(function(c){ return c.to !== nodes[i].id; });
-            conns.push({ from:connectFrom.id, to:nodes[i].id });
-            connectFrom = null; draw(); dragNode = null; return;
-          }
-        }
-      }
-      dragNode = null;
-    });
-
-    canvas.addEventListener('dblclick', function(e) {
-      var p = canvasPos(e);
-      var n = hitNode(p.x,p.y);
-      if (n) {
-        nodes = nodes.filter(function(nd){ return nd.id !== n.id; });
-        conns = conns.filter(function(c){ return c.from!==n.id && c.to!==n.id; });
-        if (connectFrom && connectFrom.id===n.id) connectFrom=null;
-        draw();
-      }
-    });
-
-    // ── Drag from palette ────────────────────────────────────
-    var canvasWrap = canvas.parentElement;
-    canvasWrap.addEventListener('dragover', function(e){ e.preventDefault(); });
-    canvasWrap.addEventListener('drop', function(e) {
-      e.preventDefault();
-      var data = JSON.parse(e.dataTransfer.getData('text/plain'));
-      var rect = canvas.getBoundingClientRect();
-      var sx = canvas.width / rect.width;
-      var sy = canvas.height / rect.height;
-      var x = (e.clientX - rect.left)*sx - NW/2;
-      var y = (e.clientY - rect.top)*sy  - NH/2;
-      nodes.push({
-        id: nextId++, icon: data.icon, label: data.label,
-        color: data.color,
-        x: Math.max(PR, Math.min(canvas.width-NW-PR, x)),
-        y: Math.max(PR, Math.min(canvas.height-NH-PR, y))
-      });
-      draw();
-    });
-
-    // ── Public functions ─────────────────────────────────────
-    window.rtClear = function() {
-      nodes=[]; conns=[]; connectFrom=null; dragNode=null; nextId=1; draw();
-    };
-
-    window.rtExample = function() {
-      rtClear();
-      var W = canvas.width, col = [20, 160, 300, 440];
-      var add = function(dev, ci, x, y) {
-        nodes.push({ id:nextId++, icon:dev.icon, label:dev.label, color:dev.color, x:x, y:y });
-        return nextId-1;
-      };
-      // Fuentes
-      var c1 = add(CATS[0].items[0], 0, col[0], 40);
-      var c2 = add(CATS[0].items[1], 0, col[0], 110);
-      var c3 = add(CATS[0].items[2], 0, col[0], 180);
-      // Mezcladora
-      var mx = add(CATS[1].items[0], 1, col[1], 110);
-      // Splitter
-      var sp = add(CATS[1].items[4], 1, col[2], 110);
-      // Salidas
-      var s1 = add(CATS[2].items[0], 2, col[3], 40);
-      var s2 = add(CATS[2].items[1], 2, col[3], 110);
-      var s3 = add(CATS[2].items[4], 2, col[3], 180);
-      conns = [
-        {from:c1,to:mx},{from:c2,to:mx},{from:c3,to:mx},
-        {from:mx,to:sp},
-        {from:sp,to:s1},{from:sp,to:s2},{from:sp,to:s3}
-      ];
-      draw();
-    };
-
-    window.rtExport = function() {
-      var off = document.createElement('canvas');
-      off.width=canvas.width; off.height=canvas.height;
-      var oc=off.getContext('2d');
-      oc.fillStyle='#f8f8f6'; oc.fillRect(0,0,off.width,off.height);
-      oc.drawImage(canvas,0,0);
-      var a=document.createElement('a');
-      a.download='flujo-señal-av.jpg';
-      a.href=off.toDataURL('image/jpeg',0.92);
-      a.click();
-    };
-
-    // Trigger resize when m6 becomes active
-    var _go = window.goTo;
-    if (typeof _go === 'function') {
-      window.goTo = function(id) {
-        _go(id);
-        if (id==='m6') setTimeout(function(){ resize(); rtExample(); }, 60);
-      };
-    }
-
-    // Init
-    window.addEventListener('resize', resize);
-    if (document.readyState==='loading') {
-      document.addEventListener('DOMContentLoaded', function(){ resize(); rtExample(); });
-    } else {
-      resize(); rtExample();
-    }
-
-  })();
-  </script>
-
+</div>
+  </div>
 </section>
 
 <section class="module" id="m7">
@@ -3112,6 +2718,299 @@ window.addEventListener('resize', function() {
 
 
 <script>
+(function(){
+var CATS=[
+  {l:'Fuentes',c:'#2d6a4f',items:[
+    {ic:'CAM',lb:'Cámara'},{ic:'PC',lb:'PC/Laptop'},
+    {ic:'REP',lb:'Reproductor'},{ic:'REC',lb:'Receptor'},
+    {ic:'NDI',lb:'NDI Source'},{ic:'MOB',lb:'Smartphone'},
+    {ic:'STI',lb:'Stream In'},
+  ]},
+  {l:'Proceso',c:'#5e4a8a',items:[
+    {ic:'MIX',lb:'Mezcladora'},{ic:'MAT',lb:'Matriz'},
+    {ic:'ESC',lb:'Escalador'},{ic:'CON',lb:'Conversor'},
+    {ic:'SPL',lb:'Splitter'},{ic:'SWT',lb:'Switch'},
+    {ic:'ENC',lb:'Codificador'},{ic:'CAP',lb:'Capturadora'},
+  ]},
+  {l:'Red',c:'#2a5f8a',items:[
+    {ic:'RTR',lb:'Router'},{ic:'SWN',lb:'Switch red'},
+    {ic:'NDB',lb:'NDI Bridge'},{ic:'SRV',lb:'Servidor'},
+  ]},
+  {l:'Salidas',c:'#7a3030',items:[
+    {ic:'PRY',lb:'Proyector'},{ic:'PAN',lb:'Pantalla'},
+    {ic:'LED',lb:'LED Wall'},{ic:'GRB',lb:'Grabadora'},
+    {ic:'STM',lb:'Stream Out'},{ic:'MON',lb:'Monitor'},
+    {ic:'AUD',lb:'Audio'},
+  ]},
+];
+
+var nodes=[],conns=[],nid=1;
+var drag=null,dox=0,doy=0;
+var fromN=null,lx=0,ly=0;
+var editing=null;
+var NW=88,NH=28,PR=6;
+var W=0,H=0;
+
+var cv=document.getElementById('cv');
+var ctx=cv.getContext('2d');
+var wrap=document.getElementById('cwrap');
+var ei=document.getElementById('ei');
+var eii=document.getElementById('eii');
+
+function resize(){
+  W=wrap.clientWidth||700;
+  H=wrap.clientHeight||440;
+  cv.width=W; cv.height=H;
+  cv.style.width=W+'px'; cv.style.height=H+'px';
+  draw();
+}
+
+function evP(e){
+  var r=cv.getBoundingClientRect();
+  var cx=e.touches?e.touches[0].clientX:e.clientX;
+  var cy=e.touches?e.touches[0].clientY:e.clientY;
+  return{x:(cx-r.left)/r.width*W, y:(cy-r.top)/r.height*H};
+}
+
+function iP(n){return{x:n.x,y:n.y+NH/2};}
+function oP(n){return{x:n.x+NW,y:n.y+NH/2};}
+
+function hitPort(px,py,n){
+  var i=iP(n),o=oP(n);
+  if(Math.hypot(px-i.x,py-i.y)<=PR+4)return'in';
+  if(Math.hypot(px-o.x,py-o.y)<=PR+4)return'out';
+  return null;
+}
+function hitNode(px,py){
+  for(var i=nodes.length-1;i>=0;i--){
+    var n=nodes[i];
+    if(px>=n.x-PR&&px<=n.x+NW+PR&&py>=n.y-3&&py<=n.y+NH+3)return n;
+  }
+  return null;
+}
+function hitConn(px,py){
+  for(var i=conns.length-1;i>=0;i--){
+    var c=conns[i],a=byId(c.f),b=byId(c.t);
+    if(!a||!b)continue;
+    var p1=oP(a),p2=iP(b);
+    for(var t=0;t<=1;t+=0.04){
+      var u=1-t,dx=(p2.x-p1.x)*0.5;
+      var bx=u*u*u*p1.x+3*u*u*t*(p1.x+dx)+3*u*t*t*(p2.x-dx)+t*t*t*p2.x;
+      var by=u*u*u*p1.y+3*u*u*t*p1.y+3*u*t*t*p2.y+t*t*t*p2.y;
+      if(Math.hypot(px-bx,py-by)<8)return i;
+    }
+  }
+  return -1;
+}
+function byId(id){return nodes.find(function(n){return n.id===id;})||null;}
+
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle='rgba(0,0,0,0.045)';ctx.lineWidth=1;
+  for(var gx=0;gx<W;gx+=24){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,H);ctx.stroke();}
+  for(var gy=0;gy<H;gy+=24){ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(W,gy);ctx.stroke();}
+
+  ctx.setLineDash([]);
+  conns.forEach(function(c){
+    var a=byId(c.f),b=byId(c.t);
+    if(!a||!b)return;
+    var p1=oP(a),p2=iP(b),dx=Math.abs(p2.x-p1.x)*0.5;
+    ctx.beginPath();ctx.moveTo(p1.x,p1.y);
+    ctx.bezierCurveTo(p1.x+dx,p1.y,p2.x-dx,p2.y,p2.x,p2.y);
+    ctx.strokeStyle='#2d6a4f';ctx.lineWidth=2;ctx.stroke();
+    ctx.fillStyle='#2d6a4f';
+    ctx.beginPath();ctx.moveTo(p2.x,p2.y);ctx.lineTo(p2.x-9,p2.y-4);ctx.lineTo(p2.x-9,p2.y+4);
+    ctx.closePath();ctx.fill();
+  });
+
+  if(fromN){
+    var s=oP(fromN),dx2=Math.abs(lx-s.x)*0.5;
+    ctx.beginPath();ctx.moveTo(s.x,s.y);
+    ctx.bezierCurveTo(s.x+dx2,s.y,lx-dx2,ly,lx,ly);
+    ctx.strokeStyle='rgba(45,106,79,0.4)';ctx.lineWidth=1.5;
+    ctx.setLineDash([5,4]);ctx.stroke();ctx.setLineDash([]);
+  }
+
+  nodes.forEach(drawNode);
+}
+
+function drawNode(n){
+  var r=5;
+  rrect(n.x,n.y,NW,NH,r);
+  ctx.fillStyle='#fff';ctx.strokeStyle=n.color;ctx.lineWidth=1.5;
+  ctx.fill();ctx.stroke();
+  ctx.fillStyle=n.color;
+  ctx.beginPath();
+  ctx.moveTo(n.x+r,n.y);ctx.lineTo(n.x+8,n.y);
+  ctx.lineTo(n.x+8,n.y+NH);ctx.lineTo(n.x+r,n.y+NH);
+  ctx.arcTo(n.x,n.y+NH,n.x,n.y+NH-r,r);
+  ctx.lineTo(n.x,n.y+r);ctx.arcTo(n.x,n.y,n.x+r,n.y,r);
+  ctx.closePath();ctx.fill();
+  ctx.fillStyle='#111';
+  ctx.font='500 10px system-ui,sans-serif';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  var lbl=n.custom||n.lb;
+  if(ctx.measureText(lbl).width>NW-18)lbl=lbl.slice(0,11)+'…';
+  ctx.fillText(lbl,n.x+NW/2+3,n.y+NH/2);
+  [iP(n),oP(n)].forEach(function(p,pi){
+    ctx.fillStyle=(fromN&&pi===0)?'#2d6a4f':n.color;
+    ctx.strokeStyle='#fff';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.arc(p.x,p.y,PR,0,Math.PI*2);
+    ctx.fill();ctx.stroke();
+  });
+}
+
+function rrect(x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);
+  ctx.closePath();
+}
+
+function showEdit(n){
+  editing=n;
+  var cr=cv.getBoundingClientRect(),wr=wrap.getBoundingClientRect();
+  var sx=cr.width/W,sy=cr.height/H;
+  ei.style.display='block';
+  ei.style.left=(n.x*sx+NW/2*sx-44)+'px';
+  ei.style.top=(n.y*sy-26)+'px';
+  eii.value=n.custom||n.lb;
+  eii.focus();eii.select();
+}
+function hideEdit(){
+  if(editing){editing.custom=eii.value.trim()||editing.lb;editing=null;}
+  ei.style.display='none';draw();
+}
+eii.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key==='Escape')hideEdit();});
+eii.addEventListener('blur',hideEdit);
+
+cv.addEventListener('mousedown',function(e){
+  if(editing)hideEdit();
+  var p=evP(e);
+  for(var i=nodes.length-1;i>=0;i--){
+    var ph=hitPort(p.x,p.y,nodes[i]);
+    if(ph==='out'){fromN=nodes[i];lx=p.x;ly=p.y;draw();return;}
+    if(ph==='in'&&fromN&&fromN.id!==nodes[i].id){
+      conns=conns.filter(function(c){return c.t!==nodes[i].id;});
+      conns.push({f:fromN.id,t:nodes[i].id});
+      fromN=null;draw();return;
+    }
+  }
+  if(fromN){fromN=null;draw();return;}
+  var n=hitNode(p.x,p.y);
+  if(n){drag=n;dox=p.x-n.x;doy=p.y-n.y;}
+});
+
+cv.addEventListener('mousemove',function(e){
+  var p=evP(e);lx=p.x;ly=p.y;
+  var op=nodes.some(function(n){return hitPort(p.x,p.y,n);});
+  cv.style.cursor=op?'crosshair':drag?'grabbing':hitNode(p.x,p.y)?'grab':'default';
+  if(drag){
+    drag.x=Math.max(PR,Math.min(W-NW-PR,p.x-dox));
+    drag.y=Math.max(PR,Math.min(H-NH-PR,p.y-doy));
+  }
+  if(drag||fromN)draw();
+});
+
+cv.addEventListener('mouseup',function(e){
+  var p=evP(e);
+  if(fromN){
+    for(var i=nodes.length-1;i>=0;i--){
+      if(hitPort(p.x,p.y,nodes[i])==='in'&&nodes[i].id!==fromN.id){
+        conns=conns.filter(function(c){return c.t!==nodes[i].id;});
+        conns.push({f:fromN.id,t:nodes[i].id});
+        fromN=null;draw();drag=null;return;
+      }
+    }
+  }
+  drag=null;
+});
+
+cv.addEventListener('dblclick',function(e){
+  var p=evP(e);
+  var n=hitNode(p.x,p.y);
+  if(n)showEdit(n);
+});
+
+cv.addEventListener('contextmenu',function(e){
+  e.preventDefault();
+  var p=evP(e);
+  var ci=hitConn(p.x,p.y);
+  if(ci>=0){conns.splice(ci,1);draw();return;}
+  var n=hitNode(p.x,p.y);
+  if(n){
+    nodes=nodes.filter(function(nd){return nd.id!==n.id;});
+    conns=conns.filter(function(c){return c.f!==n.id&&c.t!==n.id;});
+    if(fromN&&fromN.id===n.id)fromN=null;
+    draw();
+  }
+});
+
+wrap.addEventListener('dragover',function(e){e.preventDefault();});
+wrap.addEventListener('drop',function(e){
+  e.preventDefault();
+  var d=JSON.parse(e.dataTransfer.getData('text/plain'));
+  var r=cv.getBoundingClientRect();
+  var x=(e.clientX-r.left)/r.width*W-NW/2;
+  var y=(e.clientY-r.top)/r.height*H-NH/2;
+  nodes.push({id:nid++,ic:d.ic,lb:d.lb,color:d.color,
+    x:Math.max(PR,Math.min(W-NW-PR,x)),
+    y:Math.max(PR,Math.min(H-NH-PR,y))});
+  draw();
+});
+
+var pal=document.getElementById('pal');
+CATS.forEach(function(cat){
+  var t=document.createElement('div');t.className='pcat';t.textContent=cat.l;pal.appendChild(t);
+  cat.items.forEach(function(item){
+    var el=document.createElement('div');el.className='pit';el.draggable=true;
+    el.style.borderLeftColor=cat.c;
+    el.innerHTML='<span class="ic" style="color:'+cat.c+'">'+item.ic+'</span><span>'+item.lb+'</span>';
+    el.addEventListener('dragstart',function(e){
+      e.dataTransfer.setData('text/plain',JSON.stringify({ic:item.ic,lb:item.lb,color:cat.c}));
+    });
+    pal.appendChild(el);
+  });
+});
+
+function addN(ci,ii,x,y){
+  var d=CATS[ci].items[ii];
+  nodes.push({id:nid++,ic:d.ic,lb:d.lb,color:CATS[ci].c,x:x,y:y});
+  return nid-1;
+}
+
+window.doClear=function(){nodes=[];conns=[];fromN=null;drag=null;nid=1;hideEdit();draw();};
+
+window.doEx=function(){
+  doClear();
+  var c0=16,c1=Math.round(W*0.27),c2=Math.round(W*0.52),c3=Math.round(W*0.76);
+  var a=addN(0,0,c0,20),b=addN(0,1,c0,90),c=addN(0,4,c0,160);
+  var mx=addN(1,0,c1,90),sp=addN(1,4,c2,90);
+  var s1=addN(3,0,c3,20),s2=addN(3,1,c3,90),s3=addN(3,4,c3,160);
+  conns=[{f:a,t:mx},{f:b,t:mx},{f:c,t:mx},{f:mx,t:sp},{f:sp,t:s1},{f:sp,t:s2},{f:sp,t:s3}];
+  draw();
+};
+
+window.doExport=function(){
+  var off=document.createElement('canvas');
+  off.width=W;off.height=H;
+  var oc=off.getContext('2d');
+  oc.fillStyle='#f7f7f5';oc.fillRect(0,0,W,H);
+  oc.drawImage(cv,0,0);
+  var a=document.createElement('a');
+  a.download='flujo-av.jpg';
+  a.href=off.toDataURL('image/jpeg',0.92);a.click();
+};
+
+window.addEventListener('resize',function(){ if(document.getElementById('m6').classList.contains('active')) resize(); });
+window.rtV2Init=function(){ resize(); doEx(); };
+
+})();
+</script>
+
+<script>
 // ═══ NAVIGATION ═══
 function goTo(id) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -3121,6 +3020,7 @@ function goTo(id) {
   const mod = document.getElementById(id);
   if (mod) mod.classList.add('active');
   window.scrollTo(0,0);
+  if (id === 'm6') { setTimeout(function(){ if (window.rtV2Init) rtV2Init(); }, 80); }
   if (id === 'm3') {
     setTimeout(() => {
       const activeInner = mod.querySelector('.inner-tab.active');
