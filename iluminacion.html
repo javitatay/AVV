@@ -1927,6 +1927,22 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
   </div>
 </section>
 
+<style id="lvl-css-il">
+.lvl-selector{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.lvl-btn{padding:7px 16px;border-radius:8px;border:2px solid var(--border);background:var(--white);cursor:pointer;font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;transition:all .18s;}
+.lvl-btn:hover{border-color:var(--navy3);background:var(--bg2);}
+.lvl-btn.lv-basic  {background:#e6f4ea;border-color:#22c55e;color:#166534;}
+.lvl-btn.lv-medio  {background:#fff8e2;border-color:#f59e0b;color:#92400e;}
+.lvl-btn.lv-experto{background:#f0eeff;border-color:#7c3aed;color:#4c1d95;}
+.lvl-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:5px;font-size:11px;font-weight:700;margin-bottom:12px;}
+.lvl-badge.lv-basic  {background:#e6f4ea;color:#166534;border:1px solid #bbf7d0;}
+.lvl-badge.lv-medio  {background:#fff8e2;color:#92400e;border:1px solid #fde68a;}
+.lvl-badge.lv-experto{background:#f0eeff;color:#4c1d95;border:1px solid #c4b5fd;}
+.lvl-desc{font-size:12px;color:var(--text2);background:var(--bg2);border:1px solid var(--border);border-left:3px solid;border-radius:8px;padding:10px 14px;line-height:1.6;margin-bottom:14px;}
+.lvl-desc.lv-basic  {border-left-color:#22c55e;}
+.lvl-desc.lv-medio  {border-left-color:#f59e0b;}
+.lvl-desc.lv-experto{border-left-color:#7c3aed;}
+</style>
 <style>
 #fixture-builder-root { font-family:'Poppins',sans-serif; font-size:13px; }
 .fb-header { background:var(--navy); border-radius:12px; padding:16px 20px; margin-bottom:18px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
@@ -1979,58 +1995,75 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
 </style>
 <script>
 (function(){
-  var FIXTURES=[
-    { name:'Moving Head Spot', chs:16, color:'#7a6ba3',
-      channels:['Dimmer','Pan','Pan Fine','Tilt','Tilt Fine','Color','Gobo','Gobo Rot.','Prisma','Focus','Zoom','Iris','Frost','Strobe','Control','Reset'] },
-    { name:'PAR LED RGBW', chs:4, color:'#a06b4a',
-      channels:['Rojo (R)','Verde (G)','Azul (B)','Blanco (W)'] },
-    { name:'Spot 5 canales', chs:5, color:'#4a7a6a',
-      channels:['Dimmer','R','G','B','Strobe'] },
-    { name:'Cabeza móvil 8ch', chs:8, color:'#6b7fa3',
-      channels:['Dimmer','Pan','Tilt','Color','Gobo','Focus','Strobe','Control'] },
-    { name:'Barra LED 6ch', chs:6, color:'#a06b6b',
-      channels:['Dimmer','R','G','B','Strobe','Control'] },
-  ];
-  var ALL_ATTRS=['Dimmer','Pan','Pan Fine','Tilt','Tilt Fine','Color','Gobo','Gobo Rot.','Prisma','Focus','Zoom','Iris','Frost','Strobe','Control','Reset','Rojo (R)','Verde (G)','Azul (B)','Blanco (W)','R','G','B'];
+  var LV={'basic':'🟢 Básico','medio':'🟡 Intermedio','experto':'🔴 Experto'};
+  var LVC={'basic':'lv-basic','medio':'lv-medio','experto':'lv-experto'};
+  var LVD={
+    basic:'Fixtures sencillos de 1–4 canales. Los atributos son evidentes y el pool de opciones es pequeño.',
+    medio:'Fixtures de 5–8 canales. Mayor número de atributos similares (R/G/B, Pan/Tilt) que pueden confundir.',
+    experto:'Moving Head completo de 16 canales. El pool incluye atributos muy similares (Pan vs Pan Fine, Tilt vs Tilt Fine). Para técnicos de iluminación.'
+  };
+  var FXBANK={
+    basic:[
+      {name:'Dimmer 1ch',    chs:1, color:'#4a7a6a', channels:['Dimmer']},
+      {name:'PAR RGB',       chs:3, color:'#a06b4a', channels:['Rojo (R)','Verde (G)','Azul (B)']},
+      {name:'RGBW',          chs:4, color:'#7a6ba3', channels:['Rojo (R)','Verde (G)','Azul (B)','Blanco (W)']},
+      {name:'Dimmer 2ch',    chs:2, color:'#6b7fa3', channels:['Dimmer','Strobe']},
+    ],
+    medio:[
+      {name:'Spot 5 canales', chs:5, color:'#4a7a6a', channels:['Dimmer','R','G','B','Strobe']},
+      {name:'Barra LED 6ch',  chs:6, color:'#a06b6b', channels:['Dimmer','R','G','B','Strobe','Control']},
+      {name:'Cabeza 8ch',     chs:8, color:'#6b7fa3', channels:['Dimmer','Pan','Tilt','Color','Gobo','Focus','Strobe','Control']},
+      {name:'PAR 5ch',        chs:5, color:'#7a6ba3', channels:['Dimmer','R','G','B','Control']},
+    ],
+    experto:[
+      {name:'Moving Head Spot 16ch', chs:16, color:'#7a6ba3',
+       channels:['Dimmer','Pan','Pan Fine','Tilt','Tilt Fine','Color','Gobo','Gobo Rot.','Prisma','Focus','Zoom','Iris','Frost','Strobe','Control','Reset']},
+      {name:'Moving Head Beam 14ch', chs:14, color:'#2a7a9a',
+       channels:['Dimmer','Pan','Pan Fine','Tilt','Tilt Fine','Color','Gobo','Prisma','Focus','Zoom','Strobe','Control','Reset','Efectos']},
+    ]
+  };
+  var ALL_ATTRS=['Dimmer','Pan','Pan Fine','Tilt','Tilt Fine','Color','Gobo','Gobo Rot.','Prisma','Focus','Zoom','Iris','Frost','Strobe','Control','Reset','Rojo (R)','Verde (G)','Azul (B)','Blanco (W)','R','G','B','Efectos','Macro'];
 
   function shuffle(a){var b=[...a];for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
   function el(t,c){var e=document.createElement(t);if(c)e.className=c;return e;}
+  function mkSel(cur,cb){var w=el('div','lvl-selector');Object.keys(LV).forEach(function(k){var b=el('button','lvl-btn'+(cur===k?' '+LVC[k]:''));b.textContent=LV[k];b.onclick=function(){cb(k);};w.appendChild(b);});return w;}
+  function mkBadge(lv){var b=el('div','lvl-badge '+LVC[lv]);b.textContent=LV[lv];return b;}
 
-  var fxIdx=0, score=0;
+  var currentLevel='basic', fxIdx=0, score=0;
   var slotMap={}, dragging=null;
   var root=document.getElementById('fixture-builder-root');
 
-  function render(){
-    if(fxIdx>=FIXTURES.length){renderWin();return;}
-    var fx=FIXTURES[fxIdx];
-    slotMap={};
+  function showPicker(){
     root.innerHTML='';
+    root.appendChild(mkSel(currentLevel,function(lv){currentLevel=lv;fxIdx=0;score=0;showPicker();}));
+    var d=el('div','lvl-desc '+LVC[currentLevel]);d.textContent=LVD[currentLevel];root.appendChild(d);
+    var btn=el('button','fb-btn fb-btn-check');btn.textContent='▶ Empezar';
+    btn.onclick=function(){fxIdx=0;score=0;render();};root.appendChild(btn);
+  }
 
-    // Header
+  function render(){
+    var FIXTURES=FXBANK[currentLevel];
+    if(fxIdx>=FIXTURES.length){renderWin(FIXTURES.length);return;}
+    var fx=FIXTURES[fxIdx];
+    slotMap={};root.innerHTML='';
+    root.appendChild(mkSel(currentLevel,function(lv){currentLevel=lv;fxIdx=0;score=0;showPicker();}));
+    root.appendChild(mkBadge(currentLevel));
+
     var hdr=el('div','fb-header');
     hdr.innerHTML='<div><div class="fb-fixture-name">'+fx.name+'</div><div class="fb-fixture-sub">'+fx.chs+' canales DMX</div></div>'+
-      '<div class="fb-score-pips">'+FIXTURES.map(function(_,i){return '<div class="fb-pip'+(i<fxIdx?' filled':'')+'"></div>';}).join('')+'</div>';
+      '<div class="fb-score-pips">'+FIXTURES.map(function(_,i){return'<div class="fb-pip'+(i<fxIdx?' filled':'')+'"></div>';}).join('')+'</div>';
     root.appendChild(hdr);
 
-    // Two-col layout
     var cols=el('div','fb-cols');
-
-    // LEFT: attribute bank (correct + distractors)
     var leftDiv=el('div');
     var lt=el('div','fb-col-title');lt.textContent='🏷️ Atributos disponibles — arrastra al canal correcto';leftDiv.appendChild(lt);
     var bank=el('div','fb-bank');bank.id='fb-bank';
-    // Build pool: correct set + extra distractors
-    var correct=fx.channels.slice();
-    var extras=shuffle(ALL_ATTRS.filter(function(a){return correct.indexOf(a)<0;})).slice(0,Math.min(4,fx.chs));
-    var pool=shuffle([...correct,...extras]);
-    pool.forEach(function(attr){
-      var card=makeAttrCard(attr);
-      bank.appendChild(card);
-    });
-    leftDiv.appendChild(bank);
-    cols.appendChild(leftDiv);
+    // extra distractors scale with difficulty
+    var nExtras={basic:2,medio:3,experto:5}[currentLevel];
+    var extras=shuffle(ALL_ATTRS.filter(function(a){return fx.channels.indexOf(a)<0;})).slice(0,nExtras);
+    shuffle([...fx.channels,...extras]).forEach(function(attr){bank.appendChild(makeAttrCard(attr));});
+    leftDiv.appendChild(bank);cols.appendChild(leftDiv);
 
-    // RIGHT: channel slots
     var rightDiv=el('div');
     var rt=el('div','fb-col-title');rt.textContent='🔢 Canales DMX — suelta cada atributo aquí';rightDiv.appendChild(rt);
     var chs=el('div','fb-channels');
@@ -2045,63 +2078,38 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
           e.preventDefault();drop.classList.remove('over');
           if(!dragging)return;
           var attr=dragging.dataset.attr;
-          // return previous occupant to bank if any
-          if(slotMap[ch]){
-            var prev=document.querySelector('#fb-bank .fb-attr[data-attr="'+slotMap[ch]+'"].fb-placed');
-            if(prev){prev.classList.remove('fb-placed');}
-          }
-          slotMap[ch]=attr;
-          dragging.classList.add('placed');
-          drop.textContent=''; drop.classList.remove('correct','wrong');
-          drop.innerHTML='<span>'+attr+'</span>';
-          dragging=null;
-          hideFeedback();
+          if(slotMap[ch]){var prev=document.querySelector('#fb-bank .fb-attr[data-attr="'+slotMap[ch]+'"].fb-placed');if(prev)prev.classList.remove('fb-placed');}
+          slotMap[ch]=attr;dragging.classList.add('placed');
+          drop.textContent='';drop.classList.remove('correct','wrong');
+          drop.innerHTML='<span>'+attr+'</span>';dragging=null;hideFeedback();
         });
-        row.appendChild(num);row.appendChild(drop);
-        chs.appendChild(row);
+        row.appendChild(num);row.appendChild(drop);chs.appendChild(row);
       })(i);
     }
-    rightDiv.appendChild(chs);
-    cols.appendChild(rightDiv);
-    root.appendChild(cols);
+    rightDiv.appendChild(chs);cols.appendChild(rightDiv);root.appendChild(cols);
 
-    // Actions
     var actions=el('div','fb-actions');
-    var btnCheck=el('button','fb-btn fb-btn-check');btnCheck.textContent='✓ Comprobar';
-    btnCheck.onclick=checkAnswer;
-    var btnReset=el('button','fb-btn fb-btn-reset');btnReset.textContent='↺ Resetear';
-    btnReset.onclick=function(){fxIdx=fxIdx;render();};
+    var btnCheck=el('button','fb-btn fb-btn-check');btnCheck.textContent='✓ Comprobar';btnCheck.onclick=function(){checkAnswer(fx);};
+    var btnReset=el('button','fb-btn fb-btn-reset');btnReset.textContent='↺ Resetear';btnReset.onclick=function(){render();};
     var fb=el('div','fb-feedback');fb.id='fb-feedback';
-    actions.appendChild(btnCheck);actions.appendChild(btnReset);actions.appendChild(fb);
-    root.appendChild(actions);
+    actions.appendChild(btnCheck);actions.appendChild(btnReset);actions.appendChild(fb);root.appendChild(actions);
   }
 
   function makeAttrCard(attr){
-    var card=el('div','fb-attr');
-    card.dataset.attr=attr;
-    card.draggable=true;
+    var card=el('div','fb-attr');card.dataset.attr=attr;card.draggable=true;
     card.innerHTML='<span style="font-size:14px">'+attrIcon(attr)+'</span><span>'+attr+'</span>';
     card.addEventListener('dragstart',function(){dragging=card;card.classList.add('dragging');});
     card.addEventListener('dragend',function(){card.classList.remove('dragging');});
-    // Touch
-    card.addEventListener('touchstart',function(){dragging=card;card.style.outline='2px solid var(--navy)';},{passive:true});
     return card;
   }
-
-  function attrIcon(a){
-    var map={'Dimmer':'🎚️','Pan':'↔️','Pan Fine':'↔️','Tilt':'↕️','Tilt Fine':'↕️','Color':'🎨','Gobo':'🎪','Gobo Rot.':'🔄','Prisma':'🔷','Focus':'🔍','Zoom':'🔭','Iris':'⭕','Frost':'🌫️','Strobe':'⚡','Control':'⚙️','Reset':'🔁','Rojo (R)':'🔴','Verde (G)':'🟢','Azul (B)':'🔵','Blanco (W)':'⬜','R':'🔴','G':'🟢','B':'🔵'};
-    return map[a]||'🔹';
-  }
-
+  function attrIcon(a){var map={'Dimmer':'🎚️','Pan':'↔️','Pan Fine':'↔️','Tilt':'↕️','Tilt Fine':'↕️','Color':'🎨','Gobo':'🎪','Gobo Rot.':'🔄','Prisma':'🔷','Focus':'🔍','Zoom':'🔭','Iris':'⭕','Frost':'🌫️','Strobe':'⚡','Control':'⚙️','Reset':'🔁','Rojo (R)':'🔴','Verde (G)':'🟢','Azul (B)':'🔵','Blanco (W)':'⬜','R':'🔴','G':'🟢','B':'🔵','Efectos':'✨','Macro':'📋'};return map[a]||'🔹';}
   function hideFeedback(){var fb=document.getElementById('fb-feedback');if(fb)fb.className='fb-feedback';}
 
-  function checkAnswer(){
-    var fx=FIXTURES[fxIdx];
+  function checkAnswer(fx){
     var allFilled=true;
-    for(var i=1;i<=fx.chs;i++) if(!slotMap[i]) allFilled=false;
+    for(var i=1;i<=fx.chs;i++)if(!slotMap[i])allFilled=false;
     var fb=document.getElementById('fb-feedback');
     if(!allFilled){fb.className='fb-feedback err';fb.innerHTML='⚠️ Rellena todos los canales antes de comprobar';return;}
-
     var errors=[];
     for(var i=1;i<=fx.chs;i++){
       var drop=document.querySelector('.fb-drop[data-ch="'+i+'"]');
@@ -2109,41 +2117,37 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       else{drop.classList.add('wrong');errors.push('Canal '+i+': esperaba <strong>'+fx.channels[i-1]+'</strong>, pusiste <strong>'+slotMap[i]+'</strong>');}
     }
     if(errors.length===0){
-      score++;
-      fb.className='fb-feedback ok';fb.innerHTML='✅ ¡Perfecto! Fixture patched correctamente.';
-      setTimeout(function(){fxIdx++;render();},1600);
+      score++;fb.className='fb-feedback ok';fb.innerHTML='✅ ¡Perfecto! Fixture patched correctamente.';
+      setTimeout(function(){fxIdx++;render();},1500);
     } else {
-      fb.className='fb-feedback err';
-      fb.innerHTML='❌ '+errors.length+' error(es): '+errors.slice(0,2).join(' · ')+(errors.length>2?' …':'');
-      // shake wrong slots, reset after delay
+      fb.className='fb-feedback err';fb.innerHTML='❌ '+errors.length+' error(es): '+errors.slice(0,2).join(' · ')+(errors.length>2?' …':'');
       setTimeout(function(){
         document.querySelectorAll('.fb-drop.wrong').forEach(function(d){d.classList.remove('wrong');});
-        // return misplaced attrs to bank
-        var wrongChs=[];
-        for(var i=1;i<=fx.chs;i++) if(slotMap[i]&&slotMap[i]!==fx.channels[i-1]) wrongChs.push(i);
+        var wrongChs=[];for(var i=1;i<=fx.chs;i++)if(slotMap[i]&&slotMap[i]!==fx.channels[i-1])wrongChs.push(i);
         wrongChs.forEach(function(ch){
-          var attr=slotMap[ch];
-          delete slotMap[ch];
+          var attr=slotMap[ch];delete slotMap[ch];
           var drop=document.querySelector('.fb-drop[data-ch="'+ch+'"]');
           drop.textContent='Suelta aquí el atributo del canal '+ch;drop.classList.remove('correct','wrong');
           var card=document.querySelector('#fb-bank .fb-attr[data-attr="'+attr+'"]');
-          if(card) card.classList.remove('placed');
+          if(card)card.classList.remove('placed');
         });
       },800);
     }
   }
 
-  function renderWin(){
-    root.innerHTML='<div class="fb-win"><div class="trophy">🏆</div><h3>¡Todos los fixtures parcheados!</h3>'+
-      '<p>Completados '+FIXTURES.length+' perfiles con <strong>'+score+'/'+FIXTURES.length+'</strong> correctos a la primera.</p>'+
-      '<button class="fb-btn fb-btn-next" onclick="window.fbRestart()">▶ Jugar de nuevo</button></div>';
+  function renderWin(total){
+    root.innerHTML='<div class="fb-win"><div class="trophy">🏆</div><h3>'+LV[currentLevel]+' completado</h3>'+
+      '<p>Fixtures parcheados: <strong>'+score+'/'+total+'</strong> correctos a la primera.</p>'+
+      '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px">'+
+      '<button class="fb-btn fb-btn-reset" onclick="window.fbStart()">⇄ Cambiar nivel</button>'+
+      '<button class="fb-btn fb-btn-next" onclick="window.fbRepeat()">▶ Repetir</button>'+
+      '</div></div>';
   }
-  window.fbRestart=function(){fxIdx=0;score=0;render();};
 
-  // Init on page load or tab click
-  setTimeout(function(){
-    if(root&&!root.innerHTML.trim()) render();
-  },300);
+  window.fbRestart=function(){showPicker();};
+  window.fbStart=function(){showPicker();};
+  window.fbRepeat=function(){fxIdx=0;score=0;render();};
+  setTimeout(function(){if(root&&!root.innerHTML.trim())showPicker();},300);
 })();
 </script>
 <section class="module" id="m7">
@@ -2987,78 +2991,90 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
 </style>
 <script>
 (function(){
+  var LV={'basic':'🟢 Básico','medio':'🟡 Intermedio','experto':'🔴 Experto'};
+  var LVC={'basic':'lv-basic','medio':'lv-medio','experto':'lv-experto'};
+  var LVD={
+    basic:'Fixtures sencillos de 1-5 canales. Las preguntas piden el primer canal libre o el número de canales de un fixture.',
+    medio:'Fixtures de hasta 16 canales con huecos entre ellos. Los tres tipos de pregunta se alternan.',
+    experto:'Múltiples fixtures, huecos aleatorios, Moving Heads de 16 canales y preguntas sobre el último canal ocupado en situaciones complejas.'
+  };
   var ROUNDS=10;
   var COLORS=['#4a7a6a','#6b7fa3','#a06b4a','#7a6ba3','#a06b6b','#2a7a9a'];
-  var FX_TYPES=[
-    {name:'Dimmer',     chs:1},
-    {name:'PAR RGB',    chs:3},
-    {name:'RGBW',       chs:4},
-    {name:'Spot 5ch',   chs:5},
-    {name:'Barra LED',  chs:8},
-    {name:'Moving Head',chs:16},
-    {name:'Spot 6ch',   chs:6},
-    {name:'Dimmer 2ch', chs:2},
-  ];
+  var FX_BY_LEVEL={
+    basic:[
+      {name:'Dimmer',    chs:1},{name:'PAR RGB',  chs:3},{name:'RGBW',     chs:4},
+      {name:'Spot 5ch',  chs:5},{name:'Dimmer 2ch',chs:2}
+    ],
+    medio:[
+      {name:'Dimmer',    chs:1},{name:'PAR RGB',  chs:3},{name:'RGBW',     chs:4},
+      {name:'Spot 5ch',  chs:5},{name:'Barra LED', chs:8},{name:'Spot 6ch', chs:6},
+      {name:'Dimmer 2ch',chs:2}
+    ],
+    experto:[
+      {name:'Moving Head',chs:16},{name:'Barra LED',chs:8},{name:'Spot 6ch',chs:6},
+      {name:'RGBW',       chs:4},{name:'PAR RGB',  chs:3},{name:'Spot 5ch',chs:5},
+      {name:'Moving Head 8ch',chs:8},{name:'Dimmer',chs:1}
+    ]
+  };
+  var GAP_CHANCE={basic:0, medio:0.4, experto:0.6};
+  var MAX_GAP={basic:0, medio:4, experto:8};
+  var currentLevel='basic';
+
   function rnd(arr){return arr[Math.floor(Math.random()*arr.length)];}
   function shuffle(a){var b=[...a];for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
   function el(t,c){var e=document.createElement(t);if(c)e.className=c;return e;}
+  function mkSel(cur,cb){var w=el('div','lvl-selector');Object.keys(LV).forEach(function(k){var b=el('button','lvl-btn'+(cur===k?' '+LVC[k]:''));b.textContent=LV[k];b.onclick=function(){cb(k);};w.appendChild(b);});return w;}
+  function mkBadge(lv){var b=el('div','lvl-badge '+LVC[lv]);b.textContent=LV[lv];return b;}
 
-  // Generate a patch scenario
   function genScenario(){
-    var occupied=new Array(513).fill(null); // 1-indexed channels
+    var FX_TYPES=FX_BY_LEVEL[currentLevel];
+    var occupied=new Array(513).fill(null);
     var fixtures=[];
     var addr=1;
-    var numFx=Math.floor(Math.random()*4)+2; // 2-5 fixtures
-    for(var i=0;i<numFx&&addr<=480;i++){
+    var numFx=currentLevel==='basic'?Math.floor(Math.random()*2)+2:currentLevel==='medio'?Math.floor(Math.random()*3)+2:Math.floor(Math.random()*4)+3;
+    for(var i=0;i<numFx&&addr<=470;i++){
       var fx=rnd(FX_TYPES);
       var color=COLORS[i%COLORS.length];
-      // add small gap sometimes
-      if(i>0&&Math.random()>.6) addr+=Math.floor(Math.random()*4)+1;
-      if(addr+fx.chs>513) break;
-      for(var c=addr;c<addr+fx.chs;c++) occupied[c]={name:fx.name,color:color,idx:i};
+      if(i>0&&Math.random()<GAP_CHANCE[currentLevel]){
+        addr+=Math.floor(Math.random()*MAX_GAP[currentLevel])+1;
+      }
+      if(addr+fx.chs>513)break;
+      for(var c=addr;c<addr+fx.chs;c++)occupied[c]={name:fx.name,color:color,idx:i};
       fixtures.push({name:fx.name,chs:fx.chs,addr:addr,color:color});
       addr+=fx.chs;
     }
-    return {fixtures,occupied,nextAddr:addr};
+    return{fixtures,occupied,nextAddr:addr};
   }
 
-  // Question types
   function genQuestion(){
     var sc=genScenario();
-    var type=Math.floor(Math.random()*3);
+    // Question type depends on level
+    var types=currentLevel==='basic'?[0,2]:currentLevel==='medio'?[0,1,2]:[0,1,2];
+    var type=rnd(types);
     var q={};
     if(type===0){
-      // What is the next free address?
       var correct=sc.nextAddr;
       q.text='¿Cuál es la primera dirección libre después del último fixture?';
       q.explanation='El último fixture termina en el canal '+(sc.nextAddr-1)+'. El siguiente libre es <strong>'+correct+'</strong>.';
       q.correct=correct;
-      var opts=[correct,correct+1,correct-1,correct+sc.fixtures[sc.fixtures.length-1].chs];
-      opts=shuffle([...new Set(opts.filter(function(v){return v>=1&&v<=512;}))]).slice(0,4);
-      if(opts.indexOf(correct)<0)opts[0]=correct;
-      q.opts=shuffle(opts);
+      var distractors=shuffle([correct+1,correct-1,correct+2,correct+sc.fixtures[sc.fixtures.length-1].chs].filter(function(v){return v>=1&&v<=512&&v!==correct;})).slice(0,3);
+      q.opts=shuffle([correct,...distractors]);
     } else if(type===1){
-      // Given a fixture added at nextAddr, what is its last channel?
-      var newFx=rnd(FX_TYPES);
+      var newFx=rnd(FX_BY_LEVEL[currentLevel]);
       var start=sc.nextAddr;
       var last=start+newFx.chs-1;
       q.text='Si añadimos un <strong>'+newFx.name+' ('+newFx.chs+' canales)</strong> en la dirección <strong>'+start+'</strong>, ¿cuál es su último canal?';
-      q.explanation='Addr inicio: '+start+' · Canales: '+newFx.chs+' → último canal: '+start+' + '+newFx.chs+' - 1 = <strong>'+last+'</strong>';
+      q.explanation='Addr inicio: '+start+' + '+newFx.chs+' canales - 1 = <strong>'+last+'</strong>';
       q.correct=last;
-      var opts=[last,last+1,last-1,start+newFx.chs];
-      opts=shuffle([...new Set(opts.filter(function(v){return v>=1&&v<=512;}))]).slice(0,4);
-      if(opts.indexOf(last)<0)opts[0]=last;
-      q.opts=shuffle(opts);
+      var distractors=shuffle([last+1,last-1,start+newFx.chs,last+2].filter(function(v){return v>=1&&v<=512&&v!==last;})).slice(0,3);
+      q.opts=shuffle([last,...distractors]);
     } else {
-      // How many channels does a specific fixture use?
       var fx=sc.fixtures[Math.floor(Math.random()*sc.fixtures.length)];
       q.text='El fixture <strong>'+fx.name+'</strong> empieza en la dirección <strong>'+fx.addr+'</strong>. ¿Cuántos canales ocupa?';
       q.explanation=fx.name+' ocupa <strong>'+fx.chs+' canales</strong>: del '+fx.addr+' al '+(fx.addr+fx.chs-1)+'.';
       q.correct=fx.chs;
-      var opts=[fx.chs,fx.chs+1,fx.chs-1,fx.chs+3];
-      opts=shuffle([...new Set(opts.filter(function(v){return v>=1;}))]).slice(0,4);
-      if(opts.indexOf(fx.chs)<0)opts[0]=fx.chs;
-      q.opts=shuffle(opts);
+      var distractors=shuffle([fx.chs+1,fx.chs-1,fx.chs+3,fx.chs+2].filter(function(v){return v>=1&&v!==fx.chs;})).slice(0,3);
+      q.opts=shuffle([fx.chs,...distractors]);
     }
     q.scenario=sc;
     return q;
@@ -3067,76 +3083,63 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
   var questions,qi,results;
   var root=document.getElementById('dmx-quiz-root');
 
-  function start(){
-    questions=[];for(var i=0;i<ROUNDS;i++)questions.push(genQuestion());
-    qi=0;results=[];render();
+  function showPicker(){
+    root.innerHTML='';
+    root.appendChild(mkSel(currentLevel,function(lv){currentLevel=lv;showPicker();}));
+    var d=el('div','lvl-desc '+LVC[currentLevel]);d.textContent=LVD[currentLevel];root.appendChild(d);
+    var btn=el('button','dq-btn dq-btn-next');btn.textContent='▶ Empezar';
+    btn.onclick=function(){startLevel(currentLevel);};root.appendChild(btn);
   }
+  function startLevel(lv){currentLevel=lv;questions=[];for(var i=0;i<ROUNDS;i++)questions.push(genQuestion());qi=0;results=[];render();}
+  function start(){showPicker();}
 
   function render(){
     if(qi>=ROUNDS){renderEnd();return;}
-    var q=questions[qi];
-    var sc=q.scenario;
+    var q=questions[qi];var sc=q.scenario;
     root.innerHTML='';
-
-    // Progress
+    root.appendChild(mkSel(currentLevel,function(lv){currentLevel=lv;showPicker();}));
+    root.appendChild(mkBadge(currentLevel));
     var prog=el('div','dq-progress');
     for(var i=0;i<ROUNDS;i++){var p=el('div','dq-pip');if(i<results.length)p.classList.add(results[i]?'ok':'err');else if(i===qi)p.classList.add('cur');prog.appendChild(p);}
     root.appendChild(prog);
     var sl=el('div','dq-score-lbl');sl.textContent='⭐ '+results.filter(Boolean).length+' correctas de '+qi;root.appendChild(sl);
 
-    // Universe visualization (first 100 channels)
     var univ=el('div','dq-universe');
     univ.innerHTML='<div class="dq-universe-title">🎛️ Universo DMX — Canales 1 a 80</div>';
     var grid=el('div','dq-grid');
     for(var c=1;c<=80;c++){
-      var cell=el('div','dq-ch');
-      var info=sc.occupied[c];
+      var cell=el('div','dq-ch');var info=sc.occupied[c];
       if(info){cell.style.background=info.color;cell.classList.add('occupied');cell.title=info.name+' ch'+c;}
-      cell.textContent=c;
-      grid.appendChild(cell);
+      cell.textContent=c;grid.appendChild(cell);
     }
     univ.appendChild(grid);
-    // Legend
-    var leg=el('div','dq-legend');
-    var seen={};
+    var leg=el('div','dq-legend');var seen={};
     sc.fixtures.forEach(function(fx){
-      if(seen[fx.name])return; seen[fx.name]=true;
-      var item=el('div','dq-legend-item');
-      var dot=el('div','dq-legend-dot');dot.style.background=fx.color;
-      item.appendChild(dot);
-      item.appendChild(document.createTextNode(fx.name+' ('+fx.chs+'ch · addr '+fx.addr+')'));
-      leg.appendChild(item);
+      if(seen[fx.name])return;seen[fx.name]=true;
+      var item=el('div','dq-legend-item');var dot=el('div','dq-legend-dot');dot.style.background=fx.color;
+      item.appendChild(dot);item.appendChild(document.createTextNode(fx.name+' ('+fx.chs+'ch · addr '+fx.addr+')'));leg.appendChild(item);
     });
-    univ.appendChild(leg);
-    root.appendChild(univ);
+    univ.appendChild(leg);root.appendChild(univ);
 
-    // Question
     var ql=el('div','dq-question');ql.innerHTML=q.text;root.appendChild(ql);
-
-    // Options
     var grid2=el('div','dq-options');
     q.opts.forEach(function(opt){
-      var btn=el('button','dq-opt');
-      btn.textContent=opt;btn.dataset.val=String(opt);
+      var btn=el('button','dq-opt');btn.textContent=opt;btn.dataset.val=String(opt);
       btn.onclick=function(){
         if(root.querySelector('.dq-opt.correct,.dq-opt.wrong'))return;
         var ok=opt===q.correct;results.push(ok);
-        grid2.querySelectorAll('.dq-opt').forEach(function(b){
-          b.disabled=true;
+        grid2.querySelectorAll('.dq-opt').forEach(function(b){b.disabled=true;
           if(Number(b.dataset.val)===q.correct)b.classList.add(ok?'correct':'reveal');
           else if(Number(b.dataset.val)===opt&&!ok)b.classList.add('wrong');
         });
         var fb=document.getElementById('dq-fb');
         if(ok){fb.className='dq-feedback ok';fb.innerHTML='✅ ¡Correcto!';}
         else{fb.className='dq-feedback err';fb.innerHTML='❌ La respuesta era <strong>'+q.correct+'</strong>';}
-        var exp=document.getElementById('dq-exp');
-        exp.style.display='block';exp.innerHTML='📐 '+q.explanation;
+        var exp=document.getElementById('dq-exp');exp.style.display='block';exp.innerHTML='📐 '+q.explanation;
         document.getElementById('dq-next').style.display='inline-block';
-      };
-      grid2.appendChild(btn);
+      };grid2.appendChild(btn);
     });
     root.appendChild(grid2);
-
     var fb=el('div','dq-feedback');fb.id='dq-fb';root.appendChild(fb);
     var exp=el('div','dq-explanation');exp.id='dq-exp';root.appendChild(exp);
     var nxt=el('button','dq-btn dq-btn-next');nxt.id='dq-next';nxt.textContent='Siguiente →';nxt.style.display='none';
@@ -3146,14 +3149,17 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
   function renderEnd(){
     var score=results.filter(Boolean).length;var pct=Math.round(score/ROUNDS*100);
     var medal=pct>=80?'🏆':pct>=60?'🥈':pct>=40?'🥉':'📚';
-    root.innerHTML='<div class="dq-end"><div class="trophy">'+medal+'</div><h3>Quiz completado</h3>'+
+    root.innerHTML='<div class="dq-end"><div class="trophy">'+medal+'</div><h3>'+LV[currentLevel]+' completado</h3>'+
       '<div class="dq-score-big">'+score+'/'+ROUNDS+'</div>'+
-      '<p>'+(pct>=80?'¡Dominas el patch DMX!':pct>=60?'Buen nivel — practica con Moving Heads de muchos canales':pct>=40?'Repasa cómo calcular el último canal ocupado':'Repasa: Dirección fin = Addr + Canales - 1')+'</p>'+
-      '<button class="dq-btn dq-btn-restart" onclick="window.dmxQuizStart()">▶ Jugar de nuevo</button></div>';
+      '<p>'+(pct>=80?'¡Dominas el patch DMX en este nivel! Prueba el siguiente.':pct>=60?'Buen nivel — practica con Moving Heads de muchos canales':pct>=40?'Repasa cómo calcular el último canal ocupado':'Recuerda: canal final = Addr + Canales - 1')+'</p>'+
+      '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px">'+
+      '<button class="dq-btn" style="background:var(--bg3);color:var(--navy)" onclick="window.dmxQuizStart()">⇄ Cambiar nivel</button>'+
+      '<button class="dq-btn dq-btn-restart" onclick="window.dmxQuizRepeat()">▶ Repetir</button>'+
+      '</div></div>';
   }
-
   window.dmxQuizStart=start;
-  document.addEventListener('click',function(e){if(e.target.closest('[onclick*="dmx_quiz"]'))setTimeout(function(){if(root&&!root.querySelector('.dq-progress'))start();},80);});
+  window.dmxQuizRepeat=function(){startLevel(currentLevel);};
+  document.addEventListener('click',function(e){if(e.target.closest('[onclick*="dmx_quiz"]'))setTimeout(function(){if(root&&!root.querySelector('.dq-progress,.lvl-selector'))start();},80);});
   setTimeout(function(){var p=document.getElementById('dmx_dmx_quiz');if(p&&p.classList.contains('active'))start();},200);
 })();
 </script>
@@ -3852,97 +3858,76 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
 </style>
 <script>
 (function(){
+  var LV={'basic':'🟢 Básico','medio':'🟡 Intermedio','experto':'🔴 Experto'};
+  var LVC={'basic':'lv-basic','medio':'lv-medio','experto':'lv-experto'};
+  var LVD={
+    basic:'Casos claros con el rango ART-NET 2.x.x.x y máscara /8. La respuesta es obvia si conoces el rango.',
+    medio:'Mezcla de rangos (2.x, 10.x, 192.168.x) con máscaras /8 y /24. Requiere comparar la dirección de red.',
+    experto:'Casos ambiguos con máscara /16, rangos mixtos y escenarios reales de producción. El cálculo AND es imprescindible.'
+  };
   var ROUNDS=10;
+  var SCENARIOS_BY_LEVEL={
+    basic:[
+      {d1:{name:'Consola ART-NET',icon:'🎛️',ip:[2,0,0,1]},   d2:{name:'Nodo DMX 1',icon:'📦',ip:[2,0,0,2]},   mask:[255,0,0,0],same:true,  protocol:'ART-NET', context:'Red ART-NET estándar. Ambos en 2.x.x.x con /8 — misma red.'},
+      {d1:{name:'Consola ART-NET',icon:'🎛️',ip:[2,0,0,1]},   d2:{name:'Nodo DMX 2',icon:'📦',ip:[10,0,0,1]},  mask:[255,0,0,0],same:false, protocol:'ART-NET', context:'Consola en 2.x.x.x, nodo en 10.x.x.x — subredes distintas.'},
+      {d1:{name:'Software sACN', icon:'💻',ip:[10,0,0,5]},   d2:{name:'Nodo sACN',  icon:'📦',ip:[10,0,0,8]},  mask:[255,0,0,0],same:true,  protocol:'sACN',    context:'sACN en 10.x.x.x con /8 — todos en la misma red.'},
+      {d1:{name:'PC iluminación',icon:'💻',ip:[192,168,1,10]},d2:{name:'Switch nodo',icon:'🔌',ip:[192,168,1,20]},mask:[255,255,255,0],same:true,  protocol:'Red local',context:'Red local /24 — ambos en 192.168.1.x.'},
+      {d1:{name:'Mesa ART-NET',  icon:'🎛️',ip:[2,100,0,1]},  d2:{name:'Mesa backup',icon:'🎛️',ip:[2,100,0,2]}, mask:[255,0,0,0],same:true,  protocol:'ART-NET', context:'Dos mesas en ART-NET 2.x.x.x — comunicación directa.'},
+      {d1:{name:'PC',            icon:'💻',ip:[192,168,0,50]},d2:{name:'Nodo ART-NET',icon:'📦',ip:[2,0,0,1]},  mask:[255,0,0,0],same:false, protocol:'ART-NET', context:'PC en 192.168 y nodo en 2.x.x.x — redes incompatibles.'},
+    ],
+    medio:[
+      {d1:{name:'Software sACN', icon:'💻',ip:[10,0,0,5]},   d2:{name:'Nodo sACN',  icon:'📦',ip:[192,168,1,10]},mask:[255,0,0,0],same:false, protocol:'sACN',    context:'10.x.x.x vs 192.168.x.x — rangos distintos aunque /8.'},
+      {d1:{name:'PC iluminación',icon:'💻',ip:[192,168,1,10]},d2:{name:'Switch nodo',icon:'🔌',ip:[192,168,2,10]},mask:[255,255,255,0],same:false, protocol:'Red local',context:'192.168.1.x vs 192.168.2.x con /24 — subredes distintas.'},
+      {d1:{name:'Consola',       icon:'🎛️',ip:[2,0,0,1]},    d2:{name:'Resolume',   icon:'🖥️',ip:[2,0,1,1]},   mask:[255,0,0,0],same:true,  protocol:'ART-NET+Vídeo',context:'2.0.0.1 y 2.0.1.1 con /8 — ambos en red 2.0.0.0.'},
+      {d1:{name:'Consola sACN',  icon:'🎛️',ip:[10,0,0,1]},   d2:{name:'Nodo 2',     icon:'📦',ip:[10,0,0,100]}, mask:[255,0,0,0],same:true,  protocol:'sACN',    context:'sACN 10.x.x.x /8 — comunicación directa posible.'},
+      {d1:{name:'Mesa ART-NET',  icon:'🎛️',ip:[2,0,0,1]},    d2:{name:'Tablet ctrl',icon:'📱',ip:[192,168,1,5]},mask:[255,0,0,0],same:false, protocol:'ART-NET', context:'Tablet en 192.168 y mesa en 2.x.x.x — redes distintas.'},
+      {d1:{name:'PC Resolume',   icon:'🖥️',ip:[192,168,0,50]},d2:{name:'Nodo DMX',  icon:'📦',ip:[192,168,0,10]},mask:[255,255,255,0],same:true, protocol:'Vídeo+DMX',context:'Ambos en 192.168.0.x con /24 — misma subred.'},
+    ],
+    experto:[
+      {d1:{name:'Consola',       icon:'🎛️',ip:[192,168,5,1]}, d2:{name:'Tablet ctrl',icon:'📱',ip:[192,168,10,1]},mask:[255,255,0,0],same:true,  protocol:'Red /16',  context:'Máscara /16 — toda la red 192.168.x.x es la misma subred.'},
+      {d1:{name:'Consola',       icon:'🎛️',ip:[192,168,5,1]}, d2:{name:'Nodo DMX',  icon:'📦',ip:[10,0,5,1]},    mask:[255,255,0,0],same:false, protocol:'Red /16',  context:'Aunque /16, los rangos 192.168 y 10.0 son incompatibles.'},
+      {d1:{name:'Mesa ART-NET',  icon:'🎛️',ip:[2,168,5,1]},   d2:{name:'Nodo 3',    icon:'📦',ip:[2,10,0,1]},    mask:[255,0,0,0],  same:true,  protocol:'ART-NET /8',context:'2.168.5.1 y 2.10.0.1 con /8 — ambos en red 2.0.0.0.'},
+      {d1:{name:'sACN sw',       icon:'💻',ip:[10,1,0,5]},    d2:{name:'Nodo sACN', icon:'📦',ip:[10,2,0,5]},    mask:[255,255,0,0],same:false, protocol:'sACN /16', context:'10.1.x.x vs 10.2.x.x con /16 — subredes distintas.'},
+      {d1:{name:'PC A',          icon:'💻',ip:[10,1,0,5]},    d2:{name:'PC B',       icon:'💻',ip:[10,1,0,200]},  mask:[255,255,255,0],same:true, protocol:'sACN /24',context:'10.1.0.x con /24 — mismo tercer octeto, misma subred.'},
+      {d1:{name:'Consola',       icon:'🎛️',ip:[10,0,1,1]},    d2:{name:'Nodo',       icon:'📦',ip:[10,0,2,1]},    mask:[255,255,255,0],same:false,protocol:'sACN /24',context:'10.0.1.x vs 10.0.2.x con /24 — distinto tercer octeto.'},
+    ]
+  };
 
-  // Compute network address given IP array and mask array
-  function netAddr(ip, mask){ return ip.map(function(o,i){return o & mask[i];}); }
-  function sameNet(ip1, ip2, mask){ var n1=netAddr(ip1,mask), n2=netAddr(ip2,mask); return n1.every(function(o,i){return o===n2[i];}); }
-  function ipStr(arr){ return arr.join('.'); }
-  function maskToCIDR(mask){
-    return mask.reduce(function(acc,o){
-      var b=o.toString(2); return acc+b.split('').filter(function(c){return c==='1';}).length;
-    },0);
-  }
-
-  // Pre-built scenario bank
-  var SCENARIOS = [
-    // ART-NET typical: 2.x.x.x / 255.0.0.0
-    { d1:{name:'Consola ART-NET',icon:'🎛️',ip:[2,0,0,1]}, d2:{name:'Nodo DMX',icon:'📦',ip:[2,0,0,2]}, mask:[255,0,0,0], same:true,
-      context:'Red ART-NET estándar. Ambos dispositivos usan el rango 2.x.x.x con máscara /8.',
-      protocol:'ART-NET' },
-    { d1:{name:'Consola ART-NET',icon:'🎛️',ip:[2,0,0,1]}, d2:{name:'Nodo DMX',icon:'📦',ip:[10,0,0,1]}, mask:[255,0,0,0], same:false,
-      context:'La consola está en red 2.x.x.x y el nodo en 10.x.x.x — subredes diferentes.',
-      protocol:'ART-NET' },
-    // sACN typical: 10.x.x.x / 255.0.0.0
-    { d1:{name:'Software sACN',icon:'💻',ip:[10,0,0,5]}, d2:{name:'Nodo sACN',icon:'📦',ip:[10,0,0,8]}, mask:[255,0,0,0], same:true,
-      context:'Red sACN en rango 10.x.x.x. Máscara /8 — todos los 10.x.x.x son la misma red.',
-      protocol:'sACN' },
-    { d1:{name:'Software sACN',icon:'💻',ip:[10,0,0,5]}, d2:{name:'Nodo sACN',icon:'📦',ip:[192,168,1,10]}, mask:[255,0,0,0], same:false,
-      context:'El software está en 10.x.x.x pero el nodo en 192.168.x.x. Redes distintas — necesitan router.',
-      protocol:'sACN' },
-    // 192.168 / 255.255.255.0 (/24)
-    { d1:{name:'PC iluminación',icon:'💻',ip:[192,168,1,10]}, d2:{name:'Switch nodo',icon:'🔌',ip:[192,168,1,20]}, mask:[255,255,255,0], same:true,
-      context:'Red doméstica /24. Ambos en 192.168.1.x — misma subred.',
-      protocol:'Red local' },
-    { d1:{name:'PC iluminación',icon:'💻',ip:[192,168,1,10]}, d2:{name:'Switch nodo',icon:'🔌',ip:[192,168,2,10]}, mask:[255,255,255,0], same:false,
-      context:'Misma clase C pero subredes distintas: 192.168.1.x vs 192.168.2.x con máscara /24.',
-      protocol:'Red local' },
-    // /16 mask
-    { d1:{name:'Consola',icon:'🎛️',ip:[192,168,5,1]}, d2:{name:'Tablet control',icon:'📱',ip:[192,168,10,1]}, mask:[255,255,0,0], same:true,
-      context:'Máscara /16 (255.255.0.0) — toda la red 192.168.x.x es la misma subred.',
-      protocol:'Red local' },
-    { d1:{name:'Consola',icon:'🎛️',ip:[192,168,5,1]}, d2:{name:'Tablet control',icon:'📱',ip:[10,0,5,1]}, mask:[255,255,0,0], same:false,
-      context:'Aunque la máscara sea /16, los rangos 192.168 y 10.0 son subredes incompatibles.',
-      protocol:'ART-NET' },
-    // ART-NET festival: 2.x.x.x /8
-    { d1:{name:'Mesa principal',icon:'🎛️',ip:[2,100,0,1]}, d2:{name:'Mesa backup',icon:'🎛️',ip:[2,100,0,2]}, mask:[255,0,0,0], same:true,
-      context:'Festival: dos consolas en la misma red ART-NET 2.x.x.x — se ven mutuamente.',
-      protocol:'ART-NET' },
-    { d1:{name:'Mesa ART-NET',icon:'🎛️',ip:[2,0,0,1]}, d2:{name:'Resolume',icon:'🖥️',ip:[2,0,1,1]}, mask:[255,0,0,0], same:true,
-      context:'ART-NET: 2.0.0.1 y 2.0.1.1 con /8 — ambos en la red 2.0.0.0, comunicación directa posible.',
-      protocol:'ART-NET + Vídeo' },
-    { d1:{name:'PC Resolume',icon:'🖥️',ip:[192,168,0,50]}, d2:{name:'Nodo ART-NET',icon:'📦',ip:[2,0,0,1]}, mask:[255,0,0,0], same:false,
-      context:'Resolume en red doméstica 192.168.x.x, nodo en ART-NET 2.x.x.x — necesitan configuración en la misma red.',
-      protocol:'ART-NET + Vídeo' },
-    { d1:{name:'Consola sACN',icon:'🎛️',ip:[10,0,0,1]}, d2:{name:'Nodo 2',icon:'📦',ip:[10,0,0,100]}, mask:[255,0,0,0], same:true,
-      context:'sACN en rango 10.x.x.x — todos los dispositivos en el mismo /8 se comunican directamente.',
-      protocol:'sACN' },
-  ];
-
+  function ipStr(arr){return arr.join('.');}
+  function netAddr(ip,mask){return ip.map(function(o,i){return o&mask[i];});}
+  function maskToCIDR(mask){return mask.reduce(function(acc,o){return acc+o.toString(2).split('').filter(function(c){return c==='1';}).length;},0);}
   function shuffle(a){var b=[...a];for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
   function el(t,c){var e=document.createElement(t);if(c)e.className=c;return e;}
+  function mkSel(cur,cb){var w=el('div','lvl-selector');Object.keys(LV).forEach(function(k){var b=el('button','lvl-btn'+(cur===k?' '+LVC[k]:''));b.textContent=LV[k];b.onclick=function(){cb(k);};w.appendChild(b);});return w;}
+  function mkBadge(lv){var b=el('div','lvl-badge '+LVC[lv]);b.textContent=LV[lv];return b;}
 
-  var questions, qi, results;
-  var root = document.getElementById('ip-quiz-root');
+  var currentLevel='basic',questions,qi,results;
+  var root=document.getElementById('ip-quiz-root');
 
-  function start(){
-    questions = shuffle([...SCENARIOS]).slice(0, ROUNDS);
-    qi=0; results=[];
-    render();
+  function showPicker(){
+    root.innerHTML='';
+    root.appendChild(mkSel(currentLevel,function(lv){currentLevel=lv;showPicker();}));
+    var d=el('div','lvl-desc '+LVC[currentLevel]);d.textContent=LVD[currentLevel];root.appendChild(d);
+    var btn=el('button','ipq-btn ipq-btn-next');btn.textContent='▶ Empezar';
+    btn.onclick=function(){startLevel(currentLevel);};root.appendChild(btn);
   }
+  function startLevel(lv){currentLevel=lv;questions=shuffle([...SCENARIOS_BY_LEVEL[lv]]).slice(0,ROUNDS);qi=0;results=[];render();}
+  function start(){showPicker();}
 
   function render(){
-    if(qi >= ROUNDS){ renderEnd(); return; }
-    var q = questions[qi];
-    root.innerHTML = '';
-
-    // Progress
-    var prog = el('div','ipq-progress');
-    for(var i=0;i<ROUNDS;i++){
-      var p=el('div','ipq-pip');
-      if(i<results.length) p.classList.add(results[i]?'ok':'err');
-      else if(i===qi) p.classList.add('cur');
-      prog.appendChild(p);
-    }
+    if(qi>=ROUNDS||qi>=questions.length){renderEnd();return;}
+    var q=questions[qi];root.innerHTML='';
+    root.appendChild(mkSel(currentLevel,function(lv){currentLevel=lv;showPicker();}));
+    root.appendChild(mkBadge(currentLevel));
+    var prog=el('div','ipq-progress');
+    for(var i=0;i<Math.min(ROUNDS,questions.length);i++){var p=el('div','ipq-pip');if(i<results.length)p.classList.add(results[i]?'ok':'err');else if(i===qi)p.classList.add('cur');prog.appendChild(p);}
     root.appendChild(prog);
-    var sl=el('div','ipq-score-lbl'); sl.textContent='⭐ '+results.filter(Boolean).length+' correctas de '+qi; root.appendChild(sl);
+    var sl=el('div','ipq-score-lbl');sl.textContent='⭐ '+results.filter(Boolean).length+' correctas de '+qi;root.appendChild(sl);
 
-    // Context pill
     var ctx=el('div','ipq-context');
     ctx.innerHTML='<strong>📡 Protocolo:</strong> '+q.protocol+' &nbsp;·&nbsp; <strong>🔒 Máscara:</strong> '+ipStr(q.mask)+' /'+maskToCIDR(q.mask);
     root.appendChild(ctx);
 
-    // Devices
     var devs=el('div','ipq-devices');
     [q.d1,q.d2].forEach(function(d,i){
       var div=el('div','ipq-device');
@@ -3951,82 +3936,69 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
         '<div class="ipq-device-ip">'+ipStr(d.ip)+'</div>'+
         '<div class="ipq-device-mask">Máscara: '+ipStr(q.mask)+'</div>';
       devs.appendChild(div);
-      if(i===0){
-        var conn=el('div','ipq-connector'); conn.textContent='?'; devs.appendChild(conn);
-      }
+      if(i===0){var conn=el('div','ipq-connector');conn.textContent='?';devs.appendChild(conn);}
     });
     root.appendChild(devs);
 
-    // Question
-    var ql=el('div','ipq-question'); ql.textContent='¿Pueden comunicarse directamente estos dos dispositivos?'; root.appendChild(ql);
+    var ql=el('div','ipq-question');ql.textContent='¿Pueden comunicarse directamente estos dos dispositivos?';root.appendChild(ql);
 
-    // Answer buttons
     var ans=el('div','ipq-answers');
-    [{label:'✅ Misma red\nComunicación directa', val:true, icon:'🟢'},
-     {label:'❌ Redes distintas\nNecesitan router', val:false, icon:'🔴'}
+    [{label:'✅ Misma red
+Comunicación directa',val:true,icon:'🟢'},
+     {label:'❌ Redes distintas
+Necesitan router',val:false,icon:'🔴'}
     ].forEach(function(opt){
       var btn=el('button','ipq-ans');
-      btn.innerHTML='<span class="ipq-ans-icon">'+opt.icon+'</span>'+opt.label.replace('\n','<br>');
+      btn.innerHTML='<span class="ipq-ans-icon">'+opt.icon+'</span>'+opt.label.replace('
+','<br>');
       btn.onclick=function(){
-        if(root.querySelector('.ipq-ans.correct,.ipq-ans.wrong')) return;
-        var ok = (opt.val === q.same);
-        results.push(ok);
-        ans.querySelectorAll('.ipq-ans').forEach(function(b){ b.disabled=true; });
+        if(root.querySelector('.ipq-ans.correct,.ipq-ans.wrong'))return;
+        var ok=(opt.val===q.same);results.push(ok);
+        ans.querySelectorAll('.ipq-ans').forEach(function(b){b.disabled=true;});
         btn.classList.add(ok?'correct':'wrong');
-        // show correct if wrong
-        if(!ok){
-          ans.querySelectorAll('.ipq-ans').forEach(function(b){
-            if(b!==btn) b.classList.add('correct');
-          });
-        }
-        showExplanation(q);
+        if(!ok)ans.querySelectorAll('.ipq-ans').forEach(function(b){if(b!==btn)b.classList.add('correct');});
+        showCalc(q);
         var fb=document.getElementById('ipq-fb');
-        if(ok){ fb.className='ipq-feedback ok'; fb.innerHTML='✅ ¡Correcto! '+( q.same?'Misma subred — comunicación directa posible.':'Subredes distintas — necesitan router.'); }
-        else  { fb.className='ipq-feedback err'; fb.innerHTML='❌ '+(q.same?'En realidad están en la MISMA red.':'En realidad están en REDES DISTINTAS.'); }
+        if(ok){fb.className='ipq-feedback ok';fb.innerHTML='✅ ¡Correcto! '+(q.same?'Misma subred.':'Subredes distintas — necesitan router.');}
+        else{fb.className='ipq-feedback err';fb.innerHTML='❌ '+(q.same?'En realidad están en la MISMA red.':'En realidad están en REDES DISTINTAS.');}
         document.getElementById('ipq-next').style.display='inline-block';
-      };
-      ans.appendChild(btn);
+      };ans.appendChild(btn);
     });
     root.appendChild(ans);
 
-    var calc=el('div','ipq-calc'); calc.id='ipq-calc'; root.appendChild(calc);
-    var fb=el('div','ipq-feedback'); fb.id='ipq-fb'; root.appendChild(fb);
-    var nxt=el('button','ipq-btn ipq-btn-next'); nxt.id='ipq-next';
-    nxt.textContent='Siguiente →'; nxt.style.display='none';
-    nxt.onclick=function(){qi++;render();};
-    root.appendChild(nxt);
+    var calc=el('div','ipq-calc');calc.id='ipq-calc';root.appendChild(calc);
+    var fb=el('div','ipq-feedback');fb.id='ipq-fb';root.appendChild(fb);
+    var nxt=el('button','ipq-btn ipq-btn-next');nxt.id='ipq-next';nxt.textContent='Siguiente →';nxt.style.display='none';
+    nxt.onclick=function(){qi++;render();};root.appendChild(nxt);
   }
 
-  function showExplanation(q){
-    var n1=netAddr(q.d1.ip,q.mask), n2=netAddr(q.d2.ip,q.mask);
-    var cidr=maskToCIDR(q.mask);
-    var calc=document.getElementById('ipq-calc');
-    calc.style.display='block';
-    calc.innerHTML=
-      '🔢 <strong>Cálculo AND:</strong><br>'+
+  function showCalc(q){
+    var n1=netAddr(q.d1.ip,q.mask),n2=netAddr(q.d2.ip,q.mask),cidr=maskToCIDR(q.mask);
+    var calc=document.getElementById('ipq-calc');calc.style.display='block';
+    calc.innerHTML='🔢 <strong>Cálculo AND:</strong><br>'+
       ipStr(q.d1.ip)+' AND '+ipStr(q.mask)+' = <strong>'+ipStr(n1)+'</strong><br>'+
       ipStr(q.d2.ip)+' AND '+ipStr(q.mask)+' = <strong>'+ipStr(n2)+'</strong><br>'+
       (n1.every(function(o,i){return o===n2[i];})?
-        '✅ Mismas dirección de red <strong>'+ipStr(n1)+'/'+cidr+'</strong> → comunicación directa':
-        '❌ Redes distintas: <strong>'+ipStr(n1)+'/'+cidr+'</strong> vs <strong>'+ipStr(n2)+'/'+cidr+'</strong> → necesitan router')+
+        '✅ Misma red <strong>'+ipStr(n1)+'/'+cidr+'</strong> → comunicación directa':
+        '❌ <strong>'+ipStr(n1)+'/'+cidr+'</strong> ≠ <strong>'+ipStr(n2)+'/'+cidr+'</strong> → necesitan router')+
       '<br><em style="font-size:11px;color:var(--text3)">'+q.context+'</em>';
   }
 
-  function netAddr(ip,mask){ return ip.map(function(o,i){return o&mask[i];}); }
-
   function renderEnd(){
-    var score=results.filter(Boolean).length; var pct=Math.round(score/ROUNDS*100);
+    var score=results.filter(Boolean).length;var total=Math.min(ROUNDS,questions.length);
+    var pct=Math.round(score/total*100);
     var medal=pct>=80?'🏆':pct>=60?'🥈':pct>=40?'🥉':'📚';
-    root.innerHTML='<div class="ipq-end"><div class="trophy">'+medal+'</div><h3>Quiz completado</h3>'+
-      '<div class="ipq-score-big">'+score+'/'+ROUNDS+'</div>'+
-      '<p>'+(pct>=80?'¡Dominas las subredes en entornos de espectáculo!':pct>=60?'Buen nivel — practica con máscaras /8 y /24':pct>=40?'Repasa el cálculo AND de subred':'Vuelve al módulo de Redes IP y practica el cálculo de subred')+'</p>'+
-      '<button class="ipq-btn ipq-btn-restart" onclick="window.ipQuizStart()">▶ Jugar de nuevo</button></div>';
+    root.innerHTML='<div class="ipq-end"><div class="trophy">'+medal+'</div><h3>'+LV[currentLevel]+' completado</h3>'+
+      '<div class="ipq-score-big">'+score+'/'+total+'</div>'+
+      '<p>'+(pct>=80?'¡Dominas las subredes en este nivel! Prueba el siguiente.':pct>=60?'Buen nivel — practica con máscaras /8 y /24':pct>=40?'Repasa el cálculo AND de subred':'Vuelve al módulo de Redes IP')+'</p>'+
+      '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px">'+
+      '<button class="ipq-btn" style="background:var(--bg3);color:var(--navy)" onclick="window.ipQuizStart()">⇄ Cambiar nivel</button>'+
+      '<button class="ipq-btn ipq-btn-restart" onclick="window.ipQuizRepeat()">▶ Repetir</button>'+
+      '</div></div>';
   }
-
   window.ipQuizStart=start;
-  document.addEventListener('click',function(e){
-    if(e.target.closest('[onclick*="ip_quiz"]')) setTimeout(function(){if(root&&!root.querySelector('.ipq-progress'))start();},80);
-  });
+  window.ipQuizRepeat=function(){startLevel(currentLevel);};
+  document.addEventListener('click',function(e){if(e.target.closest('[onclick*="ip_quiz"]'))setTimeout(function(){if(root&&!root.querySelector('.ipq-progress,.lvl-selector'))start();},80);});
   setTimeout(function(){var p=document.getElementById('ip_ip_quiz');if(p&&p.classList.contains('active'))start();},200);
 })();
 </script>

@@ -976,6 +976,22 @@ canvas{display:block}
   </div>
 </section>
 
+<style id="lvl-css">
+.lvl-selector{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.lvl-btn{padding:7px 16px;border-radius:8px;border:2px solid var(--border);background:var(--white);cursor:pointer;font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;transition:all .18s;}
+.lvl-btn:hover{border-color:var(--navy3);background:var(--bg2);}
+.lvl-btn.lv-basic  {background:#e6f4ea;border-color:#22c55e;color:#166534;}
+.lvl-btn.lv-medio  {background:#fff8e2;border-color:#f59e0b;color:#92400e;}
+.lvl-btn.lv-experto{background:#f0eeff;border-color:#7c3aed;color:#4c1d95;}
+.lvl-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:5px;font-size:11px;font-weight:700;margin-bottom:12px;}
+.lvl-badge.lv-basic  {background:#e6f4ea;color:#166534;border:1px solid #bbf7d0;}
+.lvl-badge.lv-medio  {background:#fff8e2;color:#92400e;border:1px solid #fde68a;}
+.lvl-badge.lv-experto{background:#f0eeff;color:#4c1d95;border:1px solid #c4b5fd;}
+.lvl-desc{font-size:12px;color:var(--text2);background:var(--bg2);border:1px solid var(--border);border-left:3px solid;border-radius:8px;padding:10px 14px;line-height:1.6;margin-bottom:14px;}
+.lvl-desc.lv-basic  {border-left-color:#22c55e;}
+.lvl-desc.lv-medio  {border-left-color:#f59e0b;}
+.lvl-desc.lv-experto{border-left-color:#7c3aed;}
+</style>
 <style>
 /* ── RES QUIZ ── */
 #res-quiz-root { font-family:'Poppins',sans-serif; font-size:13px; }
@@ -1027,131 +1043,131 @@ canvas{display:block}
 
 <script>
 (function(){
-  var QUESTIONS = [
-    { px:'1280 × 720',   mp:0.92,  options:['HD 720p','SD PAL','Full HD','QHD'],   answer:0, ar:'16:9',   uso:'Vídeo HD básico, streaming bajo bitrate' },
-    { px:'1920 × 1080',  mp:2.07,  options:['QHD','4K UHD','Full HD 1080p','2K DCI'], answer:2, ar:'16:9', uso:'Estándar broadcast, streaming, TV doméstica' },
-    { px:'3840 × 2160',  mp:8.29,  options:['4K DCI','8K UHD','4K UHD','QHD'],    answer:2, ar:'16:9',   uso:'TV 4K, producción cinematográfica moderna' },
-    { px:'2048 × 1080',  mp:2.21,  options:['Full HD','4K DCI','2K DCI','QHD'],    answer:2, ar:'1.90:1', uso:'Cine digital, proyección DCI en salas' },
-    { px:'720 × 576',    mp:0.41,  options:['SD NTSC','HD 720p','SD PAL','2K DCI'],answer:2, ar:'4:3 / 16:9', uso:'Televisión analógica PAL (Europa)' },
-    { px:'2560 × 1440',  mp:3.69,  options:['4K UHD','QHD 1440p','Full HD','2K DCI'], answer:1, ar:'16:9', uso:'Monitores profesionales, gaming' },
-    { px:'7680 × 4320',  mp:33.2,  options:['4K UHD','4K DCI','8K UHD','Full HD'], answer:2, ar:'16:9',   uso:'8K — televisión del futuro, producción premium' },
-    { px:'720 × 480',    mp:0.35,  options:['SD PAL','SD NTSC','HD 720p','VGA'],   answer:1, ar:'4:3 / 16:9', uso:'Televisión analógica NTSC (América)' },
-    { px:'4096 × 2160',  mp:8.85,  options:['4K UHD','4K DCI','8K UHD','QHD'],    answer:1, ar:'1.90:1', uso:'Cine digital DCI 4K — máxima calidad cinematográfica' },
-    { px:'1024 × 768',   mp:0.79,  options:['HD 720p','XGA','Full HD','SD PAL'],   answer:1, ar:'4:3',    uso:'Monitores legacy, proyectores de presentaciones' },
-  ];
+  var LV={'basic':'🟢 Básico','medio':'🟡 Intermedio','experto':'🔴 Experto'};
+  var LVC={'basic':'lv-basic','medio':'lv-medio','experto':'lv-experto'};
+  var LVD={
+    basic:'Resoluciones cotidianas: HD 720p, Full HD, 4K UHD, SD. Ideal para empezar.',
+    medio:'Añade QHD, XGA, DCI 2K, Ultrawide y formatos de cámara específicos.',
+    experto:'Formatos DCI CinemaScope, HDV, Open Gate, 5K. Para dominar la especificación completa.'
+  };
+  var QBANK={
+    basic:[
+      {px:'1280 × 720',  mp:0.92, options:['HD 720p','SD PAL','Full HD','QHD'],          answer:0, ar:'16:9',     uso:'Vídeo HD básico, streaming bajo bitrate'},
+      {px:'1920 × 1080', mp:2.07, options:['QHD','4K UHD','Full HD 1080p','2K DCI'],     answer:2, ar:'16:9',     uso:'Estándar broadcast, streaming, TV doméstica'},
+      {px:'3840 × 2160', mp:8.29, options:['4K DCI','8K UHD','4K UHD','QHD'],            answer:2, ar:'16:9',     uso:'TV 4K, producción cinematográfica moderna'},
+      {px:'720 × 576',   mp:0.41, options:['SD NTSC','HD 720p','SD PAL','2K DCI'],        answer:2, ar:'4:3/16:9', uso:'Televisión analógica PAL (Europa)'},
+      {px:'720 × 480',   mp:0.35, options:['SD PAL','SD NTSC','HD 720p','VGA'],           answer:1, ar:'4:3/16:9', uso:'Televisión analógica NTSC (América)'},
+      {px:'7680 × 4320', mp:33.2, options:['4K UHD','4K DCI','8K UHD','Full HD'],        answer:2, ar:'16:9',     uso:'8K — televisión del futuro, producción premium'},
+    ],
+    medio:[
+      {px:'2048 × 1080', mp:2.21, options:['Full HD','4K DCI','2K DCI','QHD'],            answer:2, ar:'1.90:1',  uso:'Cine digital DCI, proyección en salas'},
+      {px:'2560 × 1440', mp:3.69, options:['4K UHD','QHD 1440p','Full HD','2K DCI'],      answer:1, ar:'16:9',    uso:'Monitores profesionales, gaming'},
+      {px:'4096 × 2160', mp:8.85, options:['4K UHD','4K DCI','8K UHD','QHD'],             answer:1, ar:'1.90:1',  uso:'Cine digital DCI 4K — máxima calidad cinematográfica'},
+      {px:'1024 × 768',  mp:0.79, options:['HD 720p','XGA','Full HD','SD PAL'],            answer:1, ar:'4:3',     uso:'Monitores legacy, proyectores de presentaciones'},
+      {px:'1366 × 768',  mp:1.05, options:['HD Ready','Full HD','XGA','QHD'],              answer:0, ar:'16:9',    uso:'Portátiles consumer, monitores básicos de bajo coste'},
+      {px:'3440 × 1440', mp:4.95, options:['4K UHD','QHD Ultrawide','Full HD','2K DCI'],  answer:1, ar:'21:9',    uso:'Monitores ultrawide para postproducción y color grading'},
+    ],
+    experto:[
+      {px:'2048 × 858',  mp:1.76, options:['2K Scope DCI','2K Flat DCI','4K DCI','HD Anamórfico'], answer:0, ar:'2.39:1', uso:'2K CinemaScope DCI: formato panorámico en cines digitales'},
+      {px:'4096 × 1716', mp:7.03, options:['4K Flat DCI','4K Scope DCI','4K UHD','8K DCI'],         answer:1, ar:'2.39:1', uso:'4K CinemaScope DCI: máxima resolución panorámica DCI'},
+      {px:'1280 × 1080', mp:1.38, options:['HD 720p','HDCAM SR','HDV comprimido','Full HD cropped'], answer:2, ar:'16:9',   uso:'HDV: HD comprimido con píxeles rectangulares (PAR≠1)'},
+      {px:'3996 × 2160', mp:8.63, options:['4K UHD','4K Flat DCI','4K DCI completo','Open Gate'],   answer:1, ar:'1.85:1', uso:'4K DCI Flat: formato flat del cine digital (no completo)'},
+      {px:'5120 × 2160', mp:11.1, options:['5K','5K UW DCI','8K UHD cropped','Super 35 digital'],   answer:1, ar:'21:9',   uso:'5K ultrawide: cámaras RED y monitores de referencia DCI'},
+      {px:'2048 × 1556', mp:3.19, options:['2K Academy','2K DCI','Full HD 2K','2K Scope'],           answer:0, ar:'1.32:1', uso:'2K Academy: el formato nativo del sensor DCI Academy completo'},
+    ]
+  };
+  var currentLevel='basic', QUESTIONS=QBANK.basic;
+  var order,qi,score,lives,answered;
+  var root=document.getElementById('res-quiz-root');
+  function el(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;return e;}
+  function shuffle(a){var b=[...a];for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
 
-  var order, qi, score, lives, answered;
-  var root = document.getElementById('res-quiz-root');
+  function mkSel(cur,cb){
+    var w=el('div','lvl-selector');
+    Object.keys(LV).forEach(function(k){
+      var b=el('button','lvl-btn'+(cur===k?' '+LVC[k]:''));
+      b.textContent=LV[k];b.onclick=function(){cb(k);};w.appendChild(b);
+    });return w;
+  }
+  function mkBadge(lv){var b=el('div','lvl-badge '+LVC[lv]);b.textContent=LV[lv];return b;}
 
-  function shuffle(a){ var b=[...a]; for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; }
-
-  function start(){
-    order = shuffle([...Array(QUESTIONS.length).keys()]);
-    qi=0; score=0; lives=3; answered=false;
-    render();
+  function showPicker(){
+    root.innerHTML='';
+    root.appendChild(mkSel(currentLevel,function(lv){currentLevel=lv;showPicker();}));
+    var d=el('div','lvl-desc '+LVC[currentLevel]);d.textContent=LVD[currentLevel];root.appendChild(d);
+    var btn=el('button','rq-btn rq-btn-next');btn.textContent='▶ Empezar';
+    btn.onclick=function(){startLevel(currentLevel);};root.appendChild(btn);
   }
 
+  function startLevel(lv){
+    currentLevel=lv;QUESTIONS=QBANK[lv];
+    order=shuffle([...Array(QUESTIONS.length).keys()]);
+    qi=0;score=0;lives=3;answered=false;render();
+  }
+
+  function start(){showPicker();}
+
   function render(){
-    if(qi>=order.length){ renderEnd(); return; }
-    var q = QUESTIONS[order[qi]];
-    var opts = shuffle(q.options.map(function(o,i){ return {label:o, idx:i}; }));
+    if(qi>=order.length){renderEnd();return;}
+    var q=QUESTIONS[order[qi]];
+    var opts=shuffle(q.options.map(function(o,i){return{label:o,idx:i};}));
     root.innerHTML='';
-    var sc = el('div','rq-screen');
-
-    // Progress
-    var prog = el('div','rq-progress');
-    order.forEach(function(_,i){
-      var p=el('div','rq-pip');
-      if(i<qi) p.classList.add('done-ok'); // simplified: always green past
-      else if(i===qi) p.classList.add('active');
-      prog.appendChild(p);
-    });
+    var sc=el('div','rq-screen');
+    sc.appendChild(mkSel(currentLevel,function(lv){currentLevel=lv;showPicker();}));
+    sc.appendChild(mkBadge(currentLevel));
+    var prog=el('div','rq-progress');
+    order.forEach(function(_,i){var p=el('div','rq-pip');if(i<qi)p.classList.add('done-ok');else if(i===qi)p.classList.add('active');prog.appendChild(p);});
     sc.appendChild(prog);
-
-    // Resolution display
     var disp=el('div','rq-resolution');
-    disp.innerHTML='<div class="rq-score-badge">⭐ '+score+' / '+qi+'</div>' +
+    disp.innerHTML='<div class="rq-score-badge">⭐ '+score+' / '+qi+'</div>'+
       '<div class="rq-res-label">¿Cómo se llama esta resolución?</div>'+
       '<div class="rq-res-value">'+q.px+'</div>'+
       '<div class="rq-res-mpx">'+q.mp.toFixed(2)+' MP · Aspect Ratio '+q.ar+'</div>'+
       '<div class="rq-lives">'+'❤️'.repeat(lives)+'<span class="rq-heart lost">🖤</span>'.repeat(3-lives)+'</div>';
     sc.appendChild(disp);
-
-    // Name section
-    appendSection(sc, '📛 Nombre del estándar', opts, q, 'name');
-
-    // Feedback
-    var fb=el('div','rq-feedback'); fb.id='rq-fb'; sc.appendChild(fb);
-
-    // Hint (uso)
-    var hint=el('div','rq-feedback hint'); hint.id='rq-hint';
-    hint.innerHTML='💡 '+q.uso; sc.appendChild(hint);
-
-    // Next btn
-    var btn=el('button','rq-btn rq-btn-next'); btn.id='rq-next';
-    btn.textContent='Siguiente →'; btn.style.display='none';
-    btn.onclick=function(){ qi++; answered=false; render(); };
-    sc.appendChild(btn);
-
+    var sl=el('div','rq-section-label');sl.textContent='📛 Nombre del estándar';sc.appendChild(sl);
+    var grid=el('div','rq-options');
+    opts.forEach(function(o){
+      var btn=el('button','rq-opt');btn.textContent=o.label;btn.dataset.idx=o.idx;
+      btn.onclick=function(){if(answered)return;checkAnswer(o.idx,q);};grid.appendChild(btn);
+    });
+    sc.appendChild(grid);
+    var fb=el('div','rq-feedback');fb.id='rq-fb';sc.appendChild(fb);
+    var hint=el('div','rq-feedback hint');hint.id='rq-hint';hint.innerHTML='💡 '+q.uso;sc.appendChild(hint);
+    var nb=el('button','rq-btn rq-btn-next');nb.id='rq-next';nb.textContent='Siguiente →';nb.style.display='none';
+    nb.onclick=function(){qi++;answered=false;render();};sc.appendChild(nb);
     root.appendChild(sc);
   }
 
-  function appendSection(parent, label, opts, q, key){
-    var sl=el('div','rq-section-label'); sl.textContent=label; parent.appendChild(sl);
-    var grid=el('div','rq-options');
-    opts.forEach(function(o){
-      var btn=el('button','rq-opt');
-      btn.textContent=o.label;
-      btn.dataset.idx=o.idx;
-      btn.onclick=function(){ if(answered) return; checkAnswer(o.idx, q); };
-      grid.appendChild(btn);
-    });
-    parent.appendChild(grid);
-  }
-
-  function checkAnswer(chosen, q){
-    answered=true;
-    var correct = chosen===q.answer;
-    var fb=document.getElementById('rq-fb');
-    var hint=document.getElementById('rq-hint');
-    // Style buttons
+  function checkAnswer(chosen,q){
+    answered=true;var correct=chosen===q.answer;
+    var fb=document.getElementById('rq-fb');var hint=document.getElementById('rq-hint');
     document.querySelectorAll('#res-quiz-root .rq-opt').forEach(function(b){
       b.disabled=true;
-      if(parseInt(b.dataset.idx)===q.answer) b.classList.add(correct?'correct':'reveal');
-      else if(parseInt(b.dataset.idx)===chosen && !correct) b.classList.add('wrong');
+      if(parseInt(b.dataset.idx)===q.answer)b.classList.add(correct?'correct':'reveal');
+      else if(parseInt(b.dataset.idx)===chosen&&!correct)b.classList.add('wrong');
     });
-    if(correct){
-      score++;
-      fb.className='rq-feedback ok'; fb.innerHTML='✅ ¡Correcto! <strong>'+q.options[q.answer]+'</strong> — '+q.ar;
-    } else {
-      lives--;
-      fb.className='rq-feedback err'; fb.innerHTML='❌ Era <strong>'+q.options[q.answer]+'</strong> ('+q.ar+')';
-    }
-    hint.style.display='flex';
-    document.getElementById('rq-next').style.display='inline-block';
+    if(correct){score++;fb.className='rq-feedback ok';fb.innerHTML='✅ ¡Correcto! <strong>'+q.options[q.answer]+'</strong> — '+q.ar;}
+    else{lives--;fb.className='rq-feedback err';fb.innerHTML='❌ Era <strong>'+q.options[q.answer]+'</strong> ('+q.ar+')';}
+    hint.style.display='flex';document.getElementById('rq-next').style.display='inline-block';
   }
 
   function renderEnd(){
     var pct=Math.round(score/order.length*100);
-    var medal = pct>=90?'🏆':pct>=70?'🥈':pct>=50?'🥉':'📚';
-    root.innerHTML='<div class="rq-end"><div class="trophy">'+medal+'</div>'+
-      '<h3>Prueba completada</h3>'+
+    var medal=pct>=90?'🏆':pct>=70?'🥈':pct>=50?'🥉':'📚';
+    root.innerHTML='<div class="rq-end"><div class="trophy">'+medal+'</div><h3>'+LV[currentLevel]+' completado</h3>'+
       '<div class="rq-score-final">'+score+' / '+order.length+'</div>'+
-      '<p>'+(pct>=90?'¡Dominas las resoluciones de vídeo!':pct>=70?'Buen nivel — repasa las resoluciones DCI':pct>=50?'Sigue practicando — confunde estándares DCI y UHD':'Repasa la tabla de resoluciones estándar y vuelve a intentarlo')+'</p>'+
-      '<button class="rq-btn rq-btn-restart" onclick="window.resQuizStart()">▶ Jugar de nuevo</button></div>';
+      '<p>'+(pct>=90?'¡Dominas este nivel! Prueba el siguiente.':pct>=70?'Buen nivel — repasa los formatos DCI':pct>=50?'Sigue practicando':'Repasa la tabla de resoluciones estándar')+'</p>'+
+      '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px">'+
+      '<button class="rq-btn rq-btn-restart" style="background:var(--bg3);color:var(--navy)" onclick="window.resQuizStart()">⇄ Cambiar nivel</button>'+
+      '<button class="rq-btn rq-btn-next" onclick="window.resQuizRepeat()">▶ Repetir</button>'+
+      '</div></div>';
   }
 
-  function el(tag,cls){ var e=document.createElement(tag); if(cls) e.className=cls; return e; }
-
   window.resQuizStart=start;
-
-  document.addEventListener('click', function(e){
-    if(e.target.closest('[data-inner="m1_quiz"]')) setTimeout(function(){ if(!root.querySelector('.rq-screen,.rq-end')) start(); }, 80);
-  });
-  setTimeout(function(){
-    var pane=document.getElementById('m1_quiz');
-    if(pane && pane.classList.contains('active')) start();
-  }, 200);
+  window.resQuizRepeat=function(){startLevel(currentLevel);};
+  document.addEventListener('click',function(e){if(e.target.closest('[data-inner="m1_quiz"]'))setTimeout(function(){if(!root.querySelector('.rq-screen,.rq-end,.lvl-selector'))start();},80);});
+  setTimeout(function(){var pane=document.getElementById('m1_quiz');if(pane&&pane.classList.contains('active'))start();},200);
 })();
 </script>
 <section class="module" id="m2">
@@ -1448,59 +1464,85 @@ canvas{display:block}
 </style>
 <script>
 (function(){
-  var ROUNDS=10;
-  var SCENARIOS=[
-    {ap:'f/1.8',ss:'1/60', iso:100,  exp:'Correcta',  dof:'Reducida',     noise:'Bajo'},
-    {ap:'f/16', ss:'1/1000',iso:3200, exp:'Subexpuesta',dof:'Amplia',       noise:'Alto'},
-    {ap:'f/2.8',ss:'1/30', iso:400,  exp:'Correcta',  dof:'Reducida',     noise:'Medio'},
-    {ap:'f/8',  ss:'1/500',iso:100,  exp:'Subexpuesta',dof:'Amplia',       noise:'Bajo'},
-    {ap:'f/1.4',ss:'1/15', iso:6400, exp:'Sobreexpuesta',dof:'Muy reducida',noise:'Muy alto'},
-    {ap:'f/5.6',ss:'1/250',iso:800,  exp:'Correcta',  dof:'Normal',       noise:'Medio-alto'},
-    {ap:'f/11', ss:'1/8',  iso:200,  exp:'Correcta',  dof:'Amplia',       noise:'Bajo'},
-    {ap:'f/2.0',ss:'1/2000',iso:3200,exp:'Sobreexpuesta',dof:'Reducida',   noise:'Alto'},
-    {ap:'f/22', ss:'1/60', iso:100,  exp:'Subexpuesta',dof:'Muy amplia',   noise:'Bajo'},
-    {ap:'f/4',  ss:'1/125',iso:400,  exp:'Correcta',  dof:'Normal',       noise:'Medio'},
-    {ap:'f/1.8',ss:'1/500',iso:200,  exp:'Subexpuesta',dof:'Reducida',     noise:'Bajo'},
-    {ap:'f/8',  ss:'1/30', iso:1600, exp:'Sobreexpuesta',dof:'Amplia',     noise:'Alto'},
-  ];
-  var EXP_OPTS  =['Correcta','Subexpuesta','Sobreexpuesta'];
-  var DOF_OPTS  =['Muy reducida','Reducida','Normal','Amplia','Muy amplia'];
+  var LV={'basic':'🟢 Básico','medio':'🟡 Intermedio','experto':'🔴 Experto'};
+  var LVC={'basic':'lv-basic','medio':'lv-medio','experto':'lv-experto'};
+  var LVD={
+    basic:'Triángulo de exposición en condiciones claras. Los tres efectos son evidentes — perfecto para fijar los conceptos.',
+    medio:'Escenarios ambiguos donde sub/sobre/correcto depende de la combinación completa. Requiere cálculo mental.',
+    experto:'Condiciones extremas combinadas: ISO 6400, velocidades límite, aperturas máximas. Para quienes dominan los EV.'
+  };
+  var SBANK={
+    basic:[
+      {ap:'f/1.8', ss:'1/60',  iso:100,  exp:'Correcta',     dof:'Reducida',    noise:'Bajo'},
+      {ap:'f/16',  ss:'1/500', iso:100,  exp:'Subexpuesta',   dof:'Amplia',      noise:'Bajo'},
+      {ap:'f/2.8', ss:'1/125', iso:400,  exp:'Correcta',     dof:'Reducida',    noise:'Medio'},
+      {ap:'f/8',   ss:'1/30',  iso:100,  exp:'Correcta',     dof:'Amplia',      noise:'Bajo'},
+      {ap:'f/1.4', ss:'1/2000',iso:3200, exp:'Sobreexpuesta', dof:'Muy reducida',noise:'Alto'},
+      {ap:'f/4',   ss:'1/250', iso:800,  exp:'Correcta',     dof:'Normal',      noise:'Medio-alto'},
+      {ap:'f/11',  ss:'1/60',  iso:200,  exp:'Subexpuesta',   dof:'Amplia',      noise:'Bajo'},
+      {ap:'f/2.0', ss:'1/15',  iso:100,  exp:'Correcta',     dof:'Reducida',    noise:'Bajo'},
+    ],
+    medio:[
+      {ap:'f/2.0', ss:'1/2000',iso:3200, exp:'Sobreexpuesta', dof:'Reducida',    noise:'Alto'},
+      {ap:'f/22',  ss:'1/60',  iso:100,  exp:'Subexpuesta',   dof:'Muy amplia',  noise:'Bajo'},
+      {ap:'f/5.6', ss:'1/250', iso:800,  exp:'Correcta',     dof:'Normal',      noise:'Medio-alto'},
+      {ap:'f/1.8', ss:'1/500', iso:200,  exp:'Subexpuesta',   dof:'Reducida',    noise:'Bajo'},
+      {ap:'f/8',   ss:'1/30',  iso:1600, exp:'Sobreexpuesta', dof:'Amplia',      noise:'Alto'},
+      {ap:'f/11',  ss:'1/8',   iso:200,  exp:'Correcta',     dof:'Amplia',      noise:'Bajo'},
+      {ap:'f/1.4', ss:'1/15',  iso:6400, exp:'Sobreexpuesta', dof:'Muy reducida',noise:'Muy alto'},
+      {ap:'f/4',   ss:'1/125', iso:400,  exp:'Correcta',     dof:'Normal',      noise:'Medio'},
+    ],
+    experto:[
+      {ap:'f/2.8', ss:'1/8',   iso:3200, exp:'Sobreexpuesta', dof:'Reducida',    noise:'Alto'},
+      {ap:'f/16',  ss:'1/500', iso:3200, exp:'Correcta',     dof:'Amplia',      noise:'Alto'},
+      {ap:'f/1.4', ss:'1/500', iso:100,  exp:'Subexpuesta',   dof:'Muy reducida',noise:'Bajo'},
+      {ap:'f/22',  ss:'1/15',  iso:6400, exp:'Sobreexpuesta', dof:'Muy amplia',  noise:'Muy alto'},
+      {ap:'f/5.6', ss:'1/60',  iso:100,  exp:'Subexpuesta',   dof:'Normal',      noise:'Bajo'},
+      {ap:'f/2.0', ss:'1/15',  iso:400,  exp:'Correcta',     dof:'Reducida',    noise:'Medio'},
+      {ap:'f/11',  ss:'1/1000',iso:6400, exp:'Sobreexpuesta', dof:'Amplia',      noise:'Muy alto'},
+      {ap:'f/8',   ss:'1/4',   iso:200,  exp:'Correcta',     dof:'Amplia',      noise:'Bajo'},
+    ]
+  };
+  var ROUNDS=8;
+  var EXP_OPTS=['Correcta','Subexpuesta','Sobreexpuesta'];
+  var DOF_OPTS=['Muy reducida','Reducida','Normal','Amplia','Muy amplia'];
   var NOISE_OPTS=['Bajo','Medio','Medio-alto','Alto','Muy alto'];
-  var EXP_BG  ={'Correcta':'#4a7a6a','Subexpuesta':'#1a2035','Sobreexpuesta':'#c9a83c'};
-  var EXP_LBL ={'Correcta':'✅ Correctamente expuesta','Subexpuesta':'🌑 Subexpuesta — muy oscura','Sobreexpuesta':'☀️ Sobreexpuesta — quemada'};
-
+  var EXP_BG={'Correcta':'#4a7a6a','Subexpuesta':'#1a2035','Sobreexpuesta':'#c9a83c'};
+  var EXP_LBL={'Correcta':'✅ Correctamente expuesta','Subexpuesta':'🌑 Subexpuesta — muy oscura','Sobreexpuesta':'☀️ Sobreexpuesta — quemada'};
+  var currentLevel='basic',scenarios=[],qi=0,results=[];
+  var root=document.getElementById('exp-quiz-root');
+  function el(t,c){var e=document.createElement(t);if(c)e.className=c;return e;}
   function shuffle(a){var b=[...a];for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
   function opts4(pool,correct){return shuffle([correct,...shuffle(pool.filter(function(o){return o!==correct;})).slice(0,3)]);}
-  function el(t,c){var e=document.createElement(t);if(c)e.className=c;return e;}
+  function mkSel(cur,cb){var w=el('div','lvl-selector');Object.keys(LV).forEach(function(k){var b=el('button','lvl-btn'+(cur===k?' '+LVC[k]:''));b.textContent=LV[k];b.onclick=function(){cb(k);};w.appendChild(b);});return w;}
+  function mkBadge(lv){var b=el('div','lvl-badge '+LVC[lv]);b.textContent=LV[lv];return b;}
 
-  var scenarios,qi,results;
-  var root=document.getElementById('exp-quiz-root');
-
-  function start(){scenarios=shuffle([...SCENARIOS]).slice(0,ROUNDS);qi=0;results=[];render();}
+  function showPicker(){
+    root.innerHTML='';
+    root.appendChild(mkSel(currentLevel,function(lv){currentLevel=lv;showPicker();}));
+    var d=el('div','lvl-desc '+LVC[currentLevel]);d.textContent=LVD[currentLevel];root.appendChild(d);
+    var btn=el('button','eq-btn eq-btn-next');btn.textContent='▶ Empezar';
+    btn.onclick=function(){startLevel(currentLevel);};root.appendChild(btn);
+  }
+  function startLevel(lv){currentLevel=lv;scenarios=shuffle([...SBANK[lv]]).slice(0,ROUNDS);qi=0;results=[];render();}
+  function start(){showPicker();}
 
   function render(){
     if(qi>=ROUNDS){renderEnd();return;}
-    var sc=scenarios[qi];
-    root.innerHTML='';
-
-    // Progress
+    var sc=scenarios[qi];root.innerHTML='';
+    root.appendChild(mkSel(currentLevel,function(lv){currentLevel=lv;showPicker();}));
+    root.appendChild(mkBadge(currentLevel));
     var prog=el('div','eq-progress');
     for(var i=0;i<ROUNDS;i++){var p=el('div','eq-pip');if(i<results.length)p.classList.add(results[i]?'ok':'err');else if(i===qi)p.classList.add('cur');prog.appendChild(p);}
     root.appendChild(prog);
-    var sl=el('div','eq-score-lbl');sl.textContent='⭐ '+results.filter(Boolean).length+' correctas de '+qi+' respondidas';root.appendChild(sl);
-
-    // Camera
+    var sl=el('div','eq-score-lbl');sl.textContent='⭐ '+results.filter(Boolean).length+' correctas de '+qi;root.appendChild(sl);
     var cam=el('div','eq-camera');
     cam.innerHTML='<div class="eq-param"><div class="eq-param-name">⭕ Apertura</div><div class="eq-param-value">'+sc.ap+'</div><div class="eq-param-sub">f-stop</div></div>'+
       '<div class="eq-param"><div class="eq-param-name">⏱ Velocidad</div><div class="eq-param-value">'+sc.ss+'</div><div class="eq-param-sub">segundos</div></div>'+
       '<div class="eq-param"><div class="eq-param-name">⚡ ISO</div><div class="eq-param-value">'+sc.iso+'</div><div class="eq-param-sub">sensibilidad</div></div>';
     root.appendChild(cam);
-
-    // Three question blocks
-    var answered={exp:false,dof:false,noise:false};
+    var answered={exp:false,dof:false,noise:false};var answers={};
     function tryReveal(){if(answered.exp&&answered.dof&&answered.noise)revealResult(sc,answers);}
-    var answers={};
-
     [{key:'exp',label:'💡 Exposición resultante',pool:EXP_OPTS},
      {key:'dof',label:'🔭 Profundidad de campo',pool:DOF_OPTS},
      {key:'noise',label:'📡 Nivel de ruido digital',pool:NOISE_OPTS}
@@ -1509,28 +1551,19 @@ canvas{display:block}
       var lbl=el('div','eq-q-label');lbl.textContent=qd.label;block.appendChild(lbl);
       var grid=el('div','eq-options-grid');
       opts4(qd.pool,sc[qd.key]).forEach(function(opt){
-        var btn=el('button','eq-opt');
-        btn.textContent=opt; btn.dataset.val=opt; btn.dataset.key=qd.key;
+        var btn=el('button','eq-opt');btn.textContent=opt;btn.dataset.val=opt;
         btn.onclick=function(){
-          if(answered[qd.key])return;
-          answered[qd.key]=true; answers[qd.key]=opt;
-          block.querySelectorAll('.eq-opt').forEach(function(b){
-            b.disabled=true;
+          if(answered[qd.key])return;answered[qd.key]=true;answers[qd.key]=opt;
+          block.querySelectorAll('.eq-opt').forEach(function(b){b.disabled=true;
             if(b.dataset.val===sc[qd.key])b.classList.add(opt===sc[qd.key]?'correct':'reveal');
             else if(b.dataset.val===opt&&opt!==sc[qd.key])b.classList.add('wrong');
-          });
-          tryReveal();
-        };
-        grid.appendChild(btn);
-      });
-      block.appendChild(grid);root.appendChild(block);
+          });tryReveal();
+        };grid.appendChild(btn);
+      });block.appendChild(grid);root.appendChild(block);
     });
-
-    // Preview placeholder
     var prev=el('div','eq-preview');prev.id='eq-preview';prev.style.background='#2a3555';
     prev.innerHTML='<span class="eq-preview-label">📷 Responde las tres preguntas para ver el resultado</span>';
     root.appendChild(prev);
-
     var fb=el('div','eq-feedback');fb.id='eq-fb';root.appendChild(fb);
     var nxt=el('button','eq-btn eq-btn-next');nxt.id='eq-next';nxt.textContent='Siguiente →';nxt.style.display='none';
     nxt.onclick=function(){qi++;render();};root.appendChild(nxt);
@@ -1538,33 +1571,29 @@ canvas{display:block}
 
   function revealResult(sc,answers){
     var prev=document.getElementById('eq-preview');
-    prev.style.background=EXP_BG[sc.exp]||'#444';
-    prev.innerHTML='<span class="eq-preview-label">'+EXP_LBL[sc.exp]+'</span>';
+    prev.style.background=EXP_BG[sc.exp]||'#444';prev.innerHTML='<span class="eq-preview-label">'+EXP_LBL[sc.exp]+'</span>';
     var allOk=answers.exp===sc.exp&&answers.dof===sc.dof&&answers.noise===sc.noise;
     results.push(allOk);
     var fb=document.getElementById('eq-fb');
     if(allOk){fb.className='eq-feedback ok';fb.innerHTML='✅ ¡Las tres predicciones son correctas!';}
-    else{
-      var wrong=[];
-      if(answers.exp!==sc.exp)wrong.push('exposición (era <strong>'+sc.exp+'</strong>)');
-      if(answers.dof!==sc.dof)wrong.push('DOF (era <strong>'+sc.dof+'</strong>)');
-      if(answers.noise!==sc.noise)wrong.push('ruido (era <strong>'+sc.noise+'</strong>)');
-      fb.className='eq-feedback err';fb.innerHTML='❌ Fallo en: '+wrong.join(', ');
-    }
+    else{var wrong=[];if(answers.exp!==sc.exp)wrong.push('exposición (era <strong>'+sc.exp+'</strong>)');if(answers.dof!==sc.dof)wrong.push('DOF (era <strong>'+sc.dof+'</strong>)');if(answers.noise!==sc.noise)wrong.push('ruido (era <strong>'+sc.noise+'</strong>)');fb.className='eq-feedback err';fb.innerHTML='❌ Fallo en: '+wrong.join(', ');}
     document.getElementById('eq-next').style.display='inline-block';
   }
 
   function renderEnd(){
     var score=results.filter(Boolean).length;var pct=Math.round(score/ROUNDS*100);
     var medal=pct>=80?'🏆':pct>=60?'🥈':pct>=40?'🥉':'📚';
-    root.innerHTML='<div class="eq-end"><div class="trophy">'+medal+'</div><h3>Triángulo completado</h3>'+
+    root.innerHTML='<div class="eq-end"><div class="trophy">'+medal+'</div><h3>'+LV[currentLevel]+' completado</h3>'+
       '<div class="eq-score-big">'+score+'/'+ROUNDS+'</div>'+
-      '<p>'+(pct>=80?'¡Dominas el triángulo de exposición!':pct>=60?'Buen nivel — practica con ISOs extremos':pct>=40?'Repasa la relación apertura-DOF y ISO-ruido':'Vuelve a repasar el triángulo de exposición')+'</p>'+
-      '<button class="eq-btn eq-btn-restart" onclick="window.expQuizStart()">▶ Jugar de nuevo</button></div>';
+      '<p>'+(pct>=80?'¡Perfecto! Prueba el nivel superior.':pct>=60?'Buen nivel — practica con ISOs extremos':pct>=40?'Repasa apertura-DOF e ISO-ruido':'Vuelve a estudiar el triángulo de exposición')+'</p>'+
+      '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px">'+
+      '<button class="eq-btn" style="background:var(--bg3);color:var(--navy)" onclick="window.expQuizStart()">⇄ Cambiar nivel</button>'+
+      '<button class="eq-btn eq-btn-restart" onclick="window.expQuizRepeat()">▶ Repetir</button>'+
+      '</div></div>';
   }
-
   window.expQuizStart=start;
-  document.addEventListener('click',function(e){if(e.target.closest('[data-inner="m2_quiz"]'))setTimeout(function(){if(root&&!root.querySelector('.eq-progress'))start();},80);});
+  window.expQuizRepeat=function(){startLevel(currentLevel);};
+  document.addEventListener('click',function(e){if(e.target.closest('[data-inner="m2_quiz"]'))setTimeout(function(){if(root&&!root.querySelector('.eq-progress,.lvl-selector'))start();},80);});
   setTimeout(function(){var p=document.getElementById('m2_quiz');if(p&&p.classList.contains('active'))start();},200);
 })();
 </script>
@@ -2653,136 +2682,129 @@ canvas{display:block}
 </style>
 <script>
 (function(){
-  var ROUNDS=10;
-  // Lens type classification
+  var LV={'basic':'🟢 Básico','medio':'🟡 Intermedio','experto':'🔴 Experto'};
+  var LVC={'basic':'lv-basic','medio':'lv-medio','experto':'lv-experto'};
+  var LVD={
+    basic:'Valores redondos y TR estándar (1.0, 1.5, 2.0). Ideal para afianzar la fórmula TR = D / Ancho.',
+    medio:'Valores más variados con decimales. Se alternan los tres tipos: calcular TR, distancia y ancho.',
+    experto:'Ultra Short Throw y Long Throw extremos, valores no redondos. Requiere dominar la fórmula en los tres sentidos.'
+  };
+  var CONFIGS={
+    basic:{  widths:[2,3,4,5,6],      trs:[1.0,1.2,1.5,1.8,2.0],          types:[0,1,2] },
+    medio:{  widths:[2,3,4,5,6,8],    trs:[0.5,0.8,1.2,1.5,1.8,2.0,2.5],  types:[0,1,2] },
+    experto:{widths:[2,3,4,5,6,8,10], trs:[0.3,0.4,0.5,0.8,1.2,1.5,2.0,2.5,3.0,4.0], types:[0,1,2]}
+  };
+  var ROUNDS=10, currentLevel='basic';
   function lensType(tr){
-    if(tr<0.4) return {name:'Ultra Short Throw',color:'#7c3aed'};
-    if(tr<1.0) return {name:'Short Throw',color:'#c06000'};
-    if(tr<=2.0) return {name:'Standard Throw',color:'#166534'};
-    return {name:'Long Throw',color:'#1a56d6'};
+    if(tr<0.4)return{name:'Ultra Short Throw',color:'#7c3aed'};
+    if(tr<1.0)return{name:'Short Throw',color:'#c06000'};
+    if(tr<=2.0)return{name:'Standard Throw',color:'#166534'};
+    return{name:'Long Throw',color:'#1a56d6'};
   }
-  // Possible widths (m), distances (m), throw ratios
-  var WIDTHS=[2,3,4,5,6,8];
-  var TRS=[0.3,0.5,0.8,1.2,1.5,1.8,2.0,2.5,3.0];
   function rnd(arr){return arr[Math.floor(Math.random()*arr.length)];}
   function shuffle(a){var b=[...a];for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
   function r1(n){return Math.round(n*10)/10;}
   function el(t,c){var e=document.createElement(t);if(c)e.className=c;return e;}
-  function badOpts(correct,gen,n){
-    var pool=[]; var tries=0;
-    while(pool.length<n&&tries<50){tries++;var v=gen();var rv=r1(v);if(rv!==correct&&pool.indexOf(rv)<0)pool.push(rv);}
+  function mkSel(cur,cb){var w=el('div','lvl-selector');Object.keys(LV).forEach(function(k){var b=el('button','lvl-btn'+(cur===k?' '+LVC[k]:''));b.textContent=LV[k];b.onclick=function(){cb(k);};w.appendChild(b);});return w;}
+  function mkBadge(lv){var b=el('div','lvl-badge '+LVC[lv]);b.textContent=LV[lv];return b;}
+  function badOpts(correct,n){
+    var spread={basic:0.5,medio:0.8,experto:1.2}[currentLevel];
+    var pool=[];var tries=0;
+    while(pool.length<n&&tries<60){tries++;var rv=r1(correct+(Math.random()-.5)*spread+.05);if(rv!==correct&&rv>0&&pool.indexOf(rv)<0)pool.push(rv);}
     return pool.slice(0,n);
   }
 
-  // Generate a question
   function genQuestion(){
-    var type=Math.floor(Math.random()*3); // 0=find TR, 1=find dist, 2=find width
-    var w=rnd(WIDTHS), tr=rnd(TRS), dist=r1(tr*w);
+    var cfg=CONFIGS[currentLevel];
+    var type=rnd(cfg.types),w=rnd(cfg.widths),tr=rnd(cfg.trs),dist=r1(tr*w);
     var correct,question,given,formula,unit;
     if(type===0){
-      correct=r1(tr);
-      question='¿Cuál es el Throw Ratio de este proyector?';
+      correct=r1(tr);question='¿Cuál es el Throw Ratio de este proyector?';
       given=[{l:'📏 Distancia',v:dist+'m'},{l:'📐 Ancho pantalla',v:w+'m'}];
-      formula='TR = '+dist+' / '+w+' = '+correct;
-      unit='';
+      formula='TR = '+dist+' / '+w+' = '+correct;unit='';
     } else if(type===1){
-      correct=dist;
-      question='¿A qué distancia debe colocarse el proyector?';
+      correct=dist;question='¿A qué distancia debe colocarse el proyector?';
       given=[{l:'🔢 Throw Ratio',v:tr+':1'},{l:'📐 Ancho pantalla',v:w+'m'}];
-      formula='D = TR × Ancho = '+tr+' × '+w+' = '+correct+'m';
-      unit='m';
+      formula='D = TR × Ancho = '+tr+' × '+w+' = '+correct+'m';unit='m';
     } else {
-      correct=w;
-      question='¿Qué ancho de imagen se consigue?';
+      correct=w;question='¿Qué ancho de imagen se consigue?';
       given=[{l:'🔢 Throw Ratio',v:tr+':1'},{l:'📏 Distancia',v:dist+'m'}];
-      formula='Ancho = D / TR = '+dist+' / '+tr+' = '+correct+'m';
-      unit='m';
+      formula='Ancho = D / TR = '+dist+' / '+tr+' = '+correct+'m';unit='m';
     }
-    // Generate distractors
-    var distractors=badOpts(correct,function(){return r1(correct+(Math.random()-.5)*correct*.8+.1);},3);
-    var opts=shuffle([correct,...distractors]);
+    var opts=shuffle([correct,...badOpts(correct,3)]);
     var lt=lensType(type===0?correct:tr);
-    return {question,given,correct,opts,formula,unit,lensType:lt,tr:(type===0?correct:tr),w,dist};
+    return{question,given,correct,opts,formula,unit,lensType:lt,tr:(type===0?correct:tr),w,dist};
   }
 
   var questions,qi,results;
   var root=document.getElementById('tr-quiz-root');
 
-  function start(){
-    questions=[];for(var i=0;i<ROUNDS;i++)questions.push(genQuestion());
-    qi=0;results=[];render();
+  function showPicker(){
+    root.innerHTML='';
+    root.appendChild(mkSel(currentLevel,function(lv){currentLevel=lv;showPicker();}));
+    var d=el('div','lvl-desc '+LVC[currentLevel]);d.textContent=LVD[currentLevel];root.appendChild(d);
+    var btn=el('button','tr-btn tr-btn-next');btn.textContent='▶ Empezar';
+    btn.onclick=function(){startLevel(currentLevel);};root.appendChild(btn);
   }
+  function startLevel(lv){currentLevel=lv;questions=[];for(var i=0;i<ROUNDS;i++)questions.push(genQuestion());qi=0;results=[];render();}
+  function start(){showPicker();}
 
   function render(){
     if(qi>=ROUNDS){renderEnd();return;}
-    var q=questions[qi];
-    root.innerHTML='';
-
-    // Progress
+    var q=questions[qi];root.innerHTML='';
+    root.appendChild(mkSel(currentLevel,function(lv){currentLevel=lv;showPicker();}));
+    root.appendChild(mkBadge(currentLevel));
     var prog=el('div','tr-progress');
     for(var i=0;i<ROUNDS;i++){var p=el('div','tr-pip');if(i<results.length)p.classList.add(results[i]?'ok':'err');else if(i===qi)p.classList.add('cur');prog.appendChild(p);}
     root.appendChild(prog);
     var sl=el('div','tr-score-lbl');sl.textContent='⭐ '+results.filter(Boolean).length+' correctas de '+qi;root.appendChild(sl);
-
-    // Scenario visual
     var sc=el('div','tr-scenario');
     sc.innerHTML='<div class="tr-scenario-title">📽️ Escenario de proyección</div>'+
-      '<div class="tr-diagram">'+
-        '<div class="tr-projector">📽️</div>'+
-        '<div class="tr-beam"><div class="tr-beam-label">'+q.dist+'m</div></div>'+
-        '<div class="tr-screen"><div class="tr-screen-label">'+q.w+'m</div></div>'+
-      '</div>'+
-      '<div class="tr-given">'+q.given.map(function(g){return '<div class="tr-given-item"><div class="label">'+g.l+'</div><div class="value">'+g.v+'</div></div>';}).join('')+'</div>';
+      '<div class="tr-diagram"><div class="tr-projector">📽️</div>'+
+      '<div class="tr-beam"><div class="tr-beam-label">'+q.dist+'m</div></div>'+
+      '<div class="tr-screen"><div class="tr-screen-label">'+q.w+'m</div></div></div>'+
+      '<div class="tr-given">'+q.given.map(function(g){return'<div class="tr-given-item"><div class="label">'+g.l+'</div><div class="value">'+g.v+'</div></div>';}).join('')+'</div>';
     root.appendChild(sc);
-
-    // Question
     var ql=el('div','tr-question');ql.textContent=q.question;root.appendChild(ql);
-
-    // Options
     var grid=el('div','tr-options');
+    var hint=el('div','tr-hint');hint.id='tr-hint';
+    var nxt=el('button','tr-btn tr-btn-next');nxt.textContent='Siguiente →';nxt.style.display='none';
+    nxt.onclick=function(){qi++;render();};
     q.opts.forEach(function(opt){
-      var btn=el('button','tr-opt');
-      btn.textContent=opt+(q.unit?q.unit:'');
-      btn.dataset.val=String(opt);
+      var btn=el('button','tr-opt');btn.textContent=opt+(q.unit?q.unit:'');btn.dataset.val=String(opt);
       btn.onclick=function(){
         if(root.querySelector('.tr-opt.correct,.tr-opt.wrong'))return;
-        var ok=opt===q.correct;
-        results.push(ok);
-        grid.querySelectorAll('.tr-opt').forEach(function(b){
-          b.disabled=true;
+        var ok=opt===q.correct;results.push(ok);
+        grid.querySelectorAll('.tr-opt').forEach(function(b){b.disabled=true;
           if(Number(b.dataset.val)===q.correct)b.classList.add(ok?'correct':'reveal');
           else if(Number(b.dataset.val)===opt&&!ok)b.classList.add('wrong');
         });
-        // Formula reveal
         var fml=el('div','tr-formula-used');
         fml.innerHTML='🔢 <strong>Fórmula:</strong> '+q.formula+
           ' <span class="tr-lens-badge" style="background:'+q.lensType.color+'20;color:'+q.lensType.color+';border:1px solid '+q.lensType.color+'40">'+q.lensType.name+'</span>';
         root.insertBefore(fml,hint);
-        // Hint
         if(ok){hint.className='tr-hint ok';hint.innerHTML='✅ Correcto — TR '+q.tr+':1 → '+q.lensType.name;}
         else{hint.className='tr-hint err';hint.innerHTML='❌ La respuesta era <strong>'+q.correct+(q.unit||'')+'</strong>';}
         nxt.style.display='inline-block';
-      };
-      grid.appendChild(btn);
+      };grid.appendChild(btn);
     });
-    root.appendChild(grid);
-
-    var hint=el('div','tr-hint');hint.id='tr-hint';root.appendChild(hint);
-    var nxt=el('button','tr-btn tr-btn-next');nxt.textContent='Siguiente →';nxt.style.display='none';
-    nxt.onclick=function(){qi++;render();};root.appendChild(nxt);
+    root.appendChild(grid);root.appendChild(hint);root.appendChild(nxt);
   }
 
   function renderEnd(){
     var score=results.filter(Boolean).length;var pct=Math.round(score/ROUNDS*100);
     var medal=pct>=80?'🏆':pct>=60?'🥈':pct>=40?'🥉':'📚';
-    root.innerHTML='<div class="tr-end"><div class="trophy">'+medal+'</div><h3>Quiz completado</h3>'+
+    root.innerHTML='<div class="tr-end"><div class="trophy">'+medal+'</div><h3>'+LV[currentLevel]+' completado</h3>'+
       '<div class="tr-score-big">'+score+'/'+ROUNDS+'</div>'+
-      '<p>'+(pct>=80?'¡Dominas el throw ratio!':pct>=60?'Buen nivel — practica con Short y Long Throw':pct>=40?'Repasa la fórmula TR = D / Ancho':'Vuelve a repasar los tipos de objetivo')+'</p>'+
-      '<button class="tr-btn tr-btn-restart" onclick="window.trQuizStart()">▶ Jugar de nuevo</button></div>';
+      '<p>'+(pct>=80?'¡Dominas el throw ratio en este nivel! Prueba el siguiente.':pct>=60?'Buen nivel — practica con Short y Long Throw':pct>=40?'Repasa la fórmula TR = D / Ancho':'Vuelve a repasar los tipos de objetivo')+'</p>'+
+      '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px">'+
+      '<button class="tr-btn" style="background:var(--bg3);color:var(--navy)" onclick="window.trQuizStart()">⇄ Cambiar nivel</button>'+
+      '<button class="tr-btn tr-btn-restart" onclick="window.trQuizRepeat()">▶ Repetir</button>'+
+      '</div></div>';
   }
-
   window.trQuizStart=start;
-  document.addEventListener('click',function(e){if(e.target.closest('[data-inner="p_quiz"]'))setTimeout(function(){if(root&&!root.querySelector('.tr-progress'))start();},80);});
+  window.trQuizRepeat=function(){startLevel(currentLevel);};
+  document.addEventListener('click',function(e){if(e.target.closest('[data-inner="p_quiz"]'))setTimeout(function(){if(root&&!root.querySelector('.tr-progress,.lvl-selector'))start();},80);});
   setTimeout(function(){var p=document.getElementById('p_quiz');if(p&&p.classList.contains('active'))start();},200);
 })();
 </script>
