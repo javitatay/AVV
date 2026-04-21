@@ -1918,10 +1918,234 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       <strong>Filtros de color (geles):</strong> Láminas de material plástico resistente al calor que se colocan delante del foco para cambiar el color, corregir temperatura o reducir intensidad. Marcas: Rosco, Lee Filters.
     </div>
   </div>
+
+  <!-- JUEGO: CONSTRUCTOR DE FIXTURE -->
+  <div class="panel section-gap">
+    <div class="panel-title">🎮 Constructor de Fixture</div>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:16px">Se muestra un fixture con N canales. <strong>Arrastra cada atributo al canal correcto</strong> siguiendo el perfil dado. Canaliza cabezas móviles, PARs y spots como un técnico de iluminación.</p>
+    <div id="fixture-builder-root"></div>
+  </div>
 </section>
 
+<style>
+#fixture-builder-root { font-family:'Poppins',sans-serif; font-size:13px; }
+.fb-header { background:var(--navy); border-radius:12px; padding:16px 20px; margin-bottom:18px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+.fb-fixture-name { font-size:15px; font-weight:800; color:var(--yellow); }
+.fb-fixture-sub  { font-size:11px; color:rgba(255,255,255,.5); margin-top:2px; }
+.fb-score-pips { display:flex; gap:5px; }
+.fb-pip { width:12px; height:12px; border-radius:50%; background:rgba(255,255,255,.15); transition:background .3s; }
+.fb-pip.filled { background:var(--yellow); }
+.fb-cols { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+.fb-col-title { font-size:10px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--text3); margin-bottom:8px; }
+/* Attribute bank */
+.fb-bank { display:flex; flex-direction:column; gap:6px; min-height:80px; }
+.fb-attr {
+  padding:9px 13px; border-radius:8px; border:2px solid var(--border);
+  background:var(--white); cursor:grab; user-select:none;
+  font-size:12px; font-weight:600; transition:border-color .15s, box-shadow .15s, transform .15s, opacity .2s;
+  display:flex; align-items:center; gap:8px;
+}
+.fb-attr:hover { border-color:var(--navy3); box-shadow:0 2px 8px rgba(25,42,86,.12); transform:translateY(-1px); }
+.fb-attr.dragging { opacity:.4; cursor:grabbing; }
+.fb-attr.placed   { opacity:.35; pointer-events:none; border-style:dashed; }
+/* Channel slots */
+.fb-channels { display:flex; flex-direction:column; gap:6px; }
+.fb-slot-row { display:flex; align-items:center; gap:8px; }
+.fb-ch-num { width:28px; height:28px; border-radius:5px; background:var(--navy); color:var(--yellow); font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-variant-numeric:tabular-nums; }
+.fb-drop {
+  flex:1; min-height:38px; border:2px dashed var(--border2); border-radius:7px;
+  padding:6px 10px; font-size:12px; color:var(--text3); transition:border-color .15s, background .15s;
+  display:flex; align-items:center; gap:7px;
+}
+.fb-drop.over    { border-color:var(--navy); background:#eef2fd; }
+.fb-drop.correct { border-color:#22c55e !important; background:#f0fdf4 !important; color:#166534; font-weight:700; }
+.fb-drop.wrong   { border-color:#ef4444 !important; background:#fff1f1 !important; animation:fb-shake .35s; }
+.fb-drop.locked  { pointer-events:none; }
+@keyframes fb-shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+.fb-actions { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.fb-btn { padding:9px 20px; border-radius:8px; border:none; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; cursor:pointer; transition:opacity .15s, transform .1s; }
+.fb-btn:hover { opacity:.88; transform:translateY(-1px); }
+.fb-btn-check   { background:var(--navy); color:#fff; }
+.fb-btn-reset   { background:var(--bg3); color:var(--text2); }
+.fb-btn-next    { background:#22c55e; color:#fff; }
+.fb-feedback { font-size:12px; font-weight:600; padding:8px 13px; border-radius:7px; display:none; }
+.fb-feedback.ok  { display:inline-flex; gap:6px; align-items:center; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; }
+.fb-feedback.err { display:inline-flex; gap:6px; align-items:center; background:#fff1f1; color:#dc2626; border:1px solid #fecaca; }
+.fb-win { text-align:center; padding:32px 20px; background:var(--navy); border-radius:12px; color:#fff; }
+.fb-win .trophy { font-size:44px; margin-bottom:8px; }
+.fb-win h3 { font-size:20px; font-weight:700; color:var(--yellow); margin-bottom:4px; }
+.fb-win p  { font-size:13px; opacity:.75; margin-bottom:16px; }
+@media(max-width:560px){ .fb-cols{grid-template-columns:1fr;} }
+</style>
+<script>
+(function(){
+  var FIXTURES=[
+    { name:'Moving Head Spot', chs:16, color:'#7a6ba3',
+      channels:['Dimmer','Pan','Pan Fine','Tilt','Tilt Fine','Color','Gobo','Gobo Rot.','Prisma','Focus','Zoom','Iris','Frost','Strobe','Control','Reset'] },
+    { name:'PAR LED RGBW', chs:4, color:'#a06b4a',
+      channels:['Rojo (R)','Verde (G)','Azul (B)','Blanco (W)'] },
+    { name:'Spot 5 canales', chs:5, color:'#4a7a6a',
+      channels:['Dimmer','R','G','B','Strobe'] },
+    { name:'Cabeza móvil 8ch', chs:8, color:'#6b7fa3',
+      channels:['Dimmer','Pan','Tilt','Color','Gobo','Focus','Strobe','Control'] },
+    { name:'Barra LED 6ch', chs:6, color:'#a06b6b',
+      channels:['Dimmer','R','G','B','Strobe','Control'] },
+  ];
+  var ALL_ATTRS=['Dimmer','Pan','Pan Fine','Tilt','Tilt Fine','Color','Gobo','Gobo Rot.','Prisma','Focus','Zoom','Iris','Frost','Strobe','Control','Reset','Rojo (R)','Verde (G)','Azul (B)','Blanco (W)','R','G','B'];
 
-<!-- ═══ MÓDULO 7 — RIGGING & SEGURIDAD ═══ -->
+  function shuffle(a){var b=[...a];for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+  function el(t,c){var e=document.createElement(t);if(c)e.className=c;return e;}
+
+  var fxIdx=0, score=0;
+  var slotMap={}, dragging=null;
+  var root=document.getElementById('fixture-builder-root');
+
+  function render(){
+    if(fxIdx>=FIXTURES.length){renderWin();return;}
+    var fx=FIXTURES[fxIdx];
+    slotMap={};
+    root.innerHTML='';
+
+    // Header
+    var hdr=el('div','fb-header');
+    hdr.innerHTML='<div><div class="fb-fixture-name">'+fx.name+'</div><div class="fb-fixture-sub">'+fx.chs+' canales DMX</div></div>'+
+      '<div class="fb-score-pips">'+FIXTURES.map(function(_,i){return '<div class="fb-pip'+(i<fxIdx?' filled':'')+'"></div>';}).join('')+'</div>';
+    root.appendChild(hdr);
+
+    // Two-col layout
+    var cols=el('div','fb-cols');
+
+    // LEFT: attribute bank (correct + distractors)
+    var leftDiv=el('div');
+    var lt=el('div','fb-col-title');lt.textContent='🏷️ Atributos disponibles — arrastra al canal correcto';leftDiv.appendChild(lt);
+    var bank=el('div','fb-bank');bank.id='fb-bank';
+    // Build pool: correct set + extra distractors
+    var correct=fx.channels.slice();
+    var extras=shuffle(ALL_ATTRS.filter(function(a){return correct.indexOf(a)<0;})).slice(0,Math.min(4,fx.chs));
+    var pool=shuffle([...correct,...extras]);
+    pool.forEach(function(attr){
+      var card=makeAttrCard(attr);
+      bank.appendChild(card);
+    });
+    leftDiv.appendChild(bank);
+    cols.appendChild(leftDiv);
+
+    // RIGHT: channel slots
+    var rightDiv=el('div');
+    var rt=el('div','fb-col-title');rt.textContent='🔢 Canales DMX — suelta cada atributo aquí';rightDiv.appendChild(rt);
+    var chs=el('div','fb-channels');
+    for(var i=1;i<=fx.chs;i++){
+      (function(ch){
+        var row=el('div','fb-slot-row');
+        var num=el('div','fb-ch-num');num.textContent=ch;
+        var drop=el('div','fb-drop');drop.dataset.ch=ch;drop.textContent='Suelta aquí el atributo del canal '+ch;
+        drop.addEventListener('dragover',function(e){e.preventDefault();drop.classList.add('over');});
+        drop.addEventListener('dragleave',function(){drop.classList.remove('over');});
+        drop.addEventListener('drop',function(e){
+          e.preventDefault();drop.classList.remove('over');
+          if(!dragging)return;
+          var attr=dragging.dataset.attr;
+          // return previous occupant to bank if any
+          if(slotMap[ch]){
+            var prev=document.querySelector('#fb-bank .fb-attr[data-attr="'+slotMap[ch]+'"].fb-placed');
+            if(prev){prev.classList.remove('fb-placed');}
+          }
+          slotMap[ch]=attr;
+          dragging.classList.add('placed');
+          drop.textContent=''; drop.classList.remove('correct','wrong');
+          drop.innerHTML='<span>'+attr+'</span>';
+          dragging=null;
+          hideFeedback();
+        });
+        row.appendChild(num);row.appendChild(drop);
+        chs.appendChild(row);
+      })(i);
+    }
+    rightDiv.appendChild(chs);
+    cols.appendChild(rightDiv);
+    root.appendChild(cols);
+
+    // Actions
+    var actions=el('div','fb-actions');
+    var btnCheck=el('button','fb-btn fb-btn-check');btnCheck.textContent='✓ Comprobar';
+    btnCheck.onclick=checkAnswer;
+    var btnReset=el('button','fb-btn fb-btn-reset');btnReset.textContent='↺ Resetear';
+    btnReset.onclick=function(){fxIdx=fxIdx;render();};
+    var fb=el('div','fb-feedback');fb.id='fb-feedback';
+    actions.appendChild(btnCheck);actions.appendChild(btnReset);actions.appendChild(fb);
+    root.appendChild(actions);
+  }
+
+  function makeAttrCard(attr){
+    var card=el('div','fb-attr');
+    card.dataset.attr=attr;
+    card.draggable=true;
+    card.innerHTML='<span style="font-size:14px">'+attrIcon(attr)+'</span><span>'+attr+'</span>';
+    card.addEventListener('dragstart',function(){dragging=card;card.classList.add('dragging');});
+    card.addEventListener('dragend',function(){card.classList.remove('dragging');});
+    // Touch
+    card.addEventListener('touchstart',function(){dragging=card;card.style.outline='2px solid var(--navy)';},{passive:true});
+    return card;
+  }
+
+  function attrIcon(a){
+    var map={'Dimmer':'🎚️','Pan':'↔️','Pan Fine':'↔️','Tilt':'↕️','Tilt Fine':'↕️','Color':'🎨','Gobo':'🎪','Gobo Rot.':'🔄','Prisma':'🔷','Focus':'🔍','Zoom':'🔭','Iris':'⭕','Frost':'🌫️','Strobe':'⚡','Control':'⚙️','Reset':'🔁','Rojo (R)':'🔴','Verde (G)':'🟢','Azul (B)':'🔵','Blanco (W)':'⬜','R':'🔴','G':'🟢','B':'🔵'};
+    return map[a]||'🔹';
+  }
+
+  function hideFeedback(){var fb=document.getElementById('fb-feedback');if(fb)fb.className='fb-feedback';}
+
+  function checkAnswer(){
+    var fx=FIXTURES[fxIdx];
+    var allFilled=true;
+    for(var i=1;i<=fx.chs;i++) if(!slotMap[i]) allFilled=false;
+    var fb=document.getElementById('fb-feedback');
+    if(!allFilled){fb.className='fb-feedback err';fb.innerHTML='⚠️ Rellena todos los canales antes de comprobar';return;}
+
+    var errors=[];
+    for(var i=1;i<=fx.chs;i++){
+      var drop=document.querySelector('.fb-drop[data-ch="'+i+'"]');
+      if(slotMap[i]===fx.channels[i-1]){drop.classList.add('correct');}
+      else{drop.classList.add('wrong');errors.push('Canal '+i+': esperaba <strong>'+fx.channels[i-1]+'</strong>, pusiste <strong>'+slotMap[i]+'</strong>');}
+    }
+    if(errors.length===0){
+      score++;
+      fb.className='fb-feedback ok';fb.innerHTML='✅ ¡Perfecto! Fixture patched correctamente.';
+      setTimeout(function(){fxIdx++;render();},1600);
+    } else {
+      fb.className='fb-feedback err';
+      fb.innerHTML='❌ '+errors.length+' error(es): '+errors.slice(0,2).join(' · ')+(errors.length>2?' …':'');
+      // shake wrong slots, reset after delay
+      setTimeout(function(){
+        document.querySelectorAll('.fb-drop.wrong').forEach(function(d){d.classList.remove('wrong');});
+        // return misplaced attrs to bank
+        var wrongChs=[];
+        for(var i=1;i<=fx.chs;i++) if(slotMap[i]&&slotMap[i]!==fx.channels[i-1]) wrongChs.push(i);
+        wrongChs.forEach(function(ch){
+          var attr=slotMap[ch];
+          delete slotMap[ch];
+          var drop=document.querySelector('.fb-drop[data-ch="'+ch+'"]');
+          drop.textContent='Suelta aquí el atributo del canal '+ch;drop.classList.remove('correct','wrong');
+          var card=document.querySelector('#fb-bank .fb-attr[data-attr="'+attr+'"]');
+          if(card) card.classList.remove('placed');
+        });
+      },800);
+    }
+  }
+
+  function renderWin(){
+    root.innerHTML='<div class="fb-win"><div class="trophy">🏆</div><h3>¡Todos los fixtures parcheados!</h3>'+
+      '<p>Completados '+FIXTURES.length+' perfiles con <strong>'+score+'/'+FIXTURES.length+'</strong> correctos a la primera.</p>'+
+      '<button class="fb-btn fb-btn-next" onclick="window.fbRestart()">▶ Jugar de nuevo</button></div>';
+  }
+  window.fbRestart=function(){fxIdx=0;score=0;render();};
+
+  // Init on page load or tab click
+  setTimeout(function(){
+    if(root&&!root.innerHTML.trim()) render();
+  },300);
+})();
+</script>
 <section class="module" id="m7">
   <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
   <div class="module-header">
@@ -2110,6 +2334,7 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
     <div class="inner-tab" onclick="switchTab('dmx','artnet')">ART-NET</div>
     <div class="inner-tab" onclick="switchTab('dmx','calc_dmx')">🧮 Calculadora</div>
     <div class="inner-tab" onclick="switchTab('dmx','patch')">🗺️ Patch Visual</div>
+    <div class="inner-tab" onclick="switchTab('dmx','dmx_quiz')">🎮 Quiz Dirección DMX</div>
   </div>
 
   <div class="inner-pane active" id="dmx_protocolo">
@@ -2710,7 +2935,228 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
 
   </div><!-- /dmx_patch -->
 
+  <!-- JUEGO: CALCULA LA DIRECCIÓN DMX -->
+  <div class="inner-pane" id="dmx_dmx_quiz">
+    <div class="panel">
+      <div class="panel-title">🎮 Calcula la Dirección DMX</div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:16px">Se muestra un universo DMX con fixtures ya parchados. Calcula la <strong>dirección de inicio</strong> del siguiente fixture o responde preguntas sobre canales ocupados. 10 rondas.</p>
+      <div id="dmx-quiz-root"></div>
+    </div>
+  </div>
 </section>
+
+<style>
+#dmx-quiz-root { font-family:'Poppins',sans-serif; font-size:13px; max-width:680px; margin:0 auto; }
+.dq-universe { background:var(--navy); border-radius:12px; padding:16px 18px; margin-bottom:18px; }
+.dq-universe-title { font-size:10px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:10px; }
+.dq-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(36px,1fr)); gap:3px; margin-bottom:12px; }
+.dq-ch { height:28px; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; font-variant-numeric:tabular-nums; color:rgba(255,255,255,.7); background:rgba(255,255,255,.07); transition:background .2s; }
+.dq-ch.occupied { color:#fff; }
+.dq-legend { display:flex; flex-wrap:wrap; gap:8px; }
+.dq-legend-item { display:flex; align-items:center; gap:5px; font-size:11px; color:rgba(255,255,255,.6); }
+.dq-legend-dot { width:12px; height:12px; border-radius:3px; }
+.dq-fixtures-list { margin-bottom:10px; }
+.dq-fx-chip { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:5px; font-size:11px; font-weight:700; margin:3px; color:#fff; }
+.dq-question { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:14px; }
+.dq-options { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-bottom:14px; }
+.dq-opt { padding:12px 16px; border-radius:8px; border:2px solid var(--border); background:var(--white); cursor:pointer; font-family:'Poppins',sans-serif; font-size:14px; font-weight:800; text-align:center; transition:border-color .15s, background .15s, transform .12s; font-variant-numeric:tabular-nums; }
+.dq-opt:hover:not(:disabled) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-1px); }
+.dq-opt.correct { border-color:#22c55e !important; background:#f0fdf4 !important; color:#166534 !important; }
+.dq-opt.wrong   { border-color:#ef4444 !important; background:#fff1f1 !important; color:#991b1b !important; }
+.dq-opt.reveal  { border-color:#22c55e !important; background:#f0fdf4 !important; opacity:.6; }
+.dq-opt:disabled { cursor:default; transform:none !important; }
+.dq-feedback { font-size:12px; font-weight:600; padding:9px 14px; border-radius:7px; margin-bottom:12px; display:none; }
+.dq-feedback.ok  { display:flex; gap:6px; align-items:flex-start; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; }
+.dq-feedback.err { display:flex; gap:6px; align-items:flex-start; background:#fff1f1; color:#dc2626; border:1px solid #fecaca; }
+.dq-explanation { font-size:12px; background:var(--bg2); border:1px solid var(--border); border-radius:7px; padding:9px 14px; margin-bottom:12px; display:none; color:var(--text2); line-height:1.6; }
+.dq-progress { display:flex; gap:4px; margin-bottom:14px; }
+.dq-pip { height:5px; flex:1; border-radius:3px; background:var(--bg3); }
+.dq-pip.ok { background:#22c55e; }
+.dq-pip.err { background:#ef4444; }
+.dq-pip.cur { background:var(--navy); }
+.dq-score-lbl { font-size:11px; font-weight:700; color:var(--text2); margin-bottom:14px; }
+.dq-btn { padding:9px 22px; border-radius:8px; border:none; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; cursor:pointer; }
+.dq-btn-next    { background:var(--navy); color:#fff; }
+.dq-btn-restart { background:#22c55e; color:#fff; }
+.dq-end { text-align:center; padding:32px 20px; background:var(--navy); border-radius:14px; color:#fff; }
+.dq-end .trophy { font-size:44px; margin-bottom:8px; }
+.dq-end h3 { font-size:20px; font-weight:700; color:var(--yellow); margin-bottom:4px; }
+.dq-end p  { font-size:13px; opacity:.75; margin-bottom:16px; }
+.dq-score-big { font-size:36px; font-weight:800; color:var(--yellow); margin:10px 0; }
+@media(max-width:480px){ .dq-options{grid-template-columns:1fr;} }
+</style>
+<script>
+(function(){
+  var ROUNDS=10;
+  var COLORS=['#4a7a6a','#6b7fa3','#a06b4a','#7a6ba3','#a06b6b','#2a7a9a'];
+  var FX_TYPES=[
+    {name:'Dimmer',     chs:1},
+    {name:'PAR RGB',    chs:3},
+    {name:'RGBW',       chs:4},
+    {name:'Spot 5ch',   chs:5},
+    {name:'Barra LED',  chs:8},
+    {name:'Moving Head',chs:16},
+    {name:'Spot 6ch',   chs:6},
+    {name:'Dimmer 2ch', chs:2},
+  ];
+  function rnd(arr){return arr[Math.floor(Math.random()*arr.length)];}
+  function shuffle(a){var b=[...a];for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+  function el(t,c){var e=document.createElement(t);if(c)e.className=c;return e;}
+
+  // Generate a patch scenario
+  function genScenario(){
+    var occupied=new Array(513).fill(null); // 1-indexed channels
+    var fixtures=[];
+    var addr=1;
+    var numFx=Math.floor(Math.random()*4)+2; // 2-5 fixtures
+    for(var i=0;i<numFx&&addr<=480;i++){
+      var fx=rnd(FX_TYPES);
+      var color=COLORS[i%COLORS.length];
+      // add small gap sometimes
+      if(i>0&&Math.random()>.6) addr+=Math.floor(Math.random()*4)+1;
+      if(addr+fx.chs>513) break;
+      for(var c=addr;c<addr+fx.chs;c++) occupied[c]={name:fx.name,color:color,idx:i};
+      fixtures.push({name:fx.name,chs:fx.chs,addr:addr,color:color});
+      addr+=fx.chs;
+    }
+    return {fixtures,occupied,nextAddr:addr};
+  }
+
+  // Question types
+  function genQuestion(){
+    var sc=genScenario();
+    var type=Math.floor(Math.random()*3);
+    var q={};
+    if(type===0){
+      // What is the next free address?
+      var correct=sc.nextAddr;
+      q.text='¿Cuál es la primera dirección libre después del último fixture?';
+      q.explanation='El último fixture termina en el canal '+(sc.nextAddr-1)+'. El siguiente libre es <strong>'+correct+'</strong>.';
+      q.correct=correct;
+      var opts=[correct,correct+1,correct-1,correct+sc.fixtures[sc.fixtures.length-1].chs];
+      opts=shuffle([...new Set(opts.filter(function(v){return v>=1&&v<=512;}))]).slice(0,4);
+      if(opts.indexOf(correct)<0)opts[0]=correct;
+      q.opts=shuffle(opts);
+    } else if(type===1){
+      // Given a fixture added at nextAddr, what is its last channel?
+      var newFx=rnd(FX_TYPES);
+      var start=sc.nextAddr;
+      var last=start+newFx.chs-1;
+      q.text='Si añadimos un <strong>'+newFx.name+' ('+newFx.chs+' canales)</strong> en la dirección <strong>'+start+'</strong>, ¿cuál es su último canal?';
+      q.explanation='Addr inicio: '+start+' · Canales: '+newFx.chs+' → último canal: '+start+' + '+newFx.chs+' - 1 = <strong>'+last+'</strong>';
+      q.correct=last;
+      var opts=[last,last+1,last-1,start+newFx.chs];
+      opts=shuffle([...new Set(opts.filter(function(v){return v>=1&&v<=512;}))]).slice(0,4);
+      if(opts.indexOf(last)<0)opts[0]=last;
+      q.opts=shuffle(opts);
+    } else {
+      // How many channels does a specific fixture use?
+      var fx=sc.fixtures[Math.floor(Math.random()*sc.fixtures.length)];
+      q.text='El fixture <strong>'+fx.name+'</strong> empieza en la dirección <strong>'+fx.addr+'</strong>. ¿Cuántos canales ocupa?';
+      q.explanation=fx.name+' ocupa <strong>'+fx.chs+' canales</strong>: del '+fx.addr+' al '+(fx.addr+fx.chs-1)+'.';
+      q.correct=fx.chs;
+      var opts=[fx.chs,fx.chs+1,fx.chs-1,fx.chs+3];
+      opts=shuffle([...new Set(opts.filter(function(v){return v>=1;}))]).slice(0,4);
+      if(opts.indexOf(fx.chs)<0)opts[0]=fx.chs;
+      q.opts=shuffle(opts);
+    }
+    q.scenario=sc;
+    return q;
+  }
+
+  var questions,qi,results;
+  var root=document.getElementById('dmx-quiz-root');
+
+  function start(){
+    questions=[];for(var i=0;i<ROUNDS;i++)questions.push(genQuestion());
+    qi=0;results=[];render();
+  }
+
+  function render(){
+    if(qi>=ROUNDS){renderEnd();return;}
+    var q=questions[qi];
+    var sc=q.scenario;
+    root.innerHTML='';
+
+    // Progress
+    var prog=el('div','dq-progress');
+    for(var i=0;i<ROUNDS;i++){var p=el('div','dq-pip');if(i<results.length)p.classList.add(results[i]?'ok':'err');else if(i===qi)p.classList.add('cur');prog.appendChild(p);}
+    root.appendChild(prog);
+    var sl=el('div','dq-score-lbl');sl.textContent='⭐ '+results.filter(Boolean).length+' correctas de '+qi;root.appendChild(sl);
+
+    // Universe visualization (first 100 channels)
+    var univ=el('div','dq-universe');
+    univ.innerHTML='<div class="dq-universe-title">🎛️ Universo DMX — Canales 1 a 80</div>';
+    var grid=el('div','dq-grid');
+    for(var c=1;c<=80;c++){
+      var cell=el('div','dq-ch');
+      var info=sc.occupied[c];
+      if(info){cell.style.background=info.color;cell.classList.add('occupied');cell.title=info.name+' ch'+c;}
+      cell.textContent=c;
+      grid.appendChild(cell);
+    }
+    univ.appendChild(grid);
+    // Legend
+    var leg=el('div','dq-legend');
+    var seen={};
+    sc.fixtures.forEach(function(fx){
+      if(seen[fx.name])return; seen[fx.name]=true;
+      var item=el('div','dq-legend-item');
+      var dot=el('div','dq-legend-dot');dot.style.background=fx.color;
+      item.appendChild(dot);
+      item.appendChild(document.createTextNode(fx.name+' ('+fx.chs+'ch · addr '+fx.addr+')'));
+      leg.appendChild(item);
+    });
+    univ.appendChild(leg);
+    root.appendChild(univ);
+
+    // Question
+    var ql=el('div','dq-question');ql.innerHTML=q.text;root.appendChild(ql);
+
+    // Options
+    var grid2=el('div','dq-options');
+    q.opts.forEach(function(opt){
+      var btn=el('button','dq-opt');
+      btn.textContent=opt;btn.dataset.val=String(opt);
+      btn.onclick=function(){
+        if(root.querySelector('.dq-opt.correct,.dq-opt.wrong'))return;
+        var ok=opt===q.correct;results.push(ok);
+        grid2.querySelectorAll('.dq-opt').forEach(function(b){
+          b.disabled=true;
+          if(Number(b.dataset.val)===q.correct)b.classList.add(ok?'correct':'reveal');
+          else if(Number(b.dataset.val)===opt&&!ok)b.classList.add('wrong');
+        });
+        var fb=document.getElementById('dq-fb');
+        if(ok){fb.className='dq-feedback ok';fb.innerHTML='✅ ¡Correcto!';}
+        else{fb.className='dq-feedback err';fb.innerHTML='❌ La respuesta era <strong>'+q.correct+'</strong>';}
+        var exp=document.getElementById('dq-exp');
+        exp.style.display='block';exp.innerHTML='📐 '+q.explanation;
+        document.getElementById('dq-next').style.display='inline-block';
+      };
+      grid2.appendChild(btn);
+    });
+    root.appendChild(grid2);
+
+    var fb=el('div','dq-feedback');fb.id='dq-fb';root.appendChild(fb);
+    var exp=el('div','dq-explanation');exp.id='dq-exp';root.appendChild(exp);
+    var nxt=el('button','dq-btn dq-btn-next');nxt.id='dq-next';nxt.textContent='Siguiente →';nxt.style.display='none';
+    nxt.onclick=function(){qi++;render();};root.appendChild(nxt);
+  }
+
+  function renderEnd(){
+    var score=results.filter(Boolean).length;var pct=Math.round(score/ROUNDS*100);
+    var medal=pct>=80?'🏆':pct>=60?'🥈':pct>=40?'🥉':'📚';
+    root.innerHTML='<div class="dq-end"><div class="trophy">'+medal+'</div><h3>Quiz completado</h3>'+
+      '<div class="dq-score-big">'+score+'/'+ROUNDS+'</div>'+
+      '<p>'+(pct>=80?'¡Dominas el patch DMX!':pct>=60?'Buen nivel — practica con Moving Heads de muchos canales':pct>=40?'Repasa cómo calcular el último canal ocupado':'Repasa: Dirección fin = Addr + Canales - 1')+'</p>'+
+      '<button class="dq-btn dq-btn-restart" onclick="window.dmxQuizStart()">▶ Jugar de nuevo</button></div>';
+  }
+
+  window.dmxQuizStart=start;
+  document.addEventListener('click',function(e){if(e.target.closest('[onclick*="dmx_quiz"]'))setTimeout(function(){if(root&&!root.querySelector('.dq-progress'))start();},80);});
+  setTimeout(function(){var p=document.getElementById('dmx_dmx_quiz');if(p&&p.classList.contains('active'))start();},200);
+})();
+</script>
 
 
 <!-- ═══ MÓDULO 10 — CALCULADORA ESCÉNICA ═══ -->
@@ -2988,6 +3434,7 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
     <div class="inner-tab" onclick="switchTab('ip','dispositivos')">Router &amp; Switch</div>
     <div class="inner-tab" onclick="switchTab('ip','artnet')">ART-NET &amp; sACN</div>
     <div class="inner-tab" onclick="switchTab('ip','config')">🔧 Configuración práctica</div>
+    <div class="inner-tab" onclick="switchTab('ip','ip_quiz')">🎮 ¿Misma Red?</div>
   </div>
 
   <!-- ¿QUÉ ES UNA RED? -->
@@ -3348,7 +3795,241 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
     </div>
   </div>
 
+  <!-- JUEGO: ¿ESTÁN EN LA MISMA RED? -->
+  <div class="inner-pane" id="ip_ip_quiz">
+    <div class="panel">
+      <div class="panel-title">🎮 ¿Están en la misma red?</div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:16px">Se muestran dos dispositivos con sus IPs y máscara de subred. Decide si pueden <strong>comunicarse directamente</strong> (misma red) o necesitan un <strong>router</strong>. Casos reales de ART-NET y sACN. 10 rondas.</p>
+      <div id="ip-quiz-root"></div>
+    </div>
+  </div>
 </section>
+
+<style>
+#ip-quiz-root { font-family:'Poppins',sans-serif; font-size:13px; max-width:640px; margin:0 auto; }
+.ipq-devices { display:grid; grid-template-columns:1fr auto 1fr; gap:12px; align-items:center; margin-bottom:18px; }
+.ipq-device { background:var(--navy); border-radius:12px; padding:16px 18px; text-align:center; }
+.ipq-device-icon { font-size:28px; margin-bottom:6px; }
+.ipq-device-name { font-size:11px; font-weight:700; color:rgba(255,255,255,.5); text-transform:uppercase; letter-spacing:.6px; margin-bottom:8px; }
+.ipq-device-ip   { font-size:18px; font-weight:800; color:var(--yellow); font-variant-numeric:tabular-nums; letter-spacing:.5px; }
+.ipq-device-mask { font-size:11px; color:rgba(255,255,255,.4); margin-top:4px; }
+.ipq-device-net  { font-size:11px; font-weight:700; margin-top:6px; padding:3px 8px; border-radius:4px; display:inline-block; }
+.ipq-connector { text-align:center; font-size:22px; color:var(--text3); }
+.ipq-question { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:16px; }
+.ipq-context  { font-size:12px; color:var(--text2); background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:10px 14px; margin-bottom:16px; line-height:1.6; }
+.ipq-answers  { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
+.ipq-ans {
+  padding:16px 14px; border-radius:10px; border:2px solid var(--border);
+  background:var(--white); cursor:pointer; text-align:center;
+  font-family:'Poppins',sans-serif; font-size:13px; font-weight:700;
+  transition:border-color .15s, background .15s, transform .12s;
+  line-height:1.4;
+}
+.ipq-ans .ipq-ans-icon { font-size:24px; display:block; margin-bottom:6px; }
+.ipq-ans:hover:not(:disabled) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-2px); }
+.ipq-ans.correct { border-color:#22c55e !important; background:#f0fdf4 !important; color:#166534 !important; }
+.ipq-ans.wrong   { border-color:#ef4444 !important; background:#fff1f1 !important; color:#991b1b !important; }
+.ipq-ans:disabled { cursor:default; transform:none !important; }
+.ipq-calc { font-size:12px; background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:7px; padding:10px 14px; margin-bottom:12px; display:none; color:var(--text2); line-height:1.8; font-variant-numeric:tabular-nums; }
+.ipq-feedback { font-size:12px; font-weight:600; padding:9px 14px; border-radius:7px; margin-bottom:12px; display:none; }
+.ipq-feedback.ok  { display:flex; gap:6px; align-items:flex-start; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; }
+.ipq-feedback.err { display:flex; gap:6px; align-items:flex-start; background:#fff1f1; color:#dc2626; border:1px solid #fecaca; }
+.ipq-progress { display:flex; gap:4px; margin-bottom:14px; }
+.ipq-pip { height:5px; flex:1; border-radius:3px; background:var(--bg3); }
+.ipq-pip.ok  { background:#22c55e; }
+.ipq-pip.err { background:#ef4444; }
+.ipq-pip.cur { background:var(--navy); }
+.ipq-score-lbl { font-size:11px; font-weight:700; color:var(--text2); margin-bottom:14px; }
+.ipq-btn { padding:9px 22px; border-radius:8px; border:none; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; cursor:pointer; }
+.ipq-btn-next    { background:var(--navy); color:#fff; }
+.ipq-btn-restart { background:#22c55e; color:#fff; }
+.ipq-end { text-align:center; padding:32px 20px; background:var(--navy); border-radius:14px; color:#fff; }
+.ipq-end .trophy { font-size:44px; margin-bottom:8px; }
+.ipq-end h3 { font-size:20px; font-weight:700; color:var(--yellow); margin-bottom:4px; }
+.ipq-end p  { font-size:13px; opacity:.75; margin-bottom:16px; }
+.ipq-score-big { font-size:36px; font-weight:800; color:var(--yellow); margin:10px 0; }
+@media(max-width:500px){ .ipq-devices{grid-template-columns:1fr;} .ipq-answers{grid-template-columns:1fr;} }
+</style>
+<script>
+(function(){
+  var ROUNDS=10;
+
+  // Compute network address given IP array and mask array
+  function netAddr(ip, mask){ return ip.map(function(o,i){return o & mask[i];}); }
+  function sameNet(ip1, ip2, mask){ var n1=netAddr(ip1,mask), n2=netAddr(ip2,mask); return n1.every(function(o,i){return o===n2[i];}); }
+  function ipStr(arr){ return arr.join('.'); }
+  function maskToCIDR(mask){
+    return mask.reduce(function(acc,o){
+      var b=o.toString(2); return acc+b.split('').filter(function(c){return c==='1';}).length;
+    },0);
+  }
+
+  // Pre-built scenario bank
+  var SCENARIOS = [
+    // ART-NET typical: 2.x.x.x / 255.0.0.0
+    { d1:{name:'Consola ART-NET',icon:'🎛️',ip:[2,0,0,1]}, d2:{name:'Nodo DMX',icon:'📦',ip:[2,0,0,2]}, mask:[255,0,0,0], same:true,
+      context:'Red ART-NET estándar. Ambos dispositivos usan el rango 2.x.x.x con máscara /8.',
+      protocol:'ART-NET' },
+    { d1:{name:'Consola ART-NET',icon:'🎛️',ip:[2,0,0,1]}, d2:{name:'Nodo DMX',icon:'📦',ip:[10,0,0,1]}, mask:[255,0,0,0], same:false,
+      context:'La consola está en red 2.x.x.x y el nodo en 10.x.x.x — subredes diferentes.',
+      protocol:'ART-NET' },
+    // sACN typical: 10.x.x.x / 255.0.0.0
+    { d1:{name:'Software sACN',icon:'💻',ip:[10,0,0,5]}, d2:{name:'Nodo sACN',icon:'📦',ip:[10,0,0,8]}, mask:[255,0,0,0], same:true,
+      context:'Red sACN en rango 10.x.x.x. Máscara /8 — todos los 10.x.x.x son la misma red.',
+      protocol:'sACN' },
+    { d1:{name:'Software sACN',icon:'💻',ip:[10,0,0,5]}, d2:{name:'Nodo sACN',icon:'📦',ip:[192,168,1,10]}, mask:[255,0,0,0], same:false,
+      context:'El software está en 10.x.x.x pero el nodo en 192.168.x.x. Redes distintas — necesitan router.',
+      protocol:'sACN' },
+    // 192.168 / 255.255.255.0 (/24)
+    { d1:{name:'PC iluminación',icon:'💻',ip:[192,168,1,10]}, d2:{name:'Switch nodo',icon:'🔌',ip:[192,168,1,20]}, mask:[255,255,255,0], same:true,
+      context:'Red doméstica /24. Ambos en 192.168.1.x — misma subred.',
+      protocol:'Red local' },
+    { d1:{name:'PC iluminación',icon:'💻',ip:[192,168,1,10]}, d2:{name:'Switch nodo',icon:'🔌',ip:[192,168,2,10]}, mask:[255,255,255,0], same:false,
+      context:'Misma clase C pero subredes distintas: 192.168.1.x vs 192.168.2.x con máscara /24.',
+      protocol:'Red local' },
+    // /16 mask
+    { d1:{name:'Consola',icon:'🎛️',ip:[192,168,5,1]}, d2:{name:'Tablet control',icon:'📱',ip:[192,168,10,1]}, mask:[255,255,0,0], same:true,
+      context:'Máscara /16 (255.255.0.0) — toda la red 192.168.x.x es la misma subred.',
+      protocol:'Red local' },
+    { d1:{name:'Consola',icon:'🎛️',ip:[192,168,5,1]}, d2:{name:'Tablet control',icon:'📱',ip:[10,0,5,1]}, mask:[255,255,0,0], same:false,
+      context:'Aunque la máscara sea /16, los rangos 192.168 y 10.0 son subredes incompatibles.',
+      protocol:'ART-NET' },
+    // ART-NET festival: 2.x.x.x /8
+    { d1:{name:'Mesa principal',icon:'🎛️',ip:[2,100,0,1]}, d2:{name:'Mesa backup',icon:'🎛️',ip:[2,100,0,2]}, mask:[255,0,0,0], same:true,
+      context:'Festival: dos consolas en la misma red ART-NET 2.x.x.x — se ven mutuamente.',
+      protocol:'ART-NET' },
+    { d1:{name:'Mesa ART-NET',icon:'🎛️',ip:[2,0,0,1]}, d2:{name:'Resolume',icon:'🖥️',ip:[2,0,1,1]}, mask:[255,0,0,0], same:true,
+      context:'ART-NET: 2.0.0.1 y 2.0.1.1 con /8 — ambos en la red 2.0.0.0, comunicación directa posible.',
+      protocol:'ART-NET + Vídeo' },
+    { d1:{name:'PC Resolume',icon:'🖥️',ip:[192,168,0,50]}, d2:{name:'Nodo ART-NET',icon:'📦',ip:[2,0,0,1]}, mask:[255,0,0,0], same:false,
+      context:'Resolume en red doméstica 192.168.x.x, nodo en ART-NET 2.x.x.x — necesitan configuración en la misma red.',
+      protocol:'ART-NET + Vídeo' },
+    { d1:{name:'Consola sACN',icon:'🎛️',ip:[10,0,0,1]}, d2:{name:'Nodo 2',icon:'📦',ip:[10,0,0,100]}, mask:[255,0,0,0], same:true,
+      context:'sACN en rango 10.x.x.x — todos los dispositivos en el mismo /8 se comunican directamente.',
+      protocol:'sACN' },
+  ];
+
+  function shuffle(a){var b=[...a];for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+  function el(t,c){var e=document.createElement(t);if(c)e.className=c;return e;}
+
+  var questions, qi, results;
+  var root = document.getElementById('ip-quiz-root');
+
+  function start(){
+    questions = shuffle([...SCENARIOS]).slice(0, ROUNDS);
+    qi=0; results=[];
+    render();
+  }
+
+  function render(){
+    if(qi >= ROUNDS){ renderEnd(); return; }
+    var q = questions[qi];
+    root.innerHTML = '';
+
+    // Progress
+    var prog = el('div','ipq-progress');
+    for(var i=0;i<ROUNDS;i++){
+      var p=el('div','ipq-pip');
+      if(i<results.length) p.classList.add(results[i]?'ok':'err');
+      else if(i===qi) p.classList.add('cur');
+      prog.appendChild(p);
+    }
+    root.appendChild(prog);
+    var sl=el('div','ipq-score-lbl'); sl.textContent='⭐ '+results.filter(Boolean).length+' correctas de '+qi; root.appendChild(sl);
+
+    // Context pill
+    var ctx=el('div','ipq-context');
+    ctx.innerHTML='<strong>📡 Protocolo:</strong> '+q.protocol+' &nbsp;·&nbsp; <strong>🔒 Máscara:</strong> '+ipStr(q.mask)+' /'+maskToCIDR(q.mask);
+    root.appendChild(ctx);
+
+    // Devices
+    var devs=el('div','ipq-devices');
+    [q.d1,q.d2].forEach(function(d,i){
+      var div=el('div','ipq-device');
+      div.innerHTML='<div class="ipq-device-icon">'+d.icon+'</div>'+
+        '<div class="ipq-device-name">'+d.name+'</div>'+
+        '<div class="ipq-device-ip">'+ipStr(d.ip)+'</div>'+
+        '<div class="ipq-device-mask">Máscara: '+ipStr(q.mask)+'</div>';
+      devs.appendChild(div);
+      if(i===0){
+        var conn=el('div','ipq-connector'); conn.textContent='?'; devs.appendChild(conn);
+      }
+    });
+    root.appendChild(devs);
+
+    // Question
+    var ql=el('div','ipq-question'); ql.textContent='¿Pueden comunicarse directamente estos dos dispositivos?'; root.appendChild(ql);
+
+    // Answer buttons
+    var ans=el('div','ipq-answers');
+    [{label:'✅ Misma red\nComunicación directa', val:true, icon:'🟢'},
+     {label:'❌ Redes distintas\nNecesitan router', val:false, icon:'🔴'}
+    ].forEach(function(opt){
+      var btn=el('button','ipq-ans');
+      btn.innerHTML='<span class="ipq-ans-icon">'+opt.icon+'</span>'+opt.label.replace('\n','<br>');
+      btn.onclick=function(){
+        if(root.querySelector('.ipq-ans.correct,.ipq-ans.wrong')) return;
+        var ok = (opt.val === q.same);
+        results.push(ok);
+        ans.querySelectorAll('.ipq-ans').forEach(function(b){ b.disabled=true; });
+        btn.classList.add(ok?'correct':'wrong');
+        // show correct if wrong
+        if(!ok){
+          ans.querySelectorAll('.ipq-ans').forEach(function(b){
+            if(b!==btn) b.classList.add('correct');
+          });
+        }
+        showExplanation(q);
+        var fb=document.getElementById('ipq-fb');
+        if(ok){ fb.className='ipq-feedback ok'; fb.innerHTML='✅ ¡Correcto! '+( q.same?'Misma subred — comunicación directa posible.':'Subredes distintas — necesitan router.'); }
+        else  { fb.className='ipq-feedback err'; fb.innerHTML='❌ '+(q.same?'En realidad están en la MISMA red.':'En realidad están en REDES DISTINTAS.'); }
+        document.getElementById('ipq-next').style.display='inline-block';
+      };
+      ans.appendChild(btn);
+    });
+    root.appendChild(ans);
+
+    var calc=el('div','ipq-calc'); calc.id='ipq-calc'; root.appendChild(calc);
+    var fb=el('div','ipq-feedback'); fb.id='ipq-fb'; root.appendChild(fb);
+    var nxt=el('button','ipq-btn ipq-btn-next'); nxt.id='ipq-next';
+    nxt.textContent='Siguiente →'; nxt.style.display='none';
+    nxt.onclick=function(){qi++;render();};
+    root.appendChild(nxt);
+  }
+
+  function showExplanation(q){
+    var n1=netAddr(q.d1.ip,q.mask), n2=netAddr(q.d2.ip,q.mask);
+    var cidr=maskToCIDR(q.mask);
+    var calc=document.getElementById('ipq-calc');
+    calc.style.display='block';
+    calc.innerHTML=
+      '🔢 <strong>Cálculo AND:</strong><br>'+
+      ipStr(q.d1.ip)+' AND '+ipStr(q.mask)+' = <strong>'+ipStr(n1)+'</strong><br>'+
+      ipStr(q.d2.ip)+' AND '+ipStr(q.mask)+' = <strong>'+ipStr(n2)+'</strong><br>'+
+      (n1.every(function(o,i){return o===n2[i];})?
+        '✅ Mismas dirección de red <strong>'+ipStr(n1)+'/'+cidr+'</strong> → comunicación directa':
+        '❌ Redes distintas: <strong>'+ipStr(n1)+'/'+cidr+'</strong> vs <strong>'+ipStr(n2)+'/'+cidr+'</strong> → necesitan router')+
+      '<br><em style="font-size:11px;color:var(--text3)">'+q.context+'</em>';
+  }
+
+  function netAddr(ip,mask){ return ip.map(function(o,i){return o&mask[i];}); }
+
+  function renderEnd(){
+    var score=results.filter(Boolean).length; var pct=Math.round(score/ROUNDS*100);
+    var medal=pct>=80?'🏆':pct>=60?'🥈':pct>=40?'🥉':'📚';
+    root.innerHTML='<div class="ipq-end"><div class="trophy">'+medal+'</div><h3>Quiz completado</h3>'+
+      '<div class="ipq-score-big">'+score+'/'+ROUNDS+'</div>'+
+      '<p>'+(pct>=80?'¡Dominas las subredes en entornos de espectáculo!':pct>=60?'Buen nivel — practica con máscaras /8 y /24':pct>=40?'Repasa el cálculo AND de subred':'Vuelve al módulo de Redes IP y practica el cálculo de subred')+'</p>'+
+      '<button class="ipq-btn ipq-btn-restart" onclick="window.ipQuizStart()">▶ Jugar de nuevo</button></div>';
+  }
+
+  window.ipQuizStart=start;
+  document.addEventListener('click',function(e){
+    if(e.target.closest('[onclick*="ip_quiz"]')) setTimeout(function(){if(root&&!root.querySelector('.ipq-progress'))start();},80);
+  });
+  setTimeout(function(){var p=document.getElementById('ip_ip_quiz');if(p&&p.classList.contains('active'))start();},200);
+})();
+</script>
 
 
 

@@ -756,6 +756,7 @@ canvas{display:block}
     <div class="inner-tab" data-inner="m1_mcd">Calculadora MCD</div>
     <div class="inner-tab" data-inner="m1_par">DAR / SAR / PAR</div>
     <div class="inner-tab" data-inner="m1_ref">Referencia</div>
+    <div class="inner-tab" data-inner="m1_quiz">🎮 Quiz Resoluciones</div>
   </div>
 
   <!-- TAB 1: RESOLUCIÓN & PPI -->
@@ -964,9 +965,195 @@ canvas{display:block}
       </div>
     </div>
   </div>
+
+  <!-- TAB 5: QUIZ RESOLUCIONES -->
+  <div class="inner-pane" id="m1_quiz">
+    <div class="panel">
+      <div class="panel-title">🎮 Quiz — Identifica la Resolución</div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:16px">Se muestra una resolución en píxeles. Elige el <strong>nombre estándar</strong>, la <strong>relación de aspecto</strong> y el <strong>uso típico</strong> correctos. 10 preguntas, 3 intentos por pregunta.</p>
+      <div id="res-quiz-root"></div>
+    </div>
+  </div>
 </section>
 
-<!-- ═══ MÓDULO 2 — ÓPTICA & DOF ═══ -->
+<style>
+/* ── RES QUIZ ── */
+#res-quiz-root { font-family:'Poppins',sans-serif; font-size:13px; }
+.rq-screen { max-width:620px; margin:0 auto; }
+.rq-progress { display:flex; gap:5px; margin-bottom:20px; }
+.rq-pip { height:5px; flex:1; border-radius:3px; background:var(--bg3); transition:background .3s; }
+.rq-pip.done-ok  { background:#22c55e; }
+.rq-pip.done-err { background:#ef4444; }
+.rq-pip.active   { background:var(--navy); }
+.rq-resolution {
+  text-align:center; padding:28px 20px;
+  background:var(--navy); border-radius:14px; margin-bottom:20px; position:relative;
+}
+.rq-res-label { font-size:10px; font-weight:700; letter-spacing:1px; color:rgba(255,255,255,.4); text-transform:uppercase; margin-bottom:6px; }
+.rq-res-value { font-size:32px; font-weight:800; color:var(--yellow); letter-spacing:1px; font-variant-numeric:tabular-nums; }
+.rq-res-mpx   { font-size:12px; color:rgba(255,255,255,.45); margin-top:6px; }
+.rq-lives { position:absolute; top:12px; right:14px; display:flex; gap:4px; }
+.rq-heart { font-size:14px; transition:opacity .2s; }
+.rq-heart.lost { opacity:.2; }
+.rq-score-badge { position:absolute; top:12px; left:14px; font-size:11px; font-weight:700; color:var(--yellow); background:rgba(255,255,255,.08); padding:3px 8px; border-radius:5px; }
+.rq-section-label { font-size:10px; font-weight:700; color:var(--text3); letter-spacing:.8px; text-transform:uppercase; margin-bottom:8px; }
+.rq-options { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
+.rq-opt {
+  padding:10px 14px; border-radius:8px; border:2px solid var(--border);
+  background:var(--white); cursor:pointer; font-size:12px; font-weight:500;
+  text-align:left; transition:border-color .15s, background .15s, transform .12s;
+  line-height:1.35;
+}
+.rq-opt:hover:not(:disabled) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-1px); }
+.rq-opt.correct  { border-color:#22c55e !important; background:#f0fdf4 !important; color:#166534 !important; }
+.rq-opt.wrong    { border-color:#ef4444 !important; background:#fff1f1 !important; color:#991b1b !important; }
+.rq-opt.reveal   { border-color:#22c55e !important; background:#f0fdf4 !important; opacity:.7; }
+.rq-opt:disabled { cursor:default; transform:none !important; }
+.rq-feedback { font-size:12px; font-weight:600; padding:9px 14px; border-radius:7px; margin-bottom:12px; display:none; }
+.rq-feedback.ok   { display:flex; gap:6px; align-items:center; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; }
+.rq-feedback.err  { display:flex; gap:6px; align-items:center; background:#fff1f1; color:#dc2626; border:1px solid #fecaca; }
+.rq-feedback.hint { display:flex; gap:6px; align-items:center; background:#fef9e2; color:#92400e; border:1px solid #fde68a; }
+.rq-btn { padding:9px 22px; border-radius:8px; border:none; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; cursor:pointer; transition:opacity .15s, transform .1s; }
+.rq-btn:hover { opacity:.85; transform:translateY(-1px); }
+.rq-btn-next    { background:var(--navy); color:#fff; }
+.rq-btn-restart { background:#22c55e; color:#fff; }
+.rq-end { text-align:center; padding:32px 20px; background:var(--navy); border-radius:14px; color:#fff; }
+.rq-end .trophy { font-size:48px; margin-bottom:10px; }
+.rq-end h3 { font-size:20px; font-weight:700; color:var(--yellow); margin-bottom:6px; }
+.rq-end p  { font-size:13px; opacity:.75; margin-bottom:18px; }
+.rq-end .rq-score-final { font-size:32px; font-weight:800; color:var(--yellow); margin:12px 0; }
+@media(max-width:480px) { .rq-options { grid-template-columns:1fr; } }
+</style>
+
+<script>
+(function(){
+  var QUESTIONS = [
+    { px:'1280 × 720',   mp:0.92,  options:['HD 720p','SD PAL','Full HD','QHD'],   answer:0, ar:'16:9',   uso:'Vídeo HD básico, streaming bajo bitrate' },
+    { px:'1920 × 1080',  mp:2.07,  options:['QHD','4K UHD','Full HD 1080p','2K DCI'], answer:2, ar:'16:9', uso:'Estándar broadcast, streaming, TV doméstica' },
+    { px:'3840 × 2160',  mp:8.29,  options:['4K DCI','8K UHD','4K UHD','QHD'],    answer:2, ar:'16:9',   uso:'TV 4K, producción cinematográfica moderna' },
+    { px:'2048 × 1080',  mp:2.21,  options:['Full HD','4K DCI','2K DCI','QHD'],    answer:2, ar:'1.90:1', uso:'Cine digital, proyección DCI en salas' },
+    { px:'720 × 576',    mp:0.41,  options:['SD NTSC','HD 720p','SD PAL','2K DCI'],answer:2, ar:'4:3 / 16:9', uso:'Televisión analógica PAL (Europa)' },
+    { px:'2560 × 1440',  mp:3.69,  options:['4K UHD','QHD 1440p','Full HD','2K DCI'], answer:1, ar:'16:9', uso:'Monitores profesionales, gaming' },
+    { px:'7680 × 4320',  mp:33.2,  options:['4K UHD','4K DCI','8K UHD','Full HD'], answer:2, ar:'16:9',   uso:'8K — televisión del futuro, producción premium' },
+    { px:'720 × 480',    mp:0.35,  options:['SD PAL','SD NTSC','HD 720p','VGA'],   answer:1, ar:'4:3 / 16:9', uso:'Televisión analógica NTSC (América)' },
+    { px:'4096 × 2160',  mp:8.85,  options:['4K UHD','4K DCI','8K UHD','QHD'],    answer:1, ar:'1.90:1', uso:'Cine digital DCI 4K — máxima calidad cinematográfica' },
+    { px:'1024 × 768',   mp:0.79,  options:['HD 720p','XGA','Full HD','SD PAL'],   answer:1, ar:'4:3',    uso:'Monitores legacy, proyectores de presentaciones' },
+  ];
+
+  var order, qi, score, lives, answered;
+  var root = document.getElementById('res-quiz-root');
+
+  function shuffle(a){ var b=[...a]; for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; }
+
+  function start(){
+    order = shuffle([...Array(QUESTIONS.length).keys()]);
+    qi=0; score=0; lives=3; answered=false;
+    render();
+  }
+
+  function render(){
+    if(qi>=order.length){ renderEnd(); return; }
+    var q = QUESTIONS[order[qi]];
+    var opts = shuffle(q.options.map(function(o,i){ return {label:o, idx:i}; }));
+    root.innerHTML='';
+    var sc = el('div','rq-screen');
+
+    // Progress
+    var prog = el('div','rq-progress');
+    order.forEach(function(_,i){
+      var p=el('div','rq-pip');
+      if(i<qi) p.classList.add('done-ok'); // simplified: always green past
+      else if(i===qi) p.classList.add('active');
+      prog.appendChild(p);
+    });
+    sc.appendChild(prog);
+
+    // Resolution display
+    var disp=el('div','rq-resolution');
+    disp.innerHTML='<div class="rq-score-badge">⭐ '+score+' / '+qi+'</div>' +
+      '<div class="rq-res-label">¿Cómo se llama esta resolución?</div>'+
+      '<div class="rq-res-value">'+q.px+'</div>'+
+      '<div class="rq-res-mpx">'+q.mp.toFixed(2)+' MP · Aspect Ratio '+q.ar+'</div>'+
+      '<div class="rq-lives">'+'❤️'.repeat(lives)+'<span class="rq-heart lost">🖤</span>'.repeat(3-lives)+'</div>';
+    sc.appendChild(disp);
+
+    // Name section
+    appendSection(sc, '📛 Nombre del estándar', opts, q, 'name');
+
+    // Feedback
+    var fb=el('div','rq-feedback'); fb.id='rq-fb'; sc.appendChild(fb);
+
+    // Hint (uso)
+    var hint=el('div','rq-feedback hint'); hint.id='rq-hint';
+    hint.innerHTML='💡 '+q.uso; sc.appendChild(hint);
+
+    // Next btn
+    var btn=el('button','rq-btn rq-btn-next'); btn.id='rq-next';
+    btn.textContent='Siguiente →'; btn.style.display='none';
+    btn.onclick=function(){ qi++; answered=false; render(); };
+    sc.appendChild(btn);
+
+    root.appendChild(sc);
+  }
+
+  function appendSection(parent, label, opts, q, key){
+    var sl=el('div','rq-section-label'); sl.textContent=label; parent.appendChild(sl);
+    var grid=el('div','rq-options');
+    opts.forEach(function(o){
+      var btn=el('button','rq-opt');
+      btn.textContent=o.label;
+      btn.dataset.idx=o.idx;
+      btn.onclick=function(){ if(answered) return; checkAnswer(o.idx, q); };
+      grid.appendChild(btn);
+    });
+    parent.appendChild(grid);
+  }
+
+  function checkAnswer(chosen, q){
+    answered=true;
+    var correct = chosen===q.answer;
+    var fb=document.getElementById('rq-fb');
+    var hint=document.getElementById('rq-hint');
+    // Style buttons
+    document.querySelectorAll('#res-quiz-root .rq-opt').forEach(function(b){
+      b.disabled=true;
+      if(parseInt(b.dataset.idx)===q.answer) b.classList.add(correct?'correct':'reveal');
+      else if(parseInt(b.dataset.idx)===chosen && !correct) b.classList.add('wrong');
+    });
+    if(correct){
+      score++;
+      fb.className='rq-feedback ok'; fb.innerHTML='✅ ¡Correcto! <strong>'+q.options[q.answer]+'</strong> — '+q.ar;
+    } else {
+      lives--;
+      fb.className='rq-feedback err'; fb.innerHTML='❌ Era <strong>'+q.options[q.answer]+'</strong> ('+q.ar+')';
+    }
+    hint.style.display='flex';
+    document.getElementById('rq-next').style.display='inline-block';
+  }
+
+  function renderEnd(){
+    var pct=Math.round(score/order.length*100);
+    var medal = pct>=90?'🏆':pct>=70?'🥈':pct>=50?'🥉':'📚';
+    root.innerHTML='<div class="rq-end"><div class="trophy">'+medal+'</div>'+
+      '<h3>Prueba completada</h3>'+
+      '<div class="rq-score-final">'+score+' / '+order.length+'</div>'+
+      '<p>'+(pct>=90?'¡Dominas las resoluciones de vídeo!':pct>=70?'Buen nivel — repasa las resoluciones DCI':pct>=50?'Sigue practicando — confunde estándares DCI y UHD':'Repasa la tabla de resoluciones estándar y vuelve a intentarlo')+'</p>'+
+      '<button class="rq-btn rq-btn-restart" onclick="window.resQuizStart()">▶ Jugar de nuevo</button></div>';
+  }
+
+  function el(tag,cls){ var e=document.createElement(tag); if(cls) e.className=cls; return e; }
+
+  window.resQuizStart=start;
+
+  document.addEventListener('click', function(e){
+    if(e.target.closest('[data-inner="m1_quiz"]')) setTimeout(function(){ if(!root.querySelector('.rq-screen,.rq-end')) start(); }, 80);
+  });
+  setTimeout(function(){
+    var pane=document.getElementById('m1_quiz');
+    if(pane && pane.classList.contains('active')) start();
+  }, 200);
+})();
+</script>
 <section class="module" id="m2">
   <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
 
@@ -986,6 +1173,7 @@ canvas{display:block}
     <div class="inner-tab active" data-inner="m2_focal">Distancia Focal</div>
     <div class="inner-tab" data-inner="m2_dof">Profundidad de Campo</div>
     <div class="inner-tab" data-inner="m2_exp">Triángulo de Exposición</div>
+    <div class="inner-tab" data-inner="m2_quiz">🎮 Adivina el Efecto</div>
   </div>
 
   <!-- TAB: DISTANCIA FOCAL -->
@@ -1209,14 +1397,177 @@ canvas{display:block}
               <div class="exp-ev-labels"><span>-3 subexp.</span><span>0 correcto</span><span>+3 sobrexp.</span></div>
             </div>
             <div class="exp-advice" id="expAdvice">Ajusta los controles para ver el resultado.</div>
-          </div>
-        </div>
-      </div>
-    </div>
 </div>
+
+  <!-- JUEGO: ADIVINA EL EFECTO -->
+  <div class="inner-pane" id="m2_quiz">
+    <div class="panel">
+      <div class="panel-title">🎮 Adivina el Efecto</div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:16px">Se muestran los parámetros de la cámara. <strong>Predice los tres resultados</strong>: exposición, profundidad de campo y nivel de ruido. 10 rondas.</p>
+      <div id="exp-quiz-root"></div>
+    </div>
+  </div>
 </section>
 
-<!-- ═══ MÓDULO 3 — SEÑAL DE VÍDEO ═══ -->
+<style>
+#exp-quiz-root { font-family:'Poppins',sans-serif; font-size:13px; max-width:680px; margin:0 auto; }
+.eq-camera { background:var(--navy); border-radius:14px; padding:20px 24px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:20px; }
+.eq-param { text-align:center; }
+.eq-param-name { font-size:10px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:6px; }
+.eq-param-value { font-size:22px; font-weight:800; color:var(--yellow); font-variant-numeric:tabular-nums; }
+.eq-param-sub { font-size:11px; color:rgba(255,255,255,.35); margin-top:3px; }
+.eq-q-block { margin-bottom:16px; }
+.eq-q-label { font-size:10px; font-weight:700; color:var(--text3); letter-spacing:.8px; text-transform:uppercase; margin-bottom:7px; }
+.eq-options-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.eq-opt { width:100%; padding:10px 14px; border-radius:8px; border:2px solid var(--border); background:var(--white); cursor:pointer; font-family:'Poppins',sans-serif; font-size:12px; font-weight:500; text-align:left; transition:border-color .15s, background .15s, transform .12s; }
+.eq-opt:hover:not(:disabled) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-1px); }
+.eq-opt.correct { border-color:#22c55e !important; background:#f0fdf4 !important; color:#166534 !important; }
+.eq-opt.wrong   { border-color:#ef4444 !important; background:#fff1f1 !important; color:#991b1b !important; }
+.eq-opt.reveal  { border-color:#22c55e !important; background:#f0fdf4 !important; opacity:.65; }
+.eq-opt:disabled { cursor:default; transform:none !important; }
+.eq-preview { border-radius:10px; height:80px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; font-size:12px; font-weight:700; color:#fff; letter-spacing:.5px; transition:background .4s; }
+.eq-preview-label { text-shadow:0 1px 4px rgba(0,0,0,.7); }
+.eq-feedback { font-size:12px; font-weight:600; padding:9px 14px; border-radius:7px; margin-bottom:12px; display:none; }
+.eq-feedback.ok  { display:flex; gap:6px; align-items:center; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; }
+.eq-feedback.err { display:flex; gap:6px; align-items:center; background:#fff1f1; color:#dc2626; border:1px solid #fecaca; }
+.eq-progress { display:flex; gap:4px; margin-bottom:14px; }
+.eq-pip { height:5px; flex:1; border-radius:3px; background:var(--bg3); transition:background .3s; }
+.eq-pip.ok  { background:#22c55e; }
+.eq-pip.err { background:#ef4444; }
+.eq-pip.cur { background:var(--navy); }
+.eq-score-lbl { font-size:11px; font-weight:700; color:var(--text2); margin-bottom:14px; }
+.eq-btn { padding:9px 20px; border-radius:8px; border:none; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; cursor:pointer; transition:opacity .15s; }
+.eq-btn-next    { background:var(--navy); color:#fff; }
+.eq-btn-restart { background:#22c55e; color:#fff; }
+.eq-end { text-align:center; padding:32px 20px; background:var(--navy); border-radius:14px; color:#fff; }
+.eq-end .trophy { font-size:44px; margin-bottom:8px; }
+.eq-end h3 { font-size:20px; font-weight:700; color:var(--yellow); margin-bottom:4px; }
+.eq-end p  { font-size:13px; opacity:.75; margin-bottom:16px; }
+.eq-score-big { font-size:36px; font-weight:800; color:var(--yellow); margin:10px 0; }
+@media(max-width:480px){ .eq-camera{grid-template-columns:1fr 1fr;} .eq-options-grid{grid-template-columns:1fr;} }
+</style>
+<script>
+(function(){
+  var ROUNDS=10;
+  var SCENARIOS=[
+    {ap:'f/1.8',ss:'1/60', iso:100,  exp:'Correcta',  dof:'Reducida',     noise:'Bajo'},
+    {ap:'f/16', ss:'1/1000',iso:3200, exp:'Subexpuesta',dof:'Amplia',       noise:'Alto'},
+    {ap:'f/2.8',ss:'1/30', iso:400,  exp:'Correcta',  dof:'Reducida',     noise:'Medio'},
+    {ap:'f/8',  ss:'1/500',iso:100,  exp:'Subexpuesta',dof:'Amplia',       noise:'Bajo'},
+    {ap:'f/1.4',ss:'1/15', iso:6400, exp:'Sobreexpuesta',dof:'Muy reducida',noise:'Muy alto'},
+    {ap:'f/5.6',ss:'1/250',iso:800,  exp:'Correcta',  dof:'Normal',       noise:'Medio-alto'},
+    {ap:'f/11', ss:'1/8',  iso:200,  exp:'Correcta',  dof:'Amplia',       noise:'Bajo'},
+    {ap:'f/2.0',ss:'1/2000',iso:3200,exp:'Sobreexpuesta',dof:'Reducida',   noise:'Alto'},
+    {ap:'f/22', ss:'1/60', iso:100,  exp:'Subexpuesta',dof:'Muy amplia',   noise:'Bajo'},
+    {ap:'f/4',  ss:'1/125',iso:400,  exp:'Correcta',  dof:'Normal',       noise:'Medio'},
+    {ap:'f/1.8',ss:'1/500',iso:200,  exp:'Subexpuesta',dof:'Reducida',     noise:'Bajo'},
+    {ap:'f/8',  ss:'1/30', iso:1600, exp:'Sobreexpuesta',dof:'Amplia',     noise:'Alto'},
+  ];
+  var EXP_OPTS  =['Correcta','Subexpuesta','Sobreexpuesta'];
+  var DOF_OPTS  =['Muy reducida','Reducida','Normal','Amplia','Muy amplia'];
+  var NOISE_OPTS=['Bajo','Medio','Medio-alto','Alto','Muy alto'];
+  var EXP_BG  ={'Correcta':'#4a7a6a','Subexpuesta':'#1a2035','Sobreexpuesta':'#c9a83c'};
+  var EXP_LBL ={'Correcta':'✅ Correctamente expuesta','Subexpuesta':'🌑 Subexpuesta — muy oscura','Sobreexpuesta':'☀️ Sobreexpuesta — quemada'};
+
+  function shuffle(a){var b=[...a];for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+  function opts4(pool,correct){return shuffle([correct,...shuffle(pool.filter(function(o){return o!==correct;})).slice(0,3)]);}
+  function el(t,c){var e=document.createElement(t);if(c)e.className=c;return e;}
+
+  var scenarios,qi,results;
+  var root=document.getElementById('exp-quiz-root');
+
+  function start(){scenarios=shuffle([...SCENARIOS]).slice(0,ROUNDS);qi=0;results=[];render();}
+
+  function render(){
+    if(qi>=ROUNDS){renderEnd();return;}
+    var sc=scenarios[qi];
+    root.innerHTML='';
+
+    // Progress
+    var prog=el('div','eq-progress');
+    for(var i=0;i<ROUNDS;i++){var p=el('div','eq-pip');if(i<results.length)p.classList.add(results[i]?'ok':'err');else if(i===qi)p.classList.add('cur');prog.appendChild(p);}
+    root.appendChild(prog);
+    var sl=el('div','eq-score-lbl');sl.textContent='⭐ '+results.filter(Boolean).length+' correctas de '+qi+' respondidas';root.appendChild(sl);
+
+    // Camera
+    var cam=el('div','eq-camera');
+    cam.innerHTML='<div class="eq-param"><div class="eq-param-name">⭕ Apertura</div><div class="eq-param-value">'+sc.ap+'</div><div class="eq-param-sub">f-stop</div></div>'+
+      '<div class="eq-param"><div class="eq-param-name">⏱ Velocidad</div><div class="eq-param-value">'+sc.ss+'</div><div class="eq-param-sub">segundos</div></div>'+
+      '<div class="eq-param"><div class="eq-param-name">⚡ ISO</div><div class="eq-param-value">'+sc.iso+'</div><div class="eq-param-sub">sensibilidad</div></div>';
+    root.appendChild(cam);
+
+    // Three question blocks
+    var answered={exp:false,dof:false,noise:false};
+    function tryReveal(){if(answered.exp&&answered.dof&&answered.noise)revealResult(sc,answers);}
+    var answers={};
+
+    [{key:'exp',label:'💡 Exposición resultante',pool:EXP_OPTS},
+     {key:'dof',label:'🔭 Profundidad de campo',pool:DOF_OPTS},
+     {key:'noise',label:'📡 Nivel de ruido digital',pool:NOISE_OPTS}
+    ].forEach(function(qd){
+      var block=el('div','eq-q-block');
+      var lbl=el('div','eq-q-label');lbl.textContent=qd.label;block.appendChild(lbl);
+      var grid=el('div','eq-options-grid');
+      opts4(qd.pool,sc[qd.key]).forEach(function(opt){
+        var btn=el('button','eq-opt');
+        btn.textContent=opt; btn.dataset.val=opt; btn.dataset.key=qd.key;
+        btn.onclick=function(){
+          if(answered[qd.key])return;
+          answered[qd.key]=true; answers[qd.key]=opt;
+          block.querySelectorAll('.eq-opt').forEach(function(b){
+            b.disabled=true;
+            if(b.dataset.val===sc[qd.key])b.classList.add(opt===sc[qd.key]?'correct':'reveal');
+            else if(b.dataset.val===opt&&opt!==sc[qd.key])b.classList.add('wrong');
+          });
+          tryReveal();
+        };
+        grid.appendChild(btn);
+      });
+      block.appendChild(grid);root.appendChild(block);
+    });
+
+    // Preview placeholder
+    var prev=el('div','eq-preview');prev.id='eq-preview';prev.style.background='#2a3555';
+    prev.innerHTML='<span class="eq-preview-label">📷 Responde las tres preguntas para ver el resultado</span>';
+    root.appendChild(prev);
+
+    var fb=el('div','eq-feedback');fb.id='eq-fb';root.appendChild(fb);
+    var nxt=el('button','eq-btn eq-btn-next');nxt.id='eq-next';nxt.textContent='Siguiente →';nxt.style.display='none';
+    nxt.onclick=function(){qi++;render();};root.appendChild(nxt);
+  }
+
+  function revealResult(sc,answers){
+    var prev=document.getElementById('eq-preview');
+    prev.style.background=EXP_BG[sc.exp]||'#444';
+    prev.innerHTML='<span class="eq-preview-label">'+EXP_LBL[sc.exp]+'</span>';
+    var allOk=answers.exp===sc.exp&&answers.dof===sc.dof&&answers.noise===sc.noise;
+    results.push(allOk);
+    var fb=document.getElementById('eq-fb');
+    if(allOk){fb.className='eq-feedback ok';fb.innerHTML='✅ ¡Las tres predicciones son correctas!';}
+    else{
+      var wrong=[];
+      if(answers.exp!==sc.exp)wrong.push('exposición (era <strong>'+sc.exp+'</strong>)');
+      if(answers.dof!==sc.dof)wrong.push('DOF (era <strong>'+sc.dof+'</strong>)');
+      if(answers.noise!==sc.noise)wrong.push('ruido (era <strong>'+sc.noise+'</strong>)');
+      fb.className='eq-feedback err';fb.innerHTML='❌ Fallo en: '+wrong.join(', ');
+    }
+    document.getElementById('eq-next').style.display='inline-block';
+  }
+
+  function renderEnd(){
+    var score=results.filter(Boolean).length;var pct=Math.round(score/ROUNDS*100);
+    var medal=pct>=80?'🏆':pct>=60?'🥈':pct>=40?'🥉':'📚';
+    root.innerHTML='<div class="eq-end"><div class="trophy">'+medal+'</div><h3>Triángulo completado</h3>'+
+      '<div class="eq-score-big">'+score+'/'+ROUNDS+'</div>'+
+      '<p>'+(pct>=80?'¡Dominas el triángulo de exposición!':pct>=60?'Buen nivel — practica con ISOs extremos':pct>=40?'Repasa la relación apertura-DOF y ISO-ruido':'Vuelve a repasar el triángulo de exposición')+'</p>'+
+      '<button class="eq-btn eq-btn-restart" onclick="window.expQuizStart()">▶ Jugar de nuevo</button></div>';
+  }
+
+  window.expQuizStart=start;
+  document.addEventListener('click',function(e){if(e.target.closest('[data-inner="m2_quiz"]'))setTimeout(function(){if(root&&!root.querySelector('.eq-progress'))start();},80);});
+  setTimeout(function(){var p=document.getElementById('m2_quiz');if(p&&p.classList.contains('active'))start();},200);
+})();
+</script>
 <section class="module" id="m3">
   <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
 
@@ -2018,6 +2369,7 @@ canvas{display:block}
     <div class="inner-tab" data-inner="p_calc">Calculadora Throw Ratio</div>
     <div class="inner-tab" data-inner="p_lens">Ópticas &amp; Ajustes</div>
     <div class="inner-tab" data-inner="p_tech">LCD · DLP · Láser</div>
+    <div class="inner-tab" data-inner="p_quiz">🎮 Quiz Throw Ratio</div>
   </div>
 
   <div class="inner-pane active" id="p_lum">
@@ -2245,9 +2597,195 @@ canvas{display:block}
       </div>
     </div>
   </div>
+
+  <!-- JUEGO: QUIZ THROW RATIO -->
+  <div class="inner-pane" id="p_quiz">
+    <div class="panel">
+      <div class="panel-title">🎮 Quiz — Throw Ratio & Proyección</div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:16px">Aplica la fórmula <strong>TR = Distancia / Ancho</strong>. Calcula mentalmente y elige la respuesta correcta. 3 modos de pregunta: calcular TR, calcular distancia y calcular ancho de imagen.</p>
+      <div id="tr-quiz-root"></div>
+    </div>
+  </div>
 </section>
 
-<!-- ═══ MÓDULO 8 — LED & MAPPING ═══ -->
+<style>
+#tr-quiz-root { font-family:'Poppins',sans-serif; font-size:13px; max-width:620px; margin:0 auto; }
+.tr-scenario { background:var(--navy); border-radius:14px; padding:22px 26px; margin-bottom:18px; }
+.tr-scenario-title { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:10px; }
+.tr-diagram { display:flex; align-items:center; gap:0; margin-bottom:14px; }
+.tr-projector { font-size:28px; }
+.tr-beam { flex:1; height:4px; background:linear-gradient(90deg,rgba(247,215,148,.6),rgba(247,215,148,.1)); border-radius:2px; position:relative; }
+.tr-beam-label { position:absolute; top:-18px; left:50%; transform:translateX(-50%); font-size:11px; font-weight:700; color:var(--yellow); white-space:nowrap; }
+.tr-screen { width:28px; height:48px; background:rgba(255,255,255,.15); border:2px solid rgba(255,255,255,.4); border-radius:3px; display:flex; align-items:center; justify-content:center; }
+.tr-screen-label { font-size:9px; color:rgba(255,255,255,.5); writing-mode:vertical-rl; }
+.tr-given { display:flex; gap:14px; flex-wrap:wrap; }
+.tr-given-item { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); border-radius:8px; padding:8px 14px; }
+.tr-given-item .label { font-size:10px; color:rgba(255,255,255,.45); font-weight:700; letter-spacing:.5px; }
+.tr-given-item .value { font-size:18px; font-weight:800; color:var(--yellow); margin-top:2px; font-variant-numeric:tabular-nums; }
+.tr-question { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:14px; }
+.tr-options { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-bottom:14px; }
+.tr-opt { padding:12px 14px; border-radius:8px; border:2px solid var(--border); background:var(--white); cursor:pointer; font-family:'Poppins',sans-serif; font-size:13px; font-weight:700; text-align:center; transition:border-color .15s, background .15s, transform .12s; font-variant-numeric:tabular-nums; }
+.tr-opt:hover:not(:disabled) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-1px); }
+.tr-opt.correct { border-color:#22c55e !important; background:#f0fdf4 !important; color:#166534 !important; }
+.tr-opt.wrong   { border-color:#ef4444 !important; background:#fff1f1 !important; color:#991b1b !important; }
+.tr-opt.reveal  { border-color:#22c55e !important; background:#f0fdf4 !important; opacity:.6; }
+.tr-opt:disabled { cursor:default; transform:none !important; }
+.tr-hint { font-size:12px; padding:9px 14px; border-radius:7px; margin-bottom:12px; display:none; }
+.tr-hint.ok  { display:flex; gap:6px; align-items:flex-start; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; }
+.tr-hint.err { display:flex; gap:6px; align-items:flex-start; background:#fff1f1; color:#dc2626; border:1px solid #fecaca; }
+.tr-formula-used { font-size:11px; background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:7px 12px; margin-bottom:12px; color:var(--text2); font-variant-numeric:tabular-nums; }
+.tr-lens-badge { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; padding:4px 10px; border-radius:5px; margin-top:6px; }
+.tr-progress { display:flex; gap:4px; margin-bottom:14px; }
+.tr-pip { height:5px; flex:1; border-radius:3px; background:var(--bg3); }
+.tr-pip.ok { background:#22c55e; }
+.tr-pip.err { background:#ef4444; }
+.tr-pip.cur { background:var(--navy); }
+.tr-score-lbl { font-size:11px; font-weight:700; color:var(--text2); margin-bottom:14px; }
+.tr-btn { padding:9px 22px; border-radius:8px; border:none; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; cursor:pointer; }
+.tr-btn-next    { background:var(--navy); color:#fff; }
+.tr-btn-restart { background:#22c55e; color:#fff; }
+.tr-end { text-align:center; padding:32px 20px; background:var(--navy); border-radius:14px; color:#fff; }
+.tr-end .trophy { font-size:44px; margin-bottom:8px; }
+.tr-end h3 { font-size:20px; font-weight:700; color:var(--yellow); margin-bottom:4px; }
+.tr-end p  { font-size:13px; opacity:.75; margin-bottom:16px; }
+.tr-score-big { font-size:36px; font-weight:800; color:var(--yellow); margin:10px 0; }
+@media(max-width:480px){ .tr-options{grid-template-columns:1fr;} }
+</style>
+<script>
+(function(){
+  var ROUNDS=10;
+  // Lens type classification
+  function lensType(tr){
+    if(tr<0.4) return {name:'Ultra Short Throw',color:'#7c3aed'};
+    if(tr<1.0) return {name:'Short Throw',color:'#c06000'};
+    if(tr<=2.0) return {name:'Standard Throw',color:'#166534'};
+    return {name:'Long Throw',color:'#1a56d6'};
+  }
+  // Possible widths (m), distances (m), throw ratios
+  var WIDTHS=[2,3,4,5,6,8];
+  var TRS=[0.3,0.5,0.8,1.2,1.5,1.8,2.0,2.5,3.0];
+  function rnd(arr){return arr[Math.floor(Math.random()*arr.length)];}
+  function shuffle(a){var b=[...a];for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+  function r1(n){return Math.round(n*10)/10;}
+  function el(t,c){var e=document.createElement(t);if(c)e.className=c;return e;}
+  function badOpts(correct,gen,n){
+    var pool=[]; var tries=0;
+    while(pool.length<n&&tries<50){tries++;var v=gen();var rv=r1(v);if(rv!==correct&&pool.indexOf(rv)<0)pool.push(rv);}
+    return pool.slice(0,n);
+  }
+
+  // Generate a question
+  function genQuestion(){
+    var type=Math.floor(Math.random()*3); // 0=find TR, 1=find dist, 2=find width
+    var w=rnd(WIDTHS), tr=rnd(TRS), dist=r1(tr*w);
+    var correct,question,given,formula,unit;
+    if(type===0){
+      correct=r1(tr);
+      question='¿Cuál es el Throw Ratio de este proyector?';
+      given=[{l:'📏 Distancia',v:dist+'m'},{l:'📐 Ancho pantalla',v:w+'m'}];
+      formula='TR = '+dist+' / '+w+' = '+correct;
+      unit='';
+    } else if(type===1){
+      correct=dist;
+      question='¿A qué distancia debe colocarse el proyector?';
+      given=[{l:'🔢 Throw Ratio',v:tr+':1'},{l:'📐 Ancho pantalla',v:w+'m'}];
+      formula='D = TR × Ancho = '+tr+' × '+w+' = '+correct+'m';
+      unit='m';
+    } else {
+      correct=w;
+      question='¿Qué ancho de imagen se consigue?';
+      given=[{l:'🔢 Throw Ratio',v:tr+':1'},{l:'📏 Distancia',v:dist+'m'}];
+      formula='Ancho = D / TR = '+dist+' / '+tr+' = '+correct+'m';
+      unit='m';
+    }
+    // Generate distractors
+    var distractors=badOpts(correct,function(){return r1(correct+(Math.random()-.5)*correct*.8+.1);},3);
+    var opts=shuffle([correct,...distractors]);
+    var lt=lensType(type===0?correct:tr);
+    return {question,given,correct,opts,formula,unit,lensType:lt,tr:(type===0?correct:tr),w,dist};
+  }
+
+  var questions,qi,results;
+  var root=document.getElementById('tr-quiz-root');
+
+  function start(){
+    questions=[];for(var i=0;i<ROUNDS;i++)questions.push(genQuestion());
+    qi=0;results=[];render();
+  }
+
+  function render(){
+    if(qi>=ROUNDS){renderEnd();return;}
+    var q=questions[qi];
+    root.innerHTML='';
+
+    // Progress
+    var prog=el('div','tr-progress');
+    for(var i=0;i<ROUNDS;i++){var p=el('div','tr-pip');if(i<results.length)p.classList.add(results[i]?'ok':'err');else if(i===qi)p.classList.add('cur');prog.appendChild(p);}
+    root.appendChild(prog);
+    var sl=el('div','tr-score-lbl');sl.textContent='⭐ '+results.filter(Boolean).length+' correctas de '+qi;root.appendChild(sl);
+
+    // Scenario visual
+    var sc=el('div','tr-scenario');
+    sc.innerHTML='<div class="tr-scenario-title">📽️ Escenario de proyección</div>'+
+      '<div class="tr-diagram">'+
+        '<div class="tr-projector">📽️</div>'+
+        '<div class="tr-beam"><div class="tr-beam-label">'+q.dist+'m</div></div>'+
+        '<div class="tr-screen"><div class="tr-screen-label">'+q.w+'m</div></div>'+
+      '</div>'+
+      '<div class="tr-given">'+q.given.map(function(g){return '<div class="tr-given-item"><div class="label">'+g.l+'</div><div class="value">'+g.v+'</div></div>';}).join('')+'</div>';
+    root.appendChild(sc);
+
+    // Question
+    var ql=el('div','tr-question');ql.textContent=q.question;root.appendChild(ql);
+
+    // Options
+    var grid=el('div','tr-options');
+    q.opts.forEach(function(opt){
+      var btn=el('button','tr-opt');
+      btn.textContent=opt+(q.unit?q.unit:'');
+      btn.dataset.val=String(opt);
+      btn.onclick=function(){
+        if(root.querySelector('.tr-opt.correct,.tr-opt.wrong'))return;
+        var ok=opt===q.correct;
+        results.push(ok);
+        grid.querySelectorAll('.tr-opt').forEach(function(b){
+          b.disabled=true;
+          if(Number(b.dataset.val)===q.correct)b.classList.add(ok?'correct':'reveal');
+          else if(Number(b.dataset.val)===opt&&!ok)b.classList.add('wrong');
+        });
+        // Formula reveal
+        var fml=el('div','tr-formula-used');
+        fml.innerHTML='🔢 <strong>Fórmula:</strong> '+q.formula+
+          ' <span class="tr-lens-badge" style="background:'+q.lensType.color+'20;color:'+q.lensType.color+';border:1px solid '+q.lensType.color+'40">'+q.lensType.name+'</span>';
+        root.insertBefore(fml,hint);
+        // Hint
+        if(ok){hint.className='tr-hint ok';hint.innerHTML='✅ Correcto — TR '+q.tr+':1 → '+q.lensType.name;}
+        else{hint.className='tr-hint err';hint.innerHTML='❌ La respuesta era <strong>'+q.correct+(q.unit||'')+'</strong>';}
+        nxt.style.display='inline-block';
+      };
+      grid.appendChild(btn);
+    });
+    root.appendChild(grid);
+
+    var hint=el('div','tr-hint');hint.id='tr-hint';root.appendChild(hint);
+    var nxt=el('button','tr-btn tr-btn-next');nxt.textContent='Siguiente →';nxt.style.display='none';
+    nxt.onclick=function(){qi++;render();};root.appendChild(nxt);
+  }
+
+  function renderEnd(){
+    var score=results.filter(Boolean).length;var pct=Math.round(score/ROUNDS*100);
+    var medal=pct>=80?'🏆':pct>=60?'🥈':pct>=40?'🥉':'📚';
+    root.innerHTML='<div class="tr-end"><div class="trophy">'+medal+'</div><h3>Quiz completado</h3>'+
+      '<div class="tr-score-big">'+score+'/'+ROUNDS+'</div>'+
+      '<p>'+(pct>=80?'¡Dominas el throw ratio!':pct>=60?'Buen nivel — practica con Short y Long Throw':pct>=40?'Repasa la fórmula TR = D / Ancho':'Vuelve a repasar los tipos de objetivo')+'</p>'+
+      '<button class="tr-btn tr-btn-restart" onclick="window.trQuizStart()">▶ Jugar de nuevo</button></div>';
+  }
+
+  window.trQuizStart=start;
+  document.addEventListener('click',function(e){if(e.target.closest('[data-inner="p_quiz"]'))setTimeout(function(){if(root&&!root.querySelector('.tr-progress'))start();},80);});
+  setTimeout(function(){var p=document.getElementById('p_quiz');if(p&&p.classList.contains('active'))start();},200);
+})();
+</script>
 <section class="module" id="m8">
   <div class="back-btn" onclick="goTo('m0')">← Volver al inicio</div>
 
