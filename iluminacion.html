@@ -617,6 +617,106 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
   max-width: 72ch;
 }
 
+/* ═══════════════ MEJORAS GAMIFICACIÓN ILUMINACIÓN ═══════════════ */
+
+/* === Comunes (juegos m1, m2, m4, m7) === */
+.gm-prog { display:flex; gap:4px; margin-bottom:14px; }
+.gm-pip { height:5px; flex:1; border-radius:3px; background:var(--bg3); }
+.gm-pip.ok  { background:#22c55e; }
+.gm-pip.err { background:#ef4444; }
+.gm-pip.cur { background:var(--navy); }
+.gm-score-lbl { font-size:11px; font-weight:700; color:var(--text2); margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; }
+.gm-feedback { font-size:12px; font-weight:600; padding:10px 14px; border-radius:7px; margin-top:12px; display:none; line-height:1.6; }
+.gm-feedback.ok  { display:block; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; }
+.gm-feedback.err { display:block; background:#fff1f1; color:#dc2626; border:1px solid #fecaca; }
+.gm-btn { padding:9px 22px; border-radius:8px; border:none; font-family:inherit; font-size:12px; font-weight:600; cursor:pointer; transition:all .15s; }
+.gm-btn-primary { background:var(--navy); color:#fff; }
+.gm-btn-primary:hover { background:var(--navy2); }
+.gm-btn-ghost { background:var(--bg3); color:var(--navy); }
+.gm-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:14px; }
+
+/* === m1: Identifica la dirección de luz === */
+.dirl-stage { background:#0a0f1e; border-radius:10px; padding:20px; margin-bottom:14px; display:flex; align-items:center; justify-content:center; min-height:280px; }
+.dirl-stage svg { width:100%; max-width:480px; height:auto; }
+.dirl-options { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:8px; }
+.dirl-opt {
+  padding:12px 10px; background:var(--white); border:1.5px solid var(--border); border-radius:8px;
+  cursor:pointer; font-family:inherit; font-size:12px; font-weight:600; color:var(--navy);
+  text-align:center; transition:all .15s; display:flex; flex-direction:column; align-items:center; gap:6px;
+}
+.dirl-opt:hover:not(.locked) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-1px); }
+.dirl-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
+.dirl-opt.wrong { border-color:#ef4444; background:#fff1f1; color:#991b1b; }
+.dirl-opt.locked { cursor:default; }
+.dirl-opt-emoji { font-size:22px; }
+
+/* === m2: Adivina los Kelvin === */
+.kel-stage { background:#0a0f1e; border-radius:10px; padding:18px; margin-bottom:14px; }
+.kel-scene { width:100%; height:180px; border-radius:8px; transition:background-color .4s ease; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.kel-scene::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 35%, rgba(255,255,255,0.35) 0%, transparent 60%);
+}
+.kel-scene-icon { font-size:60px; filter:drop-shadow(0 4px 12px rgba(0,0,0,.3)); position:relative; z-index:1; }
+.kel-context { font-size:12px; color:rgba(255,255,255,.7); text-align:center; margin-top:10px; }
+.kel-context strong { color:var(--yellow); }
+.kel-options { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:8px; }
+.kel-opt {
+  padding:10px 8px; background:var(--white); border:1.5px solid var(--border); border-radius:7px;
+  cursor:pointer; font-family:inherit; font-size:12px; font-weight:600; color:var(--navy);
+  text-align:center; transition:all .15s; display:flex; flex-direction:column; gap:3px; line-height:1.3;
+}
+.kel-opt-k { font-size:14px; font-weight:800; }
+.kel-opt-name { font-size:10.5px; color:var(--text3); font-weight:500; }
+.kel-opt:hover:not(.locked) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-1px); }
+.kel-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
+.kel-opt.correct .kel-opt-name { color:#16a34a; }
+.kel-opt.wrong { border-color:#ef4444; background:#fff1f1; color:#991b1b; }
+.kel-opt.locked { cursor:default; }
+
+/* === m4: Identifica el foco === */
+.fid-stage { background:#0a0f1e; border-radius:10px; padding:20px; margin-bottom:14px; min-height:240px; display:flex; align-items:center; justify-content:center; }
+.fid-stage svg { width:100%; max-width:520px; height:auto; }
+.fid-options { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; }
+.fid-opt {
+  padding:11px 10px; background:var(--white); border:1.5px solid var(--border); border-radius:7px;
+  cursor:pointer; font-family:inherit; font-size:12px; font-weight:600; color:var(--navy);
+  text-align:center; transition:all .15s; display:flex; flex-direction:column; gap:4px;
+}
+.fid-opt:hover:not(.locked) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-1px); }
+.fid-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
+.fid-opt.wrong { border-color:#ef4444; background:#fff1f1; color:#991b1b; }
+.fid-opt.locked { cursor:default; }
+.fid-opt-name { font-size:13px; font-weight:700; }
+.fid-opt-sub  { font-size:10.5px; color:var(--text3); font-weight:500; }
+
+/* === m7: Detecta el peligro === */
+.haz-intro { background:rgba(247,215,148,.12); border:1px solid rgba(247,215,148,.5); border-radius:8px; padding:12px 14px; font-size:12px; color:var(--text); margin-bottom:14px; }
+.haz-stage { background:#15203c; border-radius:10px; padding:14px; position:relative; margin-bottom:14px; }
+.haz-stage svg { width:100%; height:auto; display:block; cursor:crosshair; }
+.haz-stage svg .haz-hot:hover { filter:brightness(1.3); }
+.haz-stage svg .haz-hot { transition:filter .15s; }
+.haz-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; padding:10px 12px; background:var(--bg2); border:1px solid var(--border); border-radius:8px; margin-bottom:10px; }
+.haz-stat { text-align:center; }
+.haz-stat-val { font-size:18px; font-weight:800; color:var(--navy); font-variant-numeric:tabular-nums; }
+.haz-stat-lbl { font-size:10px; color:var(--text3); text-transform:uppercase; letter-spacing:0.5px; font-weight:600; margin-top:2px; }
+.haz-list { display:flex; flex-direction:column; gap:6px; max-height:200px; overflow-y:auto; padding-right:4px; }
+.haz-item {
+  display:flex; align-items:flex-start; gap:8px; padding:8px 10px;
+  background:var(--bg2); border:1px solid var(--border); border-radius:6px;
+  font-size:11.5px; line-height:1.5; transition:all .2s;
+}
+.haz-item.found {
+  background:#f0fdf4; border-color:#bbf7d0; color:#166534;
+}
+.haz-item-icon { font-size:14px; flex-shrink:0; }
+.haz-item-text strong { display:block; font-size:11.5px; margin-bottom:2px; }
+.haz-final { display:none; text-align:center; padding:18px; background:var(--bg2); border:1px solid var(--border); border-radius:8px; margin-top:12px; }
+.haz-final.show { display:block; }
+.haz-final-score { font-size:36px; font-weight:800; color:var(--navy); line-height:1; }
+.haz-final-msg { margin-top:6px; font-size:13px; color:var(--text2); }
+
+/* ─── fin mejoras gamificación ─── */
 
 </style>
 </head>
@@ -952,6 +1052,28 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       </div>
     </div>
   </div>
+
+<!-- ═══════════════ NUEVO: IDENTIFICA LA DIRECCIÓN DE LUZ ═══════════════ -->
+<div class="panel section-gap">
+  <div class="panel-title">🎮 Identifica la Dirección de la Luz</div>
+  <p style="font-size:12.5px;color:var(--text2);margin-bottom:14px;line-height:1.6;">
+    Observa la escena. ¿Desde dónde proviene la luz que ilumina al sujeto? Pulsa la dirección correcta. <strong>5 retos</strong>, feedback inmediato.
+  </p>
+  <div class="gm-prog" id="dirlProg"></div>
+  <div class="gm-score-lbl">
+    <span id="dirlScoreL">Reto 1 / 5</span>
+    <span id="dirlScoreR">0 aciertos</span>
+  </div>
+  <div class="dirl-stage" id="dirlStage"></div>
+  <div class="dirl-options" id="dirlOpts"></div>
+  <div class="gm-feedback" id="dirlFb"></div>
+  <div class="gm-actions">
+    <button class="gm-btn gm-btn-ghost" onclick="dirlReset()">↺ Reiniciar</button>
+    <button class="gm-btn gm-btn-primary" id="dirlNext" style="display:none;" onclick="dirlNext()">Siguiente reto →</button>
+  </div>
+</div>
+
+
 </section>
 
 
@@ -1127,6 +1249,33 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       <strong>⚠️ Dimmer y temperatura:</strong> En focos halógenos, bajar el dimmer hace más cálida la luz (el filamento se enfría → color más anaranjado). En focos LED, el color se mantiene estable porque el control es electrónico.
     </div>
   </div>
+
+<!-- ═══════════════ NUEVO: ADIVINA LOS KELVIN ═══════════════ -->
+<div class="panel section-gap">
+  <div class="panel-title">🎮 Adivina los Kelvin</div>
+  <p style="font-size:12.5px;color:var(--text2);margin-bottom:14px;line-height:1.6;">
+    Mira el tono de luz que tiñe la escena y elige la temperatura de color (en Kelvin) que la genera. <strong>6 retos</strong>, presets reales del mundo del espectáculo.
+  </p>
+  <div class="gm-prog" id="kelProg"></div>
+  <div class="gm-score-lbl">
+    <span id="kelScoreL">Reto 1 / 6</span>
+    <span id="kelScoreR">0 aciertos</span>
+  </div>
+  <div class="kel-stage">
+    <div class="kel-scene" id="kelScene">
+      <div class="kel-scene-icon" id="kelIcon">🎤</div>
+    </div>
+    <div class="kel-context" id="kelContext">¿Qué temperatura de color tiene esta escena?</div>
+  </div>
+  <div class="kel-options" id="kelOpts"></div>
+  <div class="gm-feedback" id="kelFb"></div>
+  <div class="gm-actions">
+    <button class="gm-btn gm-btn-ghost" onclick="kelReset()">↺ Reiniciar</button>
+    <button class="gm-btn gm-btn-primary" id="kelNext" style="display:none;" onclick="kelNext()">Siguiente reto →</button>
+  </div>
+</div>
+
+
 </section>
 
 
@@ -1673,6 +1822,28 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       ${f.tags.map(t=>`<span style="font-size:10px;padding:2px 8px;background:${f.color}22;color:${f.color};border-radius:10px;border:1px solid ${f.color}44;font-weight:600">${t}</span>`).join('')}</div>`;
   }
   </script>
+
+
+
+<!-- ═══════════════ NUEVO: IDENTIFICA EL FOCO ═══════════════ -->
+<div class="panel section-gap">
+  <div class="panel-title">🎮 Identifica el Foco</div>
+  <p style="font-size:12.5px;color:var(--text2);margin-bottom:14px;line-height:1.6;">
+    Observa la silueta del foco y el perfil de su haz de luz. ¿Qué tipo de foco es? <strong>6 retos</strong> con los focos más usados en escena.
+  </p>
+  <div class="gm-prog" id="fidProg"></div>
+  <div class="gm-score-lbl">
+    <span id="fidScoreL">Reto 1 / 6</span>
+    <span id="fidScoreR">0 aciertos</span>
+  </div>
+  <div class="fid-stage" id="fidStage"></div>
+  <div class="fid-options" id="fidOpts"></div>
+  <div class="gm-feedback" id="fidFb"></div>
+  <div class="gm-actions">
+    <button class="gm-btn gm-btn-ghost" onclick="fidReset()">↺ Reiniciar</button>
+    <button class="gm-btn gm-btn-primary" id="fidNext" style="display:none;" onclick="fidNext()">Siguiente reto →</button>
+  </div>
+</div>
 
 
 </section>
@@ -2310,6 +2481,31 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
       </table>
     </div>
   </div>
+
+<!-- ═══════════════ NUEVO: DETECTA EL PELIGRO ═══════════════ -->
+<div class="panel section-gap">
+  <div class="panel-title">🎮 Detecta el Peligro — Auditoría de Seguridad</div>
+  <div class="haz-intro">
+    <strong>🚨 Misión:</strong> Estás revisando un montaje de truss antes de un concierto. Hay <strong>6 fallos de seguridad</strong> ocultos en la escena. Pulsa sobre las zonas que detectes como peligrosas. Tienes solo 3 fallos máximos antes de penalizar. Buena suerte, técnico.
+  </div>
+  <div class="haz-stats">
+    <div class="haz-stat"><div class="haz-stat-val" id="hazFound">0/6</div><div class="haz-stat-lbl">Detectados</div></div>
+    <div class="haz-stat"><div class="haz-stat-val" id="hazErrs">0/3</div><div class="haz-stat-lbl">Fallos</div></div>
+    <div class="haz-stat"><div class="haz-stat-val" id="hazScore">0</div><div class="haz-stat-lbl">Puntos</div></div>
+  </div>
+  <div class="haz-stage" id="hazStage"></div>
+  <p style="font-size:11px;color:var(--text3);margin-bottom:10px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;">📋 Lista de comprobación</p>
+  <div class="haz-list" id="hazList"></div>
+  <div class="haz-final" id="hazFinal">
+    <div class="haz-final-score" id="hazFinalScore">0</div>
+    <div class="haz-final-msg" id="hazFinalMsg">puntos</div>
+    <div class="gm-actions" style="justify-content:center;margin-top:12px;">
+      <button class="gm-btn gm-btn-primary" onclick="hazReset()">↻ Volver a auditar</button>
+    </div>
+  </div>
+</div>
+
+
 </section>
 
 
@@ -3943,14 +4139,11 @@ p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
     var ql=el('div','ipq-question');ql.textContent='¿Pueden comunicarse directamente estos dos dispositivos?';root.appendChild(ql);
 
     var ans=el('div','ipq-answers');
-    [{label:'✅ Misma red
-Comunicación directa',val:true,icon:'🟢'},
-     {label:'❌ Redes distintas
-Necesitan router',val:false,icon:'🔴'}
+    [{label:'✅ Misma red\nComunicación directa',val:true,icon:'🟢'},
+     {label:'❌ Redes distintas\nNecesitan router',val:false,icon:'🔴'}
     ].forEach(function(opt){
       var btn=el('button','ipq-ans');
-      btn.innerHTML='<span class="ipq-ans-icon">'+opt.icon+'</span>'+opt.label.replace('
-','<br>');
+      btn.innerHTML='<span class="ipq-ans-icon">'+opt.icon+'</span>'+opt.label.replace('\n','<br>');
       btn.onclick=function(){
         if(root.querySelector('.ipq-ans.correct,.ipq-ans.wrong'))return;
         var ok=(opt.val===q.same);results.push(ok);
@@ -4742,6 +4935,750 @@ body { font-size: 16px; line-height: 1.7; }
     updateBackBtn();
   }
 })();
+
+</script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+// MEJORAS GAMIFICACIÓN ILUMINACIÓN
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ─── HELPER común: render barra progreso ────────────────────────────────
+function gmRenderProg(elId, total, idx, results) {
+  var el = document.getElementById(elId);
+  if (!el) return;
+  var html = '';
+  for (var i = 0; i < total; i++) {
+    var cls = '';
+    if (i < idx) cls = results[i] ? 'ok' : 'err';
+    else if (i === idx) cls = 'cur';
+    html += '<div class="gm-pip ' + cls + '"></div>';
+  }
+  el.innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 1) M1 · IDENTIFICA LA DIRECCIÓN DE LA LUZ
+// ═══════════════════════════════════════════════════════════════════════════
+var dirlChallenges = [
+  { dir: 'frontal', desc: 'La luz incide desde delante: rostro completamente iluminado, sin sombras laterales. Imagen plana, sin volumen.' },
+  { dir: 'contra', desc: 'La luz proviene de detrás del sujeto: silueta marcada, halo en los bordes y rostro en sombra. Crea separación del fondo.' },
+  { dir: 'lateral', desc: 'La luz entra por un costado: medio rostro iluminado, medio en sombra. Modela el volumen y resalta texturas.' },
+  { dir: 'cenital', desc: 'La luz cae desde arriba: la frente y los hombros brillan, los ojos quedan en sombra. Efecto dramático típico de cabezas spot.' },
+  { dir: 'nadir', desc: 'La luz proviene desde abajo: las sombras se proyectan hacia arriba en el rostro. Efecto inquietante o sobrenatural.' }
+];
+var dirlState = { idx: 0, score: 0, locked: false, results: [], order: [] };
+var dirlOpts = [
+  { id: 'frontal', name: 'Frontal', emoji: '⬅️' },
+  { id: 'contra',  name: 'Contraluz', emoji: '➡️' },
+  { id: 'lateral', name: 'Lateral', emoji: '↔️' },
+  { id: 'cenital', name: 'Cenital', emoji: '⬇️' },
+  { id: 'nadir',   name: 'Nadir', emoji: '⬆️' }
+];
+
+function dirlSceneSVG(dir) {
+  // Personaje genérico iluminado. Sombras y haz cambian según dirección.
+  var bodyTone, faceTone, shadowL, shadowR, beamPath, hairTone;
+  // Tonos según ángulo de luz
+  if (dir === 'frontal') {
+    bodyTone='#d8b894'; faceTone='#e8c8a4'; hairTone='#3a2a1c';
+    shadowL='rgba(0,0,0,0.05)'; shadowR='rgba(0,0,0,0.05)';
+    beamPath='<path d="M240,30 L180,180 L300,180 Z" fill="rgba(247,215,148,0.18)" stroke="rgba(247,215,148,0.4)" stroke-width="1" stroke-dasharray="4,3"/>';
+  } else if (dir === 'contra') {
+    bodyTone='#5c4830'; faceTone='#6e5840'; hairTone='#1a0e08';
+    shadowL='rgba(0,0,0,0.4)'; shadowR='rgba(0,0,0,0.4)';
+    beamPath='<path d="M240,260 L180,80 L300,80 Z" fill="rgba(247,215,148,0.2)" stroke="rgba(247,215,148,0.5)" stroke-width="1" stroke-dasharray="4,3"/>' +
+             '<ellipse cx="240" cy="100" rx="40" ry="50" fill="none" stroke="rgba(247,215,148,0.55)" stroke-width="3" filter="blur(2px)"/>';
+  } else if (dir === 'lateral') {
+    bodyTone='#a08868'; faceTone='#c8a884'; hairTone='#2a1a10';
+    shadowL='rgba(0,0,0,0.45)'; shadowR='rgba(0,0,0,0.05)';
+    beamPath='<path d="M30,140 L210,90 L210,200 Z" fill="rgba(247,215,148,0.18)" stroke="rgba(247,215,148,0.4)" stroke-width="1" stroke-dasharray="4,3"/>';
+  } else if (dir === 'cenital') {
+    bodyTone='#b89878'; faceTone='#a08868'; hairTone='#4a2a1c';
+    shadowL='rgba(0,0,0,0.55)'; shadowR='rgba(0,0,0,0.55)';
+    beamPath='<path d="M240,15 L160,110 L320,110 Z" fill="rgba(247,215,148,0.2)" stroke="rgba(247,215,148,0.45)" stroke-width="1" stroke-dasharray="4,3"/>';
+  } else { // nadir
+    bodyTone='#6c5840'; faceTone='#7a6450'; hairTone='#1c1008';
+    shadowL='rgba(0,0,0,0.45)'; shadowR='rgba(0,0,0,0.45)';
+    beamPath='<path d="M160,260 L210,110 L290,110 L320,260 Z" fill="rgba(247,215,148,0.2)" stroke="rgba(247,215,148,0.5)" stroke-width="1" stroke-dasharray="4,3"/>';
+  }
+
+  // Rostro + sombras laterales (overlay)
+  var faceShadowL = '<rect x="195" y="92" width="22" height="46" fill="' + shadowL + '" rx="4"/>';
+  var faceShadowR = '<rect x="263" y="92" width="22" height="46" fill="' + shadowR + '" rx="4"/>';
+  // Sombra cenital (debajo de los ojos)
+  var topShadow = (dir === 'cenital') ? '<rect x="200" y="118" width="80" height="14" fill="rgba(0,0,0,0.4)" rx="3"/>' : '';
+  // Sombra nadir (en frente, arriba)
+  var bottomShadow = (dir === 'nadir') ? '<rect x="200" y="92" width="80" height="14" fill="rgba(0,0,0,0.4)" rx="3"/>' : '';
+
+  return '<svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg">' +
+    // Fondo
+    '<rect width="480" height="280" fill="#0a0f1e"/>' +
+    // Suelo
+    '<rect x="0" y="240" width="480" height="40" fill="#15203c"/>' +
+    // Haz de luz
+    beamPath +
+    // Sombra proyectada
+    '<ellipse cx="240" cy="248" rx="55" ry="6" fill="rgba(0,0,0,0.5)"/>' +
+    // Cuerpo (camiseta)
+    '<rect x="200" y="160" width="80" height="80" fill="' + bodyTone + '" rx="8"/>' +
+    '<rect x="200" y="160" width="80" height="80" fill="' + shadowL + '" clip-path="inset(0 50% 0 0)"/>' +
+    // Cuello
+    '<rect x="226" y="148" width="28" height="16" fill="' + faceTone + '"/>' +
+    // Cabeza
+    '<ellipse cx="240" cy="115" rx="45" ry="50" fill="' + faceTone + '"/>' +
+    // Pelo
+    '<path d="M195,95 Q195,68 240,68 Q285,68 285,95 L285,108 Q285,75 240,75 Q195,75 195,108 Z" fill="' + hairTone + '"/>' +
+    // Sombras laterales
+    faceShadowL + faceShadowR + topShadow + bottomShadow +
+    // Ojos (visibles solo si no es contra ni cenital fuerte)
+    (dir === 'contra' ? '' :
+      '<ellipse cx="225" cy="115" rx="3" ry="2" fill="#1a0e08"/>' +
+      '<ellipse cx="255" cy="115" rx="3" ry="2" fill="#1a0e08"/>') +
+    // Boca
+    (dir === 'contra' ? '' : '<path d="M230,135 Q240,140 250,135" stroke="#5a3020" stroke-width="2" fill="none"/>') +
+    '</svg>';
+}
+
+function dirlReset() {
+  // Mezclar orden
+  dirlState.order = dirlChallenges.map(function(_, i) { return i; }).sort(function() { return Math.random() - 0.5; });
+  dirlState.idx = 0;
+  dirlState.score = 0;
+  dirlState.locked = false;
+  dirlState.results = [];
+  dirlRender();
+}
+
+function dirlRender() {
+  if (dirlState.idx >= dirlState.order.length) {
+    dirlFinish();
+    return;
+  }
+  var ch = dirlChallenges[dirlState.order[dirlState.idx]];
+  document.getElementById('dirlStage').innerHTML = dirlSceneSVG(ch.dir);
+  // Opciones aleatorizadas
+  var opts = dirlOpts.slice().sort(function() { return Math.random() - 0.5; });
+  var html = '';
+  for (var i = 0; i < opts.length; i++) {
+    var o = opts[i];
+    html += '<button class="dirl-opt" data-id="' + o.id + '" onclick="dirlPick(\'' + o.id + '\', this)">' +
+      '<span class="dirl-opt-emoji">' + o.emoji + '</span>' + o.name +
+    '</button>';
+  }
+  document.getElementById('dirlOpts').innerHTML = html;
+  document.getElementById('dirlFb').className = 'gm-feedback';
+  document.getElementById('dirlFb').textContent = '';
+  document.getElementById('dirlNext').style.display = 'none';
+  document.getElementById('dirlScoreL').textContent = 'Reto ' + (dirlState.idx + 1) + ' / ' + dirlState.order.length;
+  document.getElementById('dirlScoreR').textContent = dirlState.score + ' aciertos';
+  gmRenderProg('dirlProg', dirlState.order.length, dirlState.idx, dirlState.results);
+  dirlState.locked = false;
+}
+
+function dirlPick(id, btn) {
+  if (dirlState.locked) return;
+  dirlState.locked = true;
+  var ch = dirlChallenges[dirlState.order[dirlState.idx]];
+  var correct = (id === ch.dir);
+  dirlState.results[dirlState.idx] = correct;
+  if (correct) dirlState.score++;
+  var opts = document.querySelectorAll('#dirlOpts .dirl-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.add('locked');
+    if (opts[i].dataset.id === ch.dir) opts[i].classList.add('correct');
+    if (opts[i] === btn && !correct) opts[i].classList.add('wrong');
+  }
+  var fb = document.getElementById('dirlFb');
+  var correctName = '';
+  for (var k = 0; k < dirlOpts.length; k++) if (dirlOpts[k].id === ch.dir) correctName = dirlOpts[k].name;
+  fb.className = 'gm-feedback ' + (correct ? 'ok' : 'err');
+  fb.innerHTML = (correct ? '✓ Correcto. ' : '✗ Era <strong>' + correctName + '</strong>. ') + ch.desc;
+  document.getElementById('dirlNext').style.display = 'inline-block';
+  document.getElementById('dirlNext').textContent = (dirlState.idx < dirlState.order.length - 1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('dirlScoreR').textContent = dirlState.score + ' aciertos';
+}
+
+function dirlNext() {
+  dirlState.idx++;
+  dirlRender();
+}
+
+function dirlFinish() {
+  document.getElementById('dirlStage').innerHTML =
+    '<div style="color:#fff;text-align:center;padding:40px 20px;">' +
+      '<div style="font-size:48px;font-weight:800;color:var(--yellow);">' + dirlState.score + '/' + dirlState.order.length + '</div>' +
+      '<div style="margin-top:8px;font-size:14px;opacity:0.85;">' +
+        (dirlState.score === dirlState.order.length ? '¡Perfecto! Dominas las direcciones de luz.' :
+         dirlState.score >= 4 ? 'Muy bien. Dominas la mayoría de las direcciones.' :
+         dirlState.score >= 3 ? 'Aceptable. Repasa la teoría de dirección.' :
+         'Repasa la sección de dirección antes de seguir.') +
+      '</div>' +
+    '</div>';
+  document.getElementById('dirlOpts').innerHTML = '';
+  document.getElementById('dirlFb').className = 'gm-feedback';
+  document.getElementById('dirlFb').textContent = '';
+  document.getElementById('dirlNext').style.display = 'inline-block';
+  document.getElementById('dirlNext').textContent = '↻ Volver a jugar';
+  document.getElementById('dirlNext').onclick = function() { dirlReset(); };
+  gmRenderProg('dirlProg', dirlState.order.length, dirlState.order.length, dirlState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 2) M2 · ADIVINA LOS KELVIN
+// ═══════════════════════════════════════════════════════════════════════════
+// Aproximación de tono RGB para una temperatura de color (algoritmo Tanner Helland simplificado)
+function kelToRgb(k) {
+  var t = k / 100;
+  var r, g, b;
+  // Red
+  if (t <= 66) r = 255;
+  else { r = t - 60; r = 329.698727446 * Math.pow(r, -0.1332047592); }
+  // Green
+  if (t <= 66) g = 99.4708025861 * Math.log(t) - 161.1195681661;
+  else { g = t - 60; g = 288.1221695283 * Math.pow(g, -0.0755148492); }
+  // Blue
+  if (t >= 66) b = 255;
+  else if (t <= 19) b = 0;
+  else { b = t - 10; b = 138.5177312231 * Math.log(b) - 305.0447927307; }
+  r = Math.max(0, Math.min(255, Math.round(r)));
+  g = Math.max(0, Math.min(255, Math.round(g)));
+  b = Math.max(0, Math.min(255, Math.round(b)));
+  return [r, g, b];
+}
+
+var kelChallenges = [
+  { k: 1800, name: 'Vela / Llama', icon: '🕯️', context: 'La luz de una <strong>vela</strong> en una escena íntima de teatro.' },
+  { k: 2700, name: 'Bombilla cálida', icon: '💡', context: 'Una bombilla <strong>incandescente doméstica</strong> en una sala estilo salón.' },
+  { k: 3200, name: 'Tungsteno escena', icon: '🎭', context: 'Una <strong>halógena de tungsteno</strong> — el blanco cálido estándar de teatro.' },
+  { k: 4000, name: 'Blanco neutro', icon: '🎤', context: 'Un <strong>LED blanco neutro</strong>. Frecuente en conferencias y TV de estudio.' },
+  { k: 5600, name: 'Luz día / HMI', icon: '☀️', context: 'Una <strong>HMI</strong> simulando luz del sol al mediodía. Estándar en cine y exterior.' },
+  { k: 7000, name: 'Día nublado', icon: '☁️', context: 'Luz natural de un <strong>día nublado o cielo abierto</strong>. Tono frío y azulado.' }
+];
+var kelState = { idx: 0, score: 0, locked: false, results: [], order: [] };
+
+function kelReset() {
+  kelState.order = kelChallenges.map(function(_, i) { return i; }).sort(function() { return Math.random() - 0.5; });
+  kelState.idx = 0;
+  kelState.score = 0;
+  kelState.locked = false;
+  kelState.results = [];
+  kelRender();
+}
+
+function kelRender() {
+  if (kelState.idx >= kelState.order.length) { kelFinish(); return; }
+  var ch = kelChallenges[kelState.order[kelState.idx]];
+  var rgb = kelToRgb(ch.k);
+  var bg = 'rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ')';
+  // Para escenas muy frías o muy cálidas, oscurecer un poco la base para que se aprecie el tono
+  var sceneEl = document.getElementById('kelScene');
+  sceneEl.style.background = bg;
+  document.getElementById('kelIcon').textContent = ch.icon;
+  document.getElementById('kelContext').innerHTML = ch.context;
+  // Opciones: incluir la correcta + 3 incorrectas cercanas
+  var others = kelChallenges.filter(function(c) { return c.k !== ch.k; });
+  others.sort(function() { return Math.random() - 0.5; });
+  var pool = [ch].concat(others.slice(0, 3));
+  pool.sort(function(a, b) { return a.k - b.k; }); // mostrar ordenadas por K
+  var html = '';
+  for (var i = 0; i < pool.length; i++) {
+    var o = pool[i];
+    html += '<button class="kel-opt" data-k="' + o.k + '" onclick="kelPick(' + o.k + ', this)">' +
+      '<span class="kel-opt-k">' + o.k + 'K</span>' +
+      '<span class="kel-opt-name">' + o.name + '</span>' +
+    '</button>';
+  }
+  document.getElementById('kelOpts').innerHTML = html;
+  document.getElementById('kelFb').className = 'gm-feedback';
+  document.getElementById('kelFb').textContent = '';
+  document.getElementById('kelNext').style.display = 'none';
+  document.getElementById('kelScoreL').textContent = 'Reto ' + (kelState.idx + 1) + ' / ' + kelState.order.length;
+  document.getElementById('kelScoreR').textContent = kelState.score + ' aciertos';
+  gmRenderProg('kelProg', kelState.order.length, kelState.idx, kelState.results);
+  kelState.locked = false;
+}
+
+function kelPick(k, btn) {
+  if (kelState.locked) return;
+  kelState.locked = true;
+  var ch = kelChallenges[kelState.order[kelState.idx]];
+  var correct = (k === ch.k);
+  kelState.results[kelState.idx] = correct;
+  if (correct) kelState.score++;
+  var opts = document.querySelectorAll('#kelOpts .kel-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.add('locked');
+    if (parseInt(opts[i].dataset.k, 10) === ch.k) opts[i].classList.add('correct');
+    if (opts[i] === btn && !correct) opts[i].classList.add('wrong');
+  }
+  var fb = document.getElementById('kelFb');
+  fb.className = 'gm-feedback ' + (correct ? 'ok' : 'err');
+  fb.innerHTML = (correct ? '✓ Correcto: <strong>' : '✗ Era <strong>') + ch.k + 'K · ' + ch.name + '</strong>. ' + ch.context.replace(/<\/?strong>/g, '');
+  document.getElementById('kelNext').style.display = 'inline-block';
+  document.getElementById('kelNext').textContent = (kelState.idx < kelState.order.length - 1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('kelScoreR').textContent = kelState.score + ' aciertos';
+}
+
+function kelNext() {
+  kelState.idx++;
+  kelState.locked = false;
+  kelRender();
+}
+
+function kelFinish() {
+  var sceneEl = document.getElementById('kelScene');
+  sceneEl.style.background = '#1a2540';
+  document.getElementById('kelIcon').textContent = '🏆';
+  document.getElementById('kelContext').innerHTML =
+    '<div style="font-size:32px;font-weight:800;color:var(--yellow);">' + kelState.score + '/' + kelState.order.length + '</div>' +
+    '<div style="margin-top:6px;">' +
+      (kelState.score === kelState.order.length ? '¡Perfecto! Dominas las temperaturas de color.' :
+       kelState.score >= 5 ? 'Muy bien. Dominas la escala Kelvin.' :
+       kelState.score >= 3 ? 'Aceptable. Repasa los rangos típicos.' :
+       'Vuelve a la sección de temperatura de color y repasa la escala.') +
+    '</div>';
+  document.getElementById('kelOpts').innerHTML = '';
+  document.getElementById('kelFb').className = 'gm-feedback';
+  document.getElementById('kelFb').textContent = '';
+  document.getElementById('kelNext').style.display = 'inline-block';
+  document.getElementById('kelNext').textContent = '↻ Volver a jugar';
+  document.getElementById('kelNext').onclick = function() { kelReset(); };
+  gmRenderProg('kelProg', kelState.order.length, kelState.order.length, kelState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 3) M4 · IDENTIFICA EL FOCO
+// ═══════════════════════════════════════════════════════════════════════════
+function fidFocoSVG(type) {
+  // Devuelve SVG con silueta de foco + perfil de haz
+  // Tipos: par, fresnel, pc, profile, beam, wash
+  var bodyShape = '';
+  var lensShape = '';
+  var beamShape = '';
+  var label = '';
+
+  if (type === 'par') {
+    // PAR: cilindro corto compacto, haz oval ancho moderado
+    bodyShape = '<rect x="180" y="60" width="80" height="60" fill="#2a2a2a" stroke="#444" stroke-width="2" rx="3"/>' +
+                '<rect x="172" y="55" width="96" height="10" fill="#444" rx="2"/>' +
+                '<rect x="195" y="40" width="50" height="20" fill="#222" rx="2"/>' + // yugo soporte
+                '<circle cx="220" cy="42" r="4" fill="#888"/>';
+    lensShape = '<ellipse cx="260" cy="90" rx="5" ry="22" fill="#f0c96e" opacity="0.95"/>'; // lente cálida
+    beamShape = '<path d="M265,75 L460,40 L460,140 L265,105 Z" fill="rgba(247,215,148,0.22)" stroke="rgba(247,215,148,0.5)" stroke-width="1.2" stroke-dasharray="4,3"/>';
+    label = 'haz oval, bordes definidos';
+  } else if (type === 'fresnel') {
+    // Fresnel: cuerpo cuadrado-redondeado con lente escalonada visible
+    bodyShape = '<rect x="170" y="50" width="90" height="80" fill="#3a3a3a" stroke="#555" stroke-width="2" rx="6"/>' +
+                '<rect x="178" y="32" width="74" height="22" fill="#222" rx="3"/>' + // ranura para acoples
+                '<rect x="195" y="20" width="40" height="14" fill="#222" rx="2"/>'; // yugo
+    lensShape = '<g><path d="M260,55 Q272,90 260,125" fill="none" stroke="#cce0ff" stroke-width="3"/>' +
+                '<path d="M260,65 Q268,90 260,115" fill="none" stroke="#aacced" stroke-width="1.5"/>' +
+                '<path d="M260,75 Q264,90 260,105" fill="none" stroke="#aacced" stroke-width="1.5"/></g>'; // anillos Fresnel
+    beamShape = '<path d="M265,55 L460,15 L460,165 L265,125 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-dasharray="4,3"/>';
+    label = 'haz suave y muy abierto, bordes difusos';
+  } else if (type === 'pc') {
+    // PC: similar a fresnel pero lente lisa
+    bodyShape = '<rect x="170" y="55" width="85" height="70" fill="#3a3a3a" stroke="#555" stroke-width="2" rx="4"/>' +
+                '<rect x="180" y="35" width="65" height="22" fill="#222" rx="3"/>' +
+                '<rect x="195" y="22" width="35" height="14" fill="#222" rx="2"/>';
+    lensShape = '<path d="M255,60 Q268,90 255,120" fill="rgba(200,220,255,0.4)" stroke="#aacced" stroke-width="2"/>'; // lente lisa
+    beamShape = '<path d="M260,60 L460,30 L460,150 L260,120 Z" fill="rgba(220,235,255,0.18)" stroke="rgba(220,235,255,0.45)" stroke-width="1.2" stroke-dasharray="4,3"/>';
+    label = 'haz suave, no tan abierto como Fresnel';
+  } else if (type === 'profile') {
+    // Profile / recorte: cuerpo alargado con lente óptica
+    bodyShape = '<rect x="120" y="68" width="120" height="44" fill="#2a2a2a" stroke="#444" stroke-width="2" rx="3"/>' +
+                '<rect x="240" y="60" width="40" height="60" fill="#3a3a3a" stroke="#555" stroke-width="2" rx="3"/>' +
+                '<rect x="105" y="80" width="20" height="20" fill="#222" rx="2"/>' + // portagobos
+                '<rect x="160" y="50" width="40" height="20" fill="#222" rx="2"/>'; // yugo
+    lensShape = '<rect x="276" y="75" width="6" height="30" fill="#dde" stroke="#aac" stroke-width="1"/>';
+    beamShape = '<path d="M282,80 L460,68 L460,112 L282,100 Z" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>'; // bordes nítidos sin dasharray
+    label = 'haz cónico estrecho y BORDES NÍTIDOS por las cuchillas';
+  } else if (type === 'beam') {
+    // Cabeza Beam: cabeza móvil con lente pequeña y haz muy estrecho
+    bodyShape = '<rect x="200" y="22" width="36" height="28" fill="#2a2a2a" rx="2"/>' + // base motorizada
+                '<rect x="190" y="50" width="56" height="80" fill="#1a1a1a" stroke="#3a3a3a" stroke-width="2" rx="6"/>' + // cabeza
+                '<circle cx="218" cy="90" r="22" fill="#222" stroke="#444" stroke-width="2"/>'; // lente frontal
+    lensShape = '<circle cx="218" cy="90" r="14" fill="#fffacc" opacity="0.9"/>' +
+                '<circle cx="218" cy="90" r="6" fill="#fff" opacity="0.95"/>';
+    beamShape = '<path d="M232,82 L460,80 L460,100 L232,98 Z" fill="rgba(255,255,200,0.35)" stroke="rgba(255,250,180,0.7)" stroke-width="1.5"/>'; // haz muy fino paralelo
+    label = 'haz extremadamente fino, casi paralelo, alta intensidad';
+  } else if (type === 'wash') {
+    // Cabeza Wash: similar a beam pero con lente grande y haz amplio difuso
+    bodyShape = '<rect x="200" y="22" width="36" height="28" fill="#2a2a2a" rx="2"/>' +
+                '<rect x="180" y="50" width="76" height="80" fill="#1a1a1a" stroke="#3a3a3a" stroke-width="2" rx="6"/>' +
+                '<circle cx="218" cy="90" r="34" fill="#222" stroke="#444" stroke-width="2"/>';
+    // Múltiples leds visibles típico de wash
+    lensShape = '';
+    var leds = [[218,72],[200,82],[236,82],[195,98],[241,98],[218,90],[218,108]];
+    for (var i = 0; i < leds.length; i++) {
+      lensShape += '<circle cx="' + leds[i][0] + '" cy="' + leds[i][1] + '" r="5" fill="#fff" opacity="0.85"/>';
+    }
+    beamShape = '<path d="M252,55 L460,15 L460,165 L252,125 Z" fill="rgba(255,255,200,0.18)" stroke="rgba(255,255,200,0.4)" stroke-width="1" stroke-dasharray="3,3"/>';
+    label = 'haz muy amplio y difuso, baña la escena';
+  }
+
+  return '<svg viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg">' +
+    '<rect width="480" height="180" fill="#0a0f1e"/>' +
+    // Pared del fondo donde llega el haz
+    '<rect x="455" y="0" width="25" height="180" fill="rgba(255,255,255,0.04)"/>' +
+    beamShape +
+    bodyShape +
+    lensShape +
+    '<text x="240" y="166" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-family="Inter, sans-serif" font-size="11" font-style="italic">' + label + '</text>' +
+    '</svg>';
+}
+
+var fidChallenges = [
+  { type: 'par',     name: 'PAR',                desc: 'Foco compacto con haz oval. Económico, robusto, muy usado en conciertos. Sin zoom (cambias bombilla para cambiar apertura).' },
+  { type: 'fresnel', name: 'Fresnel',            desc: 'Lente escalonada que produce un haz muy suave de bordes difusos. Permite zoom moviendo la lámpara dentro del cuerpo.' },
+  { type: 'pc',      name: 'PC (Plano Convexo)', desc: 'Como Fresnel pero con lente lisa. Bordes algo más definidos que Fresnel. Zoom interno también disponible.' },
+  { type: 'profile', name: 'Recorte (Profile)',  desc: 'Foco alargado con cuchillas que recortan el haz dando bordes nítidos. Permite proyectar gobos, formas y siluetas.' },
+  { type: 'beam',    name: 'Cabeza Móvil Beam',  desc: 'Lente frontal pequeña y haz casi paralelo, fino y muy potente. Crea columnas de luz dramáticas en conciertos.' },
+  { type: 'wash',    name: 'Cabeza Móvil Wash',  desc: 'Lente grande con LEDs visibles y haz muy abierto. Baña la escena de luz suave y de color.' }
+];
+var fidState = { idx: 0, score: 0, locked: false, results: [], order: [] };
+
+function fidReset() {
+  fidState.order = fidChallenges.map(function(_, i) { return i; }).sort(function() { return Math.random() - 0.5; });
+  fidState.idx = 0;
+  fidState.score = 0;
+  fidState.locked = false;
+  fidState.results = [];
+  fidRender();
+}
+
+function fidRender() {
+  if (fidState.idx >= fidState.order.length) { fidFinish(); return; }
+  var ch = fidChallenges[fidState.order[fidState.idx]];
+  document.getElementById('fidStage').innerHTML = fidFocoSVG(ch.type);
+  // 4 opciones: la correcta + 3 distractores aleatorios
+  var others = fidChallenges.filter(function(c) { return c.type !== ch.type; });
+  others.sort(function() { return Math.random() - 0.5; });
+  var pool = [ch].concat(others.slice(0, 3));
+  pool.sort(function() { return Math.random() - 0.5; });
+  var html = '';
+  for (var i = 0; i < pool.length; i++) {
+    var o = pool[i];
+    var sub = (o.type === 'beam' || o.type === 'wash') ? 'Cabeza móvil' : 'Foco convencional';
+    html += '<button class="fid-opt" data-id="' + o.type + '" onclick="fidPick(\'' + o.type + '\', this)">' +
+      '<span class="fid-opt-name">' + o.name + '</span>' +
+      '<span class="fid-opt-sub">' + sub + '</span>' +
+    '</button>';
+  }
+  document.getElementById('fidOpts').innerHTML = html;
+  document.getElementById('fidFb').className = 'gm-feedback';
+  document.getElementById('fidFb').textContent = '';
+  document.getElementById('fidNext').style.display = 'none';
+  document.getElementById('fidScoreL').textContent = 'Reto ' + (fidState.idx + 1) + ' / ' + fidState.order.length;
+  document.getElementById('fidScoreR').textContent = fidState.score + ' aciertos';
+  gmRenderProg('fidProg', fidState.order.length, fidState.idx, fidState.results);
+  fidState.locked = false;
+}
+
+function fidPick(type, btn) {
+  if (fidState.locked) return;
+  fidState.locked = true;
+  var ch = fidChallenges[fidState.order[fidState.idx]];
+  var correct = (type === ch.type);
+  fidState.results[fidState.idx] = correct;
+  if (correct) fidState.score++;
+  var opts = document.querySelectorAll('#fidOpts .fid-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.add('locked');
+    if (opts[i].dataset.id === ch.type) opts[i].classList.add('correct');
+    if (opts[i] === btn && !correct) opts[i].classList.add('wrong');
+  }
+  var fb = document.getElementById('fidFb');
+  fb.className = 'gm-feedback ' + (correct ? 'ok' : 'err');
+  fb.innerHTML = (correct ? '✓ Correcto: <strong>' : '✗ Era <strong>') + ch.name + '</strong>. ' + ch.desc;
+  document.getElementById('fidNext').style.display = 'inline-block';
+  document.getElementById('fidNext').textContent = (fidState.idx < fidState.order.length - 1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('fidScoreR').textContent = fidState.score + ' aciertos';
+}
+
+function fidNext() {
+  fidState.idx++;
+  fidState.locked = false;
+  fidRender();
+}
+
+function fidFinish() {
+  document.getElementById('fidStage').innerHTML =
+    '<div style="color:#fff;text-align:center;padding:40px 20px;">' +
+      '<div style="font-size:48px;font-weight:800;color:var(--yellow);">' + fidState.score + '/' + fidState.order.length + '</div>' +
+      '<div style="margin-top:8px;font-size:14px;opacity:0.85;">' +
+        (fidState.score === fidState.order.length ? '¡Perfecto! Identificas todos los focos al instante.' :
+         fidState.score >= 5 ? 'Muy bien. Dominas la mayoría de focos.' :
+         fidState.score >= 4 ? 'Aceptable. Repasa Fresnel vs PC y Beam vs Wash.' :
+         'Repasa el módulo "Tipos de Focos" antes de seguir.') +
+      '</div>' +
+    '</div>';
+  document.getElementById('fidOpts').innerHTML = '';
+  document.getElementById('fidFb').className = 'gm-feedback';
+  document.getElementById('fidFb').textContent = '';
+  document.getElementById('fidNext').style.display = 'inline-block';
+  document.getElementById('fidNext').textContent = '↻ Volver a jugar';
+  document.getElementById('fidNext').onclick = function() { fidReset(); };
+  gmRenderProg('fidProg', fidState.order.length, fidState.order.length, fidState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 4) M7 · DETECTA EL PELIGRO
+// ═══════════════════════════════════════════════════════════════════════════
+// 6 hotspots reales en una escena de truss
+var hazHotspots = [
+  { id: 'noSafety',   name: 'Foco sin cable de seguridad',  desc: 'Si la garra falla, el foco cae al público. Todo elemento elevado debe tener un safety adicional independiente.', cx: 130, cy: 175, r: 22 },
+  { id: 'badGarra',   name: 'Garra mal apretada',           desc: 'La garra está visiblemente floja sobre la barra. Si vibra durante el espectáculo, el foco se descuelga.', cx: 250, cy: 145, r: 22 },
+  { id: 'cableFloor', name: 'Cable cruzando el paso sin proteger', desc: 'Cable suelto en zona de tránsito = riesgo de tropiezo + tirón sobre el foco. Debe ir por dentro del truss o protegido en el suelo.', cx: 290, cy: 320, r: 24 },
+  { id: 'noChain',    name: 'Polipasto sin cadena secundaria', desc: 'Las cadenas de motor de elevación SIEMPRE deben llevar una cadena secundaria de seguridad. Si el motor falla, el truss cae.', cx: 415, cy: 70, r: 22 },
+  { id: 'overload',   name: 'Sobrecarga eléctrica visible', desc: 'Una regleta con muchos focos enchufados sin diferencial = riesgo de incendio. Cada circuito debe respetar la potencia máxima.', cx: 70, cy: 280, r: 22 },
+  { id: 'noHelmet',   name: 'Operario sin EPIs',            desc: 'El técnico subido a la escalera no lleva casco ni arnés. EPIs obligatorios en altura: casco, arnés, calzado de seguridad.', cx: 555, cy: 250, r: 24 }
+];
+
+var hazState = { found: [], errs: 0, score: 0, finished: false };
+
+function hazSceneSVG() {
+  // Escena: techo con truss horizontal del que cuelgan focos, motor a un lado, técnico subido a una escalera, regleta en el suelo
+  return '<svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg">' +
+    // Cielo / pared
+    '<rect width="640" height="380" fill="#15203c"/>' +
+    // Suelo
+    '<rect x="0" y="340" width="640" height="40" fill="#0c1428"/>' +
+    '<line x1="0" y1="340" x2="640" y2="340" stroke="#2a3550" stroke-width="2"/>' +
+    // Truss (estructura tubular)
+    '<g>' +
+      '<rect x="60" y="120" width="500" height="20" fill="#3a4660" stroke="#5a6a90" stroke-width="1.5" rx="2"/>' +
+      // diagonales del truss
+      '<line x1="80"  y1="120" x2="100" y2="140" stroke="#5a6a90" stroke-width="1.5"/>' +
+      '<line x1="120" y1="120" x2="140" y2="140" stroke="#5a6a90" stroke-width="1.5"/>' +
+      '<line x1="160" y1="120" x2="180" y2="140" stroke="#5a6a90" stroke-width="1.5"/>' +
+      '<line x1="200" y1="120" x2="220" y2="140" stroke="#5a6a90" stroke-width="1.5"/>' +
+      '<line x1="240" y1="120" x2="260" y2="140" stroke="#5a6a90" stroke-width="1.5"/>' +
+      '<line x1="280" y1="120" x2="300" y2="140" stroke="#5a6a90" stroke-width="1.5"/>' +
+      '<line x1="320" y1="120" x2="340" y2="140" stroke="#5a6a90" stroke-width="1.5"/>' +
+      '<line x1="360" y1="120" x2="380" y2="140" stroke="#5a6a90" stroke-width="1.5"/>' +
+      '<line x1="400" y1="120" x2="420" y2="140" stroke="#5a6a90" stroke-width="1.5"/>' +
+      '<line x1="440" y1="120" x2="460" y2="140" stroke="#5a6a90" stroke-width="1.5"/>' +
+      '<line x1="480" y1="120" x2="500" y2="140" stroke="#5a6a90" stroke-width="1.5"/>' +
+      '<line x1="520" y1="120" x2="540" y2="140" stroke="#5a6a90" stroke-width="1.5"/>' +
+    '</g>' +
+    // Polipasto/motor a la derecha del truss
+    '<g class="haz-hot" data-id="noChain" style="cursor:pointer;">' +
+      // cadena principal
+      '<line x1="415" y1="20" x2="415" y2="120" stroke="#999" stroke-width="3" stroke-dasharray="3,2"/>' +
+      // motor
+      '<rect x="395" y="55" width="40" height="30" fill="#2a2a2a" stroke="#555" stroke-width="1.5" rx="2"/>' +
+      '<text x="415" y="75" text-anchor="middle" font-size="9" fill="#ccc" font-family="Inter">MOTOR</text>' +
+      // hotspot invisible (no chain seguridad - se ve el hueco)
+      '<circle class="haz-target" data-id="noChain" cx="415" cy="70" r="22" fill="rgba(0,0,0,0)"/>' +
+      // marca de "falta cadena 2ª"
+      '<text x="445" y="62" font-size="14" fill="rgba(239,68,68,0)" id="hazHl-noChain">⚠</text>' +
+    '</g>' +
+    // Foco 1 - sin safety (izquierda)
+    '<g class="haz-hot" data-id="noSafety" style="cursor:pointer;">' +
+      // garra
+      '<rect x="125" y="135" width="10" height="14" fill="#444" rx="1"/>' +
+      // foco PAR
+      '<rect x="115" y="148" width="30" height="22" fill="#2a2a2a" stroke="#555" stroke-width="1.5" rx="2"/>' +
+      '<ellipse cx="145" cy="159" rx="3" ry="9" fill="#f0c96e" opacity="0.85"/>' +
+      // sin cable safety!
+      '<circle class="haz-target" data-id="noSafety" cx="130" cy="175" r="22" fill="rgba(0,0,0,0)"/>' +
+    '</g>' +
+    // Foco 2 - garra mal apretada (centro)
+    '<g class="haz-hot" data-id="badGarra" style="cursor:pointer;">' +
+      // garra inclinada
+      '<g transform="rotate(15 250 142)">' +
+        '<rect x="245" y="135" width="10" height="14" fill="#444" rx="1"/>' +
+      '</g>' +
+      // foco PAR
+      '<rect x="235" y="148" width="30" height="22" fill="#2a2a2a" stroke="#555" stroke-width="1.5" rx="2"/>' +
+      '<ellipse cx="265" cy="159" rx="3" ry="9" fill="#f0c96e" opacity="0.85"/>' +
+      // safety presente (correcto)
+      '<line x1="250" y1="148" x2="248" y2="125" stroke="#999" stroke-width="1.2"/>' +
+      '<circle class="haz-target" data-id="badGarra" cx="250" cy="145" r="22" fill="rgba(0,0,0,0)"/>' +
+    '</g>' +
+    // Foco 3 - correcto (derecha) - safety + garra bien
+    '<g>' +
+      '<rect x="365" y="135" width="10" height="14" fill="#444" rx="1"/>' +
+      '<rect x="355" y="148" width="30" height="22" fill="#2a2a2a" stroke="#555" stroke-width="1.5" rx="2"/>' +
+      '<ellipse cx="385" cy="159" rx="3" ry="9" fill="#f0c96e" opacity="0.85"/>' +
+      '<line x1="370" y1="148" x2="368" y2="125" stroke="#999" stroke-width="1.2"/>' +
+    '</g>' +
+    // Foco 4 - correcto
+    '<g>' +
+      '<rect x="475" y="135" width="10" height="14" fill="#444" rx="1"/>' +
+      '<rect x="465" y="148" width="30" height="22" fill="#2a2a2a" stroke="#555" stroke-width="1.5" rx="2"/>' +
+      '<ellipse cx="495" cy="159" rx="3" ry="9" fill="#f0c96e" opacity="0.85"/>' +
+      '<line x1="480" y1="148" x2="478" y2="125" stroke="#999" stroke-width="1.2"/>' +
+    '</g>' +
+    // Cable cruzando el suelo
+    '<g class="haz-hot" data-id="cableFloor" style="cursor:pointer;">' +
+      '<path d="M250,170 Q260,260 290,320 Q320,350 360,340" fill="none" stroke="#1a1a1a" stroke-width="3"/>' +
+      '<path d="M250,170 Q260,260 290,320 Q320,350 360,340" fill="none" stroke="#444" stroke-width="1.5"/>' +
+      '<circle class="haz-target" data-id="cableFloor" cx="290" cy="320" r="24" fill="rgba(0,0,0,0)"/>' +
+    '</g>' +
+    // Regleta en el suelo con muchas tomas (sobrecarga)
+    '<g class="haz-hot" data-id="overload" style="cursor:pointer;">' +
+      '<rect x="40" y="270" width="60" height="22" fill="#222" stroke="#555" stroke-width="1.5" rx="2"/>' +
+      // Cables saliendo
+      '<line x1="48" y1="270" x2="48" y2="250" stroke="#1a1a1a" stroke-width="2"/>' +
+      '<line x1="58" y1="270" x2="58" y2="250" stroke="#1a1a1a" stroke-width="2"/>' +
+      '<line x1="68" y1="270" x2="68" y2="250" stroke="#1a1a1a" stroke-width="2"/>' +
+      '<line x1="78" y1="270" x2="78" y2="250" stroke="#1a1a1a" stroke-width="2"/>' +
+      '<line x1="88" y1="270" x2="88" y2="250" stroke="#1a1a1a" stroke-width="2"/>' +
+      '<line x1="98" y1="270" x2="98" y2="250" stroke="#1a1a1a" stroke-width="2"/>' +
+      '<text x="70" y="285" text-anchor="middle" font-size="8" fill="#888" font-family="Inter">REGLETA</text>' +
+      // Etiqueta de potencia (peligro)
+      '<text x="70" y="306" text-anchor="middle" font-size="8" fill="rgba(239,68,68,0.7)" font-family="Inter" font-weight="700">6 × 1000W</text>' +
+      '<circle class="haz-target" data-id="overload" cx="70" cy="280" r="22" fill="rgba(0,0,0,0)"/>' +
+    '</g>' +
+    // Operario sin EPIs (técnico en escalera)
+    '<g class="haz-hot" data-id="noHelmet" style="cursor:pointer;">' +
+      // Escalera
+      '<line x1="540" y1="200" x2="540" y2="340" stroke="#aa6b3a" stroke-width="3"/>' +
+      '<line x1="570" y1="200" x2="570" y2="340" stroke="#aa6b3a" stroke-width="3"/>' +
+      '<line x1="540" y1="220" x2="570" y2="220" stroke="#aa6b3a" stroke-width="2"/>' +
+      '<line x1="540" y1="250" x2="570" y2="250" stroke="#aa6b3a" stroke-width="2"/>' +
+      '<line x1="540" y1="280" x2="570" y2="280" stroke="#aa6b3a" stroke-width="2"/>' +
+      '<line x1="540" y1="310" x2="570" y2="310" stroke="#aa6b3a" stroke-width="2"/>' +
+      // Persona
+      '<circle cx="555" cy="220" r="11" fill="#e8c8a4"/>' + // cabeza sin casco
+      '<rect x="546" y="231" width="18" height="30" fill="#3a5680" rx="2"/>' + // torso
+      '<rect x="544" y="261" width="8" height="20" fill="#3a3a3a"/>' + // pierna izq
+      '<rect x="558" y="261" width="8" height="20" fill="#3a3a3a"/>' + // pierna der
+      '<circle class="haz-target" data-id="noHelmet" cx="555" cy="250" r="24" fill="rgba(0,0,0,0)"/>' +
+    '</g>' +
+    '</svg>';
+}
+
+function hazReset() {
+  hazState = { found: [], errs: 0, score: 0, finished: false };
+  document.getElementById('hazStage').innerHTML = hazSceneSVG();
+  hazRenderList();
+  hazUpdateStats();
+  document.getElementById('hazFinal').className = 'haz-final';
+  // Wire clicks: usamos delegación
+  var stage = document.getElementById('hazStage');
+  stage.onclick = hazClick;
+}
+
+function hazClick(ev) {
+  if (hazState.finished) return;
+  // Detectar click sobre haz-target o sobre cualquier hijo del grupo haz-hot
+  var t = ev.target;
+  while (t && t !== ev.currentTarget) {
+    if (t.classList && (t.classList.contains('haz-target') || t.classList.contains('haz-hot'))) {
+      var id = t.dataset.id;
+      if (id) { hazFound(id, t); return; }
+    }
+    t = t.parentNode;
+  }
+  // Click fuera de zonas peligrosas = error
+  hazError();
+}
+
+function hazFound(id, target) {
+  if (hazState.found.indexOf(id) !== -1) return; // ya detectado
+  hazState.found.push(id);
+  hazState.score += 20;
+  // Marcar visualmente: añadir borde rojo brillante alrededor del hotspot
+  var stage = document.getElementById('hazStage');
+  var hs = null;
+  for (var i = 0; i < hazHotspots.length; i++) if (hazHotspots[i].id === id) hs = hazHotspots[i];
+  if (hs) {
+    var ns = 'http://www.w3.org/2000/svg';
+    var svg = stage.querySelector('svg');
+    if (svg) {
+      var marker = document.createElementNS(ns, 'g');
+      marker.innerHTML =
+        '<circle cx="' + hs.cx + '" cy="' + hs.cy + '" r="' + (hs.r + 4) + '" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="3,2"/>' +
+        '<circle cx="' + hs.cx + '" cy="' + hs.cy + '" r="' + (hs.r + 8) + '" fill="none" stroke="#ef4444" stroke-width="1" opacity="0.4"/>' +
+        '<text x="' + hs.cx + '" y="' + (hs.cy - hs.r - 6) + '" text-anchor="middle" font-size="11" fill="#fbbf24" font-weight="700" font-family="Inter">⚠ ' + (hazState.found.length) + '</text>';
+      svg.appendChild(marker);
+    }
+  }
+  hazRenderList();
+  hazUpdateStats();
+  if (hazState.found.length >= hazHotspots.length) hazFinish();
+}
+
+function hazError() {
+  if (hazState.errs >= 3) return;
+  hazState.errs++;
+  hazState.score = Math.max(0, hazState.score - 10);
+  hazUpdateStats();
+  // Pequeño shake visual
+  var st = document.getElementById('hazStage');
+  st.style.transition = 'transform 0.1s';
+  st.style.transform = 'translateX(-4px)';
+  setTimeout(function() {
+    st.style.transform = 'translateX(4px)';
+    setTimeout(function() { st.style.transform = 'translateX(0)'; }, 80);
+  }, 80);
+  if (hazState.errs >= 3) hazFinish();
+}
+
+function hazRenderList() {
+  var html = '';
+  for (var i = 0; i < hazHotspots.length; i++) {
+    var h = hazHotspots[i];
+    var isFound = hazState.found.indexOf(h.id) !== -1;
+    html += '<div class="haz-item' + (isFound ? ' found' : '') + '">' +
+      '<span class="haz-item-icon">' + (isFound ? '✓' : '·') + '</span>' +
+      '<span class="haz-item-text">' +
+        (isFound ? '<strong>' + h.name + '</strong>' + h.desc : '<strong style="color:var(--text3);">Peligro pendiente de detectar</strong>Pulsa sobre la zona que consideres peligrosa.') +
+      '</span>' +
+    '</div>';
+  }
+  document.getElementById('hazList').innerHTML = html;
+}
+
+function hazUpdateStats() {
+  document.getElementById('hazFound').textContent = hazState.found.length + '/' + hazHotspots.length;
+  document.getElementById('hazErrs').textContent = hazState.errs + '/3';
+  document.getElementById('hazScore').textContent = hazState.score;
+}
+
+function hazFinish() {
+  hazState.finished = true;
+  document.getElementById('hazFinal').className = 'haz-final show';
+  document.getElementById('hazFinalScore').textContent = hazState.score;
+  var msg = '';
+  if (hazState.found.length === hazHotspots.length && hazState.errs === 0) msg = '¡Auditoría perfecta! Estás listo para supervisar montajes reales.';
+  else if (hazState.found.length === hazHotspots.length) msg = 'Detectaste todos los peligros. Pulgar arriba.';
+  else if (hazState.found.length >= 4) msg = 'Buen trabajo, pero todavía hay riesgos sin identificar. Repasa la sección.';
+  else msg = 'Repasa la sección de Rigging & Seguridad. Faltan demasiados peligros sin detectar.';
+  document.getElementById('hazFinalMsg').textContent =
+    hazState.found.length + ' detectados · ' + hazState.errs + ' fallos · ' + msg;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INICIALIZACIÓN — engancharse a goTo
+// ═══════════════════════════════════════════════════════════════════════════
+(function() {
+  if (typeof window.goTo !== 'function') return;
+  var origGoTo = window.goTo;
+  window.goTo = function(id) {
+    origGoTo(id);
+    // Inicializar juegos al entrar en el módulo, una vez (luego conservan estado)
+    if (id === 'm1') setTimeout(function() {
+      if (!document.querySelector('#dirlOpts .dirl-opt') && !document.querySelector('#dirlStage svg')) dirlReset();
+    }, 80);
+    if (id === 'm2') setTimeout(function() {
+      if (!document.querySelector('#kelOpts .kel-opt')) kelReset();
+    }, 80);
+    if (id === 'm4') setTimeout(function() {
+      if (!document.querySelector('#fidOpts .fid-opt')) fidReset();
+    }, 80);
+    if (id === 'm7') setTimeout(function() {
+      if (!document.querySelector('#hazStage svg')) hazReset();
+    }, 80);
+  };
+})();
+
+// ─── fin mejoras gamificación ─────────────────────────────────────────────
+
 </script>
 </body>
 </html>

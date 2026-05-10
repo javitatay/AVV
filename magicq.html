@@ -1155,6 +1155,127 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 }
 
 
+
+/* ═══════════════ MEJORAS GAMIFICACIÓN MAGICQ ═══════════════ */
+
+/* === Comunes === */
+.gmq-prog { display:flex; gap:4px; margin-bottom:14px; }
+.gmq-pip { height:5px; flex:1; border-radius:3px; background:var(--bg-deep); }
+.gmq-pip.ok  { background:#22c55e; }
+.gmq-pip.err { background:#ef4444; }
+.gmq-pip.cur { background:var(--mq-orange); }
+.gmq-score-lbl { font-size:11px; font-weight:700; color:var(--text-dim); margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; }
+.gmq-feedback { font-size:13px; font-weight:500; padding:11px 14px; border-radius:7px; margin-top:12px; display:none; line-height:1.55; }
+.gmq-feedback.ok  { display:block; background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
+.gmq-feedback.err { display:block; background:#fff1f1; color:#991b1b; border:1px solid #fecaca; }
+.gmq-btn { padding:10px 22px; border-radius:6px; border:none; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; transition:all .15s; }
+.gmq-btn-primary { background:var(--mq-orange); color:#fff; }
+.gmq-btn-primary:hover { background:var(--mq-orange-dim); }
+.gmq-btn-ghost { background:var(--bg-button); color:var(--text-primary); }
+.gmq-btn-ghost:hover { background:var(--bg-button-lit); }
+.gmq-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:14px; }
+
+/* === DMX: calcula la dirección === */
+.dmxc-stage { background:var(--bg-panel); border:1px solid var(--border-dark); border-radius:8px; padding:18px; margin-bottom:14px; display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; }
+.dmxc-row { background:var(--bg-surface); border-radius:7px; padding:12px; border-left:3px solid var(--mq-orange); }
+.dmxc-row-lbl { font-size:11px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:.5px; margin-bottom:5px; }
+.dmxc-row-val { font-size:18px; font-weight:800; color:var(--text-primary); font-family:var(--font-mono); font-variant-numeric:tabular-nums; }
+.dmxc-row-sub { font-size:11px; color:var(--text-dim); margin-top:3px; }
+.dmxc-input-wrap { display:flex; gap:10px; align-items:center; padding:14px; background:var(--bg-surface); border:1px solid var(--border-dark); border-radius:7px; margin-bottom:10px; }
+.dmxc-input-lbl { font-size:13px; font-weight:600; color:var(--text-primary); flex-shrink:0; }
+.dmxc-input { flex:1; padding:8px 12px; border:1.5px solid var(--border-mid); border-radius:5px; font-family:var(--font-mono); font-size:15px; font-weight:700; color:var(--text-primary); background:var(--bg-surface); outline:none; }
+.dmxc-input:focus { border-color:var(--mq-orange); }
+
+/* === PATCH: parchea las luces === */
+.pq-stage { background:var(--bg-panel); border:1px solid var(--border-dark); border-radius:8px; padding:18px; margin-bottom:14px; }
+.pq-fixtures-list { display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
+.pq-fixture {
+  display:grid; grid-template-columns:auto 1fr auto auto; gap:12px; align-items:center;
+  background:var(--bg-surface); border:1.5px solid var(--border-dark); border-radius:7px;
+  padding:10px 14px; transition:all .18s;
+}
+.pq-fixture.placed { border-color:#22c55e; background:#f0fdf4; }
+.pq-fixture-num { font-size:12px; font-weight:800; color:var(--text-dim); font-family:var(--font-mono); width:28px; text-align:center; }
+.pq-fixture-name { font-size:13px; font-weight:700; color:var(--text-primary); }
+.pq-fixture-channels { font-size:11px; color:var(--text-dim); font-family:var(--font-mono); }
+.pq-fixture-input {
+  width:90px; padding:6px 10px; border:1.5px solid var(--border-mid); border-radius:5px;
+  font-family:var(--font-mono); font-size:14px; font-weight:700; text-align:center; outline:none;
+  background:var(--bg-surface);
+}
+.pq-fixture-input:focus { border-color:var(--mq-orange); }
+.pq-fixture.placed .pq-fixture-input { border-color:#22c55e; background:#fff; }
+.pq-universe-bar { display:grid; grid-template-columns:repeat(32, 1fr); gap:1px; background:var(--bg-surface); padding:6px; border-radius:6px; border:1px solid var(--border-dark); margin-bottom:14px; min-height:36px; }
+.pq-cell { background:var(--bg-deep); border-radius:1px; aspect-ratio:1; min-height:18px; transition:background .2s; position:relative; }
+.pq-cell.used { background:var(--mq-orange); }
+.pq-cell.conflict { background:#ef4444; animation:pqConflict 0.4s ease-in-out 3; }
+@keyframes pqConflict { 0%,100% { transform:scale(1); } 50% { transform:scale(1.3); } }
+.pq-uni-label { font-size:11px; color:var(--text-dim); margin-bottom:5px; font-family:var(--font-mono); display:flex; justify-content:space-between; }
+
+/* === COLOR: mezclador CMY === */
+.cmy-stage { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:14px; }
+@media (max-width:760px) { .cmy-stage { grid-template-columns:1fr; } }
+.cmy-light-wrap { background:#0a0f1e; border-radius:10px; padding:20px; display:flex; flex-direction:column; align-items:center; gap:12px; }
+.cmy-target-label { font-size:11px; color:rgba(255,255,255,.55); text-transform:uppercase; letter-spacing:.5px; font-weight:700; }
+.cmy-light { width:160px; height:160px; border-radius:50%; box-shadow:0 0 60px var(--clr); transition:background .2s, box-shadow .2s; }
+.cmy-target { width:160px; height:160px; border-radius:50%; box-shadow:0 0 30px var(--clr); }
+.cmy-row { display:flex; align-items:center; gap:8px; margin-top:5px; }
+.cmy-row-lbl { font-size:11px; font-weight:700; color:var(--text-dim); width:80px; font-family:var(--font-mono); }
+.cmy-row-val { font-family:var(--font-mono); font-size:13px; font-weight:700; min-width:38px; text-align:right; color:var(--text-primary); }
+.cmy-controls { display:flex; flex-direction:column; gap:14px; padding:14px; background:var(--bg-panel); border:1px solid var(--border-dark); border-radius:8px; }
+.cmy-slider-row { display:grid; grid-template-columns:80px 1fr 50px; gap:10px; align-items:center; }
+.cmy-slider-lbl { font-size:13px; font-weight:700; }
+.cmy-slider-lbl.cyan    { color:#06b6d4; }
+.cmy-slider-lbl.magenta { color:#d946ef; }
+.cmy-slider-lbl.yellow  { color:#eab308; }
+.cmy-slider-row input[type=range] { width:100%; accent-color:var(--mq-orange); }
+.cmy-slider-row .cmy-row-val { text-align:right; }
+.cmy-difference { padding:8px 12px; background:var(--bg-surface); border:1px solid var(--border-dark); border-radius:6px; font-size:11.5px; font-family:var(--font-mono); color:var(--text-dim); text-align:center; margin-top:6px; }
+
+/* === CUES: construye el comando === */
+.cmd-stage { background:var(--bg-panel); border:1px solid var(--border-dark); border-radius:8px; padding:18px; margin-bottom:14px; }
+.cmd-goal { padding:12px 14px; background:rgba(37,99,235,0.08); border-left:3px solid var(--mq-orange); border-radius:6px; margin-bottom:14px; font-size:13px; color:var(--text-primary); line-height:1.5; }
+.cmd-goal strong { color:var(--mq-orange); }
+.cmd-output { background:#0a0f1e; color:#86efac; font-family:var(--font-mono); font-size:14px; font-weight:700; padding:12px 16px; border-radius:6px; margin-bottom:14px; min-height:42px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.cmd-output-prompt { color:#475569; }
+.cmd-token-output {
+  display:inline-block; padding:4px 10px; background:rgba(134,239,172,0.15); border-radius:4px;
+  cursor:pointer; transition:all .15s; user-select:none;
+}
+.cmd-token-output:hover { background:rgba(239,68,68,0.25); color:#fca5a5; }
+.cmd-output-empty { color:rgba(134,239,172,0.5); font-style:italic; font-weight:500; }
+.cmd-tokens-label { font-size:11px; color:var(--text-dim); margin-bottom:8px; font-weight:600; text-transform:uppercase; letter-spacing:.5px; }
+.cmd-tokens { display:flex; gap:6px; flex-wrap:wrap; padding:10px; background:var(--bg-surface); border:2px dashed var(--border-mid); border-radius:7px; min-height:60px; }
+.cmd-token {
+  padding:7px 14px; background:var(--mq-orange); color:#fff; font-family:var(--font-mono);
+  font-size:13px; font-weight:700; border-radius:5px; cursor:pointer;
+  transition:all .15s; user-select:none; border:none;
+}
+.cmd-token:hover { background:var(--mq-orange-dim); transform:translateY(-1px); }
+.cmd-token:disabled { opacity:0.3; cursor:not-allowed; transform:none; background:var(--text-dim); }
+
+/* === CATALOGOFOCOS: elige el foco === */
+.foc-stage { background:var(--bg-panel); border:1px solid var(--border-dark); border-radius:8px; padding:18px; margin-bottom:14px; }
+.foc-scenario { padding:14px; background:var(--bg-surface); border:1px solid var(--border-dark); border-radius:7px; margin-bottom:14px; }
+.foc-sce-icon { font-size:32px; margin-bottom:6px; }
+.foc-sce-title { font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:6px; }
+.foc-sce-desc { font-size:12.5px; color:var(--text-dim); line-height:1.55; }
+.foc-options { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:8px; }
+.foc-opt {
+  padding:12px 10px; background:var(--bg-surface); border:1.5px solid var(--border-dark); border-radius:7px;
+  cursor:pointer; font-family:inherit; color:var(--text-primary);
+  text-align:center; transition:all .15s; display:flex; flex-direction:column; gap:4px;
+}
+.foc-opt-name { font-size:13px; font-weight:700; }
+.foc-opt-sub  { font-size:10.5px; color:var(--text-dim); font-weight:500; }
+.foc-opt:hover:not(.locked) { border-color:var(--mq-orange); background:var(--bg-raised); transform:translateY(-1px); }
+.foc-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
+.foc-opt.correct .foc-opt-sub { color:#16a34a; }
+.foc-opt.wrong { border-color:#ef4444; background:#fff1f1; color:#991b1b; }
+.foc-opt.locked { cursor:default; }
+
+/* ─── fin mejoras gamificación ─── */
+
 </style>
 </head>
 <body>
@@ -1954,6 +2075,48 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
                     tus acciones al protocolo DMX correcto.</p>
                 </div>
             </div>
+
+<!-- ═══════════════ NUEVO: CALCULA LA DIRECCIÓN DMX ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Calcula la Dirección DMX</div>
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6;">
+    Te dan un <strong>fixture</strong> con sus canales, una <strong>dirección de inicio</strong> y un <strong>número de fixture</strong>. Calcula en qué dirección DMX empieza ese fixture concreto. <strong>6 retos</strong>.
+  </p>
+  <div class="gmq-prog" id="dmxcProg"></div>
+  <div class="gmq-score-lbl">
+    <span id="dmxcScoreL">Reto 1 / 6</span>
+    <span id="dmxcScoreR">0 aciertos</span>
+  </div>
+  <div class="dmxc-stage">
+    <div class="dmxc-row">
+      <div class="dmxc-row-lbl">Fixture</div>
+      <div class="dmxc-row-val" id="dmxcFix">—</div>
+      <div class="dmxc-row-sub" id="dmxcFixSub">— canales</div>
+    </div>
+    <div class="dmxc-row">
+      <div class="dmxc-row-lbl">Dir. inicio</div>
+      <div class="dmxc-row-val" id="dmxcStart">—</div>
+      <div class="dmxc-row-sub">primer fixture</div>
+    </div>
+    <div class="dmxc-row">
+      <div class="dmxc-row-lbl">Fixture nº</div>
+      <div class="dmxc-row-val" id="dmxcNum">—</div>
+      <div class="dmxc-row-sub" id="dmxcNumSub">de la cadena</div>
+    </div>
+  </div>
+  <div class="dmxc-input-wrap">
+    <span class="dmxc-input-lbl">¿Dirección DMX de ese fixture?</span>
+    <input type="number" class="dmxc-input" id="dmxcInput" min="1" max="512" placeholder="—">
+    <button class="gmq-btn gmq-btn-primary" onclick="dmxcCheck()">Comprobar</button>
+  </div>
+  <div class="gmq-feedback" id="dmxcFb"></div>
+  <div class="gmq-actions">
+    <button class="gmq-btn gmq-btn-ghost" onclick="dmxcReset()">↺ Reiniciar</button>
+    <button class="gmq-btn gmq-btn-primary" id="dmxcNext" style="display:none;" onclick="dmxcNext()">Siguiente reto →</button>
+  </div>
+</div>
+
+
         </section>
 
         <!-- ══════════════════ PATCH ══════════════════ -->
@@ -2126,6 +2289,35 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
                     <div>×2</div>
                 </div>
             </div>
+
+<!-- ═══════════════ NUEVO: PARCHEA LAS LUCES ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Parchea las Luces — Universo DMX</div>
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6;">
+    Asigna una <strong>dirección DMX de inicio</strong> a cada fixture. No deben solaparse: si dos fixtures usan canales comunes, hay <strong>conflicto</strong>. La barra muestra los canales ocupados (1-512). <strong>3 escenarios</strong> de dificultad creciente.
+  </p>
+  <div class="gmq-prog" id="pqProg"></div>
+  <div class="gmq-score-lbl">
+    <span id="pqScoreL">Escenario 1 / 3</span>
+    <span id="pqScoreR" style="font-family:var(--font-mono);">0 / 0 fixtures</span>
+  </div>
+  <div class="pq-stage">
+    <div class="pq-uni-label">
+      <span>Universo 1 · canales 1–32 (vista parcial; la suma puede exceder)</span>
+      <span id="pqUsedTotal">0 ch usados</span>
+    </div>
+    <div class="pq-universe-bar" id="pqBar"></div>
+    <div class="pq-fixtures-list" id="pqList"></div>
+  </div>
+  <div class="gmq-feedback" id="pqFb"></div>
+  <div class="gmq-actions">
+    <button class="gmq-btn gmq-btn-ghost" onclick="pqReset()">↺ Reiniciar</button>
+    <button class="gmq-btn gmq-btn-primary" onclick="pqValidate()">Validar parche</button>
+    <button class="gmq-btn gmq-btn-primary" id="pqNext" style="display:none;" onclick="pqNextScenario()">Siguiente escenario →</button>
+  </div>
+</div>
+
+
         </section>
 
         <!-- ══════════════════ GRUPOS ══════════════════ -->
@@ -2586,6 +2778,36 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
                     <span style="color:var(--mq-orange);">4. CLEAR → siguiente escena → RECORD</span>
                 </div>
             </div>
+
+<!-- ═══════════════ NUEVO: CONSTRUYE EL COMANDO ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Construye el Comando — Sintaxis MagicQ</div>
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6;">
+    Pulsa los <strong>tokens</strong> en el orden correcto para construir la línea de comandos que ejecuta la acción descrita. Click sobre un token de la salida para quitarlo. <strong>8 retos</strong> de sintaxis MagicQ real.
+  </p>
+  <div class="gmq-prog" id="cmdProg"></div>
+  <div class="gmq-score-lbl">
+    <span id="cmdScoreL">Reto 1 / 8</span>
+    <span id="cmdScoreR">0 aciertos</span>
+  </div>
+  <div class="cmd-stage">
+    <div class="cmd-goal" id="cmdGoal">—</div>
+    <div class="cmd-output" id="cmdOutput">
+      <span class="cmd-output-prompt">&gt;</span>
+      <span class="cmd-output-empty">Construye el comando…</span>
+    </div>
+    <div class="cmd-tokens-label">Tokens disponibles</div>
+    <div class="cmd-tokens" id="cmdTokens"></div>
+  </div>
+  <div class="gmq-feedback" id="cmdFb"></div>
+  <div class="gmq-actions">
+    <button class="gmq-btn gmq-btn-ghost" onclick="cmdReset()">↺ Reiniciar</button>
+    <button class="gmq-btn gmq-btn-primary" onclick="cmdValidate()">Ejecutar comando</button>
+    <button class="gmq-btn gmq-btn-primary" id="cmdNext" style="display:none;" onclick="cmdNext()">Siguiente reto →</button>
+  </div>
+</div>
+
+
         </section>
 
         <!-- ══════════════════ COLOR & PALETAS ══════════════════ -->
@@ -2733,6 +2955,62 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
                     </table>
                 </div>
             </div>
+
+<!-- ═══════════════ NUEVO: MEZCLADOR CMY ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Mezclador CMY — Reproduce el color</div>
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6;">
+    En luz, la mezcla de color es <strong>sustractiva</strong>: los filtros C/M/Y restan luz. Mueve los sliders para reproducir el color objetivo. Se calcula la similitud automáticamente. <strong>5 retos</strong>.
+  </p>
+  <div class="gmq-prog" id="cmyProg"></div>
+  <div class="gmq-score-lbl">
+    <span id="cmyScoreL">Reto 1 / 5</span>
+    <span id="cmyScoreR">0 aciertos · max similitud 0%</span>
+  </div>
+  <div class="cmy-stage">
+    <div class="cmy-light-wrap">
+      <span class="cmy-target-label">Tu mezcla</span>
+      <div class="cmy-light" id="cmyLight" style="--clr:rgba(255,255,255,0.4);background:#fff;"></div>
+      <div class="cmy-row">
+        <span class="cmy-row-lbl">RGB</span>
+        <span class="cmy-row-val" id="cmyRgb">255,255,255</span>
+      </div>
+    </div>
+    <div class="cmy-light-wrap">
+      <span class="cmy-target-label">Color objetivo</span>
+      <div class="cmy-target" id="cmyTarget" style="--clr:rgba(120,80,200,0.4);background:#7850c8;"></div>
+      <div class="cmy-row">
+        <span class="cmy-row-lbl" id="cmyTargetName">—</span>
+      </div>
+    </div>
+  </div>
+  <div class="cmy-controls">
+    <div class="cmy-slider-row">
+      <span class="cmy-slider-lbl cyan">CYAN</span>
+      <input type="range" id="cmyC" min="0" max="100" value="0">
+      <span class="cmy-row-val"><span id="cmyCval">0</span>%</span>
+    </div>
+    <div class="cmy-slider-row">
+      <span class="cmy-slider-lbl magenta">MAGENTA</span>
+      <input type="range" id="cmyM" min="0" max="100" value="0">
+      <span class="cmy-row-val"><span id="cmyMval">0</span>%</span>
+    </div>
+    <div class="cmy-slider-row">
+      <span class="cmy-slider-lbl yellow">YELLOW</span>
+      <input type="range" id="cmyY" min="0" max="100" value="0">
+      <span class="cmy-row-val"><span id="cmyYval">0</span>%</span>
+    </div>
+    <div class="cmy-difference" id="cmyDiff">Similitud: 0% — ajusta los sliders</div>
+  </div>
+  <div class="gmq-feedback" id="cmyFb"></div>
+  <div class="gmq-actions">
+    <button class="gmq-btn gmq-btn-ghost" onclick="cmyReset()">↺ Reiniciar</button>
+    <button class="gmq-btn gmq-btn-primary" onclick="cmyValidate()">Validar mezcla</button>
+    <button class="gmq-btn gmq-btn-primary" id="cmyNext" style="display:none;" onclick="cmyNext()">Siguiente reto →</button>
+  </div>
+</div>
+
+
         </section>
 
         <!-- ══════════════════ EXECUTORS ══════════════════ -->
@@ -3491,11 +3769,739 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
                     <div class="info-box"><h4>🔀 Híbrido — Todo en uno</h4><p>Combina Beam, Spot y Wash en un solo aparato. Más versátil pero más canales DMX. Muy común en riders de gira.</p></div>
                 </div>
             </div>
+
+<!-- ═══════════════ NUEVO: ELIGE EL FOCO CORRECTO ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Elige el Foco Correcto</div>
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6;">
+    Lee el escenario y elige el tipo de foco más adecuado. Hay opciones razonables y otras claramente erróneas; piensa en el haz, la potencia y la versatilidad. <strong>6 retos</strong>.
+  </p>
+  <div class="gmq-prog" id="focProg"></div>
+  <div class="gmq-score-lbl">
+    <span id="focScoreL">Reto 1 / 6</span>
+    <span id="focScoreR">0 aciertos</span>
+  </div>
+  <div class="foc-stage">
+    <div class="foc-scenario">
+      <div class="foc-sce-icon" id="focIcon">🎤</div>
+      <div class="foc-sce-title" id="focTitle">—</div>
+      <div class="foc-sce-desc" id="focDesc">—</div>
+    </div>
+    <div class="foc-options" id="focOpts"></div>
+  </div>
+  <div class="gmq-feedback" id="focFb"></div>
+  <div class="gmq-actions">
+    <button class="gmq-btn gmq-btn-ghost" onclick="focReset()">↺ Reiniciar</button>
+    <button class="gmq-btn gmq-btn-primary" id="focNext" style="display:none;" onclick="focNext()">Siguiente reto →</button>
+  </div>
+</div>
+
+
         </section>
 
     </main><!-- end content-area -->
 </div><!-- end app-container -->
 
+
+<script>
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MEJORAS GAMIFICACIÓN MAGICQ
+// ═══════════════════════════════════════════════════════════════════════════
+
+function gmqRenderProg(elId, total, idx, results) {
+  var el = document.getElementById(elId);
+  if (!el) return;
+  var html = '';
+  for (var i = 0; i < total; i++) {
+    var cls = '';
+    if (i < idx) cls = results[i] ? 'ok' : 'err';
+    else if (i === idx) cls = 'cur';
+    html += '<div class="gmq-pip ' + cls + '"></div>';
+  }
+  el.innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 1) DMX · CALCULA LA DIRECCIÓN
+// ═══════════════════════════════════════════════════════════════════════════
+var dmxcChallenges = [
+  { fix:'PAR LED RGB',      ch:8,  start:1,   num:3 },   // 1 + 2*8 = 17
+  { fix:'Cabeza Wash 7+1',  ch:16, start:1,   num:2 },   // 1 + 1*16 = 17
+  { fix:'Cabeza Spot 18ch', ch:18, start:51,  num:4 },   // 51 + 3*18 = 105
+  { fix:'Strobe LED',       ch:6,  start:201, num:5 },   // 201 + 4*6 = 225
+  { fix:'Cabeza Beam 24ch', ch:24, start:101, num:3 },   // 101 + 2*24 = 149
+  { fix:'PAR RGBW 4ch',     ch:4,  start:401, num:8 }    // 401 + 7*4 = 429
+];
+var dmxcState = { idx:0, score:0, results:[], order:[], answered:false };
+
+function dmxcReset() {
+  dmxcState.order = dmxcChallenges.map(function(_,i){return i;}).sort(function(){return Math.random()-0.5;});
+  dmxcState.idx = 0; dmxcState.score = 0; dmxcState.results = []; dmxcState.answered = false;
+  dmxcRender();
+}
+
+function dmxcRender() {
+  if (dmxcState.idx >= dmxcState.order.length) { dmxcFinish(); return; }
+  var ch = dmxcChallenges[dmxcState.order[dmxcState.idx]];
+  document.getElementById('dmxcFix').textContent = ch.fix;
+  document.getElementById('dmxcFixSub').textContent = ch.ch + ' canales';
+  document.getElementById('dmxcStart').textContent = ch.start;
+  document.getElementById('dmxcNum').textContent = '#' + ch.num;
+  document.getElementById('dmxcNumSub').textContent = 'queremos su dir.';
+  var inp = document.getElementById('dmxcInput');
+  inp.value = '';
+  inp.disabled = false;
+  inp.focus();
+  document.getElementById('dmxcFb').className = 'gmq-feedback';
+  document.getElementById('dmxcFb').textContent = '';
+  document.getElementById('dmxcNext').style.display = 'none';
+  document.getElementById('dmxcScoreL').textContent = 'Reto ' + (dmxcState.idx+1) + ' / ' + dmxcState.order.length;
+  document.getElementById('dmxcScoreR').textContent = dmxcState.score + ' aciertos';
+  gmqRenderProg('dmxcProg', dmxcState.order.length, dmxcState.idx, dmxcState.results);
+  dmxcState.answered = false;
+}
+
+function dmxcCheck() {
+  if (dmxcState.answered) return;
+  var ch = dmxcChallenges[dmxcState.order[dmxcState.idx]];
+  var expected = ch.start + (ch.num - 1) * ch.ch;
+  var inp = document.getElementById('dmxcInput');
+  var v = parseInt(inp.value, 10);
+  if (isNaN(v)) {
+    var fb = document.getElementById('dmxcFb');
+    fb.className = 'gmq-feedback err';
+    fb.textContent = 'Introduce un número.';
+    return;
+  }
+  dmxcState.answered = true;
+  inp.disabled = true;
+  var correct = (v === expected);
+  dmxcState.results[dmxcState.idx] = correct;
+  if (correct) dmxcState.score++;
+  var fb = document.getElementById('dmxcFb');
+  fb.className = 'gmq-feedback ' + (correct ? 'ok' : 'err');
+  if (correct) {
+    fb.innerHTML = '✓ Correcto: <strong>' + expected + '</strong>. Fórmula: <code>start + (n-1) × canales = ' + ch.start + ' + ' + (ch.num-1) + ' × ' + ch.ch + ' = ' + expected + '</code>';
+  } else {
+    fb.innerHTML = '✗ Era <strong>' + expected + '</strong>. Tu respuesta: ' + v + '. Fórmula: <code>start + (n-1) × canales = ' + ch.start + ' + ' + (ch.num-1) + ' × ' + ch.ch + ' = ' + expected + '</code>';
+  }
+  document.getElementById('dmxcNext').style.display = 'inline-block';
+  document.getElementById('dmxcNext').textContent = (dmxcState.idx < dmxcState.order.length-1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('dmxcScoreR').textContent = dmxcState.score + ' aciertos';
+}
+
+function dmxcNext() {
+  dmxcState.idx++;
+  dmxcRender();
+}
+
+function dmxcFinish() {
+  document.getElementById('dmxcFix').textContent = '🏆';
+  document.getElementById('dmxcFixSub').textContent = '';
+  document.getElementById('dmxcStart').textContent = dmxcState.score;
+  document.getElementById('dmxcNum').textContent = '/' + dmxcState.order.length;
+  var inp = document.getElementById('dmxcInput');
+  inp.value = ''; inp.disabled = true;
+  document.getElementById('dmxcFb').className = 'gmq-feedback ' + (dmxcState.score >= 4 ? 'ok' : 'err');
+  document.getElementById('dmxcFb').innerHTML =
+    (dmxcState.score === dmxcState.order.length ? '🏆 ¡Perfecto! Tienes claro el cálculo de direcciones DMX.' :
+     dmxcState.score >= 4 ? 'Muy bien. Casi todas correctas.' :
+     'Repasa la fórmula y vuelve a intentarlo.');
+  document.getElementById('dmxcNext').style.display = 'inline-block';
+  document.getElementById('dmxcNext').textContent = '↻ Volver a jugar';
+  document.getElementById('dmxcNext').onclick = function(){ dmxcReset(); };
+  gmqRenderProg('dmxcProg', dmxcState.order.length, dmxcState.order.length, dmxcState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 2) PATCH · PARCHEA LAS LUCES
+// ═══════════════════════════════════════════════════════════════════════════
+var pqScenarios = [
+  { fixtures: [
+      { name:'PAR LED 1', ch:6 },
+      { name:'PAR LED 2', ch:6 },
+      { name:'Cabeza Wash', ch:14 },
+      { name:'Strobe', ch:4 }
+  ] },
+  { fixtures: [
+      { name:'Cabeza Spot 1', ch:18 },
+      { name:'Cabeza Spot 2', ch:18 },
+      { name:'Cabeza Beam',   ch:24 },
+      { name:'PAR LED RGBW',  ch:4 },
+      { name:'Strobe DMX',    ch:6 }
+  ] },
+  { fixtures: [
+      { name:'Wash 7+1 LED',  ch:16 },
+      { name:'Wash 7+1 LED',  ch:16 },
+      { name:'Spot HiRes',    ch:32 },
+      { name:'Spot HiRes',    ch:32 },
+      { name:'PAR RGB',       ch:3 },
+      { name:'PAR RGB',       ch:3 },
+      { name:'Hazer DMX',     ch:2 }
+  ] }
+];
+var pqState = { idx:0, score:0, results:[], assignments:[] };
+
+function pqReset() {
+  pqState.idx = 0; pqState.score = 0; pqState.results = []; pqState.assignments = [];
+  pqRenderScenario();
+}
+
+function pqRenderScenario() {
+  if (pqState.idx >= pqScenarios.length) { pqFinish(); return; }
+  var sc = pqScenarios[pqState.idx];
+  pqState.assignments = sc.fixtures.map(function(){ return null; });
+  // Lista
+  var html = '';
+  for (var i = 0; i < sc.fixtures.length; i++) {
+    var f = sc.fixtures[i];
+    html += '<div class="pq-fixture" data-i="' + i + '">' +
+      '<span class="pq-fixture-num">' + (i+1) + '</span>' +
+      '<div><div class="pq-fixture-name">' + f.name + '</div><div class="pq-fixture-channels">' + f.ch + ' canales</div></div>' +
+      '<input type="number" class="pq-fixture-input" min="1" max="512" placeholder="—" data-i="' + i + '" oninput="pqOnInput(' + i + ')">' +
+    '</div>';
+  }
+  document.getElementById('pqList').innerHTML = html;
+  pqRenderBar();
+  document.getElementById('pqScoreL').textContent = 'Escenario ' + (pqState.idx+1) + ' / ' + pqScenarios.length;
+  document.getElementById('pqScoreR').textContent = '0 / ' + sc.fixtures.length + ' fixtures';
+  document.getElementById('pqFb').className = 'gmq-feedback';
+  document.getElementById('pqFb').textContent = '';
+  document.getElementById('pqNext').style.display = 'none';
+  gmqRenderProg('pqProg', pqScenarios.length, pqState.idx, pqState.results);
+}
+
+function pqRenderBar() {
+  // Mostrar 32 celdas representando canales del 1 al 32
+  // (no visualizamos los 512 enteros para que no sea ilegible)
+  var html = '';
+  var occupied = new Array(33).fill(0); // 1..32
+  for (var i = 0; i < pqState.assignments.length; i++) {
+    var a = pqState.assignments[i];
+    if (a) {
+      var sc = pqScenarios[pqState.idx];
+      for (var k = a.start; k < a.start + sc.fixtures[i].ch && k <= 32; k++) {
+        occupied[k]++;
+      }
+    }
+  }
+  var total = 0;
+  for (var n = 1; n <= 32; n++) {
+    var cls = occupied[n] === 0 ? '' : (occupied[n] > 1 ? 'used conflict' : 'used');
+    html += '<div class="pq-cell ' + cls + '" title="ch ' + n + '"></div>';
+    if (occupied[n]) total++;
+  }
+  document.getElementById('pqBar').innerHTML = html;
+  // Total real (sumando todos los canales asignados aunque pasen del 32)
+  var fullTotal = 0;
+  for (var j = 0; j < pqState.assignments.length; j++) {
+    if (pqState.assignments[j]) fullTotal += pqScenarios[pqState.idx].fixtures[j].ch;
+  }
+  document.getElementById('pqUsedTotal').textContent = fullTotal + ' ch usados';
+}
+
+function pqOnInput(i) {
+  var inp = document.querySelector('.pq-fixture-input[data-i="' + i + '"]');
+  var v = parseInt(inp.value, 10);
+  if (!isNaN(v) && v >= 1 && v <= 512) {
+    pqState.assignments[i] = { start: v };
+    inp.parentElement.classList.add('placed');
+  } else {
+    pqState.assignments[i] = null;
+    inp.parentElement.classList.remove('placed');
+  }
+  pqRenderBar();
+  // Actualizar contador
+  var sc = pqScenarios[pqState.idx];
+  var placed = pqState.assignments.filter(function(a) { return a; }).length;
+  document.getElementById('pqScoreR').textContent = placed + ' / ' + sc.fixtures.length + ' fixtures';
+}
+
+function pqValidate() {
+  var sc = pqScenarios[pqState.idx];
+  // Comprobar que todos asignados
+  var allPlaced = pqState.assignments.every(function(a){ return a !== null; });
+  if (!allPlaced) {
+    var fb = document.getElementById('pqFb');
+    fb.className = 'gmq-feedback err';
+    fb.textContent = 'Debes asignar dirección a todos los fixtures antes de validar.';
+    return;
+  }
+  // Comprobar conflictos: para cada par, ver si los rangos se solapan
+  var conflicts = [];
+  for (var a = 0; a < sc.fixtures.length; a++) {
+    for (var b = a+1; b < sc.fixtures.length; b++) {
+      var sa = pqState.assignments[a].start, ea = sa + sc.fixtures[a].ch - 1;
+      var sb = pqState.assignments[b].start, eb = sb + sc.fixtures[b].ch - 1;
+      if (sa <= eb && sb <= ea) {
+        conflicts.push([a+1, b+1]);
+      }
+    }
+  }
+  // Comprobar que no se sale del 512
+  var overflow = [];
+  for (var k = 0; k < sc.fixtures.length; k++) {
+    if (pqState.assignments[k].start + sc.fixtures[k].ch - 1 > 512) overflow.push(k+1);
+  }
+  var fb = document.getElementById('pqFb');
+  var ok = (conflicts.length === 0 && overflow.length === 0);
+  pqState.results[pqState.idx] = ok;
+  if (ok) pqState.score++;
+  if (ok) {
+    fb.className = 'gmq-feedback ok';
+    fb.innerHTML = '✓ Parche válido — sin solapamientos. ¡Universo limpio!';
+  } else {
+    fb.className = 'gmq-feedback err';
+    var msg = '✗ El parche tiene problemas: ';
+    if (conflicts.length) msg += 'fixtures con canales solapados (' + conflicts.map(function(p){return '#'+p[0]+' y #'+p[1];}).join(', ') + ')';
+    if (overflow.length) msg += (conflicts.length?'; ':'') + 'fixtures que exceden el canal 512 (#' + overflow.join(', #') + ')';
+    msg += '.';
+    fb.innerHTML = msg;
+  }
+  document.getElementById('pqNext').style.display = 'inline-block';
+  document.getElementById('pqNext').textContent = (pqState.idx < pqScenarios.length-1) ? 'Siguiente escenario →' : 'Ver resultado →';
+}
+
+function pqNextScenario() {
+  pqState.idx++;
+  pqRenderScenario();
+}
+
+function pqFinish() {
+  document.getElementById('pqList').innerHTML = '<div style="text-align:center;padding:30px;font-size:32px;font-weight:800;color:var(--mq-orange);">' +
+    pqState.score + ' / ' + pqScenarios.length +
+    '<div style="font-size:14px;font-weight:500;color:var(--text-dim);margin-top:8px;">' +
+      (pqState.score === pqScenarios.length ? '¡Parche perfecto en los 3 escenarios!' :
+       pqState.score >= 2 ? 'Buen trabajo. Repasa el escenario fallido.' :
+       'Repasa cómo evitar solapamientos antes de seguir.') +
+    '</div></div>';
+  document.getElementById('pqBar').innerHTML = '';
+  document.getElementById('pqFb').className = 'gmq-feedback';
+  document.getElementById('pqFb').textContent = '';
+  document.getElementById('pqNext').style.display = 'inline-block';
+  document.getElementById('pqNext').textContent = '↻ Volver a jugar';
+  document.getElementById('pqNext').onclick = function(){ pqReset(); };
+  gmqRenderProg('pqProg', pqScenarios.length, pqScenarios.length, pqState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 3) COLOR · MEZCLADOR CMY
+// ═══════════════════════════════════════════════════════════════════════════
+// Aproximación CMY -> RGB: en luz CMY restringe blanco
+// R = 255 * (1 - C/100), G = 255 * (1 - M/100), B = 255 * (1 - Y/100)
+function cmyToRgb(c, m, y) {
+  return [
+    Math.round(255 * (1 - c/100)),
+    Math.round(255 * (1 - m/100)),
+    Math.round(255 * (1 - y/100))
+  ];
+}
+
+var cmyChallenges = [
+  { name:'Rojo cálido',   c:0,  m:80, y:80, hint:'Bloquea verde y azul; deja pasar el rojo' },
+  { name:'Azul profundo', c:60, m:40, y:90, hint:'Bloquea el amarillo casi por completo' },
+  { name:'Verde escena',  c:50, m:90, y:0,  hint:'Magenta alto, sin amarillo (pasa el verde)' },
+  { name:'Naranja ámbar', c:0,  m:50, y:80, hint:'Filtra mucho azul, algo de verde' },
+  { name:'Magenta puro',  c:0,  m:80, y:0,  hint:'Solo magenta filtra el verde' }
+];
+var cmyState = { idx:0, score:0, results:[], order:[], answered:false, current:null };
+
+function cmyReset() {
+  cmyState.order = cmyChallenges.map(function(_,i){return i;}).sort(function(){return Math.random()-0.5;});
+  cmyState.idx = 0; cmyState.score = 0; cmyState.results = []; cmyState.answered = false;
+  document.getElementById('cmyC').value = 0;
+  document.getElementById('cmyM').value = 0;
+  document.getElementById('cmyY').value = 0;
+  cmyRender();
+}
+
+function cmyRender() {
+  if (cmyState.idx >= cmyState.order.length) { cmyFinish(); return; }
+  var ch = cmyChallenges[cmyState.order[cmyState.idx]];
+  cmyState.current = ch;
+  // Aplicar color objetivo
+  var rgb = cmyToRgb(ch.c, ch.m, ch.y);
+  var tgtCol = 'rgb(' + rgb.join(',') + ')';
+  var tgtEl = document.getElementById('cmyTarget');
+  tgtEl.style.background = tgtCol;
+  tgtEl.style.boxShadow = '0 0 30px ' + tgtCol;
+  document.getElementById('cmyTargetName').textContent = ch.name;
+  // Reset sliders
+  document.getElementById('cmyC').value = 0;
+  document.getElementById('cmyM').value = 0;
+  document.getElementById('cmyY').value = 0;
+  cmyUpdate();
+  document.getElementById('cmyFb').className = 'gmq-feedback';
+  document.getElementById('cmyFb').textContent = '';
+  document.getElementById('cmyNext').style.display = 'none';
+  document.getElementById('cmyScoreL').textContent = 'Reto ' + (cmyState.idx+1) + ' / ' + cmyState.order.length;
+  document.getElementById('cmyScoreR').textContent = cmyState.score + ' aciertos';
+  gmqRenderProg('cmyProg', cmyState.order.length, cmyState.idx, cmyState.results);
+  cmyState.answered = false;
+}
+
+function cmyUpdate() {
+  var c = parseInt(document.getElementById('cmyC').value, 10);
+  var m = parseInt(document.getElementById('cmyM').value, 10);
+  var y = parseInt(document.getElementById('cmyY').value, 10);
+  document.getElementById('cmyCval').textContent = c;
+  document.getElementById('cmyMval').textContent = m;
+  document.getElementById('cmyYval').textContent = y;
+  var rgb = cmyToRgb(c, m, y);
+  var col = 'rgb(' + rgb.join(',') + ')';
+  var lt = document.getElementById('cmyLight');
+  lt.style.background = col;
+  lt.style.boxShadow = '0 0 60px ' + col;
+  document.getElementById('cmyRgb').textContent = rgb.join(',');
+  // Calcular similitud con objetivo
+  if (cmyState.current) {
+    var ch = cmyState.current;
+    var tgt = cmyToRgb(ch.c, ch.m, ch.y);
+    var dr = rgb[0]-tgt[0], dg = rgb[1]-tgt[1], db = rgb[2]-tgt[2];
+    var dist = Math.sqrt(dr*dr + dg*dg + db*db);
+    var maxDist = Math.sqrt(255*255*3);
+    var sim = Math.max(0, Math.round(100 * (1 - dist/maxDist)));
+    document.getElementById('cmyDiff').textContent = 'Similitud: ' + sim + '% — ' + (sim >= 90 ? '¡muy cerca!' : sim >= 70 ? 'cerca, sigue ajustando' : 'aún lejos');
+  }
+}
+
+function cmyValidate() {
+  if (cmyState.answered) return;
+  var c = parseInt(document.getElementById('cmyC').value, 10);
+  var m = parseInt(document.getElementById('cmyM').value, 10);
+  var y = parseInt(document.getElementById('cmyY').value, 10);
+  var ch = cmyState.current;
+  var rgb = cmyToRgb(c, m, y);
+  var tgt = cmyToRgb(ch.c, ch.m, ch.y);
+  var dr = rgb[0]-tgt[0], dg = rgb[1]-tgt[1], db = rgb[2]-tgt[2];
+  var dist = Math.sqrt(dr*dr + dg*dg + db*db);
+  var maxDist = Math.sqrt(255*255*3);
+  var sim = Math.max(0, Math.round(100 * (1 - dist/maxDist)));
+  cmyState.answered = true;
+  var ok = (sim >= 90);
+  cmyState.results[cmyState.idx] = ok;
+  if (ok) cmyState.score++;
+  var fb = document.getElementById('cmyFb');
+  fb.className = 'gmq-feedback ' + (ok ? 'ok' : 'err');
+  if (ok) {
+    fb.innerHTML = '✓ ¡Excelente! Similitud ' + sim + '%. Mezcla óptima: C=' + ch.c + ' M=' + ch.m + ' Y=' + ch.y + '. ' + ch.hint;
+  } else {
+    fb.innerHTML = '✗ Similitud ' + sim + '% — necesitas ≥90% para validar. Mezcla óptima: <strong>C=' + ch.c + ' M=' + ch.m + ' Y=' + ch.y + '</strong>. ' + ch.hint;
+  }
+  document.getElementById('cmyNext').style.display = 'inline-block';
+  document.getElementById('cmyNext').textContent = (cmyState.idx < cmyState.order.length-1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('cmyScoreR').textContent = cmyState.score + ' aciertos';
+}
+
+function cmyNext() {
+  cmyState.idx++;
+  cmyRender();
+}
+
+function cmyFinish() {
+  document.getElementById('cmyTargetName').textContent = '🏆 ' + cmyState.score + '/' + cmyState.order.length;
+  document.getElementById('cmyFb').className = 'gmq-feedback ' + (cmyState.score >= 4 ? 'ok' : 'err');
+  document.getElementById('cmyFb').innerHTML =
+    (cmyState.score === cmyState.order.length ? '🏆 ¡Perfecto! Dominas la mezcla CMY sustractiva.' :
+     cmyState.score >= 4 ? 'Muy bien. Tienes claros los principios sustractivos.' :
+     'Recuerda: en CMY, cada filtro RESTA su color complementario. Repite.');
+  document.getElementById('cmyNext').style.display = 'inline-block';
+  document.getElementById('cmyNext').textContent = '↻ Volver a jugar';
+  document.getElementById('cmyNext').onclick = function(){ cmyReset(); };
+  gmqRenderProg('cmyProg', cmyState.order.length, cmyState.order.length, cmyState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 4) CUES · CONSTRUYE EL COMANDO
+// ═══════════════════════════════════════════════════════════════════════════
+var cmdChallenges = [
+  { goal:'Llevar el grupo 1 al 50% de intensidad',     correct:['Group','1','@','50','Enter'], distractors:['Cue','25','Time'] },
+  { goal:'Liberar todos los playbacks',                correct:['Release','All','Enter'],       distractors:['Group','Cue','@','100'] },
+  { goal:'Apagar todo (Blackout)',                     correct:['DBO','Enter'],                  distractors:['Locate','Group','All','100'] },
+  { goal:'Llevar fixture 5 a posición de paleta P1',   correct:['Fixture','5','@','POS','1','Enter'], distractors:['Group','Cue','Time'] },
+  { goal:'Grabar la cue 3 con tiempo de 4 segundos',   correct:['Record','Cue','3','Time','4','Enter'], distractors:['Group','@','Release','All'] },
+  { goal:'Posición LOCATE de cabezas 1–4',             correct:['Fixture','1','Thru','4','Locate','Enter'], distractors:['@','50','Cue','Group'] },
+  { goal:'Desactivar (Off) la cue 5',                  correct:['Off','Cue','5','Enter'],        distractors:['On','@','Group','100'] },
+  { goal:'Aplicar color amarillo (paleta C2) al grupo 3', correct:['Group','3','@','COL','2','Enter'], distractors:['Fixture','Cue','POS','Time'] }
+];
+var cmdState = { idx:0, score:0, results:[], order:[], built:[] };
+
+function cmdReset() {
+  cmdState.order = cmdChallenges.map(function(_,i){return i;}).sort(function(){return Math.random()-0.5;});
+  cmdState.idx = 0; cmdState.score = 0; cmdState.results = []; cmdState.built = [];
+  cmdRender();
+}
+
+function cmdRender() {
+  if (cmdState.idx >= cmdState.order.length) { cmdFinish(); return; }
+  var ch = cmdChallenges[cmdState.order[cmdState.idx]];
+  cmdState.built = [];
+  document.getElementById('cmdGoal').innerHTML = '<strong>Objetivo:</strong> ' + ch.goal;
+  // Tokens disponibles: correctos + distractores, mezclados
+  var pool = ch.correct.concat(ch.distractors);
+  pool.sort(function(){return Math.random()-0.5;});
+  var html = '';
+  for (var i = 0; i < pool.length; i++) {
+    html += '<button class="cmd-token" data-token="' + pool[i] + '" onclick="cmdAdd(\'' + pool[i] + '\', this)">' + pool[i] + '</button>';
+  }
+  document.getElementById('cmdTokens').innerHTML = html;
+  cmdRenderOutput();
+  document.getElementById('cmdFb').className = 'gmq-feedback';
+  document.getElementById('cmdFb').textContent = '';
+  document.getElementById('cmdNext').style.display = 'none';
+  document.getElementById('cmdScoreL').textContent = 'Reto ' + (cmdState.idx+1) + ' / ' + cmdState.order.length;
+  document.getElementById('cmdScoreR').textContent = cmdState.score + ' aciertos';
+  gmqRenderProg('cmdProg', cmdState.order.length, cmdState.idx, cmdState.results);
+}
+
+function cmdRenderOutput() {
+  var out = document.getElementById('cmdOutput');
+  if (cmdState.built.length === 0) {
+    out.innerHTML = '<span class="cmd-output-prompt">&gt;</span><span class="cmd-output-empty">Construye el comando…</span>';
+    return;
+  }
+  var html = '<span class="cmd-output-prompt">&gt;</span>';
+  for (var i = 0; i < cmdState.built.length; i++) {
+    html += '<span class="cmd-token-output" onclick="cmdRemove(' + i + ')" title="Click para quitar">' + cmdState.built[i] + '</span>';
+  }
+  out.innerHTML = html;
+}
+
+function cmdAdd(token, btn) {
+  // Cada token solo se puede usar una vez por construcción
+  if (btn.disabled) return;
+  cmdState.built.push(token);
+  // Marcar el botón como usado solo si ya no hay más copias
+  // (ej. si hay '1' como correct y '1' como distractor, hay que distinguir... aquí
+  // simplificamos: cada botón se desactiva tras usarlo)
+  btn.disabled = true;
+  cmdRenderOutput();
+}
+
+function cmdRemove(idx) {
+  var removed = cmdState.built[idx];
+  cmdState.built.splice(idx, 1);
+  // Reactivar UN botón con ese token
+  var btns = document.querySelectorAll('#cmdTokens .cmd-token');
+  for (var i = 0; i < btns.length; i++) {
+    if (btns[i].disabled && btns[i].dataset.token === removed) {
+      btns[i].disabled = false;
+      break;
+    }
+  }
+  cmdRenderOutput();
+}
+
+function cmdValidate() {
+  var ch = cmdChallenges[cmdState.order[cmdState.idx]];
+  if (cmdState.results[cmdState.idx] !== undefined) return;
+  var ok = (cmdState.built.length === ch.correct.length) &&
+           cmdState.built.every(function(t, i) { return t === ch.correct[i]; });
+  cmdState.results[cmdState.idx] = ok;
+  if (ok) cmdState.score++;
+  var fb = document.getElementById('cmdFb');
+  fb.className = 'gmq-feedback ' + (ok ? 'ok' : 'err');
+  if (ok) {
+    fb.innerHTML = '✓ Comando correcto: <code>' + ch.correct.join(' ') + '</code>';
+  } else {
+    fb.innerHTML = '✗ Comando incorrecto. Tu intento: <code>' + (cmdState.built.join(' ') || '(vacío)') + '</code><br>Comando correcto: <code>' + ch.correct.join(' ') + '</code>';
+  }
+  document.getElementById('cmdNext').style.display = 'inline-block';
+  document.getElementById('cmdNext').textContent = (cmdState.idx < cmdState.order.length-1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('cmdScoreR').textContent = cmdState.score + ' aciertos';
+}
+
+function cmdNext() {
+  cmdState.idx++;
+  cmdRender();
+}
+
+function cmdFinish() {
+  document.getElementById('cmdGoal').innerHTML = '<strong>🏆 ' + cmdState.score + ' / ' + cmdState.order.length + '</strong>';
+  document.getElementById('cmdOutput').innerHTML = '<span style="color:#86efac;">' +
+    (cmdState.score === cmdState.order.length ? '¡Comandos perfectos!' :
+     cmdState.score >= 6 ? 'Muy buena sintaxis.' :
+     cmdState.score >= 4 ? 'Aceptable. Repasa la sección de sintaxis.' :
+     'Vuelve al panel de sintaxis MagicQ.') + '</span>';
+  document.getElementById('cmdTokens').innerHTML = '';
+  document.getElementById('cmdFb').className = 'gmq-feedback';
+  document.getElementById('cmdFb').textContent = '';
+  document.getElementById('cmdNext').style.display = 'inline-block';
+  document.getElementById('cmdNext').textContent = '↻ Volver a jugar';
+  document.getElementById('cmdNext').onclick = function(){ cmdReset(); };
+  gmqRenderProg('cmdProg', cmdState.order.length, cmdState.order.length, cmdState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 5) CATALOGOFOCOS · ELIGE EL FOCO
+// ═══════════════════════════════════════════════════════════════════════════
+var focChallenges = [
+  { icon:'🎤', title:'Concierto pop pequeño en sala',
+    desc:'200 personas, escenario 6×4m. Necesitas haz potente, color y movimiento. Presupuesto ajustado.',
+    best:'Cabeza Wash LED', alt:['Cabeza Spot LED'],
+    options:['Cabeza Wash LED','Cabeza Spot LED','Foco Recorte 1000W','PAR LED RGB']
+  },
+  { icon:'🎭', title:'Obra de teatro clásico — efectos sutiles',
+    desc:'Sala convencional, 300 butacas. Necesitas iluminar zonas concretas con bordes definidos para distinguir actores.',
+    best:'Foco Recorte 1000W', alt:['Cabeza Spot LED'],
+    options:['Cabeza Wash LED','Foco Recorte 1000W','Beam Móvil','Strobe LED']
+  },
+  { icon:'🩰', title:'Espectáculo de danza contemporánea',
+    desc:'Cuerpos en movimiento, baño de luz envolvente con cambios de color suaves. Sin haces duros que distraigan.',
+    best:'Cabeza Wash LED', alt:['PAR LED RGBW','Fresnel'],
+    options:['Cabeza Wash LED','Foco Recorte 1000W','Strobe LED','Beam Móvil']
+  },
+  { icon:'🎉', title:'Festival al aire libre — escenario grande',
+    desc:'Necesitas haces estrechos y muy potentes que rasguen el cielo a 30m de distancia, efecto wow visible desde lejos.',
+    best:'Beam Móvil', alt:['Cabeza Spot LED'],
+    options:['PAR LED RGB','Cabeza Wash LED','Beam Móvil','Foco Recorte 1000W']
+  },
+  { icon:'📺', title:'Plató de TV — entrevista informativa',
+    desc:'Iluminación constante de los presentadores, sin sombras duras. Reproducción de color fiel (CRI alto), sin colores saturados.',
+    best:'Fresnel', alt:['PC (Plano Convexo)'],
+    options:['Fresnel','Beam Móvil','Strobe LED','PAR LED RGB']
+  },
+  { icon:'🕺', title:'Discoteca / sala de baile',
+    desc:'Pista de baile circular, necesitas mucho color, movimiento, parpadeos y efectos. Ambiente alto.',
+    best:'Strobe LED', alt:['Cabeza Wash LED','Beam Móvil'],
+    options:['Strobe LED','Foco Recorte 1000W','Fresnel','PC (Plano Convexo)']
+  }
+];
+var focState = { idx:0, score:0, results:[], order:[], answered:false };
+
+function focReset() {
+  focState.order = focChallenges.map(function(_,i){return i;}).sort(function(){return Math.random()-0.5;});
+  focState.idx = 0; focState.score = 0; focState.results = []; focState.answered = false;
+  focRender();
+}
+
+function focRender() {
+  if (focState.idx >= focState.order.length) { focFinish(); return; }
+  var ch = focChallenges[focState.order[focState.idx]];
+  document.getElementById('focIcon').textContent = ch.icon;
+  document.getElementById('focTitle').textContent = ch.title;
+  document.getElementById('focDesc').textContent = ch.desc;
+  // Mostrar 4 opciones (las que vienen en options); aleatorizar orden
+  var opts = ch.options.slice().sort(function(){return Math.random()-0.5;});
+  var html = '';
+  for (var i = 0; i < opts.length; i++) {
+    html += '<button class="foc-opt" data-id="' + opts[i] + '" onclick="focPick(\'' + opts[i].replace(/'/g, "\\'") + '\', this)">' +
+      '<span class="foc-opt-name">' + opts[i] + '</span>' +
+    '</button>';
+  }
+  document.getElementById('focOpts').innerHTML = html;
+  document.getElementById('focFb').className = 'gmq-feedback';
+  document.getElementById('focFb').textContent = '';
+  document.getElementById('focNext').style.display = 'none';
+  document.getElementById('focScoreL').textContent = 'Reto ' + (focState.idx+1) + ' / ' + focState.order.length;
+  document.getElementById('focScoreR').textContent = focState.score + ' aciertos';
+  gmqRenderProg('focProg', focState.order.length, focState.idx, focState.results);
+  focState.answered = false;
+}
+
+function focPick(id, btn) {
+  if (focState.answered) return;
+  focState.answered = true;
+  var ch = focChallenges[focState.order[focState.idx]];
+  var correct = (id === ch.best);
+  // Aceptar también alternativas razonables como medio acierto pero contar correcto
+  var altOk = ch.alt && ch.alt.indexOf(id) !== -1;
+  var totallyOk = correct;
+  focState.results[focState.idx] = totallyOk;
+  if (totallyOk) focState.score++;
+  var opts = document.querySelectorAll('#focOpts .foc-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.add('locked');
+    if (opts[i].dataset.id === ch.best) opts[i].classList.add('correct');
+    if (opts[i] === btn && !correct) opts[i].classList.add('wrong');
+  }
+  var fb = document.getElementById('focFb');
+  fb.className = 'gmq-feedback ' + (correct ? 'ok' : 'err');
+  if (correct) {
+    fb.innerHTML = '✓ Correcto: <strong>' + ch.best + '</strong>. ' + ch.desc;
+  } else if (altOk) {
+    fb.innerHTML = '⚠ <strong>' + id + '</strong> es razonable, pero la mejor opción es <strong>' + ch.best + '</strong> en este caso.';
+    fb.className = 'gmq-feedback err';
+  } else {
+    fb.innerHTML = '✗ Era <strong>' + ch.best + '</strong>. ' + ch.desc;
+  }
+  document.getElementById('focNext').style.display = 'inline-block';
+  document.getElementById('focNext').textContent = (focState.idx < focState.order.length-1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('focScoreR').textContent = focState.score + ' aciertos';
+}
+
+function focNext() {
+  focState.idx++;
+  focRender();
+}
+
+function focFinish() {
+  document.getElementById('focIcon').textContent = '🏆';
+  document.getElementById('focTitle').textContent = focState.score + ' / ' + focState.order.length;
+  document.getElementById('focDesc').textContent =
+    (focState.score === focState.order.length ? '¡Perfecto! Eliges el foco con criterio profesional.' :
+     focState.score >= 4 ? 'Muy bien. Tienes claras las características de cada foco.' :
+     'Repasa la sección "Tipos de Focos" antes de seguir.');
+  document.getElementById('focOpts').innerHTML = '';
+  document.getElementById('focFb').className = 'gmq-feedback';
+  document.getElementById('focFb').textContent = '';
+  document.getElementById('focNext').style.display = 'inline-block';
+  document.getElementById('focNext').textContent = '↻ Volver a jugar';
+  document.getElementById('focNext').onclick = function(){ focReset(); };
+  gmqRenderProg('focProg', focState.order.length, focState.order.length, focState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INICIALIZACIÓN — engancharse a showPage
+// ═══════════════════════════════════════════════════════════════════════════
+(function() {
+  function applyHook() {
+    if (typeof window.showPage !== 'function') return false;
+    if (window._gmqHooked) return true;
+    window._gmqHooked = true;
+    var orig = window.showPage;
+    window.showPage = function(id) {
+      orig(id);
+      // Inicializar al entrar en la página, una sola vez
+      if (id === 'dmx') setTimeout(function() {
+        if (!document.querySelector('#dmxcProg .gmq-pip')) dmxcReset();
+      }, 80);
+      if (id === 'patch') setTimeout(function() {
+        if (!document.querySelector('#pqProg .gmq-pip')) pqReset();
+      }, 80);
+      if (id === 'color') setTimeout(function() {
+        if (!document.querySelector('#cmyProg .gmq-pip')) cmyReset();
+      }, 80);
+      if (id === 'cues') setTimeout(function() {
+        if (!document.querySelector('#cmdProg .gmq-pip')) cmdReset();
+      }, 80);
+      if (id === 'catalogofocos') setTimeout(function() {
+        if (!document.querySelector('#focProg .gmq-pip')) focReset();
+      }, 80);
+    };
+    return true;
+  }
+  if (!applyHook()) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyHook);
+    }
+    setTimeout(applyHook, 50);
+    setTimeout(applyHook, 200);
+    setTimeout(applyHook, 500);
+  }
+
+  // Wire de los sliders CMY (delegación)
+  document.addEventListener('input', function(e) {
+    if (e.target && (e.target.id === 'cmyC' || e.target.id === 'cmyM' || e.target.id === 'cmyY')) {
+      cmyUpdate();
+    }
+  });
+})();
+
+// ─── fin mejoras gamificación ─────────────────────────────────────────────
+
+</script>
 <script>
 // ═══════════════════════════════════════════
 // NAVIGATION

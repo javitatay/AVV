@@ -720,6 +720,112 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 }
 
 
+
+/* ═══════════════ MEJORAS GAMIFICACIÓN AFTER EFFECTS ═══════════════ */
+
+/* Comunes */
+.gae-prog { display:flex; gap:4px; margin-bottom:14px; }
+.gae-pip { height:5px; flex:1; border-radius:3px; background:var(--bg-deep); }
+.gae-pip.ok  { background:#22c55e; }
+.gae-pip.err { background:#ef4444; }
+.gae-pip.cur { background:var(--ae-blue); }
+.gae-score-lbl { font-size:11px; font-weight:700; color:var(--text-dim); margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); }
+.gae-feedback { font-size:13px; font-weight:500; padding:11px 14px; border-radius:6px; margin-top:12px; display:none; line-height:1.55; }
+.gae-feedback.ok  { display:block; background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
+.gae-feedback.err { display:block; background:#fff1f1; color:#991b1b; border:1px solid #fecaca; }
+.gae-btn { padding:9px 18px; border-radius:6px; border:none; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; transition:all .15s; }
+.gae-btn-primary { background:var(--ae-blue); color:#fff; }
+.gae-btn-primary:hover { background:var(--ae-blue-dim); }
+.gae-btn-ghost { background:var(--bg-button); color:var(--text-primary); border:1px solid var(--border-mid); }
+.gae-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:14px; }
+
+/* === BRAZO ROBÓTICO (parenting) === */
+.arm-stage { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:14px; }
+@media (max-width:760px) { .arm-stage { grid-template-columns:1fr; } }
+.arm-canvas-wrap { background:#0d1530; border-radius:10px; padding:16px; display:flex; align-items:center; justify-content:center; }
+.arm-canvas { width:100%; max-width:340px; aspect-ratio:1; display:block; }
+.arm-controls { background:var(--bg-panel); border:1px solid var(--border-dark); border-radius:10px; padding:14px; }
+.arm-row { margin-bottom:14px; }
+.arm-row:last-child { margin-bottom:0; }
+.arm-row-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+.arm-row-name { font-size:12px; font-weight:700; color:var(--text-primary); font-family:var(--font-mono); }
+.arm-row-name .arm-parent { color:var(--text-dim); font-size:10.5px; font-weight:500; margin-left:6px; }
+.arm-row-val { font-family:var(--font-mono); font-size:12px; color:var(--ae-blue); font-weight:700; min-width:48px; text-align:right; }
+.arm-row input[type=range] { width:100%; accent-color:var(--ae-blue); }
+.arm-target-info { padding:10px 12px; background:rgba(53,72,200,0.08); border-left:3px solid var(--ae-blue); border-radius:6px; font-size:12px; color:var(--text-primary); margin-bottom:14px; line-height:1.55; }
+.arm-target-info strong { color:var(--ae-blue); }
+
+/* === BLEND MODE MATCH (modos) — reusa de Resolume con paleta AE === */
+.aebm-stage { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+@media (max-width:760px) { .aebm-stage { grid-template-columns:1fr; } }
+.aebm-prev { background:#0d1530; border-radius:8px; padding:12px; }
+.aebm-prev-lbl { font-size:10px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:rgba(255,255,255,.55); margin-bottom:8px; font-family:var(--font-mono); }
+.aebm-canvas { width:100%; aspect-ratio:16/9; display:block; background:#000; border-radius:5px; }
+.aebm-options { display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; }
+.aebm-opt {
+  padding:13px 12px; background:var(--bg-surface); border:1.5px solid var(--border-dark); border-radius:7px;
+  cursor:pointer; font-family:inherit; color:var(--text-primary);
+  text-align:left; transition:all .15s; display:flex; flex-direction:column; gap:4px;
+}
+.aebm-opt:hover:not(.locked) { border-color:var(--ae-blue); background:rgba(53,72,200,0.05); transform:translateY(-1px); }
+.aebm-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
+.aebm-opt.wrong { border-color:#ef4444; background:#fff1f1; color:#991b1b; }
+.aebm-opt.locked { cursor:default; }
+.aebm-opt-name { font-size:14px; font-weight:700; }
+.aebm-opt-formula { font-size:10.5px; color:var(--text-dim); font-family:var(--font-mono); }
+
+/* === MATCH PROPERTIES (propiedades) === */
+.mp-stage { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+@media (max-width:760px) { .mp-stage { grid-template-columns:1fr; } }
+.mp-canvas-wrap { background:#0d1530; border-radius:10px; padding:14px; }
+.mp-canvas-wrap-lbl { font-size:10px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:rgba(255,255,255,.55); margin-bottom:8px; font-family:var(--font-mono); text-align:center; }
+.mp-canvas { width:100%; aspect-ratio:1; display:block; background:#0a0f1e; border-radius:6px; }
+.mp-controls { background:var(--bg-panel); border:1px solid var(--border-dark); border-radius:10px; padding:14px; }
+.mp-row { margin-bottom:12px; }
+.mp-row-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; }
+.mp-row-name { font-size:12px; font-weight:700; color:var(--text-primary); font-family:var(--font-mono); }
+.mp-row-val { font-family:var(--font-mono); font-size:11.5px; color:var(--ae-blue); font-weight:700; }
+.mp-row input[type=range] { width:100%; accent-color:var(--ae-blue); }
+.mp-similarity { padding:10px 12px; background:var(--bg-surface); border:1px solid var(--border-dark); border-radius:6px; font-size:11.5px; font-family:var(--font-mono); color:var(--text-dim); text-align:center; margin-top:10px; }
+
+/* === ORDENA LA TIMELINE === */
+.tlo-stage { background:var(--bg-panel); border:1px solid var(--border-dark); border-radius:10px; padding:14px; margin-bottom:14px; }
+.tlo-target { padding:12px 14px; background:rgba(53,72,200,0.08); border-left:3px solid var(--ae-blue); border-radius:6px; margin-bottom:14px; }
+.tlo-target-lbl { font-size:10px; color:var(--ae-blue); font-weight:700; letter-spacing:.5px; text-transform:uppercase; margin-bottom:4px; font-family:var(--font-mono); }
+.tlo-target-desc { font-size:13px; color:var(--text-primary); line-height:1.5; }
+.tlo-zorder-lbl { font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:.6px; margin-bottom:6px; font-family:var(--font-mono); }
+.tlo-list { display:flex; flex-direction:column; gap:5px; padding:8px; background:var(--bg-deep); border-radius:6px; min-height:60px; }
+.tlo-layer {
+  padding:10px 14px; background:var(--bg-surface); border:1.5px solid var(--border-dark); border-radius:5px;
+  cursor:grab; display:flex; align-items:center; gap:10px;
+  font-family:var(--font-mono); font-size:13px; transition:transform 0.12s, box-shadow 0.12s;
+}
+.tlo-layer:hover { box-shadow:0 2px 8px rgba(53,72,200,0.15); border-color:var(--ae-blue); }
+.tlo-layer.dragging { opacity:0.4; cursor:grabbing; }
+.tlo-layer-grip { color:var(--text-dim); font-size:14px; }
+.tlo-layer-icon { font-size:16px; }
+.tlo-layer-name { font-weight:700; flex:1; }
+.tlo-layer-hint { font-size:10.5px; color:var(--text-dim); font-weight:500; }
+.tlo-layer.correct { border-color:#22c55e; background:#f0fdf4; }
+.tlo-layer.wrong { border-color:#ef4444; background:#fff1f1; }
+
+/* === TEXT ANIMATOR (texto) === */
+.txa-stage { background:#0d1530; border-radius:10px; padding:18px; margin-bottom:14px; }
+.txa-canvas-wrap { width:100%; aspect-ratio:16/6; background:#0a0f1e; border-radius:6px; overflow:hidden; }
+.txa-canvas { width:100%; height:100%; display:block; }
+.txa-options { display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; }
+.txa-opt {
+  padding:12px 10px; background:var(--bg-surface); border:1.5px solid var(--border-dark); border-radius:6px;
+  cursor:pointer; font-family:inherit; color:var(--text-primary); font-size:13px; font-weight:700;
+  text-align:center; transition:all .15s;
+}
+.txa-opt:hover:not(.locked) { border-color:var(--ae-blue); background:rgba(53,72,200,0.05); transform:translateY(-1px); }
+.txa-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
+.txa-opt.wrong { border-color:#ef4444; background:#fff1f1; color:#991b1b; }
+.txa-opt.locked { cursor:default; }
+
+/* fin */
+
 </style>
 </head>
 <body>
@@ -1413,6 +1519,59 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
       <span>Usa <kbd>Shift</kbd>+tecla para ver varias propiedades a la vez sin que se oculten las anteriores. Muy útil cuando animas posición y rotación a la vez.</span>
     </div>
   </div>
+
+<!-- ═══════════════ NUEVO: MATCH PROPERTIES ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Match Properties — Iguala las propiedades</div>
+  <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;line-height:1.6;">
+    A la izquierda ves la capa <strong>objetivo</strong>. Ajusta las propiedades de tu capa para igualarla. Necesitas <strong>≥90% de similitud</strong> en posición, escala, rotación y opacidad. <strong>5 retos</strong>.
+  </p>
+  <div class="gae-prog" id="mpProg"></div>
+  <div class="gae-score-lbl"><span id="mpScoreL">Reto 1 / 5</span><span id="mpScoreR">0 aciertos</span></div>
+
+  <div class="mp-stage">
+    <div class="mp-canvas-wrap">
+      <div class="mp-canvas-wrap-lbl">🎯 Objetivo</div>
+      <canvas class="mp-canvas" id="mpCanvasT" width="280" height="280"></canvas>
+    </div>
+    <div class="mp-canvas-wrap">
+      <div class="mp-canvas-wrap-lbl">Tu capa</div>
+      <canvas class="mp-canvas" id="mpCanvasU" width="280" height="280"></canvas>
+    </div>
+  </div>
+
+  <div class="mp-controls">
+    <div class="mp-row">
+      <div class="mp-row-head"><span class="mp-row-name">Position X</span><span class="mp-row-val" id="mpPxV">140</span></div>
+      <input type="range" id="mpPx" min="20" max="260" value="140">
+    </div>
+    <div class="mp-row">
+      <div class="mp-row-head"><span class="mp-row-name">Position Y</span><span class="mp-row-val" id="mpPyV">140</span></div>
+      <input type="range" id="mpPy" min="20" max="260" value="140">
+    </div>
+    <div class="mp-row">
+      <div class="mp-row-head"><span class="mp-row-name">Scale</span><span class="mp-row-val" id="mpSV">100%</span></div>
+      <input type="range" id="mpS" min="20" max="200" value="100">
+    </div>
+    <div class="mp-row">
+      <div class="mp-row-head"><span class="mp-row-name">Rotation</span><span class="mp-row-val" id="mpRV">0°</span></div>
+      <input type="range" id="mpR" min="-180" max="180" value="0">
+    </div>
+    <div class="mp-row">
+      <div class="mp-row-head"><span class="mp-row-name">Opacity</span><span class="mp-row-val" id="mpOV">100%</span></div>
+      <input type="range" id="mpO" min="0" max="100" value="100">
+    </div>
+    <div class="mp-similarity" id="mpSim">Similitud: 0% — empieza a ajustar</div>
+  </div>
+
+  <div class="gae-feedback" id="mpFb"></div>
+  <div class="gae-actions">
+    <button class="gae-btn gae-btn-ghost" onclick="mpReset()">↺ Reiniciar</button>
+    <button class="gae-btn gae-btn-primary" onclick="mpValidate()">Validar match</button>
+    <button class="gae-btn gae-btn-primary" id="mpNext" style="display:none;" onclick="mpNext()">Siguiente reto →</button>
+  </div>
+</div>
+
 </section>
 
 <!-- ═══ KEYFRAMES ═══════════════════════════════════════════ -->
@@ -1832,6 +1991,57 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
       </div>
     </div>
   </div>
+
+<!-- ═══════════════ NUEVO: BRAZO ROBÓTICO ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Brazo Robótico — Parenting en cadena</div>
+  <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;line-height:1.6;">
+    Tienes un brazo de 3 segmentos. Cada segmento es <strong>hijo del anterior</strong> (Junta 2 → Brazo 1, Brazo 3 → Junta 2). Al rotar la base, todo se mueve. Al rotar Junta 2, solo lo que viene después. Tu objetivo: <strong>colocar la mano en el target</strong>. <strong>4 retos</strong>.
+  </p>
+  <div class="gae-prog" id="armProg"></div>
+  <div class="gae-score-lbl"><span id="armScoreL">Reto 1 / 4</span><span id="armScoreR">0 aciertos</span></div>
+
+  <div class="arm-target-info" id="armInfo">
+    Coloca la <strong>mano</strong> (extremo verde) sobre el <strong>target</strong> (círculo amarillo). Tolerancia: ±15px.
+  </div>
+
+  <div class="arm-stage">
+    <div class="arm-canvas-wrap">
+      <canvas class="arm-canvas" id="armCanvas" width="340" height="340"></canvas>
+    </div>
+    <div class="arm-controls">
+      <div class="arm-row">
+        <div class="arm-row-head">
+          <span class="arm-row-name">Brazo 1<span class="arm-parent">(base · raíz)</span></span>
+          <span class="arm-row-val" id="armA1val">0°</span>
+        </div>
+        <input type="range" id="armA1" min="-180" max="180" value="0">
+      </div>
+      <div class="arm-row">
+        <div class="arm-row-head">
+          <span class="arm-row-name">Junta 2<span class="arm-parent">(hija de Brazo 1)</span></span>
+          <span class="arm-row-val" id="armA2val">0°</span>
+        </div>
+        <input type="range" id="armA2" min="-180" max="180" value="0">
+      </div>
+      <div class="arm-row">
+        <div class="arm-row-head">
+          <span class="arm-row-name">Brazo 3<span class="arm-parent">(hija de Junta 2)</span></span>
+          <span class="arm-row-val" id="armA3val">0°</span>
+        </div>
+        <input type="range" id="armA3" min="-180" max="180" value="0">
+      </div>
+    </div>
+  </div>
+
+  <div class="gae-feedback" id="armFb"></div>
+  <div class="gae-actions">
+    <button class="gae-btn gae-btn-ghost" onclick="armReset()">↺ Reiniciar</button>
+    <button class="gae-btn gae-btn-primary" onclick="armCheck()">Comprobar posición</button>
+    <button class="gae-btn gae-btn-primary" id="armNext" style="display:none;" onclick="armNext()">Siguiente reto →</button>
+  </div>
+</div>
+
 </section>
 
 <!-- ═══ TIMELINE ════════════════════════════════════════════ -->
@@ -1864,6 +2074,33 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
       <div class="tl-item"><div class="tl-badge">R</div><div><div class="tl-name">Principal y Enlace</div><div class="tl-desc">Columna de Parenting. El Pick Whip 🌀 y el menú de selección de la capa padre.</div></div></div>
     </div>
   </div>
+
+<!-- ═══════════════ NUEVO: ORDENA LA TIMELINE ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Ordena la Timeline — Z-order de capas</div>
+  <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;line-height:1.6;">
+    Lee la escena descrita y <strong>arrastra las capas</strong> para que el orden Z (capa 1 = arriba, último = fondo) sea correcto. <strong>4 escenas</strong> con dificultad creciente.
+  </p>
+  <div class="gae-prog" id="tloProg"></div>
+  <div class="gae-score-lbl"><span id="tloScoreL">Escena 1 / 4</span><span id="tloScoreR">0 aciertos</span></div>
+
+  <div class="tlo-stage">
+    <div class="tlo-target">
+      <div class="tlo-target-lbl">Escena objetivo</div>
+      <div class="tlo-target-desc" id="tloDesc">—</div>
+    </div>
+    <div class="tlo-zorder-lbl">⬆ Capa 1 (arriba) · Última capa (fondo) ⬇</div>
+    <div class="tlo-list" id="tloList"></div>
+  </div>
+
+  <div class="gae-feedback" id="tloFb"></div>
+  <div class="gae-actions">
+    <button class="gae-btn gae-btn-ghost" onclick="tloReset()">↺ Reiniciar</button>
+    <button class="gae-btn gae-btn-primary" onclick="tloValidate()">Validar orden</button>
+    <button class="gae-btn gae-btn-primary" id="tloNext" style="display:none;" onclick="tloNext()">Siguiente escena →</button>
+  </div>
+</div>
+
 </section>
 
 <!-- ═══ NULL OBJECT ═════════════════════════════════════════ -->
@@ -1956,6 +2193,39 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     <div class="bm-row"><div class="bm-name">Color</div><div class="bm-desc">Aplica tono + saturación. El más útil para colorear imágenes en blanco y negro.</div></div>
     <div class="bm-row"><div class="bm-name">Difference</div><div class="bm-desc">Resta colores. El negro es neutro. Útil para detectar si dos capas son idénticas (resultado negro = iguales).</div></div>
   </div>
+
+<!-- ═══════════════ NUEVO: BLEND MODE MATCH (AE) ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Identifica el Modo de Fusión</div>
+  <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;line-height:1.6;">
+    Capa <strong>A</strong> (fondo) y capa <strong>B</strong> (encima). Observa el <strong>resultado</strong> y elige el modo de fusión que se aplicó. <strong>6 retos</strong>.
+  </p>
+  <div class="gae-prog" id="aebmProg"></div>
+  <div class="gae-score-lbl"><span id="aebmScoreL">Reto 1 / 6</span><span id="aebmScoreR">0 aciertos</span></div>
+
+  <div class="aebm-stage">
+    <div class="aebm-prev">
+      <div class="aebm-prev-lbl">Capa A · fondo</div>
+      <canvas class="aebm-canvas" id="aebmA" width="320" height="180"></canvas>
+    </div>
+    <div class="aebm-prev">
+      <div class="aebm-prev-lbl">Capa B · superior</div>
+      <canvas class="aebm-canvas" id="aebmB" width="320" height="180"></canvas>
+    </div>
+  </div>
+  <div class="aebm-prev" style="margin-bottom:14px;">
+    <div class="aebm-prev-lbl">Resultado — ¿qué modo se aplicó?</div>
+    <canvas class="aebm-canvas" id="aebmR" width="640" height="180" style="aspect-ratio:32/9;"></canvas>
+  </div>
+
+  <div class="aebm-options" id="aebmOpts"></div>
+  <div class="gae-feedback" id="aebmFb"></div>
+  <div class="gae-actions">
+    <button class="gae-btn gae-btn-ghost" onclick="aebmReset()">↺ Reiniciar</button>
+    <button class="gae-btn gae-btn-primary" id="aebmNext" style="display:none;" onclick="aebmNext()">Siguiente reto →</button>
+  </div>
+</div>
+
 </section>
 
 <!-- ═══ ESTILOS DE CAPA ══════════════════════════════════════ -->
@@ -2201,6 +2471,30 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
       <div class="fx-use">Se consigue animando la propiedad Source Text o combinando varios animators de carácter.</div>
     </div>
   </div>
+
+<!-- ═══════════════ NUEVO: IDENTIFICA EL TEXT ANIMATOR ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Identifica el Text Animator</div>
+  <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;line-height:1.6;">
+    Mira la animación del texto. ¿Qué <strong>animator</strong> de After Effects produciría ese efecto? <strong>5 retos</strong> con animadores reales.
+  </p>
+  <div class="gae-prog" id="txaProg"></div>
+  <div class="gae-score-lbl"><span id="txaScoreL">Reto 1 / 5</span><span id="txaScoreR">0 aciertos</span></div>
+
+  <div class="txa-stage">
+    <div class="txa-canvas-wrap">
+      <canvas class="txa-canvas" id="txaCanvas" width="720" height="270"></canvas>
+    </div>
+  </div>
+
+  <div class="txa-options" id="txaOpts"></div>
+  <div class="gae-feedback" id="txaFb"></div>
+  <div class="gae-actions">
+    <button class="gae-btn gae-btn-ghost" onclick="txaReset()">↺ Reiniciar</button>
+    <button class="gae-btn gae-btn-primary" id="txaNext" style="display:none;" onclick="txaNext()">Siguiente reto →</button>
+  </div>
+</div>
+
 </section>
 
 <!-- ═══ CÁMARA 3D ════════════════════════════════════════════ -->
@@ -2890,6 +3184,902 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
   <span></span><span></span><span></span>
 </button>
 <div class="overlay" id="ov" onclick="closeSidebar()"></div>
+
+<script>
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MEJORAS GAMIFICACIÓN AFTER EFFECTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+function gaeRenderProg(elId, total, idx, results) {
+  var el = document.getElementById(elId);
+  if (!el) return;
+  var html = '';
+  for (var i = 0; i < total; i++) {
+    var cls = '';
+    if (i < idx) cls = results[i] ? 'ok' : 'err';
+    else if (i === idx) cls = 'cur';
+    html += '<div class="gae-pip ' + cls + '"></div>';
+  }
+  el.innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 1) PARENTING · BRAZO ROBÓTICO
+// ═══════════════════════════════════════════════════════════════════════════
+var armChallenges = [
+  { tx: 0.78, ty: 0.40, desc: 'Coloca la mano arriba a la derecha' },
+  { tx: 0.18, ty: 0.42, desc: 'Coloca la mano arriba a la izquierda' },
+  { tx: 0.30, ty: 0.78, desc: 'Coloca la mano abajo a la izquierda' },
+  { tx: 0.85, ty: 0.75, desc: 'Coloca la mano abajo a la derecha' }
+];
+var armState = { idx:0, score:0, results:[], a1:0, a2:0, a3:0, answered:false };
+
+function armReset() {
+  armState.idx = 0; armState.score = 0; armState.results = [];
+  armState.a1 = 0; armState.a2 = 0; armState.a3 = 0;
+  armState.answered = false;
+  document.getElementById('armA1').value = 0;
+  document.getElementById('armA2').value = 0;
+  document.getElementById('armA3').value = 0;
+  armRender();
+}
+
+function armRender() {
+  if (armState.idx >= armChallenges.length) { armFinish(); return; }
+  var ch = armChallenges[armState.idx];
+  document.getElementById('armInfo').innerHTML = '<strong>Reto ' + (armState.idx+1) + ':</strong> ' + ch.desc + '. Tolerancia ±15px en X e Y.';
+  document.getElementById('armScoreL').textContent = 'Reto ' + (armState.idx+1) + ' / ' + armChallenges.length;
+  document.getElementById('armScoreR').textContent = armState.score + ' aciertos';
+  document.getElementById('armFb').className = 'gae-feedback';
+  document.getElementById('armFb').textContent = '';
+  document.getElementById('armNext').style.display = 'none';
+  armState.answered = false;
+  armState.a1 = 0; armState.a2 = 0; armState.a3 = 0;
+  document.getElementById('armA1').value = 0;
+  document.getElementById('armA2').value = 0;
+  document.getElementById('armA3').value = 0;
+  armDraw();
+  gaeRenderProg('armProg', armChallenges.length, armState.idx, armState.results);
+}
+
+function armComputeHand() {
+  // Geometría del brazo. Origen en (cx, cy)
+  // Cada segmento longitud L. La rotación es acumulativa por la jerarquía:
+  // Brazo1 = base (rotación a1 desde el origen, hacia arriba)
+  // Junta2 = al final de Brazo1, rotación a1+a2
+  // Brazo3 = al final de Junta2, rotación a1+a2+a3
+  var c = document.getElementById('armCanvas');
+  var w = c.width, h = c.height;
+  var cx = w * 0.5, cy = h * 0.85; // base más abajo
+  var L = h * 0.22;
+  // Convertir grados a rad. Rotación 0 = arriba (eje -y)
+  function rad(d) { return d * Math.PI / 180; }
+  var r1 = rad(armState.a1);
+  var r2 = r1 + rad(armState.a2);
+  var r3 = r2 + rad(armState.a3);
+  // Posición fin de Brazo1
+  var p1 = { x: cx + L * Math.sin(r1), y: cy - L * Math.cos(r1) };
+  var p2 = { x: p1.x + L * Math.sin(r2), y: p1.y - L * Math.cos(r2) };
+  var p3 = { x: p2.x + L * Math.sin(r3), y: p2.y - L * Math.cos(r3) };
+  return { base:{x:cx,y:cy}, p1, p2, p3 };
+}
+
+function armDraw() {
+  var c = document.getElementById('armCanvas');
+  if (!c) return;
+  var ctx = c.getContext('2d');
+  var w = c.width, h = c.height;
+  ctx.clearRect(0,0,w,h);
+  // Fondo
+  var bg = ctx.createLinearGradient(0,0,0,h);
+  bg.addColorStop(0,'#1a2348'); bg.addColorStop(1,'#0d1530');
+  ctx.fillStyle = bg; ctx.fillRect(0,0,w,h);
+  // Grid sutil
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+  for (var i = 0; i < w; i += 30) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,h); ctx.stroke(); }
+  for (var j = 0; j < h; j += 30) { ctx.beginPath(); ctx.moveTo(0,j); ctx.lineTo(w,j); ctx.stroke(); }
+
+  // Target
+  if (armState.idx < armChallenges.length) {
+    var ch = armChallenges[armState.idx];
+    var tx = w * ch.tx, ty = h * ch.ty;
+    // Halo
+    var hg = ctx.createRadialGradient(tx, ty, 0, tx, ty, 30);
+    hg.addColorStop(0, 'rgba(247,215,148,0.5)');
+    hg.addColorStop(1, 'rgba(247,215,148,0)');
+    ctx.fillStyle = hg;
+    ctx.fillRect(tx-30, ty-30, 60, 60);
+    // Círculo target
+    ctx.strokeStyle = '#fbbf24';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.arc(tx, ty, 16, 0, Math.PI*2); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#fbbf24';
+    ctx.beginPath(); ctx.arc(tx, ty, 4, 0, Math.PI*2); ctx.fill();
+  }
+
+  // Brazo
+  var pts = armComputeHand();
+  // Base (suelo)
+  ctx.fillStyle = '#3a4570';
+  ctx.fillRect(pts.base.x - 30, pts.base.y, 60, 12);
+  // Segmento 1
+  ctx.strokeStyle = '#3548C8';
+  ctx.lineWidth = 8;
+  ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(pts.base.x, pts.base.y); ctx.lineTo(pts.p1.x, pts.p1.y); ctx.stroke();
+  // Junta 2
+  ctx.strokeStyle = '#5568E0';
+  ctx.beginPath(); ctx.moveTo(pts.p1.x, pts.p1.y); ctx.lineTo(pts.p2.x, pts.p2.y); ctx.stroke();
+  // Brazo 3
+  ctx.strokeStyle = '#7d8af0';
+  ctx.beginPath(); ctx.moveTo(pts.p2.x, pts.p2.y); ctx.lineTo(pts.p3.x, pts.p3.y); ctx.stroke();
+  // Articulaciones
+  ctx.fillStyle = '#fff';
+  [pts.base, pts.p1, pts.p2].forEach(function(p) {
+    ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, Math.PI*2); ctx.fill();
+  });
+  // Mano (extremo)
+  ctx.fillStyle = '#22c55e';
+  ctx.shadowColor = '#22c55e';
+  ctx.shadowBlur = 12;
+  ctx.beginPath(); ctx.arc(pts.p3.x, pts.p3.y, 7, 0, Math.PI*2); ctx.fill();
+  ctx.shadowBlur = 0;
+}
+
+function armOnSlider(name, val) {
+  armState[name] = parseInt(val, 10);
+  document.getElementById('arm' + name.toUpperCase() + 'val').textContent = val + '°';
+  armDraw();
+}
+
+function armCheck() {
+  if (armState.answered) return;
+  var ch = armChallenges[armState.idx];
+  var c = document.getElementById('armCanvas');
+  var w = c.width, h = c.height;
+  var pts = armComputeHand();
+  var dx = pts.p3.x - w * ch.tx;
+  var dy = pts.p3.y - h * ch.ty;
+  var dist = Math.sqrt(dx*dx + dy*dy);
+  var ok = dist <= 15;
+  armState.answered = true;
+  armState.results[armState.idx] = ok;
+  if (ok) armState.score++;
+  var fb = document.getElementById('armFb');
+  fb.className = 'gae-feedback ' + (ok ? 'ok' : 'err');
+  if (ok) {
+    fb.innerHTML = '✓ ¡La mano está sobre el target! Distancia: ' + dist.toFixed(1) + 'px. Has aplicado parenting correctamente.';
+  } else {
+    fb.innerHTML = '✗ Distancia: ' + dist.toFixed(1) + 'px (límite 15px). Recuerda: rotar Brazo 1 mueve TODO. Rotar Junta 2 solo mueve a partir de ella.';
+  }
+  document.getElementById('armNext').style.display = 'inline-block';
+  document.getElementById('armNext').textContent = (armState.idx < armChallenges.length-1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('armScoreR').textContent = armState.score + ' aciertos';
+}
+
+function armNext() { armState.idx++; armRender(); }
+
+function armFinish() {
+  document.getElementById('armInfo').innerHTML = '🏆 <strong>' + armState.score + ' / ' + armChallenges.length + '</strong> · ' +
+    (armState.score === armChallenges.length ? '¡Perfecto! Dominas el parenting jerárquico.' :
+     armState.score >= 3 ? 'Muy bien. Tienes claras las jerarquías.' :
+     'Repasa cómo se propagan las rotaciones de padre a hijo.');
+  document.getElementById('armNext').style.display = 'inline-block';
+  document.getElementById('armNext').textContent = '↻ Volver a jugar';
+  document.getElementById('armNext').onclick = function(){ armReset(); };
+  gaeRenderProg('armProg', armChallenges.length, armChallenges.length, armState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 2) MODOS · BLEND MODE MATCH (AE)
+// ═══════════════════════════════════════════════════════════════════════════
+var aebmModes = [
+  { id:'add',      name:'Add',      formula:'A + B (suma luz)' },
+  { id:'multiply', name:'Multiply', formula:'A × B / 255 (oscurece)' },
+  { id:'screen',   name:'Screen',   formula:'inversa de Multiply (aclara)' },
+  { id:'overlay',  name:'Overlay',  formula:'Multiply en oscuros, Screen en claros' }
+];
+var aebmChallenges = [
+  { mode:'add',      sceneA:'sky',     sceneB:'particles' },
+  { mode:'multiply', sceneA:'gradient', sceneB:'shadow' },
+  { mode:'screen',   sceneA:'dark',    sceneB:'lights' },
+  { mode:'overlay',  sceneA:'mid',     sceneB:'color' },
+  { mode:'multiply', sceneA:'photo',   sceneB:'mask' },
+  { mode:'add',      sceneA:'concert', sceneB:'flare' }
+];
+var aebmState = { idx:0, score:0, results:[], order:[], answered:false };
+
+function aebmDrawScene(ctx, w, h, key) {
+  ctx.clearRect(0,0,w,h);
+  if (key === 'sky') {
+    var g = ctx.createLinearGradient(0,0,0,h);
+    g.addColorStop(0,'#1e3a5f'); g.addColorStop(0.7,'#2563eb'); g.addColorStop(1,'#7c3aed');
+    ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
+  } else if (key === 'particles') {
+    ctx.fillStyle = '#000'; ctx.fillRect(0,0,w,h);
+    for (var i = 0; i < 40; i++) {
+      var x = Math.random()*w, y = Math.random()*h, r = 2 + Math.random()*5;
+      var grd = ctx.createRadialGradient(x,y,0,x,y,r*4);
+      grd.addColorStop(0,'rgba(255,255,255,0.95)'); grd.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.fillStyle = grd;
+      ctx.beginPath(); ctx.arc(x,y,r*4,0,Math.PI*2); ctx.fill();
+    }
+  } else if (key === 'gradient') {
+    var g2 = ctx.createLinearGradient(0,0,w,h);
+    g2.addColorStop(0,'#fbbf24'); g2.addColorStop(0.5,'#f59e0b'); g2.addColorStop(1,'#dc2626');
+    ctx.fillStyle = g2; ctx.fillRect(0,0,w,h);
+  } else if (key === 'shadow') {
+    var g3 = ctx.createRadialGradient(w*0.5, h*0.5, 0, w*0.5, h*0.5, w*0.7);
+    g3.addColorStop(0,'#fff'); g3.addColorStop(1,'#202028');
+    ctx.fillStyle = g3; ctx.fillRect(0,0,w,h);
+  } else if (key === 'dark') {
+    ctx.fillStyle = '#0a0f1e'; ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = '#1e293b';
+    for (var k = 0; k < 6; k++) ctx.fillRect(Math.random()*w-30, Math.random()*h, 60, 80);
+  } else if (key === 'lights') {
+    ctx.fillStyle = '#000'; ctx.fillRect(0,0,w,h);
+    for (var n = 0; n < 8; n++) {
+      var lx = (n+1)*w/9 + (Math.random()-0.5)*20;
+      var ly = h*0.3 + Math.random()*h*0.4;
+      var lg = ctx.createRadialGradient(lx,ly,0,lx,ly,40);
+      lg.addColorStop(0,'rgba(255,255,180,0.95)'); lg.addColorStop(1,'rgba(255,255,180,0)');
+      ctx.fillStyle = lg;
+      ctx.beginPath(); ctx.arc(lx,ly,40,0,Math.PI*2); ctx.fill();
+    }
+  } else if (key === 'mid') {
+    var gm = ctx.createLinearGradient(0,0,w,0);
+    gm.addColorStop(0,'#404040'); gm.addColorStop(1,'#a0a0a0');
+    ctx.fillStyle = gm; ctx.fillRect(0,0,w,h);
+  } else if (key === 'color') {
+    var gc = ctx.createLinearGradient(0,0,w,h);
+    gc.addColorStop(0,'#ec4899'); gc.addColorStop(0.5,'#8b5cf6'); gc.addColorStop(1,'#06b6d4');
+    ctx.fillStyle = gc; ctx.fillRect(0,0,w,h);
+  } else if (key === 'photo') {
+    var gp = ctx.createLinearGradient(0,0,0,h);
+    gp.addColorStop(0,'#7dd3fc'); gp.addColorStop(0.6,'#fbbf24'); gp.addColorStop(1,'#15803d');
+    ctx.fillStyle = gp; ctx.fillRect(0,0,w,h);
+  } else if (key === 'mask') {
+    ctx.fillStyle = '#fff'; ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = '#000';
+    ctx.beginPath(); ctx.arc(w/2,h/2, h*0.42, 0, Math.PI*2); ctx.fill();
+  } else if (key === 'concert') {
+    var bg2 = ctx.createLinearGradient(0,0,0,h);
+    bg2.addColorStop(0,'#0a0a14'); bg2.addColorStop(1,'#1a0a14');
+    ctx.fillStyle = bg2; ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, h*0.7, w, h*0.3);
+    for (var c2 = 0; c2 < 30; c2++) {
+      ctx.beginPath(); ctx.arc(c2*w/30+10, h*0.72-Math.random()*15, 4+Math.random()*3, 0, Math.PI*2); ctx.fill();
+    }
+  } else if (key === 'flare') {
+    ctx.fillStyle = '#000'; ctx.fillRect(0,0,w,h);
+    var fx = w*0.7, fy = h*0.3;
+    var fg = ctx.createRadialGradient(fx,fy,0,fx,fy,w*0.6);
+    fg.addColorStop(0,'rgba(255,200,80,1)'); fg.addColorStop(0.3,'rgba(255,100,40,0.6)'); fg.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle = fg; ctx.fillRect(0,0,w,h);
+  }
+}
+
+function aebmDrawResult(ctxR, w, h, sceneA, sceneB, mode) {
+  var oA = document.createElement('canvas'); oA.width = w; oA.height = h;
+  aebmDrawScene(oA.getContext('2d'), w, h, sceneA);
+  var oB = document.createElement('canvas'); oB.width = w; oB.height = h;
+  aebmDrawScene(oB.getContext('2d'), w, h, sceneB);
+  var dA = oA.getContext('2d').getImageData(0,0,w,h);
+  var dB = oB.getContext('2d').getImageData(0,0,w,h);
+  var out = ctxR.createImageData(w, h);
+  var a = dA.data, b = dB.data, o = out.data;
+  for (var i = 0; i < a.length; i += 4) {
+    var ar=a[i], ag=a[i+1], ab=a[i+2];
+    var br=b[i], bg=b[i+1], bb=b[i+2];
+    var r, g, B;
+    if (mode === 'add') { r = Math.min(255, ar+br); g = Math.min(255, ag+bg); B = Math.min(255, ab+bb); }
+    else if (mode === 'multiply') { r = Math.round(ar*br/255); g = Math.round(ag*bg/255); B = Math.round(ab*bb/255); }
+    else if (mode === 'screen') {
+      r = 255 - Math.round((255-ar)*(255-br)/255);
+      g = 255 - Math.round((255-ag)*(255-bg)/255);
+      B = 255 - Math.round((255-ab)*(255-bb)/255);
+    } else if (mode === 'overlay') {
+      r = ar < 128 ? Math.round(2*ar*br/255) : 255 - Math.round(2*(255-ar)*(255-br)/255);
+      g = ag < 128 ? Math.round(2*ag*bg/255) : 255 - Math.round(2*(255-ag)*(255-bg)/255);
+      B = ab < 128 ? Math.round(2*ab*bb/255) : 255 - Math.round(2*(255-ab)*(255-bb)/255);
+    }
+    o[i]=r; o[i+1]=g; o[i+2]=B; o[i+3]=255;
+  }
+  ctxR.putImageData(out, 0, 0);
+}
+
+function aebmReset() {
+  aebmState.order = aebmChallenges.map(function(_,i){return i;}).sort(function(){return Math.random()-0.5;});
+  aebmState.idx = 0; aebmState.score = 0; aebmState.results = []; aebmState.answered = false;
+  aebmRender();
+}
+
+function aebmRender() {
+  if (aebmState.idx >= aebmState.order.length) { aebmFinish(); return; }
+  var ch = aebmChallenges[aebmState.order[aebmState.idx]];
+  var cA = document.getElementById('aebmA');
+  var cB = document.getElementById('aebmB');
+  var cR = document.getElementById('aebmR');
+  aebmDrawScene(cA.getContext('2d'), cA.width, cA.height, ch.sceneA);
+  aebmDrawScene(cB.getContext('2d'), cB.width, cB.height, ch.sceneB);
+  aebmDrawResult(cR.getContext('2d'), cR.width, cR.height, ch.sceneA, ch.sceneB, ch.mode);
+  var opts = aebmModes.slice().sort(function(){return Math.random()-0.5;});
+  var html = '';
+  for (var i = 0; i < opts.length; i++) {
+    var o = opts[i];
+    html += '<button class="aebm-opt" data-id="' + o.id + '" onclick="aebmPick(\'' + o.id + '\', this)">' +
+      '<span class="aebm-opt-name">' + o.name + '</span>' +
+      '<span class="aebm-opt-formula">' + o.formula + '</span>' +
+    '</button>';
+  }
+  document.getElementById('aebmOpts').innerHTML = html;
+  document.getElementById('aebmFb').className = 'gae-feedback';
+  document.getElementById('aebmFb').textContent = '';
+  document.getElementById('aebmNext').style.display = 'none';
+  document.getElementById('aebmScoreL').textContent = 'Reto ' + (aebmState.idx+1) + ' / ' + aebmState.order.length;
+  document.getElementById('aebmScoreR').textContent = aebmState.score + ' aciertos';
+  gaeRenderProg('aebmProg', aebmState.order.length, aebmState.idx, aebmState.results);
+  aebmState.answered = false;
+}
+
+function aebmPick(id, btn) {
+  if (aebmState.answered) return;
+  aebmState.answered = true;
+  var ch = aebmChallenges[aebmState.order[aebmState.idx]];
+  var correct = (id === ch.mode);
+  aebmState.results[aebmState.idx] = correct;
+  if (correct) aebmState.score++;
+  var opts = document.querySelectorAll('#aebmOpts .aebm-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.add('locked');
+    if (opts[i].dataset.id === ch.mode) opts[i].classList.add('correct');
+    if (opts[i] === btn && !correct) opts[i].classList.add('wrong');
+  }
+  var modeDef = aebmModes.find(function(m){return m.id === ch.mode;});
+  var fb = document.getElementById('aebmFb');
+  fb.className = 'gae-feedback ' + (correct ? 'ok' : 'err');
+  fb.innerHTML = (correct ? '✓ Correcto: ' : '✗ Era ') + '<strong>' + modeDef.name + '</strong>. ' + modeDef.formula;
+  document.getElementById('aebmNext').style.display = 'inline-block';
+  document.getElementById('aebmNext').textContent = (aebmState.idx < aebmState.order.length-1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('aebmScoreR').textContent = aebmState.score + ' aciertos';
+}
+
+function aebmNext() { aebmState.idx++; aebmRender(); }
+
+function aebmFinish() {
+  document.getElementById('aebmOpts').innerHTML = '';
+  var fb = document.getElementById('aebmFb');
+  fb.className = 'gae-feedback ' + (aebmState.score >= 4 ? 'ok' : 'err');
+  fb.innerHTML = '🏆 ' + aebmState.score + '/' + aebmState.order.length + '. ' +
+    (aebmState.score === aebmState.order.length ? '¡Perfecto!' :
+     aebmState.score >= 4 ? 'Muy bien. Identificas los modos de fusión.' : 'Repasa los blend modes principales.');
+  document.getElementById('aebmNext').style.display = 'inline-block';
+  document.getElementById('aebmNext').textContent = '↻ Volver a jugar';
+  document.getElementById('aebmNext').onclick = function(){ aebmReset(); };
+  gaeRenderProg('aebmProg', aebmState.order.length, aebmState.order.length, aebmState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 3) PROPIEDADES · MATCH PROPERTIES
+// ═══════════════════════════════════════════════════════════════════════════
+var mpChallenges = [
+  { px:80,  py:80,  s:60,  r:0,   o:100 },
+  { px:200, py:200, s:140, r:45,  o:80  },
+  { px:140, py:60,  s:80,  r:-30, o:60  },
+  { px:60,  py:200, s:120, r:90,  o:100 },
+  { px:200, py:140, s:160, r:-90, o:50  }
+];
+var mpState = { idx:0, score:0, results:[], current:null, answered:false };
+
+function mpDrawCapa(canvas, props) {
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  // Grid
+  ctx.fillStyle = '#0a0f1e'; ctx.fillRect(0,0,w,h);
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+  for (var i = 0; i < w; i += 40) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,h); ctx.stroke(); }
+  for (var j = 0; j < h; j += 40) { ctx.beginPath(); ctx.moveTo(0,j); ctx.lineTo(w,j); ctx.stroke(); }
+  // Capa: cuadrado con texto AE
+  ctx.save();
+  ctx.translate(props.px, props.py);
+  ctx.rotate(props.r * Math.PI / 180);
+  var size = 60 * (props.s / 100);
+  ctx.globalAlpha = props.o / 100;
+  // Cuadrado con gradiente AE
+  var g = ctx.createLinearGradient(-size/2,-size/2,size/2,size/2);
+  g.addColorStop(0,'#3548C8'); g.addColorStop(1,'#5568E0');
+  ctx.fillStyle = g;
+  ctx.fillRect(-size/2, -size/2, size, size);
+  ctx.strokeStyle = '#C2CAF5';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(-size/2, -size/2, size, size);
+  // Texto
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold ' + (size*0.35) + 'px Inter';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('AE', 0, 0);
+  ctx.restore();
+}
+
+function mpReset() {
+  mpState.idx = 0; mpState.score = 0; mpState.results = []; mpState.answered = false;
+  mpRender();
+}
+
+function mpRender() {
+  if (mpState.idx >= mpChallenges.length) { mpFinish(); return; }
+  mpState.current = mpChallenges[mpState.idx];
+  // Reset usuario a default
+  document.getElementById('mpPx').value = 140;
+  document.getElementById('mpPy').value = 140;
+  document.getElementById('mpS').value = 100;
+  document.getElementById('mpR').value = 0;
+  document.getElementById('mpO').value = 100;
+  // Pintar target y user
+  mpDrawCapa(document.getElementById('mpCanvasT'), mpState.current);
+  mpUpdate();
+  document.getElementById('mpFb').className = 'gae-feedback';
+  document.getElementById('mpFb').textContent = '';
+  document.getElementById('mpNext').style.display = 'none';
+  document.getElementById('mpScoreL').textContent = 'Reto ' + (mpState.idx+1) + ' / ' + mpChallenges.length;
+  document.getElementById('mpScoreR').textContent = mpState.score + ' aciertos';
+  gaeRenderProg('mpProg', mpChallenges.length, mpState.idx, mpState.results);
+  mpState.answered = false;
+}
+
+function mpUpdate() {
+  var props = {
+    px: parseInt(document.getElementById('mpPx').value),
+    py: parseInt(document.getElementById('mpPy').value),
+    s:  parseInt(document.getElementById('mpS').value),
+    r:  parseInt(document.getElementById('mpR').value),
+    o:  parseInt(document.getElementById('mpO').value)
+  };
+  document.getElementById('mpPxV').textContent = props.px;
+  document.getElementById('mpPyV').textContent = props.py;
+  document.getElementById('mpSV').textContent = props.s + '%';
+  document.getElementById('mpRV').textContent = props.r + '°';
+  document.getElementById('mpOV').textContent = props.o + '%';
+  mpDrawCapa(document.getElementById('mpCanvasU'), props);
+  // Calcular similitud
+  if (mpState.current) {
+    var t = mpState.current;
+    var dPx = Math.abs(props.px - t.px) / 240; // 0..1
+    var dPy = Math.abs(props.py - t.py) / 240;
+    var dS  = Math.abs(props.s - t.s) / 180;
+    var dR  = Math.abs(props.r - t.r) / 360;
+    var dO  = Math.abs(props.o - t.o) / 100;
+    var avgErr = (dPx + dPy + dS + dR + dO) / 5;
+    var sim = Math.round((1 - avgErr) * 100);
+    document.getElementById('mpSim').textContent = 'Similitud: ' + sim + '% — ' +
+      (sim >= 90 ? '¡coincide!' : sim >= 75 ? 'cerca, sigue ajustando' : 'aún lejos');
+  }
+}
+
+function mpValidate() {
+  if (mpState.answered) return;
+  var props = {
+    px: parseInt(document.getElementById('mpPx').value),
+    py: parseInt(document.getElementById('mpPy').value),
+    s:  parseInt(document.getElementById('mpS').value),
+    r:  parseInt(document.getElementById('mpR').value),
+    o:  parseInt(document.getElementById('mpO').value)
+  };
+  var t = mpState.current;
+  var dPx = Math.abs(props.px - t.px) / 240;
+  var dPy = Math.abs(props.py - t.py) / 240;
+  var dS  = Math.abs(props.s - t.s) / 180;
+  var dR  = Math.abs(props.r - t.r) / 360;
+  var dO  = Math.abs(props.o - t.o) / 100;
+  var avgErr = (dPx + dPy + dS + dR + dO) / 5;
+  var sim = Math.round((1 - avgErr) * 100);
+  var ok = sim >= 90;
+  mpState.answered = true;
+  mpState.results[mpState.idx] = ok;
+  if (ok) mpState.score++;
+  var fb = document.getElementById('mpFb');
+  fb.className = 'gae-feedback ' + (ok ? 'ok' : 'err');
+  if (ok) {
+    fb.innerHTML = '✓ ¡Match! Similitud ' + sim + '%. Valores objetivo: P(' + t.px + ',' + t.py + ') S=' + t.s + '% R=' + t.r + '° O=' + t.o + '%';
+  } else {
+    fb.innerHTML = '✗ Similitud ' + sim + '% (necesitas ≥90%). Objetivo: P(' + t.px + ',' + t.py + ') S=' + t.s + '% R=' + t.r + '° O=' + t.o + '%';
+  }
+  document.getElementById('mpNext').style.display = 'inline-block';
+  document.getElementById('mpNext').textContent = (mpState.idx < mpChallenges.length-1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('mpScoreR').textContent = mpState.score + ' aciertos';
+}
+
+function mpNext() { mpState.idx++; mpRender(); }
+
+function mpFinish() {
+  document.getElementById('mpSim').textContent = '🏆 ' + mpState.score + ' / ' + mpChallenges.length;
+  var fb = document.getElementById('mpFb');
+  fb.className = 'gae-feedback ' + (mpState.score >= 4 ? 'ok' : 'err');
+  fb.innerHTML = (mpState.score === mpChallenges.length ? '¡Perfecto! Match preciso de propiedades.' :
+                  mpState.score >= 4 ? 'Muy bien. Buen ojo para los valores.' :
+                  'Practica leer los valores numéricos, no solo el visual.');
+  document.getElementById('mpNext').style.display = 'inline-block';
+  document.getElementById('mpNext').textContent = '↻ Volver a jugar';
+  document.getElementById('mpNext').onclick = function(){ mpReset(); };
+  gaeRenderProg('mpProg', mpChallenges.length, mpChallenges.length, mpState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 4) TIMELINE · ORDENA LA TIMELINE (drag & drop)
+// ═══════════════════════════════════════════════════════════════════════════
+var tloChallenges = [
+  { desc:'Una escena de logo: tienes el LOGO encima del FONDO. Texto debajo del logo.',
+    correct:['logo','texto','fondo'],
+    layers:[
+      { id:'logo',  icon:'🎨', name:'Logo.ai',     hint:'gráfico principal' },
+      { id:'fondo', icon:'🖼', name:'Fondo.jpg',    hint:'imagen base' },
+      { id:'texto', icon:'🅣', name:'Texto.ai',     hint:'descripción' }
+    ]
+  },
+  { desc:'Composición de retrato: fotografía + viñeta oscura encima + reflejo de luz al frente.',
+    correct:['flare','vignette','foto'],
+    layers:[
+      { id:'foto',     icon:'📷', name:'Retrato.jpg', hint:'fotografía' },
+      { id:'vignette', icon:'⬛', name:'Viñeta.png',   hint:'oscurece bordes' },
+      { id:'flare',    icon:'✨', name:'Flare.png',    hint:'destello frontal' }
+    ]
+  },
+  { desc:'Animación de logo con iluminación 3D: luz, capa de logo (3D), suelo y cielo.',
+    correct:['luz','logo3d','suelo','cielo'],
+    layers:[
+      { id:'cielo',  icon:'☁️', name:'Cielo.psd',    hint:'fondo más lejos' },
+      { id:'suelo',  icon:'⬜', name:'Suelo.psd',    hint:'plano inferior' },
+      { id:'logo3d', icon:'🎯', name:'Logo3D.ai',    hint:'logo flotante' },
+      { id:'luz',    icon:'💡', name:'Luz · Light',  hint:'capa de luz (siempre arriba)' }
+    ]
+  },
+  { desc:'Composición compleja: máscara recorta el efecto, encima del clip, encima del color base, todo bajo un texto guía.',
+    correct:['texto','mascara','efecto','clip','color'],
+    layers:[
+      { id:'color',   icon:'🎨', name:'Color.solid',     hint:'color base' },
+      { id:'clip',    icon:'🎬', name:'Clip.mp4',        hint:'video principal' },
+      { id:'efecto',  icon:'⚡', name:'Efecto.adjust',   hint:'capa de ajuste' },
+      { id:'mascara', icon:'⬭', name:'Mask.shape',      hint:'recorta el efecto' },
+      { id:'texto',   icon:'🅣', name:'Guía.text',       hint:'texto superior' }
+    ]
+  }
+];
+var tloState = { idx:0, score:0, results:[] };
+
+function tloReset() {
+  tloState.idx = 0; tloState.score = 0; tloState.results = [];
+  tloRender();
+}
+
+function tloRender() {
+  if (tloState.idx >= tloChallenges.length) { tloFinish(); return; }
+  var ch = tloChallenges[tloState.idx];
+  document.getElementById('tloDesc').textContent = ch.desc;
+  // Pintar capas en orden aleatorio
+  var shuffled = ch.layers.slice().sort(function(){return Math.random()-0.5;});
+  var html = '';
+  for (var i = 0; i < shuffled.length; i++) {
+    var L = shuffled[i];
+    html += '<div class="tlo-layer" draggable="true" data-id="' + L.id + '">' +
+      '<span class="tlo-layer-grip">⋮⋮</span>' +
+      '<span class="tlo-layer-icon">' + L.icon + '</span>' +
+      '<span class="tlo-layer-name">' + L.name + '</span>' +
+      '<span class="tlo-layer-hint">' + L.hint + '</span>' +
+    '</div>';
+  }
+  document.getElementById('tloList').innerHTML = html;
+  document.getElementById('tloFb').className = 'gae-feedback';
+  document.getElementById('tloFb').textContent = '';
+  document.getElementById('tloNext').style.display = 'none';
+  document.getElementById('tloScoreL').textContent = 'Escena ' + (tloState.idx+1) + ' / ' + tloChallenges.length;
+  document.getElementById('tloScoreR').textContent = tloState.score + ' aciertos';
+  gaeRenderProg('tloProg', tloChallenges.length, tloState.idx, tloState.results);
+  tloWireDrag();
+}
+
+function tloWireDrag() {
+  var list = document.getElementById('tloList');
+  var items = list.querySelectorAll('.tlo-layer');
+  var dragSrc = null;
+
+  items.forEach(function(item) {
+    item.addEventListener('dragstart', function(ev) {
+      dragSrc = item;
+      item.classList.add('dragging');
+      ev.dataTransfer.effectAllowed = 'move';
+      ev.dataTransfer.setData('text/plain', item.dataset.id);
+    });
+    item.addEventListener('dragend', function() {
+      item.classList.remove('dragging');
+    });
+    item.addEventListener('dragover', function(ev) {
+      ev.preventDefault();
+      ev.dataTransfer.dropEffect = 'move';
+    });
+    item.addEventListener('drop', function(ev) {
+      ev.preventDefault();
+      if (!dragSrc || dragSrc === item) return;
+      // Insertar dragSrc antes o después según posición Y del cursor
+      var rect = item.getBoundingClientRect();
+      var midY = rect.top + rect.height/2;
+      if (ev.clientY < midY) {
+        list.insertBefore(dragSrc, item);
+      } else {
+        list.insertBefore(dragSrc, item.nextSibling);
+      }
+    });
+  });
+}
+
+function tloValidate() {
+  var ch = tloChallenges[tloState.idx];
+  if (tloState.results[tloState.idx] !== undefined) return;
+  var current = Array.from(document.querySelectorAll('#tloList .tlo-layer')).map(function(el){ return el.dataset.id; });
+  var ok = current.length === ch.correct.length && current.every(function(id, i) { return id === ch.correct[i]; });
+  tloState.results[tloState.idx] = ok;
+  if (ok) tloState.score++;
+  // Marcar capas
+  var items = document.querySelectorAll('#tloList .tlo-layer');
+  items.forEach(function(el, i) {
+    if (el.dataset.id === ch.correct[i]) el.classList.add('correct');
+    else el.classList.add('wrong');
+  });
+  var fb = document.getElementById('tloFb');
+  fb.className = 'gae-feedback ' + (ok ? 'ok' : 'err');
+  if (ok) {
+    fb.innerHTML = '✓ Orden correcto. En AE, capa 1 (arriba) está delante de las inferiores en la composición.';
+  } else {
+    fb.innerHTML = '✗ Orden incorrecto. El correcto era (de arriba a abajo): ' + ch.correct.map(function(id) {
+      return ch.layers.find(function(L){return L.id === id;}).name;
+    }).join(' → ');
+  }
+  document.getElementById('tloNext').style.display = 'inline-block';
+  document.getElementById('tloNext').textContent = (tloState.idx < tloChallenges.length-1) ? 'Siguiente escena →' : 'Ver resultado →';
+  document.getElementById('tloScoreR').textContent = tloState.score + ' aciertos';
+}
+
+function tloNext() { tloState.idx++; tloRender(); }
+
+function tloFinish() {
+  document.getElementById('tloDesc').innerHTML = '🏆 <strong>' + tloState.score + ' / ' + tloChallenges.length + '</strong> escenas correctas.';
+  document.getElementById('tloList').innerHTML = '';
+  var fb = document.getElementById('tloFb');
+  fb.className = 'gae-feedback ' + (tloState.score >= 3 ? 'ok' : 'err');
+  fb.innerHTML = (tloState.score === tloChallenges.length ? '¡Perfecto! Tienes claro el orden Z.' :
+                  tloState.score >= 3 ? 'Muy bien. Buen criterio de capas.' :
+                  'Repasa: en AE capa 1 = arriba (delante), última = fondo.');
+  document.getElementById('tloNext').style.display = 'inline-block';
+  document.getElementById('tloNext').textContent = '↻ Volver a jugar';
+  document.getElementById('tloNext').onclick = function(){ tloReset(); };
+  gaeRenderProg('tloProg', tloChallenges.length, tloChallenges.length, tloState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 5) TEXTO · IDENTIFICA EL ANIMATOR
+// ═══════════════════════════════════════════════════════════════════════════
+var txaEffects = [
+  { id:'wiggle',     name:'Wiggle (Position)',   desc:'Movimiento aleatorio independiente por carácter.' },
+  { id:'range',      name:'Range Selector',      desc:'Animación progresiva carácter a carácter (typewriter o fade-in).' },
+  { id:'path',       name:'Path Animator',       desc:'Texto siguiendo un path curvo.' },
+  { id:'opacity',    name:'Opacity Animator',    desc:'Aparición/desaparición por opacidad por carácter.' },
+  { id:'scale',      name:'Scale Animator',      desc:'Escalado individual por carácter (zoom in/out).' },
+  { id:'rotation',   name:'Rotation Animator',   desc:'Rotación por carácter creando efecto de saltarines.' }
+];
+var txaChallenges = [
+  { effect:'wiggle' }, { effect:'range' }, { effect:'opacity' },
+  { effect:'scale' }, { effect:'rotation' }
+];
+var txaState = { idx:0, score:0, results:[], order:[], answered:false, animFrame:null };
+
+function txaReset() {
+  txaState.order = txaChallenges.map(function(_,i){return i;}).sort(function(){return Math.random()-0.5;});
+  txaState.idx = 0; txaState.score = 0; txaState.results = []; txaState.answered = false;
+  if (txaState.animFrame) cancelAnimationFrame(txaState.animFrame);
+  txaRender();
+}
+
+function txaRender() {
+  if (txaState.idx >= txaState.order.length) { txaFinish(); return; }
+  var ch = txaChallenges[txaState.order[txaState.idx]];
+  // Animar el texto
+  txaAnimate(ch.effect);
+  // Opciones: la correcta + 3 distractores
+  var others = txaEffects.filter(function(e){return e.id !== ch.effect;});
+  others.sort(function(){return Math.random()-0.5;});
+  var pool = [txaEffects.find(function(e){return e.id === ch.effect;})].concat(others.slice(0,3));
+  pool.sort(function(){return Math.random()-0.5;});
+  var html = '';
+  for (var i = 0; i < pool.length; i++) {
+    html += '<button class="txa-opt" data-id="' + pool[i].id + '" onclick="txaPick(\'' + pool[i].id + '\', this)">' + pool[i].name + '</button>';
+  }
+  document.getElementById('txaOpts').innerHTML = html;
+  document.getElementById('txaFb').className = 'gae-feedback';
+  document.getElementById('txaFb').textContent = '';
+  document.getElementById('txaNext').style.display = 'none';
+  document.getElementById('txaScoreL').textContent = 'Reto ' + (txaState.idx+1) + ' / ' + txaState.order.length;
+  document.getElementById('txaScoreR').textContent = txaState.score + ' aciertos';
+  gaeRenderProg('txaProg', txaState.order.length, txaState.idx, txaState.results);
+  txaState.answered = false;
+}
+
+function txaAnimate(effect) {
+  var c = document.getElementById('txaCanvas');
+  if (!c) return;
+  var ctx = c.getContext('2d');
+  var w = c.width, h = c.height;
+  var text = 'AFTER EFFECTS';
+  var t0 = performance.now();
+
+  if (txaState.animFrame) cancelAnimationFrame(txaState.animFrame);
+
+  function frame(t) {
+    var dt = (t - t0) / 1000;
+    ctx.clearRect(0,0,w,h);
+    // Fondo
+    ctx.fillStyle = '#0a0f1e'; ctx.fillRect(0,0,w,h);
+    // Grid
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+    for (var i = 0; i < w; i += 60) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,h); ctx.stroke(); }
+    // Texto
+    var fontSize = Math.floor(h * 0.32);
+    ctx.font = 'bold ' + fontSize + 'px Inter';
+    ctx.textBaseline = 'middle';
+    var letters = text.split('');
+    // Medir ancho total para centrar
+    ctx.textAlign = 'left';
+    var widths = letters.map(function(L){ return ctx.measureText(L).width; });
+    var totalW = widths.reduce(function(a,b){return a+b;}, 0);
+    var startX = (w - totalW) / 2;
+    var cy = h / 2;
+    var cx = startX;
+
+    for (var li = 0; li < letters.length; li++) {
+      var L = letters[li];
+      var charW = widths[li];
+      ctx.save();
+      // Aplicar transformación según efecto
+      var ox = 0, oy = 0, sc = 1, ro = 0, op = 1;
+      var phase = li * 0.13; // delay por carácter
+      if (effect === 'wiggle') {
+        // Movimiento pseudo-random por carácter (independiente)
+        ox = Math.sin(dt * 5 + li * 1.7) * 8;
+        oy = Math.cos(dt * 4 + li * 2.3) * 8;
+      } else if (effect === 'range') {
+        // Typewriter: cada carácter aparece progresivamente
+        var cycle = (dt % 3) / 3;
+        var prog = li / letters.length;
+        op = cycle > prog ? 1 : 0;
+        oy = cycle > prog ? 0 : 20;
+      } else if (effect === 'path') {
+        oy = Math.sin((cx - startX) * 0.02 + dt * 2) * 14;
+      } else if (effect === 'opacity') {
+        // Fade in/out por carácter
+        var k = (Math.sin(dt * 1.5 - phase) + 1) / 2;
+        op = k;
+      } else if (effect === 'scale') {
+        // Zoom por carácter
+        sc = 0.5 + Math.abs(Math.sin(dt * 1.5 - phase)) * 0.8;
+      } else if (effect === 'rotation') {
+        // Rotación por carácter
+        ro = Math.sin(dt * 2 - phase) * 0.4;
+      }
+      ctx.globalAlpha = op;
+      ctx.translate(cx + charW/2 + ox, cy + oy);
+      ctx.rotate(ro);
+      ctx.scale(sc, sc);
+      // Fill con gradiente
+      var gT = ctx.createLinearGradient(-charW, -fontSize/2, charW, fontSize/2);
+      gT.addColorStop(0,'#5568E0'); gT.addColorStop(1,'#C2CAF5');
+      ctx.fillStyle = gT;
+      ctx.textAlign = 'center';
+      ctx.fillText(L, 0, 0);
+      ctx.restore();
+      cx += charW;
+    }
+    if (!txaState.answered) {
+      txaState.animFrame = requestAnimationFrame(frame);
+    }
+  }
+  txaState.animFrame = requestAnimationFrame(frame);
+}
+
+function txaPick(id, btn) {
+  if (txaState.answered) return;
+  txaState.answered = true;
+  if (txaState.animFrame) cancelAnimationFrame(txaState.animFrame);
+  var ch = txaChallenges[txaState.order[txaState.idx]];
+  var correct = (id === ch.effect);
+  txaState.results[txaState.idx] = correct;
+  if (correct) txaState.score++;
+  var opts = document.querySelectorAll('#txaOpts .txa-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.add('locked');
+    if (opts[i].dataset.id === ch.effect) opts[i].classList.add('correct');
+    if (opts[i] === btn && !correct) opts[i].classList.add('wrong');
+  }
+  var fxDef = txaEffects.find(function(e){return e.id===ch.effect;});
+  var fb = document.getElementById('txaFb');
+  fb.className = 'gae-feedback ' + (correct ? 'ok' : 'err');
+  fb.innerHTML = (correct ? '✓ Correcto: ' : '✗ Era ') + '<strong>' + fxDef.name + '</strong>. ' + fxDef.desc;
+  document.getElementById('txaNext').style.display = 'inline-block';
+  document.getElementById('txaNext').textContent = (txaState.idx < txaState.order.length-1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('txaScoreR').textContent = txaState.score + ' aciertos';
+}
+
+function txaNext() { txaState.idx++; txaRender(); }
+
+function txaFinish() {
+  if (txaState.animFrame) cancelAnimationFrame(txaState.animFrame);
+  document.getElementById('txaOpts').innerHTML = '';
+  var fb = document.getElementById('txaFb');
+  fb.className = 'gae-feedback ' + (txaState.score >= 3 ? 'ok' : 'err');
+  fb.innerHTML = '🏆 ' + txaState.score + ' / ' + txaState.order.length + '. ' +
+    (txaState.score === txaState.order.length ? '¡Perfecto! Identificas todos los animators.' :
+     txaState.score >= 3 ? 'Muy bien.' : 'Repasa la sección de Texto y los animators.');
+  document.getElementById('txaNext').style.display = 'inline-block';
+  document.getElementById('txaNext').textContent = '↻ Volver a jugar';
+  document.getElementById('txaNext').onclick = function(){ txaReset(); };
+  gaeRenderProg('txaProg', txaState.order.length, txaState.order.length, txaState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INICIALIZACIÓN — engancharse a go() (AE usa go(), no showPage)
+// ═══════════════════════════════════════════════════════════════════════════
+(function() {
+  function applyHook() {
+    if (typeof window.go !== 'function') return false;
+    if (window._gaeHooked) return true;
+    window._gaeHooked = true;
+    var orig = window.go;
+    window.go = function(id) {
+      orig(id);
+      if (id === 'parenting') setTimeout(function() {
+        if (!document.querySelector('#armProg .gae-pip')) armReset();
+      }, 80);
+      if (id === 'modos') setTimeout(function() {
+        if (!document.querySelector('#aebmProg .gae-pip')) aebmReset();
+      }, 80);
+      if (id === 'propiedades') setTimeout(function() {
+        if (!document.querySelector('#mpProg .gae-pip')) mpReset();
+      }, 80);
+      if (id === 'timeline') setTimeout(function() {
+        if (!document.querySelector('#tloProg .gae-pip')) tloReset();
+      }, 80);
+      if (id === 'texto') setTimeout(function() {
+        if (!document.querySelector('#txaProg .gae-pip')) txaReset();
+      }, 80);
+    };
+    return true;
+  }
+  if (!applyHook()) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyHook);
+    }
+    setTimeout(applyHook, 50);
+    setTimeout(applyHook, 200);
+    setTimeout(applyHook, 500);
+  }
+
+  // Wire de los sliders del brazo (delegación)
+  document.addEventListener('input', function(e) {
+    if (!e.target) return;
+    var id = e.target.id;
+    if (id === 'armA1') armOnSlider('a1', e.target.value);
+    else if (id === 'armA2') armOnSlider('a2', e.target.value);
+    else if (id === 'armA3') armOnSlider('a3', e.target.value);
+    else if (id === 'mpPx' || id === 'mpPy' || id === 'mpS' || id === 'mpR' || id === 'mpO') mpUpdate();
+  });
+})();
+
+// ─── fin mejoras gamificación ─────────────────────────────────────────────
+
+</script>
 
 <script>
 const pages = {

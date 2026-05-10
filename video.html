@@ -585,6 +585,117 @@ canvas{display:block}
 .einput{position:absolute;display:none;z-index:20}
 .einput input{font-size:10px;padding:2px 5px;border:1.5px solid #378ADD;border-radius:4px;outline:none;width:88px;font-family:inherit;background:#fff;color:#111}
 
+/* ═══════════════ MEJORAS GAMIFICACIÓN VIDEO ═══════════════ */
+
+/* === Comunes === */
+.gv-prog { display:flex; gap:4px; margin-bottom:14px; }
+.gv-pip { height:5px; flex:1; border-radius:3px; background:var(--bg3); }
+.gv-pip.ok  { background:#22c55e; }
+.gv-pip.err { background:#ef4444; }
+.gv-pip.cur { background:var(--navy); }
+.gv-score-lbl { font-size:11px; font-weight:700; color:var(--text2); margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; }
+.gv-feedback { font-size:12px; font-weight:600; padding:10px 14px; border-radius:7px; margin-top:12px; display:none; line-height:1.6; }
+.gv-feedback.ok  { display:block; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; }
+.gv-feedback.err { display:block; background:#fff1f1; color:#dc2626; border:1px solid #fecaca; }
+.gv-btn { padding:9px 22px; border-radius:8px; border:none; font-family:inherit; font-size:12px; font-weight:600; cursor:pointer; transition:all .15s; }
+.gv-btn-primary { background:var(--navy); color:#fff; }
+.gv-btn-primary:hover { background:var(--navy2); }
+.gv-btn-ghost { background:var(--bg3); color:var(--navy); }
+.gv-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:14px; }
+
+/* === m3: Progresivo o Entrelazado === */
+.scan-stage { background:#0a0f1e; border-radius:10px; padding:18px; margin-bottom:14px; }
+.scan-canvas-wrap { width:100%; aspect-ratio: 16/9; background:#000; border-radius:6px; overflow:hidden; position:relative; max-width:480px; margin:0 auto; }
+.scan-canvas-wrap canvas { width:100%; height:100%; display:block; image-rendering:pixelated; }
+.scan-context { font-size:12px; color:rgba(255,255,255,.7); text-align:center; margin-top:10px; }
+.scan-options { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.scan-opt {
+  padding:14px; background:var(--white); border:1.5px solid var(--border); border-radius:8px;
+  cursor:pointer; font-family:inherit; font-size:12px; font-weight:600; color:var(--navy);
+  text-align:center; transition:all .15s; display:flex; flex-direction:column; gap:5px;
+}
+.scan-opt-name { font-size:14px; font-weight:800; }
+.scan-opt-sub { font-size:10.5px; color:var(--text3); font-weight:500; }
+.scan-opt:hover:not(.locked) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-1px); }
+.scan-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
+.scan-opt.correct .scan-opt-sub { color:#16a34a; }
+.scan-opt.wrong { border-color:#ef4444; background:#fff1f1; color:#991b1b; }
+.scan-opt.locked { cursor:default; }
+
+/* === m4: Drag & Drop conectores === */
+.con-stage { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:18px; margin-bottom:14px; }
+.con-instructions { font-size:12px; color:var(--text2); background:rgba(247,215,148,.12); border:1px solid rgba(247,215,148,.5); border-radius:8px; padding:10px 14px; margin-bottom:14px; line-height:1.5; }
+.con-pool { display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:8px; margin-bottom:14px; min-height:80px; padding:10px; background:rgba(25,42,86,.04); border:2px dashed var(--border); border-radius:8px; }
+.con-pool-label { font-size:10px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:var(--text3); margin-bottom:6px; }
+.con-conn {
+  background:#fff; border:1.5px solid var(--border); border-radius:7px; padding:10px 6px;
+  text-align:center; cursor:grab; user-select:none; transition:all .15s;
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+}
+.con-conn.dragging { opacity:0.4; cursor:grabbing; }
+.con-conn:hover { border-color:var(--navy3); transform:translateY(-1px); }
+.con-conn.placed { display:none; }
+.con-conn-icon { width:36px; height:24px; }
+.con-conn-name { font-size:11px; font-weight:700; color:var(--navy); }
+.con-conn-sub { font-size:9.5px; color:var(--text3); }
+.con-targets { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px; }
+.con-target {
+  background:#fff; border:2px dashed var(--border2); border-radius:8px; padding:14px 10px;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  min-height:96px; transition:all .18s;
+}
+.con-target.over { border-color:var(--yellow2); background:rgba(247,215,148,.15); border-style:solid; }
+.con-target.correct { border-color:#22c55e; background:#f0fdf4; border-style:solid; }
+.con-target.wrong { border-color:#ef4444; background:#fff1f1; border-style:solid; }
+.con-target-desc { font-size:11px; color:var(--text2); text-align:center; line-height:1.4; }
+.con-target-needs { font-size:10px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:.5px; }
+.con-placed-name { font-size:11px; font-weight:700; padding:3px 8px; border-radius:4px; background:var(--bg2); border:1px solid var(--border); }
+.con-target.correct .con-placed-name { background:#dcfce7; border-color:#22c55e; color:#166534; }
+.con-target.wrong .con-placed-name { background:#fee2e2; border-color:#ef4444; color:#991b1b; }
+
+/* === m5: Raster vs Vectorial === */
+.rv-stage { background:#0a0f1e; border-radius:10px; padding:18px; margin-bottom:14px; text-align:center; }
+.rv-zoom-bar { display:flex; align-items:center; gap:10px; padding:8px 12px; background:rgba(255,255,255,.05); border-radius:6px; margin-bottom:12px; }
+.rv-zoom-bar label { font-size:11px; color:rgba(255,255,255,.6); min-width:70px; }
+.rv-zoom-bar input[type=range] { flex:1; accent-color:var(--yellow); }
+.rv-zoom-val { font-family:monospace; font-size:12px; color:var(--yellow); font-weight:700; min-width:60px; text-align:right; }
+.rv-canvas-wrap { background:#fff; border-radius:6px; padding:10px; display:inline-block; max-width:100%; }
+.rv-canvas { display:block; image-rendering:pixelated; max-width:100%; height:auto; }
+.rv-options { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.rv-opt {
+  padding:14px; background:var(--white); border:1.5px solid var(--border); border-radius:8px;
+  cursor:pointer; font-family:inherit; font-size:13px; font-weight:700; color:var(--navy);
+  text-align:center; transition:all .15s; display:flex; flex-direction:column; gap:5px;
+}
+.rv-opt-emoji { font-size:22px; }
+.rv-opt:hover:not(.locked) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-1px); }
+.rv-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
+.rv-opt.wrong { border-color:#ef4444; background:#fff1f1; color:#991b1b; }
+.rv-opt.locked { cursor:default; }
+
+/* === m8: Pixel Pitch correcto === */
+.pp-stage { background:var(--navy); border-radius:10px; padding:18px; margin-bottom:14px; color:#fff; }
+.pp-scenario { display:grid; grid-template-columns:1fr; gap:12px; }
+.pp-scenario-row { display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:rgba(255,255,255,.05); border-radius:8px; border-left:3px solid var(--yellow); }
+.pp-sce-lbl { font-size:11px; font-weight:600; color:rgba(255,255,255,.65); text-transform:uppercase; letter-spacing:.4px; }
+.pp-sce-val { font-size:18px; font-weight:800; color:var(--yellow); font-variant-numeric:tabular-nums; }
+.pp-sce-unit { font-size:11px; color:rgba(255,255,255,.5); margin-left:3px; font-weight:500; }
+.pp-options { display:grid; grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); gap:8px; }
+.pp-opt {
+  padding:12px 8px; background:var(--white); border:1.5px solid var(--border); border-radius:7px;
+  cursor:pointer; font-family:inherit; color:var(--navy);
+  text-align:center; transition:all .15s; display:flex; flex-direction:column; gap:3px;
+}
+.pp-opt-name { font-size:14px; font-weight:800; }
+.pp-opt-mm { font-size:10.5px; color:var(--text3); font-weight:600; }
+.pp-opt:hover:not(.locked) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-1px); }
+.pp-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
+.pp-opt.correct .pp-opt-mm { color:#16a34a; }
+.pp-opt.wrong { border-color:#ef4444; background:#fff1f1; color:#991b1b; }
+.pp-opt.locked { cursor:default; }
+
+/* ─── fin mejoras gamificación ─── */
+
 </style>
 </head>
 <body>
@@ -1617,6 +1728,7 @@ canvas{display:block}
     <div class="inner-tab" data-inner="i_pal">PAL / NTSC / SECAM</div>
     <div class="inner-tab" data-inner="i_gamma">Gamma &amp; HDR</div>
     <div class="inner-tab" data-inner="i_alpha">Canal Alpha</div>
+    <div class="inner-tab" data-inner="i_scangame">🎮 Juego</div>
   </div>
 
   <div class="inner-pane active" id="i_scan">
@@ -1764,6 +1876,44 @@ canvas{display:block}
       </div>
     </div>
   </div>
+  <div class="inner-pane" id="i_scangame">
+
+<!-- ═══════════════ NUEVO: PROGRESIVO O ENTRELAZADO ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Progresivo o Entrelazado</div>
+  <p style="font-size:12.5px;color:var(--text2);margin-bottom:14px;line-height:1.6;">
+    Observa el clip de vídeo. ¿La señal es <strong>progresiva</strong> (líneas completas frame a frame) o <strong>entrelazada</strong> (campos pares e impares alternados)? Pista: busca el efecto peine en bordes en movimiento. <strong>5 retos</strong>.
+  </p>
+  <div class="gv-prog" id="scanProg"></div>
+  <div class="gv-score-lbl">
+    <span id="scanScoreL">Reto 1 / 5</span>
+    <span id="scanScoreR">0 aciertos</span>
+  </div>
+  <div class="scan-stage">
+    <div class="scan-canvas-wrap">
+      <canvas id="scanCanvas" width="320" height="180"></canvas>
+    </div>
+    <div class="scan-context" id="scanContext">¿Es progresiva o entrelazada?</div>
+  </div>
+  <div class="scan-options" id="scanOpts">
+    <button class="scan-opt" data-id="prog" onclick="scanPick('prog', this)">
+      <span class="scan-opt-name">Progresiva</span>
+      <span class="scan-opt-sub">720p · 1080p · 4K</span>
+    </button>
+    <button class="scan-opt" data-id="inter" onclick="scanPick('inter', this)">
+      <span class="scan-opt-name">Entrelazada</span>
+      <span class="scan-opt-sub">1080i · TV broadcast</span>
+    </button>
+  </div>
+  <div class="gv-feedback" id="scanFb"></div>
+  <div class="gv-actions">
+    <button class="gv-btn gv-btn-ghost" onclick="scanReset()">↺ Reiniciar</button>
+    <button class="gv-btn gv-btn-primary" id="scanNext" style="display:none;" onclick="scanNext()">Siguiente reto →</button>
+  </div>
+</div>
+
+
+  </div>
 </section>
 
 <!-- ═══ MÓDULO 4 — CONECTORES & CODECS ═══ -->
@@ -1788,6 +1938,7 @@ canvas{display:block}
     <div class="inner-tab" data-inner="c_codecs">Formatos &amp; Codecs</div>
     <div class="inner-tab" data-inner="c_audio">Audio</div>
     <div class="inner-tab" data-inner="c_vj">Codecs VJ · Live</div>
+    <div class="inner-tab" data-inner="c_conngame">🎮 Juego</div>
   </div>
 
   <div class="inner-pane active" id="c_conn">
@@ -2120,6 +2271,34 @@ canvas{display:block}
 
   </div><!-- /c_vj -->
 
+  <div class="inner-pane" id="c_conngame">
+
+<!-- ═══════════════ NUEVO: CONECTA EL CONECTOR ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Conecta el Conector — Drag & Drop</div>
+  <p style="font-size:12.5px;color:var(--text2);margin-bottom:14px;line-height:1.6;">
+    Cada equipo (cámara, monitor, mixer, ordenador…) necesita el conector adecuado. <strong>Arrastra cada conector a su uso correcto</strong>. Si te equivocas, el conector vuelve al banco. Hay <strong>8 conectores y 8 equipos</strong>.
+  </p>
+  <div class="con-stage">
+    <div class="con-instructions" id="conInstructions">
+      <strong>📋 Estado:</strong> <span id="conStatus">0 de 8 conectados</span>
+    </div>
+
+    <div class="con-pool-label">Banco de conectores</div>
+    <div class="con-pool" id="conPool"></div>
+
+    <div class="con-pool-label">Equipos que necesitan conexión</div>
+    <div class="con-targets" id="conTargets"></div>
+  </div>
+  <div class="gv-feedback" id="conFb"></div>
+  <div class="gv-actions">
+    <button class="gv-btn gv-btn-ghost" onclick="conReset()">↺ Reiniciar</button>
+  </div>
+</div>
+
+
+  </div>
+
 </section>
 
 <!-- ═══ MÓDULO 5 — FORMATOS DE IMAGEN ═══ -->
@@ -2313,6 +2492,46 @@ canvas{display:block}
     })();
     </script>
   </div>
+
+<!-- ═══════════════ NUEVO: RASTER O VECTORIAL ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Raster o Vectorial</div>
+  <p style="font-size:12.5px;color:var(--text2);margin-bottom:14px;line-height:1.6;">
+    Mueve el zoom para ampliar la imagen. Si los bordes se pixelan al ampliar, es <strong>raster (mapa de bits)</strong>. Si se mantienen nítidos a cualquier escala, es <strong>vectorial</strong>. <strong>5 retos</strong>.
+  </p>
+  <div class="gv-prog" id="rvProg"></div>
+  <div class="gv-score-lbl">
+    <span id="rvScoreL">Reto 1 / 5</span>
+    <span id="rvScoreR">0 aciertos</span>
+  </div>
+  <div class="rv-stage">
+    <div class="rv-zoom-bar">
+      <label>Zoom</label>
+      <input type="range" id="rvZoom" min="1" max="10" step="0.5" value="1">
+      <span class="rv-zoom-val" id="rvZoomVal">×1</span>
+    </div>
+    <div class="rv-canvas-wrap">
+      <canvas id="rvCanvas" class="rv-canvas" width="280" height="200"></canvas>
+    </div>
+  </div>
+  <div class="rv-options" id="rvOpts">
+    <button class="rv-opt" data-id="raster" onclick="rvPick('raster', this)">
+      <span class="rv-opt-emoji">🖼️</span>
+      Raster · Mapa de bits
+    </button>
+    <button class="rv-opt" data-id="vector" onclick="rvPick('vector', this)">
+      <span class="rv-opt-emoji">📐</span>
+      Vectorial
+    </button>
+  </div>
+  <div class="gv-feedback" id="rvFb"></div>
+  <div class="gv-actions">
+    <button class="gv-btn gv-btn-ghost" onclick="rvReset()">↺ Reiniciar</button>
+    <button class="gv-btn gv-btn-primary" id="rvNext" style="display:none;" onclick="rvNext()">Siguiente reto →</button>
+  </div>
+</div>
+
+
 </section>
 
 <!-- ═══ MÓDULO 6 — DISTRIBUCIÓN & ROUTING ═══ -->
@@ -2828,6 +3047,7 @@ canvas{display:block}
     <div class="inner-tab" data-inner="l_nits">Nits &amp; Refresco</div>
     <div class="inner-tab" data-inner="l_map">Mapping</div>
     <div class="inner-tab" data-inner="l_comp">LED vs Proyector</div>
+    <div class="inner-tab" data-inner="l_ppgame">🎮 Juego</div>
   </div>
 
   <div class="inner-pane active" id="l_calc">
@@ -3061,9 +3281,811 @@ canvas{display:block}
       </table>
     </div>
   </div>
+  <div class="inner-pane" id="l_ppgame">
+
+<!-- ═══════════════ NUEVO: PIXEL PITCH CORRECTO ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div class="panel-title">🎮 Elige el Pixel Pitch Correcto</div>
+  <p style="font-size:12.5px;color:var(--text2);margin-bottom:14px;line-height:1.6;">
+    Te dan un escenario: <strong>distancia de visión</strong> y <strong>tamaño de pantalla</strong>. Elige el pixel pitch (P-) más adecuado. Regla práctica: <strong>distancia mínima ≈ pitch en mm × 1m</strong>. <strong>6 retos</strong>.
+  </p>
+  <div class="gv-prog" id="ppProg"></div>
+  <div class="gv-score-lbl">
+    <span id="ppScoreL">Reto 1 / 6</span>
+    <span id="ppScoreR">0 aciertos</span>
+  </div>
+  <div class="pp-stage">
+    <div class="pp-scenario">
+      <div class="pp-scenario-row">
+        <span class="pp-sce-lbl">📍 Distancia mínima de visión</span>
+        <span><span class="pp-sce-val" id="ppDist">—</span><span class="pp-sce-unit">m</span></span>
+      </div>
+      <div class="pp-scenario-row">
+        <span class="pp-sce-lbl">📺 Pantalla aproximada</span>
+        <span><span class="pp-sce-val" id="ppSize">—</span></span>
+      </div>
+      <div class="pp-scenario-row">
+        <span class="pp-sce-lbl">🎯 Contexto de uso</span>
+        <span><span class="pp-sce-val" id="ppCtx" style="font-size:13px;">—</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="pp-options" id="ppOpts"></div>
+  <div class="gv-feedback" id="ppFb"></div>
+  <div class="gv-actions">
+    <button class="gv-btn gv-btn-ghost" onclick="ppReset()">↺ Reiniciar</button>
+    <button class="gv-btn gv-btn-primary" id="ppNext" style="display:none;" onclick="ppNext()">Siguiente reto →</button>
+  </div>
+</div>
+
+
+  </div>
 </section>
 
 </main>
+
+<script>
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MEJORAS GAMIFICACIÓN VIDEO
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ─── HELPER común: render barra progreso ────────────────────────────────
+function gvRenderProg(elId, total, idx, results) {
+  var el = document.getElementById(elId);
+  if (!el) return;
+  var html = '';
+  for (var i = 0; i < total; i++) {
+    var cls = '';
+    if (i < idx) cls = results[i] ? 'ok' : 'err';
+    else if (i === idx) cls = 'cur';
+    html += '<div class="gv-pip ' + cls + '"></div>';
+  }
+  el.innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 1) M3 · PROGRESIVO O ENTRELAZADO
+// ═══════════════════════════════════════════════════════════════════════════
+var scanChallenges = [
+  { type: 'inter', desc: 'Esta señal es <strong>entrelazada</strong>: en bordes en movimiento aparece el efecto peine (las líneas pares e impares pertenecen a instantes diferentes).' },
+  { type: 'prog',  desc: 'Esta señal es <strong>progresiva</strong>: cada frame contiene la imagen completa. Sin artefactos peine, movimiento limpio.' },
+  { type: 'inter', desc: 'Entrelazada: dos campos por frame (60 campos/s en 1080i60). Típico de TV broadcast antiguo.' },
+  { type: 'prog',  desc: 'Progresiva: estándar moderno. Un frame entero = una captura única. Mejor calidad para todo lo digital.' },
+  { type: 'inter', desc: 'Entrelazada: optimiza ancho de banda en emisión, pero se ve mal en pantallas digitales (necesita desentrelazado).' }
+];
+var scanState = { idx: 0, score: 0, locked: false, results: [], order: [], anim: null };
+
+function scanReset() {
+  scanState.order = scanChallenges.map(function(_, i) { return i; }).sort(function() { return Math.random() - 0.5; });
+  scanState.idx = 0;
+  scanState.score = 0;
+  scanState.locked = false;
+  scanState.results = [];
+  if (scanState.anim) cancelAnimationFrame(scanState.anim);
+  scanRender();
+}
+
+function scanRender() {
+  if (scanState.idx >= scanState.order.length) { scanFinish(); return; }
+  var ch = scanChallenges[scanState.order[scanState.idx]];
+  scanDrawScene(ch.type);
+  document.getElementById('scanContext').innerHTML = '¿Es progresiva o entrelazada?';
+  // Reset opciones
+  var opts = document.querySelectorAll('#scanOpts .scan-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.remove('correct', 'wrong', 'locked');
+  }
+  document.getElementById('scanFb').className = 'gv-feedback';
+  document.getElementById('scanFb').textContent = '';
+  document.getElementById('scanNext').style.display = 'none';
+  document.getElementById('scanScoreL').textContent = 'Reto ' + (scanState.idx + 1) + ' / ' + scanState.order.length;
+  document.getElementById('scanScoreR').textContent = scanState.score + ' aciertos';
+  gvRenderProg('scanProg', scanState.order.length, scanState.idx, scanState.results);
+  scanState.locked = false;
+}
+
+function scanDrawScene(type) {
+  var c = document.getElementById('scanCanvas');
+  if (!c) return;
+  var ctx = c.getContext('2d');
+  var w = c.width, h = c.height;
+  if (scanState.anim) cancelAnimationFrame(scanState.anim);
+
+  var t0 = performance.now();
+  function frame(t) {
+    var dt = (t - t0) / 1000;
+    // Fondo gradiente
+    var bg = ctx.createLinearGradient(0, 0, 0, h);
+    bg.addColorStop(0, '#1a3850'); bg.addColorStop(1, '#0a1828');
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h);
+    // Suelo
+    ctx.fillStyle = '#15203c'; ctx.fillRect(0, h * 0.7, w, h * 0.3);
+    // Bandas verticales (marcas de profundidad)
+    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+    for (var i = 0; i < 8; i++) {
+      ctx.beginPath();
+      ctx.moveTo((i / 8) * w, h * 0.7);
+      ctx.lineTo((i / 8) * w, h);
+      ctx.stroke();
+    }
+    // Objeto en movimiento horizontal: rectángulo blanco con bordes
+    var x = (w + 60) * (((dt * 0.4) % 1)) - 60;
+    var y = h * 0.45;
+    // Si entrelazado: dibujar primero líneas pares, luego desplazar y dibujar líneas impares
+    // (simulamos artefacto peine: las líneas pares e impares están desfasadas en X)
+    if (type === 'inter') {
+      // Render con desplazamiento X entre líneas par/impar
+      var off = 4; // px de desfase entre campos (artifact peine)
+      // Crear imagen offscreen del objeto
+      var off1 = document.createElement('canvas');
+      off1.width = w; off1.height = h;
+      var c1 = off1.getContext('2d');
+      // Frame con objeto en x
+      drawObject(c1, x, y);
+      // Frame con objeto en x - off (campo anterior)
+      var off2 = document.createElement('canvas');
+      off2.width = w; off2.height = h;
+      var c2 = off2.getContext('2d');
+      drawObject(c2, x - off, y);
+      // Combinar: líneas pares de c1, impares de c2
+      try {
+        var img1 = c1.getImageData(0, 0, w, h);
+        var img2 = c2.getImageData(0, 0, w, h);
+        var out = ctx.getImageData(0, 0, w, h);
+        var d1 = img1.data, d2 = img2.data, dO = out.data;
+        for (var py = 0; py < h; py++) {
+          var src = (py % 2 === 0) ? d1 : d2;
+          for (var px = 0; px < w; px++) {
+            var k = (py * w + px) * 4;
+            // Solo sobreescribir si el pixel del objeto es no-transparente (alpha > 0)
+            if (src[k + 3] > 30) {
+              dO[k] = src[k]; dO[k + 1] = src[k + 1]; dO[k + 2] = src[k + 2]; dO[k + 3] = 255;
+            }
+          }
+        }
+        ctx.putImageData(out, 0, 0);
+      } catch (e) {
+        // Si getImageData falla (cross-origin), fallback: dibujar líneas alternadas con offset visible
+        drawObject(ctx, x, y);
+        drawObject(ctx, x - off, y);
+      }
+    } else {
+      drawObject(ctx, x, y);
+    }
+    if (!scanState.locked) {
+      scanState.anim = requestAnimationFrame(frame);
+    } else {
+      // Si está locked, parar la animación
+    }
+  }
+
+  function drawObject(c, x, y) {
+    // Rectángulo principal con texto
+    c.fillStyle = '#f0c96e';
+    c.fillRect(x, y, 60, 36);
+    c.strokeStyle = '#5a3d10';
+    c.lineWidth = 2;
+    c.strokeRect(x, y, 60, 36);
+    // Borde superior diagonal (más visible para artefacto)
+    c.fillStyle = '#fff';
+    c.fillRect(x + 5, y + 5, 50, 4);
+    c.fillRect(x + 5, y + 14, 50, 4);
+    c.fillRect(x + 5, y + 23, 50, 4);
+  }
+
+  scanState.anim = requestAnimationFrame(frame);
+}
+
+function scanPick(id, btn) {
+  if (scanState.locked) return;
+  scanState.locked = true;
+  if (scanState.anim) cancelAnimationFrame(scanState.anim);
+  var ch = scanChallenges[scanState.order[scanState.idx]];
+  var correct = (id === ch.type);
+  scanState.results[scanState.idx] = correct;
+  if (correct) scanState.score++;
+  var opts = document.querySelectorAll('#scanOpts .scan-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.add('locked');
+    if (opts[i].dataset.id === ch.type) opts[i].classList.add('correct');
+    if (opts[i] === btn && !correct) opts[i].classList.add('wrong');
+  }
+  var fb = document.getElementById('scanFb');
+  fb.className = 'gv-feedback ' + (correct ? 'ok' : 'err');
+  fb.innerHTML = (correct ? '✓ Correcto. ' : '✗ Incorrecto. ') + ch.desc;
+  document.getElementById('scanNext').style.display = 'inline-block';
+  document.getElementById('scanNext').textContent = (scanState.idx < scanState.order.length - 1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('scanScoreR').textContent = scanState.score + ' aciertos';
+}
+
+function scanNext() {
+  scanState.idx++;
+  scanState.locked = false;
+  scanRender();
+}
+
+function scanFinish() {
+  if (scanState.anim) cancelAnimationFrame(scanState.anim);
+  var c = document.getElementById('scanCanvas');
+  if (c) {
+    var ctx = c.getContext('2d');
+    ctx.fillStyle = '#0a0f1e'; ctx.fillRect(0, 0, c.width, c.height);
+    ctx.fillStyle = '#f0c96e'; ctx.font = 'bold 36px Inter, sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(scanState.score + '/' + scanState.order.length, c.width / 2, c.height / 2);
+  }
+  document.getElementById('scanContext').innerHTML =
+    (scanState.score === scanState.order.length ? '¡Perfecto! Ojo de águila para el peine entrelazado.' :
+     scanState.score >= 4 ? 'Muy bien. Identificas la señal correctamente.' :
+     scanState.score >= 3 ? 'Aceptable. Repasa la sección de progresivo vs entrelazado.' :
+     'Repasa los conceptos. El peine en bordes móviles es la pista clave.');
+  document.getElementById('scanFb').className = 'gv-feedback';
+  document.getElementById('scanFb').textContent = '';
+  document.getElementById('scanNext').style.display = 'inline-block';
+  document.getElementById('scanNext').textContent = '↻ Volver a jugar';
+  document.getElementById('scanNext').onclick = function() { scanReset(); };
+  gvRenderProg('scanProg', scanState.order.length, scanState.order.length, scanState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 2) M4 · CONECTA EL CONECTOR (drag & drop)
+// ═══════════════════════════════════════════════════════════════════════════
+// Cada conector tiene: id, name, sub, svg icon (38x24)
+var conConnectors = [
+  { id: 'hdmi',  name: 'HDMI',     sub: 'Audio + Vídeo', svg: '<svg viewBox="0 0 38 24"><rect x="2" y="6" width="34" height="12" fill="#222" rx="2"/><path d="M5,8 L33,8 L31,16 L7,16 Z" fill="#444"/><circle cx="11" cy="12" r="0.8" fill="#aaa"/><circle cx="14" cy="12" r="0.8" fill="#aaa"/><circle cx="17" cy="12" r="0.8" fill="#aaa"/><circle cx="20" cy="12" r="0.8" fill="#aaa"/><circle cx="23" cy="12" r="0.8" fill="#aaa"/><circle cx="26" cy="12" r="0.8" fill="#aaa"/></svg>' },
+  { id: 'sdi',   name: 'SDI / BNC', sub: 'Vídeo profesional', svg: '<svg viewBox="0 0 38 24"><circle cx="19" cy="12" r="9" fill="#222" stroke="#444" stroke-width="1.5"/><circle cx="19" cy="12" r="3" fill="#888"/><rect x="4" y="9" width="6" height="6" fill="#555" rx="1"/><rect x="28" y="9" width="6" height="6" fill="#555" rx="1"/></svg>' },
+  { id: 'dp',    name: 'DisplayPort', sub: 'Pantallas PC', svg: '<svg viewBox="0 0 38 24"><path d="M4,8 L34,8 L31,16 L7,16 Z" fill="#222" stroke="#444" stroke-width="1"/><rect x="9" y="11" width="2" height="2" fill="#888"/><rect x="13" y="11" width="2" height="2" fill="#888"/><rect x="17" y="11" width="2" height="2" fill="#888"/><rect x="21" y="11" width="2" height="2" fill="#888"/><rect x="25" y="11" width="2" height="2" fill="#888"/></svg>' },
+  { id: 'usbc',  name: 'USB-C',    sub: 'Universal moderno', svg: '<svg viewBox="0 0 38 24"><rect x="6" y="9" width="26" height="6" rx="3" fill="#222" stroke="#444" stroke-width="1"/><rect x="9" y="11" width="20" height="2" rx="1" fill="#777"/></svg>' },
+  { id: 'rca',   name: 'RCA',      sub: 'Audio analógico', svg: '<svg viewBox="0 0 38 24"><circle cx="19" cy="12" r="8" fill="#dc2626"/><circle cx="19" cy="12" r="5" fill="#222"/><circle cx="19" cy="12" r="1.5" fill="#888"/></svg>' },
+  { id: 'xlr',   name: 'XLR',      sub: 'Audio balanceado', svg: '<svg viewBox="0 0 38 24"><circle cx="19" cy="12" r="9" fill="#222" stroke="#444" stroke-width="1.5"/><circle cx="15" cy="11" r="1.2" fill="#aaa"/><circle cx="23" cy="11" r="1.2" fill="#aaa"/><circle cx="19" cy="15" r="1.2" fill="#aaa"/></svg>' },
+  { id: 'jack',  name: 'Jack 6.3', sub: 'Audio guitarra/mic', svg: '<svg viewBox="0 0 38 24"><rect x="4" y="11" width="22" height="2" fill="#888"/><rect x="14" y="9" width="2" height="6" fill="#444"/><rect x="20" y="9" width="2" height="6" fill="#444"/><circle cx="30" cy="12" r="5" fill="#444"/></svg>' },
+  { id: 'rj45',  name: 'RJ45',     sub: 'Red Ethernet', svg: '<svg viewBox="0 0 38 24"><rect x="9" y="6" width="20" height="14" fill="#222" stroke="#444" stroke-width="1" rx="1"/><rect x="11" y="8" width="16" height="2" fill="#888"/><rect x="11" y="11" width="2" height="6" fill="#888"/><rect x="14" y="11" width="2" height="6" fill="#888"/><rect x="17" y="11" width="2" height="6" fill="#888"/><rect x="20" y="11" width="2" height="6" fill="#888"/><rect x="23" y="11" width="2" height="6" fill="#888"/><rect x="26" y="11" width="2" height="6" fill="#888"/></svg>' }
+];
+var conTargets = [
+  { id: 'tv',         desc: '📺 TV doméstica · cámara → televisor (audio+vídeo digital, alcance 5m)',           accept: 'hdmi' },
+  { id: 'broadcast',  desc: '📹 Cámara broadcast → mixer · cable largo, profesional, sin compresión',           accept: 'sdi' },
+  { id: 'monitor',    desc: '🖥 Monitor profesional PC con alta tasa de refresco (144Hz+)',                     accept: 'dp' },
+  { id: 'laptop',     desc: '💻 Portátil moderno → pantalla externa o disco · cable reversible',                accept: 'usbc' },
+  { id: 'home',       desc: '🔊 Equipo de sonido doméstico vintage (amplificador, lector CD)',                  accept: 'rca' },
+  { id: 'mic',        desc: '🎤 Micrófono dinámico de escenario → mesa de sonido · 3 pines',                    accept: 'xlr' },
+  { id: 'guitar',     desc: '🎸 Guitarra eléctrica → amplificador · 6.3mm, no balanceado',                      accept: 'jack' },
+  { id: 'network',    desc: '🌐 PC → switch · transmisión NDI sobre red local',                                 accept: 'rj45' }
+];
+var conState = { placed: {}, score: 0 };
+
+function conReset() {
+  conState = { placed: {}, score: 0 };
+  // Pintar pool
+  var poolHtml = '';
+  var shuffled = conConnectors.slice().sort(function() { return Math.random() - 0.5; });
+  for (var i = 0; i < shuffled.length; i++) {
+    var c = shuffled[i];
+    poolHtml += '<div class="con-conn" draggable="true" data-id="' + c.id + '">' +
+      '<div class="con-conn-icon">' + c.svg + '</div>' +
+      '<div class="con-conn-name">' + c.name + '</div>' +
+      '<div class="con-conn-sub">' + c.sub + '</div>' +
+    '</div>';
+  }
+  document.getElementById('conPool').innerHTML = poolHtml;
+
+  // Pintar targets
+  var tHtml = '';
+  var shuffledT = conTargets.slice().sort(function() { return Math.random() - 0.5; });
+  for (var j = 0; j < shuffledT.length; j++) {
+    var t = shuffledT[j];
+    tHtml += '<div class="con-target" data-target="' + t.id + '" data-accept="' + t.accept + '">' +
+      '<div class="con-target-needs">Necesita…</div>' +
+      '<div class="con-target-desc">' + t.desc + '</div>' +
+    '</div>';
+  }
+  document.getElementById('conTargets').innerHTML = tHtml;
+
+  document.getElementById('conStatus').textContent = '0 de ' + conTargets.length + ' conectados';
+  document.getElementById('conFb').className = 'gv-feedback';
+  document.getElementById('conFb').textContent = '';
+
+  conWire();
+}
+
+function conWire() {
+  // Connectors draggable
+  var conns = document.querySelectorAll('#conPool .con-conn');
+  for (var i = 0; i < conns.length; i++) {
+    (function(el) {
+      el.addEventListener('dragstart', function(ev) {
+        ev.dataTransfer.setData('text/plain', el.dataset.id);
+        ev.dataTransfer.effectAllowed = 'move';
+        el.classList.add('dragging');
+      });
+      el.addEventListener('dragend', function() {
+        el.classList.remove('dragging');
+      });
+      // Touch support básico (móvil): no implementado para evitar complicar; el drag funciona en desktop
+    })(conns[i]);
+  }
+  // Targets droppable
+  var targets = document.querySelectorAll('#conTargets .con-target');
+  for (var j = 0; j < targets.length; j++) {
+    (function(t) {
+      t.addEventListener('dragover', function(ev) {
+        if (t.classList.contains('correct')) return;
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = 'move';
+        t.classList.add('over');
+      });
+      t.addEventListener('dragleave', function() { t.classList.remove('over'); });
+      t.addEventListener('drop', function(ev) {
+        ev.preventDefault();
+        t.classList.remove('over');
+        if (t.classList.contains('correct')) return;
+        var id = ev.dataTransfer.getData('text/plain');
+        conPlace(id, t);
+      });
+    })(targets[j]);
+  }
+}
+
+function conPlace(connId, targetEl) {
+  var accept = targetEl.dataset.accept;
+  var connector = null;
+  for (var i = 0; i < conConnectors.length; i++) if (conConnectors[i].id === connId) connector = conConnectors[i];
+  if (!connector) return;
+  var correct = (accept === connId);
+  if (correct) {
+    targetEl.classList.add('correct');
+    targetEl.classList.remove('wrong');
+    targetEl.innerHTML =
+      '<div class="con-conn-icon">' + connector.svg + '</div>' +
+      '<div class="con-placed-name">✓ ' + connector.name + '</div>' +
+      '<div class="con-target-desc">' + targetEl.dataset.descCache + '</div>';
+    // Quitar el conector del pool
+    var poolItem = document.querySelector('#conPool .con-conn[data-id="' + connId + '"]');
+    if (poolItem) poolItem.remove();
+    conState.placed[targetEl.dataset.target] = connId;
+    conState.score++;
+  } else {
+    targetEl.classList.add('wrong');
+    setTimeout(function() {
+      if (!targetEl.classList.contains('correct')) targetEl.classList.remove('wrong');
+    }, 700);
+  }
+  // Cache la descripción para no perderla al sobrescribir
+  document.getElementById('conStatus').textContent = conState.score + ' de ' + conTargets.length + ' conectados';
+
+  if (conState.score === conTargets.length) {
+    var fb = document.getElementById('conFb');
+    fb.className = 'gv-feedback ok';
+    fb.innerHTML = '🏆 ¡Has conectado todos los equipos correctamente! Ya dominas los conectores AV.';
+  } else {
+    var fb2 = document.getElementById('conFb');
+    if (correct) {
+      fb2.className = 'gv-feedback ok';
+      fb2.innerHTML = '✓ ' + connector.name + ' es correcto.';
+    } else {
+      fb2.className = 'gv-feedback err';
+      fb2.innerHTML = '✗ ' + connector.name + ' no es la mejor opción aquí. Inténtalo con otro conector.';
+    }
+  }
+}
+
+// Cache descriptions before reset
+function conCacheDescriptions() {
+  // Llamado tras reset para guardar la desc en el dataset
+  var ts = document.querySelectorAll('#conTargets .con-target');
+  for (var i = 0; i < ts.length; i++) {
+    var d = ts[i].querySelector('.con-target-desc');
+    if (d) ts[i].dataset.descCache = d.textContent;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 3) M5 · RASTER O VECTORIAL
+// ═══════════════════════════════════════════════════════════════════════════
+var rvChallenges = [
+  { type: 'raster', shape: 'photo',  desc: 'Imagen <strong>raster</strong>: al ampliar aparece el grid de píxeles. Las fotografías digitales son siempre raster (JPG, PNG). Resolución fija.' },
+  { type: 'vector', shape: 'logo',   desc: 'Imagen <strong>vectorial</strong>: definida por puntos y curvas matemáticas. Conserva nitidez a cualquier escala. Logos y tipografías van en SVG/AI.' },
+  { type: 'raster', shape: 'pixel',  desc: '<strong>Raster</strong>: cada píxel ocupa una posición concreta. Al hacer zoom, los bordes se vuelven escalonados (aliasing).' },
+  { type: 'vector', shape: 'icon',   desc: '<strong>Vectorial</strong>: los iconos en SVG escalan sin pérdida. Ideales para UI responsiva, pantallas Retina y proyección a gran escala.' },
+  { type: 'raster', shape: 'gradient', desc: '<strong>Raster</strong>: los degradados con detalle fotográfico se almacenan como bitmap. Requieren compresión (JPG, WebP).' }
+];
+var rvState = { idx: 0, score: 0, locked: false, results: [], order: [], zoom: 1 };
+
+function rvReset() {
+  rvState.order = rvChallenges.map(function(_, i) { return i; }).sort(function() { return Math.random() - 0.5; });
+  rvState.idx = 0;
+  rvState.score = 0;
+  rvState.locked = false;
+  rvState.results = [];
+  rvState.zoom = 1;
+  document.getElementById('rvZoom').value = 1;
+  document.getElementById('rvZoomVal').textContent = '×1';
+  rvRender();
+}
+
+function rvRender() {
+  if (rvState.idx >= rvState.order.length) { rvFinish(); return; }
+  var ch = rvChallenges[rvState.order[rvState.idx]];
+  rvDrawImage(ch.shape, ch.type, rvState.zoom);
+  // Reset zoom slider
+  document.getElementById('rvZoom').value = 1;
+  document.getElementById('rvZoomVal').textContent = '×1';
+  rvState.zoom = 1;
+  // Reset opciones
+  var opts = document.querySelectorAll('#rvOpts .rv-opt');
+  for (var i = 0; i < opts.length; i++) opts[i].classList.remove('correct', 'wrong', 'locked');
+  document.getElementById('rvFb').className = 'gv-feedback';
+  document.getElementById('rvFb').textContent = '';
+  document.getElementById('rvNext').style.display = 'none';
+  document.getElementById('rvScoreL').textContent = 'Reto ' + (rvState.idx + 1) + ' / ' + rvState.order.length;
+  document.getElementById('rvScoreR').textContent = rvState.score + ' aciertos';
+  gvRenderProg('rvProg', rvState.order.length, rvState.idx, rvState.results);
+  rvState.locked = false;
+}
+
+function rvDrawImage(shape, type, zoom) {
+  var c = document.getElementById('rvCanvas');
+  if (!c) return;
+  var ctx = c.getContext('2d');
+  var w = c.width, h = c.height;
+  ctx.imageSmoothingEnabled = false; // siempre nítido para visualizar pixelado
+  ctx.fillStyle = '#fafaf8';
+  ctx.fillRect(0, 0, w, h);
+
+  // El "secreto" del juego: si es raster, dibujamos en una resolución baja y escalamos
+  // Si es vector, dibujamos siempre a full res aplicando transformaciones matemáticas.
+  ctx.save();
+  if (type === 'raster') {
+    // Dibujar a resolución baja (60×42) y escalar pixelado al zoom
+    var lowW = 60, lowH = Math.round(60 * h / w);
+    var off = document.createElement('canvas');
+    off.width = lowW; off.height = lowH;
+    var oc = off.getContext('2d');
+    oc.fillStyle = '#fafaf8';
+    oc.fillRect(0, 0, lowW, lowH);
+    drawShapeOn(oc, shape, lowW, lowH);
+    // Escalar manteniendo aliasing
+    ctx.imageSmoothingEnabled = false;
+    var cx = w / 2, cy = h / 2;
+    var sw = lowW * zoom * (w / lowW);
+    var sh = lowH * zoom * (h / lowH);
+    ctx.drawImage(off, cx - sw / 2, cy - sh / 2, sw, sh);
+  } else {
+    // Vector: dibujar matemáticamente con transformación
+    ctx.translate(w / 2, h / 2);
+    ctx.scale(zoom, zoom);
+    ctx.translate(-w / 2, -h / 2);
+    drawShapeOn(ctx, shape, w, h);
+  }
+  ctx.restore();
+}
+
+function drawShapeOn(ctx, shape, w, h) {
+  var cx = w / 2, cy = h / 2;
+  if (shape === 'photo') {
+    // "Fotografía" simulada: cielo + sol + montañas + degradado
+    var sky = ctx.createLinearGradient(0, 0, 0, h * 0.7);
+    sky.addColorStop(0, '#88c0e0'); sky.addColorStop(1, '#dfeaf2');
+    ctx.fillStyle = sky;
+    ctx.fillRect(0, 0, w, h * 0.7);
+    // Sol
+    ctx.fillStyle = '#fbbf24';
+    ctx.beginPath(); ctx.arc(w * 0.75, h * 0.3, h * 0.12, 0, Math.PI * 2); ctx.fill();
+    // Montaña
+    ctx.fillStyle = '#5a6e8a';
+    ctx.beginPath();
+    ctx.moveTo(0, h * 0.7);
+    ctx.lineTo(w * 0.3, h * 0.4);
+    ctx.lineTo(w * 0.55, h * 0.6);
+    ctx.lineTo(w * 0.8, h * 0.35);
+    ctx.lineTo(w, h * 0.55);
+    ctx.lineTo(w, h * 0.7);
+    ctx.closePath(); ctx.fill();
+    // Suelo
+    ctx.fillStyle = '#4a6b3a';
+    ctx.fillRect(0, h * 0.7, w, h * 0.3);
+  } else if (shape === 'logo') {
+    // Logo geométrico: triángulo + círculo
+    ctx.fillStyle = '#192A56';
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - 50);
+    ctx.lineTo(cx - 50, cy + 30);
+    ctx.lineTo(cx + 50, cy + 30);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#F7D794';
+    ctx.beginPath(); ctx.arc(cx, cy + 5, 18, 0, Math.PI * 2); ctx.fill();
+  } else if (shape === 'pixel') {
+    // Pixel art: emoji simple
+    var p = h / 12;
+    ctx.fillStyle = '#fbbf24';
+    var pixels = [
+      [3,2],[4,2],[5,2],[6,2],
+      [2,3],[7,3],
+      [1,4],[3,4],[6,4],[8,4],
+      [1,5],[8,5],
+      [1,6],[3,6],[6,6],[8,6],
+      [2,7],[4,7],[5,7],[7,7],
+      [3,8],[4,8],[5,8],[6,8]
+    ];
+    for (var i = 0; i < pixels.length; i++) {
+      ctx.fillRect(cx - 5 * p + pixels[i][0] * p, cy - 5 * p + pixels[i][1] * p, p, p);
+    }
+    ctx.fillStyle = '#000';
+    ctx.fillRect(cx - 5 * p + 3 * p, cy - 5 * p + 4 * p, p * 0.7, p * 0.7);
+    ctx.fillRect(cx - 5 * p + 6 * p, cy - 5 * p + 4 * p, p * 0.7, p * 0.7);
+  } else if (shape === 'icon') {
+    // Icono SVG-style: estrella
+    ctx.fillStyle = '#192A56';
+    ctx.beginPath();
+    var spikes = 5, outerR = 50, innerR = 22;
+    for (var k = 0; k < spikes * 2; k++) {
+      var r = (k % 2 === 0) ? outerR : innerR;
+      var a = (k * Math.PI) / spikes - Math.PI / 2;
+      var px = cx + r * Math.cos(a);
+      var py = cy + r * Math.sin(a);
+      if (k === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    }
+    ctx.closePath(); ctx.fill();
+  } else if (shape === 'gradient') {
+    // Foto degradado nuboso
+    var g = ctx.createRadialGradient(cx, cy, 5, cx, cy, w * 0.6);
+    g.addColorStop(0, '#fbbf24'); g.addColorStop(0.4, '#f97316'); g.addColorStop(1, '#7c2d12');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+    // Algunas "nubes"
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    for (var n = 0; n < 8; n++) {
+      ctx.beginPath();
+      ctx.arc(20 + n * 32, 50 + (n % 3) * 25, 18 + (n % 2) * 6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+}
+
+function rvOnZoom(v) {
+  rvState.zoom = parseFloat(v);
+  document.getElementById('rvZoomVal').textContent = '×' + rvState.zoom.toFixed(1);
+  if (rvState.idx < rvState.order.length) {
+    var ch = rvChallenges[rvState.order[rvState.idx]];
+    rvDrawImage(ch.shape, ch.type, rvState.zoom);
+  }
+}
+
+function rvPick(id, btn) {
+  if (rvState.locked) return;
+  rvState.locked = true;
+  var ch = rvChallenges[rvState.order[rvState.idx]];
+  var correct = (id === ch.type);
+  rvState.results[rvState.idx] = correct;
+  if (correct) rvState.score++;
+  var opts = document.querySelectorAll('#rvOpts .rv-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.add('locked');
+    if (opts[i].dataset.id === ch.type) opts[i].classList.add('correct');
+    if (opts[i] === btn && !correct) opts[i].classList.add('wrong');
+  }
+  var fb = document.getElementById('rvFb');
+  fb.className = 'gv-feedback ' + (correct ? 'ok' : 'err');
+  fb.innerHTML = (correct ? '✓ Correcto. ' : '✗ Incorrecto. ') + ch.desc;
+  document.getElementById('rvNext').style.display = 'inline-block';
+  document.getElementById('rvNext').textContent = (rvState.idx < rvState.order.length - 1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('rvScoreR').textContent = rvState.score + ' aciertos';
+}
+
+function rvNext() {
+  rvState.idx++;
+  rvRender();
+}
+
+function rvFinish() {
+  var c = document.getElementById('rvCanvas');
+  if (c) {
+    var ctx = c.getContext('2d');
+    ctx.fillStyle = '#192A56'; ctx.fillRect(0, 0, c.width, c.height);
+    ctx.fillStyle = '#F7D794'; ctx.font = 'bold 38px Inter, sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(rvState.score + '/' + rvState.order.length, c.width / 2, c.height / 2);
+  }
+  document.getElementById('rvFb').className = 'gv-feedback ' + (rvState.score >= 4 ? 'ok' : 'err');
+  document.getElementById('rvFb').innerHTML =
+    (rvState.score === rvState.order.length ? '🏆 ¡Perfecto! Distingues raster de vectorial al instante.' :
+     rvState.score >= 4 ? 'Muy bien. Tienes buen ojo.' :
+     rvState.score >= 3 ? 'Aceptable. Recuerda: si pixelas al hacer zoom, es raster.' :
+     'Repasa la diferencia entre raster y vectorial.');
+  document.getElementById('rvNext').style.display = 'inline-block';
+  document.getElementById('rvNext').textContent = '↻ Volver a jugar';
+  document.getElementById('rvNext').onclick = function() { rvReset(); };
+  gvRenderProg('rvProg', rvState.order.length, rvState.order.length, rvState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 4) M8 · PIXEL PITCH CORRECTO
+// ═══════════════════════════════════════════════════════════════════════════
+// Pitches disponibles (en mm)
+var ppPitches = [
+  { name: 'P1.5',  mm: 1.5,  use: 'estudios TV, primera fila' },
+  { name: 'P2',    mm: 2.0,  use: 'salas de control, retail interior' },
+  { name: 'P3',    mm: 3.0,  use: 'conciertos pequeños, pantalla 5–10m' },
+  { name: 'P5',    mm: 5.0,  use: 'conciertos medios, pantalla 10–25m' },
+  { name: 'P10',   mm: 10.0, use: 'estadios, vallas, gran exterior' }
+];
+// Escenarios: distancia mínima (m), tamaño aprox, contexto, pitch óptimo
+var ppChallenges = [
+  { dist: 1.5,  size: '3×2 m',    ctx: 'Estudio TV con presentador', best: 'P1.5', alt: ['P2'] },
+  { dist: 3,    size: '6×4 m',    ctx: 'Sala de control corporativa', best: 'P3', alt: ['P2'] },
+  { dist: 8,    size: '10×6 m',   ctx: 'Concierto pequeño en sala', best: 'P5', alt: ['P3'] },
+  { dist: 25,   size: '30×15 m',  ctx: 'Festival al aire libre, escenario principal', best: 'P10', alt: ['P5'] },
+  { dist: 2,    size: '4×2.5 m',  ctx: 'Stand corporativo, retail premium', best: 'P2', alt: ['P1.5'] },
+  { dist: 12,   size: '15×8 m',   ctx: 'Concierto medio, pantalla central', best: 'P5', alt: ['P3'] }
+];
+var ppState = { idx: 0, score: 0, locked: false, results: [], order: [] };
+
+function ppReset() {
+  ppState.order = ppChallenges.map(function(_, i) { return i; }).sort(function() { return Math.random() - 0.5; });
+  ppState.idx = 0;
+  ppState.score = 0;
+  ppState.locked = false;
+  ppState.results = [];
+  ppRender();
+}
+
+function ppRender() {
+  if (ppState.idx >= ppState.order.length) { ppFinish(); return; }
+  var ch = ppChallenges[ppState.order[ppState.idx]];
+  document.getElementById('ppDist').textContent = ch.dist;
+  document.getElementById('ppSize').textContent = ch.size;
+  document.getElementById('ppCtx').textContent = ch.ctx;
+  // Render opciones
+  var html = '';
+  for (var i = 0; i < ppPitches.length; i++) {
+    var p = ppPitches[i];
+    html += '<button class="pp-opt" data-name="' + p.name + '" onclick="ppPick(\'' + p.name + '\', this)">' +
+      '<span class="pp-opt-name">' + p.name + '</span>' +
+      '<span class="pp-opt-mm">' + p.mm + ' mm</span>' +
+    '</button>';
+  }
+  document.getElementById('ppOpts').innerHTML = html;
+  document.getElementById('ppFb').className = 'gv-feedback';
+  document.getElementById('ppFb').textContent = '';
+  document.getElementById('ppNext').style.display = 'none';
+  document.getElementById('ppScoreL').textContent = 'Reto ' + (ppState.idx + 1) + ' / ' + ppState.order.length;
+  document.getElementById('ppScoreR').textContent = ppState.score + ' aciertos';
+  gvRenderProg('ppProg', ppState.order.length, ppState.idx, ppState.results);
+  ppState.locked = false;
+}
+
+function ppPick(name, btn) {
+  if (ppState.locked) return;
+  ppState.locked = true;
+  var ch = ppChallenges[ppState.order[ppState.idx]];
+  var correct = (name === ch.best);
+  ppState.results[ppState.idx] = correct;
+  if (correct) ppState.score++;
+  var opts = document.querySelectorAll('#ppOpts .pp-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.add('locked');
+    if (opts[i].dataset.name === ch.best) opts[i].classList.add('correct');
+    if (opts[i] === btn && !correct) opts[i].classList.add('wrong');
+  }
+  var bestPitch = null;
+  for (var k = 0; k < ppPitches.length; k++) if (ppPitches[k].name === ch.best) bestPitch = ppPitches[k];
+  var fb = document.getElementById('ppFb');
+  fb.className = 'gv-feedback ' + (correct ? 'ok' : 'err');
+  if (correct) {
+    fb.innerHTML = '✓ Correcto: <strong>' + ch.best + '</strong> (' + bestPitch.mm + ' mm). Regla práctica: a ' + ch.dist + ' m de distancia, ' + ch.dist + ' mm es el pitch máximo aceptable. ' + ch.best + ' es ideal para ' + bestPitch.use + '.';
+  } else {
+    fb.innerHTML = '✗ Era <strong>' + ch.best + '</strong> (' + bestPitch.mm + ' mm). Regla: a ' + ch.dist + ' m la distancia mínima recomendada es de ' + ch.dist + ' mm de pitch. ' + ch.best + ' es ideal para ' + bestPitch.use + '.';
+  }
+  document.getElementById('ppNext').style.display = 'inline-block';
+  document.getElementById('ppNext').textContent = (ppState.idx < ppState.order.length - 1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('ppScoreR').textContent = ppState.score + ' aciertos';
+}
+
+function ppNext() {
+  ppState.idx++;
+  ppRender();
+}
+
+function ppFinish() {
+  document.getElementById('ppDist').textContent = '🏆';
+  document.getElementById('ppSize').textContent = ppState.score + '/' + ppState.order.length;
+  document.getElementById('ppCtx').textContent =
+    (ppState.score === ppState.order.length ? '¡Perfecto!' :
+     ppState.score >= 5 ? 'Muy bien' :
+     ppState.score >= 3 ? 'Aceptable' : 'A repasar');
+  document.getElementById('ppOpts').innerHTML = '';
+  document.getElementById('ppFb').className = 'gv-feedback ' + (ppState.score >= 4 ? 'ok' : 'err');
+  document.getElementById('ppFb').innerHTML =
+    (ppState.score === ppState.order.length ? '🏆 ¡Perfecto! Dominas la elección de pixel pitch.' :
+     ppState.score >= 5 ? 'Muy bien. Tienes claro el criterio de distancia.' :
+     ppState.score >= 3 ? 'Recuerda la regla: distancia (m) = pitch (mm).' :
+     'Vuelve a la sección de Pixel Pitch antes de seguir.');
+  document.getElementById('ppNext').style.display = 'inline-block';
+  document.getElementById('ppNext').textContent = '↻ Volver a jugar';
+  document.getElementById('ppNext').onclick = function() { ppReset(); };
+  gvRenderProg('ppProg', ppState.order.length, ppState.order.length, ppState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INICIALIZACIÓN — escuchar clics en las pestañas (mismo patrón que quiz m1)
+// ═══════════════════════════════════════════════════════════════════════════
+(function() {
+  // Engancharse a clics en las pestañas internas. switchTab() ya cambia las clases
+  // active; nosotros solo necesitamos disparar el reset cuando el pane se activa
+  // por primera vez.
+  document.addEventListener('click', function(e) {
+    var tab = e.target.closest('[data-inner]');
+    if (!tab) return;
+    var paneId = tab.getAttribute('data-inner');
+    setTimeout(function() {
+      if (paneId === 'i_scangame') {
+        if (!document.querySelector('#scanProg .gv-pip')) scanReset();
+      }
+      if (paneId === 'c_conngame') {
+        if (!document.querySelector('#conPool .con-conn') && !document.querySelector('#conTargets .con-target')) {
+          conReset();
+          setTimeout(conCacheDescriptions, 50);
+        }
+      }
+      if (paneId === 'l_ppgame') {
+        if (!document.querySelector('#ppProg .gv-pip')) ppReset();
+      }
+    }, 80);
+  });
+
+  // m5 no tiene inner-tabs: se inicializa al entrar al módulo m5
+  // El hook a goTo debe aplicarse cuando goTo ya esté definido (en otro <script>
+  // posterior). Esperamos a DOMContentLoaded o a un setTimeout.
+  function applyGoToHook() {
+    if (typeof window.goTo !== 'function') return false;
+    if (window._gvGoToHooked) return true;
+    window._gvGoToHooked = true;
+    var origGoTo = window.goTo;
+    window.goTo = function(id) {
+      origGoTo(id);
+      if (id === 'm5') setTimeout(function() {
+        if (!document.querySelector('#rvProg .gv-pip')) rvReset();
+      }, 80);
+    };
+    return true;
+  }
+  if (!applyGoToHook()) {
+    // Esperar a que se cargue el resto de scripts
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyGoToHook);
+    }
+    // Reintentar tras un breve retraso por si el script con goTo se carga después
+    setTimeout(applyGoToHook, 50);
+    setTimeout(applyGoToHook, 200);
+    setTimeout(applyGoToHook, 500);
+  }
+
+  // Wire zoom slider de m5 (delegación, así no importa si el DOM aún no está)
+  document.addEventListener('input', function(e) {
+    if (e.target && e.target.id === 'rvZoom') rvOnZoom(e.target.value);
+  });
+
+  // Si al cargar la página el pane ya está activo (p.ej. recarga con hash), inicializar
+  setTimeout(function() {
+    if (document.getElementById('i_scangame') && document.getElementById('i_scangame').classList.contains('active')) {
+      if (!document.querySelector('#scanProg .gv-pip')) scanReset();
+    }
+    if (document.getElementById('c_conngame') && document.getElementById('c_conngame').classList.contains('active')) {
+      if (!document.querySelector('#conPool .con-conn')) { conReset(); setTimeout(conCacheDescriptions, 50); }
+    }
+    if (document.getElementById('l_ppgame') && document.getElementById('l_ppgame').classList.contains('active')) {
+      if (!document.querySelector('#ppProg .gv-pip')) ppReset();
+    }
+    var m5sec = document.getElementById('m5');
+    if (m5sec && m5sec.classList.contains('active')) {
+      if (!document.querySelector('#rvProg .gv-pip')) rvReset();
+    }
+  }, 200);
+})();
+
+// ─── fin mejoras gamificación ─────────────────────────────────────────────
+
+</script>
 
 <script>
 const SHUTTERS=[1,1/2,1/4,1/8,1/15,1/30,1/60,1/125,1/250,1/500,1/1000,1/2000,1/4000];

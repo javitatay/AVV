@@ -437,6 +437,75 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
   max-width: 72ch;
 }
 
+/* ═══════════════ MEJORAS GAMIFICACIÓN ═══════════════ */
+
+/* Rueda de armonías (Color) */
+.color-wheel-wrap { display: grid; grid-template-columns: 320px 1fr; gap: 24px; align-items: start; }
+@media (max-width: 800px) { .color-wheel-wrap { grid-template-columns: 1fr; justify-items: center; } }
+.color-wheel-svg { width: 320px; height: 320px; max-width: 100%; touch-action: none; cursor: crosshair; user-select: none; }
+.harmony-btn { padding: 8px 14px; border-radius: 18px; border: 1.5px solid var(--border-mid); background: transparent; color: var(--text-primary); font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; transition: all .18s; }
+.harmony-btn:hover { border-color: var(--ai-orange); }
+.harmony-btn.active { background: var(--ai-orange); color: #fff; border-color: var(--ai-orange); }
+.harmony-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; margin-top: 12px; }
+.harmony-swatch { border: 1px solid var(--border-dark); border-radius: 6px; overflow: hidden; background: #fff; }
+.harmony-swatch-color { height: 60px; }
+.harmony-swatch-info { padding: 6px 8px; font-family: var(--font-mono); font-size: 10.5px; color: var(--text-secondary); line-height: 1.45; }
+.harmony-swatch-info strong { color: var(--text-primary); display: block; font-size: 11.5px; }
+
+/* Tutorial guiado Pluma */
+.pluma-game-wrap { background: #1a0a04; border-radius: 10px; padding: 16px; }
+.pluma-game-canvas { width: 100%; height: 320px; display: block; cursor: crosshair; border-radius: 6px; touch-action: none; background: #261410; }
+.pluma-game-controls { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; align-items: center; }
+.pluma-level-btn { padding: 6px 12px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); color: #fff; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: all .18s; }
+.pluma-level-btn:hover { background: rgba(255,255,255,0.12); }
+.pluma-level-btn.active { background: var(--ai-orange); border-color: var(--ai-orange); }
+.pluma-action-btn { padding: 6px 14px; border-radius: 14px; background: var(--ai-orange); color: #fff; border: none; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer; }
+.pluma-action-btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,0.25); }
+.pluma-status { color: #fff; font-size: 12px; opacity: 0.85; margin-left: auto; font-family: var(--font-mono); }
+
+/* Pathfinder game */
+.pf-game-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+@media (max-width: 720px) { .pf-game-wrap { grid-template-columns: 1fr; } }
+.pf-stage { background: #fdfafa; border: 1px solid #e8d8d8; border-radius: 6px; padding: 10px; margin-bottom: 8px; }
+.pf-stage-label { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+.pf-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pf-opt { padding: 12px; background: #fff; border: 1.5px solid #e8d8d8; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--text-primary); text-align: center; transition: all .18s; }
+.pf-opt:hover:not(.locked) { border-color: var(--ai-orange); background: rgba(59,8,8,0.04); }
+.pf-opt.correct { border-color: #1a5e20; background: rgba(26,94,32,0.10); color: #1a5e20; }
+.pf-opt.wrong { border-color: #c44040; background: rgba(196,64,64,0.08); color: #c44040; }
+.pf-opt.locked { cursor: default; }
+.pf-feedback { padding: 10px 12px; border-radius: 6px; font-size: 13px; margin-top: 12px; display: none; line-height: 1.5; }
+.pf-feedback.ok { display: block; background: rgba(26,94,32,0.08); border-left: 3px solid #1a5e20; color: #1a5e20; }
+.pf-feedback.ko { display: block; background: rgba(196,64,64,0.08); border-left: 3px solid #c44040; color: #8a1a1a; }
+.pf-progress { display: flex; gap: 4px; margin: 12px 0 16px; }
+.pf-progress-dot { flex: 1; height: 5px; border-radius: 2px; background: #e8d8d8; }
+.pf-progress-dot.done-ok { background: #1a5e20; }
+.pf-progress-dot.done-ko { background: #c44040; }
+.pf-progress-dot.current { background: var(--ai-orange); }
+
+/* Atajos game */
+.atajos-game { background: linear-gradient(135deg, #2a0505, #3b0808); border-radius: 10px; padding: 24px; color: #fff; }
+.atajos-prompt { text-align: center; padding: 16px 12px; }
+.atajos-action { font-size: 12px; opacity: 0.7; margin-bottom: 4px; letter-spacing: 1.5px; text-transform: uppercase; font-family: var(--font-mono); }
+.atajos-tool { font-size: 30px; font-weight: 700; margin-bottom: 16px; line-height: 1.1; }
+.atajos-input-display { display: inline-block; min-width: 200px; padding: 10px 24px; background: rgba(255,255,255,0.08); border: 2px dashed rgba(255,255,255,0.25); border-radius: 8px; font-family: var(--font-mono); font-size: 18px; font-weight: 700; letter-spacing: 2px; min-height: 46px; }
+.atajos-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 16px 0; padding: 12px; background: rgba(0,0,0,0.25); border-radius: 8px; text-align: center; }
+.atajos-stat-val { font-size: 22px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.atajos-stat-lbl { font-size: 10px; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+.atajos-time-bar { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; margin-bottom: 16px; }
+.atajos-time-fill { height: 100%; background: linear-gradient(90deg, #4ade80, #fbbf24, #ef4444); transition: width 0.1s linear; width: 100%; }
+.atajos-actions { display: flex; gap: 8px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
+.atajos-btn { padding: 10px 22px; border-radius: 6px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+.atajos-btn.primary { background: #fff; color: var(--ai-orange); }
+.atajos-btn.ghost { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+.atajos-feedback { text-align: center; padding: 12px; border-radius: 6px; margin-top: 10px; font-size: 13px; font-weight: 600; }
+.atajos-feedback.ok { background: rgba(74,222,128,0.18); color: #4ade80; }
+.atajos-feedback.ko { background: rgba(239,68,68,0.18); color: #fca5a5; }
+.atajos-final { text-align: center; padding: 20px; }
+.atajos-final-score { font-size: 56px; font-weight: 800; color: #fbbf24; line-height: 1; }
+.atajos-final-msg { margin-top: 8px; font-size: 14px; opacity: 0.85; }
+
+/* ─── fin mejoras gamificación ─── */
 
 </style>
 </head>
@@ -1053,6 +1122,42 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
         <p class="page-desc">El color es fundamental en el diseño gráfico. Illustrator ofrece modos de color profesionales (CMYK para imprenta, RGB para pantalla), muestras Pantone, degradados y completo control del relleno y trazo.</p>
     </div>
 
+<!-- ═══════════════ NUEVA: RUEDA DE ARMONÍAS CROMÁTICAS ═══════════════ -->
+<div class="panel" style="margin-bottom:24px;">
+  <div class="panel-title">🎨 Rueda de Armonías Cromáticas</div>
+  <p style="font-size:14px;color:var(--text-secondary);margin-bottom:14px;">
+    Arrastra el selector sobre la rueda para escoger un color base. Pulsa una <strong>armonía</strong> y la rueda generará automáticamente los colores que combinan según la teoría del color.
+  </p>
+  <div class="color-wheel-wrap">
+    <div>
+      <svg class="color-wheel-svg" id="cwSvg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+        <label style="font-size:12px;color:var(--text-dim);min-width:96px;">Saturación</label>
+        <input type="range" id="cwSat" min="20" max="100" value="80" style="flex:1;">
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
+        <label style="font-size:12px;color:var(--text-dim);min-width:96px;">Luminosidad</label>
+        <input type="range" id="cwLight" min="20" max="80" value="55" style="flex:1;">
+      </div>
+    </div>
+    <div>
+      <p style="color:var(--text-dim);font-family:var(--font-mono);font-size:10px;letter-spacing:1.5px;margin-bottom:8px;">ARMONÍA</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+        <button class="harmony-btn active" data-h="single" onclick="cwSet('single')">Color base</button>
+        <button class="harmony-btn" data-h="comp" onclick="cwSet('comp')">Complementaria</button>
+        <button class="harmony-btn" data-h="analog" onclick="cwSet('analog')">Análoga</button>
+        <button class="harmony-btn" data-h="triad" onclick="cwSet('triad')">Triádica</button>
+        <button class="harmony-btn" data-h="tetra" onclick="cwSet('tetra')">Tetrádica</button>
+        <button class="harmony-btn" data-h="split" onclick="cwSet('split')">Split-comp.</button>
+        <button class="harmony-btn" data-h="mono" onclick="cwSet('mono')">Monocromática</button>
+      </div>
+      <div id="cwExplain" class="info-box" style="margin-bottom:0;"></div>
+      <div class="harmony-swatches" id="cwSwatches"></div>
+    </div>
+  </div>
+</div>
+
+
     <div class="panel" style="margin-bottom:24px;">
         <div class="panel-title">Modelos de color — RGB, CMYK y HSB</div>
         <p style="font-size:14px;color:var(--text-secondary);margin-bottom:14px;">Haz clic en un modelo para ver cómo mezcla colores. <strong>RGB</strong> es para pantalla, <strong>CMYK</strong> para imprenta, <strong>HSB</strong> para selección intuitiva.</p>
@@ -1651,6 +1756,31 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 </svg>
 </div>
 
+<!-- ═══════════════ NUEVA: TUTORIAL GUIADO DE PLUMA ═══════════════ -->
+<div class="panel" style="margin-bottom:20px;">
+  <div class="panel-title">🎯 Tutorial Guiado — Reproduce el trazado</div>
+  <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px;">
+    Aprende a usar la <strong>Pluma</strong> reproduciendo formas reales. Selecciona un nivel y haz <strong>clic</strong> para crear puntos de esquina, <strong>clic+arrastrar</strong> para crear curvas. Cierra el trazado clicando sobre el primer punto.
+  </p>
+  <div class="pluma-game-wrap">
+    <canvas id="plumaGameCanvas" class="pluma-game-canvas"></canvas>
+    <div class="pluma-game-controls">
+      <button class="pluma-level-btn active" data-lv="0" onclick="plgLevel(0)">1 · Línea</button>
+      <button class="pluma-level-btn" data-lv="1" onclick="plgLevel(1)">2 · Curva en S</button>
+      <button class="pluma-level-btn" data-lv="2" onclick="plgLevel(2)">3 · Círculo</button>
+      <button class="pluma-level-btn" data-lv="3" onclick="plgLevel(3)">4 · Letra C</button>
+      <button class="pluma-action-btn ghost" onclick="plgClear()">↺ Limpiar</button>
+      <button class="pluma-action-btn" onclick="plgShowSolution()" id="plgSolBtn">👁 Ver guía</button>
+      <span class="pluma-status" id="plgStatus">0 puntos · 0 curvas</span>
+    </div>
+  </div>
+  <div class="info-box" style="margin-top:14px;">
+    <h4>💡 Pista del nivel</h4>
+    <p id="plgHint">Coloca <strong>2 puntos de esquina</strong> con clic simple para trazar una línea recta entre el inicio y el fin marcados en gris.</p>
+  </div>
+</div>
+
+
 <div class="quiz-section" id="quiz-pluma">
   <div class="quiz-header"><h3>🎯 Comprueba lo que sabes</h3><span class="quiz-count" id="qcount-pluma">1 / 3</span></div>
   <div class="quiz-body" id="qbody-pluma">
@@ -2106,6 +2236,37 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     <text x="612" y="128" text-anchor="middle" fill="#888" font-size="9">Cada zona = objeto propio</text>
   </svg>
 </div>
+
+<!-- ═══════════════ NUEVA: JUEGO ELIGE OPERACIÓN ═══════════════ -->
+<div class="panel" style="margin-bottom:20px;">
+  <div class="panel-title">🎮 Juego — Identifica la operación booleana</div>
+  <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px;">
+    Mira las dos formas de partida y el resultado. ¿Qué operación del Buscatrazos se ha aplicado? Acumula aciertos hasta completar los 8 retos.
+  </p>
+  <div class="pf-progress" id="pfProgress"></div>
+  <div class="pf-game-wrap">
+    <div>
+      <div class="pf-stage">
+        <div class="pf-stage-label">Formas de partida</div>
+        <div id="pfInput" style="display:flex;justify-content:center;"></div>
+      </div>
+      <div class="pf-stage">
+        <div class="pf-stage-label">Resultado obtenido</div>
+        <div id="pfOutput" style="display:flex;justify-content:center;"></div>
+      </div>
+    </div>
+    <div>
+      <div class="pf-stage-label" style="margin-bottom:10px;">¿Qué operación se ha aplicado?</div>
+      <div class="pf-options" id="pfOptions"></div>
+      <div class="pf-feedback" id="pfFeedback"></div>
+      <div style="display:flex;gap:8px;justify-content:space-between;align-items:center;margin-top:14px;">
+        <span style="font-size:12px;color:var(--text-dim);" id="pfScore">Reto 1 / 8 · 0 aciertos</span>
+        <button class="pluma-action-btn" id="pfNext" onclick="pfNext()" style="display:none;">Siguiente reto →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="quiz-section" id="quiz-pathfinder">
   <div class="quiz-header"><h3>🎯 Comprueba lo que sabes</h3><span class="quiz-count" id="qcount-pathfinder">1 / 3</span></div>
@@ -2828,6 +2989,48 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
         <p class="page-desc">Dominar los atajos de teclado multiplica la velocidad de trabajo. Esta referencia cubre los atajos más importantes de Adobe Illustrator, organizados por categoría.</p>
     </div>
 
+<!-- ═══════════════ NUEVA: JUEGO PULSA EL ATAJO ═══════════════ -->
+<div class="panel" style="margin-bottom:20px;">
+  <div class="panel-title">⏱ Juego — Pulsa el atajo correcto</div>
+  <p style="font-size:14px;color:var(--text-secondary);margin-bottom:14px;">
+    El reto definitivo: aparecerá una herramienta y tendrás <strong>5 segundos</strong> para pulsar el atajo correcto en el teclado. <strong>+10 puntos</strong> por acierto, <strong>−5</strong> por fallo o tiempo agotado. 15 retos por partida.
+  </p>
+  <div class="atajos-game" id="atGame">
+    <div id="atIdle" style="text-align:center;padding:24px;">
+      <p style="font-size:14px;opacity:0.85;margin-bottom:18px;">¿Listo para demostrar tu velocidad con el teclado?</p>
+      <button class="atajos-btn primary" onclick="atStart()">▶ Empezar partida</button>
+    </div>
+    <div id="atPlay" style="display:none;">
+      <div class="atajos-time-bar"><div class="atajos-time-fill" id="atTime"></div></div>
+      <div class="atajos-prompt">
+        <div class="atajos-action">Pulsa el atajo de</div>
+        <div class="atajos-tool" id="atTool">—</div>
+        <div class="atajos-input-display" id="atInput">—</div>
+      </div>
+      <div class="atajos-stats">
+        <div><div class="atajos-stat-val" id="atScore">0</div><div class="atajos-stat-lbl">Puntos</div></div>
+        <div><div class="atajos-stat-val" id="atOk">0</div><div class="atajos-stat-lbl">Aciertos</div></div>
+        <div><div class="atajos-stat-val" id="atKo">0</div><div class="atajos-stat-lbl">Fallos</div></div>
+        <div><div class="atajos-stat-val" id="atRound">0/15</div><div class="atajos-stat-lbl">Reto</div></div>
+      </div>
+      <div class="atajos-feedback" id="atFeedback" style="display:none;"></div>
+      <div class="atajos-actions">
+        <button class="atajos-btn ghost" onclick="atSkip()">Saltar reto</button>
+        <button class="atajos-btn ghost" onclick="atStop()">Abandonar</button>
+      </div>
+    </div>
+    <div id="atEnd" style="display:none;" class="atajos-final">
+      <div class="atajos-action">Resultado</div>
+      <div class="atajos-final-score" id="atFinalScore">0</div>
+      <div class="atajos-final-msg" id="atFinalMsg">puntos</div>
+      <div style="margin-top:18px;">
+        <button class="atajos-btn primary" onclick="atStart()">↻ Jugar de nuevo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
     <div class="grid-2" style="margin-bottom:20px;">
         <div class="panel">
             <div class="panel-title">🛠️ Herramientas</div>
@@ -3307,7 +3510,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
                 <tbody>
                     <tr><td>Abrir/cerrar panel Capas</td><td><span class="cmd">F7</span></td></tr>
                     <tr><td>Nueva capa</td><td><span class="cmd">Cmd+L</span></td></tr>
-                    <tr><td>Ocultar todas menos una</td><td><span class="cmd">Alt+clic</ojo></span> en el ojo</td></tr>
+                    <tr><td>Ocultar todas menos una</td><td><span class="cmd">Alt+clic</span> en el ojo</td></tr>
                     <tr><td>Bloquear todas menos una</td><td><span class="cmd">Alt+clic</span> en el candado</td></tr>
                     <tr><td>Seleccionar todo en capa</td><td><span class="cmd">Alt+clic</span> en el nombre</td></tr>
                     <tr><td>Duplicar capa</td><td>Arrastrar al icono <span class="cmd">+</span></td></tr>
@@ -3501,8 +3704,9 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
         const target = document.getElementById('page-' + id);
         if (target) target.classList.add('active');
-        if (id === 'pluma') requestAnimationFrame(initBezierCanvas);
-        if (id === 'color') requestAnimationFrame(function(){ colorModelShow('rgb'); });
+        if (id === 'pluma') { requestAnimationFrame(initBezierCanvas); requestAnimationFrame(function(){ setTimeout(plgInit, 60); }); }
+        if (id === 'color') { requestAnimationFrame(function(){ colorModelShow('rgb'); }); requestAnimationFrame(function(){ setTimeout(buildColorWheel, 60); }); }
+        if (id === 'pathfinder') requestAnimationFrame(function(){ setTimeout(pfRender, 60); });
         document.querySelectorAll('.nav-item').forEach(n => {
             if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) {
                 n.classList.add('active');
@@ -3830,6 +4034,656 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
             desc.innerHTML='<strong style="color:var(--ai-orange)">Modelo HSB</strong><br><br>Modelo perceptual. Más intuitivo para elegir colores.<br><br>• <strong>H</strong>ue (Tono): 0–360° en el espectro<br>• <strong>S</strong>aturation: intensidad, 0–100%<br>• <strong>B</strong>rightness: luminosidad, 0–100%<br><br><em>El selector de Illustrator usa HSB. Ideal para ajustar tonos manteniendo saturación.</em>';
         }
     }
+
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MEJORAS GAMIFICACIÓN AVV LAB
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ─── 1. RUEDA DE ARMONÍAS CROMÁTICAS ─────────────────────────────────────
+const cwState = { hue: 220, sat: 80, light: 55, harmony: 'single', built: false };
+
+function hslToHex(h, s, l) {
+  s /= 100; l /= 100;
+  const k = n => (n + h/30) % 12;
+  const a = s * Math.min(l, 1-l);
+  const f = n => Math.round(255 * (l - a * Math.max(-1, Math.min(k(n)-3, Math.min(9-k(n), 1)))));
+  const toHex = v => v.toString(16).padStart(2,'0');
+  return '#' + toHex(f(0)) + toHex(f(8)) + toHex(f(4));
+}
+function hexToRgb(hex) {
+  const m = hex.match(/^#([0-9a-f]{6})$/i);
+  if (!m) return [0,0,0];
+  const n = parseInt(m[1], 16);
+  return [(n>>16)&255, (n>>8)&255, n&255];
+}
+
+const harmonyDefs = {
+  single: { offsets: [0], desc: '<h4>Color base</h4><p>Un único color sin combinación. Útil para estudiar un tono concreto antes de aplicar armonías.</p>' },
+  comp:   { offsets: [0, 180], desc: '<h4>Complementaria · 2 colores</h4><p>Colores opuestos en la rueda. Producen el <strong>contraste máximo</strong>; ideales para llamar la atención (carteles, marcas con energía).</p>' },
+  analog: { offsets: [-30, 0, 30], desc: '<h4>Análoga · 3 colores</h4><p>Tonos vecinos en la rueda. Resultado <strong>armonioso y natural</strong>; transmite tranquilidad. Común en fondos y paisajes.</p>' },
+  triad:  { offsets: [0, 120, 240], desc: '<h4>Triádica · 3 colores</h4><p>Tres colores equidistantes. Muy <strong>vibrante y equilibrada</strong>; clásica del diseño de marca infantil/juvenil.</p>' },
+  tetra:  { offsets: [0, 90, 180, 270], desc: '<h4>Tetrádica · 4 colores</h4><p>Dos pares de complementarios. <strong>Rica pero exigente</strong>: usa uno dominante y los otros como acentos.</p>' },
+  split:  { offsets: [0, 150, 210], desc: '<h4>Split-complementaria · 3 colores</h4><p>El color base más los dos vecinos a su complementario. Tiene el contraste de la complementaria pero <strong>menos tensión</strong>.</p>' },
+  mono:   { offsets: [0, 0, 0, 0], lights: [25, 45, 65, 85], desc: '<h4>Monocromática · 1 tono, 4 valores</h4><p>El mismo tono variando luminosidad y saturación. <strong>Muy elegante</strong>; típica del editorial y la fotografía minimalista.</p>' }
+};
+
+function buildColorWheel() {
+  const svg = document.getElementById('cwSvg');
+  if (!svg) return;
+  if (cwState.built) { cwUpdate(); return; }
+  const cx = 160, cy = 160, rOut = 140, rIn = 95;
+  let html = '';
+  for (let i = 0; i < 360; i += 6) {
+    const a1 = (i - 90) * Math.PI / 180, a2 = (i + 6 - 90) * Math.PI / 180;
+    const x1 = cx + rOut * Math.cos(a1), y1 = cy + rOut * Math.sin(a1);
+    const x2 = cx + rOut * Math.cos(a2), y2 = cy + rOut * Math.sin(a2);
+    const x3 = cx + rIn  * Math.cos(a2), y3 = cy + rIn  * Math.sin(a2);
+    const x4 = cx + rIn  * Math.cos(a1), y4 = cy + rIn  * Math.sin(a1);
+    const c = hslToHex(i + 3, 80, 55);
+    html += '<path d="M' + x1 + ',' + y1 + ' A' + rOut + ',' + rOut + ' 0 0,1 ' + x2 + ',' + y2 + ' L' + x3 + ',' + y3 + ' A' + rIn + ',' + rIn + ' 0 0,0 ' + x4 + ',' + y4 + ' Z" fill="' + c + '" stroke="' + c + '" stroke-width="0.5"/>';
+  }
+  html += '<circle cx="160" cy="160" r="93" fill="#fdfafa" stroke="#e8d8d8" stroke-width="1"/>';
+  html += '<g id="cwMarkers"></g>';
+  html += '<circle id="cwPreview" cx="160" cy="160" r="32" fill="#000"/>';
+  html += '<text id="cwPreviewHex" x="160" y="165" text-anchor="middle" fill="#fff" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">#000000</text>';
+  svg.innerHTML = html;
+
+  const onMove = (ev) => {
+    const rect = svg.getBoundingClientRect();
+    if (rect.width === 0) return;
+    const cX = (ev.touches ? ev.touches[0].clientX : ev.clientX);
+    const cY = (ev.touches ? ev.touches[0].clientY : ev.clientY);
+    const px = (cX - rect.left) * (320 / rect.width);
+    const py = (cY - rect.top) * (320 / rect.height);
+    const dx = px - cx, dy = py - cy;
+    let h = Math.atan2(dy, dx) * 180 / Math.PI + 90;
+    if (h < 0) h += 360;
+    cwState.hue = Math.round(h);
+    cwUpdate();
+  };
+  let dragging = false;
+  const start = (ev) => { dragging = true; onMove(ev); ev.preventDefault(); };
+  const move = (ev) => { if (dragging) { onMove(ev); ev.preventDefault(); } };
+  const end = () => { dragging = false; };
+  svg.addEventListener('mousedown', start);
+  svg.addEventListener('mousemove', move);
+  svg.addEventListener('mouseup', end);
+  svg.addEventListener('mouseleave', end);
+  svg.addEventListener('touchstart', start, {passive:false});
+  svg.addEventListener('touchmove', move, {passive:false});
+  svg.addEventListener('touchend', end);
+
+  document.getElementById('cwSat').addEventListener('input', e => { cwState.sat = +e.target.value; cwUpdate(); });
+  document.getElementById('cwLight').addEventListener('input', e => { cwState.light = +e.target.value; cwUpdate(); });
+  cwState.built = true;
+  cwUpdate();
+}
+
+function cwSet(name) {
+  cwState.harmony = name;
+  document.querySelectorAll('.harmony-btn').forEach(b => b.classList.toggle('active', b.dataset.h === name));
+  cwUpdate();
+}
+
+function cwUpdate() {
+  const def = harmonyDefs[cwState.harmony];
+  if (!def) return;
+  const cx = 160, cy = 160, rMid = (140 + 95) / 2;
+  const colors = [];
+  if (cwState.harmony === 'mono') {
+    for (let i = 0; i < def.lights.length; i++) {
+      colors.push({ hue: cwState.hue, sat: cwState.sat, light: def.lights[i], hex: hslToHex(cwState.hue, cwState.sat, def.lights[i]) });
+    }
+  } else {
+    for (const off of def.offsets) {
+      const h = ((cwState.hue + off) % 360 + 360) % 360;
+      colors.push({ hue: h, sat: cwState.sat, light: cwState.light, hex: hslToHex(h, cwState.sat, cwState.light) });
+    }
+  }
+
+  const mk = document.getElementById('cwMarkers');
+  if (mk) {
+    let mh = '';
+    for (let i = 0; i < colors.length; i++) {
+      const c = colors[i];
+      const useHue = (cwState.harmony === 'mono') ? cwState.hue : c.hue;
+      const a = (useHue - 90) * Math.PI / 180;
+      const x = cx + rMid * Math.cos(a), y = cy + rMid * Math.sin(a);
+      mh += '<circle cx="' + x + '" cy="' + y + '" r="' + (i===0?12:9) + '" fill="' + c.hex + '" stroke="#fff" stroke-width="' + (i===0?3:2) + '"/>';
+      if (i === 0) {
+        mh += '<circle cx="' + x + '" cy="' + y + '" r="14" fill="none" stroke="#1a0404" stroke-width="1.5"/>';
+      }
+    }
+    mk.innerHTML = mh;
+  }
+
+  const baseHex = colors[0].hex;
+  const previewEl = document.getElementById('cwPreview');
+  if (previewEl) previewEl.setAttribute('fill', baseHex);
+  const t = document.getElementById('cwPreviewHex');
+  if (t) {
+    t.textContent = baseHex.toUpperCase();
+    const rgb = hexToRgb(baseHex);
+    const yiq = (rgb[0]*299 + rgb[1]*587 + rgb[2]*114) / 1000;
+    t.setAttribute('fill', yiq >= 140 ? '#1a0404' : '#fff');
+  }
+
+  const ex = document.getElementById('cwExplain');
+  if (ex) ex.innerHTML = def.desc;
+
+  const sw = document.getElementById('cwSwatches');
+  if (sw) {
+    sw.innerHTML = colors.map(c => {
+      const rgb = hexToRgb(c.hex);
+      return '<div class="harmony-swatch"><div class="harmony-swatch-color" style="background:' + c.hex + '"></div><div class="harmony-swatch-info"><strong>' + c.hex.toUpperCase() + '</strong>RGB ' + rgb[0] + ', ' + rgb[1] + ', ' + rgb[2] + '<br>HSL ' + c.hue + '°, ' + c.sat + '%, ' + c.light + '%</div></div>';
+    }).join('');
+  }
+}
+
+// ─── 2. TUTORIAL GUIADO PLUMA ────────────────────────────────────────────
+const plgState = {
+  level: 0, points: [], showSol: false, dragging: -1,
+  canvas: null, ctx: null, W: 0, H: 0, closed: false
+};
+
+const plgLevels = [
+  { name: 'Línea recta',
+    hint: 'Coloca <strong>2 puntos de esquina</strong> con clic simple para trazar una línea recta entre el inicio y el fin marcados en gris.',
+    target: { type: 'line' } },
+  { name: 'Curva en S',
+    hint: 'Crea <strong>3 puntos con clic+arrastrar</strong> para formar una S. Arrastra hacia abajo en el primero, hacia arriba en el segundo, hacia abajo otra vez.',
+    target: { type: 'sCurve' } },
+  { name: 'Círculo',
+    hint: 'Marca <strong>4 puntos en cruz</strong> (arriba, derecha, abajo, izquierda) con clic+arrastrar para curvar. Cierra clicando sobre el primero.',
+    target: { type: 'circle' } },
+  { name: 'Letra C',
+    hint: 'Reproduce la <strong>letra C</strong> en gris: clic+arrastrar para los 3 puntos curvos del arco; los extremos pueden ser puntos de esquina.',
+    target: { type: 'C' } }
+];
+
+function plgInit() {
+  const c = document.getElementById('plumaGameCanvas');
+  if (!c) return;
+  plgState.canvas = c;
+  plgState.ctx = c.getContext('2d');
+  const w = c.clientWidth, h = c.clientHeight;
+  if (w === 0) { setTimeout(plgInit, 50); return; }
+  const dpr = window.devicePixelRatio || 1;
+  c.width = w * dpr; c.height = h * dpr;
+  plgState.ctx.setTransform(1, 0, 0, 1, 0, 0);
+  plgState.ctx.scale(dpr, dpr);
+  plgState.W = w; plgState.H = h;
+  if (!c._plgWired) {
+    c.addEventListener('mousedown', plgDown);
+    c.addEventListener('mousemove', plgMove);
+    c.addEventListener('mouseup', plgUp);
+    c.addEventListener('touchstart', plgDown, {passive:false});
+    c.addEventListener('touchmove', plgMove, {passive:false});
+    c.addEventListener('touchend', plgUp, {passive:false});
+    c._plgWired = true;
+  }
+  plgRender();
+  plgUpdateStatus();
+}
+
+function plgGetXY(ev) {
+  const rect = plgState.canvas.getBoundingClientRect();
+  const cx = ev.touches ? ev.touches[0].clientX : ev.clientX;
+  const cy = ev.touches ? ev.touches[0].clientY : ev.clientY;
+  return { x: cx - rect.left, y: cy - rect.top };
+}
+
+function plgDown(ev) {
+  ev.preventDefault();
+  const p = plgGetXY(ev);
+  if (plgState.points.length > 1 && !plgState.closed) {
+    const f = plgState.points[0];
+    if (Math.hypot(p.x - f.x, p.y - f.y) < 14) {
+      plgState.closed = true;
+      plgRender();
+      plgUpdateStatus();
+      return;
+    }
+  }
+  if (plgState.closed) return;
+  plgState.points.push({ x: p.x, y: p.y, hX: p.x, hY: p.y, isCurve: false });
+  plgState.dragging = plgState.points.length - 1;
+  plgState.dragStart = { x: p.x, y: p.y };
+  plgRender();
+}
+
+function plgMove(ev) {
+  if (plgState.dragging < 0) return;
+  ev.preventDefault();
+  const p = plgGetXY(ev);
+  const pt = plgState.points[plgState.dragging];
+  const dx = p.x - plgState.dragStart.x, dy = p.y - plgState.dragStart.y;
+  if (Math.hypot(dx, dy) > 4) {
+    pt.isCurve = true;
+    pt.hX = p.x; pt.hY = p.y;
+    plgRender();
+  }
+}
+
+function plgUp(ev) {
+  if (ev) ev.preventDefault();
+  plgState.dragging = -1;
+  plgUpdateStatus();
+}
+
+function plgRender() {
+  const ctx = plgState.ctx, W = plgState.W, H = plgState.H;
+  if (!ctx) return;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#261410';
+  ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+  ctx.lineWidth = 1;
+  for (let x = 0; x < W; x += 40) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for (let y = 0; y < H; y += 40) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+  plgDrawTarget(ctx, W, H, plgState.showSol);
+  plgDrawUser(ctx);
+}
+
+function plgDrawTarget(ctx, W, H, vivid) {
+  const t = plgLevels[plgState.level].target;
+  ctx.save();
+  ctx.strokeStyle = vivid ? 'rgba(232,115,74,0.85)' : 'rgba(255,255,255,0.18)';
+  ctx.lineWidth = vivid ? 2.2 : 1.5;
+  ctx.setLineDash(vivid ? [] : [6, 4]);
+  ctx.beginPath();
+  if (t.type === 'line') {
+    ctx.moveTo(W * 0.18, H * 0.5);
+    ctx.lineTo(W * 0.82, H * 0.5);
+  } else if (t.type === 'sCurve') {
+    ctx.moveTo(W * 0.18, H * 0.5);
+    ctx.bezierCurveTo(W * 0.30, H * 0.85, W * 0.40, H * 0.85, W * 0.50, H * 0.50);
+    ctx.bezierCurveTo(W * 0.60, H * 0.15, W * 0.70, H * 0.15, W * 0.82, H * 0.50);
+  } else if (t.type === 'circle') {
+    const cx = W * 0.5, cy = H * 0.5, r = Math.min(W, H) * 0.32;
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  } else if (t.type === 'C') {
+    const cx = W * 0.55, cy = H * 0.5, r = H * 0.34;
+    ctx.arc(cx, cy, r, Math.PI * 0.85, Math.PI * 1.15, true);
+  }
+  ctx.stroke();
+  ctx.setLineDash([]);
+  if (!vivid) {
+    ctx.fillStyle = 'rgba(255,255,255,0.4)';
+    if (t.type === 'line') {
+      ctx.beginPath(); ctx.arc(W * 0.18, H * 0.5, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(W * 0.82, H * 0.5, 5, 0, Math.PI * 2); ctx.fill();
+    } else if (t.type === 'sCurve') {
+      [[0.18,0.5],[0.50,0.50],[0.82,0.5]].forEach(p => { ctx.beginPath(); ctx.arc(W*p[0], H*p[1], 5, 0, Math.PI*2); ctx.fill(); });
+    } else if (t.type === 'circle') {
+      const cx = W * 0.5, cy = H * 0.5, r = Math.min(W, H) * 0.32;
+      [[cx,cy-r],[cx+r,cy],[cx,cy+r],[cx-r,cy]].forEach(p => { ctx.beginPath(); ctx.arc(p[0], p[1], 5, 0, Math.PI*2); ctx.fill(); });
+    } else if (t.type === 'C') {
+      const cx = W * 0.55, cy = H * 0.5, r = H * 0.34;
+      [Math.PI*0.85, Math.PI, Math.PI*1.15].forEach(a => { ctx.beginPath(); ctx.arc(cx + r*Math.cos(a), cy + r*Math.sin(a), 5, 0, Math.PI*2); ctx.fill(); });
+    }
+  }
+  ctx.restore();
+}
+
+function plgDrawUser(ctx) {
+  const pts = plgState.points;
+  if (!pts.length) return;
+  ctx.strokeStyle = '#e8734a';
+  ctx.lineWidth = 2.4;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, pts[0].y);
+  for (let i = 1; i < pts.length; i++) {
+    const a = pts[i-1], b = pts[i];
+    if (a.isCurve || b.isCurve) {
+      const c1x = a.isCurve ? (2*a.x - a.hX) : a.x;
+      const c1y = a.isCurve ? (2*a.y - a.hY) : a.y;
+      const c2x = b.isCurve ? b.hX : b.x;
+      const c2y = b.isCurve ? b.hY : b.y;
+      ctx.bezierCurveTo(c1x, c1y, c2x, c2y, b.x, b.y);
+    } else {
+      ctx.lineTo(b.x, b.y);
+    }
+  }
+  if (plgState.closed && pts.length > 2) {
+    const a = pts[pts.length-1], b = pts[0];
+    if (a.isCurve || b.isCurve) {
+      const c1x = a.isCurve ? (2*a.x - a.hX) : a.x;
+      const c1y = a.isCurve ? (2*a.y - a.hY) : a.y;
+      const c2x = b.isCurve ? b.hX : b.x;
+      const c2y = b.isCurve ? b.hY : b.y;
+      ctx.bezierCurveTo(c1x, c1y, c2x, c2y, b.x, b.y);
+    } else {
+      ctx.lineTo(b.x, b.y);
+    }
+  }
+  ctx.stroke();
+  for (const p of pts) {
+    if (p.isCurve) {
+      ctx.strokeStyle = 'rgba(232,115,74,0.5)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.hX, p.hY); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(2*p.x - p.hX, 2*p.y - p.hY); ctx.stroke();
+      ctx.fillStyle = '#e8734a';
+      ctx.beginPath(); ctx.arc(p.hX, p.hY, 4, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(2*p.x - p.hX, 2*p.y - p.hY, 4, 0, Math.PI*2); ctx.fill();
+    }
+    ctx.fillStyle = '#fff';
+    ctx.strokeStyle = '#e8734a';
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+  }
+}
+
+function plgLevel(i) {
+  plgState.level = i;
+  plgState.points = [];
+  plgState.closed = false;
+  plgState.showSol = false;
+  document.querySelectorAll('.pluma-level-btn').forEach(b => b.classList.toggle('active', +b.dataset.lv === i));
+  document.getElementById('plgHint').innerHTML = plgLevels[i].hint;
+  const sb = document.getElementById('plgSolBtn');
+  if (sb) sb.textContent = '👁 Ver guía';
+  plgRender();
+  plgUpdateStatus();
+}
+
+function plgClear() {
+  plgState.points = [];
+  plgState.closed = false;
+  plgRender();
+  plgUpdateStatus();
+}
+
+function plgShowSolution() {
+  plgState.showSol = !plgState.showSol;
+  const sb = document.getElementById('plgSolBtn');
+  if (sb) sb.textContent = plgState.showSol ? '✕ Ocultar guía' : '👁 Ver guía';
+  plgRender();
+}
+
+function plgUpdateStatus() {
+  const el = document.getElementById('plgStatus');
+  if (!el) return;
+  const n = plgState.points.length;
+  const c = plgState.points.filter(p => p.isCurve).length;
+  el.textContent = n + ' ' + (n===1?'punto':'puntos') + ' · ' + c + ' ' + (c===1?'curva':'curvas') + (plgState.closed ? ' · cerrado ✓' : '');
+}
+
+// ─── 3. JUEGO PATHFINDER ─────────────────────────────────────────────────
+const pfChallenges = [
+  { shapes: '2c', op: 'unir' },
+  { shapes: '2c', op: 'inter' },
+  { shapes: '2c', op: 'menos' },
+  { shapes: '2c', op: 'excluir' },
+  { shapes: '2r', op: 'unir' },
+  { shapes: '2r', op: 'menos' },
+  { shapes: 'cs', op: 'inter' },
+  { shapes: 'cs', op: 'excluir' }
+];
+const pfOps = [
+  { id: 'unir',    label: 'Unir',          desc: 'Fusiona ambas formas en una sola sin huecos.' },
+  { id: 'menos',   label: 'Menos frente',  desc: 'La forma del frente recorta como una galleta la de atrás.' },
+  { id: 'inter',   label: 'Intersección',  desc: 'Solo queda la zona donde las dos formas se solapan.' },
+  { id: 'excluir', label: 'Excluir',       desc: 'La zona común se vuelve hueca; el resto se mantiene.' }
+];
+const pfState = { idx: 0, score: 0, locked: false, results: [] };
+
+function pfRenderShape(isOutput, shapeKey, op, idx) {
+  const C = '#c06060', S = '#3b0808';
+  const u = idx; // unique id for clipPaths
+  if (shapeKey === '2c') {
+    if (!isOutput) {
+      return '<circle cx="55" cy="60" r="32" fill="' + C + '" stroke="' + S + '" stroke-width="2" opacity="0.7"/>' +
+             '<circle cx="95" cy="60" r="32" fill="' + C + '" stroke="' + S + '" stroke-width="2" opacity="0.7"/>';
+    }
+    if (op === 'unir')    return '<path d="M55,28 A32,32 0 1,0 55,92 A32,32 0 0,0 95,92 A32,32 0 1,0 95,28 A32,32 0 0,0 55,28 Z" fill="' + C + '" stroke="' + S + '" stroke-width="2"/>';
+    if (op === 'inter')   return '<defs><clipPath id="pfic' + u + '"><circle cx="95" cy="60" r="32"/></clipPath></defs>' +
+                                 '<circle cx="55" cy="60" r="32" fill="' + C + '" stroke="' + S + '" stroke-width="2" clip-path="url(#pfic' + u + ')"/>';
+    if (op === 'menos')   return '<defs><clipPath id="pfmc' + u + '"><circle cx="55" cy="60" r="32"/></clipPath></defs>' +
+                                 '<circle cx="55" cy="60" r="32" fill="' + C + '" stroke="' + S + '" stroke-width="2"/>' +
+                                 '<circle cx="95" cy="60" r="32" fill="#fdfafa" clip-path="url(#pfmc' + u + ')"/>' +
+                                 '<circle cx="55" cy="60" r="32" fill="none" stroke="' + S + '" stroke-width="2"/>';
+    if (op === 'excluir') return '<defs><clipPath id="pfxr' + u + '"><circle cx="95" cy="60" r="32"/></clipPath><clipPath id="pfxl' + u + '"><circle cx="55" cy="60" r="32"/></clipPath></defs>' +
+                                 '<circle cx="55" cy="60" r="32" fill="' + C + '" stroke="' + S + '" stroke-width="2"/>' +
+                                 '<circle cx="95" cy="60" r="32" fill="' + C + '" stroke="' + S + '" stroke-width="2"/>' +
+                                 '<circle cx="55" cy="60" r="32" fill="#fdfafa" clip-path="url(#pfxr' + u + ')"/>' +
+                                 '<circle cx="95" cy="60" r="32" fill="#fdfafa" clip-path="url(#pfxl' + u + ')"/>';
+  }
+  if (shapeKey === '2r') {
+    if (!isOutput) {
+      return '<rect x="25" y="32" width="60" height="50" fill="' + C + '" stroke="' + S + '" stroke-width="2" opacity="0.7"/>' +
+             '<rect x="65" y="40" width="60" height="50" fill="' + C + '" stroke="' + S + '" stroke-width="2" opacity="0.7"/>';
+    }
+    if (op === 'unir')  return '<path d="M25,32 L85,32 L85,40 L125,40 L125,90 L65,90 L65,82 L25,82 Z" fill="' + C + '" stroke="' + S + '" stroke-width="2"/>';
+    if (op === 'menos') return '<path d="M25,32 L85,32 L85,40 L65,40 L65,82 L25,82 Z" fill="' + C + '" stroke="' + S + '" stroke-width="2"/>';
+  }
+  if (shapeKey === 'cs') {
+    if (!isOutput) {
+      return '<circle cx="55" cy="60" r="30" fill="' + C + '" stroke="' + S + '" stroke-width="2" opacity="0.7"/>' +
+             '<rect x="70" y="35" width="50" height="50" fill="' + C + '" stroke="' + S + '" stroke-width="2" opacity="0.7"/>';
+    }
+    if (op === 'inter')   return '<defs><clipPath id="pfcsi' + u + '"><rect x="70" y="35" width="50" height="50"/></clipPath></defs>' +
+                                 '<circle cx="55" cy="60" r="30" fill="' + C + '" stroke="' + S + '" stroke-width="2" clip-path="url(#pfcsi' + u + ')"/>';
+    if (op === 'excluir') return '<defs><clipPath id="pfcsr' + u + '"><rect x="70" y="35" width="50" height="50"/></clipPath><clipPath id="pfcsc' + u + '"><circle cx="55" cy="60" r="30"/></clipPath></defs>' +
+                                 '<circle cx="55" cy="60" r="30" fill="' + C + '" stroke="' + S + '" stroke-width="2"/>' +
+                                 '<rect x="70" y="35" width="50" height="50" fill="' + C + '" stroke="' + S + '" stroke-width="2"/>' +
+                                 '<circle cx="55" cy="60" r="30" fill="#fdfafa" clip-path="url(#pfcsr' + u + ')"/>' +
+                                 '<rect x="70" y="35" width="50" height="50" fill="#fdfafa" clip-path="url(#pfcsc' + u + ')"/>';
+  }
+  return '';
+}
+
+function pfRender() {
+  if (!document.getElementById('pfProgress')) return;
+  const ch = pfChallenges[pfState.idx];
+  const prog = document.getElementById('pfProgress');
+  prog.innerHTML = pfChallenges.map((_, i) => {
+    let cls = '';
+    if (i < pfState.idx) cls = pfState.results[i] ? 'done-ok' : 'done-ko';
+    if (i === pfState.idx) cls = 'current';
+    return '<div class="pf-progress-dot ' + cls + '"></div>';
+  }).join('');
+  document.getElementById('pfInput').innerHTML  = '<svg viewBox="0 0 150 120" width="180" height="140">' + pfRenderShape(false, ch.shapes, ch.op, pfState.idx) + '</svg>';
+  document.getElementById('pfOutput').innerHTML = '<svg viewBox="0 0 150 120" width="180" height="140">' + pfRenderShape(true,  ch.shapes, ch.op, pfState.idx) + '</svg>';
+  const opts = pfOps.slice().sort(() => 0.5 - Math.random());
+  document.getElementById('pfOptions').innerHTML = opts.map(o =>
+    '<button class="pf-opt" data-id="' + o.id + '" onclick="pfPick(\'' + o.id + '\', this)">' + o.label + '</button>'
+  ).join('');
+  document.getElementById('pfFeedback').className = 'pf-feedback';
+  document.getElementById('pfFeedback').textContent = '';
+  document.getElementById('pfNext').style.display = 'none';
+  document.getElementById('pfScore').textContent = 'Reto ' + (pfState.idx+1) + ' / ' + pfChallenges.length + ' · ' + pfState.score + ' aciertos';
+  pfState.locked = false;
+}
+
+function pfPick(opId, el) {
+  if (pfState.locked) return;
+  pfState.locked = true;
+  const ch = pfChallenges[pfState.idx];
+  const correct = (opId === ch.op);
+  pfState.results[pfState.idx] = correct;
+  if (correct) pfState.score++;
+  document.querySelectorAll('.pf-opt').forEach(o => {
+    o.classList.add('locked');
+    if (o.dataset.id === ch.op) o.classList.add('correct');
+    if (o === el && !correct) o.classList.add('wrong');
+  });
+  const fb = document.getElementById('pfFeedback');
+  const opDef = pfOps.find(x => x.id === ch.op);
+  if (correct) {
+    fb.className = 'pf-feedback ok';
+    fb.innerHTML = '✓ Correcto. ' + opDef.desc;
+  } else {
+    fb.className = 'pf-feedback ko';
+    fb.innerHTML = '✗ Era <strong>' + opDef.label + '</strong>. ' + opDef.desc;
+  }
+  const next = document.getElementById('pfNext');
+  next.style.display = 'inline-block';
+  next.textContent = (pfState.idx < pfChallenges.length - 1) ? 'Siguiente reto →' : '↻ Reiniciar partida';
+  document.getElementById('pfScore').textContent = 'Reto ' + (pfState.idx+1) + ' / ' + pfChallenges.length + ' · ' + pfState.score + ' aciertos';
+}
+
+function pfNext() {
+  if (pfState.idx < pfChallenges.length - 1) {
+    pfState.idx++;
+  } else {
+    pfState.idx = 0; pfState.score = 0; pfState.results = [];
+  }
+  pfRender();
+}
+
+// ─── 4. JUEGO PULSA EL ATAJO ─────────────────────────────────────────────
+const atShortcuts = [
+  { tool: 'Selección', keys: 'V' },
+  { tool: 'Selección directa', keys: 'A' },
+  { tool: 'Pluma', keys: 'P' },
+  { tool: 'Rectángulo', keys: 'M' },
+  { tool: 'Elipse', keys: 'L' },
+  { tool: 'Texto', keys: 'T' },
+  { tool: 'Lápiz', keys: 'N' },
+  { tool: 'Pincel', keys: 'B' },
+  { tool: 'Escala', keys: 'S' },
+  { tool: 'Rotación', keys: 'R' },
+  { tool: 'Reflejo', keys: 'O' },
+  { tool: 'Degradado', keys: 'G' },
+  { tool: 'Cuentagotas', keys: 'I' },
+  { tool: 'Zoom', keys: 'Z' },
+  { tool: 'Mano', keys: 'H' },
+  { tool: 'Varita mágica', keys: 'Y' },
+  { tool: 'Borrador', keys: 'Shift+E' },
+  { tool: 'Pincel Blob', keys: 'Shift+B' },
+  { tool: 'Mesa de trabajo', keys: 'Shift+O' },
+  { tool: 'Ancla (convertir punto)', keys: 'Shift+C' },
+  { tool: 'Touch Type', keys: 'Shift+T' },
+  { tool: 'Anchura de trazo', keys: 'Shift+W' },
+  { tool: 'Creador de formas', keys: 'Shift+M' },
+  { tool: 'Transformación libre', keys: 'E' }
+];
+
+const atState = {
+  running: false, idx: 0, ok: 0, ko: 0, score: 0, total: 15,
+  deadline: 0, current: null, listener: null, timer: null,
+  shuffled: [], lockResolve: false
+};
+
+function atStart() {
+  atState.running = true;
+  atState.idx = 0; atState.ok = 0; atState.ko = 0; atState.score = 0;
+  atState.shuffled = atShortcuts.slice().sort(() => 0.5 - Math.random()).slice(0, atState.total);
+  document.getElementById('atIdle').style.display = 'none';
+  document.getElementById('atEnd').style.display = 'none';
+  document.getElementById('atPlay').style.display = 'block';
+  if (!atState.listener) {
+    atState.listener = (ev) => atKey(ev);
+    document.addEventListener('keydown', atState.listener);
+  }
+  atShow();
+}
+
+function atShow() {
+  if (atState.idx >= atState.total) { atFinish(); return; }
+  atState.current = atState.shuffled[atState.idx];
+  atState.deadline = Date.now() + 5000;
+  atState.lockResolve = false;
+  document.getElementById('atTool').textContent = atState.current.tool;
+  document.getElementById('atInput').textContent = '_';
+  document.getElementById('atRound').textContent = (atState.idx+1) + '/' + atState.total;
+  document.getElementById('atFeedback').style.display = 'none';
+  if (atState.timer) cancelAnimationFrame(atState.timer);
+  atTick();
+}
+
+function atTick() {
+  if (!atState.running) return;
+  const remain = atState.deadline - Date.now();
+  const pct = Math.max(0, remain / 5000) * 100;
+  const tEl = document.getElementById('atTime');
+  if (tEl) tEl.style.width = pct + '%';
+  if (remain <= 0) {
+    atResolve(false, 'Tiempo agotado');
+    return;
+  }
+  atState.timer = requestAnimationFrame(atTick);
+}
+
+function atKey(ev) {
+  if (!atState.running || atState.lockResolve) return;
+  // Only consume keys when atajos page is active
+  const page = document.getElementById('page-atajos');
+  if (!page || !page.classList.contains('active')) return;
+  if (document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')) return;
+  const k = ev.key;
+  if (k === 'Shift' || k === 'Control' || k === 'Alt' || k === 'Meta') return;
+  let pressed = '';
+  if (ev.shiftKey) pressed += 'Shift+';
+  if (ev.ctrlKey || ev.metaKey) pressed += 'Cmd+';
+  if (ev.altKey) pressed += 'Alt+';
+  if (k.length === 1) pressed += k.toUpperCase();
+  else pressed += k;
+  document.getElementById('atInput').textContent = pressed;
+  ev.preventDefault();
+  const target = atState.current.keys.toUpperCase().replace(/\s/g,'');
+  const got = pressed.toUpperCase().replace(/\s/g,'');
+  if (got === target) atResolve(true);
+  else atResolve(false, 'Has pulsado ' + pressed);
+}
+
+function atResolve(ok, msg) {
+  if (atState.lockResolve) return;
+  atState.lockResolve = true;
+  if (atState.timer) cancelAnimationFrame(atState.timer);
+  const fb = document.getElementById('atFeedback');
+  fb.style.display = 'block';
+  if (ok) {
+    atState.ok++; atState.score += 10;
+    fb.className = 'atajos-feedback ok';
+    fb.textContent = '✓ Correcto. +10';
+  } else {
+    atState.ko++; atState.score = Math.max(0, atState.score - 5);
+    fb.className = 'atajos-feedback ko';
+    fb.textContent = '✗ ' + (msg || 'Fallo') + '. Era: ' + atState.current.keys + ' · −5';
+  }
+  document.getElementById('atScore').textContent = atState.score;
+  document.getElementById('atOk').textContent = atState.ok;
+  document.getElementById('atKo').textContent = atState.ko;
+  atState.idx++;
+  setTimeout(() => { if (atState.running) atShow(); }, 1300);
+}
+
+function atSkip() {
+  if (!atState.running || atState.lockResolve) return;
+  atResolve(false, 'Saltado');
+}
+
+function atStop() {
+  atState.running = false;
+  if (atState.timer) cancelAnimationFrame(atState.timer);
+  if (atState.listener) { document.removeEventListener('keydown', atState.listener); atState.listener = null; }
+  document.getElementById('atPlay').style.display = 'none';
+  document.getElementById('atIdle').style.display = 'block';
+}
+
+function atFinish() {
+  atState.running = false;
+  if (atState.timer) cancelAnimationFrame(atState.timer);
+  if (atState.listener) { document.removeEventListener('keydown', atState.listener); atState.listener = null; }
+  document.getElementById('atPlay').style.display = 'none';
+  document.getElementById('atEnd').style.display = 'block';
+  document.getElementById('atFinalScore').textContent = atState.score;
+  let msg = '';
+  if (atState.score >= 130) msg = '¡Maestría! Conoces los atajos a la perfección.';
+  else if (atState.score >= 80) msg = '¡Bien! Pero aún hay margen para mejorar la velocidad.';
+  else if (atState.score >= 40) msg = 'Repasa la tabla de atajos antes de la próxima partida.';
+  else msg = 'Necesitas practicar más. Vuelve a la tabla de referencia.';
+  document.getElementById('atFinalMsg').textContent = atState.ok + ' aciertos · ' + atState.ko + ' fallos · ' + msg;
+}
+
+// ─── fin mejoras gamificación ─────────────────────────────────────────────
+
 </script>
 
 

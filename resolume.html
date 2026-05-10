@@ -248,6 +248,124 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 }
 
 
+
+/* ═══════════════ MEJORAS GAMIFICACIÓN RESOLUME ═══════════════ */
+
+/* Comunes */
+.gr-prog { display:flex; gap:4px; margin-bottom:14px; }
+.gr-pip { height:5px; flex:1; border-radius:3px; background:var(--bg5); }
+.gr-pip.ok  { background:#22c55e; }
+.gr-pip.err { background:#ef4444; }
+.gr-pip.cur { background:var(--green); }
+.gr-score-lbl { font-size:11px; font-weight:700; color:var(--t2); margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); }
+.gr-feedback { font-size:13px; font-weight:500; padding:11px 14px; border-radius:6px; margin-top:12px; display:none; line-height:1.55; }
+.gr-feedback.ok  { display:block; background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
+.gr-feedback.err { display:block; background:#fff1f1; color:#991b1b; border:1px solid #fecaca; }
+.gr-btn { padding:9px 18px; border-radius:6px; border:none; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; transition:all .15s; }
+.gr-btn-primary { background:var(--green); color:#fff; }
+.gr-btn-primary:hover { background:var(--green-dim); }
+.gr-btn-ghost { background:var(--bg3); color:var(--t1); border:1px solid var(--b2); }
+.gr-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:14px; }
+
+/* === BLEND MODE MATCH === */
+.bm-stage { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:14px; }
+@media (max-width:760px) { .bm-stage { grid-template-columns:1fr; } }
+.bm-preview-wrap { background:#0a0f1e; border-radius:8px; padding:14px; }
+.bm-preview-label { font-size:10px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:rgba(255,255,255,.55); margin-bottom:8px; font-family:var(--mono); }
+.bm-canvas { width:100%; aspect-ratio:16/9; display:block; background:#000; border-radius:5px; }
+.bm-options { display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; }
+.bm-opt {
+  padding:13px 12px; background:var(--bg3); border:1.5px solid var(--b2); border-radius:6px;
+  cursor:pointer; font-family:inherit; color:var(--t1);
+  text-align:left; transition:all .15s; display:flex; flex-direction:column; gap:4px;
+}
+.bm-opt:hover:not(.locked) { border-color:var(--green); background:var(--green-glow); transform:translateY(-1px); }
+.bm-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
+.bm-opt.wrong { border-color:#ef4444; background:#fff1f1; color:#991b1b; }
+.bm-opt.locked { cursor:default; }
+.bm-opt-name { font-size:14px; font-weight:700; }
+.bm-opt-formula { font-size:10.5px; color:var(--t3); font-family:var(--mono); }
+
+/* === BPM TAP TRAINER === */
+.bpm-stage { background:#0a0f1e; border-radius:10px; padding:24px; color:#fff; text-align:center; }
+.bpm-target { font-size:11px; color:rgba(255,255,255,.55); letter-spacing:.6px; text-transform:uppercase; margin-bottom:6px; font-family:var(--mono); }
+.bpm-target-val { font-size:42px; font-weight:900; color:var(--green); line-height:1; margin-bottom:18px; font-family:var(--mono); }
+.bpm-pulse-ring { width:140px; height:140px; border-radius:50%; margin:0 auto 18px; background:radial-gradient(circle, rgba(42,106,88,0.3), transparent 70%); display:flex; align-items:center; justify-content:center; transition:transform 0.08s ease-out; position:relative; }
+.bpm-pulse-ring.beat { transform:scale(1.18); background:radial-gradient(circle, rgba(42,106,88,0.55), transparent 65%); }
+.bpm-pulse-core { width:60px; height:60px; border-radius:50%; background:var(--green); box-shadow:0 0 32px var(--green); }
+.bpm-tap-btn {
+  display:block; margin:0 auto; padding:18px 48px; background:var(--green); color:#fff;
+  border:none; border-radius:8px; font-family:inherit; font-size:15px; font-weight:800;
+  cursor:pointer; letter-spacing:1.5px; text-transform:uppercase;
+  transition:all 0.08s; box-shadow:0 4px 0 var(--green-dim);
+}
+.bpm-tap-btn:active { transform:translateY(2px); box-shadow:0 2px 0 var(--green-dim); }
+.bpm-stats { display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-top:18px; }
+.bpm-stat { background:rgba(255,255,255,.05); border-radius:6px; padding:10px; }
+.bpm-stat-l { font-size:10px; color:rgba(255,255,255,.55); text-transform:uppercase; letter-spacing:.5px; font-family:var(--mono); }
+.bpm-stat-v { font-size:22px; font-weight:800; color:var(--green); margin-top:3px; font-family:var(--mono); font-variant-numeric:tabular-nums; }
+
+/* === IDENTIFICA EL EFECTO === */
+.fx-stage { background:#0a0f1e; border-radius:8px; padding:14px; margin-bottom:14px; }
+.fx-canvas-wrap { width:100%; aspect-ratio:16/9; background:#000; border-radius:5px; overflow:hidden; }
+.fx-canvas { width:100%; height:100%; display:block; }
+.fx-options { display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; }
+.fx-opt {
+  padding:13px 12px; background:var(--bg3); border:1.5px solid var(--b2); border-radius:6px;
+  cursor:pointer; font-family:inherit; color:var(--t1); font-size:13px; font-weight:700;
+  text-align:center; transition:all .15s;
+}
+.fx-opt:hover:not(.locked) { border-color:var(--green); background:var(--green-glow); transform:translateY(-1px); }
+.fx-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
+.fx-opt.wrong { border-color:#ef4444; background:#fff1f1; color:#991b1b; }
+.fx-opt.locked { cursor:default; }
+
+/* === PULSA EL ATAJO === */
+.sc-stage { background:linear-gradient(135deg,#1e3a35,#2a6a58); border-radius:10px; padding:24px; color:#fff; text-align:center; }
+.sc-action-lbl { font-size:11px; color:rgba(255,255,255,.7); letter-spacing:1.2px; text-transform:uppercase; margin-bottom:6px; font-family:var(--mono); }
+.sc-action { font-size:24px; font-weight:800; line-height:1.2; margin-bottom:18px; }
+.sc-input-display {
+  display:inline-block; min-width:240px; padding:12px 26px; background:rgba(0,0,0,.25);
+  border:2px dashed rgba(255,255,255,.3); border-radius:7px;
+  font-family:var(--mono); font-size:18px; font-weight:800; letter-spacing:1.5px;
+  min-height:50px;
+}
+.sc-time { height:5px; background:rgba(0,0,0,.3); border-radius:3px; overflow:hidden; margin-bottom:16px; }
+.sc-time-fill { height:100%; background:linear-gradient(90deg,#86efac,#fde047,#f87171); transition:width 0.1s linear; width:100%; }
+.sc-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:18px 0 12px; padding:12px; background:rgba(0,0,0,.25); border-radius:7px; }
+.sc-stat-v { font-size:20px; font-weight:800; line-height:1; font-variant-numeric:tabular-nums; font-family:var(--mono); }
+.sc-stat-l { font-size:10px; opacity:0.6; text-transform:uppercase; letter-spacing:.6px; margin-top:3px; font-family:var(--mono); }
+.sc-actions { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:8px; }
+.sc-btn { padding:9px 20px; border-radius:6px; border:none; font-family:inherit; font-size:12px; font-weight:700; cursor:pointer; }
+.sc-btn-primary { background:#fff; color:var(--green-dim); }
+.sc-btn-ghost { background:rgba(255,255,255,.1); color:#fff; border:1px solid rgba(255,255,255,.25); }
+.sc-feedback { padding:9px 14px; border-radius:6px; margin-top:10px; font-size:12.5px; font-weight:600; display:none; }
+.sc-feedback.ok { display:block; background:rgba(74,222,128,.18); color:#86efac; }
+.sc-feedback.ko { display:block; background:rgba(239,68,68,.18); color:#fca5a5; }
+
+/* === TRIGGEA EL CLIP === */
+.tc-stage { background:#0a0f1e; border-radius:8px; padding:14px; margin-bottom:14px; }
+.tc-prompt { padding:14px; background:rgba(42,106,88,.18); border-left:3px solid var(--green); border-radius:5px; margin-bottom:14px; color:#fff; }
+.tc-prompt-lbl { font-size:10px; opacity:0.7; letter-spacing:.6px; text-transform:uppercase; margin-bottom:4px; font-family:var(--mono); }
+.tc-prompt-val { font-size:18px; font-weight:800; }
+.tc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+.tc-clip {
+  aspect-ratio:16/9; border-radius:4px; cursor:pointer; position:relative; overflow:hidden;
+  border:2px solid transparent; transition:all 0.15s;
+  display:flex; align-items:flex-end; padding:5px; font-family:var(--mono); font-size:9px;
+  font-weight:800; color:rgba(255,255,255,.85); text-shadow:0 1px 2px rgba(0,0,0,.7);
+}
+.tc-clip:hover:not(.locked) { border-color:#fff; transform:scale(1.05); z-index:2; }
+.tc-clip.correct { border-color:#22c55e; box-shadow:0 0 0 3px #22c55e; }
+.tc-clip.wrong { border-color:#ef4444; box-shadow:0 0 0 3px #ef4444; }
+.tc-clip.locked { cursor:default; }
+.tc-clip.dim { opacity:0.4; }
+.tc-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:14px; padding:10px; background:rgba(255,255,255,.05); border-radius:6px; color:#fff; text-align:center; }
+.tc-stat-v { font-size:22px; font-weight:800; color:var(--green); font-family:var(--mono); font-variant-numeric:tabular-nums; }
+.tc-stat-l { font-size:9.5px; color:rgba(255,255,255,.55); text-transform:uppercase; letter-spacing:.5px; font-family:var(--mono); margin-top:2px; }
+
+/* fin */
+
 </style>
 </head>
 <body>
@@ -625,6 +743,35 @@ Click derecho     → menú opciones del clip<br>
     </div>
   </div>
 </div>
+
+<!-- ═══════════════ NUEVO: TRIGGEA EL CLIP CORRECTO ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div style="font-size:18px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">🎮 Triggea el Clip Correcto</div>
+  <p style="font-size:13.5px;color:var(--t2);line-height:1.6;margin-bottom:14px;">
+    Tienes una rejilla 4×4 de clips con thumbnails. Te piden uno por <strong>nombre o coordenada</strong> (ej: "B3" = capa B, columna 3). Tienes <strong>4 segundos</strong> por reto. <strong>10 retos</strong>.
+  </p>
+  <div class="gr-prog" id="tcProg"></div>
+  <div class="gr-score-lbl"><span id="tcScoreL">Reto 1 / 10</span><span id="tcScoreR">0 aciertos</span></div>
+
+  <div class="tc-stage">
+    <div class="tc-prompt">
+      <div class="tc-prompt-lbl">Triggea el clip…</div>
+      <div class="tc-prompt-val" id="tcPrompt">A1 · Pulse</div>
+    </div>
+    <div class="tc-grid" id="tcGrid"></div>
+    <div class="tc-stats">
+      <div><div class="tc-stat-v" id="tcOk">0</div><div class="tc-stat-l">Aciertos</div></div>
+      <div><div class="tc-stat-v" id="tcKo">0</div><div class="tc-stat-l">Fallos</div></div>
+      <div><div class="tc-stat-v" id="tcTime">4.0s</div><div class="tc-stat-l">Tiempo</div></div>
+    </div>
+  </div>
+  <div class="gr-feedback" id="tcFb"></div>
+  <div class="gr-actions">
+    <button class="gr-btn gr-btn-ghost" onclick="tcReset()">↺ Reiniciar</button>
+    <button class="gr-btn gr-btn-primary" id="tcStart" onclick="tcStart()">▶ Empezar</button>
+  </div>
+</div>
+
 </section>
 
 <!-- ██ EFECTOS 1 ██ -->
@@ -734,6 +881,30 @@ Click derecho     → menú opciones del clip<br>
     </div>
   </div>
 </div>
+
+<!-- ═══════════════ NUEVO: IDENTIFICA EL EFECTO ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div style="font-size:18px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">🎮 Identifica el Efecto</div>
+  <p style="font-size:13.5px;color:var(--t2);line-height:1.6;margin-bottom:14px;">
+    Mira el clip con un efecto aplicado. ¿Qué efecto produjo ese resultado? <strong>6 retos</strong> con efectos esenciales del catálogo de Resolume.
+  </p>
+  <div class="gr-prog" id="fxProg"></div>
+  <div class="gr-score-lbl"><span id="fxScoreL">Reto 1 / 6</span><span id="fxScoreR">0 aciertos</span></div>
+
+  <div class="fx-stage">
+    <div class="fx-canvas-wrap">
+      <canvas class="fx-canvas" id="fxCanvas" width="640" height="360"></canvas>
+    </div>
+  </div>
+
+  <div class="fx-options" id="fxOpts"></div>
+  <div class="gr-feedback" id="fxFb"></div>
+  <div class="gr-actions">
+    <button class="gr-btn gr-btn-ghost" onclick="fxReset()">↺ Reiniciar</button>
+    <button class="gr-btn gr-btn-primary" id="fxNext" style="display:none;" onclick="fxNext()">Siguiente reto →</button>
+  </div>
+</div>
+
 </section>
 
 <!-- ██ OUTPUT BÁSICO ██ -->
@@ -1075,6 +1246,39 @@ Click derecho     → menú opciones del clip<br>
     <div class="step"><div class="snum">3</div><p><strong>Capa superior — Overlay</strong>: Partículas, texto, reacciones de beat. Blend: Screen para que el fondo negro desaparezca.</p></div>
   </div>
 </div>
+
+<!-- ═══════════════ NUEVO: BLEND MODE MATCH ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div style="font-size:18px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">🎮 Blend Mode Match</div>
+  <p style="font-size:13.5px;color:var(--t2);line-height:1.6;margin-bottom:14px;">
+    Observa la <strong>capa A</strong> (fondo) y la <strong>capa B</strong> (encima), y el <strong>resultado</strong> de combinarlas. ¿Qué blend mode se aplicó? <strong>6 retos</strong>.
+  </p>
+  <div class="gr-prog" id="bmProg"></div>
+  <div class="gr-score-lbl"><span id="bmScoreL">Reto 1 / 6</span><span id="bmScoreR">0 aciertos</span></div>
+
+  <div class="bm-stage">
+    <div class="bm-preview-wrap">
+      <div class="bm-preview-label">Capa A · fondo</div>
+      <canvas class="bm-canvas" id="bmCanvasA" width="320" height="180"></canvas>
+    </div>
+    <div class="bm-preview-wrap">
+      <div class="bm-preview-label">Capa B · superior</div>
+      <canvas class="bm-canvas" id="bmCanvasB" width="320" height="180"></canvas>
+    </div>
+  </div>
+  <div class="bm-preview-wrap" style="margin-bottom:14px;">
+    <div class="bm-preview-label">Resultado — ¿qué blend mode produjo esto?</div>
+    <canvas class="bm-canvas" id="bmCanvasR" width="320" height="180" style="aspect-ratio:32/9;"></canvas>
+  </div>
+
+  <div class="bm-options" id="bmOpts"></div>
+  <div class="gr-feedback" id="bmFb"></div>
+  <div class="gr-actions">
+    <button class="gr-btn gr-btn-ghost" onclick="bmReset()">↺ Reiniciar</button>
+    <button class="gr-btn gr-btn-primary" id="bmNext" style="display:none;" onclick="bmNext()">Siguiente reto →</button>
+  </div>
+</div>
+
 </section>
 
 <!-- ██ TRANSPORT & FX ██ -->
@@ -1215,6 +1419,36 @@ PingPong → efecto rebote</div>
     </div>
   </div>
 </div>
+
+<!-- ═══════════════ NUEVO: BPM TAP TRAINER ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div style="font-size:18px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">🎮 BPM Tap Trainer</div>
+  <p style="font-size:13.5px;color:var(--t2);line-height:1.6;margin-bottom:14px;">
+    Sincroniza con el beat objetivo. Pulsa <strong>TAP</strong> al ritmo del pulso visual. Necesitas <strong>8 taps consecutivos</strong> con un margen de <strong>±5 BPM</strong> sobre el objetivo. <strong>5 retos</strong> con BPMs distintos.
+  </p>
+  <div class="gr-prog" id="bpmProg"></div>
+  <div class="gr-score-lbl"><span id="bpmScoreL">Reto 1 / 5</span><span id="bpmScoreR">0 aciertos</span></div>
+
+  <div class="bpm-stage">
+    <div class="bpm-target">BPM objetivo</div>
+    <div class="bpm-target-val" id="bpmTarget">120</div>
+    <div class="bpm-pulse-ring" id="bpmRing">
+      <div class="bpm-pulse-core"></div>
+    </div>
+    <button class="bpm-tap-btn" onclick="bpmTap()" id="bpmTapBtn">▼ TAP ▼</button>
+    <div class="bpm-stats">
+      <div class="bpm-stat"><div class="bpm-stat-l">Tu BPM</div><div class="bpm-stat-v" id="bpmYou">—</div></div>
+      <div class="bpm-stat"><div class="bpm-stat-l">Diferencia</div><div class="bpm-stat-v" id="bpmDiff">—</div></div>
+      <div class="bpm-stat"><div class="bpm-stat-l">Taps</div><div class="bpm-stat-v" id="bpmTaps">0</div></div>
+    </div>
+  </div>
+  <div class="gr-feedback" id="bpmFb"></div>
+  <div class="gr-actions">
+    <button class="gr-btn gr-btn-ghost" onclick="bpmReset()">↺ Reiniciar</button>
+    <button class="gr-btn gr-btn-primary" id="bpmNext" style="display:none;" onclick="bpmNext()">Siguiente reto →</button>
+  </div>
+</div>
+
 </section>
 
 <!-- ██ FUENTES ██ -->
@@ -1685,6 +1919,44 @@ PingPong → efecto rebote</div>
     </div>
   </div>
 </div>
+
+<!-- ═══════════════ NUEVO: PULSA EL ATAJO ═══════════════ -->
+<div class="panel" style="margin-top:18px;">
+  <div style="font-size:18px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">🎮 Pulsa el Atajo</div>
+  <p style="font-size:13.5px;color:var(--t2);line-height:1.6;margin-bottom:14px;">
+    Aparecerá una acción y tienes <strong>5 segundos</strong> para pulsar el atajo correcto en tu teclado. <strong>+10</strong> por acierto, <strong>−5</strong> por fallo o tiempo agotado. <strong>15 retos</strong>.
+  </p>
+  <div class="sc-stage" id="scStage">
+    <div id="scIdle" style="text-align:center;padding:18px;">
+      <p style="font-size:14px;opacity:0.85;margin-bottom:18px;">¿Listo para demostrar tu velocidad con los atajos de Resolume?</p>
+      <button class="sc-btn sc-btn-primary" onclick="scStart()">▶ Empezar partida</button>
+    </div>
+    <div id="scPlay" style="display:none;">
+      <div class="sc-time"><div class="sc-time-fill" id="scTimeBar"></div></div>
+      <div class="sc-action-lbl">Atajo de…</div>
+      <div class="sc-action" id="scAction">—</div>
+      <div class="sc-input-display" id="scInput">—</div>
+      <div class="sc-stats">
+        <div><div class="sc-stat-v" id="scScore">0</div><div class="sc-stat-l">Puntos</div></div>
+        <div><div class="sc-stat-v" id="scOk">0</div><div class="sc-stat-l">Aciertos</div></div>
+        <div><div class="sc-stat-v" id="scKo">0</div><div class="sc-stat-l">Fallos</div></div>
+        <div><div class="sc-stat-v" id="scRound">0/15</div><div class="sc-stat-l">Reto</div></div>
+      </div>
+      <div class="sc-feedback" id="scFb"></div>
+      <div class="sc-actions">
+        <button class="sc-btn sc-btn-ghost" onclick="scSkip()">Saltar</button>
+        <button class="sc-btn sc-btn-ghost" onclick="scStop()">Abandonar</button>
+      </div>
+    </div>
+    <div id="scEnd" style="display:none;text-align:center;padding:18px;">
+      <div class="sc-action-lbl">Resultado final</div>
+      <div style="font-size:54px;font-weight:900;color:#86efac;line-height:1;margin:6px 0;" id="scFinalScore">0</div>
+      <div style="opacity:0.85;margin-bottom:18px;font-size:13px;" id="scFinalMsg">puntos</div>
+      <button class="sc-btn sc-btn-primary" onclick="scStart()">↻ Jugar de nuevo</button>
+    </div>
+  </div>
+</div>
+
 </section>
 
 <!-- ██ GLOSARIO ██ -->
@@ -3076,6 +3348,868 @@ C:\Program Files\Resolume Avenue 4.x\<br>
 
 </main>
 </div><!-- .app -->
+
+<script>
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MEJORAS GAMIFICACIÓN RESOLUME
+// ═══════════════════════════════════════════════════════════════════════════
+
+function grRenderProg(elId, total, idx, results) {
+  var el = document.getElementById(elId);
+  if (!el) return;
+  var html = '';
+  for (var i = 0; i < total; i++) {
+    var cls = '';
+    if (i < idx) cls = results[i] ? 'ok' : 'err';
+    else if (i === idx) cls = 'cur';
+    html += '<div class="gr-pip ' + cls + '"></div>';
+  }
+  el.innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 1) CAPAS · BLEND MODE MATCH
+// ═══════════════════════════════════════════════════════════════════════════
+var bmModes = [
+  { id:'add',      name:'Add',      formula:'A + B (clamp 255) — suma luz' },
+  { id:'multiply', name:'Multiply', formula:'A × B / 255 — oscurece' },
+  { id:'screen',   name:'Screen',   formula:'255 − ((255−A) × (255−B))/255 — aclara' },
+  { id:'overlay',  name:'Overlay',  formula:'híbrido multiply/screen según luminosidad' }
+];
+var bmChallenges = [
+  // 6 retos con distintos modos correctos
+  { mode:'add',      sceneA:'sky',     sceneB:'particles' },
+  { mode:'multiply', sceneA:'gradient', sceneB:'shadow' },
+  { mode:'screen',   sceneA:'dark',    sceneB:'lights' },
+  { mode:'overlay',  sceneA:'mid',     sceneB:'color' },
+  { mode:'multiply', sceneA:'photo',   sceneB:'mask' },
+  { mode:'add',      sceneA:'concert', sceneB:'flare' }
+];
+var bmState = { idx:0, score:0, results:[], order:[], answered:false };
+
+function bmReset() {
+  bmState.order = bmChallenges.map(function(_,i){return i;}).sort(function(){return Math.random()-0.5;});
+  bmState.idx = 0; bmState.score = 0; bmState.results = []; bmState.answered = false;
+  bmRender();
+}
+
+function bmDrawScene(ctx, w, h, key, asA) {
+  ctx.clearRect(0,0,w,h);
+  if (key === 'sky') {
+    var g = ctx.createLinearGradient(0,0,0,h);
+    g.addColorStop(0,'#1e3a5f'); g.addColorStop(0.7,'#2563eb'); g.addColorStop(1,'#7c3aed');
+    ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
+  } else if (key === 'particles') {
+    ctx.fillStyle = '#000'; ctx.fillRect(0,0,w,h);
+    for (var i = 0; i < 40; i++) {
+      var x = Math.random()*w, y = Math.random()*h;
+      var r = 2 + Math.random()*5;
+      var grd = ctx.createRadialGradient(x,y,0,x,y,r*4);
+      grd.addColorStop(0,'rgba(255,255,255,0.95)'); grd.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.fillStyle = grd;
+      ctx.beginPath(); ctx.arc(x,y,r*4,0,Math.PI*2); ctx.fill();
+    }
+  } else if (key === 'gradient') {
+    var g2 = ctx.createLinearGradient(0,0,w,h);
+    g2.addColorStop(0,'#fbbf24'); g2.addColorStop(0.5,'#f59e0b'); g2.addColorStop(1,'#dc2626');
+    ctx.fillStyle = g2; ctx.fillRect(0,0,w,h);
+  } else if (key === 'shadow') {
+    var g3 = ctx.createRadialGradient(w*0.5, h*0.5, 0, w*0.5, h*0.5, w*0.7);
+    g3.addColorStop(0,'#fff'); g3.addColorStop(1,'#202028');
+    ctx.fillStyle = g3; ctx.fillRect(0,0,w,h);
+  } else if (key === 'dark') {
+    ctx.fillStyle = '#0a0f1e'; ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = '#1e293b';
+    for (var k = 0; k < 6; k++) ctx.fillRect(Math.random()*w-30, Math.random()*h, 60, 80);
+  } else if (key === 'lights') {
+    ctx.fillStyle = '#000'; ctx.fillRect(0,0,w,h);
+    for (var n = 0; n < 8; n++) {
+      var lx = (n+1)*w/9 + (Math.random()-0.5)*20;
+      var ly = h*0.3 + Math.random()*h*0.4;
+      var lg = ctx.createRadialGradient(lx,ly,0,lx,ly,40);
+      lg.addColorStop(0,'rgba(255,255,180,0.95)'); lg.addColorStop(1,'rgba(255,255,180,0)');
+      ctx.fillStyle = lg;
+      ctx.beginPath(); ctx.arc(lx,ly,40,0,Math.PI*2); ctx.fill();
+    }
+  } else if (key === 'mid') {
+    var gm = ctx.createLinearGradient(0,0,w,0);
+    gm.addColorStop(0,'#404040'); gm.addColorStop(1,'#a0a0a0');
+    ctx.fillStyle = gm; ctx.fillRect(0,0,w,h);
+  } else if (key === 'color') {
+    var gc = ctx.createLinearGradient(0,0,w,h);
+    gc.addColorStop(0,'#ec4899'); gc.addColorStop(0.5,'#8b5cf6'); gc.addColorStop(1,'#06b6d4');
+    ctx.fillStyle = gc; ctx.fillRect(0,0,w,h);
+  } else if (key === 'photo') {
+    var gp = ctx.createLinearGradient(0,0,0,h);
+    gp.addColorStop(0,'#7dd3fc'); gp.addColorStop(0.6,'#fbbf24'); gp.addColorStop(1,'#15803d');
+    ctx.fillStyle = gp; ctx.fillRect(0,0,w,h);
+  } else if (key === 'mask') {
+    ctx.fillStyle = '#fff'; ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = '#000';
+    ctx.beginPath(); ctx.arc(w/2,h/2, h*0.42, 0, Math.PI*2); ctx.fill();
+  } else if (key === 'concert') {
+    var bg = ctx.createLinearGradient(0,0,0,h);
+    bg.addColorStop(0,'#0a0a14'); bg.addColorStop(1,'#1a0a14');
+    ctx.fillStyle = bg; ctx.fillRect(0,0,w,h);
+    // Crowd silhouette
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, h*0.7, w, h*0.3);
+    for (var c = 0; c < 30; c++) {
+      ctx.beginPath(); ctx.arc(c*w/30+10, h*0.72-Math.random()*15, 4+Math.random()*3, 0, Math.PI*2); ctx.fill();
+    }
+  } else if (key === 'flare') {
+    ctx.fillStyle = '#000'; ctx.fillRect(0,0,w,h);
+    var fx = w*0.7, fy = h*0.3;
+    var fg = ctx.createRadialGradient(fx,fy,0,fx,fy,w*0.6);
+    fg.addColorStop(0,'rgba(255,200,80,1)'); fg.addColorStop(0.3,'rgba(255,100,40,0.6)'); fg.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle = fg;
+    ctx.fillRect(0,0,w,h);
+  }
+}
+
+function bmDrawResult(ctxR, w, h, sceneA, sceneB, mode) {
+  // Render A en offscreen
+  var oA = document.createElement('canvas'); oA.width = w; oA.height = h;
+  bmDrawScene(oA.getContext('2d'), w, h, sceneA);
+  var oB = document.createElement('canvas'); oB.width = w; oB.height = h;
+  bmDrawScene(oB.getContext('2d'), w, h, sceneB);
+  // Combinar pixel a pixel
+  var dA = oA.getContext('2d').getImageData(0,0,w,h);
+  var dB = oB.getContext('2d').getImageData(0,0,w,h);
+  var out = ctxR.createImageData(w, h);
+  var a = dA.data, b = dB.data, o = out.data;
+  for (var i = 0; i < a.length; i += 4) {
+    var ar=a[i], ag=a[i+1], ab=a[i+2];
+    var br=b[i], bg=b[i+1], bb=b[i+2];
+    var r, g, B;
+    if (mode === 'add') {
+      r = Math.min(255, ar+br); g = Math.min(255, ag+bg); B = Math.min(255, ab+bb);
+    } else if (mode === 'multiply') {
+      r = Math.round(ar*br/255); g = Math.round(ag*bg/255); B = Math.round(ab*bb/255);
+    } else if (mode === 'screen') {
+      r = 255 - Math.round((255-ar)*(255-br)/255);
+      g = 255 - Math.round((255-ag)*(255-bg)/255);
+      B = 255 - Math.round((255-ab)*(255-bb)/255);
+    } else if (mode === 'overlay') {
+      r = ar < 128 ? Math.round(2*ar*br/255) : 255 - Math.round(2*(255-ar)*(255-br)/255);
+      g = ag < 128 ? Math.round(2*ag*bg/255) : 255 - Math.round(2*(255-ag)*(255-bg)/255);
+      B = ab < 128 ? Math.round(2*ab*bb/255) : 255 - Math.round(2*(255-ab)*(255-bb)/255);
+    }
+    o[i]=r; o[i+1]=g; o[i+2]=B; o[i+3]=255;
+  }
+  ctxR.putImageData(out, 0, 0);
+}
+
+function bmRender() {
+  if (bmState.idx >= bmState.order.length) { bmFinish(); return; }
+  var ch = bmChallenges[bmState.order[bmState.idx]];
+  var cA = document.getElementById('bmCanvasA');
+  var cB = document.getElementById('bmCanvasB');
+  var cR = document.getElementById('bmCanvasR');
+  bmDrawScene(cA.getContext('2d'), cA.width, cA.height, ch.sceneA);
+  bmDrawScene(cB.getContext('2d'), cB.width, cB.height, ch.sceneB);
+  bmDrawResult(cR.getContext('2d'), cR.width, cR.height, ch.sceneA, ch.sceneB, ch.mode);
+
+  // Opciones aleatorizadas
+  var opts = bmModes.slice().sort(function(){return Math.random()-0.5;});
+  var html = '';
+  for (var i = 0; i < opts.length; i++) {
+    var o = opts[i];
+    html += '<button class="bm-opt" data-id="' + o.id + '" onclick="bmPick(\'' + o.id + '\', this)">' +
+      '<span class="bm-opt-name">' + o.name + '</span>' +
+      '<span class="bm-opt-formula">' + o.formula + '</span>' +
+    '</button>';
+  }
+  document.getElementById('bmOpts').innerHTML = html;
+  document.getElementById('bmFb').className = 'gr-feedback';
+  document.getElementById('bmFb').textContent = '';
+  document.getElementById('bmNext').style.display = 'none';
+  document.getElementById('bmScoreL').textContent = 'Reto ' + (bmState.idx+1) + ' / ' + bmState.order.length;
+  document.getElementById('bmScoreR').textContent = bmState.score + ' aciertos';
+  grRenderProg('bmProg', bmState.order.length, bmState.idx, bmState.results);
+  bmState.answered = false;
+}
+
+function bmPick(id, btn) {
+  if (bmState.answered) return;
+  bmState.answered = true;
+  var ch = bmChallenges[bmState.order[bmState.idx]];
+  var correct = (id === ch.mode);
+  bmState.results[bmState.idx] = correct;
+  if (correct) bmState.score++;
+  var opts = document.querySelectorAll('#bmOpts .bm-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.add('locked');
+    if (opts[i].dataset.id === ch.mode) opts[i].classList.add('correct');
+    if (opts[i] === btn && !correct) opts[i].classList.add('wrong');
+  }
+  var modeDef = bmModes.find(function(m){return m.id === ch.mode;});
+  var fb = document.getElementById('bmFb');
+  fb.className = 'gr-feedback ' + (correct ? 'ok' : 'err');
+  fb.innerHTML = (correct ? '✓ Correcto: ' : '✗ Era ') + '<strong>' + modeDef.name + '</strong>. Fórmula: ' + modeDef.formula;
+  document.getElementById('bmNext').style.display = 'inline-block';
+  document.getElementById('bmNext').textContent = (bmState.idx < bmState.order.length-1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('bmScoreR').textContent = bmState.score + ' aciertos';
+}
+
+function bmNext() { bmState.idx++; bmRender(); }
+
+function bmFinish() {
+  document.getElementById('bmOpts').innerHTML = '';
+  var fb = document.getElementById('bmFb');
+  fb.className = 'gr-feedback ' + (bmState.score >= 4 ? 'ok' : 'err');
+  fb.innerHTML = '🏆 ' + bmState.score + '/' + bmState.order.length + ' aciertos. ' +
+    (bmState.score === bmState.order.length ? '¡Perfecto! Distingues los blend modes a la perfección.' :
+     bmState.score >= 4 ? 'Muy bien. Tienes claros los blend modes principales.' :
+     'Repasa Add (suma) vs Multiply (oscurece) vs Screen (aclara) antes de seguir.');
+  document.getElementById('bmNext').style.display = 'inline-block';
+  document.getElementById('bmNext').textContent = '↻ Volver a jugar';
+  document.getElementById('bmNext').onclick = function(){ bmReset(); };
+  grRenderProg('bmProg', bmState.order.length, bmState.order.length, bmState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 2) AUDIO · BPM TAP TRAINER
+// ═══════════════════════════════════════════════════════════════════════════
+var bpmTargets = [110, 120, 128, 140, 174];
+var bpmState = { idx:0, score:0, results:[], target:120, taps:[], pulseTimer:null };
+
+function bpmReset() {
+  bpmState.idx = 0; bpmState.score = 0; bpmState.results = []; bpmState.taps = [];
+  bpmRender();
+}
+
+function bpmRender() {
+  if (bpmState.idx >= bpmTargets.length) { bpmFinish(); return; }
+  bpmState.target = bpmTargets[bpmState.idx];
+  bpmState.taps = [];
+  document.getElementById('bpmTarget').textContent = bpmState.target;
+  document.getElementById('bpmYou').textContent = '—';
+  document.getElementById('bpmDiff').textContent = '—';
+  document.getElementById('bpmTaps').textContent = '0';
+  document.getElementById('bpmFb').className = 'gr-feedback';
+  document.getElementById('bpmFb').textContent = '';
+  document.getElementById('bpmNext').style.display = 'none';
+  document.getElementById('bpmScoreL').textContent = 'Reto ' + (bpmState.idx+1) + ' / ' + bpmTargets.length;
+  document.getElementById('bpmScoreR').textContent = bpmState.score + ' aciertos';
+  grRenderProg('bpmProg', bpmTargets.length, bpmState.idx, bpmState.results);
+  // Iniciar pulso visual al BPM objetivo
+  if (bpmState.pulseTimer) clearInterval(bpmState.pulseTimer);
+  var beatMs = 60000 / bpmState.target;
+  bpmState.pulseTimer = setInterval(bpmPulseBeat, beatMs);
+  bpmPulseBeat();
+}
+
+function bpmPulseBeat() {
+  var ring = document.getElementById('bpmRing');
+  if (!ring) return;
+  ring.classList.add('beat');
+  setTimeout(function(){ ring.classList.remove('beat'); }, 100);
+}
+
+function bpmTap() {
+  var now = performance.now();
+  bpmState.taps.push(now);
+  // Quedarnos con los últimos 8
+  if (bpmState.taps.length > 8) bpmState.taps.shift();
+  document.getElementById('bpmTaps').textContent = bpmState.taps.length;
+  if (bpmState.taps.length >= 2) {
+    // Calcular BPM media de los intervalos
+    var intervals = [];
+    for (var i = 1; i < bpmState.taps.length; i++) {
+      intervals.push(bpmState.taps[i] - bpmState.taps[i-1]);
+    }
+    var avgMs = intervals.reduce(function(a,b){return a+b;},0) / intervals.length;
+    var bpm = Math.round(60000 / avgMs);
+    document.getElementById('bpmYou').textContent = bpm;
+    var diff = bpm - bpmState.target;
+    document.getElementById('bpmDiff').textContent = (diff >= 0 ? '+' : '') + diff;
+    // Validar al alcanzar 8 taps
+    if (bpmState.taps.length === 8) {
+      var ok = Math.abs(diff) <= 5;
+      bpmState.results[bpmState.idx] = ok;
+      if (ok) bpmState.score++;
+      var fb = document.getElementById('bpmFb');
+      fb.className = 'gr-feedback ' + (ok ? 'ok' : 'err');
+      if (ok) {
+        fb.innerHTML = '✓ ¡Sincronizado! Tu BPM: ' + bpm + ' (objetivo ' + bpmState.target + ', diff ' + (diff>=0?'+':'') + diff + '). Margen ±5 superado.';
+      } else {
+        fb.innerHTML = '✗ Tu BPM: ' + bpm + ' (objetivo ' + bpmState.target + ', diff ' + (diff>=0?'+':'') + diff + '). Margen ±5 superado: <strong>' + Math.abs(diff) + ' BPM</strong>.';
+      }
+      if (bpmState.pulseTimer) { clearInterval(bpmState.pulseTimer); bpmState.pulseTimer = null; }
+      document.getElementById('bpmNext').style.display = 'inline-block';
+      document.getElementById('bpmNext').textContent = (bpmState.idx < bpmTargets.length-1) ? 'Siguiente reto →' : 'Ver resultado →';
+      document.getElementById('bpmScoreR').textContent = bpmState.score + ' aciertos';
+    }
+  }
+}
+
+function bpmNext() { bpmState.idx++; bpmRender(); }
+
+function bpmFinish() {
+  if (bpmState.pulseTimer) { clearInterval(bpmState.pulseTimer); bpmState.pulseTimer = null; }
+  var fb = document.getElementById('bpmFb');
+  fb.className = 'gr-feedback ' + (bpmState.score >= 3 ? 'ok' : 'err');
+  fb.innerHTML = '🏆 ' + bpmState.score + '/' + bpmTargets.length + ' BPMs sincronizados. ' +
+    (bpmState.score === bpmTargets.length ? '¡Perfecto! Tienes el ritmo en los dedos.' :
+     bpmState.score >= 3 ? 'Muy bien. Buena sincronización.' :
+     'Practica con un metrónomo: el TAP debe coincidir con el pulso visual.');
+  document.getElementById('bpmNext').style.display = 'inline-block';
+  document.getElementById('bpmNext').textContent = '↻ Volver a jugar';
+  document.getElementById('bpmNext').onclick = function(){ bpmReset(); };
+  grRenderProg('bpmProg', bpmTargets.length, bpmTargets.length, bpmState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 3) EFECTOS · IDENTIFICA EL EFECTO
+// ═══════════════════════════════════════════════════════════════════════════
+var fxEffects = [
+  { id:'blur',         name:'Blur (Gaussian)',    desc:'Difumina la imagen suavemente.' },
+  { id:'mosaic',       name:'Mosaic',             desc:'Pixela en bloques cuadrados.' },
+  { id:'kaleidoscope', name:'Kaleidoscope',       desc:'Replica el clip en patrones radiales.' },
+  { id:'pixelate',     name:'Pixelate',           desc:'Reduce la resolución a píxeles cuadrados grandes.' },
+  { id:'invert',       name:'Invert',             desc:'Invierte los colores (negativo).' },
+  { id:'edge',         name:'Edge Detection',     desc:'Resalta bordes y silueta.' }
+];
+var fxChallenges = [
+  { effect:'blur' }, { effect:'mosaic' }, { effect:'kaleidoscope' },
+  { effect:'invert' }, { effect:'edge' }, { effect:'pixelate' }
+];
+var fxState = { idx:0, score:0, results:[], order:[], answered:false };
+
+function fxReset() {
+  fxState.order = fxChallenges.map(function(_,i){return i;}).sort(function(){return Math.random()-0.5;});
+  fxState.idx = 0; fxState.score = 0; fxState.results = []; fxState.answered = false;
+  fxRender();
+}
+
+function fxDrawBase(ctx, w, h) {
+  // Imagen base: gradiente cielo + sol + montaña + texto VJ
+  var sky = ctx.createLinearGradient(0,0,0,h*0.7);
+  sky.addColorStop(0,'#3b82f6'); sky.addColorStop(1,'#fbbf24');
+  ctx.fillStyle = sky; ctx.fillRect(0,0,w,h*0.7);
+  // Sol
+  var sun = ctx.createRadialGradient(w*0.7, h*0.3, 0, w*0.7, h*0.3, h*0.2);
+  sun.addColorStop(0,'#fffacc'); sun.addColorStop(0.5,'#fbbf24'); sun.addColorStop(1,'rgba(251,191,36,0)');
+  ctx.fillStyle = sun;
+  ctx.beginPath(); ctx.arc(w*0.7,h*0.3,h*0.2,0,Math.PI*2); ctx.fill();
+  // Montañas
+  ctx.fillStyle = '#7c3aed';
+  ctx.beginPath();
+  ctx.moveTo(0,h*0.7); ctx.lineTo(w*0.25,h*0.45); ctx.lineTo(w*0.5,h*0.6); ctx.lineTo(w*0.8,h*0.4); ctx.lineTo(w,h*0.55); ctx.lineTo(w,h*0.7);
+  ctx.closePath(); ctx.fill();
+  // Tierra
+  ctx.fillStyle = '#15803d'; ctx.fillRect(0,h*0.7,w,h*0.3);
+  // Texto VJ
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 64px Inter';
+  ctx.textAlign = 'center';
+  ctx.fillText('VJ', w/2, h*0.6);
+}
+
+function fxApply(ctx, w, h, effect) {
+  if (effect === 'blur') {
+    // box blur 3x3 manual
+    var src = ctx.getImageData(0,0,w,h);
+    var dst = ctx.createImageData(w,h);
+    var s=src.data, d=dst.data;
+    var radius = 6;
+    for (var y = 0; y < h; y++) {
+      for (var x = 0; x < w; x++) {
+        var r=0,g=0,b=0,n=0;
+        for (var dy = -radius; dy <= radius; dy += 2) {
+          for (var dx = -radius; dx <= radius; dx += 2) {
+            var nx = x+dx, ny = y+dy;
+            if (nx >= 0 && nx < w && ny >= 0 && ny < h) {
+              var k = (ny*w+nx)*4;
+              r+=s[k]; g+=s[k+1]; b+=s[k+2]; n++;
+            }
+          }
+        }
+        var ki = (y*w+x)*4;
+        d[ki]=r/n; d[ki+1]=g/n; d[ki+2]=b/n; d[ki+3]=255;
+      }
+    }
+    ctx.putImageData(dst,0,0);
+  } else if (effect === 'mosaic' || effect === 'pixelate') {
+    var blockSize = effect === 'pixelate' ? 32 : 16;
+    var srcM = ctx.getImageData(0,0,w,h).data;
+    ctx.clearRect(0,0,w,h);
+    for (var by = 0; by < h; by += blockSize) {
+      for (var bx = 0; bx < w; bx += blockSize) {
+        // Sampleamos el centro del bloque
+        var cx = Math.min(bx + blockSize/2, w-1) | 0;
+        var cy = Math.min(by + blockSize/2, h-1) | 0;
+        var idx = (cy*w + cx)*4;
+        ctx.fillStyle = 'rgb(' + srcM[idx] + ',' + srcM[idx+1] + ',' + srcM[idx+2] + ')';
+        ctx.fillRect(bx, by, blockSize, blockSize);
+      }
+    }
+  } else if (effect === 'kaleidoscope') {
+    // Tomar un cuadrante y replicar reflejado en los otros 3
+    var off = document.createElement('canvas'); off.width = w; off.height = h;
+    var oc = off.getContext('2d');
+    oc.drawImage(ctx.canvas, 0, 0);
+    ctx.clearRect(0,0,w,h);
+    // Cuadrante superior izq normal
+    ctx.drawImage(off, 0, 0, w/2, h/2, 0, 0, w/2, h/2);
+    // Sup der: espejo H
+    ctx.save(); ctx.translate(w, 0); ctx.scale(-1, 1);
+    ctx.drawImage(off, 0, 0, w/2, h/2, 0, 0, w/2, h/2);
+    ctx.restore();
+    // Inf izq: espejo V
+    ctx.save(); ctx.translate(0, h); ctx.scale(1, -1);
+    ctx.drawImage(off, 0, 0, w/2, h/2, 0, 0, w/2, h/2);
+    ctx.restore();
+    // Inf der: ambos espejos
+    ctx.save(); ctx.translate(w, h); ctx.scale(-1, -1);
+    ctx.drawImage(off, 0, 0, w/2, h/2, 0, 0, w/2, h/2);
+    ctx.restore();
+  } else if (effect === 'invert') {
+    var srcI = ctx.getImageData(0,0,w,h);
+    var dI = srcI.data;
+    for (var i = 0; i < dI.length; i += 4) {
+      dI[i]=255-dI[i]; dI[i+1]=255-dI[i+1]; dI[i+2]=255-dI[i+2];
+    }
+    ctx.putImageData(srcI, 0, 0);
+  } else if (effect === 'edge') {
+    // Sobel simple
+    var srcE = ctx.getImageData(0,0,w,h);
+    var sE = srcE.data;
+    var dst = ctx.createImageData(w,h);
+    var dE = dst.data;
+    function lum(k){ return 0.299*sE[k]+0.587*sE[k+1]+0.114*sE[k+2]; }
+    for (var y = 1; y < h-1; y++) {
+      for (var x = 1; x < w-1; x++) {
+        var k = (y*w+x)*4;
+        var gx = -lum(k-w*4-4) -2*lum(k-4) -lum(k+w*4-4) +lum(k-w*4+4) +2*lum(k+4) +lum(k+w*4+4);
+        var gy = -lum(k-w*4-4) -2*lum(k-w*4) -lum(k-w*4+4) +lum(k+w*4-4) +2*lum(k+w*4) +lum(k+w*4+4);
+        var v = Math.min(255, Math.sqrt(gx*gx+gy*gy));
+        dE[k]=v; dE[k+1]=v; dE[k+2]=v; dE[k+3]=255;
+      }
+    }
+    ctx.putImageData(dst, 0, 0);
+  }
+}
+
+function fxRender() {
+  if (fxState.idx >= fxState.order.length) { fxFinish(); return; }
+  var ch = fxChallenges[fxState.order[fxState.idx]];
+  var c = document.getElementById('fxCanvas');
+  var ctx = c.getContext('2d');
+  fxDrawBase(ctx, c.width, c.height);
+  fxApply(ctx, c.width, c.height, ch.effect);
+
+  // 4 opciones: la correcta + 3 distractores
+  var others = fxEffects.filter(function(e){ return e.id !== ch.effect; });
+  others.sort(function(){return Math.random()-0.5;});
+  var pool = [fxEffects.find(function(e){return e.id === ch.effect;})].concat(others.slice(0,3));
+  pool.sort(function(){return Math.random()-0.5;});
+  var html = '';
+  for (var i = 0; i < pool.length; i++) {
+    html += '<button class="fx-opt" data-id="' + pool[i].id + '" onclick="fxPick(\'' + pool[i].id + '\', this)">' + pool[i].name + '</button>';
+  }
+  document.getElementById('fxOpts').innerHTML = html;
+  document.getElementById('fxFb').className = 'gr-feedback';
+  document.getElementById('fxFb').textContent = '';
+  document.getElementById('fxNext').style.display = 'none';
+  document.getElementById('fxScoreL').textContent = 'Reto ' + (fxState.idx+1) + ' / ' + fxState.order.length;
+  document.getElementById('fxScoreR').textContent = fxState.score + ' aciertos';
+  grRenderProg('fxProg', fxState.order.length, fxState.idx, fxState.results);
+  fxState.answered = false;
+}
+
+function fxPick(id, btn) {
+  if (fxState.answered) return;
+  fxState.answered = true;
+  var ch = fxChallenges[fxState.order[fxState.idx]];
+  var correct = (id === ch.effect);
+  fxState.results[fxState.idx] = correct;
+  if (correct) fxState.score++;
+  var opts = document.querySelectorAll('#fxOpts .fx-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.add('locked');
+    if (opts[i].dataset.id === ch.effect) opts[i].classList.add('correct');
+    if (opts[i] === btn && !correct) opts[i].classList.add('wrong');
+  }
+  var fxDef = fxEffects.find(function(e){return e.id===ch.effect;});
+  var fb = document.getElementById('fxFb');
+  fb.className = 'gr-feedback ' + (correct ? 'ok' : 'err');
+  fb.innerHTML = (correct ? '✓ Correcto: ' : '✗ Era ') + '<strong>' + fxDef.name + '</strong>. ' + fxDef.desc;
+  document.getElementById('fxNext').style.display = 'inline-block';
+  document.getElementById('fxNext').textContent = (fxState.idx < fxState.order.length-1) ? 'Siguiente reto →' : 'Ver resultado →';
+  document.getElementById('fxScoreR').textContent = fxState.score + ' aciertos';
+}
+
+function fxNext() { fxState.idx++; fxRender(); }
+
+function fxFinish() {
+  document.getElementById('fxOpts').innerHTML = '';
+  var fb = document.getElementById('fxFb');
+  fb.className = 'gr-feedback ' + (fxState.score >= 4 ? 'ok' : 'err');
+  fb.innerHTML = '🏆 ' + fxState.score + '/' + fxState.order.length + '. ' +
+    (fxState.score === fxState.order.length ? '¡Perfecto! Identificas todos los efectos al instante.' :
+     fxState.score >= 4 ? 'Muy bien.' : 'Repasa el catálogo de efectos antes de seguir.');
+  document.getElementById('fxNext').style.display = 'inline-block';
+  document.getElementById('fxNext').textContent = '↻ Volver a jugar';
+  document.getElementById('fxNext').onclick = function(){ fxReset(); };
+  grRenderProg('fxProg', fxState.order.length, fxState.order.length, fxState.results);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 4) SHORTCUTS · PULSA EL ATAJO
+// ═══════════════════════════════════════════════════════════════════════════
+var scShortcuts = [
+  { action:'Bypass de un efecto',                 keys:'B' },
+  { action:'Pantalla completa output',            keys:'F' },
+  { action:'Borrar / Clear playback',             keys:'Backspace' },
+  { action:'Reset valor a default',               keys:'Ctrl+Click' },
+  { action:'Snap a beat (al alinear)',            keys:'Shift+Click' },
+  { action:'Trigger column 1',                    keys:'1' },
+  { action:'Trigger column 2',                    keys:'2' },
+  { action:'Trigger column 3',                    keys:'3' },
+  { action:'Marcar BPM (tap)',                    keys:'T' },
+  { action:'Mostrar / ocultar paneles',           keys:'Tab' },
+  { action:'Solo monitor (toggle)',               keys:'M' },
+  { action:'Trigger group A',                     keys:'A' },
+  { action:'Trigger group Z',                     keys:'Z' },
+  { action:'Stop all (parar todo)',               keys:'Escape' },
+  { action:'Renombrar elemento seleccionado',     keys:'F2' },
+  { action:'Buscar / abrir Quick Access',         keys:'Ctrl+F' },
+  { action:'Guardar composición',                 keys:'Ctrl+S' },
+  { action:'Deshacer',                            keys:'Ctrl+Z' },
+  { action:'Cortar capa',                         keys:'Ctrl+X' },
+  { action:'Copiar capa',                         keys:'Ctrl+C' }
+];
+var scState = { running:false, idx:0, ok:0, ko:0, score:0, total:15, deadline:0,
+                shuffled:[], current:null, listener:null, timer:null, lock:false };
+
+function scStart() {
+  scState.running = true;
+  scState.idx = 0; scState.ok = 0; scState.ko = 0; scState.score = 0;
+  scState.shuffled = scShortcuts.slice().sort(function(){return Math.random()-0.5;}).slice(0, scState.total);
+  document.getElementById('scIdle').style.display = 'none';
+  document.getElementById('scEnd').style.display = 'none';
+  document.getElementById('scPlay').style.display = 'block';
+  if (!scState.listener) {
+    scState.listener = function(ev){ scKey(ev); };
+    document.addEventListener('keydown', scState.listener);
+  }
+  scShow();
+}
+
+function scShow() {
+  if (scState.idx >= scState.total) { scFinish(); return; }
+  scState.current = scState.shuffled[scState.idx];
+  scState.deadline = Date.now() + 5000;
+  scState.lock = false;
+  document.getElementById('scAction').textContent = scState.current.action;
+  document.getElementById('scInput').textContent = '_';
+  document.getElementById('scRound').textContent = (scState.idx+1) + '/' + scState.total;
+  document.getElementById('scFb').style.display = 'none';
+  if (scState.timer) cancelAnimationFrame(scState.timer);
+  scTick();
+}
+
+function scTick() {
+  if (!scState.running) return;
+  var rem = scState.deadline - Date.now();
+  var pct = Math.max(0, rem/5000)*100;
+  var bar = document.getElementById('scTimeBar');
+  if (bar) bar.style.width = pct + '%';
+  if (rem <= 0) { scResolve(false, 'Tiempo agotado'); return; }
+  scState.timer = requestAnimationFrame(scTick);
+}
+
+function scKey(ev) {
+  if (!scState.running || scState.lock) return;
+  // Solo procesar si la página shortcuts está activa
+  var page = document.getElementById('page-shortcuts');
+  if (!page || !page.classList.contains('active')) return;
+  if (document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')) return;
+  var k = ev.key;
+  if (k === 'Shift' || k === 'Control' || k === 'Alt' || k === 'Meta') return;
+  var pressed = '';
+  if (ev.shiftKey) pressed += 'Shift+';
+  if (ev.ctrlKey || ev.metaKey) pressed += 'Ctrl+';
+  if (ev.altKey) pressed += 'Alt+';
+  // Mapear teclas especiales
+  var keyName = k;
+  if (k === ' ') keyName = 'Space';
+  else if (k.length === 1) keyName = k.toUpperCase();
+  pressed += keyName;
+  document.getElementById('scInput').textContent = pressed;
+  ev.preventDefault();
+  var target = scState.current.keys.toUpperCase().replace(/\s/g,'');
+  var got = pressed.toUpperCase().replace(/\s/g,'');
+  // Tolerar Click en Ctrl+Click / Shift+Click: si el atajo lo requiere, no podemos detectarlo via teclado
+  if (target.indexOf('CLICK') !== -1) {
+    // Aceptar pulsar la tecla modificadora que lleva (CTRL/SHIFT)
+    if ((target === 'CTRL+CLICK' && pressed.indexOf('Ctrl+') === 0 && pressed.length <= 7) ||
+        (target === 'SHIFT+CLICK' && pressed.indexOf('Shift+') === 0 && pressed.length <= 8)) {
+      // No es realmente click pero validamos el modificador como aproximación
+      scResolve(true);
+      return;
+    }
+    // Si no, ignorar este atajo en mode teclado
+    scResolve(false, 'Este atajo requiere ratón. Continúa.');
+    return;
+  }
+  if (got === target) scResolve(true);
+  else scResolve(false, 'Has pulsado ' + pressed);
+}
+
+function scResolve(ok, msg) {
+  if (scState.lock) return;
+  scState.lock = true;
+  if (scState.timer) cancelAnimationFrame(scState.timer);
+  var fb = document.getElementById('scFb');
+  if (ok) {
+    scState.ok++; scState.score += 10;
+    fb.className = 'sc-feedback ok';
+    fb.textContent = '✓ Correcto. +10';
+  } else {
+    scState.ko++; scState.score = Math.max(0, scState.score - 5);
+    fb.className = 'sc-feedback ko';
+    fb.textContent = '✗ ' + (msg || 'Fallo') + '. Era: ' + scState.current.keys + ' · −5';
+  }
+  document.getElementById('scScore').textContent = scState.score;
+  document.getElementById('scOk').textContent = scState.ok;
+  document.getElementById('scKo').textContent = scState.ko;
+  scState.idx++;
+  setTimeout(function(){ if (scState.running) scShow(); }, 1300);
+}
+
+function scSkip() { if (scState.running && !scState.lock) scResolve(false, 'Saltado'); }
+
+function scStop() {
+  scState.running = false;
+  if (scState.timer) cancelAnimationFrame(scState.timer);
+  if (scState.listener) { document.removeEventListener('keydown', scState.listener); scState.listener = null; }
+  document.getElementById('scPlay').style.display = 'none';
+  document.getElementById('scIdle').style.display = 'block';
+}
+
+function scFinish() {
+  scState.running = false;
+  if (scState.timer) cancelAnimationFrame(scState.timer);
+  if (scState.listener) { document.removeEventListener('keydown', scState.listener); scState.listener = null; }
+  document.getElementById('scPlay').style.display = 'none';
+  document.getElementById('scEnd').style.display = 'block';
+  document.getElementById('scFinalScore').textContent = scState.score;
+  var msg = '';
+  if (scState.score >= 130) msg = '¡Maestría! Conoces los atajos a la perfección.';
+  else if (scState.score >= 80) msg = 'Bien. Aún hay margen para más velocidad.';
+  else if (scState.score >= 40) msg = 'Repasa la tabla de atajos antes de la próxima.';
+  else msg = 'Necesitas practicar más con los atajos.';
+  document.getElementById('scFinalMsg').textContent = scState.ok + ' aciertos · ' + scState.ko + ' fallos · ' + msg;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 5) CLIPS · TRIGGEA EL CLIP CORRECTO
+// ═══════════════════════════════════════════════════════════════════════════
+var tcClipNames = ['Pulse','Flow','Burn','Glow','Wave','Smoke','Beam','Grid','Spark','Strobe','Drift','Cycle','Echo','Bloom','Halo','Storm'];
+var tcRows = ['A','B','C','D'];
+var tcState = { running:false, idx:0, total:10, ok:0, ko:0, score:0, current:null,
+                deadline:0, timer:null, lock:false, layout:[] };
+
+function tcReset() {
+  tcState.running = false;
+  tcState.ok = 0; tcState.ko = 0; tcState.score = 0; tcState.idx = 0;
+  if (tcState.timer) cancelAnimationFrame(tcState.timer);
+  // Generar layout 4x4: cada celda con un nombre de la lista, mezclados
+  var names = tcClipNames.slice().sort(function(){return Math.random()-0.5;});
+  tcState.layout = [];
+  for (var r = 0; r < 4; r++) {
+    var row = [];
+    for (var c = 0; c < 4; c++) {
+      row.push({ name: names[r*4+c], row: tcRows[r], col: c+1, hue: ((r*4+c)*45)%360 });
+    }
+    tcState.layout.push(row);
+  }
+  tcRenderGrid();
+  document.getElementById('tcPrompt').textContent = '— · Listo para empezar';
+  document.getElementById('tcOk').textContent = '0';
+  document.getElementById('tcKo').textContent = '0';
+  document.getElementById('tcTime').textContent = '4.0s';
+  document.getElementById('tcFb').className = 'gr-feedback';
+  document.getElementById('tcFb').textContent = '';
+  document.getElementById('tcStart').textContent = '▶ Empezar';
+  document.getElementById('tcStart').onclick = tcStart;
+  document.getElementById('tcStart').style.display = 'inline-block';
+  grRenderProg('tcProg', tcState.total, 0, []);
+}
+
+function tcRenderGrid() {
+  var html = '';
+  for (var r = 0; r < 4; r++) {
+    for (var c = 0; c < 4; c++) {
+      var cell = tcState.layout[r][c];
+      var hue = cell.hue;
+      var bg = 'linear-gradient(135deg, hsl(' + hue + ',60%,40%), hsl(' + ((hue+45)%360) + ',55%,30%))';
+      html += '<div class="tc-clip" data-row="' + cell.row + '" data-col="' + cell.col + '" ' +
+        'style="background:' + bg + ';" onclick="tcPick(\'' + cell.row + '\', ' + cell.col + ', this)">' +
+        cell.row + cell.col + ' · ' + cell.name +
+      '</div>';
+    }
+  }
+  document.getElementById('tcGrid').innerHTML = html;
+}
+
+function tcStart() {
+  tcState.running = true;
+  tcState.ok = 0; tcState.ko = 0; tcState.score = 0; tcState.idx = 0;
+  document.getElementById('tcStart').style.display = 'none';
+  document.getElementById('tcFb').className = 'gr-feedback';
+  document.getElementById('tcFb').textContent = '';
+  tcShow();
+}
+
+function tcShow() {
+  if (tcState.idx >= tcState.total) { tcFinish(); return; }
+  // Elegir una celda aleatoria
+  var r = Math.floor(Math.random()*4);
+  var c = Math.floor(Math.random()*4);
+  tcState.current = tcState.layout[r][c];
+  // Mostrar prompt: a veces por nombre, a veces por coordenada
+  var byName = Math.random() < 0.5;
+  var prompt;
+  if (byName) {
+    prompt = 'Por nombre: <strong>' + tcState.current.name + '</strong>';
+    document.getElementById('tcPrompt').innerHTML = prompt;
+  } else {
+    prompt = 'Por coordenada: <strong>' + tcState.current.row + tcState.current.col + '</strong>';
+    document.getElementById('tcPrompt').innerHTML = prompt;
+  }
+  // Limpiar marcas anteriores
+  var clips = document.querySelectorAll('.tc-clip');
+  for (var i = 0; i < clips.length; i++) clips[i].classList.remove('correct','wrong','locked','dim');
+  tcState.deadline = Date.now() + 4000;
+  tcState.lock = false;
+  if (tcState.timer) cancelAnimationFrame(tcState.timer);
+  tcTick();
+  grRenderProg('tcProg', tcState.total, tcState.idx, tcGetResults());
+}
+
+function tcGetResults() {
+  // Reconstruir array de resultados pasados
+  var arr = [];
+  for (var i = 0; i < tcState.idx; i++) arr.push(true); // simplificación visual
+  return arr;
+}
+
+function tcTick() {
+  if (!tcState.running || tcState.lock) return;
+  var rem = tcState.deadline - Date.now();
+  document.getElementById('tcTime').textContent = (Math.max(0, rem)/1000).toFixed(1) + 's';
+  if (rem <= 0) { tcResolve(false, 'Tiempo agotado'); return; }
+  tcState.timer = requestAnimationFrame(tcTick);
+}
+
+function tcPick(row, col, el) {
+  if (!tcState.running || tcState.lock) return;
+  tcState.lock = true;
+  if (tcState.timer) cancelAnimationFrame(tcState.timer);
+  var ok = (row === tcState.current.row && col === tcState.current.col);
+  if (ok) {
+    tcState.ok++; tcState.score += 10;
+    el.classList.add('correct');
+  } else {
+    tcState.ko++; tcState.score = Math.max(0, tcState.score-5);
+    el.classList.add('wrong');
+    // Mostrar también el correcto
+    var correctEl = document.querySelector('.tc-clip[data-row="' + tcState.current.row + '"][data-col="' + tcState.current.col + '"]');
+    if (correctEl) correctEl.classList.add('correct');
+  }
+  document.getElementById('tcOk').textContent = tcState.ok;
+  document.getElementById('tcKo').textContent = tcState.ko;
+  // Marcar el resto como lock
+  var clips = document.querySelectorAll('.tc-clip');
+  for (var i = 0; i < clips.length; i++) clips[i].classList.add('locked');
+  tcState.idx++;
+  setTimeout(function(){ if (tcState.running) tcShow(); }, 800);
+}
+
+function tcResolve(ok, msg) {
+  // Llamado por timeout
+  if (tcState.lock) return;
+  tcState.lock = true;
+  if (!ok) {
+    tcState.ko++;
+    tcState.score = Math.max(0, tcState.score-5);
+    var correctEl = document.querySelector('.tc-clip[data-row="' + tcState.current.row + '"][data-col="' + tcState.current.col + '"]');
+    if (correctEl) correctEl.classList.add('correct');
+  }
+  document.getElementById('tcKo').textContent = tcState.ko;
+  var clips = document.querySelectorAll('.tc-clip');
+  for (var i = 0; i < clips.length; i++) clips[i].classList.add('locked');
+  tcState.idx++;
+  setTimeout(function(){ if (tcState.running) tcShow(); }, 800);
+}
+
+function tcFinish() {
+  tcState.running = false;
+  if (tcState.timer) cancelAnimationFrame(tcState.timer);
+  document.getElementById('tcPrompt').innerHTML = '🏆 <strong>' + tcState.score + '</strong> puntos';
+  var fb = document.getElementById('tcFb');
+  fb.className = 'gr-feedback ' + (tcState.ok >= 7 ? 'ok' : 'err');
+  fb.innerHTML = tcState.ok + ' aciertos · ' + tcState.ko + ' fallos. ' +
+    (tcState.ok === tcState.total ? '¡Perfecto! Memoria visual de élite.' :
+     tcState.ok >= 7 ? 'Muy bien. Dominas la rejilla.' :
+     'Practica más: la rapidez al triggear clips es la base del VJing.');
+  document.getElementById('tcStart').style.display = 'inline-block';
+  document.getElementById('tcStart').textContent = '↻ Volver a jugar';
+  document.getElementById('tcStart').onclick = function(){ tcReset(); };
+  grRenderProg('tcProg', tcState.total, tcState.total, []);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INICIALIZACIÓN — engancharse a go() (Resolume usa go(), no showPage)
+// ═══════════════════════════════════════════════════════════════════════════
+(function() {
+  function applyHook() {
+    if (typeof window.go !== 'function') return false;
+    if (window._grHooked) return true;
+    window._grHooked = true;
+    var orig = window.go;
+    window.go = function(id) {
+      orig(id);
+      if (id === 'capas') setTimeout(function() {
+        if (!document.querySelector('#bmProg .gr-pip')) bmReset();
+      }, 80);
+      if (id === 'audio') setTimeout(function() {
+        if (!document.querySelector('#bpmProg .gr-pip')) bpmReset();
+      }, 80);
+      if (id === 'efectos1') setTimeout(function() {
+        if (!document.querySelector('#fxProg .gr-pip')) fxReset();
+      }, 80);
+      if (id === 'shortcuts') setTimeout(function() {
+        var idle = document.getElementById('scIdle');
+        if (idle && !idle.dataset.init) {
+          idle.dataset.init = '1';
+          // Solo resetea visualmente la pantalla idle
+        }
+      }, 80);
+      if (id === 'clips') setTimeout(function() {
+        if (!document.querySelector('#tcGrid .tc-clip')) tcReset();
+      }, 80);
+    };
+    return true;
+  }
+  if (!applyHook()) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyHook);
+    }
+    setTimeout(applyHook, 50);
+    setTimeout(applyHook, 200);
+    setTimeout(applyHook, 500);
+  }
+})();
+
+// ─── fin mejoras gamificación ─────────────────────────────────────────────
+
+</script>
 
 <script>
 // ─── NAVIGATION ───
