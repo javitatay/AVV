@@ -4,7 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVV Lab — Animación Visual en Vivo · CFGM Video DJ</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231E1D1B'/%3E%3Crect x='4' y='6' width='24' height='16' rx='2' fill='%234A7A6A'/%3E%3Cpolygon points='12,10 12,18 21,14' fill='%23F5F4F0'/%3E%3Crect x='10' y='24' width='12' height='2' rx='1' fill='%234A7A6A'/%3E%3C/svg%3E">
+
+  <!-- ─── SEO ─────────────────────────────────────────────────────── -->
+  <meta name="description" content="Plataforma educativa interactiva para Animación Visual en Vivo (CFGM Video DJ). 6 suites con 27 juegos didácticos, 15+ simuladores, calculadoras y glosario sobre vídeo, iluminación, Illustrator, After Effects, Resolume y MagicQ.">
+  <meta name="author" content="Javier Tatay Rubio">
+  <meta name="keywords" content="AVV Lab, Animación Visual en Vivo, CFGM Video DJ, FP, Illustrator, After Effects, Resolume, MagicQ, DMX, iluminación espectáculos, vídeo, simuladores educativos">
+  <meta name="theme-color" content="#4A7A6A">
+  <link rel="canonical" href="https://javitatay.github.io/AVV/">
+
+  <!-- ─── Open Graph (WhatsApp, Telegram, Facebook…) ───────────────── -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AVV Lab">
+  <meta property="og:title" content="AVV Lab — Animación Visual en Vivo">
+  <meta property="og:description" content="Plataforma educativa con 6 suites interactivas, 27 juegos didácticos y 15+ simuladores para el módulo AVV del CFGM Video DJ.">
+  <meta property="og:url" content="https://javitatay.github.io/AVV/">
+  <meta property="og:locale" content="es_ES">
+  <!-- og:image opcional: si en algún momento añades una imagen 1200x630 al repo,
+       descomenta esta línea con la URL absoluta:
+       <meta property="og:image" content="https://javitatay.github.io/AVV/og-cover.png"> -->
+
+  <!-- ─── Twitter Card ─────────────────────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AVV Lab — Animación Visual en Vivo">
+  <meta name="twitter:description" content="6 suites · 27 juegos · 15+ simuladores · Material educativo del CFGM Video DJ.">
+
+  <!-- ─── Favicon SVG inline ───────────────────────────────────────── -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%234A7A6A'/%3E%3Ccircle cx='50' cy='50' r='12' fill='white'/%3E%3Cpath d='M50 18v8M50 74v8M18 50h8M74 50h8M28 28l5 5M67 67l5 5M28 72l5-5M67 33l5-5' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -90,6 +116,14 @@
     .search-item-tag { font-size: 11px; color:var(--text-3); background:var(--surface-2); border:1px solid var(--border); border-radius:6px; padding:1px 7px; flex-shrink:0; white-space:nowrap; }
     .search-no-results { padding:16px; text-align:center; color:var(--text-3); font-size:13px; }
 
+    /* B1: Cabeceras de grupo en el dropdown de búsqueda */
+    .search-group-title {
+      padding:8px 14px 4px; font-size:10px; font-weight:700; letter-spacing:.6px;
+      text-transform:uppercase; color:var(--text-3); background:var(--surface-2);
+      border-bottom:1px solid var(--border);
+    }
+    .search-group-title:first-child { border-top-left-radius:10px; border-top-right-radius:10px; }
+
     /* ─── HERO (franja horizontal) ─── */
     .hero {
       max-width: 1100px; margin: 0 auto;
@@ -172,7 +206,14 @@
     .card-ud { font-size: 11.5px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--card-color); opacity:.8; }
     .card-app { font-size: 11px; font-weight:500; letter-spacing:.3px; text-transform:uppercase; opacity:.7; margin-bottom:8px; }
     .card-title { font-size: 19px; font-weight:700; letter-spacing:-.4px; line-height:1.2; margin-bottom:10px; }
-    .card-desc { font-size: 13px; color:var(--text-2); line-height:1.65; flex:1; margin-bottom:18px; }
+    .card-desc { font-size: 13px; color:var(--text-2); line-height:1.65; flex:1; margin-bottom:14px; }
+
+    /* ─── A2: Card stats inline ─── */
+    .card-stats { display:flex; flex-wrap:wrap; gap:10px 14px; margin-bottom:18px; padding:10px 12px; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; }
+    .card-stat { display:flex; align-items:center; gap:5px; font-size:11.5px; color:var(--text-2); font-weight:500; line-height:1.2; }
+    .card-stat-n { font-weight:700; color:var(--text-1); font-variant-numeric:tabular-nums; }
+    .card-stat-emoji { font-size:13px; line-height:1; }
+
     .card-footer { display:flex; align-items:center; justify-content:space-between; padding-top:14px; border-top:1px solid var(--border); }
     .card-tags { display:flex; flex-wrap:wrap; gap:5px; }
     .card-tag { font-size: 11px; font-weight:500; padding:2px 8px; border-radius:8px; background:var(--surface-2); color:var(--text-2); border:1px solid var(--border); }
@@ -441,8 +482,9 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     <div class="hero-divider"></div>
     <div class="hero-stats">
       <div class="hero-stat"><span class="hero-stat-n">6</span><span class="hero-stat-l">&nbsp;Suites</span></div>
-      <div class="hero-stat"><span class="hero-stat-n">5</span><span class="hero-stat-l">&nbsp;Unidades did.</span></div>
-      <div class="hero-stat"><span class="hero-stat-n">FP</span><span class="hero-stat-l">&nbsp;Grado Medio</span></div>
+      <div class="hero-stat"><span class="hero-stat-n">27</span><span class="hero-stat-l">&nbsp;Juegos</span></div>
+      <div class="hero-stat"><span class="hero-stat-n">15+</span><span class="hero-stat-l">&nbsp;Simuladores</span></div>
+      <div class="hero-stat"><span class="hero-stat-n">195h</span><span class="hero-stat-l">&nbsp;FP</span></div>
     </div>
   </section>
 
@@ -470,6 +512,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
       <div class="card-app" style="color:var(--c6)">Imagen &amp; Vídeo</div>
       <div class="card-title">Fundamentos<br>de Imagen</div>
       <div class="card-desc">Resolución, geometría, óptica, profundidad de campo y fundamentos técnicos del vídeo para producciones audiovisuales.</div>
+      <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">2</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">🧮</span><span class="card-stat-n">8</span> calc.</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">8</span> módulos</span></div>
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">Vídeo</span><span class="card-tag">Imagen</span><span class="card-tag">Técnica</span></div>
         <div class="card-btn" style="color:var(--c6)">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -485,6 +528,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
       <div class="card-app" style="color:var(--c3)">Adobe Illustrator</div>
       <div class="card-title">Diseño<br>Vectorial</div>
       <div class="card-desc">Herramientas de pluma, anclas y curvas Bézier. Creación de grafismos y elementos visuales para producciones en directo.</div>
+      <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">4</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">3</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">16</span> módulos</span></div>
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">Vector</span><span class="card-tag">Grafismo</span><span class="card-tag">Adobe</span></div>
         <div class="card-btn" style="color:var(--c3)">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -500,6 +544,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
       <div class="card-app" style="color:var(--c1)">Resolume Arena</div>
       <div class="card-title">VJing &amp;<br>Projection Mapping</div>
       <div class="card-desc">Interfaz, composición de clips, efectos y outputs. Fundamentos de la mezcla visual en tiempo real para espectáculos.</div>
+      <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">2</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">19</span> módulos</span></div>
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">Vídeo</span><span class="card-tag">VJing</span><span class="card-tag">Live</span></div>
         <div class="card-btn" style="color:var(--c1)">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -515,6 +560,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
       <div class="card-app" style="color:var(--c2)">Adobe After Effects</div>
       <div class="card-title">Motion<br>Graphics</div>
       <div class="card-desc">Composición, animación por keyframes, efectos visuales y motion graphics para producciones audiovisuales profesionales.</div>
+      <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">2</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">12</span> módulos</span></div>
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">Animación</span><span class="card-tag">VFX</span><span class="card-tag">Adobe</span></div>
         <div class="card-btn" style="color:var(--c2)">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -532,6 +578,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
       <div class="card-app" style="color:var(--c5)">Fundamentos Luz</div>
       <div class="card-title">Iluminación<br>de Espectáculos</div>
       <div class="card-desc">Magnitudes fotométricas, temperatura de color, tipos de luminarias y diseño de iluminación para escenarios en vivo.</div>
+      <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">4</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">🧮</span><span class="card-stat-n">1</span> calc.</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">10</span> módulos</span></div>
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">Luz</span><span class="card-tag">Escenario</span><span class="card-tag">Física</span></div>
         <div class="card-btn" style="color:var(--c5)">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -547,6 +594,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
       <div class="card-app" style="color:var(--c4)">MagicQ · ChamSys</div>
       <div class="card-title">Control DMX<br>&amp; Consola Luz</div>
       <div class="card-desc">Programación de shows de iluminación, grupos, paletas y cueing list. Flujo de trabajo profesional en software DMX.</div>
+      <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">2</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">🧮</span><span class="card-stat-n">1</span> calc.</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">11</span> módulos</span></div>
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">DMX</span><span class="card-tag">Consola</span><span class="card-tag">Show</span></div>
         <div class="card-btn" style="color:var(--c4)">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -1099,33 +1147,137 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     magicq:       { url:'magicq.html',         color:'#7A6BA3', label:'MagicQ' },
   };
 
+  // ── B1: Recursos (juegos, simuladores, módulos) indexados para búsqueda global ──
+  // tipo: 'game' | 'sim' | 'calc' | 'module'
+  const RECURSOS = [
+    // ─── VIDEO ─────────────────────────────────────────────────────
+    { suite:'video', tipo:'game', nombre:'Quiz Resoluciones', desc:'Identifica la resolución, aspecto y uso típico a partir del nº de píxeles.', tags:'resolución HD FHD UHD 4K 8K' },
+    { suite:'video', tipo:'game', nombre:'Progresivo o Entrelazado', desc:'Identifica el tipo de señal observando el efecto peine en el clip animado.', tags:'progresivo entrelazado interlaced peine campo broadcast' },
+    { suite:'video', tipo:'game', nombre:'Conecta el Conector', desc:'Drag & drop con HDMI, SDI, BNC, DisplayPort, USB-C, RCA, XLR, Jack y RJ45.', tags:'conectores hdmi sdi bnc dp usb-c rca xlr jack rj45 ndi' },
+    { suite:'video', tipo:'game', nombre:'Raster o Vectorial', desc:'Slider de zoom para distinguir mapa de bits de imagen vectorial.', tags:'raster vectorial bitmap pixel zoom svg' },
+    { suite:'video', tipo:'game', nombre:'Pixel Pitch correcto', desc:'Elige P1.5, P2, P3, P5 o P10 según distancia y tamaño de pantalla LED.', tags:'pixel pitch led wall p1.5 p2 p3 p5 p10 distancia visión' },
+    { suite:'video', tipo:'sim',  nombre:'Triángulo de Exposición', desc:'Escena de concierto animada con motion blur, ruido ISO, histograma y exposímetro.', tags:'exposición ISO obturación apertura motion blur ruido histograma EV' },
+    { suite:'video', tipo:'sim',  nombre:'DOF avanzado', desc:'Vista fotográfica con bokeh + vista de planta con escala métrica. 7 sensores y f-stops reales.', tags:'profundidad de campo dof bokeh sensor f-stop hiperfocal' },
+    { suite:'video', tipo:'calc', nombre:'Constructor de diagramas AV', desc:'Drag & drop de 25 dispositivos AV con cables bezier para diseñar el flujo de routing.', tags:'flujo routing distribución diagrama av cables bezier ndi' },
+    { suite:'video', tipo:'module', nombre:'Óptica & DOF', desc:'Distancia focal, profundidad de campo, sensores, hiperfocal, presets de producción.', tags:'óptica focal sensor crop hiperfocal' },
+    { suite:'video', tipo:'module', nombre:'Codecs & Contenedores', desc:'H.264, ProRes, DXV, NotchLC. Árbol de decisión interactivo.', tags:'codec contenedor h264 prores dxv notchlc' },
+
+    // ─── ILLUSTRATOR ───────────────────────────────────────────────
+    { suite:'illustrator', tipo:'game', nombre:'Rueda de Armonías', desc:'SVG de 360 sectores con armonías (complementaria, análoga, triádica…) en HEX/RGB/HSL.', tags:'color armonía complementaria análoga triádica tetrádica split monocromática hsl' },
+    { suite:'illustrator', tipo:'game', nombre:'Tutorial Pluma', desc:'4 niveles guiados: línea, S, círculo y letra C con clic+arrastrar y guía superpuesta.', tags:'pluma bezier curvas trazado pen mango' },
+    { suite:'illustrator', tipo:'game', nombre:'Identifica la operación booleana', desc:'8 retos del Buscatrazos: ves dos formas y el resultado, eliges la operación.', tags:'pathfinder buscatrazos unir intersección menos excluir booleana' },
+    { suite:'illustrator', tipo:'game', nombre:'Pulsa el Atajo', desc:'15 retos cronometrados con 24 atajos reales de Illustrator. +10 / −5.', tags:'atajos teclado shortcuts v p a m t' },
+    { suite:'illustrator', tipo:'sim',  nombre:'Bézier interactiva', desc:'Canvas con puntos de control arrastrables y animación del parámetro t de Casteljau.', tags:'bezier casteljau curva tangente' },
+    { suite:'illustrator', tipo:'sim',  nombre:'Modelos de color RGB/CMYK/HSB', desc:'Canvas interactivo con mezcla en tiempo real entre los 3 modelos.', tags:'rgb cmyk hsb hsv color mezcla' },
+
+    // ─── RESOLUME ──────────────────────────────────────────────────
+    { suite:'resolume', tipo:'game', nombre:'Blend Mode Match', desc:'Capa A + Capa B + resultado con fórmulas reales: Add, Multiply, Screen, Overlay.', tags:'blend mode fusión add multiply screen overlay' },
+    { suite:'resolume', tipo:'game', nombre:'BPM Tap Trainer', desc:'Sincroniza 8 taps consecutivos al BPM objetivo (110/120/128/140/174) con ±5 BPM.', tags:'bpm tap tempo sincronización ritmo beat' },
+    { suite:'resolume', tipo:'game', nombre:'Identifica el Efecto', desc:'6 retos con efectos reales en canvas: Blur, Mosaic, Kaleidoscope, Pixelate, Invert, Edge.', tags:'efecto blur mosaic kaleidoscope pixelate invert edge sobel' },
+    { suite:'resolume', tipo:'game', nombre:'Pulsa el Atajo (Resolume)', desc:'15 retos con atajos reales: Bypass, Tap BPM, Trigger column, Solo monitor, Quick Access.', tags:'atajos teclado shortcuts trigger bypass solo bpm' },
+    { suite:'resolume', tipo:'game', nombre:'Triggea el Clip Correcto', desc:'Rejilla 4×4 con 16 thumbnails. Localiza el clip por nombre o coordenada en 4s.', tags:'clip deck rejilla grid memoria visual' },
+    { suite:'resolume', tipo:'sim',  nombre:'BPM sync', desc:'Calculadora de sincronización musical con detector de tempo y fracciones de beat.', tags:'bpm tempo beat sincronización' },
+    { suite:'resolume', tipo:'calc', nombre:'Throw distance & lúmenes', desc:'Calculadoras de proyección y lúmenes para mapping en vivo.', tags:'proyección throw lumens mapping' },
+
+    // ─── AFTER EFFECTS ─────────────────────────────────────────────
+    { suite:'aftereffects', tipo:'game', nombre:'Brazo Robótico', desc:'IK manual de 3 segmentos con jerarquía padre→hijo. Coloca la mano en el target ±15px.', tags:'parenting padre hijo jerarquía cinemática brazo robot ik' },
+    { suite:'aftereffects', tipo:'game', nombre:'Identifica el Modo de Fusión', desc:'Variante AE con 6 retos de Add, Multiply, Screen, Overlay.', tags:'blend modo fusión add multiply screen overlay' },
+    { suite:'aftereffects', tipo:'game', nombre:'Match Properties', desc:'Iguala Position X/Y, Scale, Rotation y Opacity hasta ≥90% de similitud.', tags:'propiedades posición escala rotación opacidad position scale rotation opacity transform' },
+    { suite:'aftereffects', tipo:'game', nombre:'Ordena la Timeline', desc:'4 escenas con drag & drop para ordenar las capas según orden Z.', tags:'timeline capas orden z layers stacking' },
+    { suite:'aftereffects', tipo:'game', nombre:'Identifica el Text Animator', desc:'Animación canvas en vivo de "AFTER EFFECTS" con Wiggle, Range, Opacity, Scale, Rotation.', tags:'texto animator wiggle range path opacity scale rotation typewriter' },
+    { suite:'aftereffects', tipo:'sim',  nombre:'Curvas Bezier (After Effects)', desc:'Visualizador de curvas de animación interactivo.', tags:'curvas bezier easing animación keyframe' },
+
+    // ─── ILUMINACIÓN ───────────────────────────────────────────────
+    { suite:'iluminacion', tipo:'game', nombre:'Identifica la Dirección de Luz', desc:'5 retos con personaje iluminado desde frontal/contra/lateral/cenital/nadir.', tags:'dirección luz frontal contraluz lateral cenital nadir sombras' },
+    { suite:'iluminacion', tipo:'game', nombre:'Adivina los Kelvin', desc:'6 escenas teñidas con presets reales (1800K/3200K/4000K/5600K/7000K) usando Tanner Helland.', tags:'kelvin temperatura color tungsteno hmi led incandescente día nublado' },
+    { suite:'iluminacion', tipo:'game', nombre:'Identifica el Foco', desc:'6 retos con SVG de PAR, Fresnel, PC, Profile, Beam y Wash con su perfil de haz.', tags:'foco par fresnel pc profile recorte beam wash cabeza móvil moving head' },
+    { suite:'iluminacion', tipo:'game', nombre:'Detecta el Peligro', desc:'Auditoría sobre escena de truss: safety, garra, cable, cadena 2ª, sobrecarga, EPIs.', tags:'rigging seguridad truss safety garra cadena cable epi sobrecarga' },
+    { suite:'iluminacion', tipo:'game', nombre:'¿Misma Red?', desc:'Quiz de subredes IP con dos direcciones y máscara: ¿pueden comunicarse?', tags:'red ip subred máscara art-net sacn lan switch router' },
+    { suite:'iluminacion', tipo:'sim',  nombre:'Temperatura de color', desc:'Slider continuo Kelvin con visualización de tono y ejemplos de fuentes reales.', tags:'kelvin temperatura tungsteno hmi led' },
+    { suite:'iluminacion', tipo:'sim',  nombre:'Perfil de haz', desc:'SVG comparativa Wash / Spot / Beam según ángulo y apertura.', tags:'haz beam wash spot ángulo apertura' },
+    { suite:'iluminacion', tipo:'sim',  nombre:'Simulador de Universo DMX', desc:'Visualización del universo con 512 canales y patch en directo.', tags:'dmx universo 512 patch canal address' },
+    { suite:'iluminacion', tipo:'calc', nombre:'Calculadora de iluminación escénica', desc:'Throw, cobertura del haz, lux, focos necesarios y carga eléctrica.', tags:'cálculo throw lux cobertura focos carga eléctrica trifásica' },
+    { suite:'iluminacion', tipo:'module', nombre:'Redes IP (módulo 9)', desc:'Fundamentos para no iniciados: IP, subred, router/switch, ART-NET vs sACN.', tags:'red ip art-net sacn router switch subred máscara' },
+
+    // ─── MAGICQ ────────────────────────────────────────────────────
+    { suite:'magicq', tipo:'game', nombre:'Calcula la Dirección DMX', desc:'6 retos con la fórmula start + (n−1) × canales sobre fixtures reales.', tags:'dmx dirección address canal fórmula cálculo' },
+    { suite:'magicq', tipo:'game', nombre:'Parchea las Luces', desc:'3 escenarios crecientes: asignas direcciones DMX y se detectan solapamientos.', tags:'patch parche dmx solapamiento conflicto canales 512' },
+    { suite:'magicq', tipo:'game', nombre:'Mezclador CMY', desc:'Sliders C/M/Y con fórmula sustractiva real. Iguala el color objetivo a ≥90%.', tags:'cmy cyan magenta yellow color sustractivo mezcla' },
+    { suite:'magicq', tipo:'game', nombre:'Construye el Comando', desc:'8 retos con sintaxis MagicQ real: Group 1 @ 50 Enter, Record Cue 3 Time 4 Enter…', tags:'sintaxis comando group cue record release locate fixture playback' },
+    { suite:'magicq', tipo:'game', nombre:'Elige el Foco Correcto', desc:'6 escenarios reales (concierto, teatro, danza, festival, plató TV, discoteca).', tags:'foco escenario teatro danza concierto festival plató discoteca elección' },
+    { suite:'magicq', tipo:'sim',  nombre:'Simulador de Patch', desc:'Constructor visual de patch DMX con catálogo de fixtures.', tags:'patch dmx fixture canal universo' },
+    { suite:'magicq', tipo:'sim',  nombre:'Flujo MagicQ', desc:'Diagrama interactivo: patch → grupos → posiciones → cues → playbacks → ejecutores.', tags:'flujo patch grupos posiciones cues playbacks ejecutores' },
+    { suite:'magicq', tipo:'calc', nombre:'Calculadora DMX', desc:'Cálculos rápidos de direccionamiento, número de canales y rangos.', tags:'dmx cálculo address canal universo' },
+  ];
+
+  const TIPO_LABELS = {
+    game:   { label:'Juego',       icon:'🎮' },
+    sim:    { label:'Simulador',   icon:'🎚' },
+    calc:   { label:'Calculadora', icon:'🧮' },
+    module: { label:'Módulo',      icon:'📚' }
+  };
+
   function globalSearchFn(q) {
     const drop = document.getElementById('searchDrop');
     q = q.trim().toLowerCase();
     if (q.length < 2) { drop.classList.remove('visible'); return; }
 
-    const results = TERMINOS.filter(t =>
+    // Buscar en términos del glosario
+    const terminos = TERMINOS.filter(t =>
       t.nombre.toLowerCase().includes(q) ||
       t.def.toLowerCase().includes(q) ||
       (t.en && t.en.toLowerCase().includes(q)) ||
       (t.es && t.es.toLowerCase().includes(q))
-    ).slice(0, 8);
+    ).slice(0, 5);
 
-    if (!results.length) {
+    // Buscar en recursos (juegos, simuladores, módulos…)
+    const recursos = RECURSOS.filter(r =>
+      r.nombre.toLowerCase().includes(q) ||
+      r.desc.toLowerCase().includes(q) ||
+      (r.tags && r.tags.toLowerCase().includes(q))
+    ).slice(0, 5);
+
+    if (!terminos.length && !recursos.length) {
       drop.innerHTML = '<div class="search-no-results">Sin resultados para <strong>' + q + '</strong></div>';
-    } else {
-      drop.innerHTML = results.map(t => {
+      drop.classList.add('visible');
+      return;
+    }
+
+    let html = '';
+
+    // Sección "Recursos" primero (juegos, simuladores, etc — más accionable)
+    if (recursos.length) {
+      html += '<div class="search-group-title">Recursos</div>';
+      html += recursos.map(r => {
+        const s = SUITE_URLS[r.suite] || {};
+        const t = TIPO_LABELS[r.tipo] || { label:'', icon:'' };
+        return `<a class="search-item" href="${s.url || '#'}">
+          <span class="search-item-suite" style="background:${s.color || '#888'}"></span>
+          <span class="search-item-name">${t.icon} ${r.nombre}</span>
+          <span class="search-item-def">${r.desc.slice(0, 65)}${r.desc.length > 65 ? '…' : ''}</span>
+          <span class="search-item-tag">${t.label}</span>
+          <span class="search-item-tag" style="color:${s.color};border-color:${s.color}22">${s.label || r.suite}</span>
+        </a>`;
+      }).join('');
+    }
+
+    // Sección "Glosario" después
+    if (terminos.length) {
+      html += '<div class="search-group-title">Glosario</div>';
+      html += terminos.map(t => {
         const s = SUITE_URLS[t.suite] || {};
         const badge = t.en ? `<span class="search-item-tag">EN: ${t.en}</span>` : t.es ? `<span class="search-item-tag">ES: ${t.es}</span>` : '';
         return `<a class="search-item" href="${s.url || '#'}">
           <span class="search-item-suite" style="background:${t.color}"></span>
           <span class="search-item-name">${t.nombre}</span>
-          <span class="search-item-def">${t.def.slice(0,60)}…</span>
+          <span class="search-item-def">${t.def.slice(0, 65)}…</span>
           ${badge}
           <span class="search-item-tag" style="color:${t.color};border-color:${t.color}22">${s.label || t.suite}</span>
         </a>`;
       }).join('');
     }
+
+    drop.innerHTML = html;
     drop.classList.add('visible');
   }
 
