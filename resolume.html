@@ -991,6 +991,237 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .tc-stat-v { font-size:22px; font-weight:800; color:var(--green); font-family:var(--mono); font-variant-numeric:tabular-nums; }
 .tc-stat-l { font-size:9.5px; color:rgba(255,255,255,.55); text-transform:uppercase; letter-spacing:.5px; font-family:var(--mono); margin-top:2px; }
 
+/* ─── VECTORSLICE TOOL ─── */
+#page-tool-vectorslice .vs-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+  margin-top: 4px;
+}
+#page-tool-vectorslice .vs-panel {
+  background: var(--bg1);
+  border: 1px solid var(--b2);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#page-tool-vectorslice .vs-panel-head {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--b1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg3);
+  flex-shrink: 0;
+}
+#page-tool-vectorslice .vs-panel-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--green);
+  font-family: var(--mono);
+}
+#page-tool-vectorslice .vs-pill {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 2px 9px;
+  background: var(--green-glow);
+  color: var(--green);
+  border-radius: 10px;
+  font-weight: 600;
+  border: 1px solid var(--green-line);
+}
+#page-tool-vectorslice .vs-dropzone {
+  margin: 14px;
+  border: 1.5px dashed var(--b2);
+  border-radius: 6px;
+  padding: 22px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  flex-shrink: 0;
+}
+#page-tool-vectorslice .vs-dropzone:hover,
+#page-tool-vectorslice .vs-dropzone.drag-over {
+  border-color: var(--green);
+  background: var(--green-glow);
+}
+#page-tool-vectorslice .vs-drop-icon {
+  width: 28px; height: 28px;
+  margin: 0 auto 10px;
+  color: var(--green);
+  opacity: .5;
+}
+#page-tool-vectorslice .vs-drop-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--t1);
+  margin-bottom: 3px;
+}
+#page-tool-vectorslice .vs-drop-hint {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--t3);
+}
+#page-tool-vectorslice #vs-file-input { display: none; }
+#page-tool-vectorslice .vs-slices-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 12px 14px;
+  min-height: 200px;
+  max-height: 460px;
+}
+#page-tool-vectorslice .vs-empty-msg {
+  padding: 28px 0;
+  text-align: center;
+  color: var(--t3);
+  font-size: 12px;
+  line-height: 1.8;
+  font-family: var(--mono);
+}
+#page-tool-vectorslice .vs-slice-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 9px;
+  border-radius: 5px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  transition: background .1s;
+}
+#page-tool-vectorslice .vs-slice-item:hover { background: var(--bg3); }
+#page-tool-vectorslice .vs-slice-item.active { background: var(--green-glow); }
+#page-tool-vectorslice .vs-slice-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+#page-tool-vectorslice .vs-slice-info { flex: 1; min-width: 0; }
+#page-tool-vectorslice .vs-slice-name {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--t1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#page-tool-vectorslice .vs-slice-pts {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--t3);
+  margin-top: 1px;
+}
+#page-tool-vectorslice .vs-slice-del {
+  background: none;
+  border: none;
+  color: var(--b2);
+  cursor: pointer;
+  font-size: 17px;
+  line-height: 1;
+  padding: 0 4px;
+  transition: color .1s;
+  opacity: 0;
+  flex-shrink: 0;
+}
+#page-tool-vectorslice .vs-slice-item:hover .vs-slice-del { opacity: 1; }
+#page-tool-vectorslice .vs-slice-del:hover { color: var(--red); }
+#page-tool-vectorslice .vs-preview-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(42,106,88,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42,106,88,.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-color: var(--bg3);
+  min-height: 380px;
+}
+#page-tool-vectorslice #vs-preview-canvas {
+  border-radius: 6px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  display: block;
+  background: #fff;
+}
+#page-tool-vectorslice .vs-preview-empty {
+  text-align: center;
+  color: var(--t3);
+  font-size: 12px;
+  line-height: 2;
+  font-family: var(--mono);
+}
+#page-tool-vectorslice .vs-preview-empty svg {
+  width: 38px; height: 38px;
+  opacity: .25;
+  display: block;
+  margin: 0 auto 14px;
+  color: var(--green);
+}
+#page-tool-vectorslice .vs-options {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--b1);
+  background: var(--bg3);
+  flex-wrap: wrap;
+}
+#page-tool-vectorslice .vs-opt-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#page-tool-vectorslice .vs-opt-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: var(--mono);
+  white-space: nowrap;
+}
+#page-tool-vectorslice .vs-opt-input {
+  background: var(--bg1);
+  border: 1px solid var(--b2);
+  color: var(--t1);
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  width: 78px;
+  outline: none;
+  transition: border-color .15s;
+}
+#page-tool-vectorslice .vs-opt-input:focus { border-color: var(--green); }
+#page-tool-vectorslice .vs-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--b1);
+  background: var(--bg1);
+  flex-wrap: wrap;
+}
+#page-tool-vectorslice #vs-status {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+  flex: 1;
+  min-width: 200px;
+}
+#page-tool-vectorslice #vs-status.ok  { color: var(--green); }
+#page-tool-vectorslice #vs-status.err { color: var(--red); }
+#page-tool-vectorslice .vs-btn-row { display: flex; gap: 8px; flex-shrink: 0; }
+@media (max-width: 860px) {
+  #page-tool-vectorslice .vs-layout { grid-template-columns: 1fr; }
+  #page-tool-vectorslice .vs-slices-list { max-height: 280px; }
+}
+
 /* fin */
 
 
@@ -1074,6 +1305,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     <div class="nav-lbl">// HERRAMIENTAS · RESOLUCIÓN</div>
     <div class="nav-item" onclick="go('tool-aspect')"><span class="nav-ic">⊞</span>Calculadora Aspect Ratio</div>
     <div class="nav-item" onclick="go('tool-slices')"><span class="nav-ic">◈</span>Calculadora de Slices</div>
+    <div class="nav-item" onclick="go('tool-vectorslice')"><span class="nav-ic">▱</span>VectorSlice · SVG → XML</div>
     <div class="nav-item" onclick="go('tool-blend')"><span class="nav-ic">⬡</span>Edge Blending</div>
     <div class="nav-item" onclick="go('tool-multiscreen')"><span class="nav-ic">⊟</span>Multi-Proyector</div>
 
@@ -3458,6 +3690,105 @@ Activa "Auto Span" para expansión automática de universos</div>
     </table>
   </div>
   <div class="tool-note">💡 Vinculación: aplica el FX <strong>Slice Transform</strong> al layer correspondiente y selecciona el Slice desde la ventana <strong>View → Show Slices</strong>.</div>
+</div>
+</section>
+
+<section class="page" id="page-tool-vectorslice">
+<div class="ptag">// HERRAMIENTAS · RESOLUCIÓN</div>
+<div class="ptitle">VECTOR<span>SLICE · SVG → XML</span></div>
+<div class="pdesc">Convierte vectores SVG de Illustrator en Slices listos para importar en Resolume Arena. Dibuja en Illustrator las formas que mapearás, expórtalas como SVG, importa aquí, y descarga el preset XML para cargar directamente en el Screen Setup. Sin redibujar punto por punto.</div>
+
+<div class="tool-wrap">
+  <div class="tool-title">▱ Pipeline: Illustrator → SVG → XML → Resolume</div>
+  <div class="tool-note" style="margin-top:0;margin-bottom:16px">
+    💡 <strong>Flujo:</strong> 1) En Illustrator, nombra cada capa/forma (ese nombre será el ID del Slice).
+    2) <code style="font-family:var(--mono);background:var(--bg3);padding:1px 6px;border-radius:3px">File → Export → Export As → SVG</code>.
+    3) Arrastra el .svg aquí. 4) Descarga el XML y cópialo a:<br>
+    <strong>Mac:</strong> <code style="font-family:var(--mono);background:var(--bg3);padding:1px 6px;border-radius:3px">~/Documents/Resolume Arena/presets/screensetup/</code><br>
+    <strong>Windows:</strong> <code style="font-family:var(--mono);background:var(--bg3);padding:1px 6px;border-radius:3px">Documents\Resolume Arena 7\presets\screensetup\</code>
+  </div>
+
+  <div class="vs-layout">
+
+    <div class="vs-panel">
+      <div class="vs-panel-head">
+        <span class="vs-panel-title">Slices detectados</span>
+        <span class="vs-pill" id="vs-count-pill">0</span>
+      </div>
+
+      <div class="vs-dropzone" id="vs-dropzone" onclick="document.getElementById('vs-file-input').click()">
+        <svg class="vs-drop-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M14 4v16M8 14l6 6 6-6M4 24h20" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="vs-drop-title">Arrastra el SVG aquí</div>
+        <div class="vs-drop-hint">o haz click para seleccionar</div>
+      </div>
+      <input type="file" id="vs-file-input" accept=".svg">
+
+      <div class="vs-slices-list" id="vs-slices-list">
+        <div class="vs-empty-msg">Importa un SVG para<br>ver los slices detectados</div>
+      </div>
+    </div>
+
+    <div class="vs-panel">
+      <div class="vs-panel-head">
+        <span class="vs-panel-title">Preview</span>
+        <span class="vs-pill" id="vs-preview-dim">—</span>
+      </div>
+
+      <div class="vs-preview-area" id="vs-preview-area">
+        <div class="vs-preview-empty">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="4" y="4" width="14" height="14" rx="1"/>
+            <rect x="22" y="4" width="14" height="14" rx="1"/>
+            <rect x="4" y="22" width="14" height="14" rx="1"/>
+            <path d="M22 29h14M29 22v14" stroke-linecap="round"/>
+          </svg>
+          El preview aparecerá aquí<br>tras importar un SVG
+        </div>
+      </div>
+
+      <div class="vs-options">
+        <div class="vs-opt-group">
+          <span class="vs-opt-label">Subdivisión curvas</span>
+          <input type="number" class="vs-opt-input" id="vs-opt-sub" value="8" min="2" max="32" title="Segmentos por curva Bezier">
+        </div>
+        <div class="vs-opt-group">
+          <span class="vs-opt-label">Resolución</span>
+          <input type="number" class="vs-opt-input" id="vs-opt-w" value="1920" min="1" title="Ancho (px)">
+          <span class="vs-opt-label">×</span>
+          <input type="number" class="vs-opt-input" id="vs-opt-h" value="1080" min="1" title="Alto (px)">
+          <span class="vs-opt-label">px</span>
+        </div>
+      </div>
+
+      <div class="vs-actions">
+        <div id="vs-status">Importa un SVG para comenzar.</div>
+        <div class="vs-btn-row">
+          <button class="tool-btn tool-btn-sec" onclick="vsClearAll()">Limpiar</button>
+          <button class="tool-btn" id="vs-btn-export" onclick="vsExportXML()" disabled style="opacity:.4;cursor:not-allowed">Exportar XML</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="tool-wrap">
+  <div class="tool-title">✓ Formatos soportados y consejos</div>
+  <div class="ox">
+    <table class="result-table">
+      <thead><tr><th>Tipo SVG</th><th>Soporte</th><th>Notas</th></tr></thead>
+      <tbody>
+        <tr><td class="hl-g">&lt;path&gt;</td><td>✓ Total</td><td>Líneas, curvas Bezier (C,S,Q,T), formas custom</td></tr>
+        <tr><td class="hl-g">&lt;rect&gt;</td><td>✓ Total</td><td>Incluye bordes redondeados (rx/ry)</td></tr>
+        <tr><td class="hl-g">&lt;circle&gt; / &lt;ellipse&gt;</td><td>✓ Total</td><td>Subdividido automáticamente</td></tr>
+        <tr><td class="hl-g">&lt;polygon&gt; / &lt;polyline&gt;</td><td>✓ Total</td><td>Vértices directos</td></tr>
+        <tr><td class="hl-g">Texto / Imágenes</td><td>✗ No</td><td>Convierte el texto a contornos en Illustrator</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tool-note">💡 <strong>Si las curvas se ven angulosas en Resolume:</strong> sube "Subdivisión curvas" a 12–16 antes de exportar. <strong>Si no detecta shapes:</strong> en Illustrator exporta con la opción <em>Preserve Illustrator Editing Capabilities</em> desactivada para obtener un SVG limpio. <strong>Compatible solo con Arena 7+</strong> (no Avenue: no tiene Advanced Output).</div>
 </div>
 </section>
 
@@ -6340,6 +6671,472 @@ function buildFixTable() {
 document.addEventListener('DOMContentLoaded', () => {
   loadFixPreset('rgb');
 });
+
+
+// ════════════════════════════════════════════
+// TOOL — VECTORSLICE · SVG → Resolume Arena XML
+// (adaptado de javitatay.github.io/VectorSlice)
+// ════════════════════════════════════════════
+(function() {
+  let vsSlices = [];
+  let vsSvgVB  = { x:0, y:0, w:1920, h:1080 };
+  let vsFileName = 'vectorslice';
+
+  const VS_PALETTE = [
+    '#2A6A58','#3d7a4e','#2c8a5a','#4a9465','#1f6b42',
+    '#5aac7a','#327a58','#6bbf8a','#256647','#3d8c60','#4fa070','#28724e'
+  ];
+
+  // ── DROP / FILE ──
+  const dz = document.getElementById('vs-dropzone');
+  const fi = document.getElementById('vs-file-input');
+  if (!dz || !fi) return;
+
+  dz.addEventListener('dragover',  e => { e.preventDefault(); dz.classList.add('drag-over'); });
+  dz.addEventListener('dragleave', ()  => dz.classList.remove('drag-over'));
+  dz.addEventListener('drop', e => {
+    e.preventDefault(); dz.classList.remove('drag-over');
+    const f = e.dataTransfer.files[0];
+    if (f) vsLoadFile(f);
+  });
+  fi.addEventListener('change', e => { if (e.target.files[0]) vsLoadFile(e.target.files[0]); });
+
+  function vsLoadFile(file) {
+    if (!file.name.toLowerCase().endsWith('.svg')) {
+      vsSetStatus('Solo se aceptan archivos .svg', 'err'); return;
+    }
+    vsFileName = file.name.replace(/\.svg$/i, '');
+    const r = new FileReader();
+    r.onload = e => vsParseSVG(e.target.result);
+    r.readAsText(file);
+  }
+
+  function vsParseSVG(text) {
+    const doc   = new DOMParser().parseFromString(text, 'image/svg+xml');
+    const svgEl = doc.querySelector('svg');
+    if (!svgEl) { vsSetStatus('SVG inválido.', 'err'); return; }
+
+    const vb = svgEl.getAttribute('viewBox');
+    if (vb) {
+      const p = vb.trim().split(/[\s,]+/).map(Number);
+      if (p.length === 4) vsSvgVB = { x:p[0], y:p[1], w:p[2], h:p[3] };
+    } else {
+      vsSvgVB.w = parseFloat(svgEl.getAttribute('width'))  || 1920;
+      vsSvgVB.h = parseFloat(svgEl.getAttribute('height')) || 1080;
+    }
+    document.getElementById('vs-opt-w').value = Math.round(vsSvgVB.w);
+    document.getElementById('vs-opt-h').value = Math.round(vsSvgVB.h);
+
+    vsSlices = [];
+    let idx = 0;
+    doc.querySelectorAll('path,rect,polygon,polyline,ellipse,circle').forEach(el => {
+      const pts = vsExtractPoints(el);
+      if (pts && pts.length >= 3) {
+        vsSlices.push({ id:idx, name:vsGetName(el,idx), points:pts, color:VS_PALETTE[idx%VS_PALETTE.length] });
+        idx++;
+      }
+    });
+
+    if (!vsSlices.length) { vsSetStatus('No se encontraron shapes válidos.', 'err'); return; }
+    vsSetStatus(`${vsSlices.length} slice${vsSlices.length!==1?'s':''} detectados.`, 'ok');
+    vsRenderList(); vsRenderPreview();
+    const btn = document.getElementById('vs-btn-export');
+    btn.disabled = false;
+    btn.style.opacity = '';
+    btn.style.cursor = '';
+  }
+
+  function vsGetName(el, i) {
+    const raw = el.getAttribute('id')
+      || el.getAttribute('inkscape:label')
+      || el.getAttribute('data-name')
+      || (el.getAttribute('class') ? el.getAttribute('class').split(' ')[0] : '')
+      || '';
+    return vsSanitize(raw, i);
+  }
+
+  function vsExtractPoints(el) {
+    const tag  = el.tagName.toLowerCase();
+    const subs = parseInt(document.getElementById('vs-opt-sub').value) || 8;
+
+    if (tag === 'rect') {
+      const x=+el.getAttribute('x')||0, y=+el.getAttribute('y')||0;
+      const w=+el.getAttribute('width')||0, h=+el.getAttribute('height')||0;
+      const rx=+el.getAttribute('rx')||0;
+      if (w<=0||h<=0) return null;
+      if (rx>0) return vsRectRounded(x,y,w,h,rx,subs);
+      return [{x,y},{x:x+w,y},{x:x+w,y:y+h},{x,y:y+h}];
+    }
+    if (tag==='circle') {
+      const cx=+el.getAttribute('cx')||0, cy=+el.getAttribute('cy')||0, r=+el.getAttribute('r')||0;
+      return vsEllipsePts(cx,cy,r,r,subs*4);
+    }
+    if (tag==='ellipse') {
+      const cx=+el.getAttribute('cx')||0, cy=+el.getAttribute('cy')||0;
+      const rx=+el.getAttribute('rx')||0, ry=+el.getAttribute('ry')||0;
+      return vsEllipsePts(cx,cy,rx,ry,subs*4);
+    }
+    if (tag==='polygon'||tag==='polyline') return vsParsePoly(el.getAttribute('points')||'');
+    if (tag==='path') return vsParsePath(el.getAttribute('d')||'', subs);
+    return null;
+  }
+
+  function vsRectRounded(x,y,w,h,r,subs) {
+    const pts=[],n=Math.max(4,subs);
+    const arc=(cx,cy,a0,a1)=>{ for(let i=0;i<=n;i++){const a=a0+(a1-a0)*(i/n); pts.push({x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)});} };
+    arc(x+r,y+r,Math.PI,Math.PI*1.5); arc(x+w-r,y+r,Math.PI*1.5,Math.PI*2);
+    arc(x+w-r,y+h-r,0,Math.PI*.5); arc(x+r,y+h-r,Math.PI*.5,Math.PI);
+    return pts;
+  }
+
+  function vsEllipsePts(cx,cy,rx,ry,n) {
+    const pts=[];
+    for(let i=0;i<n;i++){const a=(2*Math.PI*i)/n; pts.push({x:cx+rx*Math.cos(a),y:cy+ry*Math.sin(a)});}
+    return pts;
+  }
+
+  function vsParsePoly(str) {
+    const n=str.trim().split(/[\s,]+/).map(Number),p=[];
+    for(let i=0;i+1<n.length;i+=2) p.push({x:n[i],y:n[i+1]});
+    return p.length>=3?p:null;
+  }
+
+  function vsParsePath(d,subs) {
+    const pts=[];
+    let cx=0,cy=0,mx=0,my=0,lc=null;
+    const tk=d.match(/[MmZzLlHhVvCcSsQqTt]|[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?/g)||[];
+    let i=0,cmd='M';
+    const get=n=>{const r=[];for(let k=0;k<n;k++)r.push(parseFloat(tk[i++]||0));return r;};
+    while(i<tk.length){
+      if(/[MmZzLlHhVvCcSsQqTt]/.test(tk[i])){cmd=tk[i++];}
+      switch(cmd){
+        case 'M':{const[x,y]=get(2);cx=x;cy=y;mx=x;my=y;pts.push({x,y});cmd='L';break;}
+        case 'm':{const[dx,dy]=get(2);cx+=dx;cy+=dy;mx=cx;my=cy;pts.push({x:cx,y:cy});cmd='l';break;}
+        case 'L':{const[x,y]=get(2);cx=x;cy=y;pts.push({x,y});break;}
+        case 'l':{const[dx,dy]=get(2);cx+=dx;cy+=dy;pts.push({x:cx,y:cy});break;}
+        case 'H':{const[x]=get(1);cx=x;pts.push({x:cx,y:cy});break;}
+        case 'h':{const[dx]=get(1);cx+=dx;pts.push({x:cx,y:cy});break;}
+        case 'V':{const[y]=get(1);cy=y;pts.push({x:cx,y:cy});break;}
+        case 'v':{const[dy]=get(1);cy+=dy;pts.push({x:cx,y:cy});break;}
+        case 'Z':case 'z':cx=mx;cy=my;i++;break;
+        case 'C':{const[x1,y1,x2,y2,x,y]=get(6);vsCubicB({x:cx,y:cy},{x:x1,y:y1},{x:x2,y:y2},{x,y},subs).forEach(p=>pts.push(p));lc={x:x2,y:y2};cx=x;cy=y;break;}
+        case 'c':{const[dx1,dy1,dx2,dy2,dx,dy]=get(6);vsCubicB({x:cx,y:cy},{x:cx+dx1,y:cy+dy1},{x:cx+dx2,y:cy+dy2},{x:cx+dx,y:cy+dy},subs).forEach(p=>pts.push(p));lc={x:cx+dx2,y:cy+dy2};cx+=dx;cy+=dy;break;}
+        case 'S':{const[x2,y2,x,y]=get(4);const c1=lc?{x:2*cx-lc.x,y:2*cy-lc.y}:{x:cx,y:cy};vsCubicB({x:cx,y:cy},c1,{x:x2,y:y2},{x,y},subs).forEach(p=>pts.push(p));lc={x:x2,y:y2};cx=x;cy=y;break;}
+        case 's':{const[dx2,dy2,dx,dy]=get(4);const c1=lc?{x:2*cx-lc.x,y:2*cy-lc.y}:{x:cx,y:cy};vsCubicB({x:cx,y:cy},c1,{x:cx+dx2,y:cy+dy2},{x:cx+dx,y:cy+dy},subs).forEach(p=>pts.push(p));lc={x:cx+dx2,y:cy+dy2};cx+=dx;cy+=dy;break;}
+        case 'Q':{const[x1,y1,x,y]=get(4);vsQuadB({x:cx,y:cy},{x:x1,y:y1},{x,y},subs).forEach(p=>pts.push(p));cx=x;cy=y;break;}
+        case 'q':{const[dx1,dy1,dx,dy]=get(4);vsQuadB({x:cx,y:cy},{x:cx+dx1,y:cy+dy1},{x:cx+dx,y:cy+dy},subs).forEach(p=>pts.push(p));cx+=dx;cy+=dy;break;}
+        default:i++;
+      }
+    }
+    return pts.length>=3?pts:null;
+  }
+
+  function vsCubicB(p0,p1,p2,p3,n){const r=[];for(let i=1;i<=n;i++){const t=i/n,m=1-t;r.push({x:m**3*p0.x+3*m**2*t*p1.x+3*m*t**2*p2.x+t**3*p3.x,y:m**3*p0.y+3*m**2*t*p1.y+3*m*t**2*p2.y+t**3*p3.y});}return r;}
+  function vsQuadB(p0,p1,p2,n){const r=[];for(let i=1;i<=n;i++){const t=i/n,m=1-t;r.push({x:m**2*p0.x+2*m*t*p1.x+t**2*p2.x,y:m**2*p0.y+2*m*t*p1.y+t**2*p2.y});}return r;}
+
+  function vsRenderList() {
+    const list=document.getElementById('vs-slices-list');
+    document.getElementById('vs-count-pill').textContent=vsSlices.length;
+    if(!vsSlices.length){list.innerHTML='<div class="vs-empty-msg">Importa un SVG para<br>ver los slices detectados</div>';return;}
+    list.innerHTML=vsSlices.map((s,i)=>`
+      <div class="vs-slice-item" data-id="${s.id}" onclick="window.vsHighlight(${i})">
+        <div class="vs-slice-dot" style="background:${s.color}"></div>
+        <div class="vs-slice-info">
+          <div class="vs-slice-name">${vsEsc(s.name)}</div>
+          <div class="vs-slice-pts">${s.points.length} puntos</div>
+        </div>
+        <button class="vs-slice-del" onclick="window.vsRemoveSlice(event,${i})">×</button>
+      </div>`).join('');
+  }
+
+  function vsRenderPreview() {
+    const area=document.getElementById('vs-preview-area');
+    if(!vsSlices.length){
+      area.innerHTML=`<div class="vs-preview-empty"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="4" y="4" width="14" height="14" rx="1"/><rect x="22" y="4" width="14" height="14" rx="1"/><rect x="4" y="22" width="14" height="14" rx="1"/><path d="M22 29h14M29 22v14" stroke-linecap="round"/></svg>El preview aparecerá aquí<br>tras importar un SVG</div>`;
+      document.getElementById('vs-preview-dim').textContent='—';return;
+    }
+    let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+    vsSlices.forEach(s=>s.points.forEach(p=>{minX=Math.min(minX,p.x);minY=Math.min(minY,p.y);maxX=Math.max(maxX,p.x);maxY=Math.max(maxY,p.y);}));
+    const dW=maxX-minX||1,dH=maxY-minY||1;
+    const aW=Math.max(200,area.clientWidth-48),aH=Math.max(200,area.clientHeight-48);
+    const sc=Math.min(aW/dW,aH/dH)*0.95;
+    const cW=Math.max(100,Math.round(dW*sc)),cH=Math.max(100,Math.round(dH*sc));
+    let canvas=document.getElementById('vs-preview-canvas');
+    if(!canvas){canvas=document.createElement('canvas');canvas.id='vs-preview-canvas';}
+    canvas.width=cW;canvas.height=cH;
+    area.innerHTML='';area.appendChild(canvas);
+    const ctx=canvas.getContext('2d');
+    ctx.fillStyle='#ffffff';ctx.fillRect(0,0,cW,cH);
+    vsSlices.forEach(s=>{
+      if(s.points.length<2)return;
+      ctx.beginPath();
+      s.points.forEach((p,i)=>{const sx=(p.x-minX)*sc,sy=(p.y-minY)*sc;i===0?ctx.moveTo(sx,sy):ctx.lineTo(sx,sy);});
+      ctx.closePath();
+      ctx.fillStyle=s.color+'30';ctx.strokeStyle=s.color;ctx.lineWidth=1.5;
+      ctx.fill();ctx.stroke();
+      const cx=s.points.reduce((a,p)=>a+p.x,0)/s.points.length;
+      const cy=s.points.reduce((a,p)=>a+p.y,0)/s.points.length;
+      ctx.fillStyle=s.color;ctx.font=`600 11px 'JetBrains Mono','Courier New',monospace`;
+      ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText(s.name,(cx-minX)*sc,(cy-minY)*sc);
+    });
+    document.getElementById('vs-preview-dim').textContent=`${Math.round(dW)} × ${Math.round(dH)} px`;
+  }
+
+  window.vsHighlight = function(i){
+    document.querySelectorAll('#page-tool-vectorslice .vs-slice-item').forEach(el=>el.classList.remove('active'));
+    const el=document.querySelector(`#page-tool-vectorslice .vs-slice-item[data-id="${vsSlices[i].id}"]`);
+    if(el)el.classList.add('active');
+  };
+
+  window.vsRemoveSlice = function(e,i){
+    e.stopPropagation();vsSlices.splice(i,1);vsRenderList();vsRenderPreview();
+    if(!vsSlices.length){
+      const btn=document.getElementById('vs-btn-export');
+      btn.disabled=true; btn.style.opacity='.4'; btn.style.cursor='not-allowed';
+      vsSetStatus('Sin slices. Importa un SVG.','');
+    } else vsSetStatus(`${vsSlices.length} slice${vsSlices.length!==1?'s':''} restantes.`,'ok');
+  };
+
+  window.vsClearAll = function(){
+    vsSlices=[];vsRenderList();vsRenderPreview();
+    const btn=document.getElementById('vs-btn-export');
+    btn.disabled=true; btn.style.opacity='.4'; btn.style.cursor='not-allowed';
+    document.getElementById('vs-file-input').value='';
+    vsSetStatus('Importa un SVG para comenzar.','');
+  };
+
+  window.vsExportXML = function(){
+    if(!vsSlices.length){vsSetStatus('No hay slices para exportar.','err');return;}
+    const outW=parseFloat(document.getElementById('vs-opt-w').value)||vsSvgVB.w;
+    const outH=parseFloat(document.getElementById('vs-opt-h').value)||vsSvgVB.h;
+    const scaleX=outW/vsSvgVB.w, scaleY=outH/vsSvgVB.h;
+
+    let uidBase=Date.now();
+    const uid=()=>String(uidBase++);
+
+    const pr=(name,val,min,max)=>
+`\t\t\t\t\t\t<ParamRange name="${name}" T="DOUBLE" default="${val}" value="${val}">
+\t\t\t\t\t\t\t<PhaseSourceStatic name="PhaseSourceStatic"/>
+\t\t\t\t\t\t\t<BehaviourDouble name="BehaviourDouble"/>
+\t\t\t\t\t\t\t<ValueRange name="defaultRange" min="${min}" max="${max}"/>
+\t\t\t\t\t\t\t<ValueRange name="minMax" min="${min}" max="${max}"/>
+\t\t\t\t\t\t\t<ValueRange name="startStop" min="${min}" max="${max}"/>
+\t\t\t\t\t\t</ParamRange>`;
+
+    const pr2=(name,val,min,max)=>
+`\t\t\t\t\t<ParamRange name="${name}" T="DOUBLE" default="${val}" value="${val}">
+\t\t\t\t\t\t<PhaseSourceStatic name="PhaseSourceStatic"/>
+\t\t\t\t\t\t<BehaviourDouble name="BehaviourDouble"/>
+\t\t\t\t\t\t<ValueRange name="defaultRange" min="${min}" max="${max}"/>
+\t\t\t\t\t\t<ValueRange name="minMax" min="${min}" max="${max}"/>
+\t\t\t\t\t\t<ValueRange name="startStop" min="${min}" max="${max}"/>
+\t\t\t\t\t</ParamRange>`;
+
+    const sliceXML=(s)=>{
+      const xs=s.points.map(p=>vsR2(p.x*scaleX));
+      const ys=s.points.map(p=>vsR2(p.y*scaleY));
+      const x0=Math.min(...xs), y0=Math.min(...ys);
+      const x1=Math.max(...xs), y1=Math.max(...ys);
+      const w=x1-x0, h=y1-y0;
+
+      const v4=`\t\t\t\t\t\t\t<v x="${vsR2(x0)}" y="${vsR2(y0)}"/>
+\t\t\t\t\t\t\t<v x="${vsR2(x1)}" y="${vsR2(y0)}"/>
+\t\t\t\t\t\t\t<v x="${vsR2(x1)}" y="${vsR2(y1)}"/>
+\t\t\t\t\t\t\t<v x="${vsR2(x0)}" y="${vsR2(y1)}"/>`;
+
+      let bv='';
+      for(let row=0;row<4;row++){
+        for(let col=0;col<4;col++){
+          bv+=`\t\t\t\t\t\t\t\t<v x="${vsR2(x0+w*(col/3))}" y="${vsR2(y0+h*(row/3))}"/>\n`;
+        }
+      }
+
+      return `\t\t\t\t\t<Slice uniqueId="${uid()}">
+\t\t\t\t\t\t<Params name="Common">
+\t\t\t\t\t\t\t<Param name="Name" T="STRING" default="Layer" value="${vsXe(s.name)}"/>
+\t\t\t\t\t\t\t<Param name="Enabled" T="BOOL" default="1" value="1"/>
+\t\t\t\t\t\t</Params>
+\t\t\t\t\t\t<Params name="Input">
+\t\t\t\t\t\t\t<ParamChoice name="Input Source" default="0:1" value="0:1" storeChoices="0"/>
+\t\t\t\t\t\t\t<Param name="Input Opacity" T="BOOL" default="1" value="1"/>
+\t\t\t\t\t\t\t<Param name="Input Bypass/Solo" T="BOOL" default="1" value="1"/>
+\t\t\t\t\t\t\t<Param name="SoftEdgeEnable" T="BOOL" default="0" value="0"/>
+\t\t\t\t\t\t</Params>
+\t\t\t\t\t\t<Params name="Output">
+\t\t\t\t\t\t\t<Param name="Flip" T="UINT8" default="0" value="0"/>
+${pr('Brightness',0,-1,1)}
+${pr('Contrast',0,-1,1)}
+${pr('Red',0,-1,1)}
+${pr('Green',0,-1,1)}
+${pr('Blue',0,-1,1)}
+\t\t\t\t\t\t\t<Param name="Is Key" T="BOOL" default="0" value="0"/>
+\t\t\t\t\t\t\t<Param name="Black BG" T="BOOL" default="0" value="0"/>
+${pr('BRed',0,0,'0.4000000000000000222')}
+${pr('BGreen',0,0,'0.4000000000000000222')}
+${pr('BBlue',0,0,'0.4000000000000000222')}
+\t\t\t\t\t\t</Params>
+\t\t\t\t\t\t<InputRect orientation="0">
+${v4}
+\t\t\t\t\t\t</InputRect>
+\t\t\t\t\t\t<OutputRect orientation="0">
+${v4}
+\t\t\t\t\t\t</OutputRect>
+\t\t\t\t\t\t<Warper>
+\t\t\t\t\t\t\t<Params name="Warper">
+\t\t\t\t\t\t\t\t<ParamChoice name="Point Mode" default="PM_LINEAR" value="PM_LINEAR" storeChoices="0"/>
+\t\t\t\t\t\t\t\t<Param name="Flip" T="UINT8" default="0" value="0"/>
+\t\t\t\t\t\t\t</Params>
+\t\t\t\t\t\t\t<BezierWarper controlWidth="4" controlHeight="4">
+\t\t\t\t\t\t\t\t<vertices>
+${bv}\t\t\t\t\t\t\t\t</vertices>
+\t\t\t\t\t\t\t</BezierWarper>
+\t\t\t\t\t\t\t<Homography>
+\t\t\t\t\t\t\t\t<src>
+${v4}
+\t\t\t\t\t\t\t\t</src>
+\t\t\t\t\t\t\t\t<dst>
+${v4}
+\t\t\t\t\t\t\t\t</dst>
+\t\t\t\t\t\t\t</Homography>
+\t\t\t\t\t\t</Warper>
+\t\t\t\t\t</Slice>`;
+    };
+
+    const screenId=uid();
+    const xml=
+`<?xml version="1.0" encoding="utf-8"?>
+<XmlState name="${vsFileName}">
+\t<versionInfo name="Resolume Arena" majorVersion="7" minorVersion="26" microVersion="1" revision="7833"/>
+\t<ScreenSetup name="ScreenSetup">
+\t\t<Params name="ScreenSetupParams"/>
+\t\t<CurrentCompositionTextureSize width="${outW}" height="${outH}"/>
+\t\t<screens>
+\t\t\t<Screen name="VectorSlice" uniqueId="${screenId}">
+\t\t\t\t<Params name="Params">
+\t\t\t\t\t<Param name="Name" T="STRING" default="" value="VectorSlice"/>
+\t\t\t\t\t<Param name="Enabled" T="BOOL" default="1" value="1"/>
+\t\t\t\t\t<Param name="Hidden" T="BOOL" default="0" value="0"/>
+\t\t\t\t</Params>
+\t\t\t\t<Params name="Output">
+${pr2('Opacity',1,0,1)}
+${pr2('Brightness',0,-1,1)}
+${pr2('Contrast',0,-1,1)}
+${pr2('Red',0,-1,1)}
+${pr2('Green',0,-1,1)}
+${pr2('Blue',0,-1,1)}
+\t\t\t\t</Params>
+\t\t\t\t<guides>
+\t\t\t\t\t<ScreenGuide name="ScreenGuide" type="0">
+\t\t\t\t\t\t<Params name="Params">
+\t\t\t\t\t\t\t<ParamPixels name="Image"/>
+${pr('Opacity',0.25,0,1)}
+\t\t\t\t\t\t</Params>
+\t\t\t\t\t</ScreenGuide>
+\t\t\t\t\t<ScreenGuide name="ScreenGuide" type="1">
+\t\t\t\t\t\t<Params name="Params">
+\t\t\t\t\t\t\t<ParamPixels name="Image"/>
+${pr('Opacity',0.25,0,1)}
+\t\t\t\t\t\t</Params>
+\t\t\t\t\t</ScreenGuide>
+\t\t\t\t</guides>
+\t\t\t\t<layers>
+${vsSlices.map(s=>sliceXML(s)).join('\n')}
+\t\t\t\t</layers>
+\t\t\t\t<OutputDevice>
+\t\t\t\t\t<OutputDeviceVirtual name="VectorSlice" deviceId="VirtualScreen 1" idHash="10094742552620344504" width="${outW}" height="${outH}">
+\t\t\t\t\t\t<Params name="Params">
+\t\t\t\t\t\t\t<ParamRange name="Width" T="DOUBLE" default="${outW}" value="${outW}">
+\t\t\t\t\t\t\t\t<PhaseSourceStatic name="PhaseSourceStatic"/>
+\t\t\t\t\t\t\t\t<BehaviourDouble name="BehaviourDouble"/>
+\t\t\t\t\t\t\t\t<ValueRange name="defaultRange" min="1" max="32768"/>
+\t\t\t\t\t\t\t\t<ValueRange name="minMax" min="1" max="32768"/>
+\t\t\t\t\t\t\t\t<ValueRange name="startStop" min="1" max="32768"/>
+\t\t\t\t\t\t\t</ParamRange>
+\t\t\t\t\t\t\t<ParamRange name="Height" T="DOUBLE" default="${outH}" value="${outH}">
+\t\t\t\t\t\t\t\t<PhaseSourceStatic name="PhaseSourceStatic"/>
+\t\t\t\t\t\t\t\t<BehaviourDouble name="BehaviourDouble"/>
+\t\t\t\t\t\t\t\t<ValueRange name="defaultRange" min="1" max="32768"/>
+\t\t\t\t\t\t\t\t<ValueRange name="minMax" min="1" max="32768"/>
+\t\t\t\t\t\t\t\t<ValueRange name="startStop" min="1" max="32768"/>
+\t\t\t\t\t\t\t</ParamRange>
+\t\t\t\t\t\t</Params>
+\t\t\t\t\t</OutputDeviceVirtual>
+\t\t\t\t</OutputDevice>
+\t\t\t</Screen>
+\t\t</screens>
+\t\t<SoftEdging>
+\t\t\t<Params name="Soft Edge">
+\t\t\t\t<ParamRange name="Gamma Red" T="DOUBLE" default="2" value="2">
+\t\t\t\t\t<PhaseSourceStatic name="PhaseSourceStatic"/>
+\t\t\t\t\t<BehaviourDouble name="BehaviourDouble"/>
+\t\t\t\t\t<ValueRange name="defaultRange" min="1" max="3"/>
+\t\t\t\t\t<ValueRange name="minMax" min="1" max="3"/>
+\t\t\t\t\t<ValueRange name="startStop" min="1" max="3"/>
+\t\t\t\t</ParamRange>
+\t\t\t\t<ParamRange name="Gamma Green" T="DOUBLE" default="2" value="2">
+\t\t\t\t\t<PhaseSourceStatic name="PhaseSourceStatic"/>
+\t\t\t\t\t<BehaviourDouble name="BehaviourDouble"/>
+\t\t\t\t\t<ValueRange name="defaultRange" min="1" max="3"/>
+\t\t\t\t\t<ValueRange name="minMax" min="1" max="3"/>
+\t\t\t\t\t<ValueRange name="startStop" min="1" max="3"/>
+\t\t\t\t</ParamRange>
+\t\t\t\t<ParamRange name="Gamma Blue" T="DOUBLE" default="2" value="2">
+\t\t\t\t\t<PhaseSourceStatic name="PhaseSourceStatic"/>
+\t\t\t\t\t<BehaviourDouble name="BehaviourDouble"/>
+\t\t\t\t\t<ValueRange name="defaultRange" min="1" max="3"/>
+\t\t\t\t\t<ValueRange name="minMax" min="1" max="3"/>
+\t\t\t\t\t<ValueRange name="startStop" min="1" max="3"/>
+\t\t\t\t</ParamRange>
+\t\t\t\t<ParamRange name="Gamma" T="DOUBLE" default="1" value="1">
+\t\t\t\t\t<PhaseSourceStatic name="PhaseSourceStatic"/>
+\t\t\t\t\t<BehaviourDouble name="BehaviourDouble"/>
+\t\t\t\t\t<ValueRange name="defaultRange" min="0" max="1"/>
+\t\t\t\t\t<ValueRange name="minMax" min="0" max="1"/>
+\t\t\t\t\t<ValueRange name="startStop" min="0" max="1"/>
+\t\t\t\t</ParamRange>
+\t\t\t\t<ParamRange name="Luminance" T="DOUBLE" default="0.5" value="0.5">
+\t\t\t\t\t<PhaseSourceStatic name="PhaseSourceStatic"/>
+\t\t\t\t\t<BehaviourDouble name="BehaviourDouble"/>
+\t\t\t\t\t<ValueRange name="defaultRange" min="0" max="1"/>
+\t\t\t\t\t<ValueRange name="minMax" min="0" max="1"/>
+\t\t\t\t\t<ValueRange name="startStop" min="0" max="1"/>
+\t\t\t\t</ParamRange>
+\t\t\t\t<ParamRange name="Power" T="DOUBLE" default="2" value="1.999999999999999778">
+\t\t\t\t\t<PhaseSourceStatic name="PhaseSourceStatic"/>
+\t\t\t\t\t<BehaviourDouble name="BehaviourDouble"/>
+\t\t\t\t\t<ValueRange name="defaultRange" min="0.10000000000000000555" max="7"/>
+\t\t\t\t\t<ValueRange name="minMax" min="0.10000000000000000555" max="7"/>
+\t\t\t\t\t<ValueRange name="startStop" min="0.10000000000000000555" max="7"/>
+\t\t\t\t</ParamRange>
+\t\t\t</Params>
+\t\t</SoftEdging>
+\t</ScreenSetup>
+</XmlState>`;
+
+    const blob=new Blob([xml],{type:'application/xml'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;
+    a.download=`${vsFileName}.xml`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    vsSetStatus(`✓ ${vsSlices.length} slice${vsSlices.length!==1?'s':''} exportados como ${vsFileName}.xml`,'ok');
+  };
+
+  function vsSanitize(s,i){const c=String(s).replace(/[^a-zA-Z0-9_\-]/g,'_').replace(/^_+|_+$/g,'');return c||`SCREEN_${String(i+1).padStart(2,'0')}`;}
+  function vsXe(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function vsEsc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function vsR2(n){return Math.round(n*100)/100;}
+  function vsSetStatus(msg,type=''){const el=document.getElementById('vs-status');if(!el)return;el.textContent=msg;el.className=type;}
+
+  window.addEventListener('resize',()=>{
+    const pg=document.getElementById('page-tool-vectorslice');
+    if(pg && pg.classList.contains('active') && vsSlices.length) vsRenderPreview();
+  });
+})();
 
 
 </script>
