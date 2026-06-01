@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="banner.png" alt="AVV Lab" width="100%">
+
 # AVV Lab — Animación Visual en Vivo
 
 **Plataforma educativa interactiva para el módulo de Animación Visual en Vivo.**
