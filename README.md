@@ -9,6 +9,7 @@
 Una suite de herramientas didácticas en HTML para el módulo de *Animación Visual en Vivo* (195h) del **Ciclo Formativo de Grado Medio en Vídeo DJ** — Conselleria d'Educació, Cultura i Esport · Comunitat Valenciana. Funciona sin conexión.
 
 [![Abrir en el navegador](https://img.shields.io/badge/🌐_Abrir_en_el_navegador-141210?style=for-the-badge)](https://javitatay.github.io/AVV/)
+[![Invítame a un café](https://img.shields.io/badge/☕_Invítame_a_un_café-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000)](https://buymeacoffee.com/javitatay)
 
 </div>
 
