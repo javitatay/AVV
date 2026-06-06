@@ -696,6 +696,116 @@ canvas{display:block}
 
 /* ─── fin mejoras gamificación ─── */
 
+
+/* ═══════════════════════════════════════
+   START SOLUTION CALCULATOR — integración
+   ════════════════════════════════════════ */
+.ss-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.ss-header {
+  background: linear-gradient(135deg, #0a1628 0%, #0d1f3c 100%);
+  border: 1px solid rgba(24,155,234,.25);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+.ss-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #189BEA;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.ss-header-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #EAF2FF;
+  margin-bottom: 3px;
+}
+.ss-header-sub {
+  font-size: 11.5px;
+  color: #9FB1C7;
+}
+.ss-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+@media (max-width: 860px) {
+  .ss-grid { grid-template-columns: 1fr; }
+}
+.ss-mode-block { transition: opacity .2s; }
+.ss-kv {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.ss-kv-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text3);
+  flex: 1;
+}
+.ss-kv-val {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  text-align: right;
+}
+.ss-kv.highlight { border-color: rgba(24,155,234,.35); background: rgba(24,155,234,.06); }
+.ss-kv.highlight .ss-kv-val { color: #189BEA; }
+.ss-kv.warn { border-color: rgba(230,168,48,.35); background: rgba(230,168,48,.06); }
+.ss-kv.warn .ss-kv-val { color: #b8860b; }
+.ss-kv.ok { border-color: rgba(42,157,111,.35); background: rgba(42,157,111,.06); }
+.ss-kv.ok .ss-kv-val { color: #1e7a52; }
+.ss-kv.purple { border-color: rgba(139,108,247,.35); background: rgba(139,108,247,.06); }
+.ss-kv.purple .ss-kv-val { color: #5c3fbf; }
+.ss-info-chip {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 11px;
+  color: var(--text2);
+  font-weight: 500;
+}
+.ss-foot {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text3);
+  padding: 8px 0 2px;
+}
+.ss-foot a { color: #189BEA; text-decoration: none; }
+.ss-foot a:hover { text-decoration: underline; }
+
+.ss-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(230,168,48,.07);
+  border: 1px solid rgba(230,168,48,.28);
+  border-radius: 8px;
+  padding: 12px 15px;
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+.ss-disclaimer-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.ss-disclaimer-body strong { color: var(--text); }
+.ss-disclaimer-body a { color: #189BEA; text-decoration: none; font-weight: 600; }
+.ss-disclaimer-body a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -3048,6 +3158,7 @@ canvas{display:block}
     <div class="inner-tab" data-inner="l_map">Mapping</div>
     <div class="inner-tab" data-inner="l_comp">LED vs Proyector</div>
     <div class="inner-tab" data-inner="l_ppgame">🎮 Juego</div>
+    <div class="inner-tab" data-inner="l_startsol">🖥️ Calc. Pro</div>
   </div>
 
   <div class="inner-pane active" id="l_calc">
@@ -3320,6 +3431,139 @@ canvas{display:block}
 
 
   </div>
+
+  <!-- ═══════════════ START SOLUTION: CALCULADORA LED PRO ═══════════════ -->
+  <div class="inner-pane" id="l_startsol">
+    <div class="ss-wrapper">
+
+      <!-- CABECERA -->
+      <div class="ss-header">
+        <div class="ss-header-logo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="5" fill="#189BEA"/><circle cx="12" cy="12" r="5" fill="white"/><circle cx="12" cy="12" r="2" fill="#189BEA"/></svg>
+          <span>START SOLUTION</span>
+        </div>
+        <div class="ss-header-title">Calculadora de Pantallas LED — v2.1.3 Pro</div>
+        <div class="ss-header-sub">Calculadora · Tamaño de pantalla · Plano legible · Tensión fija (220V mono / 380V tri)</div>
+      </div>
+
+      <div class="ss-grid">
+
+        <!-- PANEL ENTRADA -->
+        <div class="panel">
+          <div class="panel-title">📋 Entrada</div>
+
+          <div class="field">
+            <label>Modelo de pantalla</label>
+            <select id="ss_moduleType" onchange="ssUpdateFromModule()">
+              <option value="P-8 960×960 Outdoor|8|960|960">P-8  960×960  Outdoor</option>
+              <option value="P-6.66 960×960 Outdoor|6.66|960|960">P-6.66  960×960  Outdoor</option>
+              <option value="P-5 960×960 Outdoor|5|960|960">P-5  960×960  Outdoor</option>
+              <option value="P-4 960×960 Outdoor|4|960|960">P-4  960×960  Outdoor</option>
+              <option value="P-4 960×960 Indoor|4|960|960">P-4  960×960  Indoor</option>
+              <option value="P-4 640×480 Indoor|4|640|480">P-4  640×480  Indoor</option>
+              <option value="P-3.9 500×1000 Rental Outdoor|3.9|500|1000">P-3.9  500×1000  Rental Outdoor</option>
+              <option value="P-3.9 500×500 Rental Outdoor|3.9|500|500">P-3.9  500×500  Rental Outdoor</option>
+              <option value="P-3.9 500×1000 Rental Indoor|3.9|500|1000">P-3.9  500×1000  Rental Indoor</option>
+              <option value="P-3.03 960×960 Indoor|3.03|960|960">P-3.03  960×960  Indoor</option>
+              <option value="P-3.03 640×480 Indoor|3.03|640|480">P-3.03  640×480  Indoor</option>
+              <option value="P-2.9 500×1000 Outdoor|2.9|500|1000">P-2.9  500×1000  Outdoor</option>
+              <option value="P-2.5 640×480 Indoor|2.5|640|480">P-2.5  640×480  Indoor</option>
+              <option value="P-1.8 640×480 Indoor|1.8|640|480">P-1.8  640×480  Indoor</option>
+              <option value="P-1.5 640×480 Indoor|1.5|640|480">P-1.5  640×480  Indoor</option>
+            </select>
+          </div>
+
+          <div class="calc-row">
+            <div class="field">
+              <label>Modo de entrada</label>
+              <select id="ss_inputMode" onchange="ssToggleMode()">
+                <option value="modules">Por módulos</option>
+                <option value="meters">Por medidas (m)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Capacidad por salida (px)</label>
+              <input type="number" id="ss_pxPerOut" min="100000" step="10000" value="650000">
+            </div>
+          </div>
+
+          <div class="ss-mode-block" id="ss_byModules">
+            <div class="calc-row">
+              <div class="field"><label>Módulos de ancho</label><input type="number" id="ss_modW" min="1" step="1" value="3"></div>
+              <div class="field"><label>Módulos de alto</label><input type="number" id="ss_modH" min="1" step="1" value="2"></div>
+            </div>
+          </div>
+
+          <div class="ss-mode-block" id="ss_byMeters" style="display:none">
+            <div class="calc-row">
+              <div class="field"><label>Ancho deseado (m)</label><input type="number" id="ss_mW" min="0.5" step="0.01" value="5.0"></div>
+              <div class="field"><label>Alto deseado (m)</label><input type="number" id="ss_mH" min="0.5" step="0.01" value="3.0"></div>
+            </div>
+          </div>
+
+          <div class="calc-row" style="margin-top:4px">
+            <div class="field"><label>Ancho × Alto máx por salida (px)</label><input type="text" id="ss_maxWH" value="3840×3840"></div>
+            <div class="field"><label>Brillo objetivo (nits)</label><input type="number" id="ss_brightness" min="300" step="50" value="1500"></div>
+          </div>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+            <button class="btn" onclick="ssCalcular()">⚡ Calcular</button>
+            <button class="btn btn-secondary" onclick="ssCopiar()" id="ss_copyBtn" style="display:none">📋 Copiar</button>
+            <button class="btn btn-secondary" onclick="ssDescargarPNG()" id="ss_pngBtn" style="display:none">⬇ PNG</button>
+          </div>
+        </div>
+
+        <!-- PANEL DIAGRAMA + RESULTADOS -->
+        <div>
+
+          <!-- CANVAS -->
+          <div class="panel" id="ss_diagramCard" style="display:none;margin-bottom:18px">
+            <div class="panel-title">🏛️ Plano / Disposición</div>
+            <canvas id="ss_diagram" style="width:100%;height:auto;border:1px dashed var(--border);border-radius:8px;background:var(--bg2);display:block;margin-top:8px"></canvas>
+          </div>
+
+          <!-- RESULTADOS -->
+          <div class="panel" id="ss_resultCard" style="display:none">
+            <div class="panel-title">📊 Resumen</div>
+            <div id="ss_resultGrid" style="display:flex;flex-direction:column;gap:8px;margin-top:10px"></div>
+          </div>
+
+          <!-- INFO INICIAL -->
+          <div class="panel" id="ss_infoCard">
+            <div class="panel-title">ℹ️ Acerca de esta calculadora</div>
+            <div class="info-card" style="margin-top:10px">
+              <div class="info-card-title">START SOLUTION v2.1.3 Pro</div>
+              <p style="font-size:12.5px;line-height:1.7;color:var(--text2)">
+                Herramienta profesional para dimensionar pantallas LED modular. Calcula automáticamente:
+                módulos totales, dimensiones reales, resolución de píxeles, número de salidas de controladora,
+                consumo eléctrico (220V/380V) y distancia de visión mínima y óptima.
+              </p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+              <div class="ss-info-chip">🔋 Tensión fija 220V mono / 380V tri</div>
+              <div class="ss-info-chip">📐 Plano a escala generado</div>
+              <div class="ss-info-chip">🖥️ 15 modelos de módulo</div>
+              <div class="ss-info-chip">📋 Exportar PNG</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CRÉDITOS -->
+      <div class="ss-disclaimer">
+        <div class="ss-disclaimer-icon">⚠️</div>
+        <div class="ss-disclaimer-body">
+          <strong>Aviso:</strong> Esta calculadora es una integración de la herramienta original desarrollada por <strong>START SOLUTION</strong>.
+          Los resultados son orientativos — verifica siempre con el fabricante antes de realizar cualquier instalación.
+          Para acceder a la versión oficial y más actualizada visita
+          <a href="https://tools.startsolution.com.ar" target="_blank" rel="noopener">tools.startsolution.com.ar</a>.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </section>
 
 </main>
@@ -5046,6 +5290,293 @@ function calcLEDStrip() {
 
 
 
+
+
+// ═══ START SOLUTION CALCULATOR ═══
+(function() {
+  // Module data: pitch (mm), modW (mm), modH (mm)
+  var SS_MODULES = {
+    'P-8 960×960 Outdoor|8|960|960':         {pitch:8,    modW:960,  modH:960,  maxNits:7000, watts:200},
+    'P-6.66 960×960 Outdoor|6.66|960|960':   {pitch:6.66, modW:960,  modH:960,  maxNits:6500, watts:180},
+    'P-5 960×960 Outdoor|5|960|960':         {pitch:5,    modW:960,  modH:960,  maxNits:6000, watts:160},
+    'P-4 960×960 Outdoor|4|960|960':         {pitch:4,    modW:960,  modH:960,  maxNits:5000, watts:140},
+    'P-4 960×960 Indoor|4|960|960':          {pitch:4,    modW:960,  modH:960,  maxNits:1500, watts:120},
+    'P-4 640×480 Indoor|4|640|480':          {pitch:4,    modW:640,  modH:480,  maxNits:1500, watts:80},
+    'P-3.9 500×1000 Rental Outdoor|3.9|500|1000': {pitch:3.9, modW:500, modH:1000, maxNits:5500, watts:130},
+    'P-3.9 500×500 Rental Outdoor|3.9|500|500':   {pitch:3.9, modW:500, modH:500,  maxNits:5500, watts:65},
+    'P-3.9 500×1000 Rental Indoor|3.9|500|1000':  {pitch:3.9, modW:500, modH:1000, maxNits:1500, watts:110},
+    'P-3.03 960×960 Indoor|3.03|960|960':    {pitch:3.03, modW:960,  modH:960,  maxNits:1500, watts:130},
+    'P-3.03 640×480 Indoor|3.03|640|480':    {pitch:3.03, modW:640,  modH:480,  maxNits:1500, watts:85},
+    'P-2.9 500×1000 Outdoor|2.9|500|1000':  {pitch:2.9,  modW:500,  modH:1000, maxNits:5000, watts:120},
+    'P-2.5 640×480 Indoor|2.5|640|480':     {pitch:2.5,  modW:640,  modH:480,  maxNits:1200, watts:90},
+    'P-1.8 640×480 Indoor|1.8|640|480':     {pitch:1.8,  modW:640,  modH:480,  maxNits:1000, watts:80},
+    'P-1.5 640×480 Indoor|1.5|640|480':     {pitch:1.5,  modW:640,  modH:480,  maxNits:800,  watts:70}
+  };
+
+  var ssLastResult = null;
+
+  window.ssToggleMode = function() {
+    var mode = document.getElementById('ss_inputMode').value;
+    document.getElementById('ss_byModules').style.display = mode === 'modules' ? '' : 'none';
+    document.getElementById('ss_byMeters').style.display  = mode === 'meters'  ? '' : 'none';
+  };
+
+  window.ssUpdateFromModule = function() {
+    // nothing extra needed on select change; user clicks Calcular
+  };
+
+  window.ssCalcular = function() {
+    var key    = document.getElementById('ss_moduleType').value;
+    var mod    = SS_MODULES[key];
+    if (!mod) return;
+
+    var mode   = document.getElementById('ss_inputMode').value;
+    var pxOut  = parseInt(document.getElementById('ss_pxPerOut').value) || 650000;
+    var bright = parseInt(document.getElementById('ss_brightness').value) || 1500;
+
+    // Parse maxWH
+    var maxWHStr = document.getElementById('ss_maxWH').value || '3840×3840';
+    var maxParts = maxWHStr.replace('x','×').split('×');
+    var maxOutW  = parseInt(maxParts[0]) || 3840;
+    var maxOutH  = parseInt(maxParts[1]) || 3840;
+
+    var numModW, numModH;
+
+    if (mode === 'modules') {
+      numModW = parseInt(document.getElementById('ss_modW').value) || 1;
+      numModH = parseInt(document.getElementById('ss_modH').value) || 1;
+    } else {
+      var targetW = parseFloat(document.getElementById('ss_mW').value) || 5;
+      var targetH = parseFloat(document.getElementById('ss_mH').value) || 3;
+      numModW = Math.max(1, Math.round(targetW * 1000 / mod.modW));
+      numModH = Math.max(1, Math.round(targetH * 1000 / mod.modH));
+    }
+
+    // Dimensions
+    var realW_mm = numModW * mod.modW;
+    var realH_mm = numModH * mod.modH;
+    var realW_m  = realW_mm / 1000;
+    var realH_m  = realH_mm / 1000;
+
+    // Resolution
+    var pxPerModW = mod.modW / mod.pitch;
+    var pxPerModH = mod.modH / mod.pitch;
+    var totalPxW  = Math.round(numModW * pxPerModW);
+    var totalPxH  = Math.round(numModH * pxPerModH);
+    var totalPx   = totalPxW * totalPxH;
+
+    // Outputs (salidas de controladora)
+    var pxPerOutCalc = totalPxW * totalPxH;
+    var numOutputsByPx   = Math.ceil(totalPx / pxOut);
+    var numOutputsByW    = Math.ceil(totalPxW / maxOutW);
+    var numOutputsByH    = Math.ceil(totalPxH / maxOutH);
+    var numOutputs = Math.max(numOutputsByPx, numOutputsByW, numOutputsByH);
+
+    // Power
+    var totalModules = numModW * numModH;
+    var totalWatts   = totalModules * mod.watts;
+    var amps220      = totalWatts / 220;
+    var amps380      = totalWatts / (380 * 1.732); // trifásico √3
+
+    // Viewing distance
+    var dMin  = mod.pitch;          // mm → metros (regla práctica)
+    var dOpt  = mod.pitch * 2;
+
+    // Brightness check
+    var brightOk = bright <= mod.maxNits;
+
+    // Total modules info
+    var totalMod = numModW * numModH;
+
+    ssLastResult = {
+      key, numModW, numModH, totalMod,
+      realW_m, realH_m,
+      totalPxW, totalPxH, totalPx,
+      numOutputs, totalWatts, amps220, amps380,
+      dMin, dOpt, bright, brightOk, mod
+    };
+
+    ssRenderResults(ssLastResult);
+    ssDrawDiagram(ssLastResult);
+
+    document.getElementById('ss_diagramCard').style.display = '';
+    document.getElementById('ss_resultCard').style.display  = '';
+    document.getElementById('ss_infoCard').style.display    = 'none';
+    document.getElementById('ss_copyBtn').style.display     = '';
+    document.getElementById('ss_pngBtn').style.display      = '';
+  };
+
+  function ssRenderResults(r) {
+    var items = [
+      {label:'Módulos ancho × alto', val: r.numModW + ' × ' + r.numModH, cls:''},
+      {label:'Total módulos',         val: r.totalMod.toLocaleString(), cls:''},
+      {label:'Tamaño real ancho',     val: r.realW_m.toFixed(3) + ' m (' + (r.realW_m*100).toFixed(1) + ' cm)', cls:'highlight'},
+      {label:'Tamaño real alto',      val: r.realH_m.toFixed(3) + ' m (' + (r.realH_m*100).toFixed(1) + ' cm)', cls:'highlight'},
+      {label:'Resolución ancho (px)', val: r.totalPxW.toLocaleString() + ' px', cls:'ok'},
+      {label:'Resolución alto (px)',  val: r.totalPxH.toLocaleString() + ' px', cls:'ok'},
+      {label:'Total píxeles',         val: (r.totalPx/1e6).toFixed(2) + ' Mpx', cls:'ok'},
+      {label:'Salidas controladoras', val: r.numOutputs + ' salida' + (r.numOutputs !== 1 ? 's' : ''), cls:'purple'},
+      {label:'Consumo total',         val: (r.totalWatts/1000).toFixed(2) + ' kW', cls:'warn'},
+      {label:'Corriente 220V mono',   val: r.amps220.toFixed(1) + ' A', cls:'warn'},
+      {label:'Corriente 380V tri',    val: r.amps380.toFixed(1) + ' A', cls:'warn'},
+      {label:'Dist. mínima visión',   val: r.dMin.toFixed(1) + ' m', cls:''},
+      {label:'Dist. óptima visión',   val: r.dOpt.toFixed(0) + ' m', cls:''},
+      {label:'Brillo objetivo',       val: r.bright + ' nits ' + (r.brightOk ? '✅' : '⚠️ supera máx'), cls: r.brightOk ? 'ok' : 'warn'},
+    ];
+    var html = '';
+    items.forEach(function(item) {
+      html += '<div class="ss-kv ' + item.cls + '">'
+            + '<span class="ss-kv-label">' + item.label + '</span>'
+            + '<span class="ss-kv-val">'   + item.val   + '</span>'
+            + '</div>';
+    });
+    document.getElementById('ss_resultGrid').innerHTML = html;
+  }
+
+  function ssDrawDiagram(r) {
+    var canvas = document.getElementById('ss_diagram');
+    var maxW = canvas.parentElement.offsetWidth - 32;
+    if (maxW < 100) maxW = 600;
+
+    var PADDING   = 32;
+    var LABEL_TOP = 28;
+    var aspect    = r.numModH / r.numModW;
+    var drawW     = maxW - PADDING * 2;
+    var drawH     = Math.round(drawW * aspect);
+
+    canvas.width  = maxW;
+    canvas.height = drawH + PADDING * 2 + LABEL_TOP * 2;
+
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Background
+    ctx.fillStyle = '#0a1628';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    var cellW = drawW / r.numModW;
+    var cellH = drawH / r.numModH;
+    var ox = PADDING;
+    var oy = PADDING + LABEL_TOP;
+
+    // Grid cells
+    for (var row = 0; row < r.numModH; row++) {
+      for (var col = 0; col < r.numModW; col++) {
+        var x = ox + col * cellW;
+        var y = oy + row * cellH;
+
+        // Module body
+        ctx.fillStyle = '#0d2040';
+        ctx.fillRect(x+1, y+1, cellW-2, cellH-2);
+
+        // LED dots pattern
+        ctx.fillStyle = 'rgba(24,155,234,0.15)';
+        var dotStep = Math.max(4, Math.min(12, cellW / 8));
+        for (var dy = 4; dy < cellH-4; dy += dotStep) {
+          for (var dx = 4; dx < cellW-4; dx += dotStep) {
+            ctx.beginPath();
+            ctx.arc(x + dx, y + dy, 1.2, 0, Math.PI*2);
+            ctx.fill();
+          }
+        }
+
+        // Module border
+        ctx.strokeStyle = 'rgba(24,155,234,0.55)';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(x+0.5, y+0.5, cellW-1, cellH-1);
+
+        // Module label (only if cells are big enough)
+        if (cellW > 40 && cellH > 20) {
+          ctx.fillStyle = 'rgba(24,155,234,0.7)';
+          ctx.font = Math.min(9, cellH*0.3) + 'px monospace';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText((col+1)+'×'+(row+1), x+cellW/2, y+cellH/2);
+        }
+      }
+    }
+
+    // Outer border
+    ctx.strokeStyle = '#189BEA';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(ox, oy, drawW, drawH);
+
+    // Width label (top)
+    ctx.fillStyle = '#EAF2FF';
+    ctx.font = 'bold 12px system-ui,sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(r.realW_m.toFixed(2) + ' m  (' + r.numModW + ' mód)', ox + drawW/2, oy - 14);
+
+    // Height label (right side)
+    ctx.save();
+    ctx.translate(ox + drawW + 16, oy + drawH/2);
+    ctx.rotate(Math.PI/2);
+    ctx.textAlign = 'center';
+    ctx.fillText(r.realH_m.toFixed(2) + ' m  (' + r.numModH + ' mód)', 0, 0);
+    ctx.restore();
+
+    // Resolution label (bottom)
+    ctx.fillStyle = '#9FB1C7';
+    ctx.font = '11px monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(r.totalPxW + '×' + r.totalPxH + ' px  ·  P-' + r.mod.pitch, ox + drawW/2, oy + drawH + 16);
+  }
+
+  window.ssCopiar = function() {
+    if (!ssLastResult) return;
+    var r = ssLastResult;
+    var txt = [
+      '== CALCULADORA LED — START SOLUTION v2.1.3 Pro ==',
+      'Modelo: ' + r.key.split('|')[0],
+      '',
+      'DIMENSIONES',
+      '  Módulos: '   + r.numModW + ' × ' + r.numModH + '  (' + r.totalMod + ' total)',
+      '  Ancho real: ' + r.realW_m.toFixed(3) + ' m',
+      '  Alto real:  ' + r.realH_m.toFixed(3) + ' m',
+      '',
+      'RESOLUCIÓN',
+      '  ' + r.totalPxW + ' × ' + r.totalPxH + ' px',
+      '  Total: ' + (r.totalPx/1e6).toFixed(2) + ' Mpx',
+      '',
+      'CONTROLADORAS',
+      '  Salidas necesarias: ' + r.numOutputs,
+      '',
+      'CONSUMO ELÉCTRICO',
+      '  Potencia total: ' + (r.totalWatts/1000).toFixed(2) + ' kW',
+      '  Corriente 220V monofásico: ' + r.amps220.toFixed(1) + ' A',
+      '  Corriente 380V trifásico:  ' + r.amps380.toFixed(1) + ' A',
+      '',
+      'VISIÓN',
+      '  Distancia mínima: ' + r.dMin.toFixed(1) + ' m',
+      '  Distancia óptima: ' + r.dOpt.toFixed(0)  + ' m',
+      '  Brillo objetivo:  ' + r.bright + ' nits',
+    ].join('\n');
+    navigator.clipboard.writeText(txt).catch(function() {
+      var ta = document.createElement('textarea');
+      ta.value = txt; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    });
+    var btn = document.getElementById('ss_copyBtn');
+    var orig = btn.textContent;
+    btn.textContent = '✅ Copiado';
+    setTimeout(function(){ btn.textContent = orig; }, 1800);
+  };
+
+  window.ssDescargarPNG = function() {
+    if (!ssLastResult) return;
+    ssDrawDiagram(ssLastResult); // redraw at current size
+    var canvas = document.getElementById('ss_diagram');
+    var link = document.createElement('a');
+    link.download = 'pantalla-LED-' + ssLastResult.numModW + 'x' + ssLastResult.numModH + '.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  };
+
+  // Auto-toggle on load
+  document.addEventListener('DOMContentLoaded', ssToggleMode);
+})();
 
 // ═══ INIT ═══
 calcResolution();
