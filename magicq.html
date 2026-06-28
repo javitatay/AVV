@@ -34,7 +34,7 @@ Este proyecto es una herramienta educativa independiente.
             --bg-button-lit: #D4D7E0;
             --text-primary:  #111827;
             --text-secondary:#374151;
-            --text-dim:      #6B7280;
+            --text-dim:      #444E5C;
             --text-orange:   var(--mq-orange);
             --border-dark:   #E5E7EB;
             --border-mid:    #D1D5DB;
@@ -191,7 +191,7 @@ font-family: var(--font-body);
             margin-bottom: 1px;
             border-radius: 4px;
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
             font-size: 13px;
             font-weight: 500;
             color: var(--text-secondary);
@@ -459,7 +459,7 @@ font-family: var(--font-body);
             letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.1s ease;
+            transition: background-color 0.1s ease, border-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, transform 0.1s ease, opacity 0.1s ease;
         }
 
         .btn-console:hover {
@@ -640,7 +640,7 @@ font-family: var(--font-body);
             padding: 10px 6px;
             text-align: center;
             cursor: default;
-            transition: all 0.15s;
+            transition: background-color 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s, opacity 0.15s;
         }
 
         .console-btn .btn-label {
@@ -1059,7 +1059,7 @@ font-family: var(--font-body);
             border-radius: 8px;
             padding: 22px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
             position: relative;
             overflow: hidden;
         }
@@ -1168,7 +1168,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .gmq-feedback { font-size:13px; font-weight:500; padding:11px 14px; border-radius:7px; margin-top:12px; display:none; line-height:1.55; }
 .gmq-feedback.ok  { display:block; background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
 .gmq-feedback.err { display:block; background:#fff1f1; color:#991b1b; border:1px solid #fecaca; }
-.gmq-btn { padding:10px 22px; border-radius:6px; border:none; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; transition:all .15s; }
+.gmq-btn { padding:10px 22px; border-radius:6px; border:none; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; }
 .gmq-btn-primary { background:var(--mq-orange); color:#fff; }
 .gmq-btn-primary:hover { background:var(--mq-orange-dim); }
 .gmq-btn-ghost { background:var(--bg-button); color:var(--text-primary); }
@@ -1192,7 +1192,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .pq-fixture {
   display:grid; grid-template-columns:auto 1fr auto auto; gap:12px; align-items:center;
   background:var(--bg-surface); border:1.5px solid var(--border-dark); border-radius:7px;
-  padding:10px 14px; transition:all .18s;
+  padding:10px 14px; transition: background-color .18s, border-color .18s, color .18s, box-shadow .18s, transform .18s, opacity .18s;
 }
 .pq-fixture.placed { border-color:#22c55e; background:#f0fdf4; }
 .pq-fixture-num { font-size:12px; font-weight:800; color:var(--text-dim); font-family:var(--font-mono); width:28px; text-align:center; }
@@ -1240,7 +1240,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .cmd-output-prompt { color:#475569; }
 .cmd-token-output {
   display:inline-block; padding:4px 10px; background:rgba(134,239,172,0.15); border-radius:4px;
-  cursor:pointer; transition:all .15s; user-select:none;
+  cursor:pointer; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; user-select:none;
 }
 .cmd-token-output:hover { background:rgba(239,68,68,0.25); color:#fca5a5; }
 .cmd-output-empty { color:rgba(134,239,172,0.5); font-style:italic; font-weight:500; }
@@ -1249,7 +1249,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .cmd-token {
   padding:7px 14px; background:var(--mq-orange); color:#fff; font-family:var(--font-mono);
   font-size:13px; font-weight:700; border-radius:5px; cursor:pointer;
-  transition:all .15s; user-select:none; border:none;
+  transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; user-select:none; border:none;
 }
 .cmd-token:hover { background:var(--mq-orange-dim); transform:translateY(-1px); }
 .cmd-token:disabled { opacity:0.3; cursor:not-allowed; transform:none; background:var(--text-dim); }
@@ -1264,7 +1264,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .foc-opt {
   padding:12px 10px; background:var(--bg-surface); border:1.5px solid var(--border-dark); border-radius:7px;
   cursor:pointer; font-family:inherit; color:var(--text-primary);
-  text-align:center; transition:all .15s; display:flex; flex-direction:column; gap:4px;
+  text-align:center; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; display:flex; flex-direction:column; gap:4px;
 }
 .foc-opt-name { font-size:13px; font-weight:700; }
 .foc-opt-sub  { font-size:10.5px; color:var(--text-dim); font-weight:500; }
@@ -1276,6 +1276,53 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 
 /* ─── fin mejoras gamificación ─── */
 
+
+/* ═══ SPRINT 1 · A: focus-visible global ══════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid #0057B8;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+/* Excepciones: elementos con outline propio en :focus */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none; /* mantienen su border-color personalizado */
+}
+
+/* ═══ SPRINT 1 · B: hover transforms solo en dispositivos con puntero fino ═ */
+@media (hover: none), (pointer: coarse) {
+  /* Elimina saltos visuales en pantallas táctiles */
+  .module-card:hover,
+  .feature-card:hover,
+  [class*="card"]:hover,
+  .back-btn:hover,
+  .inner-tab:hover,
+  .nav-tab:hover,
+  .btn:hover,
+  .rq-opt:hover,
+  .scan-opt:hover,
+  .rv-opt:hover,
+  .pp-opt:hover,
+  .con-conn:hover,
+  .gv-btn:hover,
+  .rq-btn:hover,
+  .avl-nav-btn:hover {
+    transform: none !important;
+  }
+}
+
+/* ═══ SPRINT 1 · C: prefers-reduced-motion global ════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:      0.01ms !important;
+    scroll-behavior:          auto   !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -2083,7 +2130,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     Te dan un <strong>fixture</strong> con sus canales, una <strong>dirección de inicio</strong> y un <strong>número de fixture</strong>. Calcula en qué dirección DMX empieza ese fixture concreto. <strong>6 retos</strong>.
   </p>
   <div class="gmq-prog" id="dmxcProg"></div>
-  <div class="gmq-score-lbl">
+  <div class="gmq-score-lbl" aria-live="polite" aria-atomic="true">
     <span id="dmxcScoreL">Reto 1 / 6</span>
     <span id="dmxcScoreR">0 aciertos</span>
   </div>
@@ -2297,7 +2344,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     Asigna una <strong>dirección DMX de inicio</strong> a cada fixture. No deben solaparse: si dos fixtures usan canales comunes, hay <strong>conflicto</strong>. La barra muestra los canales ocupados (1-512). <strong>3 escenarios</strong> de dificultad creciente.
   </p>
   <div class="gmq-prog" id="pqProg"></div>
-  <div class="gmq-score-lbl">
+  <div class="gmq-score-lbl" aria-live="polite" aria-atomic="true">
     <span id="pqScoreL">Escenario 1 / 3</span>
     <span id="pqScoreR" style="font-family:var(--font-mono);">0 / 0 fixtures</span>
   </div>
@@ -2786,7 +2833,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     Pulsa los <strong>tokens</strong> en el orden correcto para construir la línea de comandos que ejecuta la acción descrita. Click sobre un token de la salida para quitarlo. <strong>8 retos</strong> de sintaxis MagicQ real.
   </p>
   <div class="gmq-prog" id="cmdProg"></div>
-  <div class="gmq-score-lbl">
+  <div class="gmq-score-lbl" aria-live="polite" aria-atomic="true">
     <span id="cmdScoreL">Reto 1 / 8</span>
     <span id="cmdScoreR">0 aciertos</span>
   </div>
@@ -2963,7 +3010,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     En luz, la mezcla de color es <strong>sustractiva</strong>: los filtros C/M/Y restan luz. Mueve los sliders para reproducir el color objetivo. Se calcula la similitud automáticamente. <strong>5 retos</strong>.
   </p>
   <div class="gmq-prog" id="cmyProg"></div>
-  <div class="gmq-score-lbl">
+  <div class="gmq-score-lbl" aria-live="polite" aria-atomic="true">
     <span id="cmyScoreL">Reto 1 / 5</span>
     <span id="cmyScoreR">0 aciertos · max similitud 0%</span>
   </div>
@@ -3777,7 +3824,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     Lee el escenario y elige el tipo de foco más adecuado. Hay opciones razonables y otras claramente erróneas; piensa en el haz, la potencia y la versatilidad. <strong>6 retos</strong>.
   </p>
   <div class="gmq-prog" id="focProg"></div>
-  <div class="gmq-score-lbl">
+  <div class="gmq-score-lbl" aria-live="polite" aria-atomic="true">
     <span id="focScoreL">Reto 1 / 6</span>
     <span id="focScoreR">0 aciertos</span>
   </div>
@@ -5230,397 +5277,22 @@ function renderGlossaryVisual() {
 </script>
 
 
-<style id="avl-nav-style">
-  #avl-nav {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999999;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(30,29,27,0.92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 40px;
-    padding: 7px 10px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);
-    font-family: 'Poppins', -apple-system, sans-serif;
-    white-space: nowrap;
-    user-select: none;
-  }
-  .avl-nav-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.75);
-    cursor: pointer;
-    text-decoration: none;
-    transition: background .18s, color .18s, transform .18s;
-    flex-shrink: 0;
-    font-size: 13px;
-    line-height: 1;
-  }
-  .avl-nav-btn:hover {
-    background: rgba(255,255,255,0.18);
-    color: #fff;
-    transform: scale(1.08);
-  }
-  .avl-nav-btn.avl-nav-home {
-    background: #7A6BA3;
-    opacity: .9;
-  }
-  .avl-nav-btn.avl-nav-home:hover {
-    opacity: 1;
-    background: #7A6BA3;
-  }
-  .avl-nav-divider {
-    width: 1px;
-    height: 20px;
-    background: rgba(255,255,255,0.12);
-    flex-shrink: 0;
-  }
-  .avl-nav-info {
-    padding: 0 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1px;
-    min-width: 130px;
-    text-align: center;
-  }
-  .avl-nav-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: -.1px;
-  }
-  .avl-nav-app {
-    font-size: 9px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.45);
-    letter-spacing: .5px;
-    text-transform: uppercase;
-  }
-  .avl-nav-dots {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    padding: 0 4px;
-  }
-  .avl-nav-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    transition: background .2s, transform .2s;
-    cursor: default;
-  }
-  .avl-nav-dot.avl-active {
-    background: #7A6BA3;
-    transform: scale(1.3);
-  }
-  .avl-nav-btn svg {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-  }
-  @media (max-width: 480px) {
-    #avl-nav { bottom: 12px; padding: 6px 8px; gap: 4px; }
-    .avl-nav-info { min-width: 100px; }
-    .avl-nav-label { font-size: 10px; }
-    .avl-nav-dots { display: none; }
-  }
 
 
-/* ── UNIFIED BOXES — MagicQ ─────────────────────────────────── */
-.info-box, .warn-box, .ok-box {
-  border-radius: 4px !important;
-  padding: 14px 16px !important;
-  margin-bottom: 14px !important;
-  border-left-width: 3px !important;
-}
-.info-box h4, .warn-box h4, .ok-box h4 {
-  font-size: 13px !important;
-  text-transform: uppercase !important;
-  letter-spacing: .8px !important;
-  margin-bottom: 8px !important;
-}
-.info-box p, .info-box li,
-.warn-box p, .warn-box li,
-.ok-box  p, .ok-box  li { font-size: 15px !important; line-height: 1.7 !important; }
-
-/* ── UNIFIED PAGE HEADER — MagicQ ──────────────────────────── */
-.page-header::after { width: 56px !important; }
-.page-title {
-  font-size: 36px !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.5px !important;
-}
-.page-tag { font-size: 11px !important; letter-spacing: 2px !important; }
-
-/* ═══ RESPONSIVE ADDITIONS — MAGICQ ═════════════════════════════════ */
-@media (max-width: 1280px) {
-  .content-area { padding-left: 0; }
-  .main, .content-area .main { padding: 24px 24px 90px; }
-}
-@media (max-width: 1024px) {
-  .main, .content-area .main { padding: 20px 18px 90px; }
-  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
-  .page-title { font-size: 26px; }
-}
-@media (max-width: 640px) {
-  .main, .content-area .main { padding: 16px 14px 90px !important; }
-  .page-title  { font-size: 20px; }
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .info-box p  { font-size: 14px; }
-  .fixture-grid { grid-template-columns: 1fr 1fr; }
-  .channel-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); }
-}
-
-
-/* ═══ ILLUSTRATOR-STYLE VISUAL OVERRIDE — MAGICQ ═════════════════════ */
-:root {
-  --il-accent:     #1A40B0;
-  --il-accent-dim: #122E82;
-  --il-bg-void:    #FFFFFF;
-  --il-bg-deep:    #EEF1FA;
-  --il-bg-raised:  #F5F7FD;
-  --il-border:     #D8DCF0;
-  --il-border-mid: #C0C8E8;
-  --il-text-pri:   #0D1540;
-  --il-text-sec:   #2A3560;
-  --il-text-dim:   #7080B0;
-}
-
-/* — Body — */
-body { background: var(--il-bg-void) !important; color: var(--il-text-pri) !important; }
-
-/* — Sidebar — */
-.sidebar {
-  background: var(--il-bg-deep) !important;
-  border-right: 1px solid var(--il-border) !important;
-}
-.sidebar-header {
-  border-bottom: 1px solid var(--il-border) !important;
-}
-.sidebar-title {
-  font-size: 18px !important; font-weight: 800 !important;
-  letter-spacing: 1.5px !important; text-transform: uppercase !important;
-  color: var(--il-accent) !important;
-}
-.sidebar-subtitle {
-  color: var(--il-text-dim) !important;
-  letter-spacing: 2.5px !important;
-}
-.sidebar-version {
-  background: rgba(26,64,176,.10) !important;
-  border: 1px solid rgba(26,64,176,.18) !important;
-  color: var(--il-accent) !important;
-}
-
-/* — Nav — */
-.nav-section-label {
-  color: var(--il-text-dim) !important;
-  border-bottom: 1px solid var(--il-border) !important;
-  font-family: 'JetBrains Mono', monospace !important;
-}
-.nav-item {
-  color: var(--il-text-sec) !important;
-  border: 1px solid transparent !important;
-  border-radius: 4px !important;
-}
-.nav-item:hover {
-  background: var(--il-bg-raised) !important;
-  color: var(--il-text-pri) !important;
-  border-color: var(--il-border-mid) !important;
-}
-.nav-item.active {
-  background: rgba(26,64,176,.10) !important;
-  color: var(--il-accent) !important;
-  border-color: rgba(26,64,176,.20) !important;
-  font-weight: 600 !important;
-}
-.nav-item.active::before { background: var(--il-accent) !important; }
-.nav-badge { background: var(--il-accent) !important; }
-
-/* — Content — */
-.content-area { background: var(--il-bg-void) !important; }
-.page { background: var(--il-bg-void) !important; }
-
-/* — Page header — */
-.page-tag {
-  font-family: 'JetBrains Mono', monospace !important;
-  color: var(--il-accent) !important;
-  letter-spacing: 2px !important;
-}
-.page-title {
-  font-weight: 800 !important; text-transform: uppercase !important;
-  letter-spacing: 0.5px !important; color: var(--il-text-pri) !important;
-}
-.page-title span { color: var(--il-accent) !important; }
-.page-header::after { background: var(--il-accent) !important; }
-.page-desc { color: var(--il-text-sec) !important; }
-
-/* — Panels — */
-.panel {
-  background: #FFFFFF !important;
-  border: 1px solid var(--il-border) !important;
-  border-radius: 6px !important;
-  box-shadow: 0 1px 4px rgba(26,64,176,.05) !important;
-}
-.panel-title {
-  color: var(--il-accent) !important;
-  font-weight: 700 !important; text-transform: uppercase !important;
-  letter-spacing: 1.5px !important;
-}
-.panel-title::before { background: var(--il-accent) !important; }
-.panel-subtitle { color: var(--il-text-dim) !important; }
-
-/* — Info boxes — */
-.info-box { border-left-color: var(--il-accent) !important; }
-.info-box h4 { color: var(--il-accent) !important; }
-.warn-box h4 { color: #8A5000 !important; }
-.ok-box h4   { color: #005C30 !important; }
-
-/* — Exercises — */
-.exercise-num    { background: var(--il-accent) !important; }
-.exercise-header { background: rgba(26,64,176,.08) !important; border-bottom-color: var(--il-border) !important; }
-
-/* — Feature cards — */
-.feature-card::before { background: var(--il-accent) !important; }
-.feature-card:hover   { border-color: rgba(26,64,176,.22) !important; }
-
-/* — Stat / result — */
-.stat-value   { color: var(--il-accent) !important; }
-.result-value { color: var(--il-accent) !important; }
-
-/* — Universe badges — */
-.universe-badge.u1 { background: rgba(26,64,176,.12) !important; color: #1A40B0 !important; border-color: rgba(26,64,176,.30) !important; }
-
-
-/* ── Back button ── */
-.avl-nav-btn.avl-nav-back {
-  background: rgba(255,255,255,0.08);
-  position: relative;
-}
-.avl-nav-btn.avl-nav-back:hover {
-  background: rgba(255,255,255,0.18);
-}
-.avl-nav-btn.avl-nav-back[data-hidden="true"] {
-  opacity: .2;
-  pointer-events: none;
-  cursor: default;
-}
-</style>
-
-
-<div id="avl-nav">
-  <!-- Home -->
-  <a class="avl-nav-btn avl-nav-home" href="index.html" title="Volver al índice">
-    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 8L8 2l6 6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M4 6v7h3v-3h2v3h3V6" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-
-  <!-- Back to last suite -->
-  <button class="avl-nav-btn avl-nav-back" id="avl-back-btn"
-          onclick="avlGoBack()" title="Volver a la última suite"
-          data-hidden="true">
-    <svg viewBox="0 0 16 16" fill="none">
-      <path d="M13 5 L8 5 C6 5 4 7 4 9 L4 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M2 10 L4 12 L6 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <div class="avl-nav-divider"></div>
-
-  <!-- Prev -->
-  <a class="avl-nav-btn" href="iluminacion.html" title="Iluminación de Espectáculos"><svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-
-  <!-- Info -->
-  <div class="avl-nav-info">
-    <div class="avl-nav-label">Control DMX & Consola</div>
-    <div class="avl-nav-app">MagicQ · ChamSys</div>
-  </div>
-
-  <!-- Dots -->
-  <div class="avl-nav-dots">
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot avl-active"></div>
-  </div>
-
-  <!-- Next -->
-  <button class="avl-nav-btn" disabled style="opacity:.25;cursor:default"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-
-</div>
 
 
 
 <script>
-(function(){
-  var PAGES = {
-    'video.html':        'Imagen & Vídeo',
-    'illustrator.html':  'Illustrator',
-    'resolume.html':     'Resolume',
-    'after-effects.html':'After Effects',
-    'iluminacion.html':  'Iluminación',
-    'magicq.html':       'MagicQ',
-    'index.html':        'Inicio'
-  };
-
-  // Register this page as visited
-  var current = location.pathname.split('/').pop() || 'index.html';
-  var history  = JSON.parse(sessionStorage.getItem('avv-history') || '[]');
-  if (history[history.length - 1] !== current) {
-    history.push(current);
-    if (history.length > 20) history.shift();
-    sessionStorage.setItem('avv-history', JSON.stringify(history));
-  }
-
-  // Set up back button
-  function updateBackBtn() {
-    var btn = document.getElementById('avl-back-btn');
-    if (!btn) return;
-    // Find last different page in history
-    var prev = null;
-    for (var i = history.length - 2; i >= 0; i--) {
-      if (history[i] !== current) { prev = history[i]; break; }
-    }
-    if (prev) {
-      btn.setAttribute('data-hidden', 'false');
-      btn.title = 'Volver a ' + (PAGES[prev] || prev);
-      btn.setAttribute('data-href', prev);
-    } else {
-      btn.setAttribute('data-hidden', 'true');
-      btn.title = '';
-    }
-  }
-
-  window.avlGoBack = function() {
-    var btn = document.getElementById('avl-back-btn');
-    if (!btn || btn.getAttribute('data-hidden') === 'true') return;
-    var href = btn.getAttribute('data-href');
-    if (href) window.location.href = href;
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', updateBackBtn);
-  } else {
-    updateBackBtn();
-  }
-})();
+window.AVL_NAV_CONFIG = {
+  label:  'Control DMX & Consola',
+  sub:    'MagicQ · ChamSys',
+  prev:   {href:'iluminacion.html',title:'Iluminación de Espectáculos'},
+  next:   null,
+  dot:    5,
+  dots:   6,
+  accent: '#7A6BA3'
+};
 </script>
+<script src="avl-nav.js"></script>
 </body>
 </html>

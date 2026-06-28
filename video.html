@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Video Suite — Imagen & Vídeo</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,12 +24,12 @@
   --border2: #ccc9c4;
   --text:    #192A56;
   --text2:   #4a5a82;
-  --text3:   #8896b5;
+  --text3:   #4A5A7A;
   --shadow:  0 1px 3px rgba(25,42,86,.08), 0 4px 16px rgba(25,42,86,.06);
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -224,7 +224,7 @@ body {
   cursor: pointer; margin-bottom: 22px;
   padding: 6px 12px; border-radius: 6px;
   border: 1px solid var(--border);
-  background: var(--white); transition: all .15s;
+  background: var(--white); transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s;
 }
 .back-btn:hover { color: var(--navy); border-color: var(--border2); }
 .module-header {
@@ -282,14 +282,14 @@ input[type=number], select {
   background: var(--bg2); border: 1px solid var(--border);
   border-radius: 6px; color: var(--text);
   padding: 8px 11px; font-size: 13px;
-  font-family: 'Poppins', sans-serif; font-weight: 400;
+  font-family: 'Inter', sans-serif; font-weight: 400;
   width: 100%; outline: none; transition: border-color .15s;
 }
 input:focus, select:focus { border-color: var(--navy); }
 .btn {
   background: var(--navy); color: var(--white); border: none;
   border-radius: 7px; padding: 9px 20px;
-  font-family: 'Poppins', sans-serif; font-weight: 600;
+  font-family: 'Inter', sans-serif; font-weight: 600;
   font-size: 12px; cursor: pointer; width: 100%; margin-top: 8px;
   transition: opacity .15s;
 }
@@ -357,7 +357,7 @@ input:focus, select:focus { border-color: var(--navy); }
   padding: 7px 14px; font-size: 12px; font-weight: 500;
   color: var(--text3); cursor: pointer;
   border: 1px solid var(--border); border-radius: 6px;
-  background: var(--white); transition: all .15s;
+  background: var(--white); transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s;
 }
 .inner-tab:hover { color: var(--navy); border-color: var(--border2); }
 .inner-tab.active {
@@ -608,7 +608,7 @@ canvas{display:block}
 .gv-feedback { font-size:12px; font-weight:600; padding:10px 14px; border-radius:7px; margin-top:12px; display:none; line-height:1.6; }
 .gv-feedback.ok  { display:block; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; }
 .gv-feedback.err { display:block; background:#fff1f1; color:#dc2626; border:1px solid #fecaca; }
-.gv-btn { padding:9px 22px; border-radius:8px; border:none; font-family:inherit; font-size:12px; font-weight:600; cursor:pointer; transition:all .15s; }
+.gv-btn { padding:9px 22px; border-radius:8px; border:none; font-family:inherit; font-size:12px; font-weight:600; cursor:pointer; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; }
 .gv-btn-primary { background:var(--navy); color:#fff; }
 .gv-btn-primary:hover { background:var(--navy2); }
 .gv-btn-ghost { background:var(--bg3); color:var(--navy); }
@@ -623,7 +623,7 @@ canvas{display:block}
 .scan-opt {
   padding:14px; background:var(--white); border:1.5px solid var(--border); border-radius:8px;
   cursor:pointer; font-family:inherit; font-size:12px; font-weight:600; color:var(--navy);
-  text-align:center; transition:all .15s; display:flex; flex-direction:column; gap:5px;
+  text-align:center; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; display:flex; flex-direction:column; gap:5px;
 }
 .scan-opt-name { font-size:14px; font-weight:800; }
 .scan-opt-sub { font-size:10.5px; color:var(--text3); font-weight:500; }
@@ -640,7 +640,7 @@ canvas{display:block}
 .con-pool-label { font-size:10px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:var(--text3); margin-bottom:6px; }
 .con-conn {
   background:#fff; border:1.5px solid var(--border); border-radius:7px; padding:10px 6px;
-  text-align:center; cursor:grab; user-select:none; transition:all .15s;
+  text-align:center; cursor:grab; user-select:none; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s;
   display:flex; flex-direction:column; align-items:center; gap:4px;
 }
 .con-conn.dragging { opacity:0.4; cursor:grabbing; }
@@ -653,7 +653,7 @@ canvas{display:block}
 .con-target {
   background:#fff; border:2px dashed var(--border2); border-radius:8px; padding:14px 10px;
   display:flex; flex-direction:column; align-items:center; gap:6px;
-  min-height:96px; transition:all .18s;
+  min-height:96px; transition: background-color .18s, border-color .18s, color .18s, box-shadow .18s, transform .18s, opacity .18s;
 }
 .con-target.over { border-color:var(--yellow2); background:rgba(247,215,148,.15); border-style:solid; }
 .con-target.correct { border-color:#22c55e; background:#f0fdf4; border-style:solid; }
@@ -676,7 +676,7 @@ canvas{display:block}
 .rv-opt {
   padding:14px; background:var(--white); border:1.5px solid var(--border); border-radius:8px;
   cursor:pointer; font-family:inherit; font-size:13px; font-weight:700; color:var(--navy);
-  text-align:center; transition:all .15s; display:flex; flex-direction:column; gap:5px;
+  text-align:center; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; display:flex; flex-direction:column; gap:5px;
 }
 .rv-opt-emoji { font-size:22px; }
 .rv-opt:hover:not(.locked) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-1px); }
@@ -695,7 +695,7 @@ canvas{display:block}
 .pp-opt {
   padding:12px 8px; background:var(--white); border:1.5px solid var(--border); border-radius:7px;
   cursor:pointer; font-family:inherit; color:var(--navy);
-  text-align:center; transition:all .15s; display:flex; flex-direction:column; gap:3px;
+  text-align:center; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; display:flex; flex-direction:column; gap:3px;
 }
 .pp-opt-name { font-size:14px; font-weight:800; }
 .pp-opt-mm { font-size:10.5px; color:var(--text3); font-weight:600; }
@@ -817,6 +817,79 @@ canvas{display:block}
 .ss-disclaimer-body strong { color: var(--text); }
 .ss-disclaimer-body a { color: #189BEA; text-decoration: none; font-weight: 600; }
 .ss-disclaimer-body a:hover { text-decoration: underline; }
+
+/* ═══ SPRINT 1 · A: focus-visible global ══════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid #0057B8;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+/* Excepciones: elementos con outline propio en :focus */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none; /* mantienen su border-color personalizado */
+}
+
+/* ═══ SPRINT 1 · B: hover transforms solo en dispositivos con puntero fino ═ */
+@media (hover: none), (pointer: coarse) {
+  /* Elimina saltos visuales en pantallas táctiles */
+  .module-card:hover,
+  .feature-card:hover,
+  [class*="card"]:hover,
+  .back-btn:hover,
+  .inner-tab:hover,
+  .nav-tab:hover,
+  .btn:hover,
+  .rq-opt:hover,
+  .scan-opt:hover,
+  .rv-opt:hover,
+  .pp-opt:hover,
+  .con-conn:hover,
+  .gv-btn:hover,
+  .rq-btn:hover,
+  .avl-nav-btn:hover {
+    transform: none !important;
+  }
+}
+
+/* ═══ SPRINT 1 · C: prefers-reduced-motion global ════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:      0.01ms !important;
+    scroll-behavior:          auto   !important;
+  }
+}
+
+/* ═══ SPRINT 3 · A: tap-to-place — selección por toque/clic ═════════════ */
+.tap-selected {
+  outline: 2px solid #0057B8 !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0,87,184,.15) !important;
+}
+/* ═══ SPRINT 3 · B: botón sin límite de tiempo ═══════════════════════════ */
+.avl-timer-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 6px;
+  color: rgba(255,255,255,.75);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 2px 7px;
+  flex-shrink: 0;
+  line-height: 1.4;
+  transition: background-color 150ms ease-out, opacity 150ms ease-out;
+}
+.avl-timer-btn:hover  { background: rgba(255,255,255,.12); color: #fff; }
+.avl-timer-btn.active { background: rgba(255,255,255,.18); color: #fff; }
+.atajos-time-wrapper,
+.avl-sc-time-wrapper  { display:flex; align-items:center; gap:8px; margin-bottom:16px; }
+.atajos-time-wrapper .atajos-time-bar,
+.avl-sc-time-wrapper  .sc-time { flex:1; margin-bottom:0; }
 </style>
 </head>
 <body>
@@ -1080,7 +1153,7 @@ canvas{display:block}
           <div class="note" id="mcd_note" style="margin-top:12px"></div>
           <div style="margin-top:16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;" id="mcd_steps_wrap">
             <div class="panel-subtitle" style="margin:0 0 10px">Pasos del cálculo</div>
-            <div id="mcd_steps" style="font-family:'Poppins',sans-serif;font-size:12px;color:var(--accent3);line-height:1.8"></div>
+            <div id="mcd_steps" style="font-family:'Inter',sans-serif;font-size:12px;color:var(--accent3);line-height:1.8"></div>
           </div>
         </div>
       </div>
@@ -1171,7 +1244,7 @@ canvas{display:block}
           <p>Define la <strong>opacidad de cada píxel</strong> en una imagen. Actúa como máscara de transparencia que permite mezclar capas, imágenes o fondos opacos con imágenes con distintos grados de transparencia.</p>
         </div>
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-          <div style="display:flex;gap:8px;margin-bottom:12px;font-family:'Poppins',sans-serif;font-size:12px">
+          <div style="display:flex;gap:8px;margin-bottom:12px;font-family:'Inter',sans-serif;font-size:12px">
             <div style="background:rgba(255,68,85,.6);border-radius:4px;padding:8px 12px;color:var(--white)">R</div>
             <div style="background:rgba(0,255,136,.6);border-radius:4px;padding:8px 12px;color:var(--white)">G</div>
             <div style="background:rgba(0,100,255,.6);border-radius:4px;padding:8px 12px;color:var(--white)">B</div>
@@ -1210,7 +1283,7 @@ canvas{display:block}
 
 <style id="lvl-css">
 .lvl-selector{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
-.lvl-btn{padding:7px 16px;border-radius:8px;border:2px solid var(--border);background:var(--white);cursor:pointer;font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;transition:all .18s;}
+.lvl-btn{padding:7px 16px;border-radius:8px;border:2px solid var(--border);background:var(--white);cursor:pointer;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;transition: background-color .18s, border-color .18s, color .18s, box-shadow .18s, transform .18s, opacity .18s;}
 .lvl-btn:hover{border-color:var(--navy3);background:var(--bg2);}
 .lvl-btn.lv-basic  {background:#e6f4ea;border-color:#22c55e;color:#166534;}
 .lvl-btn.lv-medio  {background:#fff8e2;border-color:#f59e0b;color:#92400e;}
@@ -1226,7 +1299,7 @@ canvas{display:block}
 </style>
 <style>
 /* ── RES QUIZ ── */
-#res-quiz-root { font-family:'Poppins',sans-serif; font-size:13px; }
+#res-quiz-root { font-family:'Inter',sans-serif; font-size:13px; }
 .rq-screen { max-width:620px; margin:0 auto; }
 .rq-progress { display:flex; gap:5px; margin-bottom:20px; }
 .rq-pip { height:5px; flex:1; border-radius:3px; background:var(--bg3); transition:background .3s; }
@@ -1261,7 +1334,7 @@ canvas{display:block}
 .rq-feedback.ok   { display:flex; gap:6px; align-items:center; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; }
 .rq-feedback.err  { display:flex; gap:6px; align-items:center; background:#fff1f1; color:#dc2626; border:1px solid #fecaca; }
 .rq-feedback.hint { display:flex; gap:6px; align-items:center; background:#fef9e2; color:#92400e; border:1px solid #fde68a; }
-.rq-btn { padding:9px 22px; border-radius:8px; border:none; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; cursor:pointer; transition:opacity .15s, transform .1s; }
+.rq-btn { padding:9px 22px; border-radius:8px; border:none; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; cursor:pointer; transition:opacity .15s, transform .1s; }
 .rq-btn:hover { opacity:.85; transform:translateY(-1px); }
 .rq-btn-next    { background:var(--navy); color:#fff; }
 .rq-btn-restart { background:#22c55e; color:#fff; }
@@ -1529,7 +1602,7 @@ canvas{display:block}
         <div style="margin-top:16px;">
           <div style="font-size:11px;color:var(--text3);letter-spacing:0.2px;text-transform:uppercase;margin-bottom:8px">Representación DOF</div>
           <div id="dof_visual" style="height:44px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;position:relative;overflow:hidden;">
-            <div id="dof_bar" style="position:absolute;top:0;height:100%;background:rgba(0,212,255,.2);border-left:2px solid var(--accent);border-right:2px solid var(--accent);transition:all .4s;"></div>
+            <div id="dof_bar" style="position:absolute;top:0;height:100%;background:rgba(0,212,255,.2);border-left:2px solid var(--accent);border-right:2px solid var(--accent);transition: background-color .4s, border-color .4s, color .4s, box-shadow .4s, transform .4s, opacity .4s;"></div>
             <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;color:var(--text3);letter-spacing:0.2px;">← DOF →</div>
           </div>
         </div>
@@ -1589,7 +1662,7 @@ canvas{display:block}
       <div class="exp-wrap">
           <div>
             <div class="exp-scene-wrap" id="expScene">
-              <canvas id="expCanvas" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+              <canvas id="expCanvas" style="position:absolute;inset:0;width:100%;height:100%" role="img" aria-label="Simulador interactivo de exposición fotográfica"></canvas>
               <div class="exp-noise" id="expNoise"></div>
               <div class="exp-luma" id="expLuma"></div>
               <div class="exp-ev-badge" id="expEvBadge">EV 0</div>
@@ -1658,7 +1731,7 @@ canvas{display:block}
 </section>
 
 <style>
-#exp-quiz-root { font-family:'Poppins',sans-serif; font-size:13px; max-width:680px; margin:0 auto; }
+#exp-quiz-root { font-family:'Inter',sans-serif; font-size:13px; max-width:680px; margin:0 auto; }
 .eq-camera { background:var(--navy); border-radius:14px; padding:20px 24px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:20px; }
 .eq-param { text-align:center; }
 .eq-param-name { font-size:10px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:6px; }
@@ -1667,7 +1740,7 @@ canvas{display:block}
 .eq-q-block { margin-bottom:16px; }
 .eq-q-label { font-size:10px; font-weight:700; color:var(--text3); letter-spacing:.8px; text-transform:uppercase; margin-bottom:7px; }
 .eq-options-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-.eq-opt { width:100%; padding:10px 14px; border-radius:8px; border:2px solid var(--border); background:var(--white); cursor:pointer; font-family:'Poppins',sans-serif; font-size:12px; font-weight:500; text-align:left; transition:border-color .15s, background .15s, transform .12s; }
+.eq-opt { width:100%; padding:10px 14px; border-radius:8px; border:2px solid var(--border); background:var(--white); cursor:pointer; font-family:'Inter',sans-serif; font-size:12px; font-weight:500; text-align:left; transition:border-color .15s, background .15s, transform .12s; }
 .eq-opt:hover:not(:disabled) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-1px); }
 .eq-opt.correct { border-color:#22c55e !important; background:#f0fdf4 !important; color:#166534 !important; }
 .eq-opt.wrong   { border-color:#ef4444 !important; background:#fff1f1 !important; color:#991b1b !important; }
@@ -1684,7 +1757,7 @@ canvas{display:block}
 .eq-pip.err { background:#ef4444; }
 .eq-pip.cur { background:var(--navy); }
 .eq-score-lbl { font-size:11px; font-weight:700; color:var(--text2); margin-bottom:14px; }
-.eq-btn { padding:9px 20px; border-radius:8px; border:none; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; cursor:pointer; transition:opacity .15s; }
+.eq-btn { padding:9px 20px; border-radius:8px; border:none; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; cursor:pointer; transition:opacity .15s; }
 .eq-btn-next    { background:var(--navy); color:#fff; }
 .eq-btn-restart { background:#22c55e; color:#fff; }
 .eq-end { text-align:center; padding:32px 20px; background:var(--navy); border-radius:14px; color:#fff; }
@@ -1860,7 +1933,7 @@ canvas{display:block}
           <div class="info-card-title" style="color:var(--accent)">Progresivo</div>
           <p>El escaneo progresivo <strong>visualiza todas las líneas horizontales de una sola vez</strong> como si fuesen un único fotograma completo. Cada frame contiene toda la información de imagen.</p>
         </div>
-        <canvas id="prog_canvas" width="300" height="120" style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;"></canvas>
+        <canvas id="prog_canvas" width="300" height="120" style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;" role="img" aria-label="Curva gamma progresiva"></canvas>
         <div class="note" style="margin-top:12px"><strong>Ejemplos:</strong> 1080p, 720p, 4K UHD. Se usa en vídeo digital moderno, streaming, grabación en cámara.</div>
       </div>
       <div class="panel">
@@ -1869,7 +1942,7 @@ canvas{display:block}
           <div class="info-card-title" style="color:var(--accent4)">Entrelazado</div>
           <p>El escaneo entrelazado <strong>visualiza sólo la mitad de las líneas en cada pasada</strong>: el primer campo contiene todas las líneas impares y el segundo las pares. Se usa en los estándares analógicos PAL, NTSC y SECAM.</p>
         </div>
-        <canvas id="inter_canvas" width="300" height="120" style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;"></canvas>
+        <canvas id="inter_canvas" width="300" height="120" style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;" role="img" aria-label="Curva de interpolación"></canvas>
         <div class="note note-orange" style="margin-top:12px"><strong>Ejemplos:</strong> 1080i (broadcast), 576i (PAL SD), 480i (NTSC SD). Puede causar artefactos (peinado) en movimientos rápidos.</div>
       </div>
     </div>
@@ -1940,7 +2013,7 @@ canvas{display:block}
           <div class="info-card-title">¿Qué es Gamma?</div>
           <p><strong>Gamma controla cómo se representan los tonos intermedios</strong> (las transiciones entre blanco y negro). No afecta al brillo máximo ni mínimo, sino a la <em>curva de luminancia</em>. Sirve para mejorar detalles en sombras o evitar que las zonas claras se "quemen".</p>
         </div>
-        <canvas id="gamma_canvas" width="400" height="200" style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;"></canvas>
+        <canvas id="gamma_canvas" width="400" height="200" style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;" role="img" aria-label="Curva gamma ajustable"></canvas>
         <div class="note" style="margin-top:12px">γ=1.0 = lineal · γ=2.2 = sRGB (monitores PC) · γ=2.4 = Rec.709 (broadcast HD) · γ=2.6 = DCI (cine digital)</div>
       </div>
       <div class="panel">
@@ -2006,13 +2079,13 @@ canvas{display:block}
     Observa el clip de vídeo. ¿La señal es <strong>progresiva</strong> (líneas completas frame a frame) o <strong>entrelazada</strong> (campos pares e impares alternados)? Pista: busca el efecto peine en bordes en movimiento. <strong>5 retos</strong>.
   </p>
   <div class="gv-prog" id="scanProg"></div>
-  <div class="gv-score-lbl">
+  <div class="gv-score-lbl" aria-live="polite" aria-atomic="true">
     <span id="scanScoreL">Reto 1 / 5</span>
     <span id="scanScoreR">0 aciertos</span>
   </div>
   <div class="scan-stage">
     <div class="scan-canvas-wrap">
-      <canvas id="scanCanvas" width="320" height="180"></canvas>
+      <canvas id="scanCanvas" width="320" height="180" role="img" aria-label="Mini-juego: identifica el tipo de escaneo de imagen"></canvas>
     </div>
     <div class="scan-context" id="scanContext">¿Es progresiva o entrelazada?</div>
   </div>
@@ -2621,7 +2694,7 @@ canvas{display:block}
     Mueve el zoom para ampliar la imagen. Si los bordes se pixelan al ampliar, es <strong>raster (mapa de bits)</strong>. Si se mantienen nítidos a cualquier escala, es <strong>vectorial</strong>. <strong>5 retos</strong>.
   </p>
   <div class="gv-prog" id="rvProg"></div>
-  <div class="gv-score-lbl">
+  <div class="gv-score-lbl" aria-live="polite" aria-atomic="true">
     <span id="rvScoreL">Reto 1 / 5</span>
     <span id="rvScoreR">0 aciertos</span>
   </div>
@@ -2632,7 +2705,7 @@ canvas{display:block}
       <span class="rv-zoom-val" id="rvZoomVal">×1</span>
     </div>
     <div class="rv-canvas-wrap">
-      <canvas id="rvCanvas" class="rv-canvas" width="280" height="200"></canvas>
+      <canvas id="rvCanvas" class="rv-canvas" width="280" height="200" role="img" aria-label="Mini-juego: calcula resolución y tamaño de fichero"></canvas>
     </div>
   </div>
   <div class="rv-options" id="rvOpts">
@@ -2704,7 +2777,7 @@ canvas{display:block}
   <div class="pal" id="pal"></div>
   <div class="right">
     <div class="cwrap" id="cwrap">
-      <canvas id="cv"></canvas>
+      <canvas id="cv" role="img" aria-label="Simulador de curvas de color RGB"></canvas>
       <div class="einput" id="ei"><input id="eii"><button type="button" id="eiDel" title="Eliminar dispositivo">🗑</button></div>
     </div>
     <div class="cstatus" id="cstatus">Toca un dispositivo de la paleta para empezar.</div>
@@ -2861,7 +2934,7 @@ canvas{display:block}
         <div class="panel-title">Keystone, Lens Shift y Corner Correction</div>
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent4);margin-bottom:8px;font-size:14px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🔲 KEYSTONE (Corrección trapezoidal)</div>
+            <div style="font-weight:700;color:var(--accent4);margin-bottom:8px;font-size:14px;font-family:'Inter',sans-serif;letter-spacing:0.2px">🔲 KEYSTONE (Corrección trapezoidal)</div>
             <p style="font-size:13px;color:var(--text2);line-height:1.6">Cuando el proyector no está perpendicular a la pantalla, la imagen aparece deformada en trapezoide. El keystone <strong>ajusta digitalmente</strong> la imagen para que vuelva a ser rectangular.<br><br>
             ✓ Ventaja: instalación en ángulos no ideales<br>
             ✗ Inconveniente: ajuste digital, puede perder resolución</p>
@@ -2872,13 +2945,13 @@ canvas{display:block}
             </div>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent3);margin-bottom:8px;font-size:14px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🔄 LENS SHIFT (Desplazamiento de lente)</div>
+            <div style="font-weight:700;color:var(--accent3);margin-bottom:8px;font-size:14px;font-family:'Inter',sans-serif;letter-spacing:0.2px">🔄 LENS SHIFT (Desplazamiento de lente)</div>
             <p style="font-size:13px;color:var(--text2);line-height:1.6">Mueve físicamente la lente dentro del proyector para desplazar la imagen sin deformarla. Se expresa como % respecto al tamaño de imagen.<br><br>
             ✓ Ajuste óptico, no digital → <strong>sin pérdida de calidad</strong><br>
             ✗ Solo en proyectores de gama media/alta</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--purple);margin-bottom:8px;font-size:14px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">📐 CORNER CORRECTION</div>
+            <div style="font-weight:700;color:var(--purple);margin-bottom:8px;font-size:14px;font-family:'Inter',sans-serif;letter-spacing:0.2px">📐 CORNER CORRECTION</div>
             <p style="font-size:13px;color:var(--text2);line-height:1.6">Ajusta individualmente cada esquina de la imagen proyectada. Útil para superficies irregulares (mapping en edificios, suelos inclinados). Afecta menos calidad que el Keystone global.</p>
           </div>
         </div>
@@ -2887,15 +2960,15 @@ canvas{display:block}
         <div class="panel-title">Focus, Zoom y Crop</div>
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Poppins',sans-serif">🎯 FOCUS (Enfoque)</div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Inter',sans-serif">🎯 FOCUS (Enfoque)</div>
             <p style="font-size:13px;color:var(--text2)">Ajusta la <strong>nitidez</strong> de la imagen. Manual (anillo en la lente) o automático. <em>Focus = qué tan clara se ve la imagen.</em></p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Poppins',sans-serif">🔍 ZOOM</div>
+            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Inter',sans-serif">🔍 ZOOM</div>
             <p style="font-size:13px;color:var(--text2)">Cambia el <strong>tamaño</strong> de la imagen sin mover el proyector. Zoom óptico = mantiene calidad. Zoom digital = puede perder nitidez. <em>Zoom = qué tan grande se ve la imagen.</em></p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Poppins',sans-serif">✂️ CROP (Recorte)</div>
+            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Inter',sans-serif">✂️ CROP (Recorte)</div>
             <p style="font-size:13px;color:var(--text2)">Elimina parte de la imagen original, dejando visible solo una porción. No deforma, simplemente corta. Usado en mapping para ajustar ratios o enmascarar zonas.</p>
           </div>
         </div>
@@ -2978,7 +3051,7 @@ canvas{display:block}
 </section>
 
 <style>
-#tr-quiz-root { font-family:'Poppins',sans-serif; font-size:13px; max-width:620px; margin:0 auto; }
+#tr-quiz-root { font-family:'Inter',sans-serif; font-size:13px; max-width:620px; margin:0 auto; }
 .tr-scenario { background:var(--navy); border-radius:14px; padding:22px 26px; margin-bottom:18px; }
 .tr-scenario-title { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:10px; }
 .tr-diagram { display:flex; align-items:center; gap:0; margin-bottom:14px; }
@@ -2993,7 +3066,7 @@ canvas{display:block}
 .tr-given-item .value { font-size:18px; font-weight:800; color:var(--yellow); margin-top:2px; font-variant-numeric:tabular-nums; }
 .tr-question { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:14px; }
 .tr-options { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-bottom:14px; }
-.tr-opt { padding:12px 14px; border-radius:8px; border:2px solid var(--border); background:var(--white); cursor:pointer; font-family:'Poppins',sans-serif; font-size:13px; font-weight:700; text-align:center; transition:border-color .15s, background .15s, transform .12s; font-variant-numeric:tabular-nums; }
+.tr-opt { padding:12px 14px; border-radius:8px; border:2px solid var(--border); background:var(--white); cursor:pointer; font-family:'Inter',sans-serif; font-size:13px; font-weight:700; text-align:center; transition:border-color .15s, background .15s, transform .12s; font-variant-numeric:tabular-nums; }
 .tr-opt:hover:not(:disabled) { border-color:var(--navy3); background:var(--bg2); transform:translateY(-1px); }
 .tr-opt.correct { border-color:#22c55e !important; background:#f0fdf4 !important; color:#166534 !important; }
 .tr-opt.wrong   { border-color:#ef4444 !important; background:#fff1f1 !important; color:#991b1b !important; }
@@ -3010,7 +3083,7 @@ canvas{display:block}
 .tr-pip.err { background:#ef4444; }
 .tr-pip.cur { background:var(--navy); }
 .tr-score-lbl { font-size:11px; font-weight:700; color:var(--text2); margin-bottom:14px; }
-.tr-btn { padding:9px 22px; border-radius:8px; border:none; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; cursor:pointer; }
+.tr-btn { padding:9px 22px; border-radius:8px; border:none; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; cursor:pointer; }
 .tr-btn-next    { background:var(--navy); color:#fff; }
 .tr-btn-restart { background:#22c55e; color:#fff; }
 .tr-end { text-align:center; padding:32px 20px; background:var(--navy); border-radius:14px; color:#fff; }
@@ -3311,19 +3384,19 @@ canvas{display:block}
         <div class="panel-title">Mapping, Grid, Blending y Warping</div>
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🏛️ MAPPING (Video Mapping)</div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:6px;font-family:'Inter',sans-serif;letter-spacing:0.2px">🏛️ MAPPING (Video Mapping)</div>
             <p style="font-size:13px;color:var(--text2)">Técnica de usar proyectores para transformar objetos reales en superficies dinámicas. No se proyecta en pantalla plana, sino en <strong>volúmenes con formas</strong> (edificios, esculturas, escenarios). Requiere análisis del espacio, medición y software especializado.</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">📐 GRID (Test Pattern)</div>
+            <div style="font-weight:700;color:var(--accent3);margin-bottom:6px;font-family:'Inter',sans-serif;letter-spacing:0.2px">📐 GRID (Test Pattern)</div>
             <p style="font-size:13px;color:var(--text2)">Rejilla de líneas horizontales y verticales proyectada como <strong>guía visual de calibración</strong>. Ayuda a comprobar si la proyección está bien alineada, centrada y sin deformaciones. Punto de partida para cualquier instalación de mapping.</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">🔀 BLENDING (Edge Blending)</div>
+            <div style="font-weight:700;color:var(--accent5);margin-bottom:6px;font-family:'Inter',sans-serif;letter-spacing:0.2px">🔀 BLENDING (Edge Blending)</div>
             <p style="font-size:13px;color:var(--text2)">Técnica de <strong>fusionar la imagen de 2 o más proyectores</strong> para crear una imagen única y continua. El solapamiento se hace suave ajustando brillo y opacidad en la zona de unión para que no se note la línea de corte.</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px">
-            <div style="font-weight:700;color:var(--purple);margin-bottom:6px;font-family:'Poppins',sans-serif;letter-spacing:0.2px">〰️ WARPING</div>
+            <div style="font-weight:700;color:var(--purple);margin-bottom:6px;font-family:'Inter',sans-serif;letter-spacing:0.2px">〰️ WARPING</div>
             <p style="font-size:13px;color:var(--text2)">Deforma digitalmente la imagen proyectada para que encaje sobre una <strong>superficie irregular</strong>. Se realiza mediante una malla (grid) con puntos de control que pueden moverse y curvarse. Es el ajuste más avanzado y flexible en proyección.</p>
           </div>
         </div>
@@ -3412,7 +3485,7 @@ canvas{display:block}
     Te dan un escenario: <strong>distancia de visión</strong> y <strong>tamaño de pantalla</strong>. Elige el pixel pitch (P-) más adecuado. Regla práctica: <strong>distancia mínima ≈ pitch en mm × 1m</strong>. <strong>6 retos</strong>.
   </p>
   <div class="gv-prog" id="ppProg"></div>
-  <div class="gv-score-lbl">
+  <div class="gv-score-lbl" aria-live="polite" aria-atomic="true">
     <span id="ppScoreL">Reto 1 / 6</span>
     <span id="ppScoreR">0 aciertos</span>
   </div>
@@ -3530,7 +3603,7 @@ canvas{display:block}
           <!-- CANVAS -->
           <div class="panel" id="ss_diagramCard" style="display:none;margin-bottom:18px">
             <div class="panel-title">🏛️ Plano / Disposición</div>
-            <canvas id="ss_diagram" style="width:100%;height:auto;border:1px dashed var(--border);border-radius:8px;background:var(--bg2);display:block;margin-top:8px"></canvas>
+            <canvas id="ss_diagram" style="width:100%;height:auto;border:1px dashed var(--border);border-radius:8px;background:var(--bg2);display:block;margin-top:8px" role="img" aria-label="Diagrama del sensor de imagen"></canvas>
           </div>
 
           <!-- RESULTADOS -->
@@ -4336,6 +4409,8 @@ function ppFinish() {
       if (!document.querySelector('#rvProg .gv-pip')) rvReset();
     }
   }, 200);
+  // Sprint 3: exponer conPlace para tap-to-place
+  window._conPlace = conPlace;
 })();
 
 // ─── fin mejoras gamificación ─────────────────────────────────────────────
@@ -4983,7 +5058,7 @@ function drawARVisual(w, h) {
     const boxW = Math.round(boxH * aspect);
     const div = document.createElement('div');
     div.style.cssText = `width:${boxW}px;height:${boxH}px;border:2px solid ${r.c};border-radius:4px;display:flex;align-items:center;justify-content:center;background:${r.c}15;flex-shrink:0;flex-direction:column;gap:2px`;
-    div.innerHTML = `<span style="font-size:11px;font-weight:700;color:${r.c};font-family:'Poppins',sans-serif">${r.name}</span><span style="font-size:9px;color:rgba(255,255,255,.4)">${r.w}:${r.h}</span>`;
+    div.innerHTML = `<span style="font-size:11px;font-weight:700;color:${r.c};font-family:'Inter',sans-serif">${r.name}</span><span style="font-size:9px;color:rgba(255,255,255,.4)">${r.w}:${r.h}</span>`;
     container.appendChild(div);
   });
 }
@@ -5154,7 +5229,7 @@ function renderFstops() {
   stops.forEach((s, i) => {
     const div = document.createElement('div');
     const size = Math.max(28, 56 - i * 4);
-    div.style.cssText = `width:${size}px;height:${size}px;border-radius:50%;background:rgba(25,42,86,${0.08+(10-i)*0.07});border:1px solid rgba(25,42,86,0.15);display:flex;align-items:center;justify-content:center;font-size:${size>34?11:9}px;color:var(--navy);font-family:'Poppins',sans-serif;`;
+    div.style.cssText = `width:${size}px;height:${size}px;border-radius:50%;background:rgba(25,42,86,${0.08+(10-i)*0.07});border:1px solid rgba(25,42,86,0.15);display:flex;align-items:center;justify-content:center;font-size:${size>34?11:9}px;color:var(--navy);font-family:'Inter',sans-serif;`;
     div.textContent = `f/${s}`;
     container.appendChild(div);
   });
@@ -5220,10 +5295,10 @@ function drawGammaCurve() {
       x === 0 ? ctx.moveTo(x, H - ny*H) : ctx.lineTo(x, H - ny*H);
     }
     ctx.stroke();
-    ctx.fillStyle = c.color; ctx.font = '500 11px Poppins';
+    ctx.fillStyle = c.color; ctx.font = '500 11px Inter, sans-serif';
     ctx.fillText(c.label, 8, H - Math.pow(0.5, c.gamma)*H - 4);
   });
-  ctx.fillStyle = 'rgba(255,255,255,0.3)'; ctx.font = '500 10px Poppins';
+  ctx.fillStyle = 'rgba(255,255,255,0.3)'; ctx.font = '500 10px Inter, sans-serif';
   ctx.fillText('Input →', W - 52, H - 5);
   ctx.save(); ctx.translate(14, 80); ctx.rotate(-Math.PI/2);
   ctx.fillText('Output', 0, 0); ctx.restore();
@@ -5621,264 +5696,46 @@ calcDOF();
 calcProjection();
 calcLED();
 drawARVisual(1920, 1080);
-</script><style id="avl-nav-style">
-  #avl-nav {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999999;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(30,29,27,0.92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 40px;
-    padding: 7px 10px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);
-    font-family: 'Poppins', -apple-system, sans-serif;
-    white-space: nowrap;
-    user-select: none;
-  }
-  .avl-nav-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.75);
-    cursor: pointer;
-    text-decoration: none;
-    transition: background .18s, color .18s, transform .18s;
-    flex-shrink: 0;
-    font-size: 13px;
-    line-height: 1;
-  }
-  .avl-nav-btn:hover {
-    background: rgba(255,255,255,0.18);
-    color: #fff;
-    transform: scale(1.08);
-  }
-  .avl-nav-btn.avl-nav-home {
-    background: #A06B4A;
-    opacity: .9;
-  }
-  .avl-nav-btn.avl-nav-home:hover {
-    opacity: 1;
-    background: #A06B4A;
-  }
-  .avl-nav-divider {
-    width: 1px;
-    height: 20px;
-    background: rgba(255,255,255,0.12);
-    flex-shrink: 0;
-  }
-  .avl-nav-info {
-    padding: 0 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1px;
-    min-width: 130px;
-    text-align: center;
-  }
-  .avl-nav-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: -.1px;
-  }
-  .avl-nav-app {
-    font-size: 9px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.45);
-    letter-spacing: .5px;
-    text-transform: uppercase;
-  }
-  .avl-nav-dots {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    padding: 0 4px;
-  }
-  .avl-nav-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    transition: background .2s, transform .2s;
-    cursor: default;
-  }
-  .avl-nav-dot.avl-active {
-    background: #A06B4A;
-    transform: scale(1.3);
-  }
-  .avl-nav-btn svg {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-  }
-  @media (max-width: 480px) {
-    #avl-nav { bottom: 12px; padding: 6px 8px; gap: 4px; }
-    .avl-nav-info { min-width: 100px; }
-    .avl-nav-label { font-size: 10px; }
-    .avl-nav-dots { display: none; }
-  }
+</script>
 
-
-/* ── UNIFIED BOX SIZING — Illustrator (reference) ──────────── */
-.info-box, .warn-box, .ok-box {
-  border-radius: 4px !important;
-  padding: 14px 16px !important;
-  margin-bottom: 14px !important;
-  border-left-width: 3px !important;
-}
-.info-box h4, .warn-box h4, .ok-box h4 {
-  font-size: 13px !important;
-  letter-spacing: .8px !important;
-  margin-bottom: 8px !important;
-}
-
-/* ═══ RESPONSIVE ADDITIONS — ILLUSTRATOR ════════════════════════════ */
-@media (max-width: 1280px) {
-  .content-area .main { padding: 24px 28px 80px; }
-}
-@media (max-width: 1024px) {
-  .content-area .main { padding: 20px 20px 80px; }
-  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
-  .page-title { font-size: 26px; }
-}
-@media (max-width: 640px) {
-  .content-area .main, .main { padding: 16px 14px 80px !important; }
-  .page-title  { font-size: 20px; }
-  .page-desc   { font-size: 14px !important; }
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .info-box p, .warn-box p, .ok-box p { font-size: 14px; }
-  .ai-table    { font-size: 12px; }
-  .step-item   { gap: 10px; }
-  .top-bar     { padding: 6px 14px; }
-}
-
-
-/* ── Back button ── */
-.avl-nav-btn.avl-nav-back {
-  background: rgba(255,255,255,0.08);
-  position: relative;
-}
-.avl-nav-btn.avl-nav-back:hover {
-  background: rgba(255,255,255,0.18);
-}
-.avl-nav-btn.avl-nav-back[data-hidden="true"] {
-  opacity: .2;
-  pointer-events: none;
-  cursor: default;
-}
-</style>
-
-
-<div id="avl-nav">
-  <!-- Home -->
-  <a class="avl-nav-btn avl-nav-home" href="index.html" title="Volver al índice">
-    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 8L8 2l6 6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M4 6v7h3v-3h2v3h3V6" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-
-  <!-- Back to last suite -->
-  <button class="avl-nav-btn avl-nav-back" id="avl-back-btn"
-          onclick="avlGoBack()" title="Volver a la última suite"
-          data-hidden="true">
-    <svg viewBox="0 0 16 16" fill="none">
-      <path d="M13 5 L8 5 C6 5 4 7 4 9 L4 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M2 10 L4 12 L6 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <div class="avl-nav-divider"></div>
-
-  <!-- Prev -->
-  <a class="avl-nav-btn" href="index.html" title="Volver al índice"><svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-
-  <!-- Info -->
-  <div class="avl-nav-info">
-    <div class="avl-nav-label">Imagen &amp; Vídeo</div>
-    <div class="avl-nav-app">Fundamentos Imagen</div>
-  </div>
-
-  <!-- Dots -->
-  <div class="avl-nav-dots">
-    <div class="avl-nav-dot avl-active"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-  </div>
-
-  <!-- Next -->
-  <a class="avl-nav-btn" href="resolume.html" title="VJing & Projection Mapping"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-
-</div>
 
 
 
 <script>
-(function(){
-  var PAGES = {
-    'video.html':        'Imagen & Vídeo',
-    'illustrator.html':  'Illustrator',
-    'resolume.html':     'Resolume',
-    'after-effects.html':'After Effects',
-    'iluminacion.html':  'Iluminación',
-    'magicq.html':       'MagicQ',
-    'index.html':        'Inicio'
-  };
-
-  // Register this page as visited
-  var current = location.pathname.split('/').pop() || 'index.html';
-  var history  = JSON.parse(sessionStorage.getItem('avv-history') || '[]');
-  if (history[history.length - 1] !== current) {
-    history.push(current);
-    if (history.length > 20) history.shift();
-    sessionStorage.setItem('avv-history', JSON.stringify(history));
-  }
-
-  // Set up back button
-  function updateBackBtn() {
-    var btn = document.getElementById('avl-back-btn');
-    if (!btn) return;
-    // Find last different page in history
-    var prev = null;
-    for (var i = history.length - 2; i >= 0; i--) {
-      if (history[i] !== current) { prev = history[i]; break; }
-    }
-    if (prev) {
-      btn.setAttribute('data-hidden', 'false');
-      btn.title = 'Volver a ' + (PAGES[prev] || prev);
-      btn.setAttribute('data-href', prev);
-    } else {
-      btn.setAttribute('data-hidden', 'true');
-      btn.title = '';
-    }
-  }
-
-  window.avlGoBack = function() {
-    var btn = document.getElementById('avl-back-btn');
-    if (!btn || btn.getAttribute('data-hidden') === 'true') return;
-    var href = btn.getAttribute('data-href');
-    if (href) window.location.href = href;
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', updateBackBtn);
-  } else {
-    updateBackBtn();
-  }
-})();
+window.AVL_NAV_CONFIG = {
+  label:  'Imagen &amp; Vídeo',
+  sub:    'Fundamentos Imagen',
+  prev:   {href:'index.html',title:'Volver al índice'},
+  next:   {href:'resolume.html',title:'VJing & Projection Mapping'},
+  dot:    0,
+  dots:   6,
+  accent: '#A06B4A'
+};
 </script>
+<script src="avl-nav.js"></script>
+
+/* Sprint 3 · Tap-to-place: juego de conectores */
+(function () {
+  var _tid = null;
+  document.addEventListener('click', function (ev) {
+    var conn = ev.target.closest('#conPool .con-conn');
+    var tgt  = ev.target.closest('#conTargets .con-target');
+    if (conn && !conn.classList.contains('correct')) {
+      document.querySelectorAll('.con-conn.tap-selected')
+              .forEach(function(e){e.classList.remove('tap-selected');});
+      if (_tid === conn.dataset.id) { _tid = null; return; }
+      _tid = conn.dataset.id;
+      conn.classList.add('tap-selected');
+    } else if (tgt && _tid && window._conPlace) {
+      window._conPlace(_tid, tgt);
+      document.querySelectorAll('.con-conn.tap-selected')
+              .forEach(function(e){e.classList.remove('tap-selected');});
+      _tid = null;
+    } else if (!conn && !tgt && _tid) {
+      document.querySelectorAll('.con-conn.tap-selected')
+              .forEach(function(e){e.classList.remove('tap-selected');});
+      _tid = null;
+    }
+  }, true);
+})();
 </body></html>

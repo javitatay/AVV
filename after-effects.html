@@ -23,7 +23,7 @@
     --bg-button-lit:  #D0D4EC;
     --text-primary:   #111630;
     --text-secondary: #3A4070;
-    --text-dim:       #7880B0;
+    --text-dim:       #4A52A0;
     --border-dark:    #D8DBF0;
     --border-mid:     #C4C9E8;
     --border-accent:  rgba(53,72,200,0.28);
@@ -47,7 +47,7 @@
     --yellow:    #785000;
     --text:      #111630;
     --text2:     #3A4070;
-    --text3:     #7880B0;
+    --text3:     #4A52A0;
     --sw:        264px;
 }
 
@@ -140,7 +140,7 @@ font-family: var(--font-body);
 .nav-item {
     display: flex; align-items: center; gap: 9px;
     padding: 8px 10px; border-radius: 7px;
-    cursor: pointer; transition: all .14s;
+    cursor: pointer; transition: background-color .14s, border-color .14s, color .14s, box-shadow .14s, transform .14s, opacity .14s;
     font-size: 13px; font-weight: 500; color: var(--text-secondary);
     margin-bottom: 1px; user-select: none; position: relative;
 }
@@ -338,7 +338,7 @@ table.ae .hl { color: var(--text-primary); font-weight: 600; }
     background: var(--bg-surface); border: 1px solid var(--border-dark);
     border-radius: 10px; padding: 20px;
     display: flex; flex-direction: column; gap: 10px;
-    transition: all .16s; box-shadow: var(--shadow-base);
+    transition: background-color .16s, border-color .16s, color .16s, box-shadow .16s, transform .16s, opacity .16s; box-shadow: var(--shadow-base);
 }
 .tool-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
 .tool-head { display: flex; align-items: center; gap: 12px; }
@@ -356,7 +356,7 @@ table.ae .hl { color: var(--text-primary); font-weight: 600; }
 .pill {
     background: var(--bg-surface); border: 1px solid var(--border-dark);
     border-radius: 10px; padding: 16px 10px; text-align: center;
-    transition: all .16s; box-shadow: var(--shadow-base);
+    transition: background-color .16s, border-color .16s, color .16s, box-shadow .16s, transform .16s, opacity .16s; box-shadow: var(--shadow-base);
 }
 .pill:hover { border-color: var(--border-accent); background: rgba(53,72,200,.04); }
 .pill-key {
@@ -386,7 +386,7 @@ table.ae .hl { color: var(--text-primary); font-weight: 600; }
     background: var(--bg-surface); border: 1px solid var(--border-dark);
     border-radius: 10px; padding: 16px;
     display: flex; flex-direction: column; gap: 6px;
-    transition: all .16s; box-shadow: var(--shadow-base);
+    transition: background-color .16s, border-color .16s, color .16s, box-shadow .16s, transform .16s, opacity .16s; box-shadow: var(--shadow-base);
 }
 .fx-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
 .fx-name { font-size: 13px; font-weight: 700; color: var(--text-primary); }
@@ -540,7 +540,7 @@ table.ae .hl { color: var(--text-primary); font-weight: 600; }
 .quick-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
 .quick-card {
     background: var(--bg-surface); border: 1px solid var(--border-dark);
-    border-radius: 10px; padding: 18px; cursor: pointer; transition: all .16s;
+    border-radius: 10px; padding: 18px; cursor: pointer; transition: background-color .16s, border-color .16s, color .16s, box-shadow .16s, transform .16s, opacity .16s;
     display: flex; flex-direction: column; gap: 6px; box-shadow: var(--shadow-base);
 }
 .quick-card:hover { border-color: var(--border-accent); transform: translateY(-3px); background: var(--bg-panel); }
@@ -589,7 +589,7 @@ table.ae .hl { color: var(--text-primary); font-weight: 600; }
 /* ─── CURVE VISUALIZER ────────────────────────────────────── */
 .curve-viz { background: var(--bg-surface); border: 1px solid var(--border-dark); border-radius: 12px; padding: 22px; margin-bottom: 14px; box-shadow: var(--shadow-base); }
 .curve-presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-.curve-btn { background: var(--bg-button); border: 1px solid var(--border-mid); color: var(--text-secondary); font-family: var(--font-mono); font-size: 11px; font-weight: 700; padding: 7px 13px; border-radius: 7px; cursor: pointer; transition: all .14s; letter-spacing: .2px; user-select: none; }
+.curve-btn { background: var(--bg-button); border: 1px solid var(--border-mid); color: var(--text-secondary); font-family: var(--font-mono); font-size: 11px; font-weight: 700; padding: 7px 13px; border-radius: 7px; cursor: pointer; transition: background-color .14s, border-color .14s, color .14s, box-shadow .14s, transform .14s, opacity .14s; letter-spacing: .2px; user-select: none; }
 .curve-btn:hover { border-color: var(--border-accent); color: var(--text-primary); }
 .curve-btn.active { background: rgba(53,72,200,.12); border-color: rgba(53,72,200,.4); color: var(--ae-blue-dim); }
 .curve-workspace { display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
@@ -613,7 +613,7 @@ table.ae .hl { color: var(--text-primary); font-weight: 600; }
 .curve-track-dot  { width: 5px; height: 5px; border-radius: 50%; background: rgba(53,72,200,.18); }
 .curve-ball { position: absolute; top: 50%; left: 12px; width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--ae-blue), var(--purple)); transform: translate(-50%,-50%); box-shadow: 0 0 12px rgba(53,72,200,.35); pointer-events: none; will-change: left; }
 .curve-prev-row { display: flex; align-items: center; gap: 10px; }
-.curve-play-btn { background: rgba(53,72,200,.10); border: 1px solid var(--border-accent); color: var(--ae-blue-dim); font-family: var(--font-mono); font-size: 11px; font-weight: 700; padding: 7px 14px; border-radius: 7px; cursor: pointer; transition: all .14s; white-space: nowrap; }
+.curve-play-btn { background: rgba(53,72,200,.10); border: 1px solid var(--border-accent); color: var(--ae-blue-dim); font-family: var(--font-mono); font-size: 11px; font-weight: 700; padding: 7px 14px; border-radius: 7px; cursor: pointer; transition: background-color .14s, border-color .14s, color .14s, box-shadow .14s, transform .14s, opacity .14s; white-space: nowrap; }
 .curve-play-btn:hover { background: rgba(53,72,200,.18); }
 .curve-play-btn.on { color: var(--orange); border-color: rgba(184,72,0,.35); background: rgba(184,72,0,.07); }
 .curve-prog-wrap { flex: 1; }
@@ -633,7 +633,7 @@ table.ae .hl { color: var(--text-primary); font-weight: 600; }
 .idx-group-line { flex: 1; height: 1px; background: var(--border-dark); }
 .idx-grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
 .idx-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
-.idx-card { background: var(--bg-surface); border: 1px solid var(--border-dark); border-radius: 10px; padding: 16px 16px 14px; cursor: pointer; transition: all .16s ease; display: flex; flex-direction: column; gap: 7px; position: relative; overflow: hidden; box-shadow: var(--shadow-base); }
+.idx-card { background: var(--bg-surface); border: 1px solid var(--border-dark); border-radius: 10px; padding: 16px 16px 14px; cursor: pointer; transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease, transform .16s ease, opacity .16s ease; display: flex; flex-direction: column; gap: 7px; position: relative; overflow: hidden; box-shadow: var(--shadow-base); }
 .idx-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--ae-blue); opacity: 0; transition: opacity .16s; }
 .idx-card:hover { transform: translateY(-3px); background: var(--bg-panel); border-color: var(--border-accent) !important; }
 .idx-card:hover::before { opacity: 1; }
@@ -643,11 +643,11 @@ table.ae .hl { color: var(--text-primary); font-weight: 600; }
 .idx-desc   { font-size: 11px; color: var(--text-dim); line-height: 1.65; flex: 1; }
 .idx-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 2px; }
 .idx-cat    { font-size: 11px; font-weight: 700; letter-spacing: .8px; font-family: var(--font-mono); text-transform: uppercase; padding: 2px 7px; border-radius: 4px; background: rgba(53,72,200,.10); color: var(--ae-blue-dim); }
-.idx-arrow  { font-size: 11px; color: var(--text-dim); opacity: 0; transition: all .16s; flex-shrink: 0; }
+.idx-arrow  { font-size: 11px; color: var(--text-dim); opacity: 0; transition: background-color .16s, border-color .16s, color .16s, box-shadow .16s, transform .16s, opacity .16s; flex-shrink: 0; }
 .idx-new    { position: absolute; top: 10px; right: 10px; font-size: 10px; font-weight: 700; letter-spacing: .6px; font-family: var(--font-mono); background: rgba(26,120,64,.12); color: var(--green); padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
 
 /* ─── TIMECODE CALC (tool injected in s-timeline) ─────────── */
-.tc-fps-btn { background: var(--bg-button); border: 1px solid var(--border-mid); border-radius: 6px; color: var(--text-secondary); font-family: var(--font-mono); font-size: 11px; padding: 5px 10px; cursor: pointer; transition: all .14s; }
+.tc-fps-btn { background: var(--bg-button); border: 1px solid var(--border-mid); border-radius: 6px; color: var(--text-secondary); font-family: var(--font-mono); font-size: 11px; padding: 5px 10px; cursor: pointer; transition: background-color .14s, border-color .14s, color .14s, box-shadow .14s, transform .14s, opacity .14s; }
 .tc-fps-btn:hover { border-color: var(--border-accent); color: var(--ae-blue-dim); }
 .tc-fps-active { background: rgba(53,72,200,.12) !important; border-color: rgba(53,72,200,.4) !important; color: var(--ae-blue-dim) !important; }
 
@@ -733,7 +733,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .gae-feedback { font-size:13px; font-weight:500; padding:11px 14px; border-radius:6px; margin-top:12px; display:none; line-height:1.55; }
 .gae-feedback.ok  { display:block; background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
 .gae-feedback.err { display:block; background:#fff1f1; color:#991b1b; border:1px solid #fecaca; }
-.gae-btn { padding:9px 18px; border-radius:6px; border:none; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; transition:all .15s; }
+.gae-btn { padding:9px 18px; border-radius:6px; border:none; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; }
 .gae-btn-primary { background:var(--ae-blue); color:#fff; }
 .gae-btn-primary:hover { background:var(--ae-blue-dim); }
 .gae-btn-ghost { background:var(--bg-button); color:var(--text-primary); border:1px solid var(--border-mid); }
@@ -765,7 +765,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .aebm-opt {
   padding:13px 12px; background:var(--bg-surface); border:1.5px solid var(--border-dark); border-radius:7px;
   cursor:pointer; font-family:inherit; color:var(--text-primary);
-  text-align:left; transition:all .15s; display:flex; flex-direction:column; gap:4px;
+  text-align:left; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; display:flex; flex-direction:column; gap:4px;
 }
 .aebm-opt:hover:not(.locked) { border-color:var(--ae-blue); background:rgba(53,72,200,0.05); transform:translateY(-1px); }
 .aebm-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
@@ -817,7 +817,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .txa-opt {
   padding:12px 10px; background:var(--bg-surface); border:1.5px solid var(--border-dark); border-radius:6px;
   cursor:pointer; font-family:inherit; color:var(--text-primary); font-size:13px; font-weight:700;
-  text-align:center; transition:all .15s;
+  text-align:center; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s;
 }
 .txa-opt:hover:not(.locked) { border-color:var(--ae-blue); background:rgba(53,72,200,0.05); transform:translateY(-1px); }
 .txa-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
@@ -826,6 +826,79 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 
 /* fin */
 
+
+/* ═══ SPRINT 1 · A: focus-visible global ══════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid #0057B8;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+/* Excepciones: elementos con outline propio en :focus */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none; /* mantienen su border-color personalizado */
+}
+
+/* ═══ SPRINT 1 · B: hover transforms solo en dispositivos con puntero fino ═ */
+@media (hover: none), (pointer: coarse) {
+  /* Elimina saltos visuales en pantallas táctiles */
+  .module-card:hover,
+  .feature-card:hover,
+  [class*="card"]:hover,
+  .back-btn:hover,
+  .inner-tab:hover,
+  .nav-tab:hover,
+  .btn:hover,
+  .rq-opt:hover,
+  .scan-opt:hover,
+  .rv-opt:hover,
+  .pp-opt:hover,
+  .con-conn:hover,
+  .gv-btn:hover,
+  .rq-btn:hover,
+  .avl-nav-btn:hover {
+    transform: none !important;
+  }
+}
+
+/* ═══ SPRINT 1 · C: prefers-reduced-motion global ════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:      0.01ms !important;
+    scroll-behavior:          auto   !important;
+  }
+}
+
+/* ═══ SPRINT 3 · A: tap-to-place — selección por toque/clic ═════════════ */
+.tap-selected {
+  outline: 2px solid #0057B8 !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0,87,184,.15) !important;
+}
+/* ═══ SPRINT 3 · B: botón sin límite de tiempo ═══════════════════════════ */
+.avl-timer-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 6px;
+  color: rgba(255,255,255,.75);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 2px 7px;
+  flex-shrink: 0;
+  line-height: 1.4;
+  transition: background-color 150ms ease-out, opacity 150ms ease-out;
+}
+.avl-timer-btn:hover  { background: rgba(255,255,255,.12); color: #fff; }
+.avl-timer-btn.active { background: rgba(255,255,255,.18); color: #fff; }
+.atajos-time-wrapper,
+.avl-sc-time-wrapper  { display:flex; align-items:center; gap:8px; margin-bottom:16px; }
+.atajos-time-wrapper .atajos-time-bar,
+.avl-sc-time-wrapper  .sc-time { flex:1; margin-bottom:0; }
 </style>
 </head>
 <body>
@@ -1527,16 +1600,16 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     A la izquierda ves la capa <strong>objetivo</strong>. Ajusta las propiedades de tu capa para igualarla. Necesitas <strong>≥90% de similitud</strong> en posición, escala, rotación y opacidad. <strong>5 retos</strong>.
   </p>
   <div class="gae-prog" id="mpProg"></div>
-  <div class="gae-score-lbl"><span id="mpScoreL">Reto 1 / 5</span><span id="mpScoreR">0 aciertos</span></div>
+  <div class="gae-score-lbl" aria-live="polite" aria-atomic="true"><span id="mpScoreL">Reto 1 / 5</span><span id="mpScoreR">0 aciertos</span></div>
 
   <div class="mp-stage">
     <div class="mp-canvas-wrap">
       <div class="mp-canvas-wrap-lbl">🎯 Objetivo</div>
-      <canvas class="mp-canvas" id="mpCanvasT" width="280" height="280"></canvas>
+      <canvas class="mp-canvas" id="mpCanvasT" width="280" height="280" role="img" aria-label="Simulador Track Matte: capa de máscara"></canvas>
     </div>
     <div class="mp-canvas-wrap">
       <div class="mp-canvas-wrap-lbl">Tu capa</div>
-      <canvas class="mp-canvas" id="mpCanvasU" width="280" height="280"></canvas>
+      <canvas class="mp-canvas" id="mpCanvasU" width="280" height="280" role="img" aria-label="Simulador Track Matte: capa de uso"></canvas>
     </div>
   </div>
 
@@ -1677,7 +1750,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
       <!-- Left: Canvas -->
       <div class="curve-graph-wrap">
         <div class="curve-graph-lbl">Graph Editor · Value Graph</div>
-        <canvas id="curveCanvas" width="300" height="260"></canvas>
+        <canvas id="curveCanvas" width="300" height="260" role="img" aria-label="Editor de curvas de color — After Effects"></canvas>
         <div class="curve-axis-x">← Tiempo →</div>
         <div class="curve-drag-hint" id="curveDragHint"></div>
       </div>
@@ -1999,7 +2072,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     Tienes un brazo de 3 segmentos. Cada segmento es <strong>hijo del anterior</strong> (Junta 2 → Brazo 1, Brazo 3 → Junta 2). Al rotar la base, todo se mueve. Al rotar Junta 2, solo lo que viene después. Tu objetivo: <strong>colocar la mano en el target</strong>. <strong>4 retos</strong>.
   </p>
   <div class="gae-prog" id="armProg"></div>
-  <div class="gae-score-lbl"><span id="armScoreL">Reto 1 / 4</span><span id="armScoreR">0 aciertos</span></div>
+  <div class="gae-score-lbl" aria-live="polite" aria-atomic="true"><span id="armScoreL">Reto 1 / 4</span><span id="armScoreR">0 aciertos</span></div>
 
   <div class="arm-target-info" id="armInfo">
     Coloca la <strong>mano</strong> (extremo verde) sobre el <strong>target</strong> (círculo amarillo). Tolerancia: ±15px.
@@ -2007,7 +2080,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 
   <div class="arm-stage">
     <div class="arm-canvas-wrap">
-      <canvas class="arm-canvas" id="armCanvas" width="340" height="340"></canvas>
+      <canvas class="arm-canvas" id="armCanvas" width="340" height="340" role="img" aria-label="Mini-juego: posicionamiento de capas en After Effects"></canvas>
     </div>
     <div class="arm-controls">
       <div class="arm-row">
@@ -2082,7 +2155,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     Lee la escena descrita y <strong>arrastra las capas</strong> para que el orden Z (capa 1 = arriba, último = fondo) sea correcto. <strong>4 escenas</strong> con dificultad creciente.
   </p>
   <div class="gae-prog" id="tloProg"></div>
-  <div class="gae-score-lbl"><span id="tloScoreL">Escena 1 / 4</span><span id="tloScoreR">0 aciertos</span></div>
+  <div class="gae-score-lbl" aria-live="polite" aria-atomic="true"><span id="tloScoreL">Escena 1 / 4</span><span id="tloScoreR">0 aciertos</span></div>
 
   <div class="tlo-stage">
     <div class="tlo-target">
@@ -2201,21 +2274,21 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     Capa <strong>A</strong> (fondo) y capa <strong>B</strong> (encima). Observa el <strong>resultado</strong> y elige el modo de fusión que se aplicó. <strong>6 retos</strong>.
   </p>
   <div class="gae-prog" id="aebmProg"></div>
-  <div class="gae-score-lbl"><span id="aebmScoreL">Reto 1 / 6</span><span id="aebmScoreR">0 aciertos</span></div>
+  <div class="gae-score-lbl" aria-live="polite" aria-atomic="true"><span id="aebmScoreL">Reto 1 / 6</span><span id="aebmScoreR">0 aciertos</span></div>
 
   <div class="aebm-stage">
     <div class="aebm-prev">
       <div class="aebm-prev-lbl">Capa A · fondo</div>
-      <canvas class="aebm-canvas" id="aebmA" width="320" height="180"></canvas>
+      <canvas class="aebm-canvas" id="aebmA" width="320" height="180" role="img" aria-label="Simulador modos de fusión AE: capa A"></canvas>
     </div>
     <div class="aebm-prev">
       <div class="aebm-prev-lbl">Capa B · superior</div>
-      <canvas class="aebm-canvas" id="aebmB" width="320" height="180"></canvas>
+      <canvas class="aebm-canvas" id="aebmB" width="320" height="180" role="img" aria-label="Simulador modos de fusión AE: capa B"></canvas>
     </div>
   </div>
   <div class="aebm-prev" style="margin-bottom:14px;">
     <div class="aebm-prev-lbl">Resultado — ¿qué modo se aplicó?</div>
-    <canvas class="aebm-canvas" id="aebmR" width="640" height="180" style="aspect-ratio:32/9;"></canvas>
+    <canvas class="aebm-canvas" id="aebmR" width="640" height="180" style="aspect-ratio:32/9;" role="img" aria-label="Simulador modos de fusión AE: resultado"></canvas>
   </div>
 
   <div class="aebm-options" id="aebmOpts"></div>
@@ -2479,11 +2552,11 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     Mira la animación del texto. ¿Qué <strong>animator</strong> de After Effects produciría ese efecto? <strong>5 retos</strong> con animadores reales.
   </p>
   <div class="gae-prog" id="txaProg"></div>
-  <div class="gae-score-lbl"><span id="txaScoreL">Reto 1 / 5</span><span id="txaScoreR">0 aciertos</span></div>
+  <div class="gae-score-lbl" aria-live="polite" aria-atomic="true"><span id="txaScoreL">Reto 1 / 5</span><span id="txaScoreR">0 aciertos</span></div>
 
   <div class="txa-stage">
     <div class="txa-canvas-wrap">
-      <canvas class="txa-canvas" id="txaCanvas" width="720" height="270"></canvas>
+      <canvas class="txa-canvas" id="txaCanvas" width="720" height="270" role="img" aria-label="Simulador de efectos de textura y efectos visuales"></canvas>
     </div>
   </div>
 
@@ -4552,433 +4625,43 @@ function cvLoop(ts){
 }
 </script>
 
-<style id="avl-nav-style">
-  #avl-nav {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999999;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(30,29,27,0.92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 40px;
-    padding: 7px 10px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);
-    font-family: 'Poppins', -apple-system, sans-serif;
-    white-space: nowrap;
-    user-select: none;
-  }
-  .avl-nav-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.75);
-    cursor: pointer;
-    text-decoration: none;
-    transition: background .18s, color .18s, transform .18s;
-    flex-shrink: 0;
-    font-size: 13px;
-    line-height: 1;
-  }
-  .avl-nav-btn:hover {
-    background: rgba(255,255,255,0.18);
-    color: #fff;
-    transform: scale(1.08);
-  }
-  .avl-nav-btn.avl-nav-home {
-    background: #3548C8;
-    opacity: .9;
-  }
-  .avl-nav-btn.avl-nav-home:hover {
-    opacity: 1;
-    background: #3548C8;
-  }
-  .avl-nav-divider {
-    width: 1px;
-    height: 20px;
-    background: rgba(255,255,255,0.12);
-    flex-shrink: 0;
-  }
-  .avl-nav-info {
-    padding: 0 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1px;
-    min-width: 130px;
-    text-align: center;
-  }
-  .avl-nav-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: -.1px;
-  }
-  .avl-nav-app {
-    font-size: 9px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.45);
-    letter-spacing: .5px;
-    text-transform: uppercase;
-  }
-  .avl-nav-dots {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    padding: 0 4px;
-  }
-  .avl-nav-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    transition: background .2s, transform .2s;
-  }
-  .avl-nav-dot.avl-active {
-    background: #3548C8;
-    transform: scale(1.3);
-  }
-  .avl-nav-btn svg {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-  }
-  @media (max-width: 480px) {
-    #avl-nav { bottom: 12px; padding: 6px 8px; gap: 4px; }
-    .avl-nav-info { min-width: 100px; }
-    .avl-nav-label { font-size: 10px; }
-    .avl-nav-dots { display: none; }
-  }
 
-
-/* ── UNIFIED PAGE HEADER — After Effects ───────────────────── */
-.sec-title {
-  font-size: 30px !important;
-  font-weight: 800 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
-  line-height: 1.05 !important;
-  color: var(--text-primary) !important;
-  position: relative !important;
-  padding-bottom: 18px !important;
-  margin-bottom: 20px !important;
-}
-.sec-title::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: 0 !important; left: 0 !important;
-  width: 56px !important; height: 2px !important;
-  background: var(--ae-blue) !important;
-  border-radius: 1px !important;
-}
-.sec-title span { color: var(--ae-blue) !important; }
-.sec-tag {
-  font-family: var(--font-mono) !important;
-  font-size: 11px !important;
-  color: var(--ae-blue) !important;
-  letter-spacing: 2px !important;
-  text-transform: uppercase !important;
-  margin-bottom: 8px !important;
-  display: block !important;
-}
-
-/* ── UNIFIED BOXES — After Effects ─────────────────────────── */
-.callout {
-  border-radius: 4px !important;
-  padding: 14px 16px !important;
-  margin-bottom: 14px !important;
-  border-width: 1px !important;
-  border-style: solid !important;
-  border-left-width: 3px !important;
-}
-.callout h4, .callout strong:first-child {
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: .8px !important;
-  margin-bottom: 6px !important;
-  display: block !important;
-}
-.callout p, .callout li { font-size: 15px !important; line-height: 1.7 !important; }
-
-/* ═══ RESPONSIVE ADDITIONS — AFTER EFFECTS ══════════════════════════ */
-/* Medium: 1024–1280px */
-@media (max-width: 1280px) {
-  .main   { padding: 24px 28px 80px; }
-  .g2, .g3, .g4 { gap: 14px; }
-}
-/* Tablet: 768–1024px */
-@media (max-width: 1024px) {
-  .main   { padding: 20px 22px 80px; }
-  .g3, .g4 { grid-template-columns: 1fr 1fr; }
-  .sec-title  { font-size: 26px; }
-  .hero-title { font-size: 30px; }
-  .quick-grid { grid-template-columns: repeat(3, 1fr); }
-}
-/* Mobile handled by existing 860px query + these additions */
-@media (max-width: 640px) {
-  .main   { padding: 16px 14px 80px; }
-  .sec-title  { font-size: 20px; }
-  .hero-title { font-size: 22px; }
-  p.body  { font-size: 15px; }
-  .g2, .g3, .g4 { grid-template-columns: 1fr; gap: 10px; }
-  .quick-grid   { grid-template-columns: 1fr 1fr; }
-  .callout { padding: 10px 12px; font-size: 13px; }
-  .dif     { font-size: 11px; }
-  .kf-row  { flex-direction: column; gap: 6px; }
-}
-
-
-/* ═══ ILLUSTRATOR-STYLE VISUAL OVERRIDE — AFTER EFFECTS ══════════════ */
-:root {
-  --il-accent:     #3548C8;
-  --il-accent-dim: #2538A0;
-  --il-accent-glow:#5568E0;
-  --il-amber:      #3548C8;
-  --il-bg-void:    #F8F9FC;
-  --il-bg-deep:    #ECEEF8;
-  --il-bg-raised:  #F3F4FB;
-  --il-border:     #D8DBF0;
-  --il-border-mid: #C4C9E8;
-  --il-text-pri:   #111630;
-  --il-text-sec:   #3A4070;
-  --il-text-dim:   #7880B0;
-}
-
-/* — Sidebar — */
-.sidebar {
-  background: var(--il-bg-deep) !important;
-  border-right: 1px solid var(--il-border) !important;
-}
-/* Logo box */
-.logo {
-  border-bottom: 1px solid var(--il-border) !important;
-  padding: 22px 18px 16px !important;
-  text-align: center !important;
-}
-.logo-icon { background: var(--il-accent) !important; }
-.logo-title {
-  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif !important;
-  font-size: 16px !important; font-weight: 800 !important;
-  color: var(--il-accent) !important;
-  letter-spacing: 1.5px !important; text-transform: uppercase !important;
-  text-align: center !important;
-}
-.logo-sub {
-  font-size: 11px !important; color: var(--il-text-dim) !important;
-  letter-spacing: 2px !important; text-align: center !important;
-}
-.logo-badge {
-  background: rgba(53,72,200,.10) !important;
-  border: 1px solid rgba(53,72,200,.18) !important;
-  color: var(--il-accent) !important;
-}
-
-/* — Nav — */
-.nav-label {
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: 11px !important; letter-spacing: 2px !important;
-  border-bottom: 1px solid var(--il-border) !important;
-  color: var(--il-text-dim) !important;
-  padding-bottom: 5px !important;
-}
-.nav-item {
-  color: var(--il-text-sec) !important;
-  border-radius: 4px !important;
-  border: 1px solid transparent !important;
-}
-.nav-item:hover {
-  background: var(--il-bg-raised) !important;
-  border-color: var(--il-border-mid) !important;
-  color: var(--il-text-pri) !important;
-}
-.nav-item.active {
-  background: rgba(53,72,200,.10) !important;
-  color: var(--il-accent) !important;
-  border-color: rgba(53,72,200,.20) !important;
-  font-weight: 600 !important;
-}
-.nav-item.active::before { background: var(--il-accent) !important; }
-
-/* — Content — */
-.content-area { background: var(--il-bg-void) !important; }
-.main { background: var(--il-bg-void); }
-
-/* — Section titles (≈ page-title in Illustrator) — */
-.sec-title {
-  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif !important;
-  font-weight: 800 !important; text-transform: uppercase !important;
-  letter-spacing: 0.5px !important; color: var(--il-text-pri) !important;
-  position: relative !important; padding-bottom: 16px !important;
-  margin-bottom: 24px !important;
-}
-.sec-title::after {
-  content: '' !important; position: absolute !important;
-  bottom: 0 !important; left: 0 !important;
-  width: 56px !important; height: 2px !important;
-  background: var(--il-accent) !important;
-}
-.sec-title span { color: var(--il-accent) !important; }
-.sec-tag {
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: 11px !important; color: var(--il-accent) !important;
-  letter-spacing: 2px !important; text-transform: uppercase !important;
-  margin-bottom: 8px !important;
-}
-
-/* — Panels (using .panel class which AE doesn't have — add via callout) — */
-.callout {
-  border-radius: 4px !important;
-  border-width: 1px !important; border-style: solid !important;
-}
-.callout.info    { background: rgba(53,72,200,.07) !important; border-color: rgba(53,72,200,.18) !important; border-left: 3px solid var(--il-accent) !important; color: var(--il-accent-dim) !important; }
-.callout.tip     { border-left-width: 3px !important; }
-.callout.warn    { border-left-width: 3px !important; }
-.callout.success { border-left-width: 3px !important; }
-
-/* — Hero — */
-.hero-title { color: var(--il-text-pri) !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; }
-.hero-title span, .hero-title .hl { color: var(--il-accent) !important; }
-
-/* — Tags — */
-.tag.info, .tag.ra { background: rgba(53,72,200,.10) !important; color: var(--il-accent) !important; border-color: rgba(53,72,200,.20) !important; }
-
-/* — Panels that exist — */
-[class*="panel"] {
-  background: #FFFFFF;
-  border: 1px solid var(--il-border);
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(53,72,200,.05);
-}
-
-
-/* ── Back button ── */
-.avl-nav-btn.avl-nav-back {
-  background: rgba(255,255,255,0.08);
-  position: relative;
-}
-.avl-nav-btn.avl-nav-back:hover {
-  background: rgba(255,255,255,0.18);
-}
-.avl-nav-btn.avl-nav-back[data-hidden="true"] {
-  opacity: .2;
-  pointer-events: none;
-  cursor: default;
-}
-</style>
-
-<div id="avl-nav">
-  <!-- Home -->
-  <a class="avl-nav-btn avl-nav-home" href="index.html" title="Volver al índice">
-    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 8L8 2l6 6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M4 6v7h3v-3h2v3h3V6" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-
-  <!-- Back to last suite -->
-  <button class="avl-nav-btn avl-nav-back" id="avl-back-btn"
-          onclick="avlGoBack()" title="Volver a la última suite"
-          data-hidden="true">
-    <svg viewBox="0 0 16 16" fill="none">
-      <path d="M13 5 L8 5 C6 5 4 7 4 9 L4 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M2 10 L4 12 L6 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <div class="avl-nav-divider"></div>
-
-  <!-- Prev: Resolume -->
-  <a class="avl-nav-btn" href="resolume.html" title="VJing & Projection Mapping">
-    <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
-
-  <!-- Info -->
-  <div class="avl-nav-info">
-    <div class="avl-nav-label">Motion Graphics & FX</div>
-    <div class="avl-nav-app">Adobe After Effects</div>
-  </div>
-
-  <!-- Dots (6 suites, AE = 4th) -->
-  <div class="avl-nav-dots">
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot avl-active"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-  </div>
-
-  <!-- Next: Iluminación -->
-  <a class="avl-nav-btn" href="iluminacion.html" title="Iluminación de Espectáculos">
-    <svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
-</div>
 
 
 
 <script>
-(function(){
-  var PAGES = {
-    'video.html':        'Imagen & Vídeo',
-    'illustrator.html':  'Illustrator',
-    'resolume.html':     'Resolume',
-    'after-effects.html':'After Effects',
-    'iluminacion.html':  'Iluminación',
-    'magicq.html':       'MagicQ',
-    'index.html':        'Inicio'
-  };
-
-  // Register this page as visited
-  var current = location.pathname.split('/').pop() || 'index.html';
-  var history  = JSON.parse(sessionStorage.getItem('avv-history') || '[]');
-  if (history[history.length - 1] !== current) {
-    history.push(current);
-    if (history.length > 20) history.shift();
-    sessionStorage.setItem('avv-history', JSON.stringify(history));
-  }
-
-  // Set up back button
-  function updateBackBtn() {
-    var btn = document.getElementById('avl-back-btn');
-    if (!btn) return;
-    // Find last different page in history
-    var prev = null;
-    for (var i = history.length - 2; i >= 0; i--) {
-      if (history[i] !== current) { prev = history[i]; break; }
-    }
-    if (prev) {
-      btn.setAttribute('data-hidden', 'false');
-      btn.title = 'Volver a ' + (PAGES[prev] || prev);
-      btn.setAttribute('data-href', prev);
-    } else {
-      btn.setAttribute('data-hidden', 'true');
-      btn.title = '';
-    }
-  }
-
-  window.avlGoBack = function() {
-    var btn = document.getElementById('avl-back-btn');
-    if (!btn || btn.getAttribute('data-hidden') === 'true') return;
-    var href = btn.getAttribute('data-href');
-    if (href) window.location.href = href;
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', updateBackBtn);
-  } else {
-    updateBackBtn();
-  }
-})();
+window.AVL_NAV_CONFIG = {
+  label:  'Motion Graphics & FX',
+  sub:    'Adobe After Effects',
+  prev:   {href:'resolume.html',title:'VJing & Projection Mapping'},
+  next:   {href:'iluminacion.html',title:'Iluminación de Espectáculos'},
+  dot:    3,
+  dots:   6,
+  accent: '#3548C8'
+};
 </script>
+<script src="avl-nav.js"></script>
+
+/* Sprint 3 · Tap-to-place: reordenar capas TLO */
+(function () {
+  var _sel = null;
+  document.addEventListener('click', function (ev) {
+    var layer = ev.target.closest('#tloList .tlo-layer');
+    if (!layer) {
+      if (_sel) { _sel.classList.remove('tap-selected'); _sel = null; }
+      return;
+    }
+    if (!_sel) {
+      _sel = layer;
+      layer.classList.add('tap-selected');
+    } else if (_sel === layer) {
+      _sel.classList.remove('tap-selected');
+      _sel = null;
+    } else {
+      var list = document.getElementById('tloList');
+      if (list) { _sel.classList.remove('tap-selected'); list.insertBefore(_sel, layer); _sel = null; }
+    }
+  }, true);
+})();
 </body>
 </html>

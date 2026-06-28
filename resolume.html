@@ -26,7 +26,7 @@ independiente, no afiliada a Resolume BV.
   --red: #A0182C;
   --bg0: #FFFFFF; --bg1: #FFFFFF; --bg2: #EEF0F2;
   --bg3: #F4F5F7; --bg4: #F0F6F4; --bg5: #E5E7EB;
-  --t1: #2D3436; --t2: #636E72; --t3: #9EA8B3;
+  --t1: #2D3436; --t2: #636E72; --t3: #5A6470;
   --b1: #DFE3E8; --b2: #C8D0D8;
   --r: 6px;
   --font: 'Inter', system-ui, -apple-system, sans-serif;
@@ -142,7 +142,7 @@ body {
   font-size: 13px;
   font-weight: 500;
   color: var(--t2);
-  transition: all .15s;
+  transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s;
   border-radius: 4px;
   border: 1px solid transparent;
   margin: 2px 0;
@@ -475,7 +475,7 @@ body {
   border-radius: var(--r);
   padding: 20px 18px;
   cursor: pointer;
-  transition: all .18s;
+  transition: background-color .18s, border-color .18s, color .18s, box-shadow .18s, transform .18s, opacity .18s;
   position: relative;
   overflow: hidden;
 }
@@ -678,125 +678,6 @@ body {
   .dossier p { font-size: 14px }
 }
 
-/* ─── SUITE NAV BAR (compartida entre todas las suites) ─── */
-#avl-nav {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 999999;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(30,29,27,0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 40px;
-  padding: 7px 10px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);
-  font-family: 'Inter', system-ui, sans-serif;
-  white-space: nowrap;
-  user-select: none;
-}
-.avl-nav-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.75);
-  cursor: pointer;
-  text-decoration: none;
-  transition: background .18s, color .18s, transform .18s;
-  flex-shrink: 0;
-}
-.avl-nav-btn:hover {
-  background: rgba(255,255,255,0.18);
-  color: #fff;
-  transform: scale(1.08);
-}
-.avl-nav-btn.avl-nav-home {
-  background: var(--green);
-  opacity: .9;
-}
-.avl-nav-btn.avl-nav-home:hover {
-  opacity: 1;
-  background: var(--green);
-}
-.avl-nav-btn.avl-nav-back {
-  background: rgba(255,255,255,0.08);
-}
-.avl-nav-btn.avl-nav-back:hover {
-  background: rgba(255,255,255,0.18);
-}
-.avl-nav-btn.avl-nav-back[data-hidden="true"] {
-  opacity: .2;
-  pointer-events: none;
-  cursor: default;
-}
-.avl-nav-divider {
-  width: 1px;
-  height: 20px;
-  background: rgba(255,255,255,0.12);
-  flex-shrink: 0;
-}
-.avl-nav-info {
-  padding: 0 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1px;
-  min-width: 130px;
-  text-align: center;
-}
-.avl-nav-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: #fff;
-  letter-spacing: -.1px;
-}
-.avl-nav-app {
-  font-size: 9px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: .5px;
-  text-transform: uppercase;
-}
-.avl-nav-dots {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  padding: 0 4px;
-}
-.avl-nav-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  transition: background .2s, transform .2s;
-  cursor: default;
-}
-.avl-nav-dot.avl-active {
-  background: var(--green);
-  transform: scale(1.3);
-}
-.avl-nav-btn svg {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-}
-@media (max-width: 480px) {
-  #avl-nav { bottom: 12px; padding: 6px 8px; gap: 4px; }
-  .avl-nav-info { min-width: 100px; }
-  .avl-nav-label { font-size: 10px; }
-  .avl-nav-dots { display: none; }
-}
-
-
 /* ═══════════════════════════════════════════════════════════════
    HERRAMIENTAS, JUEGOS, GLOSARIO Y CATÁLOGO DE EFECTOS
    (importados de v1, no modifican el CSS base de v2)
@@ -888,7 +769,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .gr-feedback { font-size:13px; font-weight:500; padding:11px 14px; border-radius:6px; margin-top:12px; display:none; line-height:1.55; }
 .gr-feedback.ok  { display:block; background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
 .gr-feedback.err { display:block; background:#fff1f1; color:#991b1b; border:1px solid #fecaca; }
-.gr-btn { padding:9px 18px; border-radius:6px; border:none; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; transition:all .15s; }
+.gr-btn { padding:9px 18px; border-radius:6px; border:none; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; }
 .gr-btn-primary { background:var(--green); color:#fff; }
 .gr-btn-primary:hover { background:var(--green-dim); }
 .gr-btn-ghost { background:var(--bg3); color:var(--t1); border:1px solid var(--b2); }
@@ -904,7 +785,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .bm-opt {
   padding:13px 12px; background:var(--bg3); border:1.5px solid var(--b2); border-radius:6px;
   cursor:pointer; font-family:inherit; color:var(--t1);
-  text-align:left; transition:all .15s; display:flex; flex-direction:column; gap:4px;
+  text-align:left; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; display:flex; flex-direction:column; gap:4px;
 }
 .bm-opt:hover:not(.locked) { border-color:var(--green); background:var(--green-glow); transform:translateY(-1px); }
 .bm-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
@@ -924,7 +805,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
   display:block; margin:0 auto; padding:18px 48px; background:var(--green); color:#fff;
   border:none; border-radius:8px; font-family:inherit; font-size:15px; font-weight:800;
   cursor:pointer; letter-spacing:1.5px; text-transform:uppercase;
-  transition:all 0.08s; box-shadow:0 4px 0 var(--green-dim);
+  transition: background-color 0.08s, border-color 0.08s, color 0.08s, box-shadow 0.08s, transform 0.08s, opacity 0.08s; box-shadow:0 4px 0 var(--green-dim);
 }
 .bpm-tap-btn:active { transform:translateY(2px); box-shadow:0 2px 0 var(--green-dim); }
 .bpm-stats { display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-top:18px; }
@@ -940,7 +821,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .fx-opt {
   padding:13px 12px; background:var(--bg3); border:1.5px solid var(--b2); border-radius:6px;
   cursor:pointer; font-family:inherit; color:var(--t1); font-size:13px; font-weight:700;
-  text-align:center; transition:all .15s;
+  text-align:center; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s;
 }
 .fx-opt:hover:not(.locked) { border-color:var(--green); background:var(--green-glow); transform:translateY(-1px); }
 .fx-opt.correct { border-color:#22c55e; background:#f0fdf4; color:#166534; }
@@ -978,7 +859,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .tc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
 .tc-clip {
   aspect-ratio:16/9; border-radius:4px; cursor:pointer; position:relative; overflow:hidden;
-  border:2px solid transparent; transition:all 0.15s;
+  border:2px solid transparent; transition: background-color 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s, opacity 0.15s;
   display:flex; align-items:flex-end; padding:5px; font-family:var(--mono); font-size:9px;
   font-weight:800; color:rgba(255,255,255,.85); text-shadow:0 1px 2px rgba(0,0,0,.7);
 }
@@ -1225,6 +1106,79 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 /* fin */
 
 
+
+/* ═══ SPRINT 1 · A: focus-visible global ══════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid #0057B8;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+/* Excepciones: elementos con outline propio en :focus */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none; /* mantienen su border-color personalizado */
+}
+
+/* ═══ SPRINT 1 · B: hover transforms solo en dispositivos con puntero fino ═ */
+@media (hover: none), (pointer: coarse) {
+  /* Elimina saltos visuales en pantallas táctiles */
+  .module-card:hover,
+  .feature-card:hover,
+  [class*="card"]:hover,
+  .back-btn:hover,
+  .inner-tab:hover,
+  .nav-tab:hover,
+  .btn:hover,
+  .rq-opt:hover,
+  .scan-opt:hover,
+  .rv-opt:hover,
+  .pp-opt:hover,
+  .con-conn:hover,
+  .gv-btn:hover,
+  .rq-btn:hover,
+  .avl-nav-btn:hover {
+    transform: none !important;
+  }
+}
+
+/* ═══ SPRINT 1 · C: prefers-reduced-motion global ════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:      0.01ms !important;
+    scroll-behavior:          auto   !important;
+  }
+}
+
+/* ═══ SPRINT 3 · A: tap-to-place — selección por toque/clic ═════════════ */
+.tap-selected {
+  outline: 2px solid #0057B8 !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0,87,184,.15) !important;
+}
+/* ═══ SPRINT 3 · B: botón sin límite de tiempo ═══════════════════════════ */
+.avl-timer-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 6px;
+  color: rgba(255,255,255,.75);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 2px 7px;
+  flex-shrink: 0;
+  line-height: 1.4;
+  transition: background-color 150ms ease-out, opacity 150ms ease-out;
+}
+.avl-timer-btn:hover  { background: rgba(255,255,255,.12); color: #fff; }
+.avl-timer-btn.active { background: rgba(255,255,255,.18); color: #fff; }
+.atajos-time-wrapper,
+.avl-sc-time-wrapper  { display:flex; align-items:center; gap:8px; margin-bottom:16px; }
+.atajos-time-wrapper .atajos-time-bar,
+.avl-sc-time-wrapper  .sc-time { flex:1; margin-bottom:0; }
 </style>
 </head>
 <body>
@@ -1705,11 +1659,11 @@ Click derecho     → menú opciones del clip
     Mira el clip con un efecto aplicado. ¿Qué efecto produjo ese resultado? <strong>6 retos</strong> con efectos esenciales del catálogo de Resolume.
   </p>
   <div class="gr-prog" id="fxProg"></div>
-  <div class="gr-score-lbl"><span id="fxScoreL">Reto 1 / 6</span><span id="fxScoreR">0 aciertos</span></div>
+  <div class="gr-score-lbl" aria-live="polite" aria-atomic="true"><span id="fxScoreL">Reto 1 / 6</span><span id="fxScoreR">0 aciertos</span></div>
 
   <div class="fx-stage">
     <div class="fx-canvas-wrap">
-      <canvas class="fx-canvas" id="fxCanvas" width="640" height="360"></canvas>
+      <canvas class="fx-canvas" id="fxCanvas" width="640" height="360" role="img" aria-label="Previsualizador de efectos y parámetros de Resolume Arena"></canvas>
     </div>
   </div>
 
@@ -1943,21 +1897,21 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
     Observa la <strong>capa A</strong> (fondo) y la <strong>capa B</strong> (encima), y el <strong>resultado</strong> de combinarlas. ¿Qué blend mode se aplicó? <strong>6 retos</strong>.
   </p>
   <div class="gr-prog" id="bmProg"></div>
-  <div class="gr-score-lbl"><span id="bmScoreL">Reto 1 / 6</span><span id="bmScoreR">0 aciertos</span></div>
+  <div class="gr-score-lbl" aria-live="polite" aria-atomic="true"><span id="bmScoreL">Reto 1 / 6</span><span id="bmScoreR">0 aciertos</span></div>
 
   <div class="bm-stage">
     <div class="bm-preview-wrap">
       <div class="bm-preview-label">Capa A · fondo</div>
-      <canvas class="bm-canvas" id="bmCanvasA" width="320" height="180"></canvas>
+      <canvas class="bm-canvas" id="bmCanvasA" width="320" height="180" role="img" aria-label="Simulador de modos de fusión: capa A"></canvas>
     </div>
     <div class="bm-preview-wrap">
       <div class="bm-preview-label">Capa B · superior</div>
-      <canvas class="bm-canvas" id="bmCanvasB" width="320" height="180"></canvas>
+      <canvas class="bm-canvas" id="bmCanvasB" width="320" height="180" role="img" aria-label="Simulador de modos de fusión: capa B"></canvas>
     </div>
   </div>
   <div class="bm-preview-wrap" style="margin-bottom:14px;">
     <div class="bm-preview-label">Resultado — ¿qué blend mode produjo esto?</div>
-    <canvas class="bm-canvas" id="bmCanvasR" width="320" height="180" style="aspect-ratio:32/9;"></canvas>
+    <canvas class="bm-canvas" id="bmCanvasR" width="320" height="180" style="aspect-ratio:32/9;" role="img" aria-label="Simulador de modos de fusión: resultado final"></canvas>
   </div>
 
   <div class="bm-options" id="bmOpts"></div>
@@ -2399,7 +2353,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
     Sincroniza con el beat objetivo. Pulsa <strong>TAP</strong> al ritmo del pulso visual. Necesitas <strong>8 taps consecutivos</strong> con un margen de <strong>±5 BPM</strong> sobre el objetivo. <strong>5 retos</strong> con BPMs distintos.
   </p>
   <div class="gr-prog" id="bpmProg"></div>
-  <div class="gr-score-lbl"><span id="bpmScoreL">Reto 1 / 5</span><span id="bpmScoreR">0 aciertos</span></div>
+  <div class="gr-score-lbl" aria-live="polite" aria-atomic="true"><span id="bpmScoreL">Reto 1 / 5</span><span id="bpmScoreR">0 aciertos</span></div>
 
   <div class="bpm-stage">
     <div class="bpm-target">BPM objetivo</div>
@@ -3155,7 +3109,7 @@ Composition → Collect Media</div>
       <button class="sc-btn sc-btn-primary" onclick="scStart()">▶ Empezar partida</button>
     </div>
     <div id="scPlay" style="display:none;">
-      <div class="sc-time"><div class="sc-time-fill" id="scTimeBar"></div></div>
+      <div class="avl-sc-time-wrapper"><div class="sc-time"><div class="sc-time-fill" id="scTimeBar"></div></div><button class="avl-timer-btn" id="scNoTimerBtn" onclick="scToggleTimer()" title="Sin límite de tiempo: desactivado" aria-pressed="false">⏳</button></div>
       <div class="sc-action-lbl">Atajo de…</div>
       <div class="sc-action" id="scAction">—</div>
       <div class="sc-input-display" id="scInput">—</div>
@@ -4224,7 +4178,7 @@ Activa "Auto Span" para expansión automática de universos</div>
   <div style="margin-top:18px">
     <div style="font-size:10px;color:var(--t2);letter-spacing:1.2px;text-transform:uppercase;font-family:var(--mono);margin-bottom:8px;font-weight:700">VISUALIZACIÓN DE ENCAJE DEL CLIP EN LA ESTRUCTURA MUSICAL</div>
     <div style="background:#0E1A16;border:1px solid rgba(42,106,88,.3);border-radius:8px;padding:12px;overflow-x:auto">
-      <canvas id="syncCanvas" height="100" style="width:100%;min-width:360px;display:block;border-radius:4px"></canvas>
+      <canvas id="syncCanvas" height="100" style="width:100%;min-width:360px;display:block;border-radius:4px" role="img" aria-label="Visualizador de sincronización BPM y pulsos de audio"></canvas>
     </div>
     <div id="syncWarning" style="margin-top:10px;font-size:13px;color:var(--t2);line-height:1.6"></div>
   </div>
@@ -4608,149 +4562,7 @@ if (document.readyState === 'loading') {
 </div>
 
 <!-- ═════════════════ SUITE NAV BAR ═════════════════ -->
-<div id="avl-nav">
-  <!-- Home -->
-  <a class="avl-nav-btn avl-nav-home" href="index.html" title="Volver al índice">
-    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 8L8 2l6 6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M4 6v7h3v-3h2v3h3V6" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
 
-  <!-- Back to last suite -->
-  <button class="avl-nav-btn avl-nav-back" id="avl-back-btn"
-          onclick="avlGoBack()" title="Volver a la última suite"
-          data-hidden="true">
-    <svg viewBox="0 0 16 16" fill="none">
-      <path d="M13 5 L8 5 C6 5 4 7 4 9 L4 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M2 10 L4 12 L6 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-
-  <div class="avl-nav-divider"></div>
-
-  <!-- Prev: Illustrator -->
-  <a class="avl-nav-btn" href="illustrator.html" title="Illustrator · Diseño Vectorial">
-    <svg viewBox="0 0 16 16" fill="none">
-      <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-
-  <!-- Info -->
-  <div class="avl-nav-info">
-    <div class="avl-nav-label">VJing &amp; Projection Mapping</div>
-    <div class="avl-nav-app">Resolume Arena</div>
-  </div>
-
-  <!-- Dots (Resolume is position 3 of 6) -->
-  <div class="avl-nav-dots">
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot avl-active"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-  </div>
-
-  <!-- Next: After Effects -->
-  <a class="avl-nav-btn" href="after-effects.html" title="After Effects · Motion Graphics">
-    <svg viewBox="0 0 16 16" fill="none">
-      <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-</div>
-
-<!-- ═════════════════ SCRIPTS ═════════════════ -->
-<script>
-// ─── NAVIGATION ───
-function go(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const pg = document.getElementById('page-' + id);
-  if (pg) {
-    pg.classList.add('active');
-    document.querySelector('.content').scrollTop = 0;
-  }
-  document.querySelectorAll('.nav-item').forEach(n => {
-    const onclick = n.getAttribute('onclick') || '';
-    if (onclick.includes("'" + id + "'")) n.classList.add('active');
-  });
-}
-
-// ─── MOBILE MENU ───
-(function() {
-  const btn = document.getElementById('resMobBtn');
-  const overlay = document.getElementById('resMobOverlay');
-  const sidebar = document.querySelector('.sb');
-  if (!btn || !sidebar) return;
-  function toggle(open) {
-    sidebar.classList.toggle('open', open);
-    btn.classList.toggle('open', open);
-    overlay.classList.toggle('visible', open);
-  }
-  btn.addEventListener('click', () => toggle(!sidebar.classList.contains('open')));
-  overlay.addEventListener('click', () => toggle(false));
-  sidebar.querySelectorAll('.nav-item').forEach(el =>
-    el.addEventListener('click', () => { if (window.innerWidth <= 860) toggle(false); })
-  );
-})();
-
-// ─── SUITE NAVIGATION (back button + history) ───
-(function() {
-  const PAGES = {
-    'video.html':        'Imagen & Vídeo',
-    'illustrator.html':  'Illustrator',
-    'resolume.html':     'Resolume',
-    'after-effects.html':'After Effects',
-    'iluminacion.html':  'Iluminación',
-    'magicq.html':       'MagicQ',
-    'index.html':        'Inicio'
-  };
-
-  // Register this page as visited
-  const current = location.pathname.split('/').pop() || 'index.html';
-  let history = [];
-  try {
-    history = JSON.parse(sessionStorage.getItem('avv-history') || '[]');
-  } catch(e) { history = []; }
-  if (history[history.length - 1] !== current) {
-    history.push(current);
-    if (history.length > 20) history.shift();
-    try { sessionStorage.setItem('avv-history', JSON.stringify(history)); } catch(e) {}
-  }
-
-  // Set up back button
-  function updateBackBtn() {
-    const btn = document.getElementById('avl-back-btn');
-    if (!btn) return;
-    let prev = null;
-    for (let i = history.length - 2; i >= 0; i--) {
-      if (history[i] !== current) { prev = history[i]; break; }
-    }
-    if (prev) {
-      btn.setAttribute('data-hidden', 'false');
-      btn.title = 'Volver a ' + (PAGES[prev] || prev);
-      btn.setAttribute('data-href', prev);
-    } else {
-      btn.setAttribute('data-hidden', 'true');
-      btn.title = '';
-    }
-  }
-
-  window.avlGoBack = function() {
-    const btn = document.getElementById('avl-back-btn');
-    if (!btn || btn.getAttribute('data-hidden') === 'true') return;
-    const href = btn.getAttribute('data-href');
-    if (href) window.location.href = href;
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', updateBackBtn);
-  } else {
-    updateBackBtn();
-  }
-})();
-</script>
 
 
 <!-- ═══════════════════════════════════════════════════════════════
@@ -5557,7 +5369,7 @@ function scStart() {
 function scShow() {
   if (scState.idx >= scState.total) { scFinish(); return; }
   scState.current = scState.shuffled[scState.idx];
-  scState.deadline = Date.now() + 5000;
+  scState.deadline = Date.now() + (scState.noTimer ? 999999000 : 5000);
   scState.lock = false;
   document.getElementById('scAction').textContent = scState.current.action;
   document.getElementById('scInput').textContent = '_';
@@ -5569,6 +5381,10 @@ function scShow() {
 
 function scTick() {
   if (!scState.running) return;
+  if (scState.noTimer) {
+    var bar=document.getElementById('scTimeBar'); if(bar)bar.style.width='100%';
+    scState.timer=requestAnimationFrame(scTick); return;
+  }
   var rem = scState.deadline - Date.now();
   var pct = Math.max(0, rem/5000)*100;
   var bar = document.getElementById('scTimeBar');
@@ -7141,5 +6957,35 @@ ${vsSlices.map(s=>sliceXML(s)).join('\n')}
 
 </script>
 
+
+<script>
+window.AVL_NAV_CONFIG = {
+  label:  'VJing &amp; Projection Mapping',
+  sub:    'Resolume Arena',
+  prev:   {href:'illustrator.html',title:'Illustrator · Diseño Vectorial'},
+  next:   {href:'after-effects.html',title:'After Effects · Motion Graphics'},
+  dot:    2,
+  dots:   6,
+  accent: 'var(--green)'
+};
+</script>
+<script src="avl-nav.js"></script>
+
+<script>
+/* Sprint 3 · Timer toggle — resolume shortcuts */
+scState.noTimer = false;
+function scToggleTimer() {
+  scState.noTimer = !scState.noTimer;
+  var btn = document.getElementById('scNoTimerBtn');
+  if (btn) {
+    btn.classList.toggle('active', scState.noTimer);
+    btn.setAttribute('aria-pressed', String(scState.noTimer));
+    btn.title = scState.noTimer ? 'Sin límite de tiempo: activado' : 'Sin límite de tiempo: desactivado';
+    btn.textContent = scState.noTimer ? '⏾' : '⏳';
+  }
+  if (scState.running)
+    scState.deadline = Date.now() + (scState.noTimer ? 999999000 : 5000);
+}
+</script>
 </body>
 </html>

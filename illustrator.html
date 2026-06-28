@@ -32,7 +32,7 @@ Este proyecto es una herramienta educativa independiente.
             --bg-button-lit: #E8D8D8;
             --text-primary:  #1A0404;
             --text-secondary:#5C2A2A;
-            --text-dim:      #A07070;
+            --text-dim:      #7A3838;
             --text-orange:   var(--ai-orange);
             --border-dark:   #E8D0D0;
             --border-mid:    #D4B0B0;
@@ -112,7 +112,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
             display: flex; align-items: center; gap: 10px;
             padding: 8px 10px; margin-bottom: 1px;
             border-radius: 4px; cursor: pointer;
-            transition: all 0.15s ease;
+            transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
             font-size: 13px; font-weight: 500;
             color: var(--text-secondary);
             border: 1px solid transparent;
@@ -200,7 +200,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
             border: 1px solid var(--border-dark);
             border-radius: 6px;
             padding: 18px;
-            transition: all 0.18s ease;
+            transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
             position: relative;
             overflow: hidden;
         }
@@ -220,7 +220,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
         .exercise-body { padding: 20px; }
 
         /* BUTTONS */
-        .btn-console { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background: var(--bg-button); border: 1px solid var(--border-mid); border-bottom: 3px solid var(--border-dark); border-radius: 4px; color: var(--text-primary); font-family: var(--font-head); font-size: 12.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.1s ease; }
+        .btn-console { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background: var(--bg-button); border: 1px solid var(--border-mid); border-bottom: 3px solid var(--border-dark); border-radius: 4px; color: var(--text-primary); font-family: var(--font-head); font-size: 12.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: background-color 0.1s ease, border-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, transform 0.1s ease, opacity 0.1s ease; }
         .btn-console:hover { background: var(--bg-button-lit); border-color: var(--ai-orange); color: var(--ai-orange); }
         .btn-console:active { border-bottom-width: 1px; transform: translateY(1px); }
         .btn-orange { background: var(--ai-orange); border-color: var(--ai-orange-dim); border-bottom-color: #2a0505; color: #fff; }
@@ -258,7 +258,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
         .hero-title { font-family: var(--font-head); font-size: 50px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--text-primary); line-height: 1; }
         .hero-title .hl { color: var(--ai-orange); }
         .hero-sub { font-family: var(--font-mono); font-size: 11px; letter-spacing: 4px; color: var(--text-dim); text-transform: uppercase; margin-top: 10px; }
-        .feature-card { background: var(--bg-surface); border: 1px solid var(--border-dark); box-shadow: 0 1px 4px rgba(59,8,8,0.06); border-radius: 8px; padding: 22px; cursor: pointer; transition: all 0.2s ease; position: relative; overflow: hidden; }
+        .feature-card { background: var(--bg-surface); border: 1px solid var(--border-dark); box-shadow: 0 1px 4px rgba(59,8,8,0.06); border-radius: 8px; padding: 22px; cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease; position: relative; overflow: hidden; }
         .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--ai-orange); opacity: 0; transition: opacity 0.2s; }
         .feature-card:hover { border-color: rgba(59,8,8,0.20); transform: translateY(-3px); }
         .feature-card:hover::before { opacity: 1; }
@@ -310,7 +310,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
             border: 1px solid var(--border-mid); border-radius: 20px;
             font-family: var(--font-body); font-size: 13px;
             background: var(--bg-raised); color: var(--text-primary);
-            outline: none; width: 220px; transition: all 0.2s;
+            outline: none; width: 220px; transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s, opacity 0.2s;
         }
         .search-input:focus { border-color: var(--ai-orange); width: 280px; box-shadow: 0 0 0 3px rgba(59,8,8,0.08); }
         .search-icon { position: absolute; left: 11px; font-size: 14px; color: var(--text-dim); pointer-events: none; }
@@ -342,7 +342,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
         .quiz-opt {
             padding: 10px 16px; border: 1px solid var(--border-mid); border-radius: 6px; cursor: pointer;
             font-size: 13.5px; color: var(--text-secondary); background: #fff;
-            transition: all 0.15s; display: flex; align-items: center; gap: 10px;
+            transition: background-color 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s, opacity 0.15s; display: flex; align-items: center; gap: 10px;
         }
         .quiz-opt:hover:not(.answered) { border-color: var(--ai-orange); color: var(--text-primary); background: rgba(59,8,8,0.04); }
         .quiz-opt.correct { background: rgba(0,120,60,0.08); border-color: #006830; color: #003c1a; font-weight: 600; }
@@ -385,7 +385,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
         .glossary-term { font-weight: 700; font-size: 14px; color: var(--ai-orange); margin-bottom: 5px; }
         .glossary-def { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
         .glossary-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-        .filter-btn { padding: 5px 14px; border-radius: 20px; border: 1px solid var(--border-mid); background: var(--bg-button); font-size: 12px; font-weight: 600; cursor: pointer; color: var(--text-secondary); transition: all 0.15s; font-family: var(--font-body); }
+        .filter-btn { padding: 5px 14px; border-radius: 20px; border: 1px solid var(--border-mid); background: var(--bg-button); font-size: 12px; font-weight: 600; cursor: pointer; color: var(--text-secondary); transition: background-color 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s, opacity 0.15s; font-family: var(--font-body); }
         .filter-btn:hover, .filter-btn.active { background: var(--ai-orange); color: #fff; border-color: var(--ai-orange); }
 
         /* ── LAYER PANEL ── */
@@ -400,7 +400,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
 
         /* ── HOME: section cards grid ── */
         .section-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-bottom: 24px; }
-        .section-card { background: var(--bg-surface); border: 1px solid var(--border-dark); border-radius: 8px; padding: 18px 20px; cursor: pointer; transition: all 0.18s; display: flex; align-items: center; gap: 14px; }
+        .section-card { background: var(--bg-surface); border: 1px solid var(--border-dark); border-radius: 8px; padding: 18px 20px; cursor: pointer; transition: background-color 0.18s, border-color 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s, opacity 0.18s; display: flex; align-items: center; gap: 14px; }
         .section-card:hover { border-color: var(--ai-orange); box-shadow: 0 2px 12px rgba(59,8,8,0.1); transform: translateY(-1px); }
         .section-card-icon { font-size: 22px; flex-shrink: 0; }
         .section-card-title { font-weight: 700; font-size: 13.5px; color: var(--text-primary); }
@@ -443,7 +443,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .color-wheel-wrap { display: grid; grid-template-columns: 320px 1fr; gap: 24px; align-items: start; }
 @media (max-width: 800px) { .color-wheel-wrap { grid-template-columns: 1fr; justify-items: center; } }
 .color-wheel-svg { width: 320px; height: 320px; max-width: 100%; touch-action: none; cursor: crosshair; user-select: none; }
-.harmony-btn { padding: 8px 14px; border-radius: 18px; border: 1.5px solid var(--border-mid); background: transparent; color: var(--text-primary); font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; transition: all .18s; }
+.harmony-btn { padding: 8px 14px; border-radius: 18px; border: 1.5px solid var(--border-mid); background: transparent; color: var(--text-primary); font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; transition: background-color .18s, border-color .18s, color .18s, box-shadow .18s, transform .18s, opacity .18s; }
 .harmony-btn:hover { border-color: var(--ai-orange); }
 .harmony-btn.active { background: var(--ai-orange); color: #fff; border-color: var(--ai-orange); }
 .harmony-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; margin-top: 12px; }
@@ -456,7 +456,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .pluma-game-wrap { background: #1a0a04; border-radius: 10px; padding: 16px; }
 .pluma-game-canvas { width: 100%; height: 320px; display: block; cursor: crosshair; border-radius: 6px; touch-action: none; background: #261410; }
 .pluma-game-controls { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; align-items: center; }
-.pluma-level-btn { padding: 6px 12px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); color: #fff; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: all .18s; }
+.pluma-level-btn { padding: 6px 12px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); color: #fff; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background-color .18s, border-color .18s, color .18s, box-shadow .18s, transform .18s, opacity .18s; }
 .pluma-level-btn:hover { background: rgba(255,255,255,0.12); }
 .pluma-level-btn.active { background: var(--ai-orange); border-color: var(--ai-orange); }
 .pluma-action-btn { padding: 6px 14px; border-radius: 14px; background: var(--ai-orange); color: #fff; border: none; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer; }
@@ -469,7 +469,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .pf-stage { background: #fdfafa; border: 1px solid #e8d8d8; border-radius: 6px; padding: 10px; margin-bottom: 8px; }
 .pf-stage-label { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
 .pf-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.pf-opt { padding: 12px; background: #fff; border: 1.5px solid #e8d8d8; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--text-primary); text-align: center; transition: all .18s; }
+.pf-opt { padding: 12px; background: #fff; border: 1.5px solid #e8d8d8; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--text-primary); text-align: center; transition: background-color .18s, border-color .18s, color .18s, box-shadow .18s, transform .18s, opacity .18s; }
 .pf-opt:hover:not(.locked) { border-color: var(--ai-orange); background: rgba(59,8,8,0.04); }
 .pf-opt.correct { border-color: #1a5e20; background: rgba(26,94,32,0.10); color: #1a5e20; }
 .pf-opt.wrong { border-color: #c44040; background: rgba(196,64,64,0.08); color: #c44040; }
@@ -507,6 +507,79 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 
 /* ─── fin mejoras gamificación ─── */
 
+
+/* ═══ SPRINT 1 · A: focus-visible global ══════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid #0057B8;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+/* Excepciones: elementos con outline propio en :focus */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none; /* mantienen su border-color personalizado */
+}
+
+/* ═══ SPRINT 1 · B: hover transforms solo en dispositivos con puntero fino ═ */
+@media (hover: none), (pointer: coarse) {
+  /* Elimina saltos visuales en pantallas táctiles */
+  .module-card:hover,
+  .feature-card:hover,
+  [class*="card"]:hover,
+  .back-btn:hover,
+  .inner-tab:hover,
+  .nav-tab:hover,
+  .btn:hover,
+  .rq-opt:hover,
+  .scan-opt:hover,
+  .rv-opt:hover,
+  .pp-opt:hover,
+  .con-conn:hover,
+  .gv-btn:hover,
+  .rq-btn:hover,
+  .avl-nav-btn:hover {
+    transform: none !important;
+  }
+}
+
+/* ═══ SPRINT 1 · C: prefers-reduced-motion global ════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:      0.01ms !important;
+    scroll-behavior:          auto   !important;
+  }
+}
+
+/* ═══ SPRINT 3 · A: tap-to-place — selección por toque/clic ═════════════ */
+.tap-selected {
+  outline: 2px solid #0057B8 !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0,87,184,.15) !important;
+}
+/* ═══ SPRINT 3 · B: botón sin límite de tiempo ═══════════════════════════ */
+.avl-timer-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 6px;
+  color: rgba(255,255,255,.75);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 2px 7px;
+  flex-shrink: 0;
+  line-height: 1.4;
+  transition: background-color 150ms ease-out, opacity 150ms ease-out;
+}
+.avl-timer-btn:hover  { background: rgba(255,255,255,.12); color: #fff; }
+.avl-timer-btn.active { background: rgba(255,255,255,.18); color: #fff; }
+.atajos-time-wrapper,
+.avl-sc-time-wrapper  { display:flex; align-items:center; gap:8px; margin-bottom:16px; }
+.atajos-time-wrapper .atajos-time-bar,
+.avl-sc-time-wrapper  .sc-time { flex:1; margin-bottom:0; }
 </style>
 </head>
 <body>
@@ -1167,7 +1240,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
             <button onclick="colorModelShow('hsb')"  id="cmbtn_hsb"  style="padding:7px 16px;border-radius:20px;border:1.5px solid var(--border-mid);background:transparent;color:var(--text-primary);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;">🎨 HSB (intuitivo)</button>
         </div>
         <div style="display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start;">
-            <canvas id="colorModelCanvas" style="width:300px;height:300px;display:block;border-radius:8px;background:#111;"></canvas>
+            <canvas id="colorModelCanvas" style="width:300px;height:300px;display:block;border-radius:8px;background:#111;" role="img" aria-label="Visualizador 3D de modelos de color RGB, CMYK y HSB"></canvas>
             <div id="colorModelDesc" style="font-size:14px;color:var(--text-secondary);line-height:1.75;"></div>
         </div>
     </div>
@@ -1641,7 +1714,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
         <div class="panel-title">Anatomía interactiva de la curva Bézier</div>
         <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px;">Arrastra los <strong style="color:#c87800">mangos naranjas</strong> para modificar la curvatura en tiempo real.</p>
         <div style="background:#1a0a04;border-radius:10px;padding:16px;">
-            <canvas id="bezierCanvas" style="width:100%;height:260px;display:block;cursor:crosshair;border-radius:6px;touch-action:none;"></canvas>
+            <canvas id="bezierCanvas" style="width:100%;height:260px;display:block;cursor:crosshair;border-radius:6px;touch-action:none;" role="img" aria-label="Editor interactivo de curvas Bézier — haz clic para añadir puntos"></canvas>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:12px;">
             <div class="info-box"><h4>Ancla (anchor)</h4><p>Punto fijo que define inicio o fin del segmento. Círculo blanco en el canvas.</p></div>
@@ -1763,7 +1836,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     Aprende a usar la <strong>Pluma</strong> reproduciendo formas reales. Selecciona un nivel y haz <strong>clic</strong> para crear puntos de esquina, <strong>clic+arrastrar</strong> para crear curvas. Cierra el trazado clicando sobre el primer punto.
   </p>
   <div class="pluma-game-wrap">
-    <canvas id="plumaGameCanvas" class="pluma-game-canvas"></canvas>
+    <canvas id="plumaGameCanvas" class="pluma-game-canvas" role="img" aria-label="Mini-juego: traza trayectorias con la herramienta Pluma"></canvas>
     <div class="pluma-game-controls">
       <button class="pluma-level-btn active" data-lv="0" onclick="plgLevel(0)">1 · Línea</button>
       <button class="pluma-level-btn" data-lv="1" onclick="plgLevel(1)">2 · Curva en S</button>
@@ -3001,7 +3074,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
       <button class="atajos-btn primary" onclick="atStart()">▶ Empezar partida</button>
     </div>
     <div id="atPlay" style="display:none;">
-      <div class="atajos-time-bar"><div class="atajos-time-fill" id="atTime"></div></div>
+      <div class="atajos-time-wrapper"><div class="atajos-time-bar"><div class="atajos-time-fill" id="atTime"></div></div><button class="avl-timer-btn" id="atNoTimerBtn" onclick="atToggleTimer()" title="Sin límite de tiempo: desactivado" aria-pressed="false">⏳</button></div>
       <div class="atajos-prompt">
         <div class="atajos-action">Pulsa el atajo de</div>
         <div class="atajos-tool" id="atTool">—</div>
@@ -4587,7 +4660,7 @@ function atStart() {
 function atShow() {
   if (atState.idx >= atState.total) { atFinish(); return; }
   atState.current = atState.shuffled[atState.idx];
-  atState.deadline = Date.now() + 5000;
+  atState.deadline = Date.now() + (atState.noTimer ? 999999000 : 5000);
   atState.lockResolve = false;
   document.getElementById('atTool').textContent = atState.current.tool;
   document.getElementById('atInput').textContent = '_';
@@ -4599,6 +4672,10 @@ function atShow() {
 
 function atTick() {
   if (!atState.running) return;
+  if (atState.noTimer) {
+    var tEl=document.getElementById('atTime'); if(tEl)tEl.style.width='100%';
+    atState.timer=requestAnimationFrame(atTick); return;
+  }
   const remain = atState.deadline - Date.now();
   const pct = Math.max(0, remain / 5000) * 100;
   const tEl = document.getElementById('atTime');
@@ -4687,265 +4764,39 @@ function atFinish() {
 </script>
 
 
-<style id="avl-nav-style">
-  #avl-nav {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999999;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(30,29,27,0.92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 40px;
-    padding: 7px 10px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);
-    font-family: 'Poppins', -apple-system, sans-serif;
-    white-space: nowrap;
-    user-select: none;
-  }
-  .avl-nav-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.75);
-    cursor: pointer;
-    text-decoration: none;
-    transition: background .18s, color .18s, transform .18s;
-    flex-shrink: 0;
-    font-size: 13px;
-    line-height: 1;
-  }
-  .avl-nav-btn:hover {
-    background: rgba(255,255,255,0.18);
-    color: #fff;
-    transform: scale(1.08);
-  }
-  .avl-nav-btn.avl-nav-home {
-    background: #A06B4A;
-    opacity: .9;
-  }
-  .avl-nav-btn.avl-nav-home:hover {
-    opacity: 1;
-    background: #A06B4A;
-  }
-  .avl-nav-divider {
-    width: 1px;
-    height: 20px;
-    background: rgba(255,255,255,0.12);
-    flex-shrink: 0;
-  }
-  .avl-nav-info {
-    padding: 0 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1px;
-    min-width: 130px;
-    text-align: center;
-  }
-  .avl-nav-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: -.1px;
-  }
-  .avl-nav-app {
-    font-size: 9px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.45);
-    letter-spacing: .5px;
-    text-transform: uppercase;
-  }
-  .avl-nav-dots {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    padding: 0 4px;
-  }
-  .avl-nav-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    transition: background .2s, transform .2s;
-    cursor: default;
-  }
-  .avl-nav-dot.avl-active {
-    background: #A06B4A;
-    transform: scale(1.3);
-  }
-  .avl-nav-btn svg {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-  }
-  @media (max-width: 480px) {
-    #avl-nav { bottom: 12px; padding: 6px 8px; gap: 4px; }
-    .avl-nav-info { min-width: 100px; }
-    .avl-nav-label { font-size: 10px; }
-    .avl-nav-dots { display: none; }
-  }
 
 
-/* ── UNIFIED BOX SIZING — Illustrator (reference) ──────────── */
-.info-box, .warn-box, .ok-box {
-  border-radius: 4px !important;
-  padding: 14px 16px !important;
-  margin-bottom: 14px !important;
-  border-left-width: 3px !important;
-}
-.info-box h4, .warn-box h4, .ok-box h4 {
-  font-size: 13px !important;
-  letter-spacing: .8px !important;
-  margin-bottom: 8px !important;
-}
-
-/* ═══ RESPONSIVE ADDITIONS — ILLUSTRATOR ════════════════════════════ */
-@media (max-width: 1280px) {
-  .content-area .main { padding: 24px 28px 80px; }
-}
-@media (max-width: 1024px) {
-  .content-area .main { padding: 20px 20px 80px; }
-  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
-  .page-title { font-size: 26px; }
-}
-@media (max-width: 640px) {
-  .content-area .main, .main { padding: 16px 14px 80px !important; }
-  .page-title  { font-size: 20px; }
-  .page-desc   { font-size: 14px !important; }
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .info-box p, .warn-box p, .ok-box p { font-size: 14px; }
-  .ai-table    { font-size: 12px; }
-  .step-item   { gap: 10px; }
-  .top-bar     { padding: 6px 14px; }
-}
-
-
-/* ── Back button ── */
-.avl-nav-btn.avl-nav-back {
-  background: rgba(255,255,255,0.08);
-  position: relative;
-}
-.avl-nav-btn.avl-nav-back:hover {
-  background: rgba(255,255,255,0.18);
-}
-.avl-nav-btn.avl-nav-back[data-hidden="true"] {
-  opacity: .2;
-  pointer-events: none;
-  cursor: default;
-}
-</style>
-
-
-<div id="avl-nav">
-  <!-- Home -->
-  <a class="avl-nav-btn avl-nav-home" href="index.html" title="Volver al índice">
-    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 8L8 2l6 6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M4 6v7h3v-3h2v3h3V6" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-
-  <!-- Back to last suite -->
-  <button class="avl-nav-btn avl-nav-back" id="avl-back-btn"
-          onclick="avlGoBack()" title="Volver a la última suite"
-          data-hidden="true">
-    <svg viewBox="0 0 16 16" fill="none">
-      <path d="M13 5 L8 5 C6 5 4 7 4 9 L4 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M2 10 L4 12 L6 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <div class="avl-nav-divider"></div>
-
-  <!-- Prev -->
-  <a class="avl-nav-btn" href="video.html" title="Fundamentos de Imagen"><svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-
-  <!-- Info -->
-  <div class="avl-nav-info">
-    <div class="avl-nav-label">Diseño Vectorial</div>
-    <div class="avl-nav-app">Adobe Illustrator</div>
-  </div>
-
-  <!-- Dots -->
-  <div class="avl-nav-dots">
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot avl-active"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-    <div class="avl-nav-dot"></div>
-  </div>
-
-  <!-- Next -->
-  <a class="avl-nav-btn" href="resolume.html" title="VJing & Projection Mapping"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-
-</div>
 
 
 
 <script>
-(function(){
-  var PAGES = {
-    'video.html':        'Imagen & Vídeo',
-    'illustrator.html':  'Illustrator',
-    'resolume.html':     'Resolume',
-    'after-effects.html':'After Effects',
-    'iluminacion.html':  'Iluminación',
-    'magicq.html':       'MagicQ',
-    'index.html':        'Inicio'
-  };
+window.AVL_NAV_CONFIG = {
+  label:  'Diseño Vectorial',
+  sub:    'Adobe Illustrator',
+  prev:   {href:'video.html',title:'Fundamentos de Imagen'},
+  next:   {href:'resolume.html',title:'VJing & Projection Mapping'},
+  dot:    1,
+  dots:   6,
+  accent: '#A06B4A'
+};
+</script>
+<script src="avl-nav.js"></script>
 
-  // Register this page as visited
-  var current = location.pathname.split('/').pop() || 'index.html';
-  var history  = JSON.parse(sessionStorage.getItem('avv-history') || '[]');
-  if (history[history.length - 1] !== current) {
-    history.push(current);
-    if (history.length > 20) history.shift();
-    sessionStorage.setItem('avv-history', JSON.stringify(history));
+<script>
+/* Sprint 3 · Timer toggle — illustrator atajos */
+atState.noTimer = false;
+function atToggleTimer() {
+  atState.noTimer = !atState.noTimer;
+  var btn = document.getElementById('atNoTimerBtn');
+  if (btn) {
+    btn.classList.toggle('active', atState.noTimer);
+    btn.setAttribute('aria-pressed', String(atState.noTimer));
+    btn.title = atState.noTimer ? 'Sin límite de tiempo: activado' : 'Sin límite de tiempo: desactivado';
+    btn.textContent = atState.noTimer ? '⏾' : '⏳';
   }
-
-  // Set up back button
-  function updateBackBtn() {
-    var btn = document.getElementById('avl-back-btn');
-    if (!btn) return;
-    // Find last different page in history
-    var prev = null;
-    for (var i = history.length - 2; i >= 0; i--) {
-      if (history[i] !== current) { prev = history[i]; break; }
-    }
-    if (prev) {
-      btn.setAttribute('data-hidden', 'false');
-      btn.title = 'Volver a ' + (PAGES[prev] || prev);
-      btn.setAttribute('data-href', prev);
-    } else {
-      btn.setAttribute('data-hidden', 'true');
-      btn.title = '';
-    }
-  }
-
-  window.avlGoBack = function() {
-    var btn = document.getElementById('avl-back-btn');
-    if (!btn || btn.getAttribute('data-hidden') === 'true') return;
-    var href = btn.getAttribute('data-href');
-    if (href) window.location.href = href;
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', updateBackBtn);
-  } else {
-    updateBackBtn();
-  }
-})();
+  if (atState.running)
+    atState.deadline = Date.now() + (atState.noTimer ? 999999000 : 5000);
+}
 </script>
 </body>
 </html>
