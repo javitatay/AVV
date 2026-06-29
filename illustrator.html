@@ -4694,7 +4694,7 @@ function atShow() {
 function atTick() {
   if (!atState.running) return;
   if (atState.noTimer) {
-    var tEl=document.getElementById('atTime'); if(tEl)tEl.style.width='100%';
+    var bar=document.getElementById('atTime'); if(bar)bar.style.width='100%';
     atState.timer=requestAnimationFrame(atTick); return;
   }
   const remain = atState.deadline - Date.now();
