@@ -636,8 +636,9 @@ body {
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 95;
+  z-index: 100;
   background: rgba(0,0,0,.5);
+  cursor: pointer;
 }
 .overlay-mob.visible { display: block }
 
@@ -7005,5 +7006,53 @@ window.AVL_NAV_CONFIG = {
 </script>
 <script src="avl-nav.js"></script>
 
+
+<script>
+/* ── Menú hamburguesa móvil (Resolume) ──────────────────────────────────── */
+(function () {
+  var btn     = document.getElementById('resMobBtn');
+  var sb      = document.querySelector('.sb');
+  var overlay = document.getElementById('resMobOverlay');
+
+  function sbOpen() {
+    if (!sb) return;
+    sb.classList.add('open');
+    if (overlay) { overlay.style.display = 'block'; }
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden'; // evitar scroll bajo el panel
+  }
+
+  function sbClose() {
+    if (!sb) return;
+    sb.classList.remove('open');
+    if (overlay) { overlay.style.display = ''; }
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  if (btn) {
+    btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', function () {
+      sb && sb.classList.contains('open') ? sbClose() : sbOpen();
+    });
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', sbClose);
+  }
+
+  // Cerrar al navegar (click en nav-item)
+  document.querySelectorAll('.nav-item').forEach(function (item) {
+    item.addEventListener('click', function () {
+      if (window.innerWidth <= 860) sbClose();
+    });
+  });
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && sb && sb.classList.contains('open')) sbClose();
+  });
+})();
+</script>
 </body>
 </html>

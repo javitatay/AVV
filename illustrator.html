@@ -130,6 +130,8 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
     padding-bottom: 90px;
             scroll-padding-top: 52px;
     overflow-y: auto;
+    height: 100vh;
+    overflow-x: hidden;
             background: var(--bg-void);
             position: relative;
         }
@@ -288,8 +290,8 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .app-container { grid-template-columns: 1fr; }
-            .sidebar { display: none; position: fixed; z-index: 998; width: 268px; }
-            .sidebar.open { display: flex; }
+            .sidebar { display: none; position: fixed; top: 0; left: 0; height: 100vh; z-index: 998; width: 268px; }
+            .sidebar.open { display: flex; overflow-y: auto; box-shadow: 4px 0 20px rgba(0,0,0,0.3); }
             .page { padding: 20px; }
             .mobile-btn { display: flex; }
             .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
@@ -3790,7 +3792,10 @@ textarea:focus-visible {
         const sidebar = document.getElementById('sidebar');
         if (sidebar && sidebar.classList.contains('open')) {
             sidebar.classList.remove('open');
-            document.getElementById('mobileBtn').textContent = '\u2630';
+            const mBtn = document.getElementById('mobileBtn');
+            if (mBtn) { mBtn.textContent = '\u2630'; mBtn.setAttribute('aria-expanded','false'); }
+            const ov = document.getElementById('il-mob-overlay');
+            if (ov) ov.style.display = 'none';
         }
         closeSearch();
     }
@@ -3798,8 +3803,23 @@ textarea:focus-visible {
     function toggleMenu() {
         const sidebar = document.getElementById('sidebar');
         const btn = document.getElementById('mobileBtn');
-        sidebar.classList.toggle('open');
-        btn.textContent = sidebar.classList.contains('open') ? '\u2715' : '\u2630';
+        const isOpen = sidebar.classList.toggle('open');
+        btn.textContent = isOpen ? '\u2715' : '\u2630';
+        btn.setAttribute('aria-expanded', String(isOpen));
+        // Overlay para cerrar al tocar fuera
+        let ov = document.getElementById('il-mob-overlay');
+        if (isOpen) {
+            if (!ov) {
+                ov = document.createElement('div');
+                ov.id = 'il-mob-overlay';
+                ov.style.cssText = 'position:fixed;inset:0;z-index:997;background:rgba(0,0,0,.45)';
+                ov.addEventListener('click', toggleMenu);
+                document.body.appendChild(ov);
+            }
+            ov.style.display = 'block';
+        } else {
+            if (ov) ov.style.display = 'none';
+        }
     }
 
     // ── QUIZ ENGINE ──────────────────────────────────────────────────────────
