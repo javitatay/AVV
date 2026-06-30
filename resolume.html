@@ -24,10 +24,10 @@ independiente, no afiliada a Resolume BV.
   --green-line: rgba(42,106,88,.30);
   --amber: #B08000;
   --red: #A0182C;
-  --bg0: #FFFFFF; --bg1: #FFFFFF; --bg2: #EEF0F2;
-  --bg3: #F4F5F7; --bg4: #F0F6F4; --bg5: #E5E7EB;
-  --t1: #2D3436; --t2: #636E72; --t3: #5A6470;
-  --b1: #DFE3E8; --b2: #C8D0D8;
+  --bg-void: #FFFFFF; --bg-surface: #FFFFFF; --bg-raised: #EEF0F2;
+  --bg-deep: #F4F5F7; --bg-panel: #F0F6F4; --bg-button: #E5E7EB;
+  --text-primary: #2D3436; --text-secondary: #636E72; --text-dim: #5A6470;
+  --border-mid: #DFE3E8; --border-dark: #C8D0D8;
   --r: 6px;
   --font: 'Inter', system-ui, -apple-system, sans-serif;
   --mono: 'JetBrains Mono', 'Courier New', monospace;
@@ -37,8 +37,8 @@ independiente, no afiliada a Resolume BV.
 html { scroll-behavior:smooth }
 body {
   font-family: var(--font);
-  background: var(--bg0);
-  color: var(--t1);
+  background: var(--bg-void);
+  color: var(--text-primary);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -46,8 +46,8 @@ body {
   line-height: 1.7;
 }
 ::-webkit-scrollbar { width:6px; height:6px }
-::-webkit-scrollbar-track { background:var(--bg1) }
-::-webkit-scrollbar-thumb { background:var(--b2); border-radius:3px }
+::-webkit-scrollbar-track { background:var(--bg-surface) }
+::-webkit-scrollbar-thumb { background:var(--border-dark); border-radius:3px }
 ::-webkit-scrollbar-thumb:hover { background:var(--green-dim) }
 
 /* ─── LAYOUT ─── */
@@ -56,20 +56,20 @@ body {
   grid-template-columns: var(--sb) 1fr;
   height: 100vh;
   overflow: hidden;
-  background: var(--bg0);
+  background: var(--bg-void);
 }
 
 /* ─── SIDEBAR ─── */
 .sb {
-  background: var(--bg4);
-  border-right: 1px solid var(--b1);
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border-mid);
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 .sb-head {
   padding: 22px 18px 16px;
-  border-bottom: 1px solid var(--b1);
+  border-bottom: 1px solid var(--border-mid);
   flex-shrink: 0;
   text-align: center;
 }
@@ -98,7 +98,7 @@ body {
 }
 .sb-sub {
   font-size: 10px;
-  color: var(--t3);
+  color: var(--text-dim);
   letter-spacing: 2.5px;
   text-transform: uppercase;
   margin-top: 4px;
@@ -123,13 +123,13 @@ body {
 }
 .nav-lbl {
   font-size: 10px;
-  color: var(--t3);
+  color: var(--text-dim);
   letter-spacing: 2px;
   text-transform: uppercase;
   padding: 14px 8px 5px;
   font-weight: 700;
   font-family: var(--mono);
-  border-bottom: 1px solid var(--b1);
+  border-bottom: 1px solid var(--border-mid);
   margin-bottom: 4px;
 }
 .nav-lbl:first-child { padding-top: 4px }
@@ -141,7 +141,7 @@ body {
   cursor: pointer;
   font-size: 13px;
   font-weight: 500;
-  color: var(--t2);
+  color: var(--text-secondary);
   transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s;
   border-radius: 4px;
   border: 1px solid transparent;
@@ -149,9 +149,9 @@ body {
   user-select: none;
 }
 .nav-item:hover {
-  background: var(--bg3);
-  color: var(--t1);
-  border-color: var(--b1);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  border-color: var(--border-mid);
 }
 .nav-item.active {
   background: var(--green-glow);
@@ -181,9 +181,9 @@ body {
 }
 .sb-foot {
   padding: 12px 18px 14px;
-  border-top: 1px solid var(--b1);
+  border-top: 1px solid var(--border-mid);
   font-size: 10px;
-  color: var(--t3);
+  color: var(--text-dim);
   line-height: 1.6;
   flex-shrink: 0;
   font-family: var(--mono);
@@ -193,7 +193,7 @@ body {
 .content {
   overflow-y: auto;
   padding: 36px 40px 90px;
-  background: var(--bg0);
+  background: var(--bg-void);
 }
 .page { display: none; max-width: 1200px; margin: 0 auto }
 .page.active { display: block }
@@ -212,7 +212,7 @@ body {
 .ptitle {
   font-size: 36px;
   font-weight: 800;
-  color: var(--t1);
+  color: var(--text-primary);
   letter-spacing: .5px;
   text-transform: uppercase;
   line-height: 1.05;
@@ -231,7 +231,7 @@ body {
 .ptitle span { color: var(--green) }
 .pdesc {
   font-size: 15px;
-  color: var(--t2);
+  color: var(--text-secondary);
   line-height: 1.7;
   max-width: 880px;
   margin-bottom: 30px;
@@ -261,7 +261,7 @@ body {
 .dossier p {
   font-size: 14.5px;
   line-height: 1.75;
-  color: var(--t1);
+  color: var(--text-primary);
   margin-bottom: 12px;
 }
 .dossier p:last-child { margin-bottom: 0 }
@@ -270,7 +270,7 @@ body {
 /* ─── PANELS ─── */
 .panel {
   background: #FFFFFF;
-  border: 1px solid var(--b1);
+  border: 1px solid var(--border-mid);
   border-radius: var(--r);
   padding: 22px;
   margin-bottom: 22px;
@@ -307,8 +307,8 @@ body {
 
 /* ─── BOXES ─── */
 .box {
-  background: var(--bg3);
-  border: 1px solid var(--b1);
+  background: var(--bg-deep);
+  border: 1px solid var(--border-mid);
   border-left: 3px solid var(--green);
   border-radius: 4px;
   padding: 14px 16px;
@@ -325,7 +325,7 @@ body {
 .box p, .box ul, .box ol {
   font-size: 14px;
   line-height: 1.7;
-  color: var(--t1);
+  color: var(--text-primary);
 }
 .box ul, .box ol { padding-left: 18px }
 .box li { margin-bottom: 4px }
@@ -355,7 +355,7 @@ body {
   align-items: flex-start;
   gap: 14px;
   padding: 12px;
-  background: var(--bg3);
+  background: var(--bg-deep);
   border-radius: 4px;
   border-left: 3px solid var(--green);
 }
@@ -372,7 +372,7 @@ body {
   flex-shrink: 0;
   font-family: var(--mono);
 }
-.step p { font-size: 14px; line-height: 1.6; color: var(--t1) }
+.step p { font-size: 14px; line-height: 1.6; color: var(--text-primary) }
 
 /* ─── CODE BLOCKS & TABLES ─── */
 .cb {
@@ -404,17 +404,17 @@ body {
 .tbl th, .tbl td {
   padding: 9px 12px;
   text-align: left;
-  border-bottom: 1px solid var(--b1);
+  border-bottom: 1px solid var(--border-mid);
 }
 .tbl th {
-  background: var(--bg3);
+  background: var(--bg-deep);
   color: var(--amber);
   font-weight: 700;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-.tbl tr:hover { background: var(--bg3) }
+.tbl tr:hover { background: var(--bg-deep) }
 .hl {
   font-family: var(--mono);
   color: var(--green);
@@ -423,13 +423,13 @@ body {
 .key {
   display: inline-block;
   padding: 2px 8px;
-  background: var(--bg3);
-  border: 1px solid var(--b1);
+  background: var(--bg-deep);
+  border: 1px solid var(--border-mid);
   border-radius: 3px;
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 600;
-  color: var(--t1);
+  color: var(--text-primary);
 }
 .ox { overflow-x: auto }
 
@@ -456,14 +456,14 @@ body {
 .h-content h1 {
   font-size: 32px;
   font-weight: 800;
-  color: var(--t1);
+  color: var(--text-primary);
   margin-bottom: 8px;
   letter-spacing: .5px;
 }
 .h-content h1 span { color: var(--green) }
 .h-content p {
   font-size: 15px;
-  color: var(--t2);
+  color: var(--text-secondary);
   line-height: 1.65;
   max-width: 680px;
 }
@@ -471,7 +471,7 @@ body {
 /* Cards */
 .fc {
   background: #FFFFFF;
-  border: 1px solid var(--b1);
+  border: 1px solid var(--border-mid);
   border-radius: var(--r);
   padding: 20px 18px;
   cursor: pointer;
@@ -504,11 +504,11 @@ body {
   font-size: 14px;
   font-weight: 700;
   margin-bottom: 6px;
-  color: var(--t1);
+  color: var(--text-primary);
 }
 .fc p {
   font-size: 12.5px;
-  color: var(--t2);
+  color: var(--text-secondary);
   line-height: 1.55;
 }
 .fc-tag {
@@ -528,7 +528,7 @@ body {
 /* ─── EJERCICIOS ─── */
 .ex {
   background: #FFFFFF;
-  border: 1px solid var(--b1);
+  border: 1px solid var(--border-mid);
   border-radius: var(--r);
   margin-bottom: 22px;
   overflow: hidden;
@@ -539,7 +539,7 @@ body {
   gap: 16px;
   padding: 16px 20px;
   background: rgba(42,106,88,.07);
-  border-bottom: 1px solid var(--b1);
+  border-bottom: 1px solid var(--border-mid);
 }
 .ex-num {
   background: var(--green);
@@ -551,8 +551,8 @@ body {
   border-radius: 4px;
   letter-spacing: 1px;
 }
-.ex-title { font-size: 16px; font-weight: 700; color: var(--t1) }
-.ex-sub { font-size: 12px; color: var(--t2); margin-top: 2px; font-family: var(--mono) }
+.ex-title { font-size: 16px; font-weight: 700; color: var(--text-primary) }
+.ex-sub { font-size: 12px; color: var(--text-secondary); margin-top: 2px; font-family: var(--mono) }
 .ex-body { padding: 18px 22px }
 .ex-list { display: flex; flex-direction: column; gap: 8px }
 .ex-item {
@@ -560,7 +560,7 @@ body {
   align-items: flex-start;
   gap: 12px;
   padding: 10px 12px;
-  background: var(--bg3);
+  background: var(--bg-deep);
   border-radius: 4px;
   font-size: 13.5px;
   line-height: 1.6;
@@ -600,7 +600,7 @@ body {
 .diag-cap {
   text-align: center;
   font-size: 12px;
-  color: var(--t2);
+  color: var(--text-secondary);
   margin-top: 14px;
   font-style: italic;
 }
@@ -614,7 +614,7 @@ body {
   width: 40px; height: 40px;
   border-radius: 8px;
   background: #fff;
-  border: 1px solid var(--b2);
+  border: 1px solid var(--border-dark);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -625,7 +625,7 @@ body {
 .hamburger span {
   display: block;
   width: 18px; height: 2px;
-  background: var(--t1);
+  background: var(--text-primary);
   border-radius: 2px;
   transition: transform .22s, opacity .22s;
 }
@@ -685,46 +685,46 @@ body {
    ═══════════════════════════════════════════════════════════════ */
 
 .glgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:24px}
-.glcard{background:var(--bg4);border:1px solid var(--b1);border-radius:5px;padding:11px 13px}
+.glcard{background:var(--bg-panel);border:1px solid var(--border-mid);border-radius:5px;padding:11px 13px}
 .gl-term{font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--green);margin-bottom:4px}
-.gl-def{font-size:11px;color:var(--t2);line-height:1.65}
+.gl-def{font-size:11px;color:var(--text-secondary);line-height:1.65}
 
 /* ─ UI ZONE ─ */
-.uz{display:flex;gap:12px;align-items:flex-start;padding:9px 13px;background:var(--bg3);border:1px solid var(--b2);border-radius:5px;margin-bottom:7px}
+.uz{display:flex;gap:12px;align-items:flex-start;padding:9px 13px;background:var(--bg-deep);border:1px solid var(--border-dark);border-radius:5px;margin-bottom:7px}
 .uz-lbl{font-weight:700;font-size: 11.5px;color:var(--green);font-family:var(--mono);width:140px;flex-shrink:0;padding-top:1px}
-.uz-desc{font-size:12px;color:var(--t2);line-height:1.5}
+.uz-desc{font-size:12px;color:var(--text-secondary);line-height:1.5}
 
 /* ─ TOOLS ─ */
-.tool-wrap{background:var(--bg3);border:1px solid var(--green-line);border-radius:10px;padding:24px;margin-bottom:20px}
-.tool-title{font-size:11px;color:var(--green);letter-spacing:2px;text-transform:uppercase;font-family:var(--mono);font-weight:700;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--b2)}
+.tool-wrap{background:var(--bg-deep);border:1px solid var(--green-line);border-radius:10px;padding:24px;margin-bottom:20px}
+.tool-title{font-size:11px;color:var(--green);letter-spacing:2px;text-transform:uppercase;font-family:var(--mono);font-weight:700;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border-dark)}
 .tool-row{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin-bottom:14px}
 .tool-field{display:flex;flex-direction:column;gap:5px;flex:1;min-width:100px}
-.tool-field label{font-size: 11px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;font-family:var(--mono);font-weight:700}
-.tool-input{background:var(--bg1);border:1px solid var(--b2);border-radius:5px;padding:9px 12px;color:var(--t1);font-family:var(--mono);font-size:13px;outline:none;transition:border .15s;width:100%}
+.tool-field label{font-size: 11px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;font-family:var(--mono);font-weight:700}
+.tool-input{background:var(--bg-surface);border:1px solid var(--border-dark);border-radius:5px;padding:9px 12px;color:var(--text-primary);font-family:var(--mono);font-size:13px;outline:none;transition:border .15s;width:100%}
 .tool-input:focus{border-color:var(--green)}
-.tool-select{background:var(--bg1);border:1px solid var(--b2);border-radius:5px;padding:9px 12px;color:var(--t1);font-family:var(--mono);font-size:12px;outline:none;cursor:pointer;transition:border .15s;width:100%;appearance:none}
+.tool-select{background:var(--bg-surface);border:1px solid var(--border-dark);border-radius:5px;padding:9px 12px;color:var(--text-primary);font-family:var(--mono);font-size:12px;outline:none;cursor:pointer;transition:border .15s;width:100%;appearance:none}
 .tool-select:focus{border-color:var(--green)}
 .tool-btn{background:var(--green);color:#000;border:none;border-radius:5px;padding:10px 22px;font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;transition:background .15s;white-space:nowrap;flex-shrink:0}
 .tool-btn:hover{background:var(--green-dim)}
-.tool-btn-sec{background:var(--bg4);color:var(--t2);border:1px solid var(--b2)}
-.tool-btn-sec:hover{background:var(--b2);color:var(--t1)}
-.tool-result{background:var(--bg1);border:1px solid var(--green-line);border-radius:8px;padding:18px 20px;margin-top:4px}
+.tool-btn-sec{background:var(--bg-panel);color:var(--text-secondary);border:1px solid var(--border-dark)}
+.tool-btn-sec:hover{background:var(--border-dark);color:var(--text-primary)}
+.tool-result{background:var(--bg-surface);border:1px solid var(--green-line);border-radius:8px;padding:18px 20px;margin-top:4px}
 .result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
 .result-item{text-align:center}
-.result-label{font-size: 11px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;font-family:var(--mono);margin-bottom:4px}
+.result-label{font-size: 11px;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase;font-family:var(--mono);margin-bottom:4px}
 .result-value{font-size:22px;font-weight:900;color:var(--green);letter-spacing:-0.5px;line-height:1;font-family:var(--mono)}
-.result-unit{font-size: 11px;color:var(--t3);margin-top:3px}
+.result-unit{font-size: 11px;color:var(--text-dim);margin-top:3px}
 .result-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:4px}
-.result-table th{font-size: 11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--t3);padding:6px 10px;text-align:left;border-bottom:1px solid var(--b2);font-family:var(--mono)}
-.result-table td{padding:7px 10px;border-bottom:1px solid var(--b1);color:var(--t2);font-family:var(--mono);font-size:12px}
+.result-table th{font-size: 11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border-dark);font-family:var(--mono)}
+.result-table td{padding:7px 10px;border-bottom:1px solid var(--border-mid);color:var(--text-secondary);font-family:var(--mono);font-size:12px}
 .result-table td.hl-g{color:var(--green);font-weight:700}
-.color-swatch{width:100%;height:70px;border-radius:6px;border:1px solid var(--b2);margin-bottom:12px;transition:background .2s}
-.divider-tool{height:1px;background:var(--b2);margin:16px 0}
+.color-swatch{width:100%;height:70px;border-radius:6px;border:1px solid var(--border-dark);margin-bottom:12px;transition:background .2s}
+.divider-tool{height:1px;background:var(--border-dark);margin:16px 0}
 .range-wrap{display:flex;align-items:center;gap:10px}
-.range-wrap input[type=range]{flex:1;-webkit-appearance:none;height:4px;background:var(--b2);border-radius:2px;outline:none}
+.range-wrap input[type=range]{flex:1;-webkit-appearance:none;height:4px;background:var(--border-dark);border-radius:2px;outline:none}
 .range-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:var(--green);border-radius:50%;cursor:pointer}
 .range-val{font-family:var(--mono);font-size:12px;color:var(--green);width:36px;text-align:right;flex-shrink:0}
-.tool-note{font-size:13px;color:var(--t2);line-height:1.7;margin-top:12px;padding:11px 15px;background:var(--bg1);border-radius:5px;border-left:2px solid var(--green-line)}
+.tool-note{font-size:13px;color:var(--text-secondary);line-height:1.7;margin-top:12px;padding:11px 15px;background:var(--bg-surface);border-radius:5px;border-left:2px solid var(--green-line)}
 
 /* ── Inter typography optimisation ── */
 h1, h2, h3, .page-title, .ptitle, .sec-title, .module-title, .panel-title {
@@ -762,18 +762,18 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 
 /* Comunes */
 .gr-prog { display:flex; gap:4px; margin-bottom:14px; }
-.gr-pip { height:5px; flex:1; border-radius:3px; background:var(--bg5); }
+.gr-pip { height:5px; flex:1; border-radius:3px; background:var(--bg-button); }
 .gr-pip.ok  { background:#22c55e; }
 .gr-pip.err { background:#ef4444; }
 .gr-pip.cur { background:var(--green); }
-.gr-score-lbl { font-size:11px; font-weight:700; color:var(--t2); margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); }
+.gr-score-lbl { font-size:11px; font-weight:700; color:var(--text-secondary); margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); }
 .gr-feedback { font-size:13px; font-weight:500; padding:11px 14px; border-radius:6px; margin-top:12px; display:none; line-height:1.55; }
 .gr-feedback.ok  { display:block; background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
 .gr-feedback.err { display:block; background:#fff1f1; color:#991b1b; border:1px solid #fecaca; }
 .gr-btn { padding:9px 18px; border-radius:6px; border:none; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; }
 .gr-btn-primary { background:var(--green); color:#fff; }
 .gr-btn-primary:hover { background:var(--green-dim); }
-.gr-btn-ghost { background:var(--bg3); color:var(--t1); border:1px solid var(--b2); }
+.gr-btn-ghost { background:var(--bg-deep); color:var(--text-primary); border:1px solid var(--border-dark); }
 .gr-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:14px; }
 
 /* === BLEND MODE MATCH === */
@@ -784,8 +784,8 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .bm-canvas { width:100%; aspect-ratio:16/9; display:block; background:#000; border-radius:5px; }
 .bm-options { display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; }
 .bm-opt {
-  padding:13px 12px; background:var(--bg3); border:1.5px solid var(--b2); border-radius:6px;
-  cursor:pointer; font-family:inherit; color:var(--t1);
+  padding:13px 12px; background:var(--bg-deep); border:1.5px solid var(--border-dark); border-radius:6px;
+  cursor:pointer; font-family:inherit; color:var(--text-primary);
   text-align:left; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s; display:flex; flex-direction:column; gap:4px;
 }
 .bm-opt:hover:not(.locked) { border-color:var(--green); background:var(--green-glow); transform:translateY(-1px); }
@@ -793,7 +793,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .bm-opt.wrong { border-color:#ef4444; background:#fff1f1; color:#991b1b; }
 .bm-opt.locked { cursor:default; }
 .bm-opt-name { font-size:14px; font-weight:700; }
-.bm-opt-formula { font-size:10.5px; color:var(--t3); font-family:var(--mono); }
+.bm-opt-formula { font-size:10.5px; color:var(--text-dim); font-family:var(--mono); }
 
 /* === BPM TAP TRAINER === */
 .bpm-stage { background:#0a0f1e; border-radius:10px; padding:24px; color:#fff; text-align:center; }
@@ -820,8 +820,8 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .fx-canvas { width:100%; height:100%; display:block; }
 .fx-options { display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; }
 .fx-opt {
-  padding:13px 12px; background:var(--bg3); border:1.5px solid var(--b2); border-radius:6px;
-  cursor:pointer; font-family:inherit; color:var(--t1); font-size:13px; font-weight:700;
+  padding:13px 12px; background:var(--bg-deep); border:1.5px solid var(--border-dark); border-radius:6px;
+  cursor:pointer; font-family:inherit; color:var(--text-primary); font-size:13px; font-weight:700;
   text-align:center; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s;
 }
 .fx-opt:hover:not(.locked) { border-color:var(--green); background:var(--green-glow); transform:translateY(-1px); }
@@ -881,8 +881,8 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
   margin-top: 4px;
 }
 #page-tool-vectorslice .vs-panel {
-  background: var(--bg1);
-  border: 1px solid var(--b2);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-dark);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -890,11 +890,11 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 }
 #page-tool-vectorslice .vs-panel-head {
   padding: 12px 16px;
-  border-bottom: 1px solid var(--b1);
+  border-bottom: 1px solid var(--border-mid);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--bg3);
+  background: var(--bg-deep);
   flex-shrink: 0;
 }
 #page-tool-vectorslice .vs-panel-title {
@@ -917,7 +917,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 }
 #page-tool-vectorslice .vs-dropzone {
   margin: 14px;
-  border: 1.5px dashed var(--b2);
+  border: 1.5px dashed var(--border-dark);
   border-radius: 6px;
   padding: 22px 14px;
   text-align: center;
@@ -939,13 +939,13 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 #page-tool-vectorslice .vs-drop-title {
   font-size: 13px;
   font-weight: 600;
-  color: var(--t1);
+  color: var(--text-primary);
   margin-bottom: 3px;
 }
 #page-tool-vectorslice .vs-drop-hint {
   font-family: var(--mono);
   font-size: 10px;
-  color: var(--t3);
+  color: var(--text-dim);
 }
 #page-tool-vectorslice #vs-file-input { display: none; }
 #page-tool-vectorslice .vs-slices-list {
@@ -958,7 +958,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 #page-tool-vectorslice .vs-empty-msg {
   padding: 28px 0;
   text-align: center;
-  color: var(--t3);
+  color: var(--text-dim);
   font-size: 12px;
   line-height: 1.8;
   font-family: var(--mono);
@@ -973,7 +973,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
   cursor: pointer;
   transition: background .1s;
 }
-#page-tool-vectorslice .vs-slice-item:hover { background: var(--bg3); }
+#page-tool-vectorslice .vs-slice-item:hover { background: var(--bg-deep); }
 #page-tool-vectorslice .vs-slice-item.active { background: var(--green-glow); }
 #page-tool-vectorslice .vs-slice-dot {
   width: 8px; height: 8px;
@@ -985,7 +985,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
   font-family: var(--mono);
   font-size: 12px;
   font-weight: 600;
-  color: var(--t1);
+  color: var(--text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -993,13 +993,13 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 #page-tool-vectorslice .vs-slice-pts {
   font-family: var(--mono);
   font-size: 10px;
-  color: var(--t3);
+  color: var(--text-dim);
   margin-top: 1px;
 }
 #page-tool-vectorslice .vs-slice-del {
   background: none;
   border: none;
-  color: var(--b2);
+  color: var(--border-dark);
   cursor: pointer;
   font-size: 17px;
   line-height: 1;
@@ -1021,7 +1021,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     linear-gradient(rgba(42,106,88,.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(42,106,88,.05) 1px, transparent 1px);
   background-size: 24px 24px;
-  background-color: var(--bg3);
+  background-color: var(--bg-deep);
   min-height: 380px;
 }
 #page-tool-vectorslice #vs-preview-canvas {
@@ -1032,7 +1032,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 }
 #page-tool-vectorslice .vs-preview-empty {
   text-align: center;
-  color: var(--t3);
+  color: var(--text-dim);
   font-size: 12px;
   line-height: 2;
   font-family: var(--mono);
@@ -1049,8 +1049,8 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
   align-items: center;
   gap: 22px;
   padding: 14px 18px;
-  border-top: 1px solid var(--b1);
-  background: var(--bg3);
+  border-top: 1px solid var(--border-mid);
+  background: var(--bg-deep);
   flex-wrap: wrap;
 }
 #page-tool-vectorslice .vs-opt-group {
@@ -1061,16 +1061,16 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 #page-tool-vectorslice .vs-opt-label {
   font-size: 11px;
   font-weight: 700;
-  color: var(--t3);
+  color: var(--text-dim);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: var(--mono);
   white-space: nowrap;
 }
 #page-tool-vectorslice .vs-opt-input {
-  background: var(--bg1);
-  border: 1px solid var(--b2);
-  color: var(--t1);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-dark);
+  color: var(--text-primary);
   font-family: var(--mono);
   font-size: 12px;
   padding: 6px 10px;
@@ -1085,14 +1085,14 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
   align-items: center;
   gap: 12px;
   padding: 14px 18px;
-  border-top: 1px solid var(--b1);
-  background: var(--bg1);
+  border-top: 1px solid var(--border-mid);
+  background: var(--bg-surface);
   flex-wrap: wrap;
 }
 #page-tool-vectorslice #vs-status {
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--t3);
+  color: var(--text-dim);
   flex: 1;
   min-width: 200px;
 }
@@ -1180,6 +1180,43 @@ textarea:focus-visible {
 .avl-sc-time-wrapper  { display:flex; align-items:center; gap:8px; margin-bottom:16px; }
 .atajos-time-wrapper .atajos-time-bar,
 .avl-sc-time-wrapper  .sc-time { flex:1; margin-bottom:0; }
+
+/* ═══ Buscador interno (homogeneizado desde Illustrator) ═══════════════ */
+.top-bar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-dark);
+    padding: 8px 28px;
+    display: flex; align-items: center; gap: 12px;
+}
+.search-wrapper { position: relative; display: flex; align-items: center; }
+.search-input {
+    padding: 6px 14px 6px 34px;
+    border: 1px solid var(--border-mid); border-radius: 20px;
+    font-family: var(--font); font-size: 13px;
+    background: var(--bg-raised); color: var(--text-primary);
+    outline: none; width: 220px;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s, opacity 0.2s;
+}
+.search-icon { position: absolute; left: 11px; font-size: 14px; color: var(--text-dim); pointer-events: none; }
+.search-results {
+    position: absolute; top: calc(100% + 8px); right: 0; width: 320px;
+    background: #fff; border: 1px solid var(--border-mid); border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+    max-height: 300px; overflow-y: auto; display: none; z-index: 200;
+}
+.search-results.visible { display: block; }
+.search-result-item { padding: 10px 14px; cursor: pointer; border-bottom: 1px solid var(--border-dark); transition: background-color 150ms ease-out; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item strong { display: block; font-size: 11px; color: var(--green); text-transform: uppercase; letter-spacing: .4px; margin-bottom: 2px; }
+.search-result-item span { display: block; font-size: 12.5px; color: var(--text-primary); line-height: 1.4; }
+.search-highlight { background: rgba(0,0,0,0.10); border-radius: 2px; padding: 0 2px; }
+.no-results { padding: 16px; text-align: center; color: var(--text-dim); font-size: 13px; }
+@media (max-width: 768px) {
+    .search-input { width: 140px; }
+    .search-results { width: 260px; }
+}
 </style>
 </head>
 <body>
@@ -1311,6 +1348,16 @@ window.go = function (id) {
 
 <!-- ═════════════════ MAIN CONTENT ═════════════════ -->
 <main class="content">
+<div class="top-bar">
+    <div style="flex:1; font-size:12px; color:var(--text-dim);">🎓 <strong style="color:var(--text-primary);">Suite Educativa</strong> · Resolume Arena</div>
+    <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input class="search-input" id="searchInput" type="text" placeholder="Buscar en la suite…" autocomplete="off" aria-label="Buscar en la suite">
+        <div class="search-results" id="searchResults"></div>
+    </div>
+</div>
+
+
 <!-- ═══ HOME ═══ -->
 <section class="page active" id="page-home">
 <div class="hero">
@@ -1391,7 +1438,7 @@ window.go = function (id) {
   <div class="ptl">📦 Entrega de ejercicios — Recordatorio</div>
   <div class="g2">
     <div>
-      <p style="margin-bottom: 12px; font-size: 14px; color: var(--t1)">Todos los ejercicios siguen la misma <strong>nomenclatura</strong>:</p>
+      <p style="margin-bottom: 12px; font-size: 14px; color: var(--text-primary)">Todos los ejercicios siguen la misma <strong>nomenclatura</strong>:</p>
       <div class="cb"><span class="cc">// Estructura de carpeta</span>
 Apellido1_Apellido2_Nombre_UnidadN/
   ├── vídeo/
@@ -1593,7 +1640,7 @@ Apellido1_Apellido2_Nombre_Unidad1/
   <div class="ptl">El Deck — Estructura de trabajo</div>
   <div class="g2">
     <div>
-      <p style="font-size: 14px; color: var(--t1); margin-bottom: 12px"><strong>Filas horizontales</strong> = Layers · <strong>Columnas verticales</strong> = Columns. Cada celda contiene un clip. Una columna entera dispara todos los clips de la misma columna a la vez (las "escenas").</p>
+      <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 12px"><strong>Filas horizontales</strong> = Layers · <strong>Columnas verticales</strong> = Columns. Cada celda contiene un clip. Una columna entera dispara todos los clips de la misma columna a la vez (las "escenas").</p>
       <div class="cb"><span class="cc">// Acciones básicas en el Deck</span>
 Click en clip     → lanza ese clip en su layer
 Click en columna  → lanza toda la columna (escena)
@@ -1675,7 +1722,7 @@ Click derecho     → menú opciones del clip
 <!-- ════ JUEGO: fx-match ════ -->
 <div class="panel" style="margin-top:18px;">
   <div style="font-size:18px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">🎮 Identifica el Efecto</div>
-  <p style="font-size:13.5px;color:var(--t2);line-height:1.6;margin-bottom:14px;">
+  <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:14px;">
     Mira el clip con un efecto aplicado. ¿Qué efecto produjo ese resultado? <strong>6 retos</strong> con efectos esenciales del catálogo de Resolume.
   </p>
   <div class="gr-prog" id="fxProg"></div>
@@ -1791,7 +1838,7 @@ Click derecho     → menú opciones del clip
 
 <div class="panel panel-g">
   <div class="ptl">Collect Media — Empaquetar el proyecto</div>
-  <p style="font-size: 14px; line-height: 1.7; color: var(--t1); margin-bottom: 14px">Al entregar un ejercicio o llevar la composición a otro ordenador, <strong>siempre</strong> usa Collect Media. Empaqueta el proyecto (.avc) con <em>todos</em> los archivos que utiliza en una carpeta autónoma.</p>
+  <p style="font-size: 14px; line-height: 1.7; color: var(--text-primary); margin-bottom: 14px">Al entregar un ejercicio o llevar la composición a otro ordenador, <strong>siempre</strong> usa Collect Media. Empaqueta el proyecto (.avc) con <em>todos</em> los archivos que utiliza en una carpeta autónoma.</p>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Menú <span class="cmd">Composition → Collect Media</span>.</p></div>
     <div class="step"><div class="snum">2</div><p>Elige la carpeta destino. Resolume genera la estructura <span class="cmd">tu_proyecto.avc</span> + <span class="cmd">/media/</span> con todos los archivos.</p></div>
@@ -1814,7 +1861,7 @@ Click derecho     → menú opciones del clip
   <div class="ptl">Composition Settings — Parámetros globales</div>
   <div class="g2">
     <div>
-      <p style="font-size: 14px; color: var(--t1); margin-bottom: 12px">Accede desde <span class="cmd">Composition → Settings</span>.</p>
+      <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 12px">Accede desde <span class="cmd">Composition → Settings</span>.</p>
       <div class="cb"><span class="cc">// Parámetros principales</span>
 Width × Height   <span class="cc">← resolución del canvas</span>
 FPS              <span class="cc">← framerate (30 / 60)</span>
@@ -1913,7 +1960,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 <!-- ════ JUEGO: blend-match ════ -->
 <div class="panel" style="margin-top:18px;">
   <div style="font-size:18px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">🎮 Blend Mode Match</div>
-  <p style="font-size:13.5px;color:var(--t2);line-height:1.6;margin-bottom:14px;">
+  <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:14px;">
     Observa la <strong>capa A</strong> (fondo) y la <strong>capa B</strong> (encima), y el <strong>resultado</strong> de combinarlas. ¿Qué blend mode se aplicó? <strong>6 retos</strong>.
   </p>
   <div class="gr-prog" id="bmProg"></div>
@@ -1975,8 +2022,8 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
   <div class="ptl">Auto-Pilot — Encadenamiento automático</div>
   <div class="g2">
     <div>
-      <p style="font-size: 14px; color: var(--t1); margin-bottom: 12px">Configurable a <strong>tres niveles</strong>:</p>
-      <ul style="font-size: 14px; padding-left: 22px; line-height: 1.85; color: var(--t1)">
+      <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 12px">Configurable a <strong>tres niveles</strong>:</p>
+      <ul style="font-size: 14px; padding-left: 22px; line-height: 1.85; color: var(--text-primary)">
         <li><strong>Composición</strong> — encadenamiento global del proyecto.</li>
         <li><strong>Grupo</strong> — dentro de un grupo de capas.</li>
         <li><strong>Capa</strong> — cuando termina un clip, salta al siguiente (lo habitual).</li>
@@ -2198,7 +2245,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
   <div class="ptl">Color Picker — Selector de color</div>
   <div class="g2">
     <div>
-      <p style="font-size: 14px; color: var(--t1); margin-bottom: 12px">Aparece al hacer clic en cualquier parámetro de color. Tres modos de selección:</p>
+      <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 12px">Aparece al hacer clic en cualquier parámetro de color. Tres modos de selección:</p>
       <div class="steps">
         <div class="step"><div class="snum">H</div><p><strong>HSB</strong> — rueda de tono + sliders. Lo más rápido para directo.</p></div>
         <div class="step"><div class="snum">R</div><p><strong>RGBA</strong> — valores numéricos exactos. Útil para igualar un color de manual de marca.</p></div>
@@ -2369,7 +2416,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 <!-- ════ JUEGO: bpm-tap ════ -->
 <div class="panel" style="margin-top:18px;">
   <div style="font-size:18px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">🎮 BPM Tap Trainer</div>
-  <p style="font-size:13.5px;color:var(--t2);line-height:1.6;margin-bottom:14px;">
+  <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:14px;">
     Sincroniza con el beat objetivo. Pulsa <strong>TAP</strong> al ritmo del pulso visual. Necesitas <strong>8 taps consecutivos</strong> con un margen de <strong>±5 BPM</strong> sobre el objetivo. <strong>5 retos</strong> con BPMs distintos.
   </p>
   <div class="gr-prog" id="bpmProg"></div>
@@ -2436,7 +2483,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 
 <div class="panel">
   <div class="ptl">Dashboard · Panel personalizado</div>
-  <p style="font-size: 14px; color: var(--t1); margin-bottom: 14px">Construye tu propio panel de control sacando parámetros de donde estén en la interfaz y agrupándolos en un solo sitio.</p>
+  <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 14px">Construye tu propio panel de control sacando parámetros de donde estén en la interfaz y agrupándolos en un solo sitio.</p>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Selecciona el parámetro que quieres añadir al Dashboard.</p></div>
     <div class="step"><div class="snum">2</div><p>Clic derecho → <span class="cmd">Add to Dashboard</span>.</p></div>
@@ -2448,7 +2495,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 
 <div class="panel">
   <div class="ptl">Key Shortcut · Atajo personalizado</div>
-  <p style="font-size: 14px; color: var(--t1); margin-bottom: 12px">Asigna cualquier tecla del teclado a una acción específica (lanzar un clip, cambiar opacidad, saltar a cuepoint...).</p>
+  <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 12px">Asigna cualquier tecla del teclado a una acción específica (lanzar un clip, cambiar opacidad, saltar a cuepoint...).</p>
   <div class="cb"><span class="cc">// Flujo</span>
 Shortcut → Edit Application Shortcuts
   ↓
@@ -2556,7 +2603,7 @@ Atajo guardado</div>
 
 <div class="panel panel-g">
   <div class="ptl">Caso práctico · 1 proyector, 4 zonas</div>
-  <p style="font-size: 14px; color: var(--t1); margin-bottom: 14px">Un proyector tira a una pared con <strong>4 ventanas</strong> rectangulares. Cada ventana necesita su propio contenido.</p>
+  <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 14px">Un proyector tira a una pared con <strong>4 ventanas</strong> rectangulares. Cada ventana necesita su propio contenido.</p>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p><span class="cmd">Composition Settings</span> → resolución <strong>1080×1080</strong> (cuadrado, para matriz 2×2 dentro).</p></div>
     <div class="step"><div class="snum">2</div><p><span class="cmd">Output → Advanced</span> → crea un <strong>Screen</strong> con la resolución del proyector.</p></div>
@@ -2655,7 +2702,7 @@ Show con ambos                  →  un slice de cada tipo</div>
 
 <div class="panel panel-g">
   <div class="ptl">Caso real · Setup de 7 pantallas (2640×1440)</div>
-  <p style="font-size: 14px; color: var(--t1); margin-bottom: 14px">Ejemplo de montaje multipantalla:</p>
+  <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 14px">Ejemplo de montaje multipantalla:</p>
   <div class="ox">
     <table class="tbl">
       <thead><tr><th>Pantalla</th><th>Resolución</th><th>Función</th></tr></thead>
@@ -2730,7 +2777,7 @@ Show con ambos                  →  un slice de cada tipo</div>
 
 <div class="panel">
   <div class="ptl">Vector Slice · Importar desde Illustrator</div>
-  <p style="font-size: 14px; color: var(--t1); margin-bottom: 12px">Permite importar formas vectoriales desde Adobe Illustrator (<span class="cmd">.ai</span> o <span class="cmd">.svg</span>) y convertirlas en slices dentro de Advanced Output. Muy útil cuando trabajas con un diseñador o has dibujado la geometría del escenario en Illustrator.</p>
+  <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 12px">Permite importar formas vectoriales desde Adobe Illustrator (<span class="cmd">.ai</span> o <span class="cmd">.svg</span>) y convertirlas en slices dentro de Advanced Output. Muy útil cuando trabajas con un diseñador o has dibujado la geometría del escenario en Illustrator.</p>
   <div class="cb"><span class="cc">// Flujo Illustrator → Resolume</span>
 1. Diseñador entrega .svg/.ai con cada zona del
    escenario como objeto vectorial separado
@@ -3120,7 +3167,7 @@ Composition → Collect Media</div>
 <!-- ════ JUEGO: score-challenge ════ -->
 <div class="panel" style="margin-top:18px;">
   <div style="font-size:18px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">🎮 Pulsa el Atajo</div>
-  <p style="font-size:13.5px;color:var(--t2);line-height:1.6;margin-bottom:14px;">
+  <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:14px;">
     Aparecerá una acción y tienes <strong>5 segundos</strong> para pulsar el atajo correcto en tu teclado. <strong>+10</strong> por acierto, <strong>−5</strong> por fallo o tiempo agotado. <strong>15 retos</strong>.
   </p>
   <div class="sc-stage" id="scStage">
@@ -3304,7 +3351,7 @@ Plugins\afx\   <span class="cc">← efectos VST</span></div>
 
 <div class="panel">
   <div class="ptl">Instalación de Free Resolume FX Pack</div>
-  <p style="font-size: 14px; color: var(--t1); margin-bottom: 14px">Resolume publica un pack de efectos gratuitos adicionales que no viene preinstalado:</p>
+  <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 14px">Resolume publica un pack de efectos gratuitos adicionales que no viene preinstalado:</p>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Descarga el pack desde la web oficial de Resolume → sección Downloads.</p></div>
     <div class="step"><div class="snum">2</div><p>Descomprime el paquete.</p></div>
@@ -3376,7 +3423,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <div class="panel panel-g">
   <div class="ptl">Juice Bar · Tienda oficial</div>
-  <p style="font-size: 14px; color: var(--t1); margin-bottom: 14px"><strong>Juice Bar</strong> es una aplicación independiente que viene con Resolume y funciona como tienda y gestor de extensiones.</p>
+  <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 14px"><strong>Juice Bar</strong> es una aplicación independiente que viene con Resolume y funciona como tienda y gestor de extensiones.</p>
   <div class="g3">
     <div class="box"><h4>🎨 Effects</h4><p>Efectos visuales hechos por desarrolladores de la comunidad y por Resolume. Algunos gratis, otros de pago.</p></div>
     <div class="box"><h4>⚡ Sources</h4><p>Fuentes generativas que no vienen en la instalación base.</p></div>
@@ -3390,7 +3437,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <div class="panel">
   <div class="ptl">Free Resolume FX · Pack gratuito oficial</div>
-  <p style="font-size: 14px; color: var(--t1); margin-bottom: 14px">Pack de efectos extra que NO viene preinstalado y hay que instalar a mano.</p>
+  <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 14px">Pack de efectos extra que NO viene preinstalado y hay que instalar a mano.</p>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Descarga el pack desde la <strong>web oficial de Resolume</strong> → Downloads.</p></div>
     <div class="step"><div class="snum">2</div><p><strong>Descomprime</strong> el archivo.</p></div>
@@ -3488,7 +3535,7 @@ Activa "Auto Span" para expansión automática de universos</div>
   <div class="tool-title">🎨 Color en los tres modelos simultáneos</div>
   <div class="color-swatch" id="hexSwatch" style="height:90px;cursor:pointer" title="Clic para usar el selector nativo"></div>
   <input type="color" id="hexNativePicker" style="position:absolute;opacity:0;pointer-events:none" onchange="fromNativePicker()">
-  <p style="font-size:11px;color:var(--t3);margin-bottom:14px;text-align:center">Haz clic en el swatch para abrir el selector de color del sistema</p>
+  <p style="font-size:11px;color:var(--text-dim);margin-bottom:14px;text-align:center">Haz clic en el swatch para abrir el selector de color del sistema</p>
 
   <div class="g3" style="gap:18px;margin-bottom:16px">
     <div>
@@ -3511,7 +3558,7 @@ Activa "Auto Span" para expansión automática de universos</div>
   </div>
 
   <div class="tool-result">
-    <div style="font-size:10.5px;color:var(--t3);margin-bottom:10px;font-family:var(--mono);letter-spacing:1px">VALORES PARA COPIAR</div>
+    <div style="font-size:10.5px;color:var(--text-dim);margin-bottom:10px;font-family:var(--mono);letter-spacing:1px">VALORES PARA COPIAR</div>
     <div class="result-grid" style="gap:10px">
       <div class="result-item"><div class="result-label">HEX</div><div class="result-value" id="outHex" style="font-size:16px;cursor:pointer" title="Clic para copiar">—</div><div class="result-unit">para CSS / web</div></div>
       <div class="result-item"><div class="result-label">RGB Resolume</div><div class="result-value" id="outRGB" style="font-size:14px">—</div><div class="result-unit">R · G · B</div></div>
@@ -3559,7 +3606,7 @@ Activa "Auto Span" para expansión automática de universos</div>
       </select>
     </div>
   </div>
-  <div id="fxCount" style="font-size:11px;color:var(--t3);font-family:var(--mono);margin-bottom:12px"></div>
+  <div id="fxCount" style="font-size:11px;color:var(--text-dim);font-family:var(--mono);margin-bottom:12px"></div>
   <div id="fxGrid" class="g3" style="gap:10px"></div>
 </div>
 </section>
@@ -3577,7 +3624,7 @@ Activa "Auto Span" para expansión automática de universos</div>
       <input class="tool-input" type="number" id="arW" placeholder="ej: 1920" oninput="calcAR('w')">
     </div>
     <div class="tool-field" style="flex:0 0 auto;min-width:80px;align-self:center;text-align:center">
-      <div style="font-size:22px;color:var(--t3);margin-top:20px">×</div>
+      <div style="font-size:22px;color:var(--text-dim);margin-top:20px">×</div>
     </div>
     <div class="tool-field">
       <label>Altura (px)</label>
@@ -3642,7 +3689,7 @@ Activa "Auto Span" para expansión automática de universos</div>
     <button class="tool-btn" onclick="calcSlices()">Calcular Slices</button>
   </div>
   <div class="tool-result" id="slResult" style="display:none">
-    <div style="margin-bottom:10px;font-size:11px;color:var(--t3);font-family:var(--mono)">RESULTADO — <span id="slCount"></span> slices generados</div>
+    <div style="margin-bottom:10px;font-size:11px;color:var(--text-dim);font-family:var(--mono)">RESULTADO — <span id="slCount"></span> slices generados</div>
     <div class="ox"><table class="result-table" id="slTable">
       <thead><tr><th>#</th><th>Nombre sugerido</th><th>Ancho</th><th>Alto</th><th>Pos X</th><th>Pos Y</th></tr></thead>
       <tbody id="slBody"></tbody>
@@ -3676,10 +3723,10 @@ Activa "Auto Span" para expansión automática de universos</div>
   <div class="tool-title">▱ Pipeline: Illustrator → SVG → XML → Resolume</div>
   <div class="tool-note" style="margin-top:0;margin-bottom:16px">
     💡 <strong>Flujo:</strong> 1) En Illustrator, nombra cada capa/forma (ese nombre será el ID del Slice).
-    2) <code style="font-family:var(--mono);background:var(--bg3);padding:1px 6px;border-radius:3px">File → Export → Export As → SVG</code>.
+    2) <code style="font-family:var(--mono);background:var(--bg-deep);padding:1px 6px;border-radius:3px">File → Export → Export As → SVG</code>.
     3) Arrastra el .svg aquí. 4) Descarga el XML y cópialo a:<br>
-    <strong>Mac:</strong> <code style="font-family:var(--mono);background:var(--bg3);padding:1px 6px;border-radius:3px">~/Documents/Resolume Arena/presets/screensetup/</code><br>
-    <strong>Windows:</strong> <code style="font-family:var(--mono);background:var(--bg3);padding:1px 6px;border-radius:3px">Documents\Resolume Arena 7\presets\screensetup\</code>
+    <strong>Mac:</strong> <code style="font-family:var(--mono);background:var(--bg-deep);padding:1px 6px;border-radius:3px">~/Documents/Resolume Arena/presets/screensetup/</code><br>
+    <strong>Windows:</strong> <code style="font-family:var(--mono);background:var(--bg-deep);padding:1px 6px;border-radius:3px">Documents\Resolume Arena 7\presets\screensetup\</code>
   </div>
 
   <div class="vs-layout">
@@ -3798,7 +3845,7 @@ Activa "Auto Span" para expansión automática de universos</div>
   <div class="tool-result" id="ebResult" style="display:none">
     <div class="result-grid" id="ebGrid"></div>
     <div class="divider-tool"></div>
-    <div style="font-size:10.5px;color:var(--t3);margin-bottom:8px;font-family:var(--mono);letter-spacing:1px">TABLA DE SLICES EN RESOLUME</div>
+    <div style="font-size:10.5px;color:var(--text-dim);margin-bottom:8px;font-family:var(--mono);letter-spacing:1px">TABLA DE SLICES EN RESOLUME</div>
     <div class="ox"><table class="result-table"><thead><tr><th>#</th><th>Slice</th><th>Tamaño</th><th>Pos X</th><th>Pos Y</th><th>Overlap px</th></tr></thead><tbody id="ebSliceTable"></tbody></table></div>
   </div>
   <div class="tool-note">💡 El overlap físico de los proyectores en la superficie <strong>debe coincidir exactamente</strong> con el overlap de los slices en Resolume. Usa el <strong>Test Card</strong> (Output → Show Test Card) para alinearlos visualmente.</div>
@@ -3840,7 +3887,7 @@ Activa "Auto Span" para expansión automática de universos</div>
   <div class="tool-result" id="msResult" style="display:none">
     <div class="result-grid" id="msGrid"></div>
     <div class="divider-tool"></div>
-    <div style="font-size:10.5px;color:var(--t3);margin-bottom:8px;font-family:var(--mono);letter-spacing:1px">SLICES EN ADVANCED OUTPUT</div>
+    <div style="font-size:10.5px;color:var(--text-dim);margin-bottom:8px;font-family:var(--mono);letter-spacing:1px">SLICES EN ADVANCED OUTPUT</div>
     <div class="ox"><table class="result-table"><thead><tr><th>#</th><th>Nombre</th><th>Ancho</th><th>Alto</th><th>Pos X</th><th>Pos Y</th><th>Proj. físico</th></tr></thead><tbody id="msSliceTable"></tbody></table></div>
   </div>
   <div class="tool-note">💡 En Resolume: crea un Screen por cada proyector físico en Advanced Output, añade un Slice con estas dimensiones y posiciona cada uno según Pos X/Y. Después, aplica el FX <strong>Slice Transform</strong> en el layer correspondiente.</div>
@@ -3887,8 +3934,8 @@ Activa "Auto Span" para expansión automática de universos</div>
       <div class="result-item"><div class="result-label">Ratio</div><div class="result-value" id="ledRatio" style="font-size:18px">—</div><div class="result-unit">aspect ratio</div></div>
     </div>
     <div class="divider-tool"></div>
-    <div style="font-size:11px;color:var(--t3);margin-bottom:6px;font-family:var(--mono)">CONFIGURACIÓN EN RESOLUME</div>
-    <div id="ledConfig" style="color:var(--t2);font-size:13px;line-height:1.75"></div>
+    <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px;font-family:var(--mono)">CONFIGURACIÓN EN RESOLUME</div>
+    <div id="ledConfig" style="color:var(--text-secondary);font-size:13px;line-height:1.75"></div>
   </div>
   <div class="tool-note">💡 Configura la <strong>Composition</strong> de Resolume con exactamente esta resolución para que cada píxel de la composición corresponda a un píxel físico del LED wall.</div>
 </div>
@@ -3961,7 +4008,7 @@ Activa "Auto Span" para expansión automática de universos</div>
   <div class="tool-result" id="dmxResult">
     <div class="result-grid" id="dmxGrid"></div>
     <div class="divider-tool"></div>
-    <div style="font-size:10.5px;color:var(--t3);margin-bottom:8px;font-family:var(--mono);letter-spacing:1px">DISTRIBUCIÓN POR UNIVERSO</div>
+    <div style="font-size:10.5px;color:var(--text-dim);margin-bottom:8px;font-family:var(--mono);letter-spacing:1px">DISTRIBUCIÓN POR UNIVERSO</div>
     <div class="ox"><table class="result-table"><thead><tr><th>Universo Art-Net</th><th>Px inicio</th><th>Px fin</th><th>Píxeles</th><th>Canales usados</th></tr></thead><tbody id="dmxUniTable"></tbody></table></div>
   </div>
   <div class="tool-note">💡 En Resolume Arena: <strong>Preferences → DMX</strong> → crea un Lumiverse. Activa <strong>Auto Span</strong> para que los universos se expandan automáticamente cuando superes los 512 canales. Asigna el subnet/universe del Art-Net node correspondiente.</div>
@@ -3996,7 +4043,7 @@ Activa "Auto Span" para expansión automática de universos</div>
     <div class="tool-field"><label>Universo (subnet:universe)</label><input class="tool-input" type="text" id="fixUni" placeholder="0:0" value="0:0"></div>
   </div>
 
-  <div style="font-size:10.5px;color:var(--t3);margin:14px 0 8px;font-family:var(--mono);letter-spacing:1px">CANALES DEL FIXTURE</div>
+  <div style="font-size:10.5px;color:var(--text-dim);margin:14px 0 8px;font-family:var(--mono);letter-spacing:1px">CANALES DEL FIXTURE</div>
   <div id="fixChannels"></div>
   <div class="tool-row" style="margin-top:10px">
     <button class="tool-btn tool-btn-sec" onclick="addFixCh()">+ Añadir canal</button>
@@ -4014,7 +4061,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
   <div id="fixResult" style="display:none;margin-top:16px">
     <div class="divider-tool"></div>
-    <div style="font-size:10.5px;color:var(--t3);margin-bottom:8px;font-family:var(--mono);letter-spacing:1px">TABLA DE PATCH — <span id="fixResultName"></span></div>
+    <div style="font-size:10.5px;color:var(--text-dim);margin-bottom:8px;font-family:var(--mono);letter-spacing:1px">TABLA DE PATCH — <span id="fixResultName"></span></div>
     <div class="ox"><table class="result-table"><thead><tr><th>Ch absoluto</th><th>Ch relativo</th><th>Nombre</th><th>Tipo</th><th>Rango</th><th>Default</th></tr></thead><tbody id="fixTable"></tbody></table></div>
     <div class="tool-note" id="fixSummary"></div>
   </div>
@@ -4071,7 +4118,7 @@ Activa "Auto Span" para expansión automática de universos</div>
       <div class="result-item"><div class="result-label">Tiempo (mm:ss)</div><div class="result-value" id="bpmTime" style="font-size:18px">—</div><div class="result-unit">minutos:segundos</div></div>
     </div>
     <div class="divider-tool"></div>
-    <div style="font-size:10.5px;color:var(--t3);margin-bottom:8px;font-family:var(--mono);letter-spacing:1px">SUBDIVISIONES — DURACIÓN EN MILISEGUNDOS (ms)</div>
+    <div style="font-size:10.5px;color:var(--text-dim);margin-bottom:8px;font-family:var(--mono);letter-spacing:1px">SUBDIVISIONES — DURACIÓN EN MILISEGUNDOS (ms)</div>
     <div class="ox"><table class="result-table" id="bpmSubTable">
       <thead><tr><th>Subdivisión</th><th>Nombre</th><th>ms</th><th>Frames</th></tr></thead>
       <tbody id="bpmSubBody"></tbody>
@@ -4100,27 +4147,27 @@ Activa "Auto Span" para expansión automática de universos</div>
 <div class="tool-wrap">
   <div class="tool-title">🎼 Estructura del tiempo musical</div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px">
-    <div style="background:var(--bg3);border:1px solid var(--b2);border-radius:8px;padding:16px">
+    <div style="background:var(--bg-deep);border:1px solid var(--border-dark);border-radius:8px;padding:16px">
       <div style="font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-family:var(--mono)">BPM</div>
-      <p style="font-size:14px;color:var(--t2);line-height:1.65"><strong>Beats Per Minute.</strong> Mide la velocidad del pulso musical. A 120 BPM hay 120 pulsaciones por minuto → 1 pulso cada 500 ms. Es el valor central de toda sincronización visual.</p>
+      <p style="font-size:14px;color:var(--text-secondary);line-height:1.65"><strong>Beats Per Minute.</strong> Mide la velocidad del pulso musical. A 120 BPM hay 120 pulsaciones por minuto → 1 pulso cada 500 ms. Es el valor central de toda sincronización visual.</p>
     </div>
-    <div style="background:var(--bg3);border:1px solid var(--b2);border-radius:8px;padding:16px">
+    <div style="background:var(--bg-deep);border:1px solid var(--border-dark);border-radius:8px;padding:16px">
       <div style="font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-family:var(--mono)">BEAT / PULSO</div>
-      <p style="font-size:14px;color:var(--t2);line-height:1.65">La <strong>unidad mínima</strong> del ritmo. En 4/4 hay 4 beats por compás. Cada beat dura <code style="background:var(--bg1);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:12px">60000 / BPM</code> milisegundos.</p>
+      <p style="font-size:14px;color:var(--text-secondary);line-height:1.65">La <strong>unidad mínima</strong> del ritmo. En 4/4 hay 4 beats por compás. Cada beat dura <code style="background:var(--bg-surface);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:12px">60000 / BPM</code> milisegundos.</p>
     </div>
-    <div style="background:var(--bg3);border:1px solid var(--b2);border-radius:8px;padding:16px">
+    <div style="background:var(--bg-deep);border:1px solid var(--border-dark);border-radius:8px;padding:16px">
       <div style="font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-family:var(--mono)">BAR / COMPÁS</div>
-      <p style="font-size:14px;color:var(--t2);line-height:1.65">Agrupación de beats. En <strong>4/4</strong> (el más común en electrónica) 1 bar = 4 beats. Los loops de VJing suelen medir <strong>1, 2, 4, 8 o 16 bars</strong> para encajar perfectamente.</p>
+      <p style="font-size:14px;color:var(--text-secondary);line-height:1.65">Agrupación de beats. En <strong>4/4</strong> (el más común en electrónica) 1 bar = 4 beats. Los loops de VJing suelen medir <strong>1, 2, 4, 8 o 16 bars</strong> para encajar perfectamente.</p>
     </div>
   </div>
 
   <!-- Visual beat grid -->
   <div style="margin-bottom:18px">
-    <div style="font-size:10px;color:var(--t2);letter-spacing:1.2px;text-transform:uppercase;font-family:var(--mono);margin-bottom:10px;font-weight:700">VISUALIZACIÓN DE ESTRUCTURA RÍTMICA (4/4)</div>
+    <div style="font-size:10px;color:var(--text-secondary);letter-spacing:1.2px;text-transform:uppercase;font-family:var(--mono);margin-bottom:10px;font-weight:700">VISUALIZACIÓN DE ESTRUCTURA RÍTMICA (4/4)</div>
     <div style="background:#0E1A16;border:1px solid rgba(42,106,88,.3);border-radius:8px;padding:16px;overflow-x:auto">
       <svg id="beatGridSVG" viewBox="0 0 640 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:400px;display:block"></svg>
     </div>
-    <div style="display:flex;gap:16px;margin-top:8px;font-size:11px;color:var(--t1);flex-wrap:wrap">
+    <div style="display:flex;gap:16px;margin-top:8px;font-size:11px;color:var(--text-primary);flex-wrap:wrap">
       <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:#2A6A58;border-radius:2px;display:inline-block"></span>Beat 1 (downbeat)</span>
       <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:rgba(42,106,88,.65);border-radius:2px;display:inline-block"></span>Beats 2, 3, 4</span>
       <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:rgba(42,106,88,.35);border-radius:2px;display:inline-block"></span>Corcheas (1/2 beat)</span>
@@ -4131,7 +4178,7 @@ Activa "Auto Span" para expansión automática de universos</div>
   <!-- Subdivision table theory -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
     <div>
-      <div style="font-size:10px;color:var(--t3);letter-spacing:1.2px;text-transform:uppercase;font-family:var(--mono);margin-bottom:8px">NOMENCLATURA SUBDIVISIONES</div>
+      <div style="font-size:10px;color:var(--text-dim);letter-spacing:1.2px;text-transform:uppercase;font-family:var(--mono);margin-bottom:8px">NOMENCLATURA SUBDIVISIONES</div>
       <table class="result-table">
         <thead><tr><th>ES</th><th>EN</th><th>Valor</th><th>Por compás 4/4</th></tr></thead>
         <tbody>
@@ -4146,7 +4193,7 @@ Activa "Auto Span" para expansión automática de universos</div>
       </table>
     </div>
     <div>
-      <div style="font-size:10px;color:var(--t3);letter-spacing:1.2px;text-transform:uppercase;font-family:var(--mono);margin-bottom:8px">ESTRUCTURAS TÍPICAS EN MÚSICA ELECTRÓNICA</div>
+      <div style="font-size:10px;color:var(--text-dim);letter-spacing:1.2px;text-transform:uppercase;font-family:var(--mono);margin-bottom:8px">ESTRUCTURAS TÍPICAS EN MÚSICA ELECTRÓNICA</div>
       <table class="result-table">
         <thead><tr><th>Estructura</th><th>Bars</th><th>Cuándo cambiar clip</th></tr></thead>
         <tbody>
@@ -4165,7 +4212,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 <!-- SIMULADOR INTERACTIVO -->
 <div class="tool-wrap">
   <div class="tool-title">🎛 Simulador de sincronización visual</div>
-  <p style="font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:16px">Introduce el BPM de tu pista y la duración del clip visual. El simulador te dice si el clip encaja perfectamente en la estructura rítmica y cuál es el número de compases ideal.</p>
+  <p style="font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px">Introduce el BPM de tu pista y la duración del clip visual. El simulador te dice si el clip encaja perfectamente en la estructura rítmica y cuál es el número de compases ideal.</p>
 
   <div class="tool-row" style="flex-wrap:wrap">
     <div class="tool-field"><label>BPM de la pista</label>
@@ -4196,11 +4243,11 @@ Activa "Auto Span" para expansión automática de universos</div>
 
   <!-- Visual timeline -->
   <div style="margin-top:18px">
-    <div style="font-size:10px;color:var(--t2);letter-spacing:1.2px;text-transform:uppercase;font-family:var(--mono);margin-bottom:8px;font-weight:700">VISUALIZACIÓN DE ENCAJE DEL CLIP EN LA ESTRUCTURA MUSICAL</div>
+    <div style="font-size:10px;color:var(--text-secondary);letter-spacing:1.2px;text-transform:uppercase;font-family:var(--mono);margin-bottom:8px;font-weight:700">VISUALIZACIÓN DE ENCAJE DEL CLIP EN LA ESTRUCTURA MUSICAL</div>
     <div style="background:#0E1A16;border:1px solid rgba(42,106,88,.3);border-radius:8px;padding:12px;overflow-x:auto">
       <canvas id="syncCanvas" height="100" style="width:100%;min-width:360px;display:block;border-radius:4px" role="img" aria-label="Visualizador de sincronización BPM y pulsos de audio"></canvas>
     </div>
-    <div id="syncWarning" style="margin-top:10px;font-size:13px;color:var(--t2);line-height:1.6"></div>
+    <div id="syncWarning" style="margin-top:10px;font-size:13px;color:var(--text-secondary);line-height:1.6"></div>
   </div>
 </div>
 
@@ -4212,19 +4259,19 @@ Activa "Auto Span" para expansión automática de universos</div>
       <div class="step-list" style="counter-reset:steps">
         <div style="display:flex;gap:12px;margin-bottom:12px;align-items:flex-start">
           <div style="width:26px;height:26px;border-radius:50%;background:var(--green);color:#000;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
-          <p style="font-size:14px;color:var(--t2);line-height:1.65;padding-top:2px">Activa el <strong>Master Clock</strong> en Resolume (barra superior, icono de reloj). Introduce el BPM de tu sesión o activa <strong>Tap Tempo</strong> golpeando al ritmo de la música.</p>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.65;padding-top:2px">Activa el <strong>Master Clock</strong> en Resolume (barra superior, icono de reloj). Introduce el BPM de tu sesión o activa <strong>Tap Tempo</strong> golpeando al ritmo de la música.</p>
         </div>
         <div style="display:flex;gap:12px;margin-bottom:12px;align-items:flex-start">
           <div style="width:26px;height:26px;border-radius:50%;background:var(--green);color:#000;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
-          <p style="font-size:14px;color:var(--t2);line-height:1.65;padding-top:2px">En el <strong>Clip Inspector → Transport</strong>, activa <strong>BPM Sync</strong>. El clip adaptará su velocidad de reproducción al BPM global automáticamente.</p>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.65;padding-top:2px">En el <strong>Clip Inspector → Transport</strong>, activa <strong>BPM Sync</strong>. El clip adaptará su velocidad de reproducción al BPM global automáticamente.</p>
         </div>
         <div style="display:flex;gap:12px;margin-bottom:12px;align-items:flex-start">
           <div style="width:26px;height:26px;border-radius:50%;background:var(--green);color:#000;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
-          <p style="font-size:14px;color:var(--t2);line-height:1.65;padding-top:2px">Configura <strong>Beat Snap</strong> al valor que corresponda (1 Bar, 2 Bars, 1 Phrase…). Resolume esperará al siguiente punto de cuantización antes de lanzar el clip.</p>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.65;padding-top:2px">Configura <strong>Beat Snap</strong> al valor que corresponda (1 Bar, 2 Bars, 1 Phrase…). Resolume esperará al siguiente punto de cuantización antes de lanzar el clip.</p>
         </div>
         <div style="display:flex;gap:12px;margin-bottom:12px;align-items:flex-start">
           <div style="width:26px;height:26px;border-radius:50%;background:var(--green);color:#000;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div>
-          <p style="font-size:14px;color:var(--t2);line-height:1.65;padding-top:2px">Ajusta el <strong>Loop Point</strong> del clip para que su duración sea exactamente N compases. Usa la calculadora de Duración de Loop para obtener los valores exactos en frames.</p>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.65;padding-top:2px">Ajusta el <strong>Loop Point</strong> del clip para que su duración sea exactamente N compases. Usa la calculadora de Duración de Loop para obtener los valores exactos en frames.</p>
         </div>
       </div>
     </div>
@@ -4352,7 +4399,7 @@ function syncCalc() {
         <div class="result-unit">%</div>
       </div>
     </div>
-    <div style="padding:12px 16px;background:${isSynced?'rgba(0,184,148,.1)':'rgba(245,158,11,.1)'};border-radius:8px;border-left:3px solid ${statusColor};font-size:13px;color:var(--t2)">
+    <div style="padding:12px 16px;background:${isSynced?'rgba(0,184,148,.1)':'rgba(245,158,11,.1)'};border-radius:8px;border-left:3px solid ${statusColor};font-size:13px;color:var(--text-secondary)">
       ${statusIcon} <strong style="color:${statusColor}">${statusText}</strong> — 
       ${isSynced
         ? `Tu clip de ${dur}s encaja perfectamente en <strong>${nearBars} bars</strong> a ${bpm} BPM. ✓ Usa Beat Snap = ${nearBars <= 2 ? nearBars + ' Bar' : nearBars + ' Bars'} en Resolume.`
@@ -4360,7 +4407,7 @@ function syncCalc() {
            Ajusta la duración a <strong>${nearDur.toFixed(3)}s (${nearBars} bars)</strong> o a <strong>${nearPhraseDur.toFixed(3)}s (${nearPhrase} bars)</strong>.`
       }
     </div>
-    <div style="margin-top:10px;font-size:12px;color:var(--t3);font-family:var(--mono)">
+    <div style="margin-top:10px;font-size:12px;color:var(--text-dim);font-family:var(--mono)">
       → Duración exportar: <strong style="color:var(--green)">${nearDur.toFixed(3)}s</strong> · 
       Frames @25fps: <strong style="color:var(--green)">${Math.round(nearDur*25)}</strong> · 
       Frames @30fps: <strong style="color:var(--green)">${Math.round(nearDur*30)}</strong> · 
@@ -4487,7 +4534,7 @@ if (document.readyState === 'loading') {
   </div>
   <div class="tool-result">
     <div id="dxvGrid" class="result-grid" style="margin-bottom:14px"></div>
-    <div style="font-size:10.5px;color:var(--t3);margin-bottom:8px;font-family:var(--mono);letter-spacing:1px">COMPARATIVA POR CODEC</div>
+    <div style="font-size:10.5px;color:var(--text-dim);margin-bottom:8px;font-family:var(--mono);letter-spacing:1px">COMPARATIVA POR CODEC</div>
     <div class="ox"><table class="result-table">
       <thead><tr><th>Codec</th><th>Decodificación</th><th>Tamaño estimado</th><th>Ratio vs DXV3</th></tr></thead>
       <tbody id="dxvTableBody"></tbody>
@@ -4733,7 +4780,7 @@ function syncCalc() {
         <div class="result-unit">%</div>
       </div>
     </div>
-    <div style="padding:12px 16px;background:${isSynced?'rgba(0,184,148,.1)':'rgba(245,158,11,.1)'};border-radius:8px;border-left:3px solid ${statusColor};font-size:13px;color:var(--t2)">
+    <div style="padding:12px 16px;background:${isSynced?'rgba(0,184,148,.1)':'rgba(245,158,11,.1)'};border-radius:8px;border-left:3px solid ${statusColor};font-size:13px;color:var(--text-secondary)">
       ${statusIcon} <strong style="color:${statusColor}">${statusText}</strong> — 
       ${isSynced
         ? `Tu clip de ${dur}s encaja perfectamente en <strong>${nearBars} bars</strong> a ${bpm} BPM. ✓ Usa Beat Snap = ${nearBars <= 2 ? nearBars + ' Bar' : nearBars + ' Bars'} en Resolume.`
@@ -4741,7 +4788,7 @@ function syncCalc() {
            Ajusta la duración a <strong>${nearDur.toFixed(3)}s (${nearBars} bars)</strong> o a <strong>${nearPhraseDur.toFixed(3)}s (${nearPhrase} bars)</strong>.`
       }
     </div>
-    <div style="margin-top:10px;font-size:12px;color:var(--t3);font-family:var(--mono)">
+    <div style="margin-top:10px;font-size:12px;color:var(--text-dim);font-family:var(--mono)">
       → Duración exportar: <strong style="color:var(--green)">${nearDur.toFixed(3)}s</strong> · 
       Frames @25fps: <strong style="color:var(--green)">${Math.round(nearDur*25)}</strong> · 
       Frames @30fps: <strong style="color:var(--green)">${Math.round(nearDur*30)}</strong> · 
@@ -6086,7 +6133,7 @@ function filterFX() {
   count.textContent = results.length + ' efecto' + (results.length !== 1 ? 's' : '') + ' encontrado' + (results.length !== 1 ? 's' : '');
 
   grid.innerHTML = results.length === 0
-    ? '<div style="grid-column:1/-1;text-align:center;color:var(--t3);padding:32px 0;font-size:13px">Sin resultados para esa búsqueda.</div>'
+    ? '<div style="grid-column:1/-1;text-align:center;color:var(--text-dim);padding:32px 0;font-size:13px">Sin resultados para esa búsqueda.</div>'
     : results.map(fx => {
         const col = CAT_COLORS[fx.cat] || 'var(--green)';
         const lbl = CAT_LABELS[fx.cat] || fx.cat;
@@ -6234,11 +6281,11 @@ function buildHexPalette() {
   const c = document.getElementById('hexPalette');
   if (!c) return;
   c.innerHTML = HEX_PALETTE.map(p => `
-    <div onclick="loadHexColor('${p.hex}')" style="cursor:pointer;border-radius:6px;overflow:hidden;border:1px solid var(--b2);transition:transform .1s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
+    <div onclick="loadHexColor('${p.hex}')" style="cursor:pointer;border-radius:6px;overflow:hidden;border:1px solid var(--border-dark);transition:transform .1s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
       <div style="height:40px;background:${p.hex}"></div>
-      <div style="padding:5px 8px;background:var(--bg4)">
-        <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:1px">${p.name}</div>
-        <div style="font-size:9px;color:var(--t3);font-family:var(--mono)">${p.hex}</div>
+      <div style="padding:5px 8px;background:var(--bg-panel)">
+        <div style="font-size:10px;font-weight:700;color:var(--text-primary);margin-bottom:1px">${p.name}</div>
+        <div style="font-size:9px;color:var(--text-dim);font-family:var(--mono)">${p.hex}</div>
       </div>
     </div>`).join('');
 }
@@ -6466,7 +6513,7 @@ function addFixCh(name='', type='Red', def=0) {
   div.className = 'tool-row';
   div.style.alignItems = 'flex-end';
   div.innerHTML = `
-    <div style="width:28px;min-width:28px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--t3);padding-bottom:10px">${id}</div>
+    <div style="width:28px;min-width:28px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--text-dim);padding-bottom:10px">${id}</div>
     <div class="tool-field"><label>Nombre</label><input class="tool-input" type="text" value="${name}" placeholder="Nombre canal" id="fn-${id}"></div>
     <div class="tool-field"><label>Tipo</label><select class="tool-select" id="ft-${id}">
       ${FIX_TYPES.map(t=>`<option value="${t}" ${t===type?'selected':''}>${t}</option>`).join('')}
@@ -7052,6 +7099,77 @@ window.AVL_NAV_CONFIG = {
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && sb && sb.classList.contains('open')) sbClose();
   });
+})();
+</script>
+
+<script>
+/* ═══ Buscador interno (homogeneizado desde Illustrator) ═══════════════ */
+(function () {
+    const searchIndex = [];
+
+    function buildSearchIndex() {
+        document.querySelectorAll('.page').forEach(function(sec) {
+            const id = sec.id.replace(/^(page-|s-)/, '');
+            const titleEl = sec.querySelector('.ptitle');
+            const sectionTitle = titleEl ? titleEl.textContent.trim() : sec.id;
+            sec.querySelectorAll('p, li, .panel-title, .card-label, h3, h4, .glossary-term, .glossary-def, .gl-term, .gl-def').forEach(function(el) {
+                const text = el.textContent.trim();
+                if (text.length > 20) {
+                    searchIndex.push({ id: id, sectionTitle: sectionTitle, text: text.slice(0, 120) });
+                }
+            });
+        });
+    }
+
+    function doSearch(query) {
+        const box = document.getElementById('searchResults');
+        if (!query || query.length < 2) { closeSearch(); return; }
+        const q = query.toLowerCase();
+        const seen = new Set();
+        const hits = searchIndex.filter(function(item) {
+            const key = item.id + item.text.slice(0, 40);
+            if (seen.has(key)) return false;
+            if (item.text.toLowerCase().includes(q) || item.sectionTitle.toLowerCase().includes(q)) {
+                seen.add(key);
+                return true;
+            }
+            return false;
+        }).slice(0, 8);
+
+        if (hits.length === 0) {
+            box.innerHTML = '<div class="no-results">Sin resultados para "' + query + '"</div>';
+        } else {
+            const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            box.innerHTML = hits.map(function(h) {
+                const hl = h.text.replace(new RegExp('(' + escaped + ')', 'gi'),
+                    '<span class="search-highlight">$1</span>');
+                return '<div class="search-result-item" onclick="go(\'' + h.id + '\'); closeSearch(); document.getElementById(\'searchInput\').value=\'\';">' +
+                    '<strong>' + h.sectionTitle + '</strong><span>' + hl + '</span></div>';
+            }).join('');
+        }
+        box.classList.add('visible');
+    }
+
+    function closeSearch() {
+        const box = document.getElementById('searchResults');
+        if (box) { box.classList.remove('visible'); box.innerHTML = ''; }
+    }
+    window.closeSearch = closeSearch;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        buildSearchIndex();
+        const input = document.getElementById('searchInput');
+        if (input) {
+            input.addEventListener('input', function(e) { doSearch(e.target.value); });
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') { closeSearch(); input.value = ''; }
+            });
+        }
+        document.addEventListener('click', function(e) {
+            const wrapper = document.querySelector('.search-wrapper');
+            if (wrapper && !wrapper.contains(e.target)) closeSearch();
+        });
+    });
 })();
 </script>
 </body>
