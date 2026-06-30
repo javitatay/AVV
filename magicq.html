@@ -1055,7 +1055,7 @@ font-family: var(--font-body);
             margin-top: 10px;
         }
 
-        .feature-card {
+        .section-card {
             background: var(--bg-surface);
             border: 1px solid var(--border-dark);
             border-radius: 8px;
@@ -1066,7 +1066,7 @@ font-family: var(--font-body);
             overflow: hidden;
         }
 
-        .feature-card::before {
+        .section-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0;
@@ -1076,20 +1076,20 @@ font-family: var(--font-body);
             transition: opacity 0.2s;
         }
 
-        .feature-card:hover {
+        .section-card:hover {
             border-color: rgba(37,99,235,0.25);
             transform: translateY(-3px);
             
         }
 
-        .feature-card:hover::before { opacity: 1; }
+        .section-card:hover::before { opacity: 1; }
 
         .feature-icon {
             font-size: 28px;
             margin-bottom: 10px;
         }
 
-        .feature-card h3 {
+        .section-card h3 {
             font-family: var(--font-head);
             font-size: 15px;
             font-weight: 700;
@@ -1099,7 +1099,7 @@ font-family: var(--font-body);
             margin-bottom: 6px;
         }
 
-        .feature-card p {
+        .section-card p {
             font-size: 12.5px;
             color: var(--text-secondary);
             line-height: 1.5;
@@ -1296,7 +1296,7 @@ textarea:focus-visible {
 @media (hover: none), (pointer: coarse) {
   /* Elimina saltos visuales en pantallas táctiles */
   .module-card:hover,
-  .feature-card:hover,
+  .section-card:hover,
   [class*="card"]:hover,
   .back-btn:hover,
   .inner-tab:hover,
@@ -1546,17 +1546,17 @@ textarea:focus-visible {
                 <!-- ── FUNDAMENTOS ── -->
                 <div class="home-sec-label">// FUNDAMENTOS</div>
                 <div class="grid-3 home-sec-grid">
-                    <div class="feature-card" onclick="showPage('interfaz')">
+                    <div class="section-card" onclick="showPage('interfaz')">
                         <div class="feature-icon">▣</div>
                         <h3>Interfaz MagicQ</h3>
                         <p>Anatomía completa de la consola: faders, encoders, ventana central y playbacks.</p>
                     </div>
-                    <div class="feature-card" onclick="showPage('setup')">
+                    <div class="section-card" onclick="showPage('setup')">
                         <div class="feature-icon">⚙</div>
                         <h3>Setup</h3>
                         <p>Configuración global del show, salidas DMX, red y gestión de archivos de show.</p>
                     </div>
-                    <div class="feature-card" onclick="showPage('visualiser')">
+                    <div class="section-card" onclick="showPage('visualiser')">
                         <div class="feature-icon">◈</div>
                         <h3>Visualiser</h3>
                         <p>Entorno 3D integrado para simular y pre-visualizar el escenario en tiempo real.</p>
@@ -1566,17 +1566,17 @@ textarea:focus-visible {
                 <!-- ── PATCH & CONTROL ── -->
                 <div class="home-sec-label">// PATCH &amp; CONTROL</div>
                 <div class="grid-3 home-sec-grid">
-                    <div class="feature-card" onclick="showPage('dmx')">
+                    <div class="section-card" onclick="showPage('dmx')">
                         <div class="feature-icon">≡</div>
                         <h3>DMX &amp; Universos</h3>
                         <p>Protocolo DMX512, universos, direccionamiento y diferencias con Art-Net / sACN.</p>
                     </div>
-                    <div class="feature-card" onclick="showPage('patch')">
+                    <div class="section-card" onclick="showPage('patch')">
                         <div class="feature-icon">⊞</div>
                         <h3>Patch</h3>
                         <p>Parchear fixtures: cabezas móviles, dimmers y sintaxis de dirección DMX.</p>
                     </div>
-                    <div class="feature-card" onclick="showPage('grupos')">
+                    <div class="section-card" onclick="showPage('grupos')">
                         <div class="feature-icon">◉</div>
                         <h3>Grupos</h3>
                         <p>Crear y gestionar grupos de fixtures para selección rápida durante el directo.</p>
@@ -1586,22 +1586,22 @@ textarea:focus-visible {
                 <!-- ── PROGRAMACIÓN ── -->
                 <div class="home-sec-label">// PROGRAMACIÓN</div>
                 <div class="grid-4 home-sec-grid">
-                    <div class="feature-card" onclick="showPage('posiciones')">
+                    <div class="section-card" onclick="showPage('posiciones')">
                         <div class="feature-icon">✛</div>
                         <h3>Posiciones &amp; FX</h3>
                         <p>Paletas de posición, efectos de movimiento y FX engine de MagicQ.</p>
                     </div>
-                    <div class="feature-card" onclick="showPage('cues')">
+                    <div class="section-card" onclick="showPage('cues')">
                         <div class="feature-icon">▶</div>
                         <h3>Cues &amp; Playbacks</h3>
                         <p>Grabar escenas, cue stacks, timing de fade/hold y ejecución en directo.</p>
                     </div>
-                    <div class="feature-card" onclick="showPage('color')">
+                    <div class="section-card" onclick="showPage('color')">
                         <div class="feature-icon">◐</div>
                         <h3>Color &amp; Paletas</h3>
                         <p>Color picker, gelatinas y paletas POS/COL/BEAM/INT reutilizables.</p>
                     </div>
-                    <div class="feature-card" onclick="showPage('executors')">
+                    <div class="section-card" onclick="showPage('executors')">
                         <div class="feature-icon">⊟</div>
                         <h3>Executors</h3>
                         <p>Rejilla de ejecutores para lanzar cues, chases y efectos en tiempo real.</p>
@@ -1611,7 +1611,7 @@ textarea:focus-visible {
                 <!-- ── AVANZADO ── -->
                 <div class="home-sec-label">// AVANZADO</div>
                 <div class="grid-3 home-sec-grid">
-                    <div class="feature-card" onclick="showPage('remote')">
+                    <div class="section-card" onclick="showPage('remote')">
                         <div class="feature-icon">📱</div>
                         <h3>MagicQ Remote</h3>
                         <p>Control inalámbrico desde smartphone o tablet con la app oficial de ChamSys.</p>
@@ -1621,7 +1621,7 @@ textarea:focus-visible {
                 <!-- ── PRÁCTICAS ── -->
                 <div class="home-sec-label">// PRÁCTICAS</div>
                 <div class="grid-3 home-sec-grid">
-                    <div class="feature-card" onclick="showPage('ejercicios')">
+                    <div class="section-card" onclick="showPage('ejercicios')">
                         <div class="feature-icon">✦</div>
                         <h3>Ejercicios <span style="font-size:10px;background:var(--mq-orange);color:white;padding:2px 7px;border-radius:20px;vertical-align:middle;margin-left:4px;font-weight:700;">4</span></h3>
                         <p>Prácticas evaluables: Visualiser, Patch, Grupos &amp; FX, Cues / Playbacks / Paletas.</p>
@@ -1631,32 +1631,32 @@ textarea:focus-visible {
                 <!-- ── REFERENCIA ── -->
                 <div class="home-sec-label">// REFERENCIA</div>
                 <div class="grid-3 home-sec-grid">
-                    <div class="feature-card" onclick="showPage('calc')">
+                    <div class="section-card" onclick="showPage('calc')">
                         <div class="feature-icon">⌨</div>
                         <h3>Calculadora DMX</h3>
                         <p>Calcula universos, distribución de canales y detecta colisiones de direcciones.</p>
                     </div>
-                    <div class="feature-card" onclick="showPage('sintaxis')">
+                    <div class="section-card" onclick="showPage('sintaxis')">
                         <div class="feature-icon">⌘</div>
                         <h3>Simulador de Patch</h3>
                         <p>Mapa visual de 512 canales por universo con detección de solapamientos en tiempo real.</p>
                     </div>
-                    <div class="feature-card" onclick="showPage('tiempos')">
+                    <div class="section-card" onclick="showPage('tiempos')">
                         <div class="feature-icon">⏱</div>
                         <h3>Temporizador de Cues</h3>
                         <p>Calcula tiempos totales de show: fade in/out, hold y delay por cue.</p>
                     </div>
-                    <div class="feature-card" onclick="showPage('glosario')">
+                    <div class="section-card" onclick="showPage('glosario')">
                         <div class="feature-icon">📖</div>
                         <h3>Glosario Visual</h3>
                         <p>37 términos esenciales de iluminación escénica con iconos y categorías.</p>
                     </div>
-                    <div class="feature-card" onclick="showPage('catalogofocos')">
+                    <div class="section-card" onclick="showPage('catalogofocos')">
                         <div class="feature-icon">💡</div>
                         <h3>Catálogo de Focos</h3>
                         <p>24 fixtures profesionales con canales DMX, fuente de luz y uso recomendado.</p>
                     </div>
-                    <div class="feature-card" onclick="showPage('referencia')">
+                    <div class="section-card" onclick="showPage('referencia')">
                         <div class="feature-icon">☰</div>
                         <h3>Referencia Rápida</h3>
                         <p>Glosario compacto de 33 términos MagicQ para consulta rápida en clase.</p>
@@ -2205,7 +2205,7 @@ textarea:focus-visible {
     <input type="number" class="dmxc-input" id="dmxcInput" min="1" max="512" placeholder="—">
     <button class="gmq-btn gmq-btn-primary" onclick="dmxcCheck()">Comprobar</button>
   </div>
-  <div class="gmq-feedback" id="dmxcFb"></div>
+  <div class="gmq-feedback" id="dmxcFb" aria-live="polite" aria-atomic="true"></div>
   <div class="gmq-actions">
     <button class="gmq-btn gmq-btn-ghost" onclick="dmxcReset()">↺ Reiniciar</button>
     <button class="gmq-btn gmq-btn-primary" id="dmxcNext" style="display:none;" onclick="dmxcNext()">Siguiente reto →</button>
@@ -2405,7 +2405,7 @@ textarea:focus-visible {
     <div class="pq-universe-bar" id="pqBar"></div>
     <div class="pq-fixtures-list" id="pqList"></div>
   </div>
-  <div class="gmq-feedback" id="pqFb"></div>
+  <div class="gmq-feedback" id="pqFb" aria-live="polite" aria-atomic="true"></div>
   <div class="gmq-actions">
     <button class="gmq-btn gmq-btn-ghost" onclick="pqReset()">↺ Reiniciar</button>
     <button class="gmq-btn gmq-btn-primary" onclick="pqValidate()">Validar parche</button>
@@ -2895,7 +2895,7 @@ textarea:focus-visible {
     <div class="cmd-tokens-label">Tokens disponibles</div>
     <div class="cmd-tokens" id="cmdTokens"></div>
   </div>
-  <div class="gmq-feedback" id="cmdFb"></div>
+  <div class="gmq-feedback" id="cmdFb" aria-live="polite" aria-atomic="true"></div>
   <div class="gmq-actions">
     <button class="gmq-btn gmq-btn-ghost" onclick="cmdReset()">↺ Reiniciar</button>
     <button class="gmq-btn gmq-btn-primary" onclick="cmdValidate()">Ejecutar comando</button>
@@ -3098,7 +3098,7 @@ textarea:focus-visible {
     </div>
     <div class="cmy-difference" id="cmyDiff">Similitud: 0% — ajusta los sliders</div>
   </div>
-  <div class="gmq-feedback" id="cmyFb"></div>
+  <div class="gmq-feedback" id="cmyFb" aria-live="polite" aria-atomic="true"></div>
   <div class="gmq-actions">
     <button class="gmq-btn gmq-btn-ghost" onclick="cmyReset()">↺ Reiniciar</button>
     <button class="gmq-btn gmq-btn-primary" onclick="cmyValidate()">Validar mezcla</button>
@@ -3885,7 +3885,7 @@ textarea:focus-visible {
     </div>
     <div class="foc-options" id="focOpts"></div>
   </div>
-  <div class="gmq-feedback" id="focFb"></div>
+  <div class="gmq-feedback" id="focFb" aria-live="polite" aria-atomic="true"></div>
   <div class="gmq-actions">
     <button class="gmq-btn gmq-btn-ghost" onclick="focReset()">↺ Reiniciar</button>
     <button class="gmq-btn gmq-btn-primary" id="focNext" style="display:none;" onclick="focNext()">Siguiente reto →</button>

@@ -633,11 +633,11 @@ table.ae .hl { color: var(--text-primary); font-weight: 600; }
 .idx-group-line { flex: 1; height: 1px; background: var(--border-dark); }
 .idx-grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
 .idx-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
-.idx-card { background: var(--bg-surface); border: 1px solid var(--border-dark); border-radius: 10px; padding: 16px 16px 14px; cursor: pointer; transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease, transform .16s ease, opacity .16s ease; display: flex; flex-direction: column; gap: 7px; position: relative; overflow: hidden; box-shadow: var(--shadow-base); }
-.idx-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--ae-blue); opacity: 0; transition: opacity .16s; }
-.idx-card:hover { transform: translateY(-3px); background: var(--bg-panel); border-color: var(--border-accent) !important; }
-.idx-card:hover::before { opacity: 1; }
-.idx-card:hover .idx-arrow { opacity: 1; transform: translateX(3px); }
+.section-card { background: var(--bg-surface); border: 1px solid var(--border-dark); border-radius: 10px; padding: 16px 16px 14px; cursor: pointer; transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease, transform .16s ease, opacity .16s ease; display: flex; flex-direction: column; gap: 7px; position: relative; overflow: hidden; box-shadow: var(--shadow-base); }
+.section-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--ae-blue); opacity: 0; transition: opacity .16s; }
+.section-card:hover { transform: translateY(-3px); background: var(--bg-panel); border-color: var(--border-accent) !important; }
+.section-card:hover::before { opacity: 1; }
+.section-card:hover .idx-arrow { opacity: 1; transform: translateX(3px); }
 .idx-ico { font-size: 22px; width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-bottom: 2px; background: var(--bg-button); }
 .idx-name   { font-size: 13px; font-weight: 700; color: var(--text-primary); line-height: 1.2; }
 .idx-desc   { font-size: 11px; color: var(--text-dim); line-height: 1.65; flex: 1; }
@@ -1106,7 +1106,7 @@ textarea:focus-visible {
       <div class="idx-group-line" style="background:rgba(100,120,255,0.15)"></div>
     </div>
     <div class="idx-grid-4">
-      <div class="idx-card" onclick="go('home')" style="border-color:rgba(100,120,255,0.18)">
+      <div class="section-card" onclick="go('home')" style="border-color:rgba(100,120,255,0.18)">
         <div class="idx-ico" style="background:rgba(100,120,255,0.12)">🏠</div>
         <div class="idx-name">Home</div>
         <div class="idx-desc">Flujo de trabajo, atajos esenciales e índice completo de la guía.</div>
@@ -1116,7 +1116,7 @@ textarea:focus-visible {
         </div>
         <div class="idx-card::before" style="background:var(--blue)"></div>
       </div>
-      <div class="idx-card" onclick="go('interfaz')" style="border-color:rgba(100,120,255,0.18)">
+      <div class="section-card" onclick="go('interfaz')" style="border-color:rgba(100,120,255,0.18)">
         <div class="idx-ico" style="background:rgba(100,120,255,0.12)">🖥️</div>
         <div class="idx-name">Interfaz y Entorno</div>
         <div class="idx-desc">Los 4 paneles principales, workspaces y shortcuts de navegación.</div>
@@ -1135,7 +1135,7 @@ textarea:focus-visible {
       <div class="idx-group-line" style="background:rgba(0,216,255,0.15)"></div>
     </div>
     <div class="idx-grid-4">
-      <div class="idx-card" onclick="go('herramientas')" style="border-color:rgba(0,216,255,0.12)">
+      <div class="section-card" onclick="go('herramientas')" style="border-color:rgba(0,216,255,0.12)">
         <div class="idx-ico" style="background:rgba(0,216,255,0.1)">🛠️</div>
         <div class="idx-name">Herramientas</div>
         <div class="idx-desc">Selección, Pluma, Texto, Formas y modificadores de teclado.</div>
@@ -1144,7 +1144,7 @@ textarea:focus-visible {
           <span class="idx-arrow">→</span>
         </div>
       </div>
-      <div class="idx-card" onclick="go('propiedades')" style="border-color:rgba(0,216,255,0.12)">
+      <div class="section-card" onclick="go('propiedades')" style="border-color:rgba(0,216,255,0.12)">
         <div class="idx-ico" style="background:rgba(0,216,255,0.1)">🔢</div>
         <div class="idx-name">Propiedades</div>
         <div class="idx-desc">Punto de anclaje, Posición, Escala, Rotación y Opacidad (APSRT).</div>
@@ -1153,7 +1153,7 @@ textarea:focus-visible {
           <span class="idx-arrow">→</span>
         </div>
       </div>
-      <div class="idx-card" onclick="go('keyframes')" style="border-color:rgba(0,216,255,0.12)">
+      <div class="section-card" onclick="go('keyframes')" style="border-color:rgba(0,216,255,0.12)">
         <div class="idx-ico" style="background:rgba(0,216,255,0.1)">⬦</div>
         <span class="idx-new">Nuevo</span>
         <div class="idx-name">Keyframes</div>
@@ -1173,7 +1173,7 @@ textarea:focus-visible {
       <div class="idx-group-line" style="background:rgba(176,108,255,0.15)"></div>
     </div>
     <div class="idx-grid-4">
-      <div class="idx-card" onclick="go('capas')" style="border-color:rgba(176,108,255,0.12)">
+      <div class="section-card" onclick="go('capas')" style="border-color:rgba(176,108,255,0.12)">
         <div class="idx-ico" style="background:rgba(176,108,255,0.1)">📑</div>
         <div class="idx-name">Tipos de Capas</div>
         <div class="idx-desc">Sólido, Shape Layer, Texto, Ajuste, Nulo y diferencia tímido/oculto.</div>
@@ -1182,7 +1182,7 @@ textarea:focus-visible {
           <span class="idx-arrow">→</span>
         </div>
       </div>
-      <div class="idx-card" onclick="go('precomp')" style="border-color:rgba(176,108,255,0.12)">
+      <div class="section-card" onclick="go('precomp')" style="border-color:rgba(176,108,255,0.12)">
         <div class="idx-ico" style="background:rgba(176,108,255,0.1)">📦</div>
         <div class="idx-name">Precomposiciones</div>
         <div class="idx-desc">Agrupación de capas, composiciones anidadas y cuándo usarlas.</div>
@@ -1191,7 +1191,7 @@ textarea:focus-visible {
           <span class="idx-arrow">→</span>
         </div>
       </div>
-      <div class="idx-card" onclick="go('parenting')" style="border-color:rgba(176,108,255,0.12)">
+      <div class="section-card" onclick="go('parenting')" style="border-color:rgba(176,108,255,0.12)">
         <div class="idx-ico" style="background:rgba(176,108,255,0.1)">🔗</div>
         <div class="idx-name">Principal y Enlace</div>
         <div class="idx-desc">Jerarquías padre-hijo para mover grupos de capas de forma coordinada.</div>
@@ -1200,7 +1200,7 @@ textarea:focus-visible {
           <span class="idx-arrow">→</span>
         </div>
       </div>
-      <div class="idx-card" onclick="go('timeline')" style="border-color:rgba(176,108,255,0.12)">
+      <div class="section-card" onclick="go('timeline')" style="border-color:rgba(176,108,255,0.12)">
         <div class="idx-ico" style="background:rgba(176,108,255,0.1)">📊</div>
         <div class="idx-name">Línea de Tiempo</div>
         <div class="idx-desc">In/Out points, Work Area, marcadores y controles del timeline.</div>
@@ -1209,7 +1209,7 @@ textarea:focus-visible {
           <span class="idx-arrow">→</span>
         </div>
       </div>
-      <div class="idx-card" onclick="go('null')" style="border-color:rgba(176,108,255,0.12)">
+      <div class="section-card" onclick="go('null')" style="border-color:rgba(176,108,255,0.12)">
         <div class="idx-ico" style="background:rgba(176,108,255,0.1)">⚙️</div>
         <div class="idx-name">Objeto Nulo</div>
         <div class="idx-desc">Controladores invisibles para animar grupos o recibir datos de tracking.</div>
@@ -1228,7 +1228,7 @@ textarea:focus-visible {
       <div class="idx-group-line" style="background:rgba(255,125,43,0.15)"></div>
     </div>
     <div class="idx-grid-4">
-      <div class="idx-card" onclick="go('modos')" style="border-color:rgba(255,125,43,0.12)">
+      <div class="section-card" onclick="go('modos')" style="border-color:rgba(255,125,43,0.12)">
         <div class="idx-ico" style="background:rgba(255,125,43,0.1)">🎨</div>
         <div class="idx-name">Modos de Fusión</div>
         <div class="idx-desc">Multiply, Screen, Overlay y todos los blend modes con ejemplos visuales.</div>
@@ -1237,7 +1237,7 @@ textarea:focus-visible {
           <span class="idx-arrow">→</span>
         </div>
       </div>
-      <div class="idx-card" onclick="go('estilos')" style="border-color:rgba(255,125,43,0.12)">
+      <div class="section-card" onclick="go('estilos')" style="border-color:rgba(255,125,43,0.12)">
         <div class="idx-ico" style="background:rgba(255,125,43,0.1)">✨</div>
         <div class="idx-name">Estilos de Capa</div>
         <div class="idx-desc">Sombra, resplandor, trazo y superposición de colores sobre capas.</div>
@@ -1246,7 +1246,7 @@ textarea:focus-visible {
           <span class="idx-arrow">→</span>
         </div>
       </div>
-      <div class="idx-card" onclick="go('efectos')" style="border-color:rgba(255,125,43,0.12)">
+      <div class="section-card" onclick="go('efectos')" style="border-color:rgba(255,125,43,0.12)">
         <div class="idx-ico" style="background:rgba(255,125,43,0.1)">⚡</div>
         <div class="idx-name">Efectos FX</div>
         <div class="idx-desc">12 efectos esenciales: Blur, Glow, Curves, Noise, Color Correction…</div>
@@ -1265,7 +1265,7 @@ textarea:focus-visible {
       <div class="idx-group-line" style="background:rgba(255,77,107,0.15)"></div>
     </div>
     <div class="idx-grid-4">
-      <div class="idx-card" onclick="go('texto')" style="border-color:rgba(255,77,107,0.12)">
+      <div class="section-card" onclick="go('texto')" style="border-color:rgba(255,77,107,0.12)">
         <div class="idx-ico" style="background:rgba(160,24,44,0.10)">🅣</div>
         <div class="idx-name">Texto y Tipografía</div>
         <div class="idx-desc">Animadores de texto, Source Text, caracteres por keyframe y títulos.</div>
@@ -1274,7 +1274,7 @@ textarea:focus-visible {
           <span class="idx-arrow">→</span>
         </div>
       </div>
-      <div class="idx-card" onclick="go('camera')" style="border-color:rgba(255,77,107,0.12)">
+      <div class="section-card" onclick="go('camera')" style="border-color:rgba(255,77,107,0.12)">
         <div class="idx-ico" style="background:rgba(160,24,44,0.10)">📷</div>
         <div class="idx-name">Cámara 3D</div>
         <div class="idx-desc">Setup de cámara virtual, distancia focal, DOF y movimientos Parallax.</div>
@@ -1283,7 +1283,7 @@ textarea:focus-visible {
           <span class="idx-arrow">→</span>
         </div>
       </div>
-      <div class="idx-card" onclick="go('tracking')" style="border-color:rgba(255,77,107,0.12)">
+      <div class="section-card" onclick="go('tracking')" style="border-color:rgba(255,77,107,0.12)">
         <div class="idx-ico" style="background:rgba(160,24,44,0.10)">🎯</div>
         <div class="idx-name">Motion Tracking</div>
         <div class="idx-desc">Track Motion, Camera Tracker y Warp Stabilizer para metraje real.</div>
@@ -1302,7 +1302,7 @@ textarea:focus-visible {
       <div class="idx-group-line" style="background:rgba(0,229,160,0.15)"></div>
     </div>
     <div class="idx-grid-4">
-      <div class="idx-card" onclick="go('importar')" style="border-color:rgba(0,229,160,0.12)">
+      <div class="section-card" onclick="go('importar')" style="border-color:rgba(0,229,160,0.12)">
         <div class="idx-ico" style="background:rgba(0,229,160,0.08)">📥</div>
         <div class="idx-name">Importar Archivos</div>
         <div class="idx-desc">Formatos soportados, secuencias de imágenes, PSD y Illustrator.</div>
@@ -1311,7 +1311,7 @@ textarea:focus-visible {
           <span class="idx-arrow">→</span>
         </div>
       </div>
-      <div class="idx-card" onclick="go('exportar')" style="border-color:rgba(0,229,160,0.12)">
+      <div class="section-card" onclick="go('exportar')" style="border-color:rgba(0,229,160,0.12)">
         <div class="idx-ico" style="background:rgba(0,229,160,0.08)">📤</div>
         <div class="idx-name">Exportar</div>
         <div class="idx-desc">Media Encoder, Render Queue, H.264, ProRes y secuencias PNG.</div>
@@ -1320,7 +1320,7 @@ textarea:focus-visible {
           <span class="idx-arrow">→</span>
         </div>
       </div>
-      <div class="idx-card" onclick="go('ejercicios')" style="border-color:rgba(0,229,160,0.12)">
+      <div class="section-card" onclick="go('ejercicios')" style="border-color:rgba(0,229,160,0.12)">
         <div class="idx-ico" style="background:rgba(0,229,160,0.08)">🎬</div>
         <div class="idx-name">Prácticas</div>
         <div class="idx-desc">5 ejercicios completos con workflow paso a paso y rúbrica de evaluación.</div>
@@ -1330,7 +1330,7 @@ textarea:focus-visible {
           <span class="idx-arrow">→</span>
         </div>
       </div>
-      <div class="idx-card" onclick="go('glosario')" style="border-color:rgba(0,229,160,0.12)">
+      <div class="section-card" onclick="go('glosario')" style="border-color:rgba(0,229,160,0.12)">
         <div class="idx-ico" style="background:rgba(0,229,160,0.08)">📖</div>
         <div class="idx-name">Glosario Técnico</div>
         <div class="idx-desc">40 términos con definición en castellano, contexto y equivalente en inglés.</div>
@@ -1684,7 +1684,7 @@ textarea:focus-visible {
     <div class="mp-similarity" id="mpSim">Similitud: 0% — empieza a ajustar</div>
   </div>
 
-  <div class="gae-feedback" id="mpFb"></div>
+  <div class="gae-feedback" id="mpFb" aria-live="polite" aria-atomic="true"></div>
   <div class="gae-actions">
     <button class="gae-btn gae-btn-ghost" onclick="mpReset()">↺ Reiniciar</button>
     <button class="gae-btn gae-btn-primary" onclick="mpValidate()">Validar match</button>
@@ -2154,7 +2154,7 @@ textarea:focus-visible {
     </div>
   </div>
 
-  <div class="gae-feedback" id="armFb"></div>
+  <div class="gae-feedback" id="armFb" aria-live="polite" aria-atomic="true"></div>
   <div class="gae-actions">
     <button class="gae-btn gae-btn-ghost" onclick="armReset()">↺ Reiniciar</button>
     <button class="gae-btn gae-btn-primary" onclick="armCheck()">Comprobar posición</button>
@@ -2213,7 +2213,7 @@ textarea:focus-visible {
     <div class="tlo-list" id="tloList"></div>
   </div>
 
-  <div class="gae-feedback" id="tloFb"></div>
+  <div class="gae-feedback" id="tloFb" aria-live="polite" aria-atomic="true"></div>
   <div class="gae-actions">
     <button class="gae-btn gae-btn-ghost" onclick="tloReset()">↺ Reiniciar</button>
     <button class="gae-btn gae-btn-primary" onclick="tloValidate()">Validar orden</button>
@@ -2339,7 +2339,7 @@ textarea:focus-visible {
   </div>
 
   <div class="aebm-options" id="aebmOpts"></div>
-  <div class="gae-feedback" id="aebmFb"></div>
+  <div class="gae-feedback" id="aebmFb" aria-live="polite" aria-atomic="true"></div>
   <div class="gae-actions">
     <button class="gae-btn gae-btn-ghost" onclick="aebmReset()">↺ Reiniciar</button>
     <button class="gae-btn gae-btn-primary" id="aebmNext" style="display:none;" onclick="aebmNext()">Siguiente reto →</button>
@@ -2608,7 +2608,7 @@ textarea:focus-visible {
   </div>
 
   <div class="txa-options" id="txaOpts"></div>
-  <div class="gae-feedback" id="txaFb"></div>
+  <div class="gae-feedback" id="txaFb" aria-live="polite" aria-atomic="true"></div>
   <div class="gae-actions">
     <button class="gae-btn gae-btn-ghost" onclick="txaReset()">↺ Reiniciar</button>
     <button class="gae-btn gae-btn-primary" id="txaNext" style="display:none;" onclick="txaNext()">Siguiente reto →</button>

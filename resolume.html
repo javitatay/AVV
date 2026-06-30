@@ -469,7 +469,7 @@ body {
 }
 
 /* Cards */
-.fc {
+.section-card {
   background: #FFFFFF;
   border: 1px solid var(--border-mid);
   border-radius: var(--r);
@@ -479,12 +479,12 @@ body {
   position: relative;
   overflow: hidden;
 }
-.fc:hover {
+.section-card:hover {
   border-color: var(--green);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(42,106,88,.12);
 }
-.fc::after {
+.section-card::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; height: 3px;
@@ -493,20 +493,20 @@ body {
   transform-origin: left;
   transition: transform .25s;
 }
-.fc:hover::after { transform: scaleX(1) }
+.section-card:hover::after { transform: scaleX(1) }
 .fc-ico {
   font-size: 22px;
   color: var(--green);
   margin-bottom: 10px;
   font-family: var(--mono);
 }
-.fc h3 {
+.section-card h3 {
   font-size: 14px;
   font-weight: 700;
   margin-bottom: 6px;
   color: var(--text-primary);
 }
-.fc p {
+.section-card p {
   font-size: 12.5px;
   color: var(--text-secondary);
   line-height: 1.55;
@@ -1155,12 +1155,6 @@ textarea:focus-visible {
   }
 }
 
-/* ═══ SPRINT 3 · A: tap-to-place — selección por toque/clic ═════════════ */
-.tap-selected {
-  outline: 2px solid #0057B8 !important;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(0,87,184,.15) !important;
-}
 /* ═══ SPRINT 3 · B: botón sin límite de tiempo ═══════════════════════════ */
 .avl-timer-btn {
   background: transparent;
@@ -1372,37 +1366,37 @@ window.go = function (id) {
 
 <div class="ptl">📚 Unidades del curso</div>
 <div class="g3" style="margin-bottom: 26px">
-  <div class="fc" onclick="go('interfaz')">
+  <div class="section-card" onclick="go('interfaz')">
     <div class="fc-tag">A1 · UD 1</div>
     <div class="fc-ico">▣</div>
     <h3>Interface</h3>
     <p>Estructura del programa, módulos, DXV, panel Files, efectos básicos y configuración de salida.</p>
   </div>
-  <div class="fc" onclick="go('composition')">
+  <div class="section-card" onclick="go('composition')">
     <div class="fc-tag">A2 · UD 2</div>
     <div class="fc-ico">⊡</div>
     <h3>Composition</h3>
     <p>Composition Settings, capas, modos de fusión, Transform, Auto-Pilot y fuentes generativas.</p>
   </div>
-  <div class="fc" onclick="go('color-modos')">
+  <div class="section-card" onclick="go('color-modos')">
     <div class="fc-tag">A3 · UD 3</div>
     <div class="fc-ico">◐</div>
     <h3>Color</h3>
     <p>Modos RGB, CMYK y HSB, efectos de color, picker, alpha channel y paletas.</p>
   </div>
-  <div class="fc" onclick="go('audio')">
+  <div class="section-card" onclick="go('audio')">
     <div class="fc-tag">A4 · UD 4</div>
     <div class="fc-ico">♫</div>
     <h3>Audio + Control</h3>
     <p>Transport del clip, BPM, BeatLooper, Cuepoints, Envelopes, FFT Audio Reactive y presets.</p>
   </div>
-  <div class="fc" onclick="go('mapping-intro')">
+  <div class="section-card" onclick="go('mapping-intro')">
     <div class="fc-tag">A5 · UD 5</div>
     <div class="fc-ico">◇</div>
     <h3>Mapping básico</h3>
     <p>Advanced Output, Screens, Slices, Input Mapping y casos de uso multi-proyector.</p>
   </div>
-  <div class="fc" onclick="go('structure-mapping')">
+  <div class="section-card" onclick="go('structure-mapping')">
     <div class="fc-tag">A6 · UD 6</div>
     <div class="fc-ico">⬡</div>
     <h3>Mapping avanzado</h3>
@@ -1412,22 +1406,22 @@ window.go = function (id) {
 
 <div class="ptl">⚡ Acceso rápido</div>
 <div class="g4" style="margin-bottom: 26px">
-  <div class="fc" onclick="go('ejercicios')">
+  <div class="section-card" onclick="go('ejercicios')">
     <div class="fc-ico">✎</div>
     <h3>Ejercicios</h3>
     <p>Los 7 ejercicios oficiales del curso (A1–A6 + Final).</p>
   </div>
-  <div class="fc" onclick="go('shortcuts')">
+  <div class="section-card" onclick="go('shortcuts')">
     <div class="fc-ico">⌨</div>
     <h3>Atajos</h3>
     <p>Atajos de teclado esenciales en Resolume Arena.</p>
   </div>
-  <div class="fc" onclick="go('glosario')">
+  <div class="section-card" onclick="go('glosario')">
     <div class="fc-ico">☰</div>
     <h3>Glosario</h3>
     <p>Términos técnicos: Deck, Layer, Slice, DXV, FFT...</p>
   </div>
-  <div class="fc" onclick="go('directorio')">
+  <div class="section-card" onclick="go('directorio')">
     <div class="fc-ico">⧉</div>
     <h3>Archivos</h3>
     <p>Rutas de instalación y proyectos en Mac/Windows.</p>
@@ -1437,77 +1431,77 @@ window.go = function (id) {
 
 <div class="ptl">📂 Contenido ampliado de las unidades</div>
 <div class="g3" style="margin-bottom: 26px">
-  <div class="fc" onclick="go('dxv')">
+  <div class="section-card" onclick="go('dxv')">
     <div class="fc-ico">⧉</div>
     <h3>DXV Codec & Alley</h3>
     <p>Códec nativo de Resolume, ventana Alley y gestión de archivos de vídeo optimizados.</p>
   </div>
-  <div class="fc" onclick="go('clips')">
+  <div class="section-card" onclick="go('clips')">
     <div class="fc-ico">▶</div>
     <h3>Clips & Files</h3>
     <p>Panel Files, organización de medios y carga de clips en el Composition.</p>
   </div>
-  <div class="fc" onclick="go('efectos1')">
+  <div class="section-card" onclick="go('efectos1')">
     <div class="fc-ico">✦</div>
     <h3>Effects</h3>
     <p>Aplicación de efectos de vídeo en capas y clips, parámetros y orden de la pila.</p>
   </div>
-  <div class="fc" onclick="go('output1')">
+  <div class="section-card" onclick="go('output1')">
     <div class="fc-ico">⊞</div>
     <h3>Output Básico</h3>
     <p>Configuración de salida de pantalla, resoluciones y modo de previsualización.</p>
   </div>
-  <div class="fc" onclick="go('capas')">
+  <div class="section-card" onclick="go('capas')">
     <div class="fc-ico">◧</div>
     <h3>Layers & Blend</h3>
     <p>Gestión de capas, orden de composición y modos de fusión entre ellas.</p>
   </div>
-  <div class="fc" onclick="go('transport')">
+  <div class="section-card" onclick="go('transport')">
     <div class="fc-ico">⟳</div>
     <h3>Transport & FX</h3>
     <p>Controles de reproducción del clip, BeatLooper y efectos de transporte.</p>
   </div>
-  <div class="fc" onclick="go('fuentes')">
+  <div class="section-card" onclick="go('fuentes')">
     <div class="fc-ico">⊕</div>
     <h3>Fuentes Generativas</h3>
     <p>Generadores de contenido visual sin archivo de origen: ruido, formas, texto.</p>
   </div>
-  <div class="fc" onclick="go('color-fx')">
+  <div class="section-card" onclick="go('color-fx')">
     <div class="fc-ico">◑</div>
     <h3>Efectos de Color</h3>
     <p>Efectos de corrección y manipulación de color aplicados en tiempo real.</p>
   </div>
-  <div class="fc" onclick="go('dashboard')">
+  <div class="section-card" onclick="go('dashboard')">
     <div class="fc-ico">◈</div>
     <h3>Dashboard & Presets</h3>
     <p>Panel de control central y gestión de presets guardados.</p>
   </div>
-  <div class="fc" onclick="go('input-mapping')">
+  <div class="section-card" onclick="go('input-mapping')">
     <div class="fc-ico">◈</div>
     <h3>Input Mapping</h3>
     <p>Asignación de controladores MIDI/OSC/DMX a parámetros de Resolume.</p>
   </div>
-  <div class="fc" onclick="go('led-mapping')">
+  <div class="section-card" onclick="go('led-mapping')">
     <div class="fc-ico">⊟</div>
     <h3>LED Stage Mapping</h3>
     <p>Mapeo de salida sobre estructuras LED no rectangulares.</p>
   </div>
-  <div class="fc" onclick="go('grabar')">
+  <div class="section-card" onclick="go('grabar')">
     <div class="fc-ico">●</div>
     <h3>Grabar Sesión</h3>
     <p>Captura y exportación de la salida en directo de una composición.</p>
   </div>
-  <div class="fc" onclick="go('osc')">
+  <div class="section-card" onclick="go('osc')">
     <div class="fc-ico">⊟</div>
     <h3>Control OSC / MIDI / DMX</h3>
     <p>Protocolos de control externo: Open Sound Control, MIDI y DMX.</p>
   </div>
-  <div class="fc" onclick="go('juicebar')">
+  <div class="section-card" onclick="go('juicebar')">
     <div class="fc-ico">⊕</div>
     <h3>Juice Bar & Free FX</h3>
     <p>Recursos gratuitos oficiales: efectos, fuentes y contenido descargable.</p>
   </div>
-  <div class="fc" onclick="go('efectos-cat')">
+  <div class="section-card" onclick="go('efectos-cat')">
     <div class="fc-ico">✦</div>
     <h3>Catálogo de Efectos</h3>
     <p>Referencia completa de todos los efectos nativos de Resolume Arena.</p>
@@ -1516,72 +1510,72 @@ window.go = function (id) {
 
 <div class="ptl">🛠 Herramientas y calculadoras</div>
 <div class="g4" style="margin-bottom: 26px">
-  <div class="fc" onclick="go('tool-rgb')">
+  <div class="section-card" onclick="go('tool-rgb')">
     <div class="fc-ico">◐</div>
     <h3>Conversor RGB ↔ HSB</h3>
     <p>Convierte valores de color entre los espacios RGB y HSB en tiempo real.</p>
   </div>
-  <div class="fc" onclick="go('tool-hex')">
+  <div class="section-card" onclick="go('tool-hex')">
     <div class="fc-ico">◑</div>
     <h3>Conversor HEX · RGB · HSB</h3>
     <p>Traduce un color entre notación hexadecimal, RGB y HSB.</p>
   </div>
-  <div class="fc" onclick="go('tool-fxcat')">
+  <div class="section-card" onclick="go('tool-fxcat')">
     <div class="fc-ico">✦</div>
     <h3>Buscador de Efectos</h3>
     <p>Filtra el catálogo de efectos de Resolume por categoría o palabra clave.</p>
   </div>
-  <div class="fc" onclick="go('tool-aspect')">
+  <div class="section-card" onclick="go('tool-aspect')">
     <div class="fc-ico">⊞</div>
     <h3>Calculadora Aspect Ratio</h3>
     <p>Calcula relaciones de aspecto y resoluciones de salida compatibles.</p>
   </div>
-  <div class="fc" onclick="go('tool-slices')">
+  <div class="section-card" onclick="go('tool-slices')">
     <div class="fc-ico">◈</div>
     <h3>Calculadora de Slices</h3>
     <p>Determina el número y tamaño de slices para un Advanced Output.</p>
   </div>
-  <div class="fc" onclick="go('tool-vectorslice')">
+  <div class="section-card" onclick="go('tool-vectorslice')">
     <div class="fc-ico">▱</div>
     <h3>VectorSlice · SVG → XML</h3>
     <p>Convierte trazados SVG en slices XML listos para importar en Arena.</p>
   </div>
-  <div class="fc" onclick="go('tool-blend')">
+  <div class="section-card" onclick="go('tool-blend')">
     <div class="fc-ico">⬡</div>
     <h3>Edge Blending</h3>
     <p>Calcula el solape y la curva de mezcla entre proyectores adyacentes.</p>
   </div>
-  <div class="fc" onclick="go('tool-multiscreen')">
+  <div class="section-card" onclick="go('tool-multiscreen')">
     <div class="fc-ico">⊟</div>
     <h3>Multi-Proyector</h3>
     <p>Planifica configuraciones de salida con varios proyectores o pantallas.</p>
   </div>
-  <div class="fc" onclick="go('tool-led')">
+  <div class="section-card" onclick="go('tool-led')">
     <div class="fc-ico">⊟</div>
     <h3>Calculadora LED Wall</h3>
     <p>Calcula resolución total y pixel pitch de un muro LED modular.</p>
   </div>
-  <div class="fc" onclick="go('tool-dmx')">
+  <div class="section-card" onclick="go('tool-dmx')">
     <div class="fc-ico">✦</div>
     <h3>Universos DMX LED</h3>
     <p>Calcula universos DMX necesarios según número de píxeles LED.</p>
   </div>
-  <div class="fc" onclick="go('tool-fixture')">
+  <div class="section-card" onclick="go('tool-fixture')">
     <div class="fc-ico">⊕</div>
     <h3>Mapeador de Fixture</h3>
     <p>Asistente para mapear fixtures DMX sobre una superficie LED.</p>
   </div>
-  <div class="fc" onclick="go('tool-bpm')">
+  <div class="section-card" onclick="go('tool-bpm')">
     <div class="fc-ico">♫</div>
     <h3>Duración de Loop</h3>
     <p>Calcula la duración exacta de un loop de vídeo a partir del BPM.</p>
   </div>
-  <div class="fc" onclick="go('tool-bpmsync')">
+  <div class="section-card" onclick="go('tool-bpmsync')">
     <div class="fc-ico">🎵</div>
     <h3>Sincronización BPM</h3>
     <p>Ajusta clips de vídeo para que encajen con el tempo de la música.</p>
   </div>
-  <div class="fc" onclick="go('tool-dxv')">
+  <div class="section-card" onclick="go('tool-dxv')">
     <div class="fc-ico">⧉</div>
     <h3>Estimador Tamaño DXV</h3>
     <p>Estima el peso en disco de un clip exportado en códec DXV.</p>
@@ -1889,7 +1883,7 @@ Click derecho     → menú opciones del clip
   </div>
 
   <div class="fx-options" id="fxOpts"></div>
-  <div class="gr-feedback" id="fxFb"></div>
+  <div class="gr-feedback" id="fxFb" aria-live="polite" aria-atomic="true"></div>
   <div class="gr-actions">
     <button class="gr-btn gr-btn-ghost" onclick="fxReset()">↺ Reiniciar</button>
     <button class="gr-btn gr-btn-primary" id="fxNext" style="display:none;" onclick="fxNext()">Siguiente reto →</button>
@@ -2136,7 +2130,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
   </div>
 
   <div class="bm-options" id="bmOpts"></div>
-  <div class="gr-feedback" id="bmFb"></div>
+  <div class="gr-feedback" id="bmFb" aria-live="polite" aria-atomic="true"></div>
   <div class="gr-actions">
     <button class="gr-btn gr-btn-ghost" onclick="bmReset()">↺ Reiniciar</button>
     <button class="gr-btn gr-btn-primary" id="bmNext" style="display:none;" onclick="bmNext()">Siguiente reto →</button>
@@ -2589,7 +2583,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
       <div class="bpm-stat"><div class="bpm-stat-l">Taps</div><div class="bpm-stat-v" id="bpmTaps">0</div></div>
     </div>
   </div>
-  <div class="gr-feedback" id="bpmFb"></div>
+  <div class="gr-feedback" id="bpmFb" aria-live="polite" aria-atomic="true"></div>
   <div class="gr-actions">
     <button class="gr-btn gr-btn-ghost" onclick="bpmReset()">↺ Reiniciar</button>
     <button class="gr-btn gr-btn-primary" id="bpmNext" style="display:none;" onclick="bpmNext()">Siguiente reto →</button>
@@ -3340,7 +3334,7 @@ Composition → Collect Media</div>
         <div><div class="sc-stat-v" id="scKo">0</div><div class="sc-stat-l">Fallos</div></div>
         <div><div class="sc-stat-v" id="scRound">0/15</div><div class="sc-stat-l">Reto</div></div>
       </div>
-      <div class="sc-feedback" id="scFb"></div>
+      <div class="sc-feedback" id="scFb" aria-live="polite" aria-atomic="true"></div>
       <div class="sc-actions">
         <button class="sc-btn sc-btn-ghost" onclick="scSkip()">Saltar</button>
         <button class="sc-btn sc-btn-ghost" onclick="scStop()">Abandonar</button>
