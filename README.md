@@ -19,7 +19,7 @@ Una suite de herramientas didácticas en HTML para el módulo de *Animación Vis
 
 AVV Lab reúne **6 herramientas educativas** en HTML independientes, accesibles desde una landing page central. Cada suite cubre un software o área temática del módulo y combina teoría, calculadoras interactivas, diagramas, simuladores, **mini-juegos de autoevaluación con feedback inmediato** y quizzes.
 
-Todo funciona directamente en el navegador: **no necesita servidor, base de datos, dependencias externas ni crear ninguna cuenta**. Cada archivo es autocontenido y puede abrirse en local o desde GitHub Pages.
+Todo funciona directamente en el navegador: **no necesita servidor, base de datos, dependencias externas ni crear ninguna cuenta**. Cada suite es un archivo HTML independiente (comparten únicamente un pequeño script de navegación, `avl-nav.js`) y puede abrirse en local o desde GitHub Pages.
 
 ### Funciones principales
 
@@ -29,6 +29,7 @@ Todo funciona directamente en el navegador: **no necesita servidor, base de dato
 - 🔀 **Constructor de diagramas** — módulo drag-and-drop para crear esquemas de bloques AV con 25 dispositivos categorizados y exportación a JPG.
 - 📖 **Glosario visual** — 54 términos técnicos con equivalencias EN/ES, buscador global y filtros por suite.
 - 🧭 **Navegación flotante** — salta entre suites desde cualquier página, con retorno a la última suite visitada.
+- ♿ **Accesible por diseño** — contraste AA, foco visible por teclado, `aria-live` en el feedback de los juegos, `prefers-reduced-motion` y alternativa táctil (tap-to-place) a los ejercicios de arrastrar y soltar.
 - 📴 **Funciona sin conexión**, ideal para usar en el aula, en proyección o en tablet.
 
 ---
@@ -200,10 +201,11 @@ Consola de iluminación MagicQ de ChamSys.
 
 ## 🛠️ Para desarrolladores
 
-AVV Lab está construido con **HTML, CSS y JavaScript vanilla**: sin frameworks, sin npm, sin build step. Cada suite es un archivo `.html` autocontenido que funciona de forma independiente, y todo el conjunto se sirve como sitio estático mediante GitHub Pages.
+AVV Lab está construido con **HTML, CSS y JavaScript vanilla**: sin frameworks, sin npm, sin build step. Cada suite es un archivo `.html` independiente y todo el conjunto se sirve como sitio estático mediante GitHub Pages. Las 6 suites comparten un único script de navegación (`avl-nav.js`) para evitar duplicar ~250 líneas de código por archivo; el resto de cada suite es completamente autónomo.
 
 ```
 index.html              · landing page — acceso a todas las suites
+avl-nav.js              · barra de navegación flotante compartida por las 6 suites
 video.html              · suite Imagen & Vídeo
 illustrator.html        · suite Diseño Vectorial (Illustrator)
 resolume.html           · suite VJing & Projection Mapping (Resolume Arena)
@@ -214,8 +216,10 @@ magicq.html             · suite Control DMX & Consola de Luz (MagicQ)
 
 **Detalles técnicos**
 - Tipografía: Inter (Google Fonts) con fallback a fuentes del sistema; JetBrains Mono para código y valores técnicos.
-- Diseño responsive adaptado a ordenador, proyector y tablet.
+- Diseño responsive adaptado a ordenador, proyector y tablet, con menú lateral colapsable táctil en móvil.
 - Barra de navegación flotante con retorno a la última suite visitada (`sessionStorage`).
+- Buscador interno por suite en Illustrator, Resolume, After Effects y MagicQ (indexación en vivo del DOM); `index.html` incluye además un buscador global independiente que cruza contenido de las 6 suites junto con el glosario visual.
+- Accesibilidad: contraste de texto AA, `:focus-visible` en toda la navegación por teclado, `prefers-reduced-motion`, `aria-live` en el feedback de los mini-juegos y alternativa de selección por toque/clic (tap-to-place) para los ejercicios de arrastrar y soltar en pantallas táctiles.
 - 9 diagramas SVG/canvas interactivos clicables distribuidos entre las suites.
 
 Para probarlo en local, clona el repositorio y abre cualquier archivo `.html` directamente en el navegador:
