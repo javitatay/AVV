@@ -45,7 +45,7 @@
       --border:    #E2DED6;
       --text-1:    #1E1D1B;
       --text-2:    #5C5954;
-      --text-3:    #9B9590;
+      --text-3:    #6B6560;
       --accent:    #4A7A6A;
       --accent-lt: #EAF3EF;
       --accent-dk: #35614F;
@@ -96,7 +96,7 @@
       width:100%; padding:6px 14px 6px 34px;
       background:var(--surface); border:1.5px solid var(--border);
       border-radius:20px; font-family:inherit; font-size:13px;
-      color:var(--text-1); outline:none; transition:var(--transition);
+      color:var(--text-1); outline:none; transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
     }
     .topbar-search input:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-lt); }
     .topbar-search input::placeholder { color:var(--text-3); }
@@ -162,7 +162,7 @@
       border-radius: 20px;
       padding: 5px 14px;
       cursor: pointer;
-      transition: var(--transition);
+      transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
       white-space: nowrap;
       flex-shrink: 0;
     }
@@ -187,7 +187,7 @@
       padding: 22px 24px 20px;
       text-decoration: none; color: var(--text-1);
       display: flex; flex-direction: column; gap: 0;
-      transition: var(--transition);
+      transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
       box-shadow: var(--shadow);
       position: relative; overflow: hidden;
     }
@@ -237,7 +237,7 @@
     .contact-text { display:flex; flex-direction:column; gap:1px; }
     .contact-label { font-size: 11.5px; font-weight:500; letter-spacing:.8px; text-transform:uppercase; color:var(--text-3); }
     .contact-name { font-size: 14px; font-weight:600; color:var(--text-1); }
-    .contact-link { display:flex; align-items:center; gap:8px; font-size: 13px; font-weight:500; cursor:pointer; color:var(--accent); text-decoration:none; padding:8px 16px; background:var(--accent-lt); border:1px solid rgba(74,122,106,.2); border-radius:10px; transition:var(--transition); }
+    .contact-link { display:flex; align-items:center; gap:8px; font-size: 13px; font-weight:500; cursor:pointer; color:var(--accent); text-decoration:none; padding:8px 16px; background:var(--accent-lt); border:1px solid rgba(74,122,106,.2); border-radius:10px; transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1); }
     .contact-link:hover { background:var(--accent); color:#fff; }
     .contact-link svg { width:15px; height:15px; }
 
@@ -282,7 +282,7 @@
       width: 32px; height: 32px; border-radius: 50%;
       background: var(--surface-2); border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: var(--transition);
+      cursor: pointer; transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
     }
     .glosario-close:hover { background: var(--text-1); color: #fff; }
     .glosario-close svg { width: 16px; height: 16px; }
@@ -294,7 +294,7 @@
       width: 100%; padding: 10px 16px 10px 40px;
       background: var(--surface); border: 1.5px solid var(--border);
       border-radius: 10px; font-family: inherit; font-size: 14px;
-      color: var(--text-1); outline: none; transition: var(--transition);
+      color: var(--text-1); outline: none; transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
     }
     .glosario-search input:focus { border-color: var(--accent); }
     .glosario-search svg {
@@ -309,7 +309,7 @@
       font-size: 11px; font-weight: 600; letter-spacing: .5px;
       padding: 4px 12px; border-radius: 20px; cursor: pointer;
       border: 1.5px solid var(--border); background: var(--surface);
-      color: var(--text-2); transition: var(--transition);
+      color: var(--text-2); transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
       text-transform: uppercase;
     }
     .g-filter.active { background: var(--fc); color: #fff; border-color: var(--fc); }
@@ -330,7 +330,7 @@
       border-radius: 12px;
       padding: 14px 16px;
       display: flex; flex-direction: column; gap: 10px;
-      transition: var(--transition);
+      transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
       position: relative;
     }
     .gterm:hover { border-color: var(--tc); box-shadow: 0 4px 16px rgba(0,0,0,.07); }
@@ -380,39 +380,24 @@
     .card:nth-child(5) { animation-delay:.25s }
     .card:nth-child(6) { animation-delay:.30s }
 
+    /* Tablet: 640–1024px */
+    @media (max-width: 1024px) {
+      .grid { grid-template-columns: repeat(2, 1fr); padding: 0 16px 40px; gap: 16px; }
+    }
+
+    /* Mobile: < 640px */
     @media (max-width: 640px) {
-      .grid { padding: 0 16px 40px; grid-template-columns: 1fr; }
+      .grid { padding: 0 12px 40px; grid-template-columns: 1fr; gap: 12px; }
       .topbar { padding: 0 18px; }
       .hero { padding: 18px; flex-wrap: wrap; }
+      .hero-stats { gap: 10px; flex-wrap: wrap; }
+      .hero-stat  { font-size: 12px; }
+      .hero-divider { display: none; }
       .section-header { padding: 0 18px 16px; }
+      .card-title { font-size: 18px; }
+      .card-desc  { font-size: 15px; }
       .glosario-grid { grid-template-columns: 1fr 1fr; }
     }
-  
-/* ═══ RESPONSIVE — INDEX ═══════════════════════════════════════════ */
-/* Tablet: 640–1024px */
-@media (max-width: 1024px) {
-  .hero-bar   { gap: 16px; padding: 0 20px; }
-  .hero-title { font-size: 18px; }
-  .grid       { grid-template-columns: repeat(2, 1fr); padding: 0 16px 40px; gap: 16px; }
-  .suite-card { padding: 20px 18px; }
-}
-/* Mobile: < 640px */
-@media (max-width: 640px) {
-  .hero-bar   { flex-direction: column; align-items: flex-start; gap: 8px;
-                padding: 10px 16px; height: auto; }
-  .hero-title { font-size: 16px; }
-  .hero-stats { gap: 10px; flex-wrap: wrap; }
-  .hero-stat  { font-size: 12px; }
-  .hero-divider { display: none; }
-  .grid       { grid-template-columns: 1fr; padding: 0 12px 40px; gap: 12px; }
-  .suite-card { padding: 18px 16px; }
-  .card-title { font-size: 18px; }
-  .card-desc  { font-size: 15px; }
-  .section-header h2 { font-size: 14px; }
-  .glosario-grid { grid-template-columns: 1fr 1fr; }
-  .contact-section { padding: 20px 16px; }
-  .contact-grid { grid-template-columns: 1fr; gap: 12px; }
-}
 
 
 /* ── Inter typography optimisation ── */
@@ -443,6 +428,42 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .card-desc, .module-desc, .hero p,
 .note, .note-yellow, .note-blue {
   max-width: 72ch;
+}
+
+/* ═══ SPRINT 1 · A: focus-visible global ══════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid #0057B8;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+}
+
+/* ═══ SPRINT 1 · B: hover transforms solo en dispositivos con puntero fino ═ */
+@media (hover: none), (pointer: coarse) {
+  .card:hover,
+  .contact-link:hover,
+  .card-btn:hover,
+  .search-item:hover,
+  .g-filter:hover,
+  .gterm:hover {
+    transform: none !important;
+  }
+}
+
+/* ═══ SPRINT 1 · C: prefers-reduced-motion global ════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:      0.01ms !important;
+    scroll-behavior:          auto   !important;
+  }
 }
 </style>
 </head>
@@ -647,17 +668,17 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
        GLOSARIO VISUAL MODAL
   ═══════════════════════════════════════════════ -->
   <div class="glosario-overlay" id="glosarioOverlay" onclick="cerrarGlosario(event)">
-    <div class="glosario-panel">
+    <div class="glosario-panel" role="dialog" aria-modal="true" aria-labelledby="glosarioTitle">
       <div class="glosario-header">
         <div class="glosario-header-top">
-          <span class="glosario-title">📖 Glosario Visual AVV</span>
-          <button class="glosario-close" onclick="cerrarGlosario(null, true)">
+          <span class="glosario-title" id="glosarioTitle">📖 Glosario Visual AVV</span>
+          <button class="glosario-close" onclick="cerrarGlosario(null, true)" aria-label="Cerrar glosario">
             <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
         </div>
         <div class="glosario-search">
           <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <input type="text" id="glosarioSearch" placeholder="Buscar término…" oninput="filtrarGlosario()">
+          <input type="text" id="glosarioSearch" placeholder="Buscar término…" oninput="filtrarGlosario()" aria-label="Buscar término en el glosario">
         </div>
         <div class="glosario-filters">
           <button class="g-filter active" style="--fc:#4A7A6A" data-suite="all" onclick="setSuite(this)">Todos</button>
@@ -681,8 +702,10 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 
 <script>
   // ── Abrir / cerrar modal ──────────────────────────────────
+  let glosarioLastFocus = null;
   function abrirGlosario() {
     console.log('Abriendo glosario...');
+    glosarioLastFocus = document.activeElement;
     document.getElementById('glosarioOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
     setTimeout(() => document.getElementById('glosarioSearch').focus(), 300);
@@ -691,9 +714,28 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
     if (force || e.target === document.getElementById('glosarioOverlay')) {
       document.getElementById('glosarioOverlay').classList.remove('open');
       document.body.style.overflow = '';
+      if (glosarioLastFocus) { glosarioLastFocus.focus(); glosarioLastFocus = null; }
     }
   }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarGlosario(null, true); });
+  document.addEventListener('keydown', e => {
+    const overlay = document.getElementById('glosarioOverlay');
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') { cerrarGlosario(null, true); return; }
+    // Focus trap: mantener el Tab dentro del modal
+    if (e.key === 'Tab') {
+      const focusables = overlay.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last  = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    }
+  });
 
   // ── Suite filter state ────────────────────────────────────
   let currentSuite = 'all';
