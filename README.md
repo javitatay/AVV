@@ -1,10 +1,17 @@
+<div align="center">
+
+<img src="banner.png" alt="AVV Lab" width="100%">
+
 # AVV Lab — Animación Visual en Vivo
 
 **Plataforma educativa interactiva** para el módulo de *Animación Visual en Vivo* (195h) del **Ciclo Formativo de Grado Medio en Video DJ** — Conselleria d'Educació, Cultura i Esport · Comunitat Valenciana.
 
-🌐 **[javitatay.github.io/AVV](https://javitatay.github.io/AVV/)**
+[![Abrir en el navegador](https://img.shields.io/badge/🌐_Abrir_en_el_navegador-141210?style=for-the-badge)](https://javitatay.github.io/AVV/)
+[![Invítame a un café](https://img.shields.io/badge/☕_Invítame_a_un_café-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000)](https://buymeacoffee.com/javitatay)
 
 [![Licencia: GPL v3](https://img.shields.io/badge/Licencia-GPLv3-c89838?style=flat-square)](https://github.com/javitatay/AVV/blob/main/LICENSE)
+
+</div>
 
 ---
 
@@ -16,7 +23,7 @@ El proyecto no requiere servidor, base de datos ni dependencias externas — cad
 
 ---
 
-## Estructura del proyecto
+## 📁 Estructura del proyecto
 
 ```
 AVV/
@@ -31,7 +38,7 @@ AVV/
 
 ---
 
-## Suites disponibles
+## 🧩 Suites disponibles
 
 | Suite | Contenido principal | UDs |
 | --- | --- | --- |
@@ -44,7 +51,7 @@ AVV/
 
 ---
 
-## Características técnicas
+## ⚙️ Características técnicas
 
 - **Sin dependencias** — HTML, CSS y JavaScript vanilla. Sin frameworks, sin npm, sin build step.
 - **Autocontenido** — cada suite funciona de forma independiente como archivo único.
@@ -59,7 +66,7 @@ AVV/
 
 ---
 
-## Contenido por suite
+## 📘 Contenido por suite
 
 ### 🎬 Imagen & Vídeo (`video.html`)
 
@@ -139,7 +146,7 @@ Consola de iluminación MagicQ de ChamSys.
 
 ---
 
-## Simuladores destacados
+## 🎮 Simuladores destacados
 
 | Simulador | Suite · Tab | Descripción |
 | --- | --- | --- |
@@ -154,7 +161,7 @@ Consola de iluminación MagicQ de ChamSys.
 
 ---
 
-## Uso
+## 🌐 Uso
 
 El proyecto está desplegado en GitHub Pages y no requiere ningún paso de instalación.
 
@@ -169,7 +176,7 @@ open index.html   # macOS
 
 ---
 
-## Contexto curricular
+## 🎓 Contexto curricular
 
 | Campo | Detalle |
 | --- | --- |
@@ -182,7 +189,19 @@ open index.html   # macOS
 
 ---
 
-## Licencia
+## 🔗 Más herramientas
+
+Otras herramientas para producción de eventos en directo:
+
+- ⏱️ **Tatimer** — Temporizador para el monitor del ponente en shows en vivo. [Ver proyecto](https://github.com/javitatay/Tatimer) · [Demo](https://javitatay.github.io/Tatimer/)
+- 🎪 **Tarimeo** — Diseña y organiza la distribución de tarimas y escenarios. [Ver proyecto](https://github.com/javitatay/Tarimeo) · [Demo](https://javitatay.github.io/Tarimeo/)
+- 📡 **RFTDT** — Consulta de frecuencias TDT libres para microfonía inalámbrica. [Ver proyecto](https://github.com/javitatay/RFTDT) · [Demo](https://javitatay.github.io/RFTDT/)
+- 🔷 **VectorSlice** — Convierte vectores de Illustrator en Slices de Resolume Arena. [Ver proyecto](https://github.com/javitatay/VectorSlice) · [Demo](https://javitatay.github.io/VectorSlice/)
+- 🎬 **QLab Live Scripts** — Controla PowerPoint, Chrome, Zoom, PDF y Spotify desde QLab 5. [Ver proyecto](https://github.com/javitatay/QLab-Scripts-Live-Events) · [Demo](https://javitatay.github.io/QLab-Scripts-Live-Events/)
+
+---
+
+## 📄 Licencia
 
 Este proyecto se distribuye bajo la licencia **[GNU General Public License v3.0](https://github.com/javitatay/AVV/blob/main/LICENSE)**.
 
@@ -192,11 +211,13 @@ Eres libre de usar, estudiar, modificar y compartir este material docente. La ú
 
 ---
 
-## Contacto
+## ✉️ Contacto
 
 **Javier Tatay Rubio** · Profesor del módulo
-📧 <j.tatayrubio@edu.gva.es>
+📧 <j.tatayrubio@edu.gva.es> · <javitatay@gmail.com>
 
 ---
 
-*Material docente de uso educativo · 2026*
+<div align="center">
+<sub>Material docente de uso educativo · AVV Lab · 2026</sub>
+</div>
