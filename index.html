@@ -14,6 +14,7 @@
 
   <!-- ─── Open Graph (WhatsApp, Telegram, Facebook…) ───────────────── -->
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://javitatay.github.io/AVV/banner.png">
   <meta property="og:site_name" content="AVV Lab">
   <meta property="og:title" content="AVV Lab — Animación Visual en Vivo">
   <meta property="og:description" content="Plataforma educativa con 6 suites interactivas, 27 juegos didácticos y 15+ simuladores para el módulo AVV del CFGM Video DJ.">
@@ -42,7 +43,7 @@
       --bg:        #F5F4F0;
       --surface:   #FFFFFF;
       --surface-2: #EFEDE8;
-      --border:    #E2DED6;
+      --border:    #98948C;
       --text-1:    #1E1D1B;
       --text-2:    #5C5954;
       --text-3:    #6B6560;
@@ -149,7 +150,7 @@
       display: flex; align-items: center; gap: 14px;
       animation: fadeUp .6s .1s ease both;
     }
-    .section-title { font-size: 13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-3); white-space:nowrap; }
+    .section-title { margin:0; font-size: 13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-3); white-space:nowrap; }
     .section-line { flex:1; height:1px; background:var(--border); }
 
     /* ─── GLOSARIO BUTTON ─── */
@@ -205,7 +206,7 @@
     .card-icon img { width:32px; height:32px; border-radius:7px; object-fit:contain; }
     .card-ud { font-size: 11.5px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--card-color); opacity:.8; }
     .card-app { font-size: 11px; font-weight:500; letter-spacing:.3px; text-transform:uppercase; opacity:.7; margin-bottom:8px; }
-    .card-title { font-size: 19px; font-weight:700; letter-spacing:-.4px; line-height:1.2; margin-bottom:10px; }
+    .card-title { margin-top:0; font-size: 19px; font-weight:700; letter-spacing:-.4px; line-height:1.2; margin-bottom:10px; }
     .card-desc { font-size: 13px; color:var(--text-2); line-height:1.65; flex:1; margin-bottom:14px; }
 
     /* ─── A2: Card stats inline ─── */
@@ -394,7 +395,7 @@
       .hero-stat  { font-size: 12px; }
       .hero-divider { display: none; }
       .section-header { padding: 0 18px 16px; }
-      .card-title { font-size: 18px; }
+      .card-title { margin-top:0; font-size: 18px; }
       .card-desc  { font-size: 15px; }
       .glosario-grid { grid-template-columns: 1fr 1fr; }
     }
@@ -485,6 +486,7 @@ textarea:focus-visible {
     <div class="topbar-search">
       <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       <input type="text" id="globalSearch" placeholder="Buscar en todas las suites…"
+        aria-label="Buscar en todas las suites"
         oninput="globalSearchFn(this.value)"
         onfocus="if(this.value) document.getElementById('searchDrop').classList.add('visible')"
         onblur="setTimeout(()=>document.getElementById('searchDrop').classList.remove('visible'),200)"
@@ -511,7 +513,7 @@ textarea:focus-visible {
 
   <!-- SECTION HEADER -->
   <div class="section-header" style="padding-top:24px;">
-    <span class="section-title">Suites disponibles</span>
+    <h2 class="section-title">Suites disponibles</h2>
     <div class="section-line"></div>
     <button class="glosario-btn" onclick="abrirGlosario()">
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="9" y1="7" x2="15" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="9" y1="11" x2="13" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -531,7 +533,7 @@ textarea:focus-visible {
         <span class="card-ud" style="color:var(--c6);">UD 1 · 2 · 3</span>
       </div>
       <div class="card-app" style="color:var(--c6)">Imagen &amp; Vídeo</div>
-      <div class="card-title">Fundamentos<br>de Imagen</div>
+      <h3 class="card-title">Fundamentos<br>de Imagen</h3>
       <div class="card-desc">Resolución, geometría, óptica, profundidad de campo y fundamentos técnicos del vídeo para producciones audiovisuales.</div>
       <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">2</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">🧮</span><span class="card-stat-n">8</span> calc.</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">8</span> módulos</span></div>
       <div class="card-footer">
@@ -547,7 +549,7 @@ textarea:focus-visible {
         <span class="card-ud" style="color:var(--c3);">CFGM · DG</span>
       </div>
       <div class="card-app" style="color:var(--c3)">Adobe Illustrator</div>
-      <div class="card-title">Diseño<br>Vectorial</div>
+      <h3 class="card-title">Diseño<br>Vectorial</h3>
       <div class="card-desc">Herramientas de pluma, anclas y curvas Bézier. Creación de grafismos y elementos visuales para producciones en directo.</div>
       <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">4</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">3</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">16</span> módulos</span></div>
       <div class="card-footer">
@@ -563,7 +565,7 @@ textarea:focus-visible {
         <span class="card-ud" style="color:var(--c1);">UD 1 · 2 · 3</span>
       </div>
       <div class="card-app" style="color:var(--c1)">Resolume Arena</div>
-      <div class="card-title">VJing &amp;<br>Projection Mapping</div>
+      <h3 class="card-title">VJing &amp;<br>Projection Mapping</h3>
       <div class="card-desc">Interfaz, composición de clips, efectos y outputs. Fundamentos de la mezcla visual en tiempo real para espectáculos.</div>
       <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">2</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">19</span> módulos</span></div>
       <div class="card-footer">
@@ -579,7 +581,7 @@ textarea:focus-visible {
         <span class="card-ud" style="color:var(--c2);">UD 2 · 3</span>
       </div>
       <div class="card-app" style="color:var(--c2)">Adobe After Effects</div>
-      <div class="card-title">Motion<br>Graphics</div>
+      <h3 class="card-title">Motion<br>Graphics</h3>
       <div class="card-desc">Composición, animación por keyframes, efectos visuales y motion graphics para producciones audiovisuales profesionales.</div>
       <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">2</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">12</span> módulos</span></div>
       <div class="card-footer">
@@ -597,7 +599,7 @@ textarea:focus-visible {
         <span class="card-ud" style="color:var(--c5);">UD 4 · 5</span>
       </div>
       <div class="card-app" style="color:var(--c5)">Fundamentos Luz</div>
-      <div class="card-title">Iluminación<br>de Espectáculos</div>
+      <h3 class="card-title">Iluminación<br>de Espectáculos</h3>
       <div class="card-desc">Magnitudes fotométricas, temperatura de color, tipos de luminarias y diseño de iluminación para escenarios en vivo.</div>
       <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">4</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">🧮</span><span class="card-stat-n">1</span> calc.</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">10</span> módulos</span></div>
       <div class="card-footer">
@@ -613,7 +615,7 @@ textarea:focus-visible {
         <span class="card-ud" style="color:var(--c4);">Edu · v4</span>
       </div>
       <div class="card-app" style="color:var(--c4)">MagicQ · ChamSys</div>
-      <div class="card-title">Control DMX<br>&amp; Consola Luz</div>
+      <h3 class="card-title">Control DMX<br>&amp; Consola Luz</h3>
       <div class="card-desc">Programación de shows de iluminación, grupos, paletas y cueing list. Flujo de trabajo profesional en software DMX.</div>
       <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">2</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">🧮</span><span class="card-stat-n">1</span> calc.</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">11</span> módulos</span></div>
       <div class="card-footer">
