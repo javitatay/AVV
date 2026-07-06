@@ -893,6 +893,8 @@ font-family: var(--font-body);
             .page { padding: 20px; }
             .mobile-btn { display: flex; }
             .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .top-bar { padding-left: 64px; }
+            .topbar-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
         }
 
         /* ─── SCROLLBAR INSIDE PANELS ─── */
@@ -1309,9 +1311,16 @@ textarea:focus-visible {
   .con-conn:hover,
   .gv-btn:hover,
   .rq-btn:hover,
-  .avl-nav-btn:hover {
+  .avl-nav-btn:hover,
+  .cmd-token:hover,
+  .foc-opt:hover {
     transform: none !important;
   }
+}
+@media (pointer: coarse) {
+  .mobile-btn { width: 44px; height: 44px; }
+  /* iOS hace zoom automático al enfocar un input con font-size < 16px */
+  .search-input { font-size: 16px !important; }
 }
 
 /* ═══ SPRINT 1 · C: prefers-reduced-motion global ════════════════════════ */
@@ -1344,6 +1353,10 @@ textarea:focus-visible {
     outline: none; width: 220px;
     transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s, opacity 0.2s;
 }
+.search-input:focus {
+    border-color: var(--mq-orange);
+    box-shadow: 0 0 0 3px rgba(232,152,26,0.18);
+}
 .search-icon { position: absolute; left: 11px; font-size: 14px; color: var(--text-dim); pointer-events: none; }
 .search-results {
     position: absolute; top: calc(100% + 8px); right: 0; width: 320px;
@@ -1366,7 +1379,7 @@ textarea:focus-visible {
 </head>
 <body>
 
-<button class="mobile-btn" onclick="toggleMenu()" id="mobileBtn">☰</button>
+<button class="mobile-btn" onclick="toggleMenu()" id="mobileBtn" aria-label="Abrir menú" aria-expanded="false">☰</button>
 
 <div class="app-container">
 
@@ -1487,7 +1500,7 @@ textarea:focus-visible {
     ═══════════════════════════════════════════ -->
     <main class="content-area" id="contentArea">
 <div class="top-bar">
-    <div style="flex:1; font-size:12px; color:var(--text-dim);">🎓 <strong style="color:var(--text-primary);">Suite Educativa</strong> · ChamSys MagicQ</div>
+    <div class="topbar-title" style="flex:1; font-size:12px; color:var(--text-dim);">🎓 <strong style="color:var(--text-primary);">Suite Educativa</strong> · ChamSys MagicQ</div>
     <div class="search-wrapper">
         <span class="search-icon">🔍</span>
         <input class="search-input" id="searchInput" type="text" placeholder="Buscar en la suite…" autocomplete="off" aria-label="Buscar en la suite">
@@ -3460,19 +3473,19 @@ textarea:focus-visible {
                 <div class="grid-2">
                     <div>
                         <div class="calc-row">
-                            <label>Cantidad de focos</label>
+                            <label for="calcQty">Cantidad de focos</label>
                             <input type="number" class="mq-input" id="calcQty" value="8" min="1" max="512" oninput="calcDMX()">
                         </div>
                         <div class="calc-row">
-                            <label>Canales por foco</label>
+                            <label for="calcCh">Canales por foco</label>
                             <input type="number" class="mq-input" id="calcCh" value="17" min="1" max="512" oninput="calcDMX()">
                         </div>
                         <div class="calc-row">
-                            <label>Canal DMX inicio</label>
+                            <label for="calcStart">Canal DMX inicio</label>
                             <input type="number" class="mq-input" id="calcStart" value="1" min="1" max="512" oninput="calcDMX()">
                         </div>
                         <div class="calc-row">
-                            <label>Universo inicio</label>
+                            <label for="calcUni">Universo inicio</label>
                             <input type="number" class="mq-input" id="calcUni" value="1" min="1" max="64" oninput="calcDMX()">
                         </div>
                         <button class="btn-console btn-orange" onclick="calcDMX()" style="margin-top:8px;">CALCULAR</button>
@@ -3628,20 +3641,20 @@ textarea:focus-visible {
                 <div class="panel-title">Constructor de Patch</div>
                 <div class="grid-2" style="margin-bottom:16px;">
                     <div>
-                        <div class="calc-row"><label>Nombre del fixture</label>
+                        <div class="calc-row"><label for="pFixture">Nombre del fixture</label>
                             <input type="text" class="mq-input" id="pFixture" placeholder="p.ej. Robe MegaPointe" list="fixtureList" oninput="onFixtureSelect()">
-                            <datalist id="fixtureList" id="fixtureList">
+                            <datalist id="fixtureList">
                             </datalist>
                         </div>
-                        <div class="calc-row"><label>Canales por unidad</label>
+                        <div class="calc-row"><label for="pChCount">Canales por unidad</label>
                             <input type="number" class="mq-input" id="pChCount" value="17" min="1" max="512">
                         </div>
-                        <div class="calc-row"><label>Cantidad de unidades</label>
+                        <div class="calc-row"><label for="pQty">Cantidad de unidades</label>
                             <input type="number" class="mq-input" id="pQty" value="8" min="1" max="512">
                         </div>
                     </div>
                     <div>
-                        <div class="calc-row"><label>Universo</label>
+                        <div class="calc-row"><label for="pUni">Universo</label>
                             <select class="mq-select" id="pUni">
                                 <option value="1">Universo 1</option>
                                 <option value="2">Universo 2</option>
@@ -3650,7 +3663,7 @@ textarea:focus-visible {
                                 <option value="5">Universo 5</option>
                             </select>
                         </div>
-                        <div class="calc-row"><label>Canal inicio</label>
+                        <div class="calc-row"><label for="pStart">Canal inicio</label>
                             <input type="number" class="mq-input" id="pStart" value="1" min="1" max="512">
                         </div>
                         <div style="margin-top:12px;display:flex;gap:8px;">
@@ -3699,24 +3712,24 @@ textarea:focus-visible {
                 <div class="panel-title">Constructor de Cue List</div>
                 <div class="grid-2" style="margin-bottom:14px;">
                     <div>
-                        <div class="calc-row"><label>Nombre de la cue</label>
+                        <div class="calc-row"><label for="cueName">Nombre de la cue</label>
                             <input type="text" class="mq-input" id="cueName" placeholder="p.ej. Apertura — Wash cenital">
                         </div>
-                        <div class="calc-row"><label>Fade In (seg)</label>
+                        <div class="calc-row"><label for="cueFadeIn">Fade In (seg)</label>
                             <input type="number" class="mq-input" id="cueFadeIn" value="2" min="0" max="600" step="0.1">
                         </div>
-                        <div class="calc-row"><label>Hold / Duración (seg)</label>
+                        <div class="calc-row"><label for="cueHold">Hold / Duración (seg)</label>
                             <input type="number" class="mq-input" id="cueHold" value="5" min="0" max="3600" step="0.5">
                         </div>
                     </div>
                     <div>
-                        <div class="calc-row"><label>Fade Out (seg)</label>
+                        <div class="calc-row"><label for="cueFadeOut">Fade Out (seg)</label>
                             <input type="number" class="mq-input" id="cueFadeOut" value="1" min="0" max="600" step="0.1">
                         </div>
-                        <div class="calc-row"><label>Delay entre cues (seg)</label>
+                        <div class="calc-row"><label for="cueDelay">Delay entre cues (seg)</label>
                             <input type="number" class="mq-input" id="cueDelay" value="0" min="0" max="60" step="0.1">
                         </div>
-                        <div class="calc-row"><label>Modo</label>
+                        <div class="calc-row"><label for="cueMode">Modo</label>
                             <select class="mq-select" id="cueMode">
                                 <option value="manual">Manual (GO)</option>
                                 <option value="auto">Auto (Chase)</option>
@@ -3777,7 +3790,7 @@ textarea:focus-visible {
 
             <div class="panel panel-orange" style="padding-bottom:16px;">
                 <div class="calc-row" style="margin-bottom:0;">
-                    <label>🔍 Buscar término</label>
+                    <label for="glossSearch">🔍 Buscar término</label>
                     <input type="text" class="mq-input" id="glossSearch" placeholder="p.ej. Cue, Patch, Universo…" oninput="filterGlossary()">
                 </div>
                 <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;" id="glossCats">

@@ -90,6 +90,7 @@ body {
   top: 56px;
   z-index: 99;
   gap: 2px;
+  box-shadow: inset -22px 0 10px -12px rgba(0,0,0,.35);
 }
 .nav-bar::-webkit-scrollbar { display: none; }
 .nav-tab {
@@ -749,7 +750,16 @@ textarea:focus-visible {
   .con-conn:hover,
   .gv-btn:hover,
   .rq-btn:hover,
-  .avl-nav-btn:hover {
+  .avl-nav-btn:hover,
+  .dmx-ch:hover,
+  .dirl-opt:hover,
+  .kel-opt:hover,
+  .fid-opt:hover,
+  .fb-attr:hover,
+  .fb-btn:hover,
+  .dq-opt:hover,
+  .ipq-ans:hover,
+  .module-card:hover .card-arrow {
     transform: none !important;
   }
 }
@@ -1213,21 +1223,21 @@ textarea:focus-visible {
       </div>
       <div class="calc-row">
         <div class="field">
-          <label>Lúmenes del foco (lm)</label>
+          <label for="lic_lm">Lúmenes del foco (lm)</label>
           <input type="number" id="lic_lm" value="10000" min="1">
         </div>
         <div class="field">
-          <label>Apertura del haz (m²)</label>
+          <label for="lic_area">Apertura del haz (m²)</label>
           <input type="number" id="lic_area" value="1" min="0.01" step="0.1">
         </div>
       </div>
       <div class="calc-row">
         <div class="field">
-          <label>Distancia (m)</label>
+          <label for="lic_d1">Distancia (m)</label>
           <input type="number" id="lic_d1" value="2" min="0.1" step="0.5">
         </div>
         <div class="field">
-          <label>Distancia doble (m)</label>
+          <label for="lic_d2">Distancia doble (m)</label>
           <input type="number" id="lic_d2" value="4" min="0.1" step="0.5">
         </div>
       </div>
@@ -2974,15 +2984,15 @@ textarea:focus-visible {
       </div>
       <div class="calc-row-3">
         <div class="field">
-          <label>Nº de focos</label>
+          <label for="dmx_nfocos">Nº de focos</label>
           <input type="number" id="dmx_nfocos" value="24" min="1">
         </div>
         <div class="field">
-          <label>Canales por foco (modo)</label>
+          <label for="dmx_nch">Canales por foco (modo)</label>
           <input type="number" id="dmx_nch" value="16" min="1" max="512">
         </div>
         <div class="field">
-          <label>Dirección inicio</label>
+          <label for="dmx_addr">Dirección inicio</label>
           <input type="number" id="dmx_addr" value="1" min="1" max="512">
         </div>
       </div>
@@ -3010,7 +3020,7 @@ textarea:focus-visible {
         <div>
           <div class="calc-row">
             <div class="field">
-              <label>Nombre del fixture</label>
+              <label for="il_fix_name">Nombre del fixture</label>
               <input type="text" id="il_fix_name" value="PAR LED 6ch" placeholder="p.ej. PAR LED RGBW" list="il_fix_list" style="font-size:14px" oninput="ilAutoFill()">
               <datalist id="il_fix_list">
                 <option value="PAR LED 6ch" data-ch="6">
@@ -3025,17 +3035,17 @@ textarea:focus-visible {
               </datalist>
             </div>
             <div class="field">
-              <label>Canales por unidad</label>
+              <label for="il_fix_ch">Canales por unidad</label>
               <input type="number" id="il_fix_ch" value="6" min="1" max="512">
             </div>
           </div>
           <div class="calc-row">
             <div class="field">
-              <label>Cantidad de unidades</label>
+              <label for="il_fix_qty">Cantidad de unidades</label>
               <input type="number" id="il_fix_qty" value="8" min="1" max="512">
             </div>
             <div class="field">
-              <label>Canal de inicio</label>
+              <label for="il_fix_start">Canal de inicio</label>
               <input type="number" id="il_fix_start" value="1" min="1" max="512">
             </div>
           </div>

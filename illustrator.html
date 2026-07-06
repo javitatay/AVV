@@ -273,6 +273,13 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
         .swatch { width: 36px; height: 36px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: transform 0.15s; }
         .swatch:hover { transform: scale(1.15); }
 
+        @media (pointer: coarse) {
+          .swatch { width: 44px; height: 44px; }
+          .mobile-btn { width: 44px; height: 44px; }
+          /* iOS hace zoom automático al enfocar un input con font-size < 16px */
+          .search-input { font-size: 16px !important; }
+        }
+
         /* MOBILE */
         .mobile-btn { display: none; position: fixed; top: 12px; left: 12px; z-index: 999; width: 40px; height: 40px; background: var(--ai-orange); border: none; border-radius: 4px; color: #fff; font-size: 20px; cursor: pointer; align-items: center; justify-content: center; }
 
@@ -295,6 +302,9 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
             .page { padding: 20px; }
             .mobile-btn { display: flex; }
             .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .top-bar { padding-left: 64px; }
+            .topbar-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+            .search-input { width: 140px; }
         }
 
         /* ── TOP BAR: search ── */
@@ -540,7 +550,8 @@ textarea:focus-visible {
   .con-conn:hover,
   .gv-btn:hover,
   .rq-btn:hover,
-  .avl-nav-btn:hover {
+  .avl-nav-btn:hover,
+  .swatch:hover {
     transform: none !important;
   }
 }
@@ -586,7 +597,7 @@ textarea:focus-visible {
 </head>
 <body>
 
-<button class="mobile-btn" onclick="toggleMenu()" id="mobileBtn">☰</button>
+<button class="mobile-btn" onclick="toggleMenu()" id="mobileBtn" aria-label="Abrir menú" aria-expanded="false">☰</button>
 
 <div class="app-container">
 
@@ -696,7 +707,7 @@ textarea:focus-visible {
 <main class="content-area">
 
 <div class="top-bar">
-    <div style="flex:1; font-size:12px; color:var(--text-dim);">🎓 <strong style="color:var(--text-primary);">Suite Educativa</strong> · Adobe Illustrator CC</div>
+    <div class="topbar-title" style="flex:1; font-size:12px; color:var(--text-dim);">🎓 <strong style="color:var(--text-primary);">Suite Educativa</strong> · Adobe Illustrator CC</div>
     <div class="search-wrapper">
         <span class="search-icon">🔍</span>
         <input class="search-input" id="searchInput" type="text" placeholder="Buscar en la suite…" autocomplete="off">

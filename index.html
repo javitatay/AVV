@@ -466,6 +466,22 @@ textarea:focus-visible {
     scroll-behavior:          auto   !important;
   }
 }
+
+/* ── Touch targets WCAG 2.5.5: mínimo 44×44px en dispositivos de toque ── */
+@media (pointer: coarse) {
+  .g-filter {
+    min-height: 44px;
+  }
+  .glosario-close {
+    width: 44px;
+    height: 44px;
+  }
+  /* iOS hace zoom automático al enfocar un input con font-size < 16px */
+  #globalSearch,
+  .glosario-search input {
+    font-size: 16px !important;
+  }
+}
 </style>
 </head>
 <body>

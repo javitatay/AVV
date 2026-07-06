@@ -82,6 +82,7 @@ body {
   top: 56px;
   z-index: 99;
   gap: 2px;
+  box-shadow: inset -22px 0 10px -12px rgba(0,0,0,.35);
 }
 .nav-bar::-webkit-scrollbar { display: none; }
 .nav-tab {
@@ -587,6 +588,7 @@ canvas{display:block}
 .acts span{font-size:10px;color:#8896b5}
 .einput{position:absolute;display:none;z-index:20;align-items:center;gap:4px}
 .einput input{font-size:11px;padding:3px 6px;border:1.5px solid #378ADD;border-radius:4px;outline:none;width:92px;font-family:inherit;background:#fff;color:#111}
+.einput input:focus{box-shadow:0 0 0 3px rgba(55,138,221,0.25)}
 .einput button{font-size:12px;padding:3px 7px;border:1.5px solid #d33;border-radius:4px;background:#fff;color:#d33;cursor:pointer;line-height:1}
 .einput button:hover{background:#fdecec}
 @media(max-width:720px){
@@ -848,7 +850,10 @@ textarea:focus-visible {
   .con-conn:hover,
   .gv-btn:hover,
   .rq-btn:hover,
-  .avl-nav-btn:hover {
+  .avl-nav-btn:hover,
+  .eq-opt:hover,
+  .tr-opt:hover,
+  .module-card:hover .card-arrow {
     transform: none !important;
   }
 }
@@ -1070,12 +1075,12 @@ textarea:focus-visible {
       <div class="panel">
         <div class="panel-title">Calculadora de Resolución &amp; PPI</div>
         <div class="calc-row">
-          <div class="field"><label>Ancho (px)</label><input type="number" id="r_w" value="1920" min="1"></div>
-          <div class="field"><label>Alto (px)</label><input type="number" id="r_h" value="1080" min="1"></div>
+          <div class="field"><label for="r_w">Ancho (px)</label><input type="number" id="r_w" value="1920" min="1"></div>
+          <div class="field"><label for="r_h">Alto (px)</label><input type="number" id="r_h" value="1080" min="1"></div>
         </div>
         <div class="calc-row">
-          <div class="field"><label>Diagonal pantalla (pulgadas)</label><input type="number" id="r_diag" value="27" min="1" step="0.1"></div>
-          <div class="field"><label>PAR (Pixel Aspect Ratio)</label>
+          <div class="field"><label for="r_diag">Diagonal pantalla (pulgadas)</label><input type="number" id="r_diag" value="27" min="1" step="0.1"></div>
+          <div class="field"><label for="r_par">PAR (Pixel Aspect Ratio)</label>
             <select id="r_par">
               <option value="1">1:1 — Píxel cuadrado (digital)</option>
               <option value="1.094">1.094 — PAL SD 4:3</option>
@@ -1141,8 +1146,8 @@ textarea:focus-visible {
         <div class="panel-title">Calculadora de MCD y Relación de Aspecto</div>
         <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6">Introduce el ancho y alto en píxeles. La calculadora hallará el <strong>Máximo Común Divisor</strong> y la relación de aspecto reducida.</p>
         <div class="calc-row">
-          <div class="field"><label>Ancho (px)</label><input type="number" id="mcd_w" value="1920" min="1"></div>
-          <div class="field"><label>Alto (px)</label><input type="number" id="mcd_h" value="1080" min="1"></div>
+          <div class="field"><label for="mcd_w">Ancho (px)</label><input type="number" id="mcd_w" value="1920" min="1"></div>
+          <div class="field"><label for="mcd_h">Alto (px)</label><input type="number" id="mcd_h" value="1080" min="1"></div>
         </div>
         <button class="btn" onclick="calcMCD()">CALCULAR MCD</button>
         <div id="mcd_result" style="margin-top:18px;display:none">
@@ -1174,8 +1179,8 @@ textarea:focus-visible {
       <div class="panel-title">Ejercicio 1.2 — Escalado conservando Aspect Ratio</div>
       <p style="font-size:13px;color:var(--text2);margin-bottom:16px;">Dado un vídeo UHD-1 (4K), ¿cuál es la siguiente resolución inferior que conserva el mismo aspect ratio 16:9?</p>
       <div class="calc-row">
-        <div class="field"><label>Resolución origen — Ancho (px)</label><input type="number" id="scale_w" value="3840" min="1"></div>
-        <div class="field"><label>Resolución origen — Alto (px)</label><input type="number" id="scale_h" value="2160" min="1"></div>
+        <div class="field"><label for="scale_w">Resolución origen — Ancho (px)</label><input type="number" id="scale_w" value="3840" min="1"></div>
+        <div class="field"><label for="scale_h">Resolución origen — Alto (px)</label><input type="number" id="scale_h" value="2160" min="1"></div>
       </div>
       <button class="btn btn-green" onclick="calcScale()">CALCULAR ESCALA SIGUIENTE</button>
       <div id="scale_result" style="margin-top:16px;display:none">
@@ -1195,12 +1200,12 @@ textarea:focus-visible {
         <div class="panel-title">Calculadora DAR = PAR × SAR</div>
         <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Ejercicio 1.4: comprueba si los píxeles son cuadrados a partir del SAR y el DAR de la pantalla.</p>
         <div class="calc-row">
-          <div class="field"><label>SAR — Ancho almacenado (px)</label><input type="number" id="par_sarw" value="720" min="1"></div>
-          <div class="field"><label>SAR — Alto almacenado (px)</label><input type="number" id="par_sarh" value="576" min="1"></div>
+          <div class="field"><label for="par_sarw">SAR — Ancho almacenado (px)</label><input type="number" id="par_sarw" value="720" min="1"></div>
+          <div class="field"><label for="par_sarh">SAR — Alto almacenado (px)</label><input type="number" id="par_sarh" value="576" min="1"></div>
         </div>
         <div class="calc-row">
-          <div class="field"><label>DAR destino — Ancho</label><input type="number" id="par_darw" value="4" min="1"></div>
-          <div class="field"><label>DAR destino — Alto</label><input type="number" id="par_darh" value="3" min="1"></div>
+          <div class="field"><label for="par_darw">DAR destino — Ancho</label><input type="number" id="par_darw" value="4" min="1"></div>
+          <div class="field"><label for="par_darh">DAR destino — Alto</label><input type="number" id="par_darh" value="3" min="1"></div>
         </div>
         <button class="btn" onclick="calcPAR()">CALCULAR PAR</button>
         <div id="par_result" style="margin-top:16px;display:none">
@@ -1504,7 +1509,7 @@ textarea:focus-visible {
         <div class="panel-title">Calculadora de Distancia Focal — 1/u + 1/v = 1/f</div>
         <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Ejercicio 1.5: introduce dos valores conocidos y calcula el tercero.</p>
         <div class="field" style="margin-bottom:12px">
-          <label>Calcular</label>
+          <label for="focal_mode">Calcular</label>
           <select id="focal_mode" onchange="updateFocalInputs()">
             <option value="f">f — distancia focal (a partir de u y v)</option>
             <option value="u">u — distancia objeto → lente (a partir de v y f)</option>
@@ -1513,16 +1518,16 @@ textarea:focus-visible {
         </div>
         <div class="calc-row">
           <div class="field" id="focal_u_wrap">
-            <label>u — Objeto → Lente (cm)</label>
+            <label for="focal_u">u — Objeto → Lente (cm)</label>
             <input type="number" id="focal_u" value="30" min="0.1" step="0.1">
           </div>
           <div class="field" id="focal_v_wrap">
-            <label>v — Lente → Imagen (cm)</label>
+            <label for="focal_v">v — Lente → Imagen (cm)</label>
             <input type="number" id="focal_v" value="10" min="0.1" step="0.1">
           </div>
         </div>
         <div class="field" id="focal_f_wrap" style="display:none;margin-bottom:12px">
-          <label>f — Distancia focal (cm)</label>
+          <label for="focal_f_in">f — Distancia focal (cm)</label>
           <input type="number" id="focal_f_in" value="7.5" min="0.1" step="0.1">
         </div>
         <button class="btn" onclick="calcFocal()">CALCULAR</button>
@@ -1556,8 +1561,8 @@ textarea:focus-visible {
         </table>
         <div class="panel-subtitle">Apertura de diafragma — diámetro efectivo</div>
         <div class="calc-row">
-          <div class="field"><label>Focal (mm)</label><input type="number" id="ap_focal" value="50" min="1"></div>
-          <div class="field"><label>Número f/</label><input type="number" id="ap_fnum" value="4" min="0.7" step="0.1"></div>
+          <div class="field"><label for="ap_focal">Focal (mm)</label><input type="number" id="ap_focal" value="50" min="1"></div>
+          <div class="field"><label for="ap_fnum">Número f/</label><input type="number" id="ap_fnum" value="4" min="0.7" step="0.1"></div>
         </div>
         <button class="btn btn-secondary" onclick="calcApertureDiam()">CALCULAR DIÁMETRO</button>
         <div class="result-grid" style="grid-template-columns:1fr 1fr;margin-top:12px">
@@ -1575,12 +1580,12 @@ textarea:focus-visible {
       <div class="panel">
         <div class="panel-title">Calculadora de Profundidad de Campo</div>
         <div class="calc-row">
-          <div class="field"><label>Distancia focal (mm)</label><input type="number" id="d_f" value="50" min="1"></div>
-          <div class="field"><label>Apertura (f/)</label><input type="number" id="d_ap" value="2.8" step="0.1" min="0.7"></div>
+          <div class="field"><label for="d_f">Distancia focal (mm)</label><input type="number" id="d_f" value="50" min="1"></div>
+          <div class="field"><label for="d_ap">Apertura (f/)</label><input type="number" id="d_ap" value="2.8" step="0.1" min="0.7"></div>
         </div>
         <div class="calc-row">
-          <div class="field"><label>Distancia sujeto (m)</label><input type="number" id="d_dist" value="3" step="0.1" min="0.1"></div>
-          <div class="field"><label>Sensor / Formato</label>
+          <div class="field"><label for="d_dist">Distancia sujeto (m)</label><input type="number" id="d_dist" value="3" step="0.1" min="0.1"></div>
+          <div class="field"><label for="d_sensor">Sensor / Formato</label>
             <select id="d_sensor">
               <option value="43.3">Full Frame (36×24mm)</option>
               <option value="28.4" selected>APS-C (23.6×15.6mm)</option>
@@ -2700,7 +2705,7 @@ textarea:focus-visible {
   </div>
   <div class="rv-stage">
     <div class="rv-zoom-bar">
-      <label>Zoom</label>
+      <label for="rvZoom">Zoom</label>
       <input type="range" id="rvZoom" min="1" max="10" step="0.5" value="1">
       <span class="rv-zoom-val" id="rvZoomVal">×1</span>
     </div>
@@ -2820,8 +2825,8 @@ textarea:focus-visible {
         <div class="panel-title">Lúmenes ANSI / ISO / LED — Calculadora</div>
         <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Ejercicio 3.1: convierte entre los diferentes estándares de medición de brillo.</p>
         <div class="calc-row">
-          <div class="field"><label>Valor conocido</label><input type="number" id="lum_val" value="5000" min="1"></div>
-          <div class="field"><label>Estándar de entrada</label>
+          <div class="field"><label for="lum_val">Valor conocido</label><input type="number" id="lum_val" value="5000" min="1"></div>
+          <div class="field"><label for="lum_std">Estándar de entrada</label>
             <select id="lum_std">
               <option value="ansi">Lúmenes ANSI</option>
               <option value="iso">Lúmenes ISO</option>
@@ -2890,16 +2895,16 @@ textarea:focus-visible {
         <div class="panel-title">Calculadora Throw Ratio</div>
         <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Ejercicio 3.2: TR = Distancia / Ancho imagen</p>
         <div class="calc-row">
-          <div class="field"><label>Ancho de pantalla (m)</label><input type="number" id="p_sw" value="4" min="0.1" step="0.1"></div>
-          <div class="field"><label>Alto de pantalla (m)</label><input type="number" id="p_sh" value="2.25" min="0.1" step="0.1"></div>
+          <div class="field"><label for="p_sw">Ancho de pantalla (m)</label><input type="number" id="p_sw" value="4" min="0.1" step="0.1"></div>
+          <div class="field"><label for="p_sh">Alto de pantalla (m)</label><input type="number" id="p_sh" value="2.25" min="0.1" step="0.1"></div>
         </div>
         <div class="calc-row">
-          <div class="field"><label>Throw Ratio conocido</label><input type="number" id="p_tr" value="1.5" min="0.1" step="0.01"></div>
-          <div class="field"><label>Distancia conocida (m)</label><input type="number" id="p_dist" value="6" min="0.1" step="0.1"></div>
+          <div class="field"><label for="p_tr">Throw Ratio conocido</label><input type="number" id="p_tr" value="1.5" min="0.1" step="0.01"></div>
+          <div class="field"><label for="p_dist">Distancia conocida (m)</label><input type="number" id="p_dist" value="6" min="0.1" step="0.1"></div>
         </div>
         <div class="calc-row">
-          <div class="field"><label>Lúmenes ANSI</label><input type="number" id="p_lum2" value="5000" min="1"></div>
-          <div class="field"><label>Eficiencia sala (0–1)</label><input type="number" id="p_amb" value="0.8" min="0.01" max="1" step="0.01"></div>
+          <div class="field"><label for="p_lum2">Lúmenes ANSI</label><input type="number" id="p_lum2" value="5000" min="1"></div>
+          <div class="field"><label for="p_amb">Eficiencia sala (0–1)</label><input type="number" id="p_amb" value="0.8" min="0.01" max="1" step="0.01"></div>
         </div>
         <button class="btn" onclick="calcProjection()">CALCULAR</button>
         <div class="result-grid" style="margin-top:16px;">
@@ -3259,12 +3264,12 @@ textarea:focus-visible {
           <button class="btn btn-secondary" onclick="applyLedPreset(10)">P10</button>
         </div>
         <div class="calc-row">
-          <div class="field"><label>Pixel Pitch (mm)</label><input type="number" id="l_pp" value="4" min="0.5" step="0.5"></div>
-          <div class="field"><label>Ancho pantalla (m)</label><input type="number" id="l_w" value="8" min="0.1" step="0.1"></div>
+          <div class="field"><label for="l_pp">Pixel Pitch (mm)</label><input type="number" id="l_pp" value="4" min="0.5" step="0.5"></div>
+          <div class="field"><label for="l_w">Ancho pantalla (m)</label><input type="number" id="l_w" value="8" min="0.1" step="0.1"></div>
         </div>
         <div class="calc-row">
-          <div class="field"><label>Alto pantalla (m)</label><input type="number" id="l_h" value="4.5" min="0.1" step="0.1"></div>
-          <div class="field"><label>FPS de contenido</label><input type="number" id="l_fps" value="30" min="1"></div>
+          <div class="field"><label for="l_h">Alto pantalla (m)</label><input type="number" id="l_h" value="4.5" min="0.1" step="0.1"></div>
+          <div class="field"><label for="l_fps">FPS de contenido</label><input type="number" id="l_fps" value="30" min="1"></div>
         </div>
         <button class="btn" onclick="calcLED()">CALCULAR</button>
         <div class="result-grid" style="margin-top:16px">
@@ -3419,12 +3424,12 @@ textarea:focus-visible {
         </div>
         <div class="panel-subtitle">Ejercicio 3.7 — Calculadora Malla LED</div>
         <div class="calc-row">
-          <div class="field"><label>Long. tira (m)</label><input type="number" id="led_strip_len" value="5" min="0.1" step="0.1"></div>
-          <div class="field"><label>Px/metro en tira</label><input type="number" id="led_strip_ppm" value="50" min="1"></div>
+          <div class="field"><label for="led_strip_len">Long. tira (m)</label><input type="number" id="led_strip_len" value="5" min="0.1" step="0.1"></div>
+          <div class="field"><label for="led_strip_ppm">Px/metro en tira</label><input type="number" id="led_strip_ppm" value="50" min="1"></div>
         </div>
         <div class="calc-row">
-          <div class="field"><label>Nº tiras verticales</label><input type="number" id="led_strip_n" value="20" min="1"></div>
-          <div class="field"><label>FPS</label><input type="number" id="led_strip_fps" value="30" min="1"></div>
+          <div class="field"><label for="led_strip_n">Nº tiras verticales</label><input type="number" id="led_strip_n" value="20" min="1"></div>
+          <div class="field"><label for="led_strip_fps">FPS</label><input type="number" id="led_strip_fps" value="30" min="1"></div>
         </div>
         <button class="btn btn-orange" onclick="calcLEDStrip()">CALCULAR MALLA</button>
         <div id="led_strip_result" style="margin-top:14px;display:none">
@@ -3537,7 +3542,7 @@ textarea:focus-visible {
           <div class="panel-title">📋 Entrada</div>
 
           <div class="field">
-            <label>Modelo de pantalla</label>
+            <label for="ss_moduleType">Modelo de pantalla</label>
             <select id="ss_moduleType" onchange="ssUpdateFromModule()">
               <option value="P-8 960×960 Outdoor|8|960|960">P-8  960×960  Outdoor</option>
               <option value="P-6.66 960×960 Outdoor|6.66|960|960">P-6.66  960×960  Outdoor</option>
@@ -3559,35 +3564,35 @@ textarea:focus-visible {
 
           <div class="calc-row">
             <div class="field">
-              <label>Modo de entrada</label>
+              <label for="ss_inputMode">Modo de entrada</label>
               <select id="ss_inputMode" onchange="ssToggleMode()">
                 <option value="modules">Por módulos</option>
                 <option value="meters">Por medidas (m)</option>
               </select>
             </div>
             <div class="field">
-              <label>Capacidad por salida (px)</label>
+              <label for="ss_pxPerOut">Capacidad por salida (px)</label>
               <input type="number" id="ss_pxPerOut" min="100000" step="10000" value="650000">
             </div>
           </div>
 
           <div class="ss-mode-block" id="ss_byModules">
             <div class="calc-row">
-              <div class="field"><label>Módulos de ancho</label><input type="number" id="ss_modW" min="1" step="1" value="3"></div>
-              <div class="field"><label>Módulos de alto</label><input type="number" id="ss_modH" min="1" step="1" value="2"></div>
+              <div class="field"><label for="ss_modW">Módulos de ancho</label><input type="number" id="ss_modW" min="1" step="1" value="3"></div>
+              <div class="field"><label for="ss_modH">Módulos de alto</label><input type="number" id="ss_modH" min="1" step="1" value="2"></div>
             </div>
           </div>
 
           <div class="ss-mode-block" id="ss_byMeters" style="display:none">
             <div class="calc-row">
-              <div class="field"><label>Ancho deseado (m)</label><input type="number" id="ss_mW" min="0.5" step="0.01" value="5.0"></div>
-              <div class="field"><label>Alto deseado (m)</label><input type="number" id="ss_mH" min="0.5" step="0.01" value="3.0"></div>
+              <div class="field"><label for="ss_mW">Ancho deseado (m)</label><input type="number" id="ss_mW" min="0.5" step="0.01" value="5.0"></div>
+              <div class="field"><label for="ss_mH">Alto deseado (m)</label><input type="number" id="ss_mH" min="0.5" step="0.01" value="3.0"></div>
             </div>
           </div>
 
           <div class="calc-row" style="margin-top:4px">
-            <div class="field"><label>Ancho × Alto máx por salida (px)</label><input type="text" id="ss_maxWH" value="3840×3840"></div>
-            <div class="field"><label>Brillo objetivo (nits)</label><input type="number" id="ss_brightness" min="300" step="50" value="1500"></div>
+            <div class="field"><label for="ss_maxWH">Ancho × Alto máx por salida (px)</label><input type="text" id="ss_maxWH" value="3840×3840"></div>
+            <div class="field"><label for="ss_brightness">Brillo objetivo (nits)</label><input type="number" id="ss_brightness" min="300" step="50" value="1500"></div>
           </div>
 
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
