@@ -36,6 +36,7 @@ independiente, no afiliada a Resolume BV.
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box }
 html { scroll-behavior:smooth }
 body {
+  margin: 0;
   font-family: var(--font);
   background: var(--bg-void);
   color: var(--text-primary);
@@ -646,7 +647,7 @@ body {
   .content { padding: 28px 28px 90px }
 }
 @media (max-width: 1024px) {
-  .content { padding: 24px 20px 90px }
+  .content { padding: 8px 20px 90px }
   .g3, .g4 { grid-template-columns: 1fr 1fr }
   .ptitle { font-size: 28px }
   .hero { grid-template-columns: 1fr; text-align: center }
@@ -664,12 +665,17 @@ body {
   }
   .sb.open { transform: translateX(0) }
   .hamburger { display: flex }
-  .content { padding: 60px 20px 90px }
+  .content { padding: 8px 20px 90px }
   .ptitle { font-size: 26px }
   .pdesc { font-size: 14px }
+  .top-bar { padding-left: 64px; }
+  .topbar-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .search-input { width: 140px; }
+  .hero { padding: 20px 18px; gap: 16px; }
+  .h-logo img { width: 56px; }
 }
 @media (max-width: 640px) {
-  .content { padding: 58px 14px 90px }
+  .content { padding: 8px 14px 90px }
   .ptitle { font-size: 22px }
   .g2, .g3, .g4 { grid-template-columns: 1fr }
   .box p, .box ul { font-size: 13.5px }
@@ -1138,8 +1144,19 @@ textarea:focus-visible {
   .con-conn:hover,
   .gv-btn:hover,
   .rq-btn:hover,
-  .avl-nav-btn:hover {
+  .avl-nav-btn:hover,
+  .bm-opt:hover,
+  .fx-opt:hover,
+  .tc-clip:hover,
+  .section-card:hover::after {
     transform: none !important;
+  }
+}
+@media (pointer: coarse) {
+  .hamburger { width: 44px; height: 44px; }
+  /* iOS hace zoom automático al enfocar un campo con font-size < 16px */
+  .search-input, .tool-input, .tool-select {
+    font-size: 16px !important;
   }
 }
 
@@ -1177,8 +1194,8 @@ textarea:focus-visible {
 
 /* ═══ Buscador interno (homogeneizado desde Illustrator) ═══════════════ */
 .top-bar {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(255,255,255,0.97);
+    position: sticky; top: 0; z-index: 60;
+    background: var(--bg-surface, #fff);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border-dark);
     padding: 8px 28px;
@@ -1192,7 +1209,11 @@ textarea:focus-visible {
     background: var(--bg-raised); color: var(--text-primary);
     outline: none; width: 220px;
     transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s, opacity 0.2s;
+.search-input:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(0,200,122,0.18);
 }
+
 .search-icon { position: absolute; left: 11px; font-size: 14px; color: var(--text-dim); pointer-events: none; }
 .search-results {
     position: absolute; top: calc(100% + 8px); right: 0; width: 320px;
@@ -1343,7 +1364,7 @@ window.go = function (id) {
 <!-- ═════════════════ MAIN CONTENT ═════════════════ -->
 <main class="content">
 <div class="top-bar">
-    <div style="flex:1; font-size:12px; color:var(--text-dim);">🎓 <strong style="color:var(--text-primary);">Suite Educativa</strong> · Resolume Arena</div>
+    <div class="topbar-title" style="flex:1; font-size:12px; color:var(--text-dim);">🎓 <strong style="color:var(--text-primary);">Suite Educativa</strong> · Resolume Arena</div>
     <div class="search-wrapper">
         <span class="search-icon">🔍</span>
         <input class="search-input" id="searchInput" type="text" placeholder="Buscar en la suite…" autocomplete="off" aria-label="Buscar en la suite">
@@ -3617,17 +3638,17 @@ Activa "Auto Span" para expansión automática de universos</div>
   <div class="color-swatch" id="swatchRGB"></div>
   <div class="tool-row">
     <div class="tool-field">
-      <label>R — Rojo (0–255)</label>
+      <label for="rR">R — Rojo (0–255)</label>
       <div class="range-wrap"><input type="range" id="rR" min="0" max="255" value="0" oninput="syncRGB()"><span class="range-val" id="vR">0</span></div>
       <input class="tool-input" type="number" id="nR" min="0" max="255" value="0" oninput="syncRGBn()">
     </div>
     <div class="tool-field">
-      <label>G — Verde (0–255)</label>
+      <label for="rG">G — Verde (0–255)</label>
       <div class="range-wrap"><input type="range" id="rG" min="0" max="255" value="200" oninput="syncRGB()"><span class="range-val" id="vG">200</span></div>
       <input class="tool-input" type="number" id="nG" min="0" max="255" value="200" oninput="syncRGBn()">
     </div>
     <div class="tool-field">
-      <label>B — Azul (0–255)</label>
+      <label for="rB">B — Azul (0–255)</label>
       <div class="range-wrap"><input type="range" id="rB" min="0" max="255" value="122" oninput="syncRGB()"><span class="range-val" id="vB">122</span></div>
       <input class="tool-input" type="number" id="nB" min="0" max="255" value="122" oninput="syncRGBn()">
     </div>
@@ -3648,17 +3669,17 @@ Activa "Auto Span" para expansión automática de universos</div>
   <div class="color-swatch" id="swatchHSB"></div>
   <div class="tool-row">
     <div class="tool-field">
-      <label>H — Hue (0–360°)</label>
+      <label for="rH">H — Hue (0–360°)</label>
       <div class="range-wrap"><input type="range" id="rH" min="0" max="360" value="153" oninput="syncHSB()"><span class="range-val" id="vH">153</span></div>
       <input class="tool-input" type="number" id="nH" min="0" max="360" value="153" oninput="syncHSBn()">
     </div>
     <div class="tool-field">
-      <label>S — Saturation (0–100%)</label>
+      <label for="rS">S — Saturation (0–100%)</label>
       <div class="range-wrap"><input type="range" id="rS" min="0" max="100" value="100" oninput="syncHSB()"><span class="range-val" id="vS">100</span></div>
       <input class="tool-input" type="number" id="nS" min="0" max="100" value="100" oninput="syncHSBn()">
     </div>
     <div class="tool-field">
-      <label>B — Brightness (0–100%)</label>
+      <label for="rBr">B — Brightness (0–100%)</label>
       <div class="range-wrap"><input type="range" id="rBr" min="0" max="100" value="78" oninput="syncHSB()"><span class="range-val" id="vBr">78</span></div>
       <input class="tool-input" type="number" id="nBr" min="0" max="100" value="78" oninput="syncHSBn()">
     </div>
@@ -3688,20 +3709,20 @@ Activa "Auto Span" para expansión automática de universos</div>
   <div class="g3" style="gap:18px;margin-bottom:16px">
     <div>
       <div style="font-size:10px;color:var(--green);letter-spacing:2px;text-transform:uppercase;font-family:var(--mono);font-weight:700;margin-bottom:10px">HEX</div>
-      <div class="tool-field"><label>Código HEX</label><input class="tool-input" type="text" id="hexInput" placeholder="#00C87A" oninput="fromHex()" maxlength="9" style="font-size:15px;text-transform:uppercase"></div>
+      <div class="tool-field"><label for="hexInput">Código HEX</label><input class="tool-input" type="text" id="hexInput" placeholder="#00C87A" oninput="fromHex()" maxlength="9" style="font-size:15px;text-transform:uppercase"></div>
       <div class="tool-note" style="margin-top:10px">Formato #RRGGBB o RRGGBB (sin #). También acepta #RGB corto.</div>
     </div>
     <div>
       <div style="font-size:10px;color:var(--green);letter-spacing:2px;text-transform:uppercase;font-family:var(--mono);font-weight:700;margin-bottom:10px">RGB (0–255)</div>
-      <div class="tool-field" style="margin-bottom:8px"><label>R — Rojo</label><input class="tool-input" type="number" id="hexR" min="0" max="255" value="0" oninput="fromRGBinp()"></div>
-      <div class="tool-field" style="margin-bottom:8px"><label>G — Verde</label><input class="tool-input" type="number" id="hexG" min="0" max="255" value="200" oninput="fromRGBinp()"></div>
-      <div class="tool-field"><label>B — Azul</label><input class="tool-input" type="number" id="hexB" min="0" max="255" value="122" oninput="fromRGBinp()"></div>
+      <div class="tool-field" style="margin-bottom:8px"><label for="hexR">R — Rojo</label><input class="tool-input" type="number" id="hexR" min="0" max="255" value="0" oninput="fromRGBinp()"></div>
+      <div class="tool-field" style="margin-bottom:8px"><label for="hexG">G — Verde</label><input class="tool-input" type="number" id="hexG" min="0" max="255" value="200" oninput="fromRGBinp()"></div>
+      <div class="tool-field"><label for="hexB">B — Azul</label><input class="tool-input" type="number" id="hexB" min="0" max="255" value="122" oninput="fromRGBinp()"></div>
     </div>
     <div>
       <div style="font-size:10px;color:var(--green);letter-spacing:2px;text-transform:uppercase;font-family:var(--mono);font-weight:700;margin-bottom:10px">HSB</div>
-      <div class="tool-field" style="margin-bottom:8px"><label>H — Hue (0–360°)</label><input class="tool-input" type="number" id="hexHH" min="0" max="360" oninput="fromHSBinp()"></div>
-      <div class="tool-field" style="margin-bottom:8px"><label>S — Saturation (0–100%)</label><input class="tool-input" type="number" id="hexSS" min="0" max="100" oninput="fromHSBinp()"></div>
-      <div class="tool-field"><label>B — Brightness (0–100%)</label><input class="tool-input" type="number" id="hexBB" min="0" max="100" oninput="fromHSBinp()"></div>
+      <div class="tool-field" style="margin-bottom:8px"><label for="hexHH">H — Hue (0–360°)</label><input class="tool-input" type="number" id="hexHH" min="0" max="360" oninput="fromHSBinp()"></div>
+      <div class="tool-field" style="margin-bottom:8px"><label for="hexSS">S — Saturation (0–100%)</label><input class="tool-input" type="number" id="hexSS" min="0" max="100" oninput="fromHSBinp()"></div>
+      <div class="tool-field"><label for="hexBB">B — Brightness (0–100%)</label><input class="tool-input" type="number" id="hexBB" min="0" max="100" oninput="fromHSBinp()"></div>
     </div>
   </div>
 
@@ -3731,10 +3752,10 @@ Activa "Auto Span" para expansión automática de universos</div>
 <div class="tool-wrap">
   <div class="tool-title">✦ Filtros de búsqueda</div>
   <div class="tool-row">
-    <div class="tool-field" style="flex:2"><label>Buscar por nombre o descripción</label>
+    <div class="tool-field" style="flex:2"><label for="fxSearch">Buscar por nombre o descripción</label>
       <input class="tool-input" type="text" id="fxSearch" placeholder="Ej: blur, color, warp, kaleid…" oninput="filterFX()">
     </div>
-    <div class="tool-field"><label>Categoría</label>
+    <div class="tool-field"><label for="fxCat">Categoría</label>
       <select class="tool-select" id="fxCat" onchange="filterFX()">
         <option value="">Todas las categorías</option>
         <option value="distorsion">Distorsión / Warp</option>
@@ -3746,7 +3767,7 @@ Activa "Auto Span" para expansión automática de universos</div>
         <option value="audio">Audio</option>
       </select>
     </div>
-    <div class="tool-field"><label>Tipo</label>
+    <div class="tool-field"><label for="fxType">Tipo</label>
       <select class="tool-select" id="fxType" onchange="filterFX()">
         <option value="">Vídeo + Audio</option>
         <option value="video">Solo Vídeo</option>
@@ -3768,18 +3789,18 @@ Activa "Auto Span" para expansión automática de universos</div>
   <div class="tool-title">📐 Calculadora de Resolución</div>
   <div class="tool-row">
     <div class="tool-field">
-      <label>Anchura (px)</label>
+      <label for="arW">Anchura (px)</label>
       <input class="tool-input" type="number" id="arW" placeholder="ej: 1920" oninput="calcAR('w')">
     </div>
     <div class="tool-field" style="flex:0 0 auto;min-width:80px;align-self:center;text-align:center">
       <div style="font-size:22px;color:var(--text-dim);margin-top:20px">×</div>
     </div>
     <div class="tool-field">
-      <label>Altura (px)</label>
+      <label for="arH">Altura (px)</label>
       <input class="tool-input" type="number" id="arH" placeholder="ej: 1080" oninput="calcAR('h')">
     </div>
     <div class="tool-field">
-      <label>Ratio forzado</label>
+      <label for="arRatio">Ratio forzado</label>
       <select class="tool-select" id="arRatio" onchange="calcAR('ratio')">
         <option value="free">Libre (detectar)</option>
         <option value="16:9" selected>16:9 — Widescreen</option>
@@ -3794,8 +3815,8 @@ Activa "Auto Span" para expansión automática de universos</div>
     </div>
   </div>
   <div id="arCustomRow" style="display:none" class="tool-row">
-    <div class="tool-field"><label>Ratio W</label><input class="tool-input" type="number" id="arCW" placeholder="16" oninput="calcAR('custom')"></div>
-    <div class="tool-field"><label>Ratio H</label><input class="tool-input" type="number" id="arCH" placeholder="9" oninput="calcAR('custom')"></div>
+    <div class="tool-field"><label for="arCW">Ratio W</label><input class="tool-input" type="number" id="arCW" placeholder="16" oninput="calcAR('custom')"></div>
+    <div class="tool-field"><label for="arCH">Ratio H</label><input class="tool-input" type="number" id="arCH" placeholder="9" oninput="calcAR('custom')"></div>
   </div>
   <div class="tool-result" id="arResult" style="display:none">
     <div class="result-grid" id="arGrid"></div>
@@ -3828,12 +3849,12 @@ Activa "Auto Span" para expansión automática de universos</div>
 <div class="tool-wrap">
   <div class="tool-title">◈ Generador de Slices</div>
   <div class="tool-row">
-    <div class="tool-field"><label>Anchura composición (px)</label><input class="tool-input" type="number" id="slW" value="1920" placeholder="1920"></div>
-    <div class="tool-field"><label>Altura composición (px)</label><input class="tool-input" type="number" id="slH" value="1080" placeholder="1080"></div>
+    <div class="tool-field"><label for="slW">Anchura composición (px)</label><input class="tool-input" type="number" id="slW" value="1920" placeholder="1920"></div>
+    <div class="tool-field"><label for="slH">Altura composición (px)</label><input class="tool-input" type="number" id="slH" value="1080" placeholder="1080"></div>
   </div>
   <div class="tool-row">
-    <div class="tool-field"><label>Columnas (división horizontal)</label><input class="tool-input" type="number" id="slCols" value="2" min="1" max="16" placeholder="2"></div>
-    <div class="tool-field"><label>Filas (división vertical)</label><input class="tool-input" type="number" id="slRows" value="2" min="1" max="16" placeholder="2"></div>
+    <div class="tool-field"><label for="slCols">Columnas (división horizontal)</label><input class="tool-input" type="number" id="slCols" value="2" min="1" max="16" placeholder="2"></div>
+    <div class="tool-field"><label for="slRows">Filas (división vertical)</label><input class="tool-input" type="number" id="slRows" value="2" min="1" max="16" placeholder="2"></div>
     <button class="tool-btn" onclick="calcSlices()">Calcular Slices</button>
   </div>
   <div class="tool-result" id="slResult" style="display:none">
@@ -3969,7 +3990,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 <div class="tool-wrap">
   <div class="tool-title">⬡ Calculadora de solapamiento</div>
   <div class="tool-row">
-    <div class="tool-field"><label>Nº de proyectores</label>
+    <div class="tool-field"><label for="ebProj">Nº de proyectores</label>
       <select class="tool-select" id="ebProj" onchange="calcEB()">
         <option value="2" selected>2 proyectores</option>
         <option value="3">3 proyectores</option>
@@ -3977,7 +3998,7 @@ Activa "Auto Span" para expansión automática de universos</div>
         <option value="5">5 proyectores</option>
       </select>
     </div>
-    <div class="tool-field"><label>Disposición</label>
+    <div class="tool-field"><label for="ebLayout">Disposición</label>
       <select class="tool-select" id="ebLayout" onchange="calcEB()">
         <option value="h" selected>Horizontal (fila)</option>
         <option value="v">Vertical (columna)</option>
@@ -3986,9 +4007,9 @@ Activa "Auto Span" para expansión automática de universos</div>
     </div>
   </div>
   <div class="tool-row">
-    <div class="tool-field"><label>Resolución proyector — Ancho (px)</label><input class="tool-input" type="number" id="ebPW" value="1920" oninput="calcEB()"></div>
-    <div class="tool-field"><label>Resolución proyector — Alto (px)</label><input class="tool-input" type="number" id="ebPH" value="1080" oninput="calcEB()"></div>
-    <div class="tool-field"><label>Overlap (%) — mínimo 15%</label><input class="tool-input" type="number" id="ebPct" value="20" min="5" max="50" oninput="calcEB()"></div>
+    <div class="tool-field"><label for="ebPW">Resolución proyector — Ancho (px)</label><input class="tool-input" type="number" id="ebPW" value="1920" oninput="calcEB()"></div>
+    <div class="tool-field"><label for="ebPH">Resolución proyector — Alto (px)</label><input class="tool-input" type="number" id="ebPH" value="1080" oninput="calcEB()"></div>
+    <div class="tool-field"><label for="ebPct">Overlap (%) — mínimo 15%</label><input class="tool-input" type="number" id="ebPct" value="20" min="5" max="50" oninput="calcEB()"></div>
   </div>
   <div class="tool-result" id="ebResult" style="display:none">
     <div class="result-grid" id="ebGrid"></div>
@@ -4024,12 +4045,12 @@ Activa "Auto Span" para expansión automática de universos</div>
 <div class="tool-wrap">
   <div class="tool-title">⊟ Grid de proyectores</div>
   <div class="tool-row">
-    <div class="tool-field"><label>Proyectores en horizontal (columnas)</label><input class="tool-input" type="number" id="msCols" value="2" min="1" max="8" oninput="calcMS()"></div>
-    <div class="tool-field"><label>Proyectores en vertical (filas)</label><input class="tool-input" type="number" id="msRows" value="1" min="1" max="4" oninput="calcMS()"></div>
+    <div class="tool-field"><label for="msCols">Proyectores en horizontal (columnas)</label><input class="tool-input" type="number" id="msCols" value="2" min="1" max="8" oninput="calcMS()"></div>
+    <div class="tool-field"><label for="msRows">Proyectores en vertical (filas)</label><input class="tool-input" type="number" id="msRows" value="1" min="1" max="4" oninput="calcMS()"></div>
   </div>
   <div class="tool-row">
-    <div class="tool-field"><label>Resolución proyector — Ancho (px)</label><input class="tool-input" type="number" id="msPW" value="1920" oninput="calcMS()"></div>
-    <div class="tool-field"><label>Resolución proyector — Alto (px)</label><input class="tool-input" type="number" id="msPH" value="1080" oninput="calcMS()"></div>
+    <div class="tool-field"><label for="msPW">Resolución proyector — Ancho (px)</label><input class="tool-input" type="number" id="msPW" value="1920" oninput="calcMS()"></div>
+    <div class="tool-field"><label for="msPH">Resolución proyector — Alto (px)</label><input class="tool-input" type="number" id="msPH" value="1080" oninput="calcMS()"></div>
     <button class="tool-btn" onclick="calcMS()">Calcular</button>
   </div>
   <div class="tool-result" id="msResult" style="display:none">
@@ -4066,12 +4087,12 @@ Activa "Auto Span" para expansión automática de universos</div>
 <div class="tool-wrap">
   <div class="tool-title">⊟ Cabinas → Resolución total</div>
   <div class="tool-row">
-    <div class="tool-field"><label>Cabinas en horizontal</label><input class="tool-input" type="number" id="ledCabW" value="12" min="1" placeholder="12"></div>
-    <div class="tool-field"><label>Cabinas en vertical</label><input class="tool-input" type="number" id="ledCabH" value="6" min="1" placeholder="6"></div>
+    <div class="tool-field"><label for="ledCabW">Cabinas en horizontal</label><input class="tool-input" type="number" id="ledCabW" value="12" min="1" placeholder="12"></div>
+    <div class="tool-field"><label for="ledCabH">Cabinas en vertical</label><input class="tool-input" type="number" id="ledCabH" value="6" min="1" placeholder="6"></div>
   </div>
   <div class="tool-row">
-    <div class="tool-field"><label>Píxeles por cabina — ancho</label><input class="tool-input" type="number" id="ledPxW" value="128" min="1" placeholder="128"></div>
-    <div class="tool-field"><label>Píxeles por cabina — alto</label><input class="tool-input" type="number" id="ledPxH" value="128" min="1" placeholder="128"></div>
+    <div class="tool-field"><label for="ledPxW">Píxeles por cabina — ancho</label><input class="tool-input" type="number" id="ledPxW" value="128" min="1" placeholder="128"></div>
+    <div class="tool-field"><label for="ledPxH">Píxeles por cabina — alto</label><input class="tool-input" type="number" id="ledPxH" value="128" min="1" placeholder="128"></div>
     <button class="tool-btn" onclick="calcLED()">Calcular</button>
   </div>
   <div class="tool-result" id="ledResult" style="display:none">
@@ -4091,12 +4112,12 @@ Activa "Auto Span" para expansión automática de universos</div>
 <div class="tool-wrap">
   <div class="tool-title">🔁 Resolución → Cabinas necesarias</div>
   <div class="tool-row">
-    <div class="tool-field"><label>Resolución deseada — ancho (px)</label><input class="tool-input" type="number" id="ledRW" placeholder="3840"></div>
-    <div class="tool-field"><label>Resolución deseada — alto (px)</label><input class="tool-input" type="number" id="ledRH" placeholder="1080"></div>
+    <div class="tool-field"><label for="ledRW">Resolución deseada — ancho (px)</label><input class="tool-input" type="number" id="ledRW" placeholder="3840"></div>
+    <div class="tool-field"><label for="ledRH">Resolución deseada — alto (px)</label><input class="tool-input" type="number" id="ledRH" placeholder="1080"></div>
   </div>
   <div class="tool-row">
-    <div class="tool-field"><label>Píxeles por cabina — ancho</label><input class="tool-input" type="number" id="ledRPxW" value="128" placeholder="128"></div>
-    <div class="tool-field"><label>Píxeles por cabina — alto</label><input class="tool-input" type="number" id="ledRPxH" value="128" placeholder="128"></div>
+    <div class="tool-field"><label for="ledRPxW">Píxeles por cabina — ancho</label><input class="tool-input" type="number" id="ledRPxW" value="128" placeholder="128"></div>
+    <div class="tool-field"><label for="ledRPxH">Píxeles por cabina — alto</label><input class="tool-input" type="number" id="ledRPxH" value="128" placeholder="128"></div>
     <button class="tool-btn" onclick="calcLEDrev()">Calcular</button>
   </div>
   <div class="tool-result" id="ledRevResult" style="display:none">
@@ -4136,8 +4157,8 @@ Activa "Auto Span" para expansión automática de universos</div>
 <div class="tool-wrap">
   <div class="tool-title">✦ Calculadora de universos</div>
   <div class="tool-row">
-    <div class="tool-field"><label>Píxeles totales</label><input class="tool-input" type="number" id="dmxPx" value="340" min="1" oninput="calcDMXuni()"></div>
-    <div class="tool-field"><label>Tipo de dato por píxel</label>
+    <div class="tool-field"><label for="dmxPx">Píxeles totales</label><input class="tool-input" type="number" id="dmxPx" value="340" min="1" oninput="calcDMXuni()"></div>
+    <div class="tool-field"><label for="dmxType">Tipo de dato por píxel</label>
       <select class="tool-select" id="dmxType" onchange="calcDMXuni()">
         <option value="3" selected>RGB — 3 canales/px</option>
         <option value="4">RGBA — 4 canales/px</option>
@@ -4145,7 +4166,7 @@ Activa "Auto Span" para expansión automática de universos</div>
         <option value="1">Mono/Dim — 1 canal/px</option>
       </select>
     </div>
-    <div class="tool-field"><label>Canales de universo</label>
+    <div class="tool-field"><label for="dmxChanPer">Canales de universo</label>
       <select class="tool-select" id="dmxChanPer" onchange="calcDMXuni()">
         <option value="512" selected>512 ch (estándar)</option>
         <option value="510">510 ch (múltiplo RGB)</option>
@@ -4186,9 +4207,9 @@ Activa "Auto Span" para expansión automática de universos</div>
 <div class="tool-wrap">
   <div class="tool-title">⊕ Constructor de fixture</div>
   <div class="tool-row">
-    <div class="tool-field"><label>Nombre del fixture</label><input class="tool-input" type="text" id="fixName" placeholder="Ej: LED Strip RGB" value="LED Strip RGB"></div>
-    <div class="tool-field"><label>Canal de inicio (dirección DMX)</label><input class="tool-input" type="number" id="fixStart" value="1" min="1" max="512"></div>
-    <div class="tool-field"><label>Universo (subnet:universe)</label><input class="tool-input" type="text" id="fixUni" placeholder="0:0" value="0:0"></div>
+    <div class="tool-field"><label for="fixName">Nombre del fixture</label><input class="tool-input" type="text" id="fixName" placeholder="Ej: LED Strip RGB" value="LED Strip RGB"></div>
+    <div class="tool-field"><label for="fixStart">Canal de inicio (dirección DMX)</label><input class="tool-input" type="number" id="fixStart" value="1" min="1" max="512"></div>
+    <div class="tool-field"><label for="fixUni">Universo (subnet:universe)</label><input class="tool-input" type="text" id="fixUni" placeholder="0:0" value="0:0"></div>
   </div>
 
   <div style="font-size:10.5px;color:var(--text-dim);margin:14px 0 8px;font-family:var(--mono);letter-spacing:1px">CANALES DEL FIXTURE</div>
@@ -4241,9 +4262,9 @@ Activa "Auto Span" para expansión automática de universos</div>
 <div class="tool-wrap">
   <div class="tool-title">♫ BPM → Duración de loop</div>
   <div class="tool-row">
-    <div class="tool-field"><label>BPM (Tempo)</label><input class="tool-input" type="number" id="bpmVal" value="120" min="20" max="300" placeholder="120" oninput="calcBPM()"></div>
-    <div class="tool-field"><label>Compases (bars)</label><input class="tool-input" type="number" id="bpmBars" value="4" min="1" max="64" placeholder="4" oninput="calcBPM()"></div>
-    <div class="tool-field"><label>Compás</label>
+    <div class="tool-field"><label for="bpmVal">BPM (Tempo)</label><input class="tool-input" type="number" id="bpmVal" value="120" min="20" max="300" placeholder="120" oninput="calcBPM()"></div>
+    <div class="tool-field"><label for="bpmBars">Compases (bars)</label><input class="tool-input" type="number" id="bpmBars" value="4" min="1" max="64" placeholder="4" oninput="calcBPM()"></div>
+    <div class="tool-field"><label for="bpmSig">Compás</label>
       <select class="tool-select" id="bpmSig" onchange="calcBPM()">
         <option value="4">4/4 — Común</option>
         <option value="3">3/4 — Vals</option>
@@ -4251,7 +4272,7 @@ Activa "Auto Span" para expansión automática de universos</div>
         <option value="6">6/8 → 6 tiempos</option>
       </select>
     </div>
-    <div class="tool-field"><label>FPS del proyecto</label>
+    <div class="tool-field"><label for="bpmFPS">FPS del proyecto</label>
       <select class="tool-select" id="bpmFPS" onchange="calcBPM()">
         <option value="25">25 fps (PAL)</option>
         <option value="30" selected>30 fps</option>
@@ -4363,20 +4384,20 @@ Activa "Auto Span" para expansión automática de universos</div>
   <p style="font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px">Introduce el BPM de tu pista y la duración del clip visual. El simulador te dice si el clip encaja perfectamente en la estructura rítmica y cuál es el número de compases ideal.</p>
 
   <div class="tool-row" style="flex-wrap:wrap">
-    <div class="tool-field"><label>BPM de la pista</label>
+    <div class="tool-field"><label for="sync_bpm">BPM de la pista</label>
       <input class="tool-input" type="number" id="sync_bpm" value="128" min="60" max="200" oninput="syncCalc()">
     </div>
-    <div class="tool-field"><label>Duración del clip (segundos)</label>
+    <div class="tool-field"><label for="sync_dur">Duración del clip (segundos)</label>
       <input class="tool-input" type="number" id="sync_dur" value="8" min="0.5" max="120" step="0.5" oninput="syncCalc()">
     </div>
-    <div class="tool-field"><label>Compás</label>
+    <div class="tool-field"><label for="sync_sig">Compás</label>
       <select class="tool-select" id="sync_sig" onchange="syncCalc()">
         <option value="4" selected>4/4 — House, Techno, EDM</option>
         <option value="3">3/4 — Vals</option>
         <option value="2">2/4 — Marcha</option>
       </select>
     </div>
-    <div class="tool-field"><label>Modo de sincronización</label>
+    <div class="tool-field"><label for="sync_mode">Modo de sincronización</label>
       <select class="tool-select" id="sync_mode" onchange="syncCalc()">
         <option value="beat">Beat Snap — 1 Bar</option>
         <option value="phrase">Frase — 4 Bars</option>
@@ -4656,9 +4677,9 @@ if (document.readyState === 'loading') {
 <div class="tool-wrap">
   <div class="tool-title">⧉ Estimador de tamaño de archivo</div>
   <div class="tool-row">
-    <div class="tool-field"><label>Duración — minutos</label><input class="tool-input" type="number" id="dxvMin" value="1" min="0" placeholder="1" oninput="calcDXV()"></div>
-    <div class="tool-field"><label>Duración — segundos</label><input class="tool-input" type="number" id="dxvSec" value="0" min="0" max="59" placeholder="0" oninput="calcDXV()"></div>
-    <div class="tool-field"><label>FPS</label>
+    <div class="tool-field"><label for="dxvMin">Duración — minutos</label><input class="tool-input" type="number" id="dxvMin" value="1" min="0" placeholder="1" oninput="calcDXV()"></div>
+    <div class="tool-field"><label for="dxvSec">Duración — segundos</label><input class="tool-input" type="number" id="dxvSec" value="0" min="0" max="59" placeholder="0" oninput="calcDXV()"></div>
+    <div class="tool-field"><label for="dxvFPS">FPS</label>
       <select class="tool-select" id="dxvFPS" onchange="calcDXV()">
         <option value="25">25 fps</option>
         <option value="30" selected>30 fps</option>
@@ -4667,10 +4688,10 @@ if (document.readyState === 'loading') {
     </div>
   </div>
   <div class="tool-row">
-    <div class="tool-field"><label>Anchura (px)</label><input class="tool-input" type="number" id="dxvW" value="1920" placeholder="1920" oninput="calcDXV()"></div>
-    <div class="tool-field"><label>Altura (px)</label><input class="tool-input" type="number" id="dxvH" value="1080" placeholder="1080" oninput="calcDXV()"></div>
-    <div class="tool-field"><label>Preset de resolución</label>
-      <select class="tool-select" onchange="dxvPreset(this.value)">
+    <div class="tool-field"><label for="dxvW">Anchura (px)</label><input class="tool-input" type="number" id="dxvW" value="1920" placeholder="1920" oninput="calcDXV()"></div>
+    <div class="tool-field"><label for="dxvH">Altura (px)</label><input class="tool-input" type="number" id="dxvH" value="1080" placeholder="1080" oninput="calcDXV()"></div>
+    <div class="tool-field"><label for="dxvPresetSel">Preset de resolución</label>
+      <select class="tool-select" id="dxvPresetSel" onchange="dxvPreset(this.value)">
         <option value="">— Preset —</option>
         <option value="1280x720">1280 × 720 (HD)</option>
         <option value="1920x1080">1920 × 1080 (Full HD)</option>
@@ -6662,11 +6683,11 @@ function addFixCh(name='', type='Red', def=0) {
   div.style.alignItems = 'flex-end';
   div.innerHTML = `
     <div style="width:28px;min-width:28px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--text-dim);padding-bottom:10px">${id}</div>
-    <div class="tool-field"><label>Nombre</label><input class="tool-input" type="text" value="${name}" placeholder="Nombre canal" id="fn-${id}"></div>
-    <div class="tool-field"><label>Tipo</label><select class="tool-select" id="ft-${id}">
+    <div class="tool-field"><label for="fn-${id}">Nombre</label><input class="tool-input" type="text" value="${name}" placeholder="Nombre canal" id="fn-${id}"></div>
+    <div class="tool-field"><label for="ft-${id}">Tipo</label><select class="tool-select" id="ft-${id}">
       ${FIX_TYPES.map(t=>`<option value="${t}" ${t===type?'selected':''}>${t}</option>`).join('')}
     </select></div>
-    <div class="tool-field" style="max-width:90px"><label>Default</label><input class="tool-input" type="number" min="0" max="255" value="${def}" id="fd-${id}"></div>
+    <div class="tool-field" style="max-width:90px"><label for="fd-${id}">Default</label><input class="tool-input" type="number" min="0" max="255" value="${def}" id="fd-${id}"></div>
     <button class="tool-btn tool-btn-sec" style="padding:10px 14px;flex-shrink:0" onclick="document.getElementById('fixch-${id}').remove()">✕</button>`;
   document.getElementById('fixChannels').appendChild(div);
 }
