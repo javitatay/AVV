@@ -193,10 +193,10 @@ body {
 /* ─── CONTENT ─── */
 .content {
   overflow-y: auto;
-  padding: 36px 40px 90px;
+  padding: 0 40px 90px; /* sin padding-top: la barra sticky debe quedar pegada arriba */
   background: var(--bg-void);
 }
-.page { display: none; max-width: 1200px; margin: 0 auto }
+.page { display: none; max-width: 1200px; margin: 0 auto; padding-top: 36px }
 .page.active { display: block }
 
 /* ─── PAGE HEADER ─── */
@@ -644,10 +644,12 @@ body {
 .overlay-mob.visible { display: block }
 
 @media (max-width: 1280px) {
-  .content { padding: 28px 28px 90px }
+  .content { padding: 0 28px 90px }
+  .page { padding-top: 28px }
 }
 @media (max-width: 1024px) {
-  .content { padding: 8px 20px 90px }
+  .content { padding: 0 20px 90px }
+  .page { padding-top: 24px }
   .g3, .g4 { grid-template-columns: 1fr 1fr }
   .ptitle { font-size: 28px }
   .hero { grid-template-columns: 1fr; text-align: center }
@@ -664,18 +666,20 @@ body {
     transition: transform .26s cubic-bezier(.4,0,.2,1);
   }
   .sb.open { transform: translateX(0) }
-  .hamburger { display: flex }
-  .content { padding: 8px 20px 90px }
+  .hamburger { display: flex; top: 6px }
+  .content { padding: 0 20px 90px }
+  .page { padding-top: 16px }
   .ptitle { font-size: 26px }
   .pdesc { font-size: 14px }
-  .top-bar { padding-left: 64px; }
+  .top-bar { padding-left: 64px; min-height: 56px; }
   .topbar-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   .search-input { width: 140px; }
   .hero { padding: 20px 18px; gap: 16px; }
   .h-logo img { width: 56px; }
 }
 @media (max-width: 640px) {
-  .content { padding: 8px 14px 90px }
+  .content { padding: 0 14px 90px }
+  .page { padding-top: 16px }
   .ptitle { font-size: 22px }
   .g2, .g3, .g4 { grid-template-columns: 1fr }
   .box p, .box ul { font-size: 13.5px }
