@@ -9,7 +9,8 @@
   <meta name="description" content="Plataforma educativa interactiva para Animación Visual en Vivo (CFGM Video DJ). 6 suites con 27 juegos didácticos, 15+ simuladores, calculadoras y glosario sobre vídeo, iluminación, Illustrator, After Effects, Resolume y MagicQ.">
   <meta name="author" content="Javier Tatay Rubio">
   <meta name="keywords" content="AVV Lab, Animación Visual en Vivo, CFGM Video DJ, FP, Illustrator, After Effects, Resolume, MagicQ, DMX, iluminación espectáculos, vídeo, simuladores educativos">
-  <meta name="theme-color" content="#4A7A6A">
+  <meta name="theme-color" content="#F5F4F0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#17181B" media="(prefers-color-scheme: dark)">
   <link rel="canonical" href="https://javitatay.github.io/AVV/">
 
   <!-- ─── Open Graph (WhatsApp, Telegram, Facebook…) ───────────────── -->
@@ -43,6 +44,7 @@
       --bg:        #F5F4F0;
       --surface:   #FFFFFF;
       --surface-2: #EFEDE8;
+      --topbar-bg: rgba(245,244,240,.88);
       --border:    #98948C;
       --text-1:    #1E1D1B;
       --text-2:    #5C5954;
@@ -67,6 +69,7 @@
         --bg:        #17181B;
         --surface:   #1F2124;
         --surface-2: #26282C;
+        --topbar-bg: rgba(23,24,27,.88);
         --border:    #35373C;
         --text-1:    #F1F0ED;
         --text-2:    #C7C4BE;
@@ -112,7 +115,7 @@
     /* ─── TOPBAR ─── */
     .topbar {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(245,244,240,.88);
+      background: var(--topbar-bg);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
