@@ -9,8 +9,7 @@
   <meta name="description" content="Plataforma educativa interactiva para Animación Visual en Vivo (CFGM Video DJ). 6 suites con 27 juegos didácticos, 15+ simuladores, calculadoras y glosario sobre vídeo, iluminación, Illustrator, After Effects, Resolume y MagicQ.">
   <meta name="author" content="Javier Tatay Rubio">
   <meta name="keywords" content="AVV Lab, Animación Visual en Vivo, CFGM Video DJ, FP, Illustrator, After Effects, Resolume, MagicQ, DMX, iluminación espectáculos, vídeo, simuladores educativos">
-  <meta name="theme-color" content="#F5F4F0" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#17181B" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f6f3">
   <link rel="canonical" href="https://javitatay.github.io/AVV/">
 
   <!-- ─── Open Graph (WhatsApp, Telegram, Facebook…) ───────────────── -->
@@ -31,492 +30,501 @@
   <meta name="twitter:description" content="6 suites · 27 juegos · 15+ simuladores · Material educativo del CFGM Video DJ.">
 
   <!-- ─── Favicon SVG inline ───────────────────────────────────────── -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%234A7A6A'/%3E%3Ccircle cx='50' cy='50' r='12' fill='white'/%3E%3Cpath d='M50 18v8M50 74v8M18 50h8M74 50h8M28 28l5 5M67 67l5 5M28 72l5-5M67 33l5-5' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-4 -4 410 342%22 role=%22presentation%22 focusable=%22false%22%3E%3Cg fill=%22none%22 stroke-linejoin=%22round%22 stroke-linecap=%22round%22 stroke-width=%2224%22%3E%3Cg style=%22stroke:%231f1d1a%22%3E%3Crect x=%2213%22 y=%2213%22 width=%22387%22 height=%22203%22 rx=%2222%22 style=%22fill:%23cbe6f7%22 stroke=%22none%22/%3E%3Crect x=%220%22 y=%220%22 width=%22387%22 height=%22203%22 rx=%2222%22/%3E%3C/g%3E%3Cg style=%22stroke:%231f1d1a%22%3E%3Cpath d=%22M178 69L250 110L178 152Z%22 style=%22fill:%23f2da8e%22 stroke=%22none%22/%3E%3Cpath d=%22M165 60L239 102L165 143Z%22/%3E%3C/g%3E%3Cg style=%22stroke:%231f1d1a%22%3E%3Crect x=%2213%22 y=%22248%22 width=%22120%22 height=%2285%22 rx=%2215%22 style=%22fill:%23f2da8e%22 stroke=%22none%22/%3E%3Crect x=%220%22 y=%22236%22 width=%22120%22 height=%2285%22 rx=%2215%22/%3E%3C/g%3E%3Cg style=%22stroke:%231f1d1a%22%3E%3Crect x=%22147%22 y=%22248%22 width=%22120%22 height=%2285%22 rx=%2215%22 style=%22fill:%23d5e7d0%22 stroke=%22none%22/%3E%3Crect x=%22134%22 y=%22236%22 width=%22120%22 height=%2285%22 rx=%2215%22/%3E%3C/g%3E%3Cg style=%22stroke:%231f1d1a%22%3E%3Crect x=%22280%22 y=%22248%22 width=%22120%22 height=%2285%22 rx=%2215%22 style=%22fill:%23f5cfcd%22 stroke=%22none%22/%3E%3Crect x=%22267%22 y=%22236%22 width=%22120%22 height=%2285%22 rx=%2215%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>try{var t=localStorage.getItem("avvlab_theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",t==="dark"?"#1b1917":"#f7f6f3")})}}catch(e){}</script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* AVV Lab · landing. Paleta y trazo del banner: crema, tinta, pasteles planos con contorno grueso y relleno desplazado. */
+@font-face {
+  font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 800; font-display: swap;
+  src: url(data:font/woff2;base64,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) format("woff2");
+}
 
-    :root {
-      --bg:        #F5F4F0;
-      --surface:   #FFFFFF;
-      --surface-2: #EFEDE8;
-      --topbar-bg: rgba(245,244,240,.88);
-      --border:    #98948C;
-      --text-1:    #1E1D1B;
-      --text-2:    #5C5954;
-      --text-3:    #6B6560;
-      --accent:    #4A7A6A;
-      --accent-lt: #EAF3EF;
-      --accent-dk: #35614F;
-      --c1: #4A7A6A;
-      --c2: #6B7FA3;
-      --c3: #A06B4A;
-      --c4: #7A6BA3;
-      --c5: #A06B6B;
-      --c6: #6B9A6B;
-      --radius: 14px;
-      --shadow: 0 2px 12px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
-      --shadow-hover: 0 8px 32px rgba(0,0,0,.11), 0 2px 8px rgba(0,0,0,.06);
-      --transition: .22s cubic-bezier(.4,0,.2,1);
-    }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg:        #17181B;
-        --surface:   #1F2124;
-        --surface-2: #26282C;
-        --topbar-bg: rgba(23,24,27,.88);
-        --border:    #35373C;
-        --text-1:    #F1F0ED;
-        --text-2:    #C7C4BE;
-        --text-3:    #928F89;
-        --accent:    #6FBFA3;
-        --accent-lt: #1D2B26;
-        --accent-dk: #8FD4BB;
-        --shadow: 0 2px 12px rgba(0,0,0,.35), 0 1px 3px rgba(0,0,0,.25);
-        --shadow-hover: 0 8px 32px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.3);
-      }
-    }
+/* ---------- Tokens: claro ---------- */
+:root {
+  --bg:        #f7f6f3;
+  --surface:   #ffffff;
+  --fg:        #1f1d1a;
+  --mid:       #6f6b64;
+  --line:      #e6e2da;
+  --stroke-c:  #1f1d1a;          /* contorno grueso de tarjetas, botones, campos */
+  --hover:     rgba(31, 29, 26, 0.05);
+  --focus:     #1f1d1a;
 
-    .skip-link {
-      position: absolute; top: -48px; left: 12px; z-index: 1000;
-      background: var(--accent); color: #fff; text-decoration: none;
-      padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 14px;
-      transition: top .18s ease;
-    }
-    .skip-link:focus { top: 12px; }
+  --blue:      #cbe6f7;
+  --yellow:    #f2da8e;
+  --green:     #d5e7d0;
+  --pink:      #f5cfcd;
+  --on-pastel: #1f1d1a;          /* texto y trazo de lo que va sobre un pastel */
+  --on-pastel-2: #4a463f;
+  --obj-stroke: #1f1d1a;         /* contorno de los objetos de color (fichas, iconos, sellos) */
+  --band-surface: #ffffff;       /* fondo de fichas dentro de una banda de color */
+  --hi:        #f2da8e;          /* resalte vivo: subrayado, selección */
+  --hi-fg:     #1f1d1a;
+  --tint:      var(--blue);
 
-    .search-kbd {
-      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-      font-family: inherit; font-size: 11px; font-weight: 600; color: var(--text-3);
-      background: var(--surface-2); border: 1px solid var(--border); border-radius: 5px;
-      padding: 1px 6px; pointer-events: none;
-    }
-    .topbar-search input:focus ~ .search-kbd,
-    .topbar-search input:not(:placeholder-shown) ~ .search-kbd { display: none; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+  --sh-mix:    100%;             /* cuánto del tono conserva la sombra: 100% en claro, menos en oscuro */
+  --blue-d:    color-mix(in srgb, var(--blue) var(--sh-mix), #000);
+  --yellow-d:  color-mix(in srgb, var(--yellow) var(--sh-mix), #000);
+  --green-d:   color-mix(in srgb, var(--green) var(--sh-mix), #000);
+  --pink-d:    color-mix(in srgb, var(--pink) var(--sh-mix), #000);
+
+  /* Ilustración (logo y hero): en claro, trazo tinta + relleno pastel; en oscuro, trazo pastel + relleno profundo */
+  --ill-s-b: #1f1d1a; --ill-s-y: #1f1d1a; --ill-s-g: #1f1d1a; --ill-s-p: #1f1d1a;
+  --ill-f-b: var(--blue); --ill-f-y: var(--yellow); --ill-f-g: var(--green); --ill-f-p: var(--pink);
+
+  --btn-bg:    #1f1d1a;
+  --btn-fg:    #f7f6f3;
+
+  --radius: 16px;
+  --offset: 8px;
+  --max: 1100px;
+
+  --font: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  color-scheme: light;
+}
+
+/* ---------- Tokens: oscuro (ver dark_block.css; el montaje lo emite para el sistema y para la elección del usuario) ---------- */
+/* Modo oscuro. El papel se oscurece; los pasteles del banner NO.
+   El color pasa a las líneas: bordes en pastel, sombras en el mismo tono más profundo.
+   Plantilla: [data-theme="dark"] se sustituye por [data-theme="dark"] (solo si el usuario elige el modo oscuro; por defecto, claro). */
+:root[data-theme="dark"] {
+  --bg: #1b1917; --surface: #262320; --fg: #f7f6f3; --mid: #b3aea4; --line: #38342f;
+  --stroke-c: #a9a499;           /* trazo neutro (campos, fichas, etiquetas): beige medio, sin el deslumbre del crema puro */
+  --hover: rgba(247, 246, 243, 0.07); --focus: #f7f6f3;
+  --btn-bg: var(--yellow); --btn-fg: #1f1d1a;
+  --sh-mix: 52%;                 /* respaldo si el navegador no entiende color relativo (ver @supports) */
+  --ill-s-b: var(--blue); --ill-s-y: var(--yellow); --ill-s-g: var(--green); --ill-s-p: var(--pink);
+  --ill-f-b: var(--blue-d); --ill-f-y: var(--yellow-d); --ill-f-g: var(--green-d); --ill-f-p: var(--pink-d);
+  color-scheme: dark;
+}
+@supports (color: oklch(from red l c h)) {
+  :root[data-theme="dark"] {
+    --blue-d: oklch(from var(--blue) calc(l * 0.70) calc(c * 2.0) h);
+    --yellow-d: oklch(from var(--yellow) calc(l * 0.70) calc(c * 2.0) h);
+    --green-d: oklch(from var(--green) calc(l * 0.70) calc(c * 2.0) h);
+    --pink-d: oklch(from var(--pink) calc(l * 0.70) calc(c * 2.0) h);
+  }
+  :root[data-theme="dark"] .g-filter { --fc-d: oklch(from var(--fc) calc(l * 0.70) calc(c * 2.0) h); }
+  :root[data-theme="dark"] .card, :root[data-theme="dark"] .gterm, :root[data-theme="dark"] .contact-inner { --tint-d: oklch(from var(--tint) calc(l * 0.70) calc(c * 2.0) h); }
+}
+/* Contorno de cada objeto = su color; lo neutro conserva el trazo beige */
+:root[data-theme="dark"] .card, :root[data-theme="dark"] .gterm, :root[data-theme="dark"] .hero-stat, :root[data-theme="dark"] .contact-inner { border-color: var(--tint); }
+:root[data-theme="dark"] .search-dropdown, :root[data-theme="dark"] .glosario-btn, :root[data-theme="dark"] .topbar-search input:focus { border-color: var(--blue); }
+:root[data-theme="dark"] .contact-link { border-color: var(--obj-stroke); }
+:root[data-theme="dark"] .theme-toggle { border-color: var(--yellow); }
+
+
+/* Lo que va sobre un pastel usa sus propios tokens (tinta sobre pastel, en claro y en oscuro) */
+.card-top, .card-ud, .card-btn, .hero-stat, .gterm-suite, .topbar-badge, .g-filter.active, .skip-link, .contact-icon {
+  --fg: var(--on-pastel); --mid: var(--on-pastel-2); --surface: var(--band-surface); --stroke-c: var(--obj-stroke); --focus: var(--on-pastel);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-      font-size: 17px;
-      line-height: 1.7;
-      background: var(--bg);
-      color: var(--text-1);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ─── TOPBAR ─── */
-    .topbar {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--topbar-bg);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 32px; height: 50px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .topbar-brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text-1); }
-    .topbar-logo { width:28px; height:28px; background:var(--accent); border-radius:7px; display:flex; align-items:center; justify-content:center; }
-    .topbar-logo svg { width:15px; height:15px; }
-    .topbar-name { font-size: 14px; font-weight:700; letter-spacing:-.2px; }
-    .topbar-sub  { font-size: 11px; color:var(--text-3); }
-    .topbar-badge { font-size: 11px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--accent); background:var(--accent-lt); border:1px solid rgba(74,122,106,.18); border-radius:20px; padding:3px 10px; }
-    .topbar-search { position:relative; flex:1; max-width:320px; }
-    .topbar-search input {
-      width:100%; padding:6px 30px 6px 34px;
-      background:var(--surface); border:1.5px solid var(--border);
-      border-radius:20px; font-family:inherit; font-size:13px;
-      color:var(--text-1); outline:none; transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
-    }
-    .topbar-search input:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-lt); }
-    .topbar-search input::placeholder { color:var(--text-3); }
-    .topbar-search svg { position:absolute; left:11px; top:50%; transform:translateY(-50%); width:14px; height:14px; color:var(--text-3); pointer-events:none; }
-    .search-dropdown {
-      display:none; position:absolute; top:calc(100% + 6px); left:0; right:0;
-      background:var(--surface); border:1.5px solid var(--border); border-radius:12px;
-      box-shadow:0 8px 24px rgba(0,0,0,.1); max-height:320px; overflow-y:auto; z-index:200;
-    }
-    .search-dropdown.visible { display:block; }
-    .search-item { display:flex; align-items:center; gap:10px; padding:10px 14px; cursor:pointer; border-bottom:1px solid var(--border); transition:background var(--transition); text-decoration:none; }
-    .search-item:last-child { border-bottom:none; }
-    .search-item:hover { background:var(--accent-lt); }
-    .search-item-suite { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
-    .search-item-name { font-size:13px; font-weight:600; color:var(--text-1); }
-    .search-item-def { font-size:11px; color:var(--text-2); flex:1; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
-    .search-item-tag { font-size: 11px; color:var(--text-3); background:var(--surface-2); border:1px solid var(--border); border-radius:6px; padding:1px 7px; flex-shrink:0; white-space:nowrap; }
-    .search-no-results { padding:16px; text-align:center; color:var(--text-3); font-size:13px; }
-
-    /* B1: Cabeceras de grupo en el dropdown de búsqueda */
-    .search-group-title {
-      padding:8px 14px 4px; font-size:10px; font-weight:700; letter-spacing:.6px;
-      text-transform:uppercase; color:var(--text-3); background:var(--surface-2);
-      border-bottom:1px solid var(--border);
-    }
-    .search-group-title:first-child { border-top-left-radius:10px; border-top-right-radius:10px; }
-
-    /* ─── HERO (franja horizontal) ─── */
-    .hero {
-      max-width: 1100px; margin: 0 auto;
-      padding: 18px 32px 16px;
-      display: flex; align-items: center; gap: 24px;
-      animation: fadeUp .5s ease both;
-      border-bottom: 1px solid var(--border);
-    }
-    .hero-left { flex-shrink: 0; }
-    .hero h1 { font-size: 21px; font-weight:700; letter-spacing:-.5px; line-height:1.15; color:var(--text-1); white-space:nowrap; }
-    .hero h1 span { color: var(--accent); }
-    .hero-sub { font-size: 12px; font-weight:300; color:var(--text-2); margin-top:2px; }
-    .hero-divider { width:1px; height:32px; background:var(--border); flex-shrink:0; }
-    .hero-stats { display:flex; align-items:center; gap:20px; }
-    .hero-stat { display:flex; align-items:baseline; gap:4px; }
-    .hero-stat-n { font-size: 18px; font-weight:700; color:var(--text-1); letter-spacing:-.5px; }
-    .hero-stat-l { font-size: 11.5px; font-weight:500; letter-spacing:.6px; text-transform:uppercase; color:var(--text-3); }
-
-    /* ─── SECTION HEADER ─── */
-    .section-header {
-      max-width: 1100px; margin: 0 auto;
-      padding: 0 32px 16px;
-      display: flex; align-items: center; gap: 14px;
-      animation: fadeUp .6s .1s ease both;
-    }
-    .section-title { margin:0; font-size: 13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-3); white-space:nowrap; }
-    .section-line { flex:1; height:1px; background:var(--border); }
-
-    /* ─── GLOSARIO BUTTON ─── */
-    .glosario-btn {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 12px; font-weight: 600;
-      color: var(--accent);
-      background: var(--accent-lt);
-      border: 1px solid rgba(74,122,106,.2);
-      border-radius: 20px;
-      padding: 5px 14px;
-      cursor: pointer;
-      transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .glosario-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .glosario-btn svg { width:13px; height:13px; }
-
-    /* ─── GRID ─── */
-    .grid {
-      max-width: 1100px; margin: 0 auto;
-      padding: 0 32px 60px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 14px;
-      animation: fadeUp .6s .15s ease both;
-    }
-
-    /* ─── CARD ─── */
-    .card {
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px 24px 20px;
-      text-decoration: none; color: var(--text-1);
-      display: flex; flex-direction: column; gap: 0;
-      transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
-      box-shadow: var(--shadow);
-      position: relative; overflow: hidden;
-    }
-    .card::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:3px;
-      background:var(--card-color, var(--accent));
-      border-radius:var(--radius) var(--radius) 0 0;
-      opacity:0; transition:opacity var(--transition);
-    }
-    .card:hover { box-shadow:var(--shadow-hover); transform:translateY(-2px); border-color:var(--card-color, var(--accent)); }
-    .card:hover::before { opacity:1; }
-    .card-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
-    .card-icon { width:42px; height:42px; background:var(--icon-bg,var(--accent-lt)); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .card-icon svg { width:24px; height:24px; }
-    .card-icon img { width:32px; height:32px; border-radius:7px; object-fit:contain; }
-    .card-ud { font-size: 11.5px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--card-color); opacity:.8; }
-    .card-app { font-size: 11px; font-weight:500; letter-spacing:.3px; text-transform:uppercase; opacity:.7; margin-bottom:8px; }
-    .card-title { margin-top:0; font-size: 19px; font-weight:700; letter-spacing:-.4px; line-height:1.2; margin-bottom:10px; }
-    .card-desc { font-size: 13px; color:var(--text-2); line-height:1.65; flex:1; margin-bottom:14px; }
-
-    /* ─── A2: Card stats inline ─── */
-    .card-stats { display:flex; flex-wrap:wrap; gap:10px 14px; margin-bottom:18px; padding:10px 12px; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; }
-    .card-stat { display:flex; align-items:center; gap:5px; font-size:11.5px; color:var(--text-2); font-weight:500; line-height:1.2; }
-    .card-stat-n { font-weight:700; color:var(--text-1); font-variant-numeric:tabular-nums; }
-    .card-stat-emoji { font-size:13px; line-height:1; }
-
-    .card-footer { display:flex; align-items:center; justify-content:space-between; padding-top:14px; border-top:1px solid var(--border); }
-    .card-tags { display:flex; flex-wrap:wrap; gap:5px; }
-    .card-tag { font-size: 11px; font-weight:500; padding:2px 8px; border-radius:8px; background:var(--surface-2); color:var(--text-2); border:1px solid var(--border); }
-    .card-btn { display:flex; align-items:center; gap:4px; font-size: 12px; font-weight:600; transition:gap var(--transition); flex-shrink:0; }
-    .card-btn svg { width:14px; height:14px; }
-    .card:hover .card-btn { gap:7px; }
-
-    /* ─── DIVIDER ─── */
-    .divider { max-width:1100px; margin:0 auto; padding:0 32px 40px; display:flex; align-items:center; gap:14px; }
-    .divider-line { flex:1; height:1px; background:var(--border); }
-    .divider-icon { width:28px; height:28px; background:var(--surface); border:1px solid var(--border); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .divider-icon svg { width:14px; height:14px; }
-    .divider-text { font-size: 11.5px; color:var(--text-3); letter-spacing:.3px; white-space:nowrap; }
-
-    /* ─── CONTACT ─── */
-    .contact { max-width:1100px; margin:0 auto 24px; padding:0 32px; animation:fadeUp .5s .35s ease both; }
-    .contact-inner { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px; box-shadow:var(--shadow); }
-    .contact-left { display:flex; align-items:center; gap:12px; }
-    .contact-icon { width:36px; height:36px; background:var(--accent-lt); border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .contact-icon svg { width:18px; height:18px; }
-    .contact-text { display:flex; flex-direction:column; gap:1px; }
-    .contact-label { font-size: 11.5px; font-weight:500; letter-spacing:.8px; text-transform:uppercase; color:var(--text-3); }
-    .contact-name { font-size: 14px; font-weight:600; color:var(--text-1); }
-    .contact-link { display:flex; align-items:center; gap:8px; font-size: 13px; font-weight:500; cursor:pointer; color:var(--accent); text-decoration:none; padding:8px 16px; background:var(--accent-lt); border:1px solid rgba(74,122,106,.2); border-radius:10px; transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1); }
-    .contact-link:hover { background:var(--accent); color:#fff; }
-    .contact-link svg { width:15px; height:15px; }
-
-    /* ─── FOOTER ─── */
-    .footer { text-align:center; padding:16px 32px; font-size: 12px; color:var(--text-3); border-top:1px solid var(--border); }
-    .footer p + p { margin-top:3px; }
-
-    /* ─── GLOSARIO MODAL ─── */
-    .glosario-overlay {
-      position: fixed; inset: 0; z-index: 1000;
-      background: rgba(20,20,18,.55);
-      backdrop-filter: blur(6px);
-      display: flex; align-items: flex-end;
-      opacity: 0; pointer-events: none;
-      transition: opacity .25s ease;
-    }
-    .glosario-overlay.open { opacity:1; pointer-events:all; }
-    .glosario-panel {
-      width: 100%; height: 92vh;
-      background: var(--bg);
-      border-radius: 20px 20px 0 0;
-      display: flex; flex-direction: column;
-      transform: translateY(40px);
-      transition: transform .3s cubic-bezier(.4,0,.2,1);
-      box-shadow: 0 -8px 40px rgba(0,0,0,.15);
-    }
-    .glosario-overlay.open .glosario-panel { transform: translateY(0); }
-
-    .glosario-header {
-      padding: 20px 28px 16px;
-      border-bottom: 1px solid var(--border);
-      display: flex; flex-direction: column; gap: 14px;
-      flex-shrink: 0;
-    }
-    .glosario-header-top {
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .glosario-title {
-      font-size: 19px; font-weight: 700; letter-spacing: -.4px; color: var(--text-1);
-    }
-    .glosario-close {
-      width: 32px; height: 32px; border-radius: 50%;
-      background: var(--surface-2); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
-    }
-    .glosario-close:hover { background: var(--text-1); color: #fff; }
-    .glosario-close svg { width: 16px; height: 16px; }
-
-    .glosario-search {
-      position: relative;
-    }
-    .glosario-search input {
-      width: 100%; padding: 10px 16px 10px 40px;
-      background: var(--surface); border: 1.5px solid var(--border);
-      border-radius: 10px; font-family: inherit; font-size: 14px;
-      color: var(--text-1); outline: none; transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
-    }
-    .glosario-search input:focus { border-color: var(--accent); }
-    .glosario-search svg {
-      position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
-      width: 16px; height: 16px; color: var(--text-3); pointer-events: none;
-    }
-
-    .glosario-filters {
-      display: flex; gap: 6px; flex-wrap: wrap;
-    }
-    .g-filter {
-      font-size: 11px; font-weight: 600; letter-spacing: .5px;
-      padding: 4px 12px; border-radius: 20px; cursor: pointer;
-      border: 1.5px solid var(--border); background: var(--surface);
-      color: var(--text-2); transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
-      text-transform: uppercase;
-    }
-    .g-filter.active { background: var(--fc); color: #fff; border-color: var(--fc); }
-
-    .glosario-body {
-      flex: 1; overflow-y: auto; padding: 20px 28px 28px;
-    }
-    .glosario-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 12px;
-    }
-
-    /* ─── TERM CARD ─── */
-    .gterm {
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 16px;
-      display: flex; flex-direction: column; gap: 10px;
-      transition: background-color .22s cubic-bezier(.4,0,.2,1), border-color .22s cubic-bezier(.4,0,.2,1), color .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
-      position: relative;
-    }
-    .gterm:hover { border-color: var(--tc); box-shadow: 0 4px 16px rgba(0,0,0,.07); }
-    .gterm-suite {
-      display: inline-flex; align-items: center;
-      font-size: 11px; font-weight: 700; letter-spacing: .8px;
-      text-transform: uppercase; color: var(--tc);
-      gap: 4px;
-    }
-    .gterm-suite::before {
-      content: ''; width: 6px; height: 6px;
-      border-radius: 50%; background: var(--tc);
-    }
-    .gterm-illus {
-      width: 100%; aspect-ratio: 16/7;
-      background: var(--surface-2);
-      border-radius: 8px; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .gterm-illus svg { width: 100%; height: 100%; }
-    .gterm-name {
-      font-size: 15px; font-weight: 700; letter-spacing: -.3px; color: var(--text-1);
-    }
-    .gterm-def {
-      font-size: 12px; color: var(--text-2); line-height: 1.65;
-    }
-    .gterm-en {
-      font-size: 11px; font-family: 'JetBrains Mono', monospace;
-      color: var(--accent); letter-spacing: .3px;
-      background: var(--accent-lt); border: 1px solid rgba(74,122,106,.18);
-      border-radius: 4px; padding: 1px 7px; display: inline-block; margin-top: 2px;
-    }
-    .gterm[hidden] { display: none !important; }
-
-    .glosario-empty {
-      text-align: center; padding: 60px 20px;
-      color: var(--text-3); font-size: 14px; display: none;
-    }
-    .glosario-empty svg { width: 36px; height: 36px; margin: 0 auto 12px; display: block; opacity: .3; }
-
-    @keyframes fadeUp { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:translateY(0) } }
-    .card { animation: fadeUp .4s ease both; }
-    .card:nth-child(1) { animation-delay:.05s }
-    .card:nth-child(2) { animation-delay:.10s }
-    .card:nth-child(3) { animation-delay:.15s }
-    .card:nth-child(4) { animation-delay:.20s }
-    .card:nth-child(5) { animation-delay:.25s }
-    .card:nth-child(6) { animation-delay:.30s }
-
-    /* Tablet: 640–1024px */
-    @media (max-width: 1024px) {
-      .grid { grid-template-columns: repeat(2, 1fr); padding: 0 16px 40px; gap: 16px; }
-    }
-
-    /* Mobile: < 640px */
-    @media (max-width: 640px) {
-      .grid { padding: 0 12px 40px; grid-template-columns: 1fr; gap: 12px; }
-      .topbar { padding: 0 18px; }
-      .hero { padding: 18px; flex-wrap: wrap; }
-      .hero-stats { gap: 10px; flex-wrap: wrap; }
-      .hero-stat  { font-size: 12px; }
-      .hero-divider { display: none; }
-      .section-header { padding: 0 18px 16px; }
-      .card-title { margin-top:0; font-size: 18px; }
-      .card-desc  { font-size: 15px; }
-      .glosario-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-
-/* ── Inter typography optimisation ── */
-h1, h2, h3, .page-title, .ptitle, .sec-title, .module-title, .panel-title {
-  letter-spacing: -0.02em;
+  font-size: 16px; line-height: 1.6;
+  background: var(--bg); color: var(--fg);
+  min-height: 100vh; overflow-x: hidden;
 }
-h4, .panel-subtitle, .ptl, .h-sub {
-  letter-spacing: -0.01em;
-}
-p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
-  line-height: 1.7;
-}
+::selection { background: var(--hi); color: var(--hi-fg); }
+strong { font-weight: 700; }
 
-/* ── Tabular numerals for calculator outputs ── */
-.result-value, .result-val, .result-item,
-.calc-val, .calc-result,
-td, th,
-.sim-metric-val, .stat-val, .hero-stat-n,
-code, .mono, [class*="mono"], [style*="font-family:monospace"],
-.tool-input, .tool-select {
-  font-variant-numeric: tabular-nums;
+.skip-link {
+  position: absolute; top: -56px; left: 12px; z-index: 1000;
+  background: var(--yellow); color: var(--on-pastel); border: 2px solid var(--obj-stroke);
+  text-decoration: none; padding: 10px 18px; border-radius: 12px; font-weight: 700; font-size: 14px;
+  transition: top 150ms var(--ease-out);
 }
+.skip-link:focus { top: 12px; }
 
-/* ── Readable line length (72ch) for prose ── */
-.page-desc, .pdesc, .sec-desc, .landing-desc,
-.info-card > p, .info-box > p, .warn-box > p, .ok-box > p,
-.callout > p, .box > p, .panel > p,
-.card-desc, .module-desc, .hero p,
-.note, .note-yellow, .note-blue {
-  max-width: 72ch;
+/* ---------- Barra superior ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  padding: 10px max(32px, calc((100% - var(--max)) / 2 + 32px)); min-height: 64px;   /* alineada con el contenido */
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
 }
+.topbar-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--fg); flex-shrink: 0; }
+.topbar-logo { width: 44px; height: 37px; flex-shrink: 0; display: block; }
+.topbar-logo svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.topbar-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.05; }
+.topbar-sub { font-size: 12px; color: var(--mid); margin-top: 2px; }
+.topbar-badge {
+  font-size: 12px; font-weight: 700; color: var(--fg); background: var(--yellow);
+  border: 2px solid var(--stroke-c); border-radius: 999px; padding: 2px 12px; white-space: nowrap; flex-shrink: 0;
+}
+.topbar-search { position: relative; flex: 1; max-width: 340px; margin-left: auto; }
+.topbar-search input {
+  width: 100%; padding: 8px 36px 8px 38px;
+  background: var(--surface); border: 2px solid var(--stroke-c); border-radius: 999px;
+  font-family: inherit; font-size: 14px; color: var(--fg);
+  transition: box-shadow 150ms var(--ease-out), border-color 150ms var(--ease-out);
+}
+.topbar-search input:focus { box-shadow: 3px 3px 0 var(--blue-d); }
+.topbar-search input::placeholder { color: var(--mid); opacity: 1; }
+.topbar-search > svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: var(--mid); pointer-events: none; }
+.search-kbd {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--mid);
+  background: var(--bg); border: 2px solid var(--stroke-c); border-radius: 6px;
+  padding: 0 6px; line-height: 1.4; pointer-events: none;
+}
+.topbar-search input:focus ~ .search-kbd,
+.topbar-search input:not(:placeholder-shown) ~ .search-kbd { display: none; }
 
-/* ═══ SPRINT 1 · A: focus-visible global ══════════════════════════════════ */
-:focus-visible {
-  outline: 2px solid #0057B8;
-  outline-offset: 3px;
-  border-radius: 3px;
+.search-dropdown {
+  display: none; position: absolute; top: calc(100% + 10px); left: 0; right: 0; min-width: min(560px, calc(100vw - 24px));
+  background: var(--surface); border: 2px solid var(--stroke-c); border-radius: 14px;
+  box-shadow: 5px 5px 0 var(--blue-d); max-height: 360px; overflow-y: auto; z-index: 200;
 }
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: none;
-}
+.topbar-search .search-dropdown { left: auto; right: 0; }
+.search-dropdown.visible { display: block; }
+.search-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--fg); }
+.search-item:last-child { border-bottom: none; }
+@media (hover: hover) and (pointer: fine) { .search-item:hover { background: var(--hover); } }
+.search-item-suite { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--obj-stroke); }
+.search-item-name { font-size: 13px; font-weight: 700; color: var(--fg); white-space: nowrap; }
+.search-item-def { font-size: 12px; color: var(--mid); flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.search-item-tag { font-size: 11px; font-weight: 600; color: var(--mid); background: var(--bg); border: 1.5px solid var(--line); border-radius: 999px; padding: 0 8px; flex-shrink: 0; white-space: nowrap; }
+.search-no-results { padding: 16px; text-align: center; color: var(--mid); font-size: 13px; }
+.search-group-title { padding: 8px 14px 6px; font-size: 12px; font-weight: 700; color: var(--mid); background: var(--bg); border-bottom: 1px solid var(--line); }
+.search-group-title:first-child { border-top-left-radius: 12px; border-top-right-radius: 12px; }
 
-/* ═══ SPRINT 1 · B: hover transforms solo en dispositivos con puntero fino ═ */
+/* El JS pinta cada resultado con el color de su suite en línea; aquí se traduce a la paleta del banner */
+.search-item-suite[style*="#6B9A6B" i] { background: var(--blue) !important; }
+.search-item-suite[style*="#A06B4A" i] { background: var(--yellow) !important; }
+.search-item-suite[style*="#4A7A6A" i] { background: var(--green) !important; }
+.search-item-suite[style*="#6B7FA3" i] { background: var(--pink) !important; }
+.search-item-suite[style*="#A06B6B" i] { background: var(--blue) !important; }
+.search-item-suite[style*="#7A6BA3" i] { background: var(--yellow) !important; }
+.search-item-tag[style] { color: var(--mid) !important; border-color: var(--line) !important; }
+
+/* Botón de tema claro/oscuro */
+.theme-toggle {
+  width: 40px; height: 40px; flex-shrink: 0; cursor: pointer; display: grid; place-items: center;
+  background: var(--surface); color: var(--fg); border: 2px solid var(--stroke-c); border-radius: 12px;
+  box-shadow: 3px 3px 0 var(--yellow-d);
+  transition: transform 100ms var(--ease-out), box-shadow 100ms var(--ease-out);
+  touch-action: manipulation;
+}
+.theme-toggle[hidden] { display: none; }
+/* Medio círculo relleno: el icono es el cambio de modo (se dibuja con CSS para que no dependa de ninguna fuente) */
+.theme-toggle::before {
+  content: ""; width: 18px; height: 18px; border: 2px solid var(--fg); border-radius: 50%;
+  background: linear-gradient(90deg, var(--fg) 50%, transparent 50%);
+}
+@media (hover: hover) and (pointer: fine) {
+  .theme-toggle:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--yellow-d); }
+}
+.theme-toggle:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--yellow-d); }
+
+/* ---------- Hero ---------- */
+.hero {
+  max-width: var(--max); margin: 0 auto; padding: 56px 32px 56px;
+  display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); gap: 48px; align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+.hero h1 {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 4.2rem); line-height: 0.98; letter-spacing: -0.035em;
+  text-wrap: balance; margin-bottom: 18px;
+}
+.hero h1 em {
+  font-style: normal;
+  text-decoration: underline; text-decoration-color: var(--hi); text-decoration-thickness: .11em;
+  text-underline-offset: .1em; text-decoration-skip-ink: none;
+}
+.hero-sub { font-size: 1.05rem; color: var(--mid); max-width: 64ch; margin-bottom: 28px; }
+.hero-stats { display: flex; flex-wrap: wrap; gap: 12px; list-style: none; }
+.hero-stat {
+  --tint: var(--blue);
+  display: flex; align-items: baseline; gap: 6px;
+  background: var(--tint); color: var(--fg);
+  border: 2px solid var(--stroke-c); border-radius: 999px; padding: 4px 16px;
+}
+.hero-stats .hero-stat:nth-child(2) { --tint: var(--yellow); }
+.hero-stats .hero-stat:nth-child(3) { --tint: var(--green); }
+.hero-stats .hero-stat:nth-child(4) { --tint: var(--pink); }
+.hero-stat-n { font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.hero-stat-l { font-size: 0.85rem; font-weight: 600; }
+.hero-art { width: 100%; max-width: 380px; justify-self: end; }
+.hero-art svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+/* ---------- Cabecera de sección ---------- */
+.section-header {
+  max-width: var(--max); margin: 0 auto; padding: 40px 32px 28px;
+  display: flex; align-items: center; gap: 16px;
+}
+.section-title { font-family: var(--font-display); font-size: 1.7rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; white-space: nowrap; }
+.section-line { flex: 1; height: 0; border-top: 2px dashed var(--line); }
+.glosario-btn {
+  display: flex; align-items: center; gap: 8px; flex-shrink: 0; white-space: nowrap; cursor: pointer;
+  font-family: inherit; font-size: 13px; font-weight: 700; color: var(--fg);
+  background: var(--surface); border: 2px solid var(--stroke-c); border-radius: 12px; padding: 7px 16px;
+  box-shadow: 4px 4px 0 var(--blue-d);
+  transition: transform 110ms var(--ease-out), box-shadow 110ms var(--ease-out);
+  touch-action: manipulation;
+}
+.glosario-btn svg { width: 15px; height: 15px; }
+@media (hover: hover) and (pointer: fine) {
+  .glosario-btn:hover { transform: translate(-1px, -1px); box-shadow: 6px 6px 0 var(--blue-d); }
+}
+.glosario-btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--stroke-c); }
+
+/* ---------- Rejilla de suites ---------- */
+.grid {
+  max-width: var(--max); margin: 0 auto; padding: 0 40px 64px 32px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 34px 30px;
+}
+.card {
+  --tint: var(--blue);
+  --tint-d: color-mix(in srgb, var(--tint) var(--sh-mix), #000);
+  background: var(--surface); color: var(--fg);
+  border: 2px solid var(--stroke-c); border-radius: var(--radius);
+  text-decoration: none; display: flex; flex-direction: column;
+  overflow: hidden; box-shadow: var(--offset) var(--offset) 0 var(--tint-d);
+  transition: transform 140ms var(--ease-out), box-shadow 140ms var(--ease-out);
+  animation: rise 420ms var(--ease-out) both;
+}
+.card:nth-child(1) { animation-delay: 40ms }  .card:nth-child(2) { animation-delay: 90ms }
+.card:nth-child(3) { animation-delay: 140ms } .card:nth-child(4) { animation-delay: 190ms }
+.card:nth-child(5) { animation-delay: 240ms } .card:nth-child(6) { animation-delay: 290ms }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@media (hover: hover) and (pointer: fine) {
+  .card:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0 var(--tint-d); }
+}
+.card:active { transform: translate(3px, 3px); box-shadow: 3px 3px 0 var(--tint-d); }
+
+.card-top {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 20px; background: var(--tint); border-bottom: 2px solid var(--stroke-c);
+}
+.card-icon {
+  width: 46px; height: 46px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  background: var(--surface); border: 2px solid var(--stroke-c); border-radius: 12px;
+}
+.card-icon svg { width: 26px; height: 26px; display: block; overflow: visible; }
+.card-icon img { width: 32px; height: 32px; border-radius: 7px; object-fit: contain; }
+/* Sello de unidad: el único elemento ladeado del diseño */
+.card-ud {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--fg); background: var(--surface); border: 2px solid var(--stroke-c); border-radius: 6px;
+  padding: 1px 8px; transform: rotate(-2deg); white-space: nowrap;
+}
+.card > :not(.card-top) { margin-left: 22px; margin-right: 22px; }
+.card-app { font-size: 13px; font-weight: 600; color: var(--mid); margin-top: 18px; margin-bottom: 6px; }
+.card-title { font-family: var(--font-display); font-size: 1.55rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 12px; }
+.card-desc { font-size: 14px; color: var(--mid); line-height: 1.6; flex: 1; margin-bottom: 16px; max-width: 46ch; }
+.card-stats { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 18px; padding: 10px 12px; border: 2px solid var(--line); border-radius: 10px; }
+.card-stat { display: flex; align-items: center; gap: 5px; font-size: 12.5px; color: var(--mid); font-weight: 500; line-height: 1.2; }
+.card-stat-n { font-weight: 700; color: var(--fg); font-variant-numeric: tabular-nums; }
+.card-stat-emoji { font-size: 13px; line-height: 1; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 0 20px; border-top: 2px dashed var(--line); }
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.card-tag { font-size: 12px; font-weight: 600; padding: 0 9px; border-radius: 999px; color: var(--mid); border: 1.5px solid var(--line); }
+.card-btn {
+  display: flex; align-items: center; gap: 5px; flex-shrink: 0; font-size: 13px; font-weight: 700;
+  background: var(--tint); color: var(--fg); border: 2px solid var(--stroke-c); border-radius: 999px; padding: 2px 12px;
+  transition: gap 140ms var(--ease-out);
+}
+.card-btn svg { width: 14px; height: 14px; }
+.card:hover .card-btn { gap: 9px; }
+
+/* Cada suite, su pastel (igual en tarjetas, glosario y buscador) */
+.card[href="video.html"], .gterm[data-suite="video"] { --tint: var(--blue); }
+.card[href="illustrator.html"], .gterm[data-suite="illustrator"] { --tint: var(--yellow); }
+.card[href="resolume.html"], .gterm[data-suite="resolume"] { --tint: var(--green); }
+.card[href="after-effects.html"], .gterm[data-suite="aftereffects"] { --tint: var(--pink); }
+.card[href="iluminacion.html"], .gterm[data-suite="iluminacion"] { --tint: var(--blue); }
+.card[href="magicq.html"], .gterm[data-suite="magicq"] { --tint: var(--yellow); }
+
+/* ---------- Contacto ---------- */
+.contact { max-width: var(--max); margin: 0 auto 36px; padding: 0 40px 0 32px; display: flex; flex-direction: column; gap: 26px; }
+.contact-inner {
+  --tint: var(--green);
+  --tint-d: color-mix(in srgb, var(--tint) var(--sh-mix), #000);
+  background: var(--surface); border: 2px solid var(--stroke-c); border-radius: var(--radius);
+  padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  box-shadow: 6px 6px 0 var(--tint-d);
+}
+.contact-inner + .contact-inner { --tint: var(--pink); }
+.contact-left { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.contact-icon {
+  width: 42px; height: 42px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  background: var(--tint); border: 2px solid var(--stroke-c); border-radius: 12px; --accent: var(--on-pastel);
+}
+.contact-icon svg { width: 20px; height: 20px; }
+.contact-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.contact-label { font-size: 13px; font-weight: 500; color: var(--mid); }
+.contact-name { font-size: 15px; font-weight: 700; color: var(--fg); overflow-wrap: anywhere; }
+.contact-link {
+  display: flex; align-items: center; gap: 8px; flex-shrink: 0; cursor: pointer;
+  font-size: 14px; font-weight: 700; text-decoration: none; padding: 9px 16px;
+  background: var(--btn-bg); color: var(--btn-fg); border: 2px solid var(--stroke-c); border-radius: 12px;
+  box-shadow: 4px 4px 0 var(--yellow-d);
+  transition: transform 110ms var(--ease-out), box-shadow 110ms var(--ease-out);
+  touch-action: manipulation;
+}
+.contact-link svg { width: 16px; height: 16px; }
+@media (hover: hover) and (pointer: fine) {
+  .contact-link:hover { transform: translate(-1px, -1px); box-shadow: 6px 6px 0 var(--yellow-d); }
+}
+.contact-link:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--stroke-c); }
+
+/* ---------- Pie ---------- */
+.footer { text-align: center; padding: 24px 32px 32px; font-size: 13px; color: var(--mid); border-top: 1px solid var(--line); }
+.footer p + p { margin-top: 3px; }
+.footer strong { color: var(--fg); }
+
+/* ---------- Glosario (modal) ---------- */
+.glosario-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(20, 18, 16, 0.6); backdrop-filter: blur(6px);
+  display: flex; align-items: flex-end;
+  opacity: 0; pointer-events: none; transition: opacity .25s ease;
+}
+.glosario-overlay.open { opacity: 1; pointer-events: all; }
+.glosario-panel {
+  width: 100%; height: 92vh; background: var(--bg);
+  border: 2px solid var(--stroke-c); border-bottom: none; border-radius: 22px 22px 0 0;
+  display: flex; flex-direction: column;
+  transform: translateY(40px); transition: transform .3s var(--ease-out);
+}
+.glosario-overlay.open .glosario-panel { transform: translateY(0); }
+.glosario-header { padding: 20px 28px 16px; border-bottom: 2px solid var(--line); display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.glosario-header-top { display: flex; align-items: center; justify-content: space-between; }
+.glosario-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; letter-spacing: -0.025em; color: var(--fg); }
+.glosario-close {
+  width: 36px; height: 36px; border-radius: 50%; cursor: pointer; color: var(--fg);
+  background: var(--surface); border: 2px solid var(--stroke-c);
+  display: flex; align-items: center; justify-content: center;
+  transition: background-color 150ms var(--ease-out), transform 100ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) { .glosario-close:hover { background: var(--pink); color: var(--on-pastel); border-color: var(--obj-stroke); } }
+.glosario-close:active { transform: scale(0.94); }
+.glosario-close svg { width: 16px; height: 16px; }
+.glosario-search { position: relative; }
+.glosario-search input {
+  width: 100%; padding: 10px 16px 10px 42px; background: var(--surface); color: var(--fg);
+  border: 2px solid var(--stroke-c); border-radius: 12px; font-family: inherit; font-size: 15px;
+}
+.glosario-search input::placeholder { color: var(--mid); opacity: 1; }
+.glosario-search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--mid); pointer-events: none; }
+.glosario-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.g-filter {
+  --fc: var(--blue);
+  --fc-d: color-mix(in srgb, var(--fc) var(--sh-mix), #000);
+  font-family: inherit; font-size: 12.5px; font-weight: 700; padding: 3px 14px; border-radius: 999px; cursor: pointer;
+  border: 2px solid var(--stroke-c); background: var(--surface); color: var(--fg);
+  transition: transform 100ms var(--ease-out), background-color 150ms var(--ease-out);
+  touch-action: manipulation;
+}
+@media (hover: hover) and (pointer: fine) { .g-filter:not(.active):hover { background: var(--fc); color: var(--on-pastel); border-color: var(--obj-stroke); } }
+.g-filter:active { transform: scale(0.96); }
+.g-filter.active { background: var(--fc); color: var(--fc-fg, var(--on-pastel)); border-color: var(--obj-stroke); box-shadow: 3px 3px 0 var(--fc-d); }
+.glosario-body { flex: 1; overflow-y: auto; padding: 24px 28px 32px; }
+.glosario-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 24px 22px; padding-right: 6px; }
+
+.gterm {
+  --tint: var(--blue);
+  --tint-d: color-mix(in srgb, var(--tint) var(--sh-mix), #000);
+  background: var(--surface); border: 2px solid var(--stroke-c); border-radius: 14px;
+  padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px;
+  box-shadow: 5px 5px 0 var(--tint-d); position: relative;
+}
+.gterm[hidden] { display: none !important; }
+.gterm-suite {
+  align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  background: var(--tint); color: var(--fg); border: 2px solid var(--stroke-c); border-radius: 999px; padding: 0 10px;
+}
+.gterm-illus { width: 100%; aspect-ratio: 16/7; background: var(--bg); border: 2px solid var(--obj-stroke); border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.gterm-illus svg { width: 100%; height: 100%; }
+.gterm-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; letter-spacing: -0.015em; line-height: 1.2; color: var(--fg); }
+.gterm-def { font-size: 13px; color: var(--mid); line-height: 1.6; }
+.gterm-en {
+  align-self: flex-start; font-size: 11.5px; font-family: var(--font-mono); font-weight: 600; color: var(--fg);
+  background: var(--bg); border: 1.5px solid var(--line); border-radius: 6px; padding: 1px 8px; margin-top: 2px;
+}
+.gterm-en[style] { background: var(--bg) !important; color: var(--fg) !important; border-color: var(--line) !important; }
+.glosario-empty { text-align: center; padding: 60px 20px; color: var(--mid); font-size: 15px; display: none; }
+.glosario-empty svg { width: 36px; height: 36px; margin: 0 auto 12px; display: block; opacity: .4; }
+
+/* ---------- Foco, movimiento, toque ---------- */
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.topbar-search input:focus-visible, .glosario-search input:focus-visible { outline-offset: 2px; }
+.card:focus-visible { outline-offset: 5px; }
+
+@media (hover: none), (max-width: 640px) {
+  .search-kbd { display: none; }     /* sin teclado físico no hay atajo «/» que anunciar */
+  .topbar-search input { padding-right: 14px; }
+}
 @media (hover: none), (pointer: coarse) {
-  .card:hover,
-  .contact-link:hover,
-  .card-btn:hover,
-  .search-item:hover,
-  .g-filter:hover,
-  .gterm:hover {
-    transform: none !important;
-  }
+  .card:hover, .contact-link:hover, .glosario-btn:hover, .search-item:hover, .g-filter:hover { transform: none !important; }
 }
-
-/* ═══ SPRINT 1 · C: prefers-reduced-motion global ════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration:       0.01ms !important;
-    animation-iteration-count: 1     !important;
-    transition-duration:      0.01ms !important;
-    scroll-behavior:          auto   !important;
-  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+@media (pointer: coarse) {
+  .g-filter { min-height: 44px; }
+  .glosario-close { width: 44px; height: 44px; }
+  .theme-toggle { width: 44px; height: 44px; }
+  /* iOS hace zoom automático al enfocar un input con font-size < 16px */
+  #globalSearch, .glosario-search input { font-size: 16px !important; }
 }
 
-/* ── Touch targets WCAG 2.5.5: mínimo 44×44px en dispositivos de toque ── */
-@media (pointer: coarse) {
-  .g-filter {
-    min-height: 44px;
-  }
-  .glosario-close {
-    width: 44px;
-    height: 44px;
-  }
-  /* iOS hace zoom automático al enfocar un input con font-size < 16px */
-  #globalSearch,
-  .glosario-search input {
-    font-size: 16px !important;
-  }
+/* ---------- Tablet y móvil ---------- */
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0 28px 48px 24px; gap: 30px 26px; }
+  .contact { padding: 0 28px 0 24px; }
+  .hero, .section-header, .topbar { padding-left: 24px; padding-right: 24px; }
+}
+@media (max-width: 820px) {
+  .hero { grid-template-columns: 1fr; gap: 32px; padding-top: 40px; padding-bottom: 44px; }
+  .hero-art { justify-self: start; max-width: 300px; }
+  .topbar-badge { display: none; }
+}
+@media (max-width: 640px) {
+  :root { --offset: 6px; }
+  .topbar { padding: 10px 16px; gap: 12px; }
+  .topbar-sub { display: none; }
+  .topbar-logo { width: 38px; height: 32px; }
+  .topbar-name { font-size: 1.15rem; }
+  .hero, .section-header { padding-left: 16px; padding-right: 16px; }
+  .section-header { padding-top: 32px; padding-bottom: 22px; gap: 12px; }
+  .section-title { font-size: 1.35rem; white-space: normal; min-width: 0; }
+  .section-header .glosario-btn { font-size: 12.5px; padding: 6px 12px; }
+  .section-line { display: none; }
+  .section-header .glosario-btn { margin-left: auto; }
+  .grid { grid-template-columns: 1fr; padding: 0 20px 40px 16px; gap: 28px; }
+  .contact { padding: 0 20px 0 16px; gap: 22px; }
+  .contact-inner { flex-direction: column; align-items: stretch; gap: 14px; padding: 16px; }
+  .contact-link { justify-content: center; }
+  .contact-name { font-size: 14px; }
+  .glosario-header { padding: 16px 16px 12px; }
+  .glosario-body { padding: 18px 16px 28px; }
+  .glosario-grid { grid-template-columns: 1fr 1fr; gap: 20px 16px; padding-right: 4px; }
+  .glosario-title { font-size: 1.3rem; }
+  .topbar-search .search-dropdown { position: fixed; top: 72px; left: 12px; right: 12px; width: auto; min-width: 0; }
+  .search-item { flex-wrap: wrap; row-gap: 2px; }
+  .search-item-name { white-space: normal; }
+  .search-item-def { flex-basis: 100%; order: 3; }
+}
+@media (max-width: 420px) {
+  .glosario-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -526,12 +534,7 @@ textarea:focus-visible {
 
   <header class="topbar">
     <a class="topbar-brand" href="#">
-      <div class="topbar-logo">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="3" fill="white"/>
-          <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
+      <div class="topbar-logo" aria-hidden="true"><svg viewBox="-4 -4 410 342" role="presentation" focusable="false"><g fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-width="16"><g style="stroke:var(--ill-s-b)"><rect x="13" y="13" width="387" height="203" rx="22" style="fill:var(--ill-f-b)" stroke="none"/><rect x="0" y="0" width="387" height="203" rx="22"/></g><g style="stroke:var(--ill-s-y)"><path d="M178 69L250 110L178 152Z" style="fill:var(--ill-f-y)" stroke="none"/><path d="M165 60L239 102L165 143Z"/></g><g style="stroke:var(--ill-s-y)"><rect x="13" y="248" width="120" height="85" rx="15" style="fill:var(--ill-f-y)" stroke="none"/><rect x="0" y="236" width="120" height="85" rx="15"/></g><g style="stroke:var(--ill-s-g)"><rect x="147" y="248" width="120" height="85" rx="15" style="fill:var(--ill-f-g)" stroke="none"/><rect x="134" y="236" width="120" height="85" rx="15"/></g><g style="stroke:var(--ill-s-p)"><rect x="280" y="248" width="120" height="85" rx="15" style="fill:var(--ill-f-p)" stroke="none"/><rect x="267" y="236" width="120" height="85" rx="15"/></g></g></svg></div>
       <div>
         <div class="topbar-name">AVV Lab</div>
         <div class="topbar-sub">Animación Visual en Vivo</div>
@@ -549,25 +552,26 @@ textarea:focus-visible {
       <div class="search-dropdown" id="searchDrop"></div>
     </div>
     <span class="topbar-badge">CFGM Video DJ</span>
+    <button class="theme-toggle" id="themeToggle" type="button" hidden aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro"></button>
   </header>
 
-  <!-- HERO — franja horizontal -->
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-left">
-      <h1>Tu centro de <span>recursos visuales</span></h1>
-      <div class="hero-sub">Plataforma educativa · Animación Visual en Vivo · CFGM Video DJ</div>
+    <div class="hero-copy">
+      <h1>Tu centro de <em>recursos visuales</em></h1>
+      <p class="hero-sub">Plataforma educativa · Animación Visual en Vivo · CFGM Video DJ</p>
+      <ul class="hero-stats">
+        <li class="hero-stat"><span class="hero-stat-n">6</span><span class="hero-stat-l">Suites</span></li>
+        <li class="hero-stat"><span class="hero-stat-n">27</span><span class="hero-stat-l">Juegos</span></li>
+        <li class="hero-stat"><span class="hero-stat-n">15+</span><span class="hero-stat-l">Simuladores</span></li>
+        <li class="hero-stat"><span class="hero-stat-n">195h</span><span class="hero-stat-l">FP</span></li>
+      </ul>
     </div>
-    <div class="hero-divider"></div>
-    <div class="hero-stats">
-      <div class="hero-stat"><span class="hero-stat-n">6</span><span class="hero-stat-l">&nbsp;Suites</span></div>
-      <div class="hero-stat"><span class="hero-stat-n">27</span><span class="hero-stat-l">&nbsp;Juegos</span></div>
-      <div class="hero-stat"><span class="hero-stat-n">15+</span><span class="hero-stat-l">&nbsp;Simuladores</span></div>
-      <div class="hero-stat"><span class="hero-stat-n">195h</span><span class="hero-stat-l">&nbsp;FP</span></div>
-    </div>
+    <div class="hero-art" aria-hidden="true"><svg viewBox="-4 -4 410 342" role="presentation" focusable="false"><g fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-width="5"><g style="stroke:var(--ill-s-b)"><rect x="13" y="13" width="387" height="203" rx="22" style="fill:var(--ill-f-b)" stroke="none"/><rect x="0" y="0" width="387" height="203" rx="22"/></g><g style="stroke:var(--ill-s-y)"><path d="M178 69L250 110L178 152Z" style="fill:var(--ill-f-y)" stroke="none"/><path d="M165 60L239 102L165 143Z"/></g><g style="stroke:var(--ill-s-y)"><rect x="13" y="248" width="120" height="85" rx="15" style="fill:var(--ill-f-y)" stroke="none"/><rect x="0" y="236" width="120" height="85" rx="15"/><path d="M21 294h44"/></g><g style="stroke:var(--ill-s-g)"><rect x="147" y="248" width="120" height="85" rx="15" style="fill:var(--ill-f-g)" stroke="none"/><rect x="134" y="236" width="120" height="85" rx="15"/><path d="M155 294h44"/></g><g style="stroke:var(--ill-s-p)"><rect x="280" y="248" width="120" height="85" rx="15" style="fill:var(--ill-f-p)" stroke="none"/><rect x="267" y="236" width="120" height="85" rx="15"/><path d="M288 294h44"/></g></g></svg></div>
   </section>
 
   <!-- SECTION HEADER -->
-  <div class="section-header" style="padding-top:24px;">
+  <div class="section-header">
     <h2 class="section-title">Suites disponibles</h2>
     <div class="section-line"></div>
     <button class="glosario-btn" onclick="abrirGlosario()">
@@ -580,112 +584,112 @@ textarea:focus-visible {
   <main class="grid" id="main-content">
 
     <!-- 1 VIDEO -->
-    <a class="card" href="video.html" style="--card-color:var(--c6);--icon-bg:#EDF4ED;">
+    <a class="card" href="video.html">
       <div class="card-top">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="15" height="12" rx="2" stroke="var(--c6)" stroke-width="1.8" fill="var(--c6)" fill-opacity=".15"/><path d="M17 9l5-2v10l-5-2" stroke="var(--c6)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="12" r="2.5" stroke="var(--c6)" stroke-width="1.4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="15" height="12" rx="2" stroke="var(--fg)" stroke-width="1.8" fill="var(--tint)"/><path d="M17 9l5-2v10l-5-2" stroke="var(--fg)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="12" r="2.5" stroke="var(--fg)" stroke-width="1.4"/></svg>
         </div>
-        <span class="card-ud" style="color:var(--c6);">UD 1 · 2 · 3</span>
+        <span class="card-ud">UD 1 · 2 · 3</span>
       </div>
-      <div class="card-app" style="color:var(--c6)">Imagen &amp; Vídeo</div>
+      <div class="card-app">Imagen &amp; Vídeo</div>
       <h3 class="card-title">Fundamentos<br>de Imagen</h3>
       <div class="card-desc">Resolución, geometría, óptica, profundidad de campo y fundamentos técnicos del vídeo para producciones audiovisuales.</div>
       <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">2</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">🧮</span><span class="card-stat-n">8</span> calc.</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">8</span> módulos</span></div>
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">Vídeo</span><span class="card-tag">Imagen</span><span class="card-tag">Técnica</span></div>
-        <div class="card-btn" style="color:var(--c6)">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-btn">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </a>
 
     <!-- 2 ILLUSTRATOR -->
-    <a class="card" href="illustrator.html" style="--card-color:var(--c3);--icon-bg:#F7F0EA;">
+    <a class="card" href="illustrator.html">
       <div class="card-top">
         <div class="card-icon"><img src="icons/illustrator.png" alt="Illustrator" width="36" height="36" loading="lazy" decoding="async" style="width:36px;height:36px;border-radius:8px;object-fit:contain;"></div>
-        <span class="card-ud" style="color:var(--c3);">CFGM · DG</span>
+        <span class="card-ud">CFGM · DG</span>
       </div>
-      <div class="card-app" style="color:var(--c3)">Adobe Illustrator</div>
+      <div class="card-app">Adobe Illustrator</div>
       <h3 class="card-title">Diseño<br>Vectorial</h3>
       <div class="card-desc">Herramientas de pluma, anclas y curvas Bézier. Creación de grafismos y elementos visuales para producciones en directo.</div>
       <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">4</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">3</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">16</span> módulos</span></div>
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">Vector</span><span class="card-tag">Grafismo</span><span class="card-tag">Adobe</span></div>
-        <div class="card-btn" style="color:var(--c3)">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-btn">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </a>
 
     <!-- 3 RESOLUME -->
-    <a class="card" href="resolume.html" style="--card-color:var(--c1);--icon-bg:#EAF3EF;">
+    <a class="card" href="resolume.html">
       <div class="card-top">
         <div class="card-icon"><img src="icons/resolume.svg" alt="Resolume Arena" width="36" height="36" loading="lazy" decoding="async" style="width:36px;height:36px;border-radius:8px;object-fit:contain;"></div>
-        <span class="card-ud" style="color:var(--c1);">UD 1 · 2 · 3</span>
+        <span class="card-ud">UD 1 · 2 · 3</span>
       </div>
-      <div class="card-app" style="color:var(--c1)">Resolume Arena</div>
+      <div class="card-app">Resolume Arena</div>
       <h3 class="card-title">VJing &amp;<br>Projection Mapping</h3>
       <div class="card-desc">Interfaz, composición de clips, efectos y outputs. Fundamentos de la mezcla visual en tiempo real para espectáculos.</div>
       <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">2</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">19</span> módulos</span></div>
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">Vídeo</span><span class="card-tag">VJing</span><span class="card-tag">Live</span></div>
-        <div class="card-btn" style="color:var(--c1)">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-btn">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </a>
 
     <!-- 4 AFTER EFFECTS -->
-    <a class="card" href="after-effects.html" style="--card-color:var(--c2);--icon-bg:#EEF1F7;">
+    <a class="card" href="after-effects.html">
       <div class="card-top">
         <div class="card-icon"><img src="icons/aftereffects.png" alt="After Effects" width="36" height="36" loading="lazy" decoding="async" style="width:36px;height:36px;border-radius:8px;object-fit:contain;"></div>
-        <span class="card-ud" style="color:var(--c2);">UD 2 · 3</span>
+        <span class="card-ud">UD 2 · 3</span>
       </div>
-      <div class="card-app" style="color:var(--c2)">Adobe After Effects</div>
+      <div class="card-app">Adobe After Effects</div>
       <h3 class="card-title">Motion<br>Graphics</h3>
       <div class="card-desc">Composición, animación por keyframes, efectos visuales y motion graphics para producciones audiovisuales profesionales.</div>
       <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">2</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">12</span> módulos</span></div>
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">Animación</span><span class="card-tag">VFX</span><span class="card-tag">Adobe</span></div>
-        <div class="card-btn" style="color:var(--c2)">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-btn">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </a>
 
     <!-- 5 ILUMINACIÓN -->
-    <a class="card" href="iluminacion.html" style="--card-color:var(--c5);--icon-bg:#F7EEEE;">
+    <a class="card" href="iluminacion.html">
       <div class="card-top">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M9 21h6M12 3a6 6 0 016 6c0 2.22-1.2 4.16-3 5.2V17H9v-2.8A6 6 0 0112 3z" stroke="var(--c5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="var(--c5)" fill-opacity=".15"/><line x1="12" y1="1" x2="12" y2="2.5" stroke="var(--c5)" stroke-width="1.6" stroke-linecap="round"/><line x1="5.6" y1="3.6" x2="6.6" y2="4.6" stroke="var(--c5)" stroke-width="1.4" stroke-linecap="round"/><line x1="18.4" y1="3.6" x2="17.4" y2="4.6" stroke="var(--c5)" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9 21h6M12 3a6 6 0 016 6c0 2.22-1.2 4.16-3 5.2V17H9v-2.8A6 6 0 0112 3z" stroke="var(--fg)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="var(--tint)"/><line x1="12" y1="1" x2="12" y2="2.5" stroke="var(--fg)" stroke-width="1.6" stroke-linecap="round"/><line x1="5.6" y1="3.6" x2="6.6" y2="4.6" stroke="var(--fg)" stroke-width="1.4" stroke-linecap="round"/><line x1="18.4" y1="3.6" x2="17.4" y2="4.6" stroke="var(--fg)" stroke-width="1.4" stroke-linecap="round"/></svg>
         </div>
-        <span class="card-ud" style="color:var(--c5);">UD 4 · 5</span>
+        <span class="card-ud">UD 4 · 5</span>
       </div>
-      <div class="card-app" style="color:var(--c5)">Fundamentos Luz</div>
+      <div class="card-app">Fundamentos Luz</div>
       <h3 class="card-title">Iluminación<br>de Espectáculos</h3>
       <div class="card-desc">Magnitudes fotométricas, temperatura de color, tipos de luminarias y diseño de iluminación para escenarios en vivo.</div>
       <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">4</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">🧮</span><span class="card-stat-n">1</span> calc.</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">10</span> módulos</span></div>
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">Luz</span><span class="card-tag">Escenario</span><span class="card-tag">Física</span></div>
-        <div class="card-btn" style="color:var(--c5)">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-btn">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </a>
 
     <!-- 6 MAGICQ -->
-    <a class="card" href="magicq.html" style="--card-color:var(--c4);--icon-bg:#F1EFF7;">
+    <a class="card" href="magicq.html">
       <div class="card-top">
         <div class="card-icon"><img src="icons/magicq.png" alt="MagicQ" width="36" height="36" loading="lazy" decoding="async" style="width:36px;height:36px;border-radius:8px;object-fit:contain;"></div>
-        <span class="card-ud" style="color:var(--c4);">Edu · v4</span>
+        <span class="card-ud">Edu · v4</span>
       </div>
-      <div class="card-app" style="color:var(--c4)">MagicQ · ChamSys</div>
+      <div class="card-app">MagicQ · ChamSys</div>
       <h3 class="card-title">Control DMX<br>&amp; Consola Luz</h3>
       <div class="card-desc">Programación de shows de iluminación, grupos, paletas y cueing list. Flujo de trabajo profesional en software DMX.</div>
       <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">2</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">🧮</span><span class="card-stat-n">1</span> calc.</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">11</span> módulos</span></div>
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">DMX</span><span class="card-tag">Consola</span><span class="card-tag">Show</span></div>
-        <div class="card-btn" style="color:var(--c4)">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-btn">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </a>
 
   </main>
 
   <!-- CONTACT -->
-  <div class="contact" style="display:flex;flex-direction:column;gap:10px;">
+  <div class="contact">
     <div class="contact-inner">
       <div class="contact-left">
-        <div class="contact-icon" style="background:#F0F4F8;">
+        <div class="contact-icon">
           <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="var(--accent)" stroke-width="1.7" fill="var(--accent)" fill-opacity=".1"/><path d="M8 7h8M8 11h8M8 15h5" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round"/></svg>
         </div>
         <div class="contact-text">
@@ -738,13 +742,13 @@ textarea:focus-visible {
           <input type="text" id="glosarioSearch" placeholder="Buscar término…" oninput="filtrarGlosario()" aria-label="Buscar término en el glosario">
         </div>
         <div class="glosario-filters">
-          <button class="g-filter active" style="--fc:#4A7A6A" data-suite="all" onclick="setSuite(this)">Todos</button>
-          <button class="g-filter" style="--fc:#6B9A6B" data-suite="video" onclick="setSuite(this)">Vídeo</button>
-          <button class="g-filter" style="--fc:#A06B4A" data-suite="illustrator" onclick="setSuite(this)">Illustrator</button>
-          <button class="g-filter" style="--fc:#4A7A6A" data-suite="resolume" onclick="setSuite(this)">Resolume</button>
-          <button class="g-filter" style="--fc:#6B7FA3" data-suite="aftereffects" onclick="setSuite(this)">After Effects</button>
-          <button class="g-filter" style="--fc:#A06B6B" data-suite="iluminacion" onclick="setSuite(this)">Iluminación</button>
-          <button class="g-filter" style="--fc:#7A6BA3" data-suite="magicq" onclick="setSuite(this)">MagicQ</button>
+          <button class="g-filter active" style="--fc:var(--btn-bg);--fc-fg:var(--btn-fg)" data-suite="all" onclick="setSuite(this)">Todos</button>
+          <button class="g-filter" style="--fc:var(--blue)" data-suite="video" onclick="setSuite(this)">Vídeo</button>
+          <button class="g-filter" style="--fc:var(--yellow)" data-suite="illustrator" onclick="setSuite(this)">Illustrator</button>
+          <button class="g-filter" style="--fc:var(--green)" data-suite="resolume" onclick="setSuite(this)">Resolume</button>
+          <button class="g-filter" style="--fc:var(--pink)" data-suite="aftereffects" onclick="setSuite(this)">After Effects</button>
+          <button class="g-filter" style="--fc:var(--blue)" data-suite="iluminacion" onclick="setSuite(this)">Iluminación</button>
+          <button class="g-filter" style="--fc:var(--yellow)" data-suite="magicq" onclick="setSuite(this)">MagicQ</button>
         </div>
       </div>
       <div class="glosario-body">
@@ -1390,6 +1394,28 @@ textarea:focus-visible {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') document.getElementById('searchDrop')?.classList.remove('visible');
   });
+</script>
+<script>
+// Modo claro/oscuro: claro por defecto; al pulsar el botón se guarda la elección y se recuerda.
+(function () {
+  var root = document.documentElement, btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  function current() { return root.getAttribute('data-theme') || 'light'; }
+  function refresh() {
+    var next = current() === 'dark' ? 'claro' : 'oscuro';
+    btn.setAttribute('aria-label', 'Cambiar a modo ' + next);
+    btn.title = 'Cambiar a modo ' + next;
+  }
+  btn.hidden = false;
+  refresh();
+  btn.addEventListener('click', function () {
+    var t = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', t);
+    try { localStorage.setItem('avvlab_theme', t); } catch (e) {}
+    document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) { m.setAttribute('content', t === 'dark' ? '#1b1917' : '#f7f6f3'); });
+    refresh();
+  });
+})();
 </script>
 </body>
 </html>
