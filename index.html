@@ -303,6 +303,7 @@ strong { font-weight: 700; }
 .card:nth-child(1) { animation-delay: 40ms }  .card:nth-child(2) { animation-delay: 90ms }
 .card:nth-child(3) { animation-delay: 140ms } .card:nth-child(4) { animation-delay: 190ms }
 .card:nth-child(5) { animation-delay: 240ms } .card:nth-child(6) { animation-delay: 290ms }
+.card:nth-child(7) { animation-delay: 340ms }
 @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @media (hover: hover) and (pointer: fine) {
   .card:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0 var(--tint-d); }
@@ -351,6 +352,7 @@ strong { font-weight: 700; }
 .card[href="after-effects.html"], .gterm[data-suite="aftereffects"] { --tint: var(--pink); }
 .card[href="iluminacion.html"], .gterm[data-suite="iluminacion"] { --tint: var(--blue); }
 .card[href="magicq.html"], .gterm[data-suite="magicq"] { --tint: var(--yellow); }
+.card[href="iluminacion-directo.html"] { --tint: var(--green); }
 
 /* ---------- Contacto ---------- */
 .contact { max-width: var(--max); margin: 0 auto 36px; padding: 0 40px 0 32px; display: flex; flex-direction: column; gap: 26px; }
@@ -679,6 +681,24 @@ strong { font-weight: 700; }
       <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎮</span><span class="card-stat-n">5</span> juegos</span><span class="card-stat"><span class="card-stat-emoji">🎚</span><span class="card-stat-n">2</span> simuladores</span><span class="card-stat"><span class="card-stat-emoji">🧮</span><span class="card-stat-n">1</span> calc.</span><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">11</span> módulos</span></div>
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">DMX</span><span class="card-tag">Consola</span><span class="card-tag">Show</span></div>
+        <div class="card-btn">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 7 ILUMINACIÓN EN DIRECTO (curso 3D) -->
+    <a class="card" href="iluminacion-directo.html">
+      <div class="card-top">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8 3h8l1.5 5h-11z" stroke="var(--fg)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="var(--tint)"/><path d="M6.5 8L3 21M17.5 8L21 21M12 8v13" stroke="var(--fg)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="card-ud">UD 4 · 5</span>
+      </div>
+      <div class="card-app">Iluminación 3D</div>
+      <h3 class="card-title">Iluminación<br>en Directo</h3>
+      <div class="card-desc">Curso visual e interactivo: mueve focos y cabezas móviles en escenas 3D y entiende la luz, el rigging y el control DMX.</div>
+      <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">📚</span><span class="card-stat-n">15</span> lecciones</span><span class="card-stat"><span class="card-stat-emoji">🧊</span><span class="card-stat-n">8</span> escenas 3D</span><span class="card-stat"><span class="card-stat-emoji">💡</span><span class="card-stat-n">7</span> focos 3D</span></div>
+      <div class="card-footer">
+        <div class="card-tags"><span class="card-tag">3D</span><span class="card-tag">Interactivo</span><span class="card-tag">Luz</span></div>
         <div class="card-btn">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </a>
