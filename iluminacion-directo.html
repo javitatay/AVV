@@ -81,10 +81,11 @@ button{font:inherit;color:inherit}
 
 /* ---------- Barra superior ---------- */
 .topbar{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);padding:8px max(16px,calc((100% - var(--max))/2 + 16px));min-height:64px;display:flex;align-items:center;gap:14px}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--fg);flex-shrink:0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--fg);flex-shrink:1;min-width:0}
+.brand>span:last-child{min-width:0}
 .brand-logo{width:44px;height:37px;flex-shrink:0}
 .brand-logo svg{display:block;width:100%;height:100%;overflow:visible}
-.brand-name{font-family:var(--font-display);font-size:1.25rem;font-weight:800;letter-spacing:-.025em;line-height:1.05;white-space:nowrap}
+.brand-name{font-family:var(--font-display);font-size:1.25rem;font-weight:800;letter-spacing:-.025em;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .brand-sub{font-size:12px;color:var(--mid);margin-top:2px;white-space:nowrap}
 .topnav{display:flex;gap:6px;margin-left:10px}
 .topnav a{font-size:13.5px;font-weight:700;text-decoration:none;padding:5px 14px;border-radius:999px;border:2px solid transparent;transition:background-color 150ms var(--ease-out)}
@@ -92,13 +93,15 @@ button{font:inherit;color:inherit}
 .topnav a[aria-current="page"]{background:var(--yellow);color:var(--on-pastel);border-color:var(--obj-stroke)}
 .spacer{flex:1}
 .topbar-badge{font-size:12px;font-weight:700;color:var(--fg);background:var(--yellow);border:2px solid var(--stroke-c);border-radius:999px;padding:2px 12px;white-space:nowrap}
+.menu-btn,.home-btn,.theme-toggle,.pill{flex-shrink:0}
 .pill{font-family:var(--font-mono);font-size:12.5px;font-weight:700;padding:3px 12px;border:2px solid var(--stroke-c);border-radius:999px;background:var(--surface);font-variant-numeric:tabular-nums;white-space:nowrap}
-.menu-btn,.theme-toggle{height:40px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--surface);color:var(--fg);border:2px solid var(--stroke-c);border-radius:12px;box-shadow:3px 3px 0 var(--blue-d);font-weight:700;font-size:14px;padding:0 12px;transition:transform 100ms var(--ease-out),box-shadow 100ms var(--ease-out);touch-action:manipulation}
+.menu-btn,.theme-toggle,.home-btn{height:40px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--surface);color:var(--fg);border:2px solid var(--stroke-c);border-radius:12px;box-shadow:3px 3px 0 var(--blue-d);font-weight:700;font-size:14px;padding:0 12px;transition:transform 100ms var(--ease-out),box-shadow 100ms var(--ease-out);touch-action:manipulation}
 .theme-toggle{width:40px;padding:0;box-shadow:3px 3px 0 var(--yellow-d)}
+.home-btn{display:none;width:40px;padding:0;text-decoration:none;box-shadow:3px 3px 0 var(--green-d)}
 .theme-toggle[hidden]{display:none}
 .theme-toggle::before{content:"";width:18px;height:18px;border:2px solid var(--fg);border-radius:50%;background:linear-gradient(90deg,var(--fg) 50%,transparent 50%)}
-@media (hover:hover) and (pointer:fine){.menu-btn:hover,.theme-toggle:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--blue-d)}.theme-toggle:hover{box-shadow:5px 5px 0 var(--yellow-d)}}
-.menu-btn:active,.theme-toggle:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--stroke-c)}
+@media (hover:hover) and (pointer:fine){.menu-btn:hover,.theme-toggle:hover,.home-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--blue-d)}.theme-toggle:hover{box-shadow:5px 5px 0 var(--yellow-d)}.home-btn:hover{box-shadow:5px 5px 0 var(--green-d)}}
+.menu-btn:active,.theme-toggle:active,.home-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--stroke-c)}
 .skip-link{position:absolute;top:-56px;left:12px;z-index:1000;background:var(--yellow);color:var(--on-pastel);border:2px solid var(--obj-stroke);text-decoration:none;padding:10px 18px;border-radius:12px;font-weight:700;font-size:14px;transition:top 150ms var(--ease-out)}
 .skip-link:focus{top:12px}
 
@@ -109,6 +112,8 @@ body.menu-open .side{transform:none;box-shadow:8px 0 0 var(--blue-d)}
 body.menu-open .scrim{display:block}
 .side h3{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mid);margin:20px 8px 8px}
 .side h3:first-child{margin-top:0}
+.side a.side-home{margin-bottom:14px;padding:8px 12px;border:2px solid var(--stroke-c);border-radius:999px;font-weight:700;font-size:14px;background:var(--surface);box-shadow:3px 3px 0 var(--green-d);align-items:center}
+.side a.side-home svg{flex:none}
 .side a{display:flex;gap:10px;align-items:baseline;padding:7px 10px;border-radius:10px;border:2px solid transparent;text-decoration:none;font-size:14.5px;font-weight:500;line-height:1.35}
 @media (hover:hover) and (pointer:fine){.side a:hover{background:var(--hover)}}
 .side a[aria-current="page"]{background:var(--yellow);border-color:var(--obj-stroke);font-weight:700}
@@ -322,6 +327,7 @@ input[type=number]{width:96px;font-family:var(--font-mono)}
   .lgrid .viewer{height:min(52vh,460px)}
   .dock{position:static;max-height:none}
   .topnav,.topbar-badge,.brand-sub{display:none}
+  .home-btn{display:inline-flex}
   .barrow{grid-template-columns:84px 1fr 86px}
   .rowed{grid-template-columns:minmax(0,1fr) 70px 70px 36px}
   .section-sub{display:none}
@@ -329,7 +335,8 @@ input[type=number]{width:96px;font-family:var(--font-mono)}
 @media (max-width:560px){
   .topbar{gap:8px}
   .menu-btn .mt{display:none}
-  .brand-name{font-size:1.05rem}
+  .brand-name{font-size:1rem;white-space:normal;overflow:visible}
+  .brand-sub{display:none}
   .brand-logo{width:36px;height:30px}
   .pill{font-size:12px;padding:2px 9px}
 }
@@ -345,6 +352,7 @@ input[type=number]{width:96px;font-family:var(--font-mono)}
   <nav class="topnav" aria-label="Principal"><a href="#inicio">Inicio</a><a href="#componentes">Componentes</a><a href="https://javitatay.github.io/AVV/">← AVV Lab</a></nav>
   <span class="spacer"></span>
   <span class="topbar-badge">CFGM Video DJ</span>
+  <a class="home-btn" href="https://javitatay.github.io/AVV/" aria-label="Volver a AVV Lab" title="Volver a AVV Lab"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden="true"><path d="M3 9.5 10 3l7 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 8.5V16h10V8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   <span class="pill" title="Lecciones completadas"><span class="sr">Completadas: </span><span id="count">0/0</span></span>
   <button class="theme-toggle" id="themeToggle" type="button" hidden aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro"></button>
 </header>
@@ -2249,7 +2257,7 @@ WIDGETS.topologia = el => {
 
   /* ── Marco común ── */
   function shell(current, route) {
-    $('#side').innerHTML = [4, 5].map(u => `<h3>${UNITS[u].title}</h3>` + LESSONS.filter(l => l.unit === u).map(l =>
+    $('#side').innerHTML = '<a class="side-home" href="https://javitatay.github.io/AVV/"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" aria-hidden="true"><path d="M12 4 6 10l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Volver a AVV Lab</a>' + [4, 5].map(u => `<h3>${UNITS[u].title}</h3>` + LESSONS.filter(l => l.unit === u).map(l =>
       `<a href="#leccion-${l.n}" ${current === l.n ? 'aria-current="page"' : ''}><span class="num">${l.n}</span><span>${l.title}</span>${done.has(l.n) ? '<span class="tick" aria-label="completada">✓</span>' : ''}</a>`).join('')).join('');
     $('#count').textContent = `${done.size}/${total}`;
     document.querySelectorAll('.topnav a').forEach(a => { if (a.getAttribute('href') === '#' + route) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
