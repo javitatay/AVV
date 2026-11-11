@@ -17,7 +17,7 @@
 
 ## Descripción
 
-AVV Lab es una suite de 7 herramientas educativas en HTML independientes, accesibles desde una landing page central. Cada suite cubre un software o área temática del módulo, con contenido teórico, calculadoras interactivas, diagramas, simuladores y quizzes de autoevaluación.
+AVV Lab es una suite de 8 herramientas educativas en HTML independientes, accesibles desde una landing page central. Cada suite cubre un software o área temática del módulo, con contenido teórico, calculadoras interactivas, diagramas, simuladores y quizzes de autoevaluación.
 
 El proyecto no requiere servidor, base de datos ni dependencias externas — cada archivo es autocontenido y funciona directamente desde el navegador o desde GitHub Pages.
 
@@ -34,7 +34,8 @@ AVV/
 ├── after-effects.html      # Suite: Motion Graphics & Composición (After Effects)
 ├── iluminacion.html        # Suite: Iluminación de Espectáculos
 ├── magicq.html              # Suite: Control DMX & Consola de Luz (MagicQ)
-└── iluminacion-directo.html # Curso 3D: Iluminación de espectáculos en directo
+├── iluminacion-directo.html # Curso 3D: Iluminación de espectáculos en directo
+└── imagen-video.html        # Curso 3D: Imagen y vídeo para directo
 ```
 
 ---
@@ -50,13 +51,14 @@ AVV/
 | 💡 **Iluminación** | Magnitudes fotométricas, fuentes de luz, tipos de focos, rigging, DMX, redes IP | UD 4·5 |
 | 🟣 **MagicQ · DMX** | Patch, grupos, paletas, cues, playbacks, ejecutores, sintaxis | EDU·V4 |
 | 🔦 **Iluminación en directo (3D)** | Curso visual e interactivo: escenas 3D con focos y cabezas móviles, simuladores 2D, tests y progreso guardado | UD 4·5 |
+| 🎥 **Imagen y vídeo (3D)** | Curso visual e interactivo: escenas 3D de cámara, proyector, pantalla LED y blending, simuladores 2D, tests y progreso guardado | UD 1·2·3 |
 
 ---
 
 ## ⚙️ Características técnicas
 
 - **Sin dependencias** — HTML, CSS y JavaScript vanilla. Sin frameworks, sin npm, sin build step.
-- **Autocontenido** — cada suite funciona de forma independiente como archivo único. Única excepción: el curso 3D (`iluminacion-directo.html`) carga Three.js desde jsDelivr.
+- **Autocontenido** — cada suite funciona de forma independiente como archivo único. Única excepción: los cursos 3D (`iluminacion-directo.html` e `imagen-video.html`) cargan Three.js desde jsDelivr.
 - **Tipografía** — Inter (Google Fonts) con fallback a fuentes del sistema. JetBrains Mono para código y valores técnicos.
 - **Diseño responsive** — adaptado a pantalla de ordenador, proyector y tablet.
 - **Barra de navegación flotante** — acceso entre suites desde cualquier página, con botón de retorno a la última suite visitada (sessionStorage).
@@ -155,6 +157,16 @@ Curso visual e interactivo de iluminación de espectáculos (UD 4 y 5), con el m
 - Simuladores 2D en el resto de lecciones y respaldo automático si el navegador no tiene WebGL
 - Tests por lección y progreso guardado en el navegador (localStorage)
 - Requiere conexión para cargar Three.js (jsDelivr)
+
+### 🎥 Imagen y vídeo — curso 3D (`imagen-video.html`)
+
+Curso visual e interactivo de imagen y vídeo para directo (UD 1, 2 y 3), con el mismo aspecto gráfico que el resto de AVV Lab y modo claro/oscuro compartido. Se abre desde la tarjeta de Fundamentos de Imagen.
+
+- 24 lecciones en tres unidades: la imagen (UD 1) · la señal (UD 2) · proyección, LED y mapping (UD 3)
+- 6 escenas 3D interactivas (Three.js): focal y ángulo visual, brillo del proyector, throw ratio, keystone y lens shift, pantalla LED por cabinas y blending
+- 30 simuladores 2D: relación de aspecto, DAR/PAR/SAR, exposición, profundidad de campo, keys, loops, PPP, ancho de banda HDMI, mesa de vídeo, matriz, universos DMX…
+- Tests por lección, ejercicios de las unidades y progreso guardado en el navegador (localStorage)
+- Respaldo automático en 2D si el navegador no tiene WebGL; requiere conexión para cargar Three.js (jsDelivr)
 
 ---
 
