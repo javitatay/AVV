@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vídeos explicativos · AVV Lab</title>
-<meta name="description" content="Vídeos cortos que explican los fundamentos de imagen y vídeo (UD 3): brillo, throw ratio, keystone, tecnologías de proyección, pantallas LED, mapping y pixel mapping. AVV Lab · CFGM Video DJ.">
+<meta name="description" content="Vídeos cortos por unidad didáctica que explican los fundamentos de imagen y vídeo (UD 3 disponible): brillo, throw ratio, keystone, tecnologías de proyección, pantallas LED, mapping y pixel mapping. AVV Lab · CFGM Video DJ.">
 <meta name="theme-color" content="#f7f6f3">
 <script>try{var t=localStorage.getItem("avvlab_theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",t==="dark"?"#1b1917":"#f7f6f3")})}}catch(e){}</script>
 <style>
@@ -66,13 +66,15 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,4.6vw,3.
 .acts{display:flex;flex-wrap:wrap;gap:10px}
 .note{font-size:13px;color:var(--mid)}
 .sec{display:flex;align-items:center;gap:14px;margin:48px 0 20px}
-.sec h2{font-family:var(--font-display);font-weight:800;font-size:1.6rem;letter-spacing:-.025em;white-space:nowrap}
-.sec i{flex:1;height:2px;background:var(--stroke-c)}
+.udb{font-family:var(--font-mono);font-size:13px;font-weight:700;background:var(--yellow);color:var(--on-pastel);border:2px solid var(--stroke-c);border-radius:8px;padding:2px 10px;box-shadow:3px 3px 0 var(--yellow-d);white-space:nowrap}
+.sec .cn{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--mid);white-space:nowrap}
+.sec h2{font-family:var(--font-display);font-weight:800;font-size:1.6rem;letter-spacing:-.025em}
+.sec i{flex:1;min-width:12px;height:2px;background:var(--stroke-c)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:26px 22px}
 .vc{display:flex;flex-direction:column;text-align:left;background:var(--surface);border:2px solid var(--stroke-c);border-radius:16px;box-shadow:6px 6px 0 var(--line);overflow:hidden;cursor:pointer;padding:0;touch-action:manipulation;transition:transform 140ms var(--ease-out),box-shadow 140ms var(--ease-out)}
 .vc .im{position:relative;aspect-ratio:540/505;overflow:hidden;background:var(--stage);border-bottom:2px solid var(--stroke-c)}
 .vc .im img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
-.vc .num{position:absolute;left:10px;top:10px;font-family:var(--font-mono);font-size:12px;font-weight:700;background:var(--yellow);color:var(--on-pastel);border:2px solid var(--stroke-c);border-radius:8px;padding:1px 8px}
+.vc .num{white-space:nowrap;position:absolute;left:10px;top:10px;font-family:var(--font-mono);font-size:12px;font-weight:700;background:var(--yellow);color:var(--on-pastel);border:2px solid var(--stroke-c);border-radius:8px;padding:1px 8px}
 .vc .dur{position:absolute;right:10px;bottom:10px;font-family:var(--font-mono);font-size:12px;font-weight:700;background:rgba(0,0,0,.72);color:#fff;border-radius:6px;padding:1px 7px}
 .vc .tx{padding:12px 14px 14px;display:flex;flex-direction:column;gap:2px}
 .vc .tx b{font-family:var(--font-display);font-weight:800;font-size:1.15rem;letter-spacing:-.02em;line-height:1.1}
@@ -91,7 +93,7 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,4.6vw,3.
   .top-in{padding:8px 14px}
   .btn .lb{display:none}
 }
-@media(max-width:600px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}.vc{box-shadow:4px 4px 0 var(--line)}.vc .tx b{font-size:1rem}.vc .tx span{font-size:11.5px}.sec h2{font-size:1.35rem}}
+@media(max-width:600px){.sec{flex-wrap:wrap;gap:8px 10px}.sec i{display:none}.sec .cn{margin-left:auto}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}.vc{box-shadow:4px 4px 0 var(--line)}.vc .tx b{font-size:1rem}.vc .tx span{font-size:11.5px}.sec h2{font-size:1.35rem}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -99,7 +101,7 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,4.6vw,3.
 <a class="skip" href="#main">Saltar al contenido</a>
 <header class="top"><div class="top-in">
   <a class="btn" href="../index.html" aria-label="Volver a AVV Lab"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lb">AVV Lab</span></a>
-  <div class="brand"><b>Vídeos explicativos</b><span>Imagen y vídeo · UD 3</span></div>
+  <div class="brand"><b>Vídeos explicativos</b><span>Imagen y vídeo</span></div>
   <button class="btn sq y" id="theme" aria-label="Cambiar tema claro u oscuro"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
 </div></header>
 <main class="wrap" id="main">
@@ -108,7 +110,7 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,4.6vw,3.
     <div class="info">
       <span class="kicker" id="k">Vídeo 1 de 8</span>
       <div><h1 id="t"></h1><p class="sub" id="s"></p></div>
-      <div class="meta"><span class="chip" id="d"></span><span class="chip">Sin audio</span><span class="chip">Vertical 9:16</span></div>
+      <div class="meta"><span class="chip" id="u"></span><span class="chip" id="d"></span><span class="chip">Sin audio</span><span class="chip">Vertical 9:16</span></div>
       <div><p class="h2" style="margin-bottom:10px">Capítulos</p><div class="chaps" id="ch"></div></div>
       <div class="acts">
         <button class="btn" id="prev"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</button>
@@ -118,20 +120,26 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,4.6vw,3.
       <p class="note">«Copiar enlace» da la URL directa a este vídeo, la que se pega en el botón de Google Slides.</p>
     </div>
   </section>
-  <div class="sec"><h2>Los 8 vídeos</h2><i></i></div>
-  <div class="grid" id="g"></div>
+  <div id="g"></div>
 </main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
-var V=[{"id":"brillo","t":"Brillo y contraste","s":"Lúmenes, lux, ANSI, gamma y HDR","d":105,"c":[["Lúmenes y lux",4],["ANSI, ISO y «LED»",39],["Contraste, gamma y HDR",69]]},{"id":"throw-ratio","t":"Throw ratio","s":"Ópticas y distancia de proyección","d":101,"c":[["La óptica",4],["Qué es el throw ratio",24],["Tipos de tiro",54],["Lentes con zoom",80]]},{"id":"keystone","t":"Keystone y lens shift","s":"Encajar la imagen en la pantalla","d":111,"c":[["El problema",4],["Keystone",18],["Lens shift",39],["Corrección de esquinas",61],["Focus, zoom y crop",84]]},{"id":"tecnologias","t":"LCD, DLP y láser","s":"Tecnologías de proyector y HDBaseT","d":106,"c":[["LCD",4],["DLP",20],["Láser",44],["¿Cuál elegir?",60],["HDBaseT",69]]},{"id":"pantallas-led","t":"Pantallas LED","s":"Del píxel a la pantalla, y cómo se calcula","d":107,"c":[["Cómo es",4],["Pixel pitch",27],["Cálculo paso a paso",52],["La controladora",85]]},{"id":"nits","t":"Nits y refresco","s":"El brillo y la estabilidad de una pantalla LED","d":93,"c":[["Nits",4],["Lúmenes ≠ nits",28],["Tasa de refresco",53]]},{"id":"mapping","t":"Mapping y blending","s":"Grid, warping y unión de proyectores","d":101,"c":[["Video mapping",4],["Grid",21],["Warping",38],["Blending",54]]},{"id":"pixel-mapping","t":"Pixel mapping","s":"Pantallas LED, DMX y Art-Net","d":101,"c":[["La idea",4],["En pantallas LED",21],["DMX: canales y universos",46],["Art-Net y sACN",78]]}];
+var UDS={3:'Proyección, LED y mapping'};
+var V=[{"id":"brillo","ud":3,"t":"Brillo y contraste","s":"Lúmenes, lux, ANSI, gamma y HDR","d":105,"c":[["Lúmenes y lux",4],["ANSI, ISO y «LED»",39],["Contraste, gamma y HDR",69]]},{"id":"throw-ratio","ud":3,"t":"Throw ratio","s":"Ópticas y distancia de proyección","d":101,"c":[["La óptica",4],["Qué es el throw ratio",24],["Tipos de tiro",54],["Lentes con zoom",80]]},{"id":"keystone","ud":3,"t":"Keystone y lens shift","s":"Encajar la imagen en la pantalla","d":111,"c":[["El problema",4],["Keystone",18],["Lens shift",39],["Corrección de esquinas",61],["Focus, zoom y crop",84]]},{"id":"tecnologias","ud":3,"t":"LCD, DLP y láser","s":"Tecnologías de proyector y HDBaseT","d":106,"c":[["LCD",4],["DLP",20],["Láser",44],["¿Cuál elegir?",60],["HDBaseT",69]]},{"id":"pantallas-led","ud":3,"t":"Pantallas LED","s":"Del píxel a la pantalla, y cómo se calcula","d":107,"c":[["Cómo es",4],["Pixel pitch",27],["Cálculo paso a paso",52],["La controladora",85]]},{"id":"nits","ud":3,"t":"Nits y refresco","s":"El brillo y la estabilidad de una pantalla LED","d":93,"c":[["Nits",4],["Lúmenes ≠ nits",28],["Tasa de refresco",53]]},{"id":"mapping","ud":3,"t":"Mapping y blending","s":"Grid, warping y unión de proyectores","d":101,"c":[["Video mapping",4],["Grid",21],["Warping",38],["Blending",54]]},{"id":"pixel-mapping","ud":3,"t":"Pixel mapping","s":"Pantallas LED, DMX y Art-Net","d":101,"c":[["La idea",4],["En pantallas LED",21],["DMX: canales y universos",46],["Art-Net y sACN",78]]}];
 var $=function(i){return document.getElementById(i)},v=$('v'),cur=0;
 function mm(s){s=Math.round(s);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
 function idx(){var h=decodeURIComponent(location.hash.slice(1));for(var i=0;i<V.length;i++)if(V[i].id===h)return i;return 0}
-function grid(){$('g').innerHTML=V.map(function(x,i){return '<button class="vc" data-i="'+i+'"><span class="im"><img src="posters/'+x.id+'-thumb.jpg" alt="" loading="lazy" width="540" height="505"><span class="num">'+('0'+(i+1)).slice(-2)+'</span><span class="dur">'+mm(x.d)+'</span></span><span class="tx"><b>'+x.t+'</b><span>'+x.s+'</span></span></button>'}).join('')}
+function card(x,i){return '<button class="vc" data-i="'+i+'"><span class="im"><img src="posters/'+x.id+'-thumb.jpg" alt="" loading="lazy" width="540" height="505"><span class="num">UD'+x.ud+' · '+('0'+(pos(i))).slice(-2)+'</span><span class="dur">'+mm(x.d)+'</span></span><span class="tx"><b>'+x.t+'</b><span>'+x.s+'</span></span></button>'}
+function pos(i){var n=0;for(var j=0;j<=i;j++)if(V[j].ud===V[i].ud)n++;return n}
+function cnt(u){return V.filter(function(x){return x.ud===u}).length}
+function grid(){var uds=[],h='';V.forEach(function(x){if(uds.indexOf(x.ud)<0)uds.push(x.ud)});uds.sort();
+  uds.forEach(function(u){h+='<section class="ud" aria-labelledby="ud'+u+'"><div class="sec"><span class="udb">UD '+u+'</span><h2 id="ud'+u+'">'+(UDS[u]||'')+'</h2><i></i><span class="cn">'+cnt(u)+' vídeos</span></div><div class="grid">';
+    V.forEach(function(x,i){if(x.ud===u)h+=card(x,i)});h+='</div></section>'});
+  $('g').innerHTML=h}
 function show(i,fromHash){
   cur=i;var x=V[i];
   v.pause();v.src=''+x.id+'.mp4';v.poster='posters/'+x.id+'.jpg';
-  $('k').textContent='Vídeo '+(i+1)+' de '+V.length;$('t').textContent=x.t;$('s').textContent=x.s;$('d').textContent=mm(x.d);
+  $('k').textContent='UD '+x.ud+' · Vídeo '+pos(i)+' de '+cnt(x.ud);$('t').textContent=x.t;$('s').textContent=x.s;$('d').textContent=mm(x.d);$('u').textContent='UD '+x.ud+' · '+(UDS[x.ud]||'');
   document.title=x.t+' · Vídeos · AVV Lab';
   $('ch').innerHTML=x.c.map(function(c,j){return '<button class="chap" data-t="'+c[1]+'"><span class="n">'+(j+1)+'</span><span style="flex:1">'+c[0]+'</span><time>'+mm(c[1])+'</time></button>'}).join('');
   $('prev').disabled=i===0;$('next').disabled=i===V.length-1;

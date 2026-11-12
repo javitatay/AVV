@@ -53,7 +53,7 @@ AVV/
 | 🟣 **MagicQ · DMX** | Patch, grupos, paletas, cues, playbacks, ejecutores, sintaxis | EDU·V4 |
 | 🔦 **Iluminación en directo (3D)** | Curso visual e interactivo: escenas 3D con focos y cabezas móviles, simuladores 2D, tests y progreso guardado | UD 4·5 |
 | 🎥 **Imagen y vídeo (3D)** | Curso visual e interactivo: escenas 3D de cámara, proyector, pantalla LED y blending, simuladores 2D, tests y progreso guardado | UD 1·2·3 |
-| 🎬 **Vídeos explicativos** | Ocho vídeos cortos (~1:45) para repasar los fundamentos de la UD 3, con capítulos y enlace directo a cada uno | UD 3 |
+| 🎬 **Vídeos explicativos** | Vídeos cortos (~1:45) agrupados por unidad, con capítulos y enlace directo a cada uno. Disponible: UD 3 (8 vídeos) | UD 3 |
 
 ---
 
@@ -174,7 +174,7 @@ Curso visual e interactivo de imagen y vídeo para directo (UD 1, 2 y 3), con el
 
 ### 🎬 Vídeos explicativos (`videos/`)
 
-Ocho vídeos verticales (1080×1920, sin audio, ~1:45 cada uno) que explican los fundamentos de la UD 3 con animaciones sencillas. Se abren desde su propia tarjeta en la landing.
+Vídeos verticales (1080×1920, sin audio, ~1:45 cada uno) que explican los fundamentos con animaciones sencillas, agrupados por unidad didáctica. Ahora mismo: UD 3 (8 vídeos). Se abren desde su propia tarjeta en la landing.
 
 - Temas: brillo y contraste · throw ratio · keystone y lens shift · LCD, DLP y láser · pantallas LED · nits y refresco · mapping y blending · pixel mapping
 - Reproductor con capítulos que saltan al punto exacto, anterior/siguiente y botón «Copiar enlace»
