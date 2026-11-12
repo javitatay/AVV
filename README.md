@@ -35,7 +35,8 @@ AVV/
 ├── iluminacion.html        # Suite: Iluminación de Espectáculos
 ├── magicq.html              # Suite: Control DMX & Consola de Luz (MagicQ)
 ├── iluminacion-directo.html # Curso 3D: Iluminación de espectáculos en directo
-└── imagen-video.html        # Curso 3D: Imagen y vídeo para directo
+├── imagen-video.html        # Curso 3D: Imagen y vídeo para directo
+└── videos/                  # Vídeos explicativos de la UD 3 (index.html + MP4 + carteles)
 ```
 
 ---
@@ -52,6 +53,7 @@ AVV/
 | 🟣 **MagicQ · DMX** | Patch, grupos, paletas, cues, playbacks, ejecutores, sintaxis | EDU·V4 |
 | 🔦 **Iluminación en directo (3D)** | Curso visual e interactivo: escenas 3D con focos y cabezas móviles, simuladores 2D, tests y progreso guardado | UD 4·5 |
 | 🎥 **Imagen y vídeo (3D)** | Curso visual e interactivo: escenas 3D de cámara, proyector, pantalla LED y blending, simuladores 2D, tests y progreso guardado | UD 1·2·3 |
+| 🎬 **Vídeos explicativos** | Ocho vídeos cortos (~1:45) para repasar los fundamentos de la UD 3, con capítulos y enlace directo a cada uno | UD 3 |
 
 ---
 
@@ -167,6 +169,17 @@ Curso visual e interactivo de imagen y vídeo para directo (UD 1, 2 y 3), con el
 - 30 simuladores 2D: relación de aspecto, DAR/PAR/SAR, exposición, profundidad de campo, keys, loops, PPP, ancho de banda HDMI, mesa de vídeo, matriz, universos DMX…
 - Tests por lección, ejercicios de las unidades y progreso guardado en el navegador (localStorage)
 - Respaldo automático en 2D si el navegador no tiene WebGL; requiere conexión para cargar Three.js (jsDelivr)
+
+---
+
+### 🎬 Vídeos explicativos (`videos/`)
+
+Ocho vídeos verticales (1080×1920, sin audio, ~1:45 cada uno) que explican los fundamentos de la UD 3 con animaciones sencillas. Se abren desde su propia tarjeta en la landing.
+
+- Temas: brillo y contraste · throw ratio · keystone y lens shift · LCD, DLP y láser · pantallas LED · nits y refresco · mapping y blending · pixel mapping
+- Reproductor con capítulos que saltan al punto exacto, anterior/siguiente y botón «Copiar enlace»
+- Cada vídeo tiene URL directa, pensada para enlazarla desde Google Slides: `videos/#brillo`, `#throw-ratio`, `#keystone`, `#tecnologias`, `#pantallas-led`, `#nits`, `#mapping`, `#pixel-mapping`
+- Mismo aspecto gráfico y tema claro/oscuro compartido que el resto de AVV Lab
 
 ---
 
