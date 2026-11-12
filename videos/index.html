@@ -94,6 +94,42 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,4.6vw,3.
   .btn .lb{display:none}
 }
 @media(max-width:600px){.sec{flex-wrap:wrap;gap:8px 10px}.sec i{display:none}.sec .cn{margin-left:auto}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}.vc{box-shadow:4px 4px 0 var(--line)}.vc .tx b{font-size:1rem}.vc .tx span{font-size:11.5px}.sec h2{font-size:1.35rem}}
+/* ===== Portada de vídeos ===== */
+[hidden]{display:none!important}
+.ud{scroll-margin-top:80px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;padding:8px 0 8px}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem)}
+.hero p{color:var(--mid);font-size:1.08rem;font-weight:500;max-width:60ch;margin-top:14px}
+.stats{display:flex;gap:12px;flex-wrap:wrap}
+.stat{background:var(--surface);border:2px solid var(--stroke-c);border-radius:14px;padding:10px 16px;box-shadow:4px 4px 0 var(--line);min-width:110px}
+.stat b{white-space:nowrap;display:block;font-family:var(--font-display);font-weight:800;font-size:1.9rem;letter-spacing:-.03em;line-height:1}
+.stat span{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+.units{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin-top:34px}
+.uc{position:relative;display:flex;flex-direction:column;gap:8px;text-decoration:none;background:var(--surface);border:2px solid var(--stroke-c);border-radius:16px;padding:14px;box-shadow:5px 5px 0 var(--c-d,var(--line));transition:transform 140ms var(--ease-out),box-shadow 140ms var(--ease-out);min-height:220px}
+.uc.img{--c:var(--blue);--c-d:var(--blue-d)}.uc.ilu{--c:var(--yellow);--c-d:var(--yellow-d)}
+.uc .top2{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.uc .ud{white-space:nowrap;font-family:var(--font-mono);font-size:13px;font-weight:700;background:var(--c);color:var(--on-pastel);border:2px solid var(--stroke-c);border-radius:8px;padding:1px 9px}
+.uc .blk{font-family:var(--font-mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+.uc h3{font-family:var(--font-display);font-weight:800;font-size:1.15rem;letter-spacing:-.02em;line-height:1.1}
+.uc .th{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:auto}
+.uc .th img{width:100%;aspect-ratio:1;object-fit:cover;border:2px solid var(--stroke-c);border-radius:8px;background:var(--stage);display:block}
+.uc .ft{display:flex;align-items:center;justify-content:space-between;font-family:var(--font-mono);font-size:12px;font-weight:700}
+.uc .go{display:inline-flex;align-items:center;gap:4px}
+.uc .go svg{width:14px;height:14px}
+.uc.soon{border-style:dashed;box-shadow:none;background:transparent}
+.uc.soon .ud{background:transparent}
+.uc.soon h3,.uc.soon .ft{color:var(--mid)}
+.uc .ph{margin-top:auto;border:2px dashed var(--line);border-radius:10px;display:grid;place-items:center;height:64px;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+@media(hover:hover) and (pointer:fine){a.uc:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--c-d)}}
+a.uc:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
+.sec .blkl{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);white-space:nowrap}
+.vc{text-decoration:none;color:inherit}
+.tip{display:flex;gap:12px;align-items:center;margin-top:52px;background:var(--surface);border:2px solid var(--stroke-c);border-radius:14px;padding:14px 18px;box-shadow:4px 4px 0 var(--green-d);font-size:14px}
+.tip code{font-family:var(--font-mono);font-size:12.5px;background:var(--green);color:var(--on-pastel);border-radius:6px;padding:1px 6px}
+.crumb{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.crumb .udt{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--mid);letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:1000px){.units{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.hero{grid-template-columns:1fr}.units{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.uc{min-height:0;padding:12px}.uc h3{font-size:1rem}.uc .top2{flex-direction:column;align-items:flex-start;gap:4px}.uc .ph{height:38px}.stat{min-width:0;flex:1;padding:8px 12px}.stat b{font-size:1.5rem}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -105,7 +141,19 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,4.6vw,3.
   <button class="btn sq y" id="theme" aria-label="Cambiar tema claro u oscuro"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
 </div></header>
 <main class="wrap" id="main">
-  <section class="stage" aria-label="Reproductor">
+  <section id="home" aria-labelledby="ht">
+    <div class="hero">
+      <div><span class="kicker">AVV Lab · CFGM Video DJ</span><h1 id="ht" style="margin-top:14px">Vídeos explicativos</h1>
+      <p>Vídeos cortos y verticales, sin audio, para repasar cada fundamento después de la clase. Organizados por unidad didáctica: elige una unidad y abre el vídeo que necesites.</p></div>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="units" id="units" aria-label="Unidades didácticas"></div>
+    <div id="g"></div>
+    <p class="tip"><span aria-hidden="true">🔗</span><span>Cada vídeo tiene su propia dirección, lista para enlazarla desde Google Slides: <code>videos/#luz</code>, <code>videos/#brillo</code>… En el reproductor, «Copiar enlace» te la da.</span></p>
+  </section>
+  <section id="player" hidden aria-label="Reproductor de vídeo">
+    <div class="crumb"><a class="btn" href="./" id="back"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Todos los vídeos</a><span class="udt" id="udt"></span></div>
+    <div class="stage">
     <div class="pw"><div class="phone"><video id="v" controls playsinline preload="metadata" aria-label="Vídeo explicativo"></video></div></div>
     <div class="info">
       <span class="kicker" id="k">Vídeo 1 de 8</span>
@@ -119,50 +167,68 @@ h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,4.6vw,3.
       </div>
       <p class="note">«Copiar enlace» da la URL directa a este vídeo, la que se pega en el botón de Google Slides.</p>
     </div>
+  </div>
+    <div id="more"></div>
   </section>
-  <div id="g"></div>
 </main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
-var UDS={3:'Proyección, LED y mapping',4:'Iluminación: luz, fuentes y focos'};
 var V=[{"id":"brillo","ud":3,"t":"Brillo y contraste","s":"Lúmenes, lux, ANSI, gamma y HDR","d":105,"c":[["Lúmenes y lux",4],["ANSI, ISO y «LED»",39],["Contraste, gamma y HDR",69]]},{"id":"throw-ratio","ud":3,"t":"Throw ratio","s":"Ópticas y distancia de proyección","d":101,"c":[["La óptica",4],["Qué es el throw ratio",24],["Tipos de tiro",54],["Lentes con zoom",80]]},{"id":"keystone","ud":3,"t":"Keystone y lens shift","s":"Encajar la imagen en la pantalla","d":111,"c":[["El problema",4],["Keystone",18],["Lens shift",39],["Corrección de esquinas",61],["Focus, zoom y crop",84]]},{"id":"tecnologias","ud":3,"t":"LCD, DLP y láser","s":"Tecnologías de proyector y HDBaseT","d":106,"c":[["LCD",4],["DLP",20],["Láser",44],["¿Cuál elegir?",60],["HDBaseT",69]]},{"id":"pantallas-led","ud":3,"t":"Pantallas LED","s":"Del píxel a la pantalla, y cómo se calcula","d":107,"c":[["Cómo es",4],["Pixel pitch",27],["Cálculo paso a paso",52],["La controladora",85]]},{"id":"nits","ud":3,"t":"Nits y refresco","s":"El brillo y la estabilidad de una pantalla LED","d":93,"c":[["Nits",4],["Lúmenes ≠ nits",28],["Tasa de refresco",53]]},{"id":"mapping","ud":3,"t":"Mapping y blending","s":"Grid, warping y unión de proyectores","d":101,"c":[["Video mapping",4],["Grid",21],["Warping",38],["Blending",54]]},{"id":"pixel-mapping","ud":3,"t":"Pixel mapping","s":"Pantallas LED, DMX y Art-Net","d":101,"c":[["La idea",4],["En pantallas LED",21],["DMX: canales y universos",46],["Art-Net y sACN",78]]},{"id":"luz","ud":4,"t":"La luz","s":"Intensidad, calidad y dirección","d":103,"c":[["Intensidad",4],["Calidad",34],["Dirección",64]]},{"id":"temperatura","ud":4,"t":"Temperatura de color","s":"Espectro visible y grados kelvin","d":93,"c":[["Espectro visible",4],["Grados kelvin",26],["Fuentes y cámara",57]]},{"id":"magnitudes","ud":4,"t":"Lúmenes y lux","s":"Lúmenes, candelas, lux y dimmer","d":92,"c":[["Lúmenes",4],["Candelas",18],["Lux",34],["Dimmer",65]]},{"id":"fuentes","ud":4,"t":"Fuentes de luz","s":"De la incandescente al LED","d":94,"c":[["Filamento",4],["Fluorescente y descarga",27],["LED",50],["Comparativa",72]]},{"id":"focos","ud":4,"t":"Focos convencionales","s":"PAR, PC, Fresnel y recorte","d":90,"c":[["Lentes",4],["PAR",18],["PC",40],["Fresnel",56],["Recorte",70]]},{"id":"cabezas-moviles","ud":4,"t":"Cabezas móviles","s":"Wash, spot y beam","d":79,"c":[["Pan y tilt",4],["Wash",20],["Spot",34],["Beam",50],["Comparativa",64]]},{"id":"atributos","ud":4,"t":"Atributos y canales","s":"Dimmer, color, zoom, iris, gobo y DMX","d":92,"c":[["Dimmer y color",4],["Forma del haz",20],["Gobo y prisma",48],["Canales DMX",63]]}];
-var $=function(i){return document.getElementById(i)},v=$('v'),cur=0;
+var U={1:{b:'Imagen y vídeo',n:'La imagen: resolución, óptica y exposición',k:'img'},2:{b:'Imagen y vídeo',n:'La señal: conectores, formatos y equipos',k:'img'},3:{b:'Imagen y vídeo',n:'Proyección, LED y mapping',k:'img'},4:{b:'Iluminación',n:'Iluminación: luz, fuentes y focos',k:'ilu'},5:{b:'Iluminación',n:'Rigging, DMX y programación',k:'ilu'}};
+var UDS={};Object.keys(U).forEach(function(k){UDS[k]=U[k].n});
+var $=function(i){return document.getElementById(i)},v=$('v'),cur=-1;
+var ARR='<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 function mm(s){s=Math.round(s);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
-function idx(){var h=decodeURIComponent(location.hash.slice(1));for(var i=0;i<V.length;i++)if(V[i].id===h)return i;return 0}
-function card(x,i){return '<button class="vc" data-i="'+i+'"><span class="im"><img src="posters/'+x.id+'-thumb.jpg" alt="" loading="lazy" width="540" height="505"><span class="num">UD'+x.ud+' · '+('0'+(pos(i))).slice(-2)+'</span><span class="dur">'+mm(x.d)+'</span></span><span class="tx"><b>'+x.t+'</b><span>'+x.s+'</span></span></button>'}
+function idx(){var h=decodeURIComponent(location.hash.slice(1));for(var i=0;i<V.length;i++)if(V[i].id===h)return i;return -1}
+function of(u){return V.filter(function(x){return x.ud===u})}
 function pos(i){var n=0;for(var j=0;j<=i;j++)if(V[j].ud===V[i].ud)n++;return n}
-function cnt(u){return V.filter(function(x){return x.ud===u}).length}
-function grid(){var uds=[],h='';V.forEach(function(x){if(uds.indexOf(x.ud)<0)uds.push(x.ud)});uds.sort();
-  uds.forEach(function(u){h+='<section class="ud" aria-labelledby="ud'+u+'"><div class="sec"><span class="udb">UD '+u+'</span><h2 id="ud'+u+'">'+(UDS[u]||'')+'</h2><i></i><span class="cn">'+cnt(u)+' vídeos</span></div><div class="grid">';
-    V.forEach(function(x,i){if(x.ud===u)h+=card(x,i)});h+='</div></section>'});
-  $('g').innerHTML=h}
-function show(i,fromHash){
-  cur=i;var x=V[i];
-  v.pause();v.src=''+x.id+'.mp4';v.poster='posters/'+x.id+'.jpg';
-  $('k').textContent='UD '+x.ud+' · Vídeo '+pos(i)+' de '+cnt(x.ud);$('t').textContent=x.t;$('s').textContent=x.s;$('d').textContent=mm(x.d);$('u').textContent='UD '+x.ud+' · '+(UDS[x.ud]||'');
+function cnt(u){return of(u).length}
+function card(x,i){return '<a class="vc" href="#'+x.id+'" data-i="'+i+'"><span class="im"><img src="posters/'+x.id+'-thumb.jpg" alt="" loading="lazy" width="540" height="505"><span class="num">UD'+x.ud+' · '+('0'+pos(i)).slice(-2)+'</span><span class="dur">'+mm(x.d)+'</span></span><span class="tx"><b>'+x.t+'</b><span>'+x.s+'</span></span></a>'}
+function section(u,title){var h='<section class="ud" id="ud-'+u+'" aria-labelledby="h'+u+'"><div class="sec"><span class="udb">UD '+u+'</span><h2 id="h'+u+'">'+(title||U[u].n)+'</h2><i></i><span class="cn">'+cnt(u)+' vídeos</span></div><div class="grid">';
+  V.forEach(function(x,i){if(x.ud===u)h+=card(x,i)});return h+'</div></section>'}
+function home(){
+  var tot=V.reduce(function(a,x){return a+x.d},0),uds=Object.keys(U).map(Number).filter(function(u){return cnt(u)});
+  $('stats').innerHTML='<div class="stat"><b>'+V.length+'</b><span>vídeos</span></div><div class="stat"><b>'+uds.length+'/5</b><span>unidades</span></div><div class="stat"><b>'+Math.round(tot/60)+' min</b><span>en total</span></div>';
+  $('units').innerHTML=Object.keys(U).map(Number).map(function(u){var n=cnt(u),x=U[u];
+    if(!n)return '<div class="uc soon '+x.k+'" aria-label="UD '+u+', próximamente"><div class="top2"><span class="ud">UD '+u+'</span><span class="blk">'+x.b+'</span></div><h3>'+x.n+'</h3><div class="ph">Próximamente</div></div>';
+    return '<a class="uc '+x.k+'" href="#ud-'+u+'"><div class="top2"><span class="ud">UD '+u+'</span><span class="blk">'+x.b+'</span></div><h3>'+x.n+'</h3><div class="th">'+of(u).slice(0,3).map(function(y){return '<img src="posters/'+y.id+'-thumb.jpg" alt="" loading="lazy">'}).join('')+'</div><div class="ft"><span>'+n+' vídeos</span><span class="go">Ver'+ARR+'</span></div></a>'}).join('');
+  $('g').innerHTML=uds.map(function(u){return section(u)}).join('');
+}
+function show(i){
+  cur=i;var x=V[i],list=of(x.ud),p=pos(i);
+  v.pause();v.src=x.id+'.mp4';v.poster='posters/'+x.id+'.jpg';
+  $('k').textContent='UD '+x.ud+' · Vídeo '+p+' de '+list.length;$('t').textContent=x.t;$('s').textContent=x.s;$('d').textContent=mm(x.d);$('u').textContent='UD '+x.ud+' · '+U[x.ud].b;
+  $('udt').textContent='UD '+x.ud+' · '+U[x.ud].n;
   document.title=x.t+' · Vídeos · AVV Lab';
   $('ch').innerHTML=x.c.map(function(c,j){return '<button class="chap" data-t="'+c[1]+'"><span class="n">'+(j+1)+'</span><span style="flex:1">'+c[0]+'</span><time>'+mm(c[1])+'</time></button>'}).join('');
-  $('prev').disabled=i===0;$('next').disabled=i===V.length-1;
-  $('prev').style.opacity=i===0?.4:1;$('next').style.opacity=i===V.length-1?.4:1;
-  [].forEach.call(document.querySelectorAll('.vc'),function(b,j){if(j===i)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});
+  var first=p===1,last=p===list.length;
+  $('prev').disabled=first;$('next').disabled=last;$('prev').style.opacity=first?.4:1;$('next').style.opacity=last?.4:1;$('next').style.boxShadow='';
+  $('more').innerHTML=section(x.ud,'Más vídeos de esta unidad');
+  [].forEach.call(document.querySelectorAll('#more .vc'),function(b){if(+b.dataset.i===i)b.setAttribute('aria-current','true')});
   mark(0);
-  if(!fromHash&&location.hash!=='#'+x.id)history.replaceState(null,'','#'+x.id);
 }
-function mark(t){var c=V[cur].c,a=0;for(var j=0;j<c.length;j++)if(t>=c[j][1]-.3)a=j;[].forEach.call($('ch').children,function(b,j){b.classList.toggle('on',j===a)})}
+function route(){
+  var i=idx(),h=location.hash.slice(1);
+  if(i>=0){$('home').hidden=true;$('player').hidden=false;if(i!==cur)show(i);window.scrollTo(0,0);return}
+  v.pause();cur=-1;$('player').hidden=true;$('home').hidden=false;document.title='Vídeos explicativos · AVV Lab';
+  var el=/^ud-\d$/.test(h)&&$(h);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});else window.scrollTo(0,0);
+}
+function mark(t){if(cur<0)return;var c=V[cur].c,a=0;for(var j=0;j<c.length;j++)if(t>=c[j][1]-.3)a=j;[].forEach.call($('ch').children,function(b,j){b.classList.toggle('on',j===a)})}
 v.addEventListener('timeupdate',function(){mark(v.currentTime)});
 $('ch').addEventListener('click',function(e){var b=e.target.closest('.chap');if(!b)return;v.currentTime=+b.dataset.t;v.play().catch(function(){})});
-$('g').addEventListener('click',function(e){var b=e.target.closest('.vc');if(!b)return;show(+b.dataset.i);window.scrollTo({top:0,behavior:'smooth'})});
-$('prev').onclick=function(){if(cur>0)show(cur-1)};
-$('next').onclick=function(){if(cur<V.length-1)show(cur+1)};
-v.addEventListener('ended',function(){if(cur<V.length-1){$('next').style.boxShadow='3px 3px 0 var(--yellow-d)';$('next').focus({preventScroll:true})}});
+function go(i){location.hash=V[i].id}
+$('prev').onclick=function(){if(cur>0&&V[cur-1].ud===V[cur].ud)go(cur-1)};
+$('next').onclick=function(){if(cur<V.length-1&&V[cur+1].ud===V[cur].ud)go(cur+1)};
+$('back').onclick=function(e){e.preventDefault();history.pushState(null,'',location.pathname+'#ud-'+V[cur].ud);route()};
+v.addEventListener('ended',function(){var n=cur+1;if(n<V.length&&V[n].ud===V[cur].ud){$('next').style.boxShadow='3px 3px 0 var(--yellow-d)';$('next').focus({preventScroll:true})}});
 function toast(m){var t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(function(){t.classList.remove('on')},1800)}
 $('copy').onclick=function(){var u=location.origin+location.pathname+'#'+V[cur].id;if(location.protocol==='file:')u=location.href.split('#')[0]+'#'+V[cur].id;
   function ok(){toast('Enlace copiado')}
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(ok,function(){fb()})}else fb();
   function fb(){var a=document.createElement('textarea');a.value=u;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){toast(u)}a.remove()}};
 $('theme').onclick=function(){var d=document.documentElement,n=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('avvlab_theme',n)}catch(e){}document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',n==='dark'?'#1b1917':'#f7f6f3')})};
-window.addEventListener('hashchange',function(){var i=idx();if(i!==cur)show(i,true)});
-grid();show(idx(),true);
+window.addEventListener('hashchange',route);
+home();route();
 </script>
 </body>
 </html>
