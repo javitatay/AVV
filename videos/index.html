@@ -136,7 +136,7 @@ a.uc:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
 <body>
 <a class="skip" href="#main">Saltar al contenido</a>
 <header class="top"><div class="top-in">
-  <a class="btn" href="../index.html" aria-label="Volver a AVV Lab"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lb">AVV Lab</span></a>
+  <a class="btn" href="../index.html" id="up" aria-label="Volver a AVV Lab"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lb" id="upl">AVV Lab</span></a>
   <div class="brand"><b>Vídeos explicativos</b><span>Imagen, vídeo e iluminación</span></div>
   <button class="btn sq y" id="theme" aria-label="Cambiar tema claro u oscuro"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
 </div></header>
@@ -207,10 +207,12 @@ function show(i){
   [].forEach.call(document.querySelectorAll('#more .vc'),function(b){if(+b.dataset.i===i)b.setAttribute('aria-current','true')});
   mark(0);
 }
+function upBtn(p){var u=$('up');u.setAttribute('href',p?'./':'../index.html');u.setAttribute('aria-label',p?'Volver a todos los vídeos':'Volver a AVV Lab');$('upl').textContent=p?'Vídeos':'AVV Lab'}
+$('up').addEventListener('click',function(e){if(cur<0)return;e.preventDefault();history.pushState(null,'',location.pathname+'#ud-'+V[cur].ud);route()});
 function route(){
   var i=idx(),h=location.hash.slice(1);
-  if(i>=0){$('home').hidden=true;$('player').hidden=false;if(i!==cur)show(i);window.scrollTo(0,0);return}
-  v.pause();cur=-1;$('player').hidden=true;$('home').hidden=false;document.title='Vídeos explicativos · AVV Lab';
+  if(i>=0){upBtn(true);$('home').hidden=true;$('player').hidden=false;if(i!==cur)show(i);window.scrollTo(0,0);return}
+  upBtn(false);v.pause();cur=-1;$('player').hidden=true;$('home').hidden=false;document.title='Vídeos explicativos · AVV Lab';
   var el=/^ud-\d$/.test(h)&&$(h);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});else window.scrollTo(0,0);
 }
 function mark(t){if(cur<0)return;var c=V[cur].c,a=0;for(var j=0;j<c.length;j++)if(t>=c[j][1]-.3)a=j;[].forEach.call($('ch').children,function(b,j){b.classList.toggle('on',j===a)})}
@@ -227,7 +229,7 @@ $('copy').onclick=function(){var u=location.origin+location.pathname+'#'+V[cur].
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(ok,function(){fb()})}else fb();
   function fb(){var a=document.createElement('textarea');a.value=u;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){toast(u)}a.remove()}};
 $('theme').onclick=function(){var d=document.documentElement,n=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('avvlab_theme',n)}catch(e){}document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',n==='dark'?'#1b1917':'#f7f6f3')})};
-window.addEventListener('hashchange',route);
+window.addEventListener('hashchange',route);window.addEventListener('popstate',route);
 home();route();
 </script>
 </body>
