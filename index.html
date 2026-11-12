@@ -328,6 +328,39 @@ strong { font-weight: 700; }
 .card-sub:hover .card-btn { gap: 9px; }
 @media (hover: hover) and (pointer: fine) { .card-sub:hover .card-sub-img img { transform: scale(1.04); } }
 .card-sub:focus-visible, .card-link:focus-visible { outline: 3px solid var(--focus, var(--fg)); outline-offset: -3px; }
+/* Banner gráfico en las tarjetas simples: rellena el hueco inferior, como el curso 3D de las tarjetas dobles */
+.card-banner { display: block; position: relative; flex: 1 1 140px; min-height: 140px; max-height: 176px; margin: 0 !important; overflow: hidden; background: #1f2a52; border-top: 2px solid var(--stroke-c); }
+.card-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; transition: transform 300ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .card:hover .card-banner img { transform: scale(1.04); } }
+/* Tarjeta ancha (Vídeos explicativos): una fila compacta bajo las seis suites */
+.card.card-wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+.card.card-wide > * { margin: 0 !important; }
+.cw-info { display: flex; align-items: center; gap: 18px; padding: 16px 22px; min-width: 0; background: var(--tint); border-right: 2px solid var(--stroke-c); }
+.cw-info .card-icon { width: 52px; height: 52px; }
+.cw-info .card-icon svg { width: 28px; height: 28px; }
+.cw-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.cw-kick { font-size: 12px; font-weight: 600; color: var(--on-pastel, #1f1d1a); opacity: .7; }
+.cw-title { font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.05; color: var(--on-pastel, #1f1d1a); }
+.cw-desc { font-size: 13.5px; line-height: 1.45; color: var(--on-pastel-2, #4a463f); max-width: 52ch; }
+.cw-info .card-btn { background: var(--surface); color: var(--fg); }
+.cw-media {
+  display: flex; align-items: center; gap: 12px; padding: 14px 20px; overflow: hidden;
+  background: radial-gradient(rgba(255,255,255,.08) 2px, transparent 2.5px) 0 0 / 40px 40px, linear-gradient(180deg, #27346a, #0e1330);
+}
+.cw-t { position: relative; width: 84px; aspect-ratio: 540 / 505; flex: none; border: 2.5px solid #f6f1e4; border-radius: 9px; overflow: hidden; background: #201e1b; box-shadow: 4px 4px 0 rgba(0,0,0,.4); transition: transform 200ms var(--ease-out); }
+.cw-t:nth-child(odd) { transform: rotate(-2deg); } .cw-t:nth-child(even) { transform: rotate(2deg); }
+.cw-t img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cw-t b { position: absolute; left: 4px; top: 4px; font-family: var(--font-mono); font-size: 9px; font-weight: 700; background: var(--yellow); color: #1f1d1a; border: 1.5px solid #1f1d1a; border-radius: 4px; padding: 0 4px; line-height: 1.3; }
+.cw-more { flex: none; font-family: var(--font-mono); font-weight: 700; font-size: 12px; color: #1f1d1a; background: var(--pink); border: 2.5px solid #f6f1e4; border-radius: 999px; padding: 4px 11px; box-shadow: 3px 3px 0 rgba(0,0,0,.4); }
+@media (hover: hover) and (pointer: fine) { .card-wide:hover .cw-t { transform: translateY(-3px) rotate(0); } }
+@media (max-width: 900px) {
+  .card.card-wide { grid-template-columns: 1fr; }
+  .cw-info { border-right: 0; border-bottom: 2px solid var(--stroke-c); }
+  .cw-media { justify-content: center; padding: 14px 12px; gap: 9px; }
+  .cw-t { width: auto; flex: 1 1 0; min-width: 0; max-width: 84px; }
+}
+@media (max-width: 600px) { .card-banner { flex-basis: 164px; min-height: 164px; } }
+@media (max-width: 480px) { .cw-info { flex-wrap: wrap; gap: 12px; padding: 14px 16px; } .cw-info .card-icon { width: 44px; height: 44px; } .cw-info .card-btn { display: none; } .cw-t:nth-child(5) { display: none; } }
 @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @media (hover: hover) and (pointer: fine) {
   .card:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0 var(--tint-d); }
@@ -639,24 +672,8 @@ strong { font-weight: 700; }
       </a>
     </div>
 
-    <!-- 1b VÍDEOS EXPLICATIVOS -->
-    <a class="card" href="videos/" aria-label="Vídeos explicativos de Imagen y vídeo, unidad 3">
-      <div class="card-top">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
-        <span class="card-ud">UD 3</span>
-      </div>
-      <div class="card-app">Imagen &amp; Vídeo · por unidades</div>
-      <h3 class="card-title">Vídeos<br>explicativos</h3>
-      <div class="card-desc">Vídeos cortos, agrupados por unidad, para repasar cada fundamento después de la clase. Ya disponible la UD 3: brillo, throw ratio, keystone, proyección, pantallas LED y mapping.</div>
-      <div class="card-stats"><span class="card-stat"><span class="card-stat-emoji">🎬</span><span class="card-stat-n">8</span> vídeos</span><span class="card-stat"><span class="card-stat-emoji">📚</span>UD 3 <span class="card-stat-n">disponible</span></span></div>
-      <div class="card-footer">
-        <div class="card-tags"><span class="card-tag">UD 3</span><span class="card-tag">Repaso</span></div>
-        <div class="card-btn">Ver<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      </div>
-    </a>
-
     <!-- 2 ILLUSTRATOR -->
-    <a class="card" href="illustrator.html">
+    <a class="card card-b" href="illustrator.html">
       <div class="card-top">
         <div class="card-icon"><img src="icons/illustrator.png" alt="Illustrator" width="36" height="36" loading="lazy" decoding="async" style="width:36px;height:36px;border-radius:8px;object-fit:contain;"></div>
         <span class="card-ud">CFGM · DG</span>
@@ -669,10 +686,11 @@ strong { font-weight: 700; }
         <div class="card-tags"><span class="card-tag">Vector</span><span class="card-tag">Grafismo</span><span class="card-tag">Adobe</span></div>
         <div class="card-btn">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
+      <span class="card-banner"><img src="icons/banner-illustrator.webp" alt="" width="1200" height="900" loading="lazy" decoding="async"></span>
     </a>
 
     <!-- 3 RESOLUME -->
-    <a class="card" href="resolume.html">
+    <a class="card card-b" href="resolume.html">
       <div class="card-top">
         <div class="card-icon"><img src="icons/resolume.svg" alt="Resolume Arena" width="36" height="36" loading="lazy" decoding="async" style="width:36px;height:36px;border-radius:8px;object-fit:contain;"></div>
         <span class="card-ud">UD 1 · 2 · 3</span>
@@ -685,10 +703,11 @@ strong { font-weight: 700; }
         <div class="card-tags"><span class="card-tag">Vídeo</span><span class="card-tag">VJing</span><span class="card-tag">Live</span></div>
         <div class="card-btn">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
+      <span class="card-banner"><img src="icons/banner-resolume.webp" alt="" width="1200" height="900" loading="lazy" decoding="async"></span>
     </a>
 
     <!-- 4 AFTER EFFECTS -->
-    <a class="card" href="after-effects.html">
+    <a class="card card-b" href="after-effects.html">
       <div class="card-top">
         <div class="card-icon"><img src="icons/aftereffects.png" alt="After Effects" width="36" height="36" loading="lazy" decoding="async" style="width:36px;height:36px;border-radius:8px;object-fit:contain;"></div>
         <span class="card-ud">UD 2 · 3</span>
@@ -701,6 +720,7 @@ strong { font-weight: 700; }
         <div class="card-tags"><span class="card-tag">Animación</span><span class="card-tag">VFX</span><span class="card-tag">Adobe</span></div>
         <div class="card-btn">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
+      <span class="card-banner"><img src="icons/banner-after-effects.webp" alt="" width="1200" height="900" loading="lazy" decoding="async"></span>
     </a>
 
     <!-- 5 ILUMINACIÓN -->
@@ -734,7 +754,7 @@ strong { font-weight: 700; }
     </div>
 
     <!-- 6 MAGICQ -->
-    <a class="card" href="magicq.html">
+    <a class="card card-b" href="magicq.html">
       <div class="card-top">
         <div class="card-icon"><img src="icons/magicq.png" alt="MagicQ" width="36" height="36" loading="lazy" decoding="async" style="width:36px;height:36px;border-radius:8px;object-fit:contain;"></div>
         <span class="card-ud">Edu · v4</span>
@@ -746,6 +766,30 @@ strong { font-weight: 700; }
       <div class="card-footer">
         <div class="card-tags"><span class="card-tag">DMX</span><span class="card-tag">Consola</span><span class="card-tag">Show</span></div>
         <div class="card-btn">Abrir<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <span class="card-banner"><img src="icons/banner-magicq.webp" alt="" width="1200" height="900" loading="lazy" decoding="async"></span>
+    </a>
+
+  
+
+    <!-- 7 VÍDEOS EXPLICATIVOS (tarjeta ancha, fuera de las seis principales) -->
+    <a class="card card-wide" href="videos/" aria-label="Vídeos explicativos de Imagen y vídeo, unidad 3">
+      <div class="cw-info">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+        <div class="cw-txt">
+          <span class="cw-kick">Imagen &amp; Vídeo · UD 3 · 8 vídeos</span>
+          <h3 class="cw-title">Vídeos explicativos</h3>
+          <span class="cw-desc">Vídeos cortos, por unidad, para repasar cada fundamento después de la clase.</span>
+        </div>
+        <div class="card-btn">Ver<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="cw-media" aria-hidden="true">
+        <span class="cw-t"><img src="videos/posters/brillo-thumb.jpg" alt="" width="540" height="505" loading="lazy" decoding="async"><b>01</b></span>
+        <span class="cw-t"><img src="videos/posters/throw-ratio-thumb.jpg" alt="" width="540" height="505" loading="lazy" decoding="async"><b>02</b></span>
+        <span class="cw-t"><img src="videos/posters/keystone-thumb.jpg" alt="" width="540" height="505" loading="lazy" decoding="async"><b>03</b></span>
+        <span class="cw-t"><img src="videos/posters/tecnologias-thumb.jpg" alt="" width="540" height="505" loading="lazy" decoding="async"><b>04</b></span>
+        <span class="cw-t"><img src="videos/posters/pantallas-led-thumb.jpg" alt="" width="540" height="505" loading="lazy" decoding="async"><b>05</b></span>
+        <span class="cw-more">+3</span>
       </div>
     </a>
 
