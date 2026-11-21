@@ -270,3 +270,44 @@ html.avl-tema main :is(input[type="text"], input[type="number"], input:not([type
   border-color: var(--t-ink) !important;
 }
 html.avl-tema :is(.btn-console, .cat-filter-btn) { text-transform: none !important; letter-spacing: 0 !important; }
+
+/* ═══ Movimiento (criterios de Emil Kowalski) ═══════════════════════════
+   1. En pantallas táctiles el «hover» se queda pegado tras tocar: se anula su desplazamiento.
+   2. Todo lo que se pulsa responde al instante con una ligera compresión.
+   3. Una sola curva rápida (ease-out fuerte) para toda la interfaz.
+   4. El cambio de módulo se usa decenas de veces: entrada breve y discreta.
+   5. Nada parpadea en bucle: un indicador decorativo infinito distrae.            */
+html.avl-tema { --t-ease: cubic-bezier(0.23, 1, 0.32, 1); }
+
+html.avl-tema :is(.aebm-opt, .bm-opt, .cmd-token, .con-conn, .dirl-opt, .dmx-ch, .dq-opt, .eq-opt, .fb-attr, .fb-btn,
+  .feature-card, .fid-opt, .foc-opt, .fx-card, .fx-opt, .ipq-ans, .kel-opt, .module-card, .pp-opt, .quick-card, .rq-btn,
+  .rq-opt, .rv-opt, .scan-opt, .section-card, .swatch, .tc-clip, .tool-card, .tr-opt, .txa-opt, .quiz-opt, .inner-tab, .nav-tab, .nav-item,
+  .btn, .gv-btn, .gm-btn, .gr-btn, .sc-btn, .gmq-btn, .gae-btn, .atajos-btn, .tool-btn, .btn-console, .btn-quiz-next, .avl-rel a) {
+  transition-timing-function: var(--t-ease) !important;
+}
+@media (hover: none) {
+  html.avl-tema :is(.aebm-opt, .bm-opt, .cmd-token, .con-conn, .dirl-opt, .dmx-ch, .dq-opt, .eq-opt, .fb-attr, .fb-btn,
+    .feature-card, .fid-opt, .foc-opt, .fx-card, .fx-opt, .ipq-ans, .kel-opt, .module-card, .pp-opt, .quick-card, .rq-btn,
+    .rq-opt, .rv-opt, .scan-opt, .section-card, .swatch, .tc-clip, .tool-card, .tr-opt, .txa-opt):hover { transform: none !important; }
+}
+/* Pulsar: tarjetas y opciones se comprimen un poco (los botones ya se hunden hacia su sombra) */
+html.avl-tema :is(.aebm-opt, .bm-opt, .cmd-token, .dirl-opt, .dq-opt, .eq-opt, .fid-opt, .foc-opt, .fx-opt, .ipq-ans, .kel-opt,
+  .pp-opt, .rq-opt, .rv-opt, .scan-opt, .tc-clip, .tr-opt, .txa-opt, .quiz-opt, .swatch, .fb-attr,
+  .module-card, .section-card, .tool-card, .fx-card, .quick-card, .feature-card, .inner-tab, .nav-tab, .avl-rel a):not(:disabled):not(.locked):active {
+  transform: scale(0.97) !important; transition-duration: 100ms !important;
+}
+html.avl-tema :is(.sidebar, .sb) .nav-item:active { transform: scale(0.98); transition: transform 100ms var(--t-ease); }
+
+/* Cambio de módulo: 160 ms y solo 4 px */
+html.avl-tema :is(.module.active > *, .section.active, .page.active) {
+  animation-duration: 160ms !important; animation-timing-function: var(--t-ease) !important;
+}
+@keyframes avl-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+html.avl-tema :is(.module.active > *, .section.active, .page.active) { animation-name: avl-in !important; }
+
+/* Indicadores decorativos que parpadeaban sin parar */
+html.avl-tema :is(.led-indicator, .pulse) { animation: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.avl-tema *, html.avl-tema *::before, html.avl-tema *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+}
