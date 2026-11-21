@@ -893,7 +893,7 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 .tc-clip.locked { cursor:default; }
 .tc-clip.dim { opacity:0.4; }
 .tc-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:14px; padding:10px; background:rgba(255,255,255,.05); border-radius:6px; color:#fff; text-align:center; }
-.tc-stat-v { font-size:22px; font-weight:800; color:var(--green); font-family:var(--mono); font-variant-numeric:tabular-nums; }
+.tc-stat-v { font-size:22px; font-weight:800; color:#5fd3a8; font-family:var(--mono); font-variant-numeric:tabular-nums; }
 .tc-stat-l { font-size:9.5px; color:rgba(255,255,255,.55); text-transform:uppercase; letter-spacing:.5px; font-family:var(--mono); margin-top:2px; }
 
 /* ─── VECTORSLICE TOOL ─── */
@@ -1866,6 +1866,28 @@ Click derecho     → menú opciones del clip
         <tr><td class="hl">Speed</td><td>Velocidad de reproducción del clip</td><td>—</td></tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<!-- ════ JUEGO: lanza el clip ════ -->
+<div class="panel" style="margin-top:18px;">
+  <div style="font-size:18px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">🎮 Lanza el clip</div>
+  <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:14px;">
+    Una rejilla de 4 × 4 clips como la de Resolume: filas A–D y columnas 1–4. Te pedimos un clip por su <strong>nombre</strong> o por su <strong>coordenada</strong> y tienes 4 segundos para lanzarlo. <strong>10 retos</strong>.
+  </p>
+  <div class="gr-prog" id="tcProg"></div>
+  <div class="tc-stage">
+    <div class="tc-prompt"><div class="tc-prompt-lbl">Lanza este clip</div><div class="tc-prompt-val" id="tcPrompt" aria-live="polite" aria-atomic="true">— · Listo para empezar</div></div>
+    <div class="tc-grid" id="tcGrid" role="group" aria-label="Rejilla de clips"></div>
+    <div class="tc-stats">
+      <div><div class="tc-stat-v" id="tcOk">0</div><div class="tc-stat-l">Aciertos</div></div>
+      <div><div class="tc-stat-v" id="tcKo">0</div><div class="tc-stat-l">Fallos</div></div>
+      <div><div class="tc-stat-v" id="tcTime">4.0s</div><div class="tc-stat-l">Tiempo</div></div>
+    </div>
+  </div>
+  <div class="gr-feedback" id="tcFb" aria-live="polite" aria-atomic="true"></div>
+  <div class="gr-actions">
+    <button class="gr-btn gr-btn-primary" id="tcStart" type="button">▶ Empezar</button>
   </div>
 </div>
 </section>
@@ -5738,11 +5760,11 @@ function scFinish() {
 var tcClipNames = ['Pulse','Flow','Burn','Glow','Wave','Smoke','Beam','Grid','Spark','Strobe','Drift','Cycle','Echo','Bloom','Halo','Storm'];
 var tcRows = ['A','B','C','D'];
 var tcState = { running:false, idx:0, total:10, ok:0, ko:0, score:0, current:null,
-                deadline:0, timer:null, lock:false, layout:[] };
+                deadline:0, timer:null, lock:false, layout:[], res:[] };
 
 function tcReset() {
   tcState.running = false;
-  tcState.ok = 0; tcState.ko = 0; tcState.score = 0; tcState.idx = 0;
+  tcState.ok = 0; tcState.ko = 0; tcState.score = 0; tcState.idx = 0; tcState.res = [];
   if (tcState.timer) cancelAnimationFrame(tcState.timer);
   // Generar layout 4x4: cada celda con un nombre de la lista, mezclados
   var names = tcClipNames.slice().sort(function(){return Math.random()-0.5;});
@@ -5785,7 +5807,7 @@ function tcRenderGrid() {
 
 function tcStart() {
   tcState.running = true;
-  tcState.ok = 0; tcState.ko = 0; tcState.score = 0; tcState.idx = 0;
+  tcState.ok = 0; tcState.ko = 0; tcState.score = 0; tcState.idx = 0; tcState.res = [];
   document.getElementById('tcStart').style.display = 'none';
   document.getElementById('tcFb').className = 'gr-feedback';
   document.getElementById('tcFb').textContent = '';
@@ -5819,10 +5841,8 @@ function tcShow() {
 }
 
 function tcGetResults() {
-  // Reconstruir array de resultados pasados
-  var arr = [];
-  for (var i = 0; i < tcState.idx; i++) arr.push(true); // simplificación visual
-  return arr;
+  // Aciertos y fallos reales de cada reto ya jugado
+  return tcState.res;
 }
 
 function tcTick() {
@@ -5853,6 +5873,7 @@ function tcPick(row, col, el) {
   // Marcar el resto como lock
   var clips = document.querySelectorAll('.tc-clip');
   for (var i = 0; i < clips.length; i++) clips[i].classList.add('locked');
+  tcState.res.push(ok);
   tcState.idx++;
   setTimeout(function(){ if (tcState.running) tcShow(); }, 800);
 }
@@ -5870,6 +5891,7 @@ function tcResolve(ok, msg) {
   document.getElementById('tcKo').textContent = tcState.ko;
   var clips = document.querySelectorAll('.tc-clip');
   for (var i = 0; i < clips.length; i++) clips[i].classList.add('locked');
+  tcState.res.push(!!ok);
   tcState.idx++;
   setTimeout(function(){ if (tcState.running) tcShow(); }, 800);
 }
@@ -5887,7 +5909,7 @@ function tcFinish() {
   document.getElementById('tcStart').style.display = 'inline-block';
   document.getElementById('tcStart').textContent = '↻ Volver a jugar';
   document.getElementById('tcStart').onclick = function(){ tcReset(); };
-  grRenderProg('tcProg', tcState.total, tcState.total, []);
+  grRenderProg('tcProg', tcState.total, tcState.total, tcState.res);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
