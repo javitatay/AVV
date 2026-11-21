@@ -222,11 +222,7 @@ strong { font-weight: 700; }
   touch-action: manipulation;
 }
 .theme-toggle[hidden] { display: none; }
-/* Medio círculo relleno: el icono es el cambio de modo (se dibuja con CSS para que no dependa de ninguna fuente) */
-.theme-toggle::before {
-  content: ""; width: 18px; height: 18px; border: 2px solid var(--fg); border-radius: 50%;
-  background: linear-gradient(90deg, var(--fg) 50%, transparent 50%);
-}
+.theme-toggle svg{display:block}.theme-toggle .ic-sun{display:none}:root[data-theme="dark"] .theme-toggle .ic-sun{display:block}:root[data-theme="dark"] .theme-toggle .ic-moon{display:none}:root[data-theme="dark"] .theme-toggle{border-color:var(--yellow)}
 @media (hover: hover) and (pointer: fine) {
   .theme-toggle:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--yellow-d); }
 }
@@ -612,7 +608,7 @@ strong { font-weight: 700; }
       <div class="search-dropdown" id="searchDrop"></div>
     </div>
     <span class="topbar-badge">CFGM Video DJ</span>
-    <button class="theme-toggle" id="themeToggle" type="button" hidden aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro"></button>
+    <button class="theme-toggle" id="themeToggle" type="button" hidden aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro"><svg class="ic-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg><svg class="ic-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
   </header>
 
   <main id="main-content">
