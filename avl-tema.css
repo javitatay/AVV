@@ -20,6 +20,7 @@ html.avl-tema {
   --t-pink: #f5cfcd;
   --t-purple: #ddd3f3;
   --t-indigo: #c9d2f6;
+  --t-orange: #f8d6bb;
   --t-tint: var(--t-blue);
   --t-tint-d: color-mix(in srgb, var(--t-tint) 100%, #000);
   --t-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
@@ -28,10 +29,10 @@ html.avl-tema {
 }
 /* Color de cada suite: el mismo que su tarjeta en la portada */
 html.avl-tema[data-avl-suite="video"]        { --t-tint: var(--t-blue); }
-html.avl-tema[data-avl-suite="iluminacion"]  { --t-tint: var(--t-blue); }
+html.avl-tema[data-avl-suite="iluminacion"]  { --t-tint: var(--t-yellow); }
 html.avl-tema[data-avl-suite="resolume"]     { --t-tint: var(--t-green); }
 html.avl-tema[data-avl-suite="after-effects"]{ --t-tint: var(--t-purple); }
-html.avl-tema[data-avl-suite="illustrator"]  { --t-tint: var(--t-yellow); }
+html.avl-tema[data-avl-suite="illustrator"]  { --t-tint: var(--t-orange); }
 html.avl-tema[data-avl-suite="magicq"]       { --t-tint: var(--t-indigo); }
 
 /* Fondos y textos base: se reasignan las variables de cada suite */
@@ -230,3 +231,7 @@ html.avl-tema[data-avl-suite="resolume"] .cmd { color: #22594a; }
   html.avl-tema .comp-table { display: block; max-width: 100%; overflow-x: auto; }
   html.avl-tema .panel { max-width: 100%; }
 }
+
+/* Iconos del menú lateral: símbolos de un solo color, nunca emoji */
+html.avl-tema :is(.nav-icon, .nav-ic) { font-variant-emoji: text; filter: none; color: var(--t-fg) !important; opacity: .75; }
+html.avl-tema .nav-item.active :is(.nav-icon, .nav-ic) { opacity: 1; }

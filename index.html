@@ -61,6 +61,8 @@
   --pink:      #f5cfcd;
   --purple:    #ddd3f3;
   --indigo:    #c9d2f6;
+  --orange:    #f8d6bb;
+  --paper:     #ebe7de;   /* tono neutro: accesos generales, cursos 3D y contacto */
   --on-pastel: #1f1d1a;          /* texto y trazo de lo que va sobre un pastel */
   --on-pastel-2: #4a463f;
   --obj-stroke: #1f1d1a;         /* contorno de los objetos de color (fichas, iconos, sellos) */
@@ -202,11 +204,11 @@ strong { font-weight: 700; }
 
 /* El JS pinta cada resultado con el color de su suite en línea; aquí se traduce a la paleta del banner */
 .search-item-suite[style*="#6B9A6B" i] { background: var(--blue) !important; }
-.search-item-suite[style*="#A06B4A" i] { background: var(--yellow) !important; }
+.search-item-suite[style*="#A06B4A" i] { background: var(--orange) !important; }
 .search-item-suite[style*="#4A7A6A" i] { background: var(--green) !important; }
-.search-item-suite[style*="#6B7FA3" i] { background: var(--pink) !important; }
-.search-item-suite[style*="#A06B6B" i] { background: var(--blue) !important; }
-.search-item-suite[style*="#7A6BA3" i] { background: var(--yellow) !important; }
+.search-item-suite[style*="#6B7FA3" i] { background: var(--purple) !important; }
+.search-item-suite[style*="#A06B6B" i] { background: var(--yellow) !important; }
+.search-item-suite[style*="#7A6BA3" i] { background: var(--indigo) !important; }
 .search-item-tag[style] { color: var(--mid) !important; border-color: var(--line) !important; }
 
 /* Botón de tema claro/oscuro */
@@ -275,7 +277,7 @@ strong { font-weight: 700; }
 .card-link > :not(.card-top) { margin-left: 22px; margin-right: 22px; }
 .card-link .card-footer { padding-bottom: 16px; }
 .card-sub {
-  display: flex; flex-direction: column; background: var(--green); color: var(--fg); text-decoration: none;
+  display: flex; flex-direction: column; background: var(--paper); color: var(--on-pastel); text-decoration: none;
   border-top: 2px solid var(--stroke-c);
 }
 .card-sub-img { position: relative; display: block; height: 132px; overflow: hidden; background: #1f2a52; border-bottom: 2px solid var(--stroke-c); }
@@ -283,7 +285,7 @@ strong { font-weight: 700; }
 .card-sub-kicker {
   position: absolute; left: 14px; top: 12px; white-space: nowrap;
   font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
-  background: var(--green); color: var(--fg); border: 2px solid var(--stroke-c); border-radius: 6px; padding: 1px 9px; transform: rotate(-3deg);
+  background: var(--surface); color: var(--fg); border: 2px solid var(--stroke-c); border-radius: 6px; padding: 1px 9px; transform: rotate(-3deg);
   box-shadow: 3px 3px 0 var(--stroke-c);
 }
 .card-sub-row { display: flex; align-items: center; gap: 12px; padding: 14px 18px 16px; }
@@ -376,24 +378,24 @@ strong { font-weight: 700; }
 
 /* Cada suite, su pastel (igual en tarjetas, glosario y buscador) */
 .card[href="video.html"], .gterm[data-suite="video"] { --tint: var(--blue); }
-.card[href="illustrator.html"], .gterm[data-suite="illustrator"] { --tint: var(--yellow); }
+.card[href="illustrator.html"], .gterm[data-suite="illustrator"] { --tint: var(--orange); }
 .card[href="resolume.html"], .gterm[data-suite="resolume"] { --tint: var(--green); }
 .card[href="after-effects.html"], .gterm[data-suite="aftereffects"] { --tint: var(--purple); }
-.card[href="iluminacion.html"], .card-duo, .gterm[data-suite="iluminacion"] { --tint: var(--blue); }
+.card[href="iluminacion.html"], .card-duo:has(a[href="iluminacion.html"]), .gterm[data-suite="iluminacion"] { --tint: var(--yellow); }
 .card[href="magicq.html"], .gterm[data-suite="magicq"] { --tint: var(--indigo); }
-.card[href="videos/"] { --tint: var(--pink); }
-.card[href="unidades.html"] { --tint: var(--green); }
+.card[href="videos/"] { --tint: var(--paper); }
+.card[href="unidades.html"] { --tint: var(--paper); }
 
 /* ---------- Contacto ---------- */
 .contact { max-width: var(--max); margin: 0 auto 36px; padding: 0 40px 0 32px; display: flex; flex-direction: column; gap: 26px; }
 .contact-inner {
-  --tint: var(--green);
+  --tint: var(--paper);
   --tint-d: color-mix(in srgb, var(--tint) var(--sh-mix), #000);
   background: var(--surface); border: 2px solid var(--stroke-c); border-radius: var(--radius);
   padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; gap: 20px;
   box-shadow: 6px 6px 0 var(--tint-d);
 }
-.contact-inner + .contact-inner { --tint: var(--pink); }
+.contact-inner + .contact-inner { --tint: var(--paper); }
 .contact-left { display: flex; align-items: center; gap: 14px; min-width: 0; }
 .contact-icon {
   width: 42px; height: 42px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
@@ -832,10 +834,10 @@ strong { font-weight: 700; }
         <div class="glosario-filters">
           <button class="g-filter active" style="--fc:var(--btn-bg);--fc-fg:var(--btn-fg)" data-suite="all" onclick="setSuite(this)">Todos</button>
           <button class="g-filter" style="--fc:var(--blue)" data-suite="video" onclick="setSuite(this)">Vídeo</button>
-          <button class="g-filter" style="--fc:var(--yellow)" data-suite="illustrator" onclick="setSuite(this)">Illustrator</button>
+          <button class="g-filter" style="--fc:var(--orange)" data-suite="illustrator" onclick="setSuite(this)">Illustrator</button>
           <button class="g-filter" style="--fc:var(--green)" data-suite="resolume" onclick="setSuite(this)">Resolume</button>
           <button class="g-filter" style="--fc:var(--purple)" data-suite="aftereffects" onclick="setSuite(this)">After Effects</button>
-          <button class="g-filter" style="--fc:var(--blue)" data-suite="iluminacion" onclick="setSuite(this)">Iluminación</button>
+          <button class="g-filter" style="--fc:var(--yellow)" data-suite="iluminacion" onclick="setSuite(this)">Iluminación</button>
           <button class="g-filter" style="--fc:var(--indigo)" data-suite="magicq" onclick="setSuite(this)">MagicQ</button>
         </div>
       </div>

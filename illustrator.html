@@ -29,25 +29,25 @@ Este proyecto es una herramienta educativa independiente.
     <link rel="stylesheet" href="fonts/fonts.css">
     <style>
         :root {
-            --ai-orange:     #3b0808;
-            --ai-orange-dim: #2a0505;
-            --ai-orange-glow:#5c1010;
-            --ai-amber:      #7a1a1a;
-            --ai-yellow:     #c44040;
+            --ai-orange:     #9C4410;
+            --ai-orange-dim: #7A3410;
+            --ai-orange-glow:#B8581A;
+            --ai-amber:      #8A3E0E;
+            --ai-yellow:     #C8641F;
             --bg-void:       #FFFFFF;
-            --bg-deep:       #F7F0F0;
+            --bg-deep:       #F8F2EB;
             --bg-surface:    #FFFFFF;
-            --bg-raised:     #FDF5F5;
-            --bg-panel:      #F7F0F0;
-            --bg-button:     #F0E6E6;
-            --bg-button-lit: #E8D8D8;
-            --text-primary:  #1A0404;
-            --text-secondary:#5C2A2A;
-            --text-dim:      #7A3838;
+            --bg-raised:     #FDF8F2;
+            --bg-panel:      #F8F2EB;
+            --bg-button:     #F4EBE2;
+            --bg-button-lit: #EEDFD0;
+            --text-primary:  #1F140C;
+            --text-secondary:#4A463F;
+            --text-dim:      #5F5B54;
             --text-orange:   var(--ai-orange);
-            --border-dark:   #E8D0D0;
-            --border-mid:    #D4B0B0;
-            --border-orange: rgba(59,8,8,0.25);
+            --border-dark:   #EBDCCB;
+            --border-mid:    #D6BFA6;
+            --border-orange: rgba(156,68,16,0.25);
             --font-head:     'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
             --font-body:     'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
             --font-mono:     'JetBrains Mono', monospace;
@@ -82,7 +82,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
             position: absolute;
             top: 0; right: 0;
             width: 1px; height: 100%;
-            background: linear-gradient(to bottom, transparent, rgba(59,8,8,0.25), transparent);
+            background: linear-gradient(to bottom, transparent, rgba(156,68,16,0.25), transparent);
             opacity: 0.3;
         }
         .sidebar-header {
@@ -115,7 +115,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
         }
         .sidebar-title { font-family: var(--font-head); font-size: 20px; font-weight: 800; color: var(--ai-orange); letter-spacing: 1.5px; text-transform: uppercase; }
         .sidebar-subtitle { font-size: 11px; color: var(--text-dim); letter-spacing: 2.5px; text-transform: uppercase; margin-top: 1px; font-family: var(--font-mono); }
-        .sidebar-version { display: inline-block; margin-top: 8px; padding: 2px 10px; background: rgba(59,8,8,0.10); border: 1px solid rgba(59,8,8,0.15); border-radius: 3px; font-family: var(--font-mono); font-size: 11px; color: var(--ai-amber); letter-spacing: 1px; }
+        .sidebar-version { display: inline-block; margin-top: 8px; padding: 2px 10px; background: rgba(156,68,16,0.10); border: 1px solid rgba(156,68,16,0.15); border-radius: 3px; font-family: var(--font-mono); font-size: 11px; color: var(--ai-amber); letter-spacing: 1px; }
         .sidebar-nav { padding: 12px 10px; flex: 1; }
         .nav-section { margin-bottom: 18px; }
         .nav-section-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); padding: 0 8px 6px; border-bottom: 1px solid var(--border-dark); margin-bottom: 4px; }
@@ -130,7 +130,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
             letter-spacing: 0.2px;
         }
         .nav-item:hover { background: var(--bg-raised); color: var(--text-primary); border-color: var(--border-mid); }
-        .nav-item.active { background: rgba(59,8,8,0.10); color: var(--ai-orange); border-color: rgba(59,8,8,0.18); font-weight: 600; }
+        .nav-item.active { background: rgba(156,68,16,0.10); color: var(--ai-orange); border-color: rgba(156,68,16,0.18); font-weight: 600; }
         .nav-item.active .nav-icon { color: var(--ai-orange); }
         .nav-icon { font-size: 14px; width: 18px; text-align: center; color: var(--text-dim); flex-shrink: 0; }
         .nav-badge { margin-left: auto; padding: 1px 6px; background: var(--ai-orange); color: #fff; border-radius: 8px; font-size: 11px; font-weight: 700; font-family: var(--font-mono); }
@@ -161,8 +161,8 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
         .page-desc { font-size: 16px; color: var(--text-secondary); margin-top: 10px; font-weight: 400; line-height: 1.65; max-width: 680px; }
 
         /* PANELS */
-        .panel { background: var(--bg-surface); border: 1px solid var(--border-dark); border-radius: 6px; padding: 24px; margin-bottom: 20px; position: relative; box-shadow: 0 1px 4px rgba(59,8,8,0.06); }
-        .panel-orange { border-color: rgba(59,8,8,0.15); }
+        .panel { background: var(--bg-surface); border: 1px solid var(--border-dark); border-radius: 6px; padding: 24px; margin-bottom: 20px; position: relative; box-shadow: 0 1px 4px rgba(156,68,16,0.06); }
+        .panel-orange { border-color: rgba(156,68,16,0.15); }
         .panel-title { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--ai-orange); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
         .panel-title::before { content: ''; display: inline-block; width: 3px; height: 16px; background: var(--ai-orange); border-radius: 2px; }
         .panel-subtitle { font-size: 12px; color: var(--text-dim); margin-bottom: 14px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 1px; }
@@ -173,7 +173,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
         .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 
         /* INFO BOXES */
-        .info-box { background: rgba(59,8,8,0.07); border: 1px solid rgba(59,8,8,0.15); border-left: 3px solid var(--ai-orange); border-radius: 4px; padding: 16px; margin-bottom: 14px; }
+        .info-box { background: rgba(156,68,16,0.07); border: 1px solid rgba(156,68,16,0.15); border-left: 3px solid var(--ai-orange); border-radius: 4px; padding: 16px; margin-bottom: 14px; }
         .info-box h4 { color: var(--ai-amber); font-family: var(--font-head); font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
         .info-box p, .info-box li { color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
         .info-box ul { padding-left: 16px; }
@@ -200,7 +200,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
 
         /* TABLE */
         .ai-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        .ai-table th { background: rgba(59,8,8,0.10); border: 1px solid rgba(59,8,8,0.15); padding: 10px 14px; text-align: left; font-family: var(--font-head); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ai-amber); }
+        .ai-table th { background: rgba(156,68,16,0.10); border: 1px solid rgba(156,68,16,0.15); padding: 10px 14px; text-align: left; font-family: var(--font-head); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ai-amber); }
         .ai-table td { border: 1px solid var(--border-dark); padding: 9px 14px; color: var(--text-secondary); line-height: 1.4; }
         .ai-table tr:hover td { background: var(--bg-raised); color: var(--text-primary); }
         .ai-table .key { color: var(--ai-orange); font-family: var(--font-mono); font-weight: 700; }
@@ -209,7 +209,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
         /* TOOL CARD */
         .tool-card {
             background: var(--bg-surface);
-            box-shadow: 0 1px 4px rgba(59,8,8,0.08);
+            box-shadow: 0 1px 4px rgba(156,68,16,0.08);
             border: 1px solid var(--border-dark);
             border-radius: 6px;
             padding: 18px;
@@ -218,16 +218,16 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
             overflow: hidden;
         }
         .tool-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--ai-orange); opacity: 0; transition: opacity 0.2s; }
-        .tool-card:hover { border-color: rgba(59,8,8,0.18); transform: translateY(-2px); }
+        .tool-card:hover { border-color: rgba(156,68,16,0.18); transform: translateY(-2px); }
         .tool-card:hover::before { opacity: 1; }
         .tool-icon { font-size: 26px; margin-bottom: 10px; }
         .tool-card h3 { font-family: var(--font-head); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-primary); margin-bottom: 5px; }
-        .tool-card .tool-shortcut { display: inline-block; font-family: var(--font-mono); font-size: 11px; background: rgba(59,8,8,0.10); border: 1px solid rgba(59,8,8,0.15); border-radius: 3px; padding: 1px 6px; color: var(--ai-orange); margin-bottom: 8px; }
+        .tool-card .tool-shortcut { display: inline-block; font-family: var(--font-mono); font-size: 11px; background: rgba(156,68,16,0.10); border: 1px solid rgba(156,68,16,0.15); border-radius: 3px; padding: 1px 6px; color: var(--ai-orange); margin-bottom: 8px; }
         .tool-card p { font-size: 12.5px; color: var(--text-secondary); line-height: 1.65; }
 
         /* EXERCISE BOX */
-        .exercise-box { background: var(--bg-surface); border: 1px solid rgba(59,8,8,0.15); border-radius: 6px; overflow: hidden; margin-bottom: 20px; }
-        .exercise-header { background: rgba(59,8,8,0.09); border-bottom: 1px solid rgba(59,8,8,0.15); padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
+        .exercise-box { background: var(--bg-surface); border: 1px solid rgba(156,68,16,0.15); border-radius: 6px; overflow: hidden; margin-bottom: 20px; }
+        .exercise-header { background: rgba(156,68,16,0.09); border-bottom: 1px solid rgba(156,68,16,0.15); padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
         .exercise-num { width: 32px; height: 32px; background: var(--ai-orange); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 16px; font-weight: 700; color: #fff; flex-shrink: 0; }
         .exercise-title { font-family: var(--font-head); font-size: 16px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text-primary); }
         .exercise-body { padding: 20px; }
@@ -236,16 +236,16 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
         .btn-console { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background: var(--bg-button); border: 1px solid var(--border-mid); border-bottom: 3px solid var(--border-dark); border-radius: 4px; color: var(--text-primary); font-family: var(--font-head); font-size: 12.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: background-color 0.1s ease, border-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, transform 0.1s ease, opacity 0.1s ease; }
         .btn-console:hover { background: var(--bg-button-lit); border-color: var(--ai-orange); color: var(--ai-orange); }
         .btn-console:active { border-bottom-width: 1px; transform: translateY(1px); }
-        .btn-orange { background: var(--ai-orange); border-color: var(--ai-orange-dim); border-bottom-color: #2a0505; color: #fff; }
+        .btn-orange { background: var(--ai-orange); border-color: var(--ai-orange-dim); border-bottom-color: #7A3410; color: #fff; }
         .btn-orange:hover { background: var(--ai-orange-glow); color: #fff; }
 
         /* TAGS */
         .tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
-        .tag-orange { background: rgba(59,8,8,0.10); color: var(--ai-orange); border: 1px solid rgba(59,8,8,0.18); }
+        .tag-orange { background: rgba(156,68,16,0.10); color: var(--ai-orange); border: 1px solid rgba(156,68,16,0.18); }
         .tag-blue { background: rgba(30,80,200,0.10); color: #1E3E9A; border: 1px solid rgba(80,140,255,0.22); }
         .tag-green { background: rgba(0,140,70,0.10); color: #04663d; border: 1px solid rgba(0,140,70,0.18); }
         .tag-yellow { background: rgba(200,120,0,0.10); color: #6e5000; border: 1px solid rgba(200,120,0,0.15); }
-        .tag-red { background: rgba(59,8,8,0.10); color: #7a1a1a; border: 1px solid rgba(255,60,60,0.18); }
+        .tag-red { background: rgba(156,68,16,0.10); color: #8A3E0E; border: 1px solid rgba(255,60,60,0.18); }
         .tag-purple { background: rgba(120,40,180,0.10); color: #5C1A8A; border: 1px solid rgba(180,100,255,0.18); }
 
         /* DIVIDER */
@@ -266,14 +266,14 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
 
         /* HOME HERO */
         .hero-section { text-align: center; padding: 60px 20px 40px; position: relative; }
-        .hero-logo { width: 88px; height: 88px; background: var(--ai-orange); border-radius: 16px; box-shadow: 0 4px 20px rgba(59,8,8,0.35); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 28px; font-weight: 800; color: #fff; margin: 0 auto 22px; position: relative; }
+        .hero-logo { width: 88px; height: 88px; background: var(--ai-orange); border-radius: 16px; box-shadow: 0 4px 20px rgba(156,68,16,0.35); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 28px; font-weight: 800; color: #fff; margin: 0 auto 22px; position: relative; }
         .hero-logo::after { content: ''; position: absolute; top: -1px; right: -1px; width: 18px; height: 18px; background: rgba(255,255,255,0.2); border-radius: 50%; }
         .hero-title { font-family: var(--font-head); font-size: clamp(28px, 8.5vw, 50px); font-weight: 800; letter-spacing: clamp(1px, .4vw, 3px); overflow-wrap: anywhere; text-transform: uppercase; color: var(--text-primary); line-height: 1; }
         .hero-title .hl { color: var(--ai-orange); }
         .hero-sub { font-family: var(--font-mono); font-size: 11px; letter-spacing: 4px; color: var(--text-dim); text-transform: uppercase; margin-top: 10px; }
-        .feature-card { background: var(--bg-surface); border: 1px solid var(--border-dark); box-shadow: 0 1px 4px rgba(59,8,8,0.06); border-radius: 8px; padding: 22px; cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease; position: relative; overflow: hidden; }
+        .feature-card { background: var(--bg-surface); border: 1px solid var(--border-dark); box-shadow: 0 1px 4px rgba(156,68,16,0.06); border-radius: 8px; padding: 22px; cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease; position: relative; overflow: hidden; }
         .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--ai-orange); opacity: 0; transition: opacity 0.2s; }
-        .feature-card:hover { border-color: rgba(59,8,8,0.20); transform: translateY(-3px); }
+        .feature-card:hover { border-color: rgba(156,68,16,0.20); transform: translateY(-3px); }
         .feature-card:hover::before { opacity: 1; }
         .feature-icon { font-size: 28px; margin-bottom: 10px; }
         .feature-card h3 { font-family: var(--font-head); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-primary); margin-bottom: 6px; }
@@ -335,12 +335,12 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
             background: var(--bg-raised); color: var(--text-primary);
             outline: none; width: 220px; transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s, opacity 0.2s;
         }
-        .search-input:focus { border-color: var(--ai-orange); width: 280px; box-shadow: 0 0 0 3px rgba(59,8,8,0.08); }
+        .search-input:focus { border-color: var(--ai-orange); width: 280px; box-shadow: 0 0 0 3px rgba(156,68,16,0.08); }
         .search-icon { position: absolute; left: 11px; font-size: 14px; color: var(--text-dim); pointer-events: none; }
         .search-results {
             position: absolute; top: calc(100% + 8px); right: 0; width: 320px;
             background: #fff; border: 1px solid var(--border-mid); border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(59,8,8,0.12);
+            box-shadow: 0 8px 24px rgba(156,68,16,0.12);
             max-height: 300px; overflow-y: auto; display: none; z-index: 200;
         }
         .search-results.visible { display: block; }
@@ -349,11 +349,11 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
         .search-result-item:hover { background: var(--bg-raised); }
         .search-result-item strong { color: var(--ai-orange); font-size: 13px; display: block; }
         .search-result-item span { color: var(--text-dim); font-size: 11px; }
-        .search-highlight { background: rgba(59,8,8,0.12); border-radius: 2px; padding: 0 2px; }
+        .search-highlight { background: rgba(156,68,16,0.12); border-radius: 2px; padding: 0 2px; }
         .no-results { padding: 16px; text-align: center; color: var(--text-dim); font-size: 13px; }
 
         /* ── QUIZ ── */
-        .quiz-section { background: rgba(59,8,8,0.04); border: 1px solid rgba(59,8,8,0.12); border-radius: 8px; overflow: hidden; margin-top: 36px; }
+        .quiz-section { background: rgba(156,68,16,0.04); border: 1px solid rgba(156,68,16,0.12); border-radius: 8px; overflow: hidden; margin-top: 36px; }
         .quiz-header { background: var(--ai-orange); color: #fff; padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
         .quiz-header h3 { font-family: var(--font-head); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
         .quiz-header .quiz-count { margin-left: auto; font-size: 12px; opacity: 0.8; font-family: var(--font-mono); }
@@ -367,7 +367,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
             font-size: 13.5px; color: var(--text-secondary); background: #fff;
             transition: background-color 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s, opacity 0.15s; display: flex; align-items: center; gap: 10px;
         }
-        .quiz-opt:hover:not(.answered) { border-color: var(--ai-orange); color: var(--text-primary); background: rgba(59,8,8,0.04); }
+        .quiz-opt:hover:not(.answered) { border-color: var(--ai-orange); color: var(--text-primary); background: rgba(156,68,16,0.04); }
         .quiz-opt.correct { background: rgba(0,120,60,0.08); border-color: #006830; color: #003c1a; font-weight: 600; }
         .quiz-opt.wrong   { background: rgba(170,0,0,0.07); border-color: #880000; color: #550000; }
         .quiz-opt.reveal  { background: rgba(0,120,60,0.05); border-color: #006830; color: #003c1a; }
@@ -424,7 +424,7 @@ font-family: var(--font-body); background: var(--bg-void); color: var(--text-pri
         /* ── HOME: section cards grid ── */
         .section-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-bottom: 24px; }
         .section-card { background: var(--bg-surface); border: 1px solid var(--border-dark); border-radius: 8px; padding: 18px 20px; cursor: pointer; transition: background-color 0.18s, border-color 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s, opacity 0.18s; display: flex; align-items: center; gap: 14px; }
-        .section-card:hover { border-color: var(--ai-orange); box-shadow: 0 2px 12px rgba(59,8,8,0.1); transform: translateY(-1px); }
+        .section-card:hover { border-color: var(--ai-orange); box-shadow: 0 2px 12px rgba(156,68,16,0.1); transform: translateY(-1px); }
         .section-card-icon { font-size: 22px; flex-shrink: 0; }
         .section-card-title { font-weight: 700; font-size: 13.5px; color: var(--text-primary); }
         .section-card-sub { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
@@ -489,25 +489,25 @@ code, .mono, [class*="mono"], [style*="font-family:monospace"],
 /* Pathfinder game */
 .pf-game-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
 @media (max-width: 720px) { .pf-game-wrap { grid-template-columns: 1fr; } }
-.pf-stage { background: #fdfafa; border: 1px solid #e8d8d8; border-radius: 6px; padding: 10px; margin-bottom: 8px; }
+.pf-stage { background: #fdfafa; border: 1px solid #EEDFD0; border-radius: 6px; padding: 10px; margin-bottom: 8px; }
 .pf-stage-label { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
 .pf-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.pf-opt { padding: 12px; background: #fff; border: 1.5px solid #e8d8d8; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--text-primary); text-align: center; transition: background-color .18s, border-color .18s, color .18s, box-shadow .18s, transform .18s, opacity .18s; }
-.pf-opt:hover:not(.locked) { border-color: var(--ai-orange); background: rgba(59,8,8,0.04); }
+.pf-opt { padding: 12px; background: #fff; border: 1.5px solid #EEDFD0; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--text-primary); text-align: center; transition: background-color .18s, border-color .18s, color .18s, box-shadow .18s, transform .18s, opacity .18s; }
+.pf-opt:hover:not(.locked) { border-color: var(--ai-orange); background: rgba(156,68,16,0.04); }
 .pf-opt.correct { border-color: #1a5e20; background: rgba(26,94,32,0.10); color: #1a5e20; }
-.pf-opt.wrong { border-color: #c44040; background: rgba(196,64,64,0.08); color: #c44040; }
+.pf-opt.wrong { border-color: #C8641F; background: rgba(196,64,64,0.08); color: #C8641F; }
 .pf-opt.locked { cursor: default; }
 .pf-feedback { padding: 10px 12px; border-radius: 6px; font-size: 13px; margin-top: 12px; display: none; line-height: 1.5; }
 .pf-feedback.ok { display: block; background: rgba(26,94,32,0.08); border-left: 3px solid #1a5e20; color: #1a5e20; }
-.pf-feedback.ko { display: block; background: rgba(196,64,64,0.08); border-left: 3px solid #c44040; color: #8a1a1a; }
+.pf-feedback.ko { display: block; background: rgba(196,64,64,0.08); border-left: 3px solid #C8641F; color: #8a1a1a; }
 .pf-progress { display: flex; gap: 4px; margin: 12px 0 16px; }
-.pf-progress-dot { flex: 1; height: 5px; border-radius: 2px; background: #e8d8d8; }
+.pf-progress-dot { flex: 1; height: 5px; border-radius: 2px; background: #EEDFD0; }
 .pf-progress-dot.done-ok { background: #1a5e20; }
-.pf-progress-dot.done-ko { background: #c44040; }
+.pf-progress-dot.done-ko { background: #C8641F; }
 .pf-progress-dot.current { background: var(--ai-orange); }
 
 /* Atajos game */
-.atajos-game { background: linear-gradient(135deg, #2a0505, #3b0808); border-radius: 10px; padding: 24px; color: #fff; }
+.atajos-game { background: linear-gradient(135deg, #7A3410, #9C4410); border-radius: 10px; padding: 24px; color: #fff; }
 .atajos-prompt { text-align: center; padding: 16px 12px; }
 .atajos-action { font-size: 12px; opacity: 0.7; margin-bottom: 4px; letter-spacing: 1.5px; text-transform: uppercase; font-family: var(--font-mono); }
 .atajos-tool { font-size: 30px; font-weight: 700; margin-bottom: 16px; line-height: 1.1; }
@@ -631,7 +631,7 @@ textarea:focus-visible {
         <div class="nav-section">
             <div class="nav-section-label">// INICIO</div>
             <div class="nav-item active" onclick="showPage('home')">
-                <span class="nav-icon">⬛</span><span>Inicio</span>
+                <span class="nav-icon">⌂</span><span>Inicio</span>
             </div>
         </div>
 
@@ -660,7 +660,7 @@ textarea:focus-visible {
                 <span class="nav-icon">✑</span><span>Pluma y Curvatura</span>
             </div>
             <div class="nav-item" onclick="showPage('dibujo')">
-                <span class="nav-icon">✏</span><span>Lápiz, Pincel y Blob</span>
+                <span class="nav-icon">✏︎</span><span>Lápiz, Pincel y Blob</span>
             </div>
             <div class="nav-item" onclick="showPage('texto')">
                 <span class="nav-icon">T</span><span>Herramientas de Texto</span>
@@ -670,7 +670,7 @@ textarea:focus-visible {
         <div class="nav-section">
             <div class="nav-section-label">// AVANZADO</div>
             <div class="nav-item" onclick="showPage('capas')">
-                <span class="nav-icon">🗂</span><span>Gestión de Capas</span>
+                <span class="nav-icon">≡</span><span>Gestión de Capas</span>
             </div>
             <div class="nav-item" onclick="showPage('pathfinder')">
                 <span class="nav-icon">⊞</span><span>Pathfinder y Booleano</span>
@@ -697,13 +697,13 @@ textarea:focus-visible {
         <div class="nav-section">
             <div class="nav-section-label">// REFERENCIA</div>
             <div class="nav-item" onclick="showPage('atajos')">
-                <span class="nav-icon">⌨</span><span>Atajos de Teclado</span>
+                <span class="nav-icon">⌨︎</span><span>Atajos de Teclado</span>
             </div>
             <div class="nav-item" onclick="showPage('glosario')">
-                <span class="nav-icon">📖</span><span>Glosario</span>
+                <span class="nav-icon">☰</span><span>Glosario</span>
             </div>
             <div class="nav-item" onclick="showPage('consejos')">
-                <span class="nav-icon">💡</span><span>10 Consejos Esenciales</span>
+                <span class="nav-icon">✱</span><span>10 Consejos Esenciales</span>
             </div>
         </div>
 
@@ -730,12 +730,12 @@ textarea:focus-visible {
 <!-- ═══════════════ HOME ═══════════════ -->
 <section class="page active" id="page-home">
     <div class="hero-section">
-        <div class="hero-logo" style="background:none;box-shadow:0 4px 20px rgba(59,8,8,0.25);padding:0;"><img alt="Logotipo de Adobe Illustrator" src="data:image/png;base64,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" style="width:88px;height:88px;display:block;border-radius:16px;"></div>
+        <div class="hero-logo" style="background:none;box-shadow:0 4px 20px rgba(156,68,16,0.25);padding:0;"><img alt="Logotipo de Adobe Illustrator" src="data:image/png;base64,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" style="width:88px;height:88px;display:block;border-radius:16px;"></div>
         <div class="hero-title"><span class="hl">Adobe</span> Illustrator</div>
         <div class="hero-sub">Diseño vectorial · Ciclo Formativo de Grado Medio</div>
     </div>
 
-    <div class="panel" style="text-align:center; background:rgba(59,8,8,0.06); border-color:rgba(59,8,8,0.12); margin-bottom:28px;">
+    <div class="panel" style="text-align:center; background:rgba(156,68,16,0.06); border-color:rgba(156,68,16,0.12); margin-bottom:28px;">
         <p style="color:var(--text-secondary); font-size:14.5px; line-height:1.7; max-width:780px; margin:0 auto;">
             Plataforma de referencia para el aprendizaje de <strong>Adobe Illustrator CC</strong> en ciclos formativos de grado medio.
             Módulos didácticos progresivos desde la interfaz hasta la exportación profesional.
@@ -1106,13 +1106,13 @@ textarea:focus-visible {
   <div class="grid-2">
     <div>
       <p style="text-align:center;font-size:11px;color:var(--text-dim);margin-bottom:6px;">Anatomía de un trazado vectorial</p>
-      <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;">
+      <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;">
         <path d="M0,40 L300,40 M0,80 L300,80 M0,120 L300,120 M0,160 L300,160 M60,0 L60,200 M120,0 L120,200 M180,0 L180,200 M240,0 L240,200" stroke="#f0e0e0" stroke-width="0.6"/>
         <!-- Bezier path -->
-        <path d="M 40,160 C 70,50 190,50 260,160" fill="none" stroke="#3b0808" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M 40,160 C 70,50 190,50 260,160" fill="none" stroke="#9C4410" stroke-width="2.5" stroke-linecap="round"/>
         <!-- Anchor squares -->
-        <rect x="33" y="153" width="13" height="13" fill="white" stroke="#3b0808" stroke-width="2" rx="1"/>
-        <rect x="253" y="153" width="13" height="13" fill="white" stroke="#3b0808" stroke-width="2" rx="1"/>
+        <rect x="33" y="153" width="13" height="13" fill="white" stroke="#9C4410" stroke-width="2" rx="1"/>
+        <rect x="253" y="153" width="13" height="13" fill="white" stroke="#9C4410" stroke-width="2" rx="1"/>
         <!-- Handle lines -->
         <line x1="40" y1="160" x2="70" y2="50"  stroke="#e8734a" stroke-width="1.2" stroke-dasharray="4,3"/>
         <line x1="260" y1="160" x2="190" y2="50" stroke="#e8734a" stroke-width="1.2" stroke-dasharray="4,3"/>
@@ -1120,18 +1120,18 @@ textarea:focus-visible {
         <circle cx="70"  cy="50" r="5.5" fill="white" stroke="#e8734a" stroke-width="2"/>
         <circle cx="190" cy="50" r="5.5" fill="white" stroke="#e8734a" stroke-width="2"/>
         <!-- Labels -->
-        <text x="40"  y="185" text-anchor="middle" fill="#3b0808" font-size="9.5" font-family="Inter,sans-serif" font-weight="600">Ancla</text>
-        <text x="260" y="185" text-anchor="middle" fill="#3b0808" font-size="9.5" font-family="Inter,sans-serif" font-weight="600">Ancla</text>
+        <text x="40"  y="185" text-anchor="middle" fill="#9C4410" font-size="9.5" font-family="Inter,sans-serif" font-weight="600">Ancla</text>
+        <text x="260" y="185" text-anchor="middle" fill="#9C4410" font-size="9.5" font-family="Inter,sans-serif" font-weight="600">Ancla</text>
         <text x="52"  y="45"  fill="#e8734a" font-size="9" font-family="Inter,sans-serif">Manillar</text>
         <text x="178" y="45"  fill="#e8734a" font-size="9" font-family="Inter,sans-serif">Manillar</text>
-        <rect x="100" y="98" width="100" height="14" fill="#3b0808" rx="3"/>
+        <rect x="100" y="98" width="100" height="14" fill="#9C4410" rx="3"/>
         <text x="150" y="108" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" font-family="Inter,sans-serif">Segmento Bézier</text>
-        <line x1="150" y1="112" x2="150" y2="122" stroke="#3b0808" stroke-width="1"/>
+        <line x1="150" y1="112" x2="150" y2="122" stroke="#9C4410" stroke-width="1"/>
       </svg>
     </div>
     <div>
       <p style="text-align:center;font-size:11px;color:var(--text-dim);margin-bottom:6px;">Bitmap vs. Vector al ampliar</p>
-      <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;">
+      <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;">
         <!-- LEFT: bitmap pixelated star -->
         <text x="75" y="14" text-anchor="middle" fill="#888" font-size="9" font-family="Inter,sans-serif">JPEG/PNG ×8</text>
         <rect x="10" y="20" width="130" height="160" fill="#f5f0f0" rx="4"/>
@@ -1165,10 +1165,10 @@ textarea:focus-visible {
         <rect x="160" y="20" width="130" height="160" fill="#f5f0f0" rx="4"/>
         <circle cx="225" cy="90" r="50" fill="#c06060"/>
         <!-- Anchor points on vector -->
-        <rect x="219" y="37" width="11" height="11" fill="white" stroke="#3b0808" stroke-width="1.5" rx="1"/>
-        <rect x="271" y="84" width="11" height="11" fill="white" stroke="#3b0808" stroke-width="1.5" rx="1"/>
-        <rect x="219" y="131" width="11" height="11" fill="white" stroke="#3b0808" stroke-width="1.5" rx="1"/>
-        <rect x="169" y="84" width="11" height="11" fill="white" stroke="#3b0808" stroke-width="1.5" rx="1"/>
+        <rect x="219" y="37" width="11" height="11" fill="white" stroke="#9C4410" stroke-width="1.5" rx="1"/>
+        <rect x="271" y="84" width="11" height="11" fill="white" stroke="#9C4410" stroke-width="1.5" rx="1"/>
+        <rect x="219" y="131" width="11" height="11" fill="white" stroke="#9C4410" stroke-width="1.5" rx="1"/>
+        <rect x="169" y="84" width="11" height="11" fill="white" stroke="#9C4410" stroke-width="1.5" rx="1"/>
         <text x="225" y="152" text-anchor="middle" fill="#1a5e20" font-size="9" font-weight="bold" font-family="Inter,sans-serif">Perfecto a cualquier escala ✓</text>
       </svg>
     </div>
@@ -1499,8 +1499,8 @@ textarea:focus-visible {
   <div class="grid-2">
     <div>
       <p style="text-align:center;font-size:11px;color:var(--text-dim);margin-bottom:6px;"><kbd style="background:var(--ai-orange);color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;">V</kbd> — Mueve y escala el objeto completo</p>
-      <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;">
-        <path d="M140,40 L155,85 L200,85 L166,110 L178,155 L140,132 L102,155 L114,110 L80,85 L125,85 Z" fill="#e8c0c0" stroke="#3b0808" stroke-width="2"/>
+      <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;">
+        <path d="M140,40 L155,85 L200,85 L166,110 L178,155 L140,132 L102,155 L114,110 L80,85 L125,85 Z" fill="#e8c0c0" stroke="#9C4410" stroke-width="2"/>
         <!-- Bounding box -->
         <rect x="75" y="35" width="130" height="125" fill="none" stroke="#0080ff" stroke-width="1.5" stroke-dasharray="5,3"/>
         <!-- Corner handles -->
@@ -1519,19 +1519,19 @@ textarea:focus-visible {
     </div>
     <div>
       <p style="text-align:center;font-size:11px;color:var(--text-dim);margin-bottom:6px;"><kbd style="background:var(--ai-orange);color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;">A</kbd> — Edita puntos de ancla individuales</p>
-      <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;">
-        <path d="M140,40 L155,85 L200,85 L166,110 L178,155 L140,132 L102,155 L114,110 L80,85 L125,85 Z" fill="#e8c0c0" stroke="#3b0808" stroke-width="2"/>
+      <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;">
+        <path d="M140,40 L155,85 L200,85 L166,110 L178,155 L140,132 L102,155 L114,110 L80,85 L125,85 Z" fill="#e8c0c0" stroke="#9C4410" stroke-width="2"/>
         <!-- All anchor points as hollow squares -->
-        <rect x="133" y="33"  width="13" height="13" fill="white" stroke="#3b0808" stroke-width="1.5"/>
-        <rect x="148" y="78"  width="13" height="13" fill="white" stroke="#3b0808" stroke-width="1.5"/>
-        <rect x="193" y="78"  width="13" height="13" fill="white" stroke="#3b0808" stroke-width="1.5"/>
-        <rect x="159" y="103" width="13" height="13" fill="white" stroke="#3b0808" stroke-width="1.5"/>
-        <rect x="171" y="148" width="13" height="13" fill="white" stroke="#3b0808" stroke-width="1.5"/>
-        <rect x="133" y="125" width="13" height="13" fill="white" stroke="#3b0808" stroke-width="1.5"/>
-        <rect x="95"  y="148" width="13" height="13" fill="white" stroke="#3b0808" stroke-width="1.5"/>
-        <rect x="107" y="103" width="13" height="13" fill="white" stroke="#3b0808" stroke-width="1.5"/>
-        <rect x="73"  y="78"  width="13" height="13" fill="white" stroke="#3b0808" stroke-width="1.5"/>
-        <rect x="118" y="78"  width="13" height="13" fill="white" stroke="#3b0808" stroke-width="1.5"/>
+        <rect x="133" y="33"  width="13" height="13" fill="white" stroke="#9C4410" stroke-width="1.5"/>
+        <rect x="148" y="78"  width="13" height="13" fill="white" stroke="#9C4410" stroke-width="1.5"/>
+        <rect x="193" y="78"  width="13" height="13" fill="white" stroke="#9C4410" stroke-width="1.5"/>
+        <rect x="159" y="103" width="13" height="13" fill="white" stroke="#9C4410" stroke-width="1.5"/>
+        <rect x="171" y="148" width="13" height="13" fill="white" stroke="#9C4410" stroke-width="1.5"/>
+        <rect x="133" y="125" width="13" height="13" fill="white" stroke="#9C4410" stroke-width="1.5"/>
+        <rect x="95"  y="148" width="13" height="13" fill="white" stroke="#9C4410" stroke-width="1.5"/>
+        <rect x="107" y="103" width="13" height="13" fill="white" stroke="#9C4410" stroke-width="1.5"/>
+        <rect x="73"  y="78"  width="13" height="13" fill="white" stroke="#9C4410" stroke-width="1.5"/>
+        <rect x="118" y="78"  width="13" height="13" fill="white" stroke="#9C4410" stroke-width="1.5"/>
         <!-- Selected point (top) highlighted blue + manillars -->
         <rect x="133" y="33" width="13" height="13" fill="#0080ff" stroke="#0080ff" stroke-width="1.5"/>
         <line x1="139" y1="39" x2="122" y2="15" stroke="#e8734a" stroke-width="1.5" stroke-dasharray="3,2"/>
@@ -1662,10 +1662,10 @@ textarea:focus-visible {
 
 <div class="panel" style="margin-bottom:20px;">
   <h3 class="panel-title">📐 Galería de Herramientas de Forma</h3>
-  <svg viewBox="0 0 680 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;font-family:Inter,sans-serif;">
+  <svg viewBox="0 0 680 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;font-family:Inter,sans-serif;">
   <!-- Rectángulo -->
-  <rect x="18"  y="20" width="86" height="82" fill="#fce8e8" stroke="#3b0808" stroke-width="2" rx="3"/>
-  <text x="61"  y="116" text-anchor="middle" fill="#3b0808" font-size="10.5" font-weight="700">Rectángulo</text>
+  <rect x="18"  y="20" width="86" height="82" fill="#fce8e8" stroke="#9C4410" stroke-width="2" rx="3"/>
+  <text x="61"  y="116" text-anchor="middle" fill="#9C4410" font-size="10.5" font-weight="700">Rectángulo</text>
   <text x="61"  y="130" text-anchor="middle" fill="#aaa"    font-size="9.5">[M]</text>
   <!-- Rect redondeado -->
   <rect x="122" y="20" width="86" height="82" fill="#e8eeff" stroke="#1a4080" stroke-width="2" rx="22"/>
@@ -1801,12 +1801,12 @@ textarea:focus-visible {
 
 <div class="panel" style="margin-bottom:20px;">
   <h3 class="panel-title">✒️ Cómo Funciona la Pluma — 5 Pasos</h3>
-  <svg viewBox="0 0 680 155" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;font-family:Inter,sans-serif;">
+  <svg viewBox="0 0 680 155" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;font-family:Inter,sans-serif;">
   <!-- Step headers -->
-  <rect x="6"   y="4" width="126" height="16" fill="#3b0808" rx="3"/>
-  <rect x="140" y="4" width="126" height="16" fill="#3b0808" rx="3"/>
-  <rect x="274" y="4" width="126" height="16" fill="#3b0808" rx="3"/>
-  <rect x="408" y="4" width="126" height="16" fill="#3b0808" rx="3"/>
+  <rect x="6"   y="4" width="126" height="16" fill="#9C4410" rx="3"/>
+  <rect x="140" y="4" width="126" height="16" fill="#9C4410" rx="3"/>
+  <rect x="274" y="4" width="126" height="16" fill="#9C4410" rx="3"/>
+  <rect x="408" y="4" width="126" height="16" fill="#9C4410" rx="3"/>
   <rect x="542" y="4" width="132" height="16" fill="#1a5e20" rx="3"/>
   <text x="69"  y="15" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold">1. Clic → punto esquina</text>
   <text x="203" y="15" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold">2. Clic+arrastrar → curva</text>
@@ -1815,15 +1815,15 @@ textarea:focus-visible {
   <text x="608" y="15" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold">5. Resultado final ✓</text>
 
   <!-- Step 1: two corner anchors + line (y range 50..100) -->
-  <rect x="22"  y="85" width="12" height="12" fill="white" stroke="#3b0808" stroke-width="2" rx="1"/>
-  <rect x="100" y="85" width="12" height="12" fill="white" stroke="#3b0808" stroke-width="2" rx="1"/>
-  <line x1="28" y1="91" x2="106" y2="91" stroke="#3b0808" stroke-width="2"/>
+  <rect x="22"  y="85" width="12" height="12" fill="white" stroke="#9C4410" stroke-width="2" rx="1"/>
+  <rect x="100" y="85" width="12" height="12" fill="white" stroke="#9C4410" stroke-width="2" rx="1"/>
+  <line x1="28" y1="91" x2="106" y2="91" stroke="#9C4410" stroke-width="2"/>
   <text x="69" y="118" text-anchor="middle" fill="#888" font-size="9">Trazado recto</text>
 
   <!-- Step 2: curve + handles (y range 40..100) -->
-  <path d="M150,104 C 166,48 218,48 234,104" fill="none" stroke="#3b0808" stroke-width="2.5"/>
-  <rect x="143" y="97"  width="12" height="12" fill="white" stroke="#3b0808" stroke-width="2" rx="1"/>
-  <rect x="227" y="97"  width="12" height="12" fill="white" stroke="#3b0808" stroke-width="2" rx="1"/>
+  <path d="M150,104 C 166,48 218,48 234,104" fill="none" stroke="#9C4410" stroke-width="2.5"/>
+  <rect x="143" y="97"  width="12" height="12" fill="white" stroke="#9C4410" stroke-width="2" rx="1"/>
+  <rect x="227" y="97"  width="12" height="12" fill="white" stroke="#9C4410" stroke-width="2" rx="1"/>
   <line x1="149" y1="103" x2="166" y2="48" stroke="#e8734a" stroke-width="1.2" stroke-dasharray="3,2"/>
   <line x1="233" y1="103" x2="218" y2="48" stroke="#e8734a" stroke-width="1.2" stroke-dasharray="3,2"/>
   <circle cx="166" cy="48" r="5" fill="white" stroke="#e8734a" stroke-width="2"/>
@@ -1831,25 +1831,25 @@ textarea:focus-visible {
   <text x="192" y="118" text-anchor="middle" fill="#888" font-size="9">Curva suave</text>
 
   <!-- Step 3: broken handle (y range 40..104) -->
-  <path d="M282,104 C 298,48 350,48 366,104" fill="none" stroke="#3b0808" stroke-width="2.5"/>
-  <rect x="275" y="97"  width="12" height="12" fill="white" stroke="#3b0808" stroke-width="2" rx="1"/>
-  <rect x="359" y="97"  width="12" height="12" fill="#3b0808" stroke="#3b0808" stroke-width="2" rx="1"/>
+  <path d="M282,104 C 298,48 350,48 366,104" fill="none" stroke="#9C4410" stroke-width="2.5"/>
+  <rect x="275" y="97"  width="12" height="12" fill="white" stroke="#9C4410" stroke-width="2" rx="1"/>
+  <rect x="359" y="97"  width="12" height="12" fill="#9C4410" stroke="#9C4410" stroke-width="2" rx="1"/>
   <line x1="365" y1="103" x2="350" y2="48" stroke="#999" stroke-width="1" stroke-dasharray="2,2" opacity="0.5"/>
   <line x1="365" y1="103" x2="382" y2="70" stroke="#e8734a" stroke-width="1.5" stroke-dasharray="3,2"/>
   <circle cx="382" cy="70" r="5" fill="white" stroke="#e8734a" stroke-width="2"/>
   <text x="328" y="118" text-anchor="middle" fill="#e8734a" font-size="9">Alt+clic = asa rota</text>
 
   <!-- Step 4: close path (y range 50..108) -->
-  <path d="M416,98 C 432,52 482,52 498,98 C 488,106 428,106 416,98 Z" fill="#fce8e8" stroke="#3b0808" stroke-width="2.5"/>
-  <rect x="409" y="93"  width="12" height="12" fill="white" stroke="#3b0808" stroke-width="2" rx="1"/>
+  <path d="M416,98 C 432,52 482,52 498,98 C 488,106 428,106 416,98 Z" fill="#fce8e8" stroke="#9C4410" stroke-width="2.5"/>
+  <rect x="409" y="93"  width="12" height="12" fill="white" stroke="#9C4410" stroke-width="2" rx="1"/>
   <circle cx="415" cy="99" r="7" fill="none" stroke="#0080ff" stroke-width="2"/>
   <text x="461" y="118" text-anchor="middle" fill="#0080ff" font-size="9">Clic en el primer punto</text>
 
   <!-- Step 5: clean result (y range 50..108) -->
-  <path d="M548,98 C 564,52 614,52 630,98 C 620,106 560,106 548,98 Z" fill="#e8c0c0" stroke="#3b0808" stroke-width="2.5"/>
-  <rect x="541" y="93"  width="12" height="12" fill="white" stroke="#3b0808" stroke-width="2" rx="1"/>
-  <rect x="623" y="93"  width="12" height="12" fill="white" stroke="#3b0808" stroke-width="2" rx="1"/>
-  <rect x="584" y="45"  width="12" height="12" fill="white" stroke="#3b0808" stroke-width="2" rx="1"/>
+  <path d="M548,98 C 564,52 614,52 630,98 C 620,106 560,106 548,98 Z" fill="#e8c0c0" stroke="#9C4410" stroke-width="2.5"/>
+  <rect x="541" y="93"  width="12" height="12" fill="white" stroke="#9C4410" stroke-width="2" rx="1"/>
+  <rect x="623" y="93"  width="12" height="12" fill="white" stroke="#9C4410" stroke-width="2" rx="1"/>
+  <rect x="584" y="45"  width="12" height="12" fill="white" stroke="#9C4410" stroke-width="2" rx="1"/>
   <text x="600" y="118" text-anchor="middle" fill="#1a5e20" font-size="9" font-weight="bold">Trazado cerrado ✓</text>
 </svg>
 </div>
@@ -1994,15 +1994,15 @@ textarea:focus-visible {
 
 <div class="panel" style="margin-bottom:20px;">
   <h3 class="panel-title">✏️ Lápiz vs. Pincel Artístico vs. Blob Brush</h3>
-  <svg viewBox="0 0 680 165" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;font-family:Inter,sans-serif;">
+  <svg viewBox="0 0 680 165" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;font-family:Inter,sans-serif;">
   <!-- ── Lápiz ── -->
   <rect x="6"   y="4" width="210" height="16" fill="#555" rx="3"/>
   <text x="111" y="15" text-anchor="middle" fill="white" font-size="9" font-weight="bold">Lápiz [N] — Trazado abierto</text>
   <!-- Trazado sinuoso: MÁXIMO y=112 -->
-  <path d="M20,90 C 46,52 74,108 110,66 C 138,35 165,95 208,72" fill="none" stroke="#3b0808" stroke-width="2.5" stroke-linecap="round"/>
-  <rect x="13" y="83"  width="12" height="12" fill="white" stroke="#3b0808" stroke-width="1.5" rx="1"/>
-  <rect x="103" y="59" width="12" height="12" fill="white" stroke="#3b0808" stroke-width="1.5" rx="1"/>
-  <rect x="202" y="65" width="12" height="12" fill="white" stroke="#3b0808" stroke-width="1.5" rx="1"/>
+  <path d="M20,90 C 46,52 74,108 110,66 C 138,35 165,95 208,72" fill="none" stroke="#9C4410" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="13" y="83"  width="12" height="12" fill="white" stroke="#9C4410" stroke-width="1.5" rx="1"/>
+  <rect x="103" y="59" width="12" height="12" fill="white" stroke="#9C4410" stroke-width="1.5" rx="1"/>
+  <rect x="202" y="65" width="12" height="12" fill="white" stroke="#9C4410" stroke-width="1.5" rx="1"/>
   <!-- Labels: empieza en y=128, separación 14px -->
   <text x="111" y="130" text-anchor="middle" fill="#555"  font-size="9.5">Trazado sin relleno, editable</text>
   <text x="111" y="145" text-anchor="middle" fill="#aaa"  font-size="8.5">Sin fill · solo trazo · puntos editables</text>
@@ -2139,12 +2139,12 @@ textarea:focus-visible {
 
 <div class="panel" style="margin-bottom:20px;">
   <h3 class="panel-title">T Cuatro Tipos de Texto en Illustrator</h3>
-  <svg viewBox="0 0 680 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;font-family:Inter,sans-serif;">
+  <svg viewBox="0 0 680 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;font-family:Inter,sans-serif;">
   <!-- 1 Punto -->
-  <rect x="6"   y="4" width="154" height="16" fill="#3b0808" rx="3"/>
+  <rect x="6"   y="4" width="154" height="16" fill="#9C4410" rx="3"/>
   <text x="83"  y="15" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold">Texto de punto [T + clic]</text>
-  <text x="15"  y="64" fill="#3b0808" font-size="24" font-weight="bold" font-family="Georgia,serif">Hola</text>
-  <text x="15"  y="89" fill="#3b0808" font-size="24" font-weight="bold" font-family="Georgia,serif">Mundo</text>
+  <text x="15"  y="64" fill="#9C4410" font-size="24" font-weight="bold" font-family="Georgia,serif">Hola</text>
+  <text x="15"  y="89" fill="#9C4410" font-size="24" font-weight="bold" font-family="Georgia,serif">Mundo</text>
   <line x1="15" y1="42" x2="15" y2="96" stroke="#0080ff" stroke-width="1.8"/>
   <circle cx="15" cy="42" r="4.5" fill="#0080ff"/>
   <text x="83"  y="124" text-anchor="middle" fill="#888" font-size="9">Crece sin límite →</text>
@@ -2153,9 +2153,9 @@ textarea:focus-visible {
   <rect x="174" y="4" width="154" height="16" fill="#1a4080" rx="3"/>
   <text x="251" y="15" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold">Texto de área [T + arrastrar]</text>
   <rect x="177" y="28" width="148" height="90" fill="none" stroke="#1a4080" stroke-width="1.8" stroke-dasharray="5,3" rx="2"/>
-  <text x="182" y="50"  fill="#3b0808" font-size="12" font-family="Georgia,serif">Texto que fluye</text>
-  <text x="182" y="66"  fill="#3b0808" font-size="12" font-family="Georgia,serif">dentro del bloque</text>
-  <text x="182" y="82"  fill="#3b0808" font-size="12" font-family="Georgia,serif">y se ajusta a él</text>
+  <text x="182" y="50"  fill="#9C4410" font-size="12" font-family="Georgia,serif">Texto que fluye</text>
+  <text x="182" y="66"  fill="#9C4410" font-size="12" font-family="Georgia,serif">dentro del bloque</text>
+  <text x="182" y="82"  fill="#9C4410" font-size="12" font-family="Georgia,serif">y se ajusta a él</text>
   <text x="182" y="98"  fill="#aaa"    font-size="11" font-family="Georgia,serif">automáticamente.</text>
   <text x="251" y="130" text-anchor="middle" fill="#888" font-size="9">Fluye en el contenedor</text>
   <text x="251" y="146" text-anchor="middle" fill="#aaa" font-size="8.5">Ideal para párrafos</text>
@@ -2164,7 +2164,7 @@ textarea:focus-visible {
   <text x="419" y="15" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold">Texto en trazado</text>
   <path d="M356,110 C 374,46 464,46 482,110" fill="none" stroke="#6e4c00" stroke-width="1.5" stroke-dasharray="4,3" id="tp1b"/>
   <path d="M356,110 C 374,46 464,46 482,110" fill="none" stroke="none" id="tp1"/>
-  <text font-size="11.5" fill="#3b0808" font-family="Georgia,serif">
+  <text font-size="11.5" fill="#9C4410" font-family="Georgia,serif">
     <textPath href="#tp1" startOffset="5%">Texto sigue la curva...</textPath>
   </text>
   <text x="419" y="130" text-anchor="middle" fill="#888" font-size="9">Fluye por el trazado</text>
@@ -2172,10 +2172,10 @@ textarea:focus-visible {
   <!-- 4 Touch Type -->
   <rect x="510" y="4" width="164" height="16" fill="#600060" rx="3"/>
   <text x="592" y="15" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold">Touch Type [Shift+T]</text>
-  <text x="520" y="86" fill="#3b0808" font-size="36" font-weight="bold" font-family="Georgia,serif">A</text>
-  <text x="550" y="96" fill="#3b0808" font-size="30" font-weight="bold" font-family="Georgia,serif" transform="rotate(-12,564,86)">I</text>
-  <text x="570" y="76" fill="#3b0808" font-size="26" font-weight="bold" font-family="Georgia,serif" transform="scale(1,1.3) translate(0,-19)">R</text>
-  <text x="596" y="90" fill="#3b0808" font-size="32" font-weight="bold" font-family="Georgia,serif">E</text>
+  <text x="520" y="86" fill="#9C4410" font-size="36" font-weight="bold" font-family="Georgia,serif">A</text>
+  <text x="550" y="96" fill="#9C4410" font-size="30" font-weight="bold" font-family="Georgia,serif" transform="rotate(-12,564,86)">I</text>
+  <text x="570" y="76" fill="#9C4410" font-size="26" font-weight="bold" font-family="Georgia,serif" transform="scale(1,1.3) translate(0,-19)">R</text>
+  <text x="596" y="90" fill="#9C4410" font-size="32" font-weight="bold" font-family="Georgia,serif">E</text>
   <rect x="518" y="50" width="34" height="40" fill="none" stroke="#0080ff" stroke-width="1.5" stroke-dasharray="3,2"/>
   <text x="592" y="130" text-anchor="middle" fill="#888" font-size="9">Letras individ. editables</text>
   <text x="592" y="146" text-anchor="middle" fill="#aaa" font-size="8.5">Texto sigue editable</text>
@@ -2294,43 +2294,43 @@ textarea:focus-visible {
 
 <div class="panel" style="margin-bottom:20px;">
   <h3 class="panel-title">⚙️ Las 5 Operaciones del Buscatrazos</h3>
-  <svg viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;font-family:Inter,sans-serif;">
+  <svg viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;font-family:Inter,sans-serif;">
     <!-- UNIR -->
-    <text x="68"  y="15" text-anchor="middle" fill="#3b0808" font-size="11" font-weight="bold">Unir</text>
+    <text x="68"  y="15" text-anchor="middle" fill="#9C4410" font-size="11" font-weight="bold">Unir</text>
     <circle cx="50"  cy="72" r="32" fill="#fce8e8" stroke="#ccc" stroke-width="1" opacity="0.6"/>
     <circle cx="82"  cy="72" r="32" fill="#fce8e8" stroke="#ccc" stroke-width="1" opacity="0.6"/>
-    <path d="M50,40 A32,32 0 1,0 50,104 A32,32 0 0,0 82,104 A32,32 0 1,0 82,40 A32,32 0 0,0 50,40 Z" fill="#c06060" stroke="#3b0808" stroke-width="2"/>
+    <path d="M50,40 A32,32 0 1,0 50,104 A32,32 0 0,0 82,104 A32,32 0 1,0 82,40 A32,32 0 0,0 50,40 Z" fill="#c06060" stroke="#9C4410" stroke-width="2"/>
     <text x="68"  y="128" text-anchor="middle" fill="#888" font-size="9">Una forma unida</text>
     <!-- MENOS FRENTE -->
-    <text x="204" y="15" text-anchor="middle" fill="#3b0808" font-size="11" font-weight="bold">Menos frente</text>
+    <text x="204" y="15" text-anchor="middle" fill="#9C4410" font-size="11" font-weight="bold">Menos frente</text>
     <clipPath id="mf"><circle cx="172" cy="72" r="32"/></clipPath>
-    <circle cx="172" cy="72" r="32" fill="#c06060" stroke="#3b0808" stroke-width="2"/>
+    <circle cx="172" cy="72" r="32" fill="#c06060" stroke="#9C4410" stroke-width="2"/>
     <circle cx="204" cy="72" r="32" fill="#fdfafa" stroke="none" clip-path="url(#mf)"/>
-    <circle cx="204" cy="72" r="32" fill="none"    stroke="#3b0808" stroke-width="1.2" clip-path="url(#mf)" stroke-dasharray="4,3" opacity="0.5"/>
+    <circle cx="204" cy="72" r="32" fill="none"    stroke="#9C4410" stroke-width="1.2" clip-path="url(#mf)" stroke-dasharray="4,3" opacity="0.5"/>
     <circle cx="204" cy="72" r="32" fill="none"    stroke="#ccc" stroke-width="1" opacity="0.4"/>
     <text x="204" y="128" text-anchor="middle" fill="#888" font-size="9">Recorta la forma del frente</text>
     <!-- INTERSECCION -->
-    <text x="340" y="15" text-anchor="middle" fill="#3b0808" font-size="11" font-weight="bold">Intersección</text>
+    <text x="340" y="15" text-anchor="middle" fill="#9C4410" font-size="11" font-weight="bold">Intersección</text>
     <circle cx="316" cy="72" r="32" fill="#fce8e8" stroke="#ccc" stroke-width="1" opacity="0.35"/>
     <circle cx="364" cy="72" r="32" fill="#fce8e8" stroke="#ccc" stroke-width="1" opacity="0.35"/>
     <clipPath id="ic"><circle cx="364" cy="72" r="32"/></clipPath>
-    <circle cx="316" cy="72" r="32" fill="#c06060" stroke="#3b0808" stroke-width="2" clip-path="url(#ic)"/>
+    <circle cx="316" cy="72" r="32" fill="#c06060" stroke="#9C4410" stroke-width="2" clip-path="url(#ic)"/>
     <text x="340" y="128" text-anchor="middle" fill="#888" font-size="9">Solo la zona en común</text>
     <!-- EXCLUIR -->
-    <text x="476" y="15" text-anchor="middle" fill="#3b0808" font-size="11" font-weight="bold">Excluir</text>
+    <text x="476" y="15" text-anchor="middle" fill="#9C4410" font-size="11" font-weight="bold">Excluir</text>
     <clipPath id="xr"><circle cx="508" cy="72" r="32"/></clipPath>
     <clipPath id="xl"><circle cx="452" cy="72" r="32"/></clipPath>
-    <circle cx="452" cy="72" r="32" fill="#c06060" stroke="#3b0808" stroke-width="2"/>
-    <circle cx="508" cy="72" r="32" fill="#c06060" stroke="#3b0808" stroke-width="2"/>
+    <circle cx="452" cy="72" r="32" fill="#c06060" stroke="#9C4410" stroke-width="2"/>
+    <circle cx="508" cy="72" r="32" fill="#c06060" stroke="#9C4410" stroke-width="2"/>
     <circle cx="452" cy="72" r="32" fill="#fdfafa" clip-path="url(#xr)" stroke="none"/>
     <circle cx="508" cy="72" r="32" fill="#fdfafa" clip-path="url(#xl)" stroke="none"/>
     <text x="476" y="128" text-anchor="middle" fill="#888" font-size="9">Zona común = agujero</text>
     <!-- DIVIDIR -->
-    <text x="612" y="15" text-anchor="middle" fill="#3b0808" font-size="11" font-weight="bold">Dividir</text>
+    <text x="612" y="15" text-anchor="middle" fill="#9C4410" font-size="11" font-weight="bold">Dividir</text>
     <clipPath id="dr"><circle cx="644" cy="72" r="32"/></clipPath>
-    <circle cx="584" cy="72" r="32" fill="#c06060" stroke="#3b0808" stroke-width="2"/>
-    <circle cx="644" cy="72" r="32" fill="#e8c060" stroke="#3b0808" stroke-width="2"/>
-    <circle cx="584" cy="72" r="32" fill="#e8c060" stroke="#3b0808" stroke-width="1.5" clip-path="url(#dr)"/>
+    <circle cx="584" cy="72" r="32" fill="#c06060" stroke="#9C4410" stroke-width="2"/>
+    <circle cx="644" cy="72" r="32" fill="#e8c060" stroke="#9C4410" stroke-width="2"/>
+    <circle cx="584" cy="72" r="32" fill="#e8c060" stroke="#9C4410" stroke-width="1.5" clip-path="url(#dr)"/>
     <text x="612" y="128" text-anchor="middle" fill="#888" font-size="9">Cada zona = objeto propio</text>
   </svg>
 </div>
@@ -2483,38 +2483,38 @@ textarea:focus-visible {
 
 <div class="panel" style="margin-bottom:20px;">
   <h3 class="panel-title">↻ Las Transformaciones en Acción</h3>
-  <svg viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;font-family:Inter,sans-serif;">
+  <svg viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;font-family:Inter,sans-serif;">
     <!-- Rotar -->
-    <text x="68"  y="14" text-anchor="middle" fill="#3b0808" font-size="11" font-weight="bold">Rotar [R]</text>
+    <text x="68"  y="14" text-anchor="middle" fill="#9C4410" font-size="11" font-weight="bold">Rotar [R]</text>
     <rect x="32" y="40" width="60" height="60" fill="#fce8e8" stroke="#ccc" stroke-width="1" rx="3" opacity="0.4"/>
-    <rect x="32" y="40" width="60" height="60" fill="#e8c0c0" stroke="#3b0808" stroke-width="2" rx="3" transform="rotate(28,62,70)"/>
-    <circle cx="62" cy="70" r="4.5" fill="#3b0808"/>
-    <path d="M76,48 A20,20 0 0,1 83,61" fill="none" stroke="#3b0808" stroke-width="1.8" stroke-linecap="round"/>
-    <polygon points="83,55 83,67 76,61" fill="#3b0808"/>
+    <rect x="32" y="40" width="60" height="60" fill="#e8c0c0" stroke="#9C4410" stroke-width="2" rx="3" transform="rotate(28,62,70)"/>
+    <circle cx="62" cy="70" r="4.5" fill="#9C4410"/>
+    <path d="M76,48 A20,20 0 0,1 83,61" fill="none" stroke="#9C4410" stroke-width="1.8" stroke-linecap="round"/>
+    <polygon points="83,55 83,67 76,61" fill="#9C4410"/>
     <text x="68"  y="128" text-anchor="middle" fill="#888" font-size="9">Pivote central</text>
     <!-- Escalar -->
-    <text x="204" y="14" text-anchor="middle" fill="#3b0808" font-size="11" font-weight="bold">Escalar [S]</text>
+    <text x="204" y="14" text-anchor="middle" fill="#9C4410" font-size="11" font-weight="bold">Escalar [S]</text>
     <rect x="178" y="62" width="22" height="22" fill="#fce8e8" stroke="#ccc" stroke-width="1" rx="2" opacity="0.5"/>
-    <rect x="162" y="42" width="84" height="68" fill="#e8c0c0" stroke="#3b0808" stroke-width="2" rx="3"/>
+    <rect x="162" y="42" width="84" height="68" fill="#e8c0c0" stroke="#9C4410" stroke-width="2" rx="3"/>
     <line x1="162" y1="42" x2="148" y2="28" stroke="#aaa" stroke-width="1" stroke-dasharray="3,2"/>
     <line x1="246" y1="42" x2="260" y2="28" stroke="#aaa" stroke-width="1" stroke-dasharray="3,2"/>
     <line x1="246" y1="110" x2="260" y2="124" stroke="#aaa" stroke-width="1" stroke-dasharray="3,2"/>
     <text x="204" y="128" text-anchor="middle" fill="#888" font-size="9">Shift = mantener proporción</text>
     <!-- Reflejar -->
-    <text x="340" y="14" text-anchor="middle" fill="#3b0808" font-size="11" font-weight="bold">Reflejar [O]</text>
+    <text x="340" y="14" text-anchor="middle" fill="#9C4410" font-size="11" font-weight="bold">Reflejar [O]</text>
     <path d="M298,108 L322,42 L342,78 Z" fill="#fce8e8" stroke="#ccc" stroke-width="1" opacity="0.5"/>
-    <line x1="340" y1="28" x2="340" y2="118" stroke="#3b0808" stroke-width="1.8" stroke-dasharray="5,3"/>
-    <path d="M382,108 L358,42 L338,78 Z" fill="#e8c0c0" stroke="#3b0808" stroke-width="2"/>
+    <line x1="340" y1="28" x2="340" y2="118" stroke="#9C4410" stroke-width="1.8" stroke-dasharray="5,3"/>
+    <path d="M382,108 L358,42 L338,78 Z" fill="#e8c0c0" stroke="#9C4410" stroke-width="2"/>
     <text x="340" y="128" text-anchor="middle" fill="#888" font-size="9">Eje de reflexión</text>
     <!-- Inclinar -->
-    <text x="476" y="14" text-anchor="middle" fill="#3b0808" font-size="11" font-weight="bold">Inclinar</text>
+    <text x="476" y="14" text-anchor="middle" fill="#9C4410" font-size="11" font-weight="bold">Inclinar</text>
     <rect x="448" y="48" width="56" height="56" fill="#fce8e8" stroke="#ccc" stroke-width="1" opacity="0.4" rx="3"/>
-    <polygon points="465,48 527,48 511,104 449,104" fill="#e8c0c0" stroke="#3b0808" stroke-width="2"/>
+    <polygon points="465,48 527,48 511,104 449,104" fill="#e8c0c0" stroke="#9C4410" stroke-width="2"/>
     <text x="476" y="128" text-anchor="middle" fill="#888" font-size="9">Sesgo en eje H o V</text>
     <!-- Anchura -->
-    <text x="612" y="14" text-anchor="middle" fill="#3b0808" font-size="11" font-weight="bold">Anchura [W]</text>
+    <text x="612" y="14" text-anchor="middle" fill="#9C4410" font-size="11" font-weight="bold">Anchura [W]</text>
     <path d="M560,90 C 576,90 620,55 660,90" fill="none" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
-    <path d="M560,90 C 576,78 620,36 660,90 C 648,97 580,102 560,90 Z" fill="#e8c0c0" stroke="#3b0808" stroke-width="2"/>
+    <path d="M560,90 C 576,78 620,36 660,90 C 648,97 580,102 560,90 Z" fill="#e8c0c0" stroke="#9C4410" stroke-width="2"/>
     <circle cx="610" cy="52" r="5.5" fill="#e8734a" stroke="white" stroke-width="1.5"/>
     <line x1="610" y1="46" x2="610" y2="28" stroke="#e8734a" stroke-width="1.5" stroke-dasharray="3,2"/>
     <text x="612" y="128" text-anchor="middle" fill="#888" font-size="9">Grosor variable en trazo</text>
@@ -2624,7 +2624,7 @@ textarea:focus-visible {
 
 <div class="panel" style="margin-bottom:20px;">
   <h3 class="panel-title">🖼️ Flujo de Trabajo: Boceto → Vector Editable</h3>
-  <svg viewBox="0 0 680 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;font-family:Inter,sans-serif;">
+  <svg viewBox="0 0 680 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;font-family:Inter,sans-serif;">
   <!-- Step boxes: y=15, h=100 → bottom at 115. Labels at y=128. -->
   <!-- 1: Scan/photo -->
   <rect x="10"  y="15" width="108" height="100" fill="#f0ece8" stroke="#aaa" stroke-width="1.5" rx="5"/>
@@ -2633,29 +2633,29 @@ textarea:focus-visible {
   <text x="64"  y="97"  text-anchor="middle" fill="#aaa" font-size="9">JPG · PNG</text>
   <text x="64"  y="128" text-anchor="middle" fill="#888" font-size="8.5">① Origen</text>
   <!-- Arrow 1 -->
-  <line x1="122" y1="65" x2="144" y2="65" stroke="#3b0808" stroke-width="2"/>
-  <polygon points="144,59 156,65 144,71" fill="#3b0808"/>
-  <text x="139" y="80" text-anchor="middle" fill="#3b0808" font-size="8">Colocar</text>
+  <line x1="122" y1="65" x2="144" y2="65" stroke="#9C4410" stroke-width="2"/>
+  <polygon points="144,59 156,65 144,71" fill="#9C4410"/>
+  <text x="139" y="80" text-anchor="middle" fill="#9C4410" font-size="8">Colocar</text>
   <!-- 2: In AI -->
-  <rect x="158" y="15" width="108" height="100" fill="#fef0f0" stroke="#3b0808" stroke-width="2" rx="5"/>
-  <text x="212" y="42"  text-anchor="middle" fill="#3b0808" font-size="10" font-weight="bold">Illustrator</text>
+  <rect x="158" y="15" width="108" height="100" fill="#fef0f0" stroke="#9C4410" stroke-width="2" rx="5"/>
+  <text x="212" y="42"  text-anchor="middle" fill="#9C4410" font-size="10" font-weight="bold">Illustrator</text>
   <rect x="168" y="50" width="88" height="54" fill="#e8c0c0" rx="3"/>
-  <text x="212" y="82"  text-anchor="middle" fill="#3b0808" font-size="9">Imagen colocada</text>
+  <text x="212" y="82"  text-anchor="middle" fill="#9C4410" font-size="9">Imagen colocada</text>
   <text x="212" y="128" text-anchor="middle" fill="#888" font-size="8.5">② Importar</text>
   <!-- Arrow 2 -->
-  <line x1="270" y1="65" x2="292" y2="65" stroke="#3b0808" stroke-width="2"/>
-  <polygon points="292,59 304,65 292,71" fill="#3b0808"/>
-  <text x="287" y="80" text-anchor="middle" fill="#3b0808" font-size="8">Image Trace</text>
+  <line x1="270" y1="65" x2="292" y2="65" stroke="#9C4410" stroke-width="2"/>
+  <polygon points="292,59 304,65 292,71" fill="#9C4410"/>
+  <text x="287" y="80" text-anchor="middle" fill="#9C4410" font-size="8">Image Trace</text>
   <!-- 3: Preview -->
-  <rect x="306" y="15" width="108" height="100" fill="#fef0f0" stroke="#3b0808" stroke-width="2" rx="5"/>
-  <path d="M324,105 C 329,82 338,68 349,73 C 360,78 363,60 374,55 C 385,50 392,67 398,76 C 403,84 406,96 408,105 Z" fill="#c06060" stroke="#3b0808" stroke-width="1.5"/>
-  <circle cx="345" cy="54" r="13" fill="#c06060" stroke="#3b0808" stroke-width="1.5"/>
-  <text x="380" y="45"  fill="#3b0808" font-size="12" font-weight="bold" font-family="Georgia,serif">Ai</text>
+  <rect x="306" y="15" width="108" height="100" fill="#fef0f0" stroke="#9C4410" stroke-width="2" rx="5"/>
+  <path d="M324,105 C 329,82 338,68 349,73 C 360,78 363,60 374,55 C 385,50 392,67 398,76 C 403,84 406,96 408,105 Z" fill="#c06060" stroke="#9C4410" stroke-width="1.5"/>
+  <circle cx="345" cy="54" r="13" fill="#c06060" stroke="#9C4410" stroke-width="1.5"/>
+  <text x="380" y="45"  fill="#9C4410" font-size="12" font-weight="bold" font-family="Georgia,serif">Ai</text>
   <text x="360" y="128" text-anchor="middle" fill="#888" font-size="8.5">③ Vista previa</text>
   <!-- Arrow 3 -->
-  <line x1="418" y1="65" x2="440" y2="65" stroke="#3b0808" stroke-width="2"/>
-  <polygon points="440,59 452,65 440,71" fill="#3b0808"/>
-  <text x="435" y="80" text-anchor="middle" fill="#3b0808" font-size="8">Expandir</text>
+  <line x1="418" y1="65" x2="440" y2="65" stroke="#9C4410" stroke-width="2"/>
+  <polygon points="440,59 452,65 440,71" fill="#9C4410"/>
+  <text x="435" y="80" text-anchor="middle" fill="#9C4410" font-size="8">Expandir</text>
   <!-- 4: Vectors -->
   <rect x="454" y="15" width="108" height="100" fill="#eefaee" stroke="#1a6030" stroke-width="2" rx="5"/>
   <path d="M472,105 C 477,82 486,68 497,73 C 508,78 511,60 522,55 C 533,50 540,67 546,76 C 551,84 554,96 556,105 Z" fill="#40a060" stroke="#1a6030" stroke-width="2"/>
@@ -2664,9 +2664,9 @@ textarea:focus-visible {
   <rect x="537" y="69" width="10" height="10" fill="white" stroke="#1a6030" stroke-width="1.5" rx="1"/>
   <text x="508" y="128" text-anchor="middle" fill="#1a6030" font-size="8.5" font-weight="bold">④ Vectores ✓</text>
   <!-- Arrow 4 -->
-  <line x1="566" y1="65" x2="588" y2="65" stroke="#3b0808" stroke-width="2"/>
-  <polygon points="588,59 600,65 588,71" fill="#3b0808"/>
-  <text x="583" y="80" text-anchor="middle" fill="#3b0808" font-size="8">Guardar</text>
+  <line x1="566" y1="65" x2="588" y2="65" stroke="#9C4410" stroke-width="2"/>
+  <polygon points="588,59 600,65 588,71" fill="#9C4410"/>
+  <text x="583" y="80" text-anchor="middle" fill="#9C4410" font-size="8">Guardar</text>
   <!-- 5: File types -->
   <rect x="602" y="15" width="68" height="100" fill="#eeeeff" stroke="#444" stroke-width="1.5" rx="5"/>
   <text x="636" y="52"  text-anchor="middle" fill="#333" font-size="15" font-weight="bold">.ai</text>
@@ -3224,35 +3224,35 @@ textarea:focus-visible {
     <!-- Row 1 tools -->
     <text x="20" y="22" fill="#888" font-size="9">HERRAMIENTAS</text>
     <!-- V -->
-    <rect x="20"  y="28" width="36" height="36" fill="#3b0808" rx="5"/>
+    <rect x="20"  y="28" width="36" height="36" fill="#9C4410" rx="5"/>
     <text x="38"  y="51" text-anchor="middle" fill="white" font-size="16" font-weight="bold">V</text>
     <text x="38"  y="74" text-anchor="middle" fill="#aaa" font-size="8">Selección</text>
     <!-- A -->
-    <rect x="62"  y="28" width="36" height="36" fill="#3b0808" rx="5"/>
+    <rect x="62"  y="28" width="36" height="36" fill="#9C4410" rx="5"/>
     <text x="80"  y="51" text-anchor="middle" fill="white" font-size="16" font-weight="bold">A</text>
     <text x="80"  y="74" text-anchor="middle" fill="#aaa" font-size="8">Sel. Directa</text>
     <!-- P -->
-    <rect x="104" y="28" width="36" height="36" fill="#3b0808" rx="5"/>
+    <rect x="104" y="28" width="36" height="36" fill="#9C4410" rx="5"/>
     <text x="122" y="51" text-anchor="middle" fill="white" font-size="16" font-weight="bold">P</text>
     <text x="122" y="74" text-anchor="middle" fill="#aaa" font-size="8">Pluma</text>
     <!-- M -->
-    <rect x="146" y="28" width="36" height="36" fill="#3b0808" rx="5"/>
+    <rect x="146" y="28" width="36" height="36" fill="#9C4410" rx="5"/>
     <text x="164" y="51" text-anchor="middle" fill="white" font-size="16" font-weight="bold">M</text>
     <text x="164" y="74" text-anchor="middle" fill="#aaa" font-size="8">Rectángulo</text>
     <!-- L -->
-    <rect x="188" y="28" width="36" height="36" fill="#3b0808" rx="5"/>
+    <rect x="188" y="28" width="36" height="36" fill="#9C4410" rx="5"/>
     <text x="206" y="51" text-anchor="middle" fill="white" font-size="16" font-weight="bold">L</text>
     <text x="206" y="74" text-anchor="middle" fill="#aaa" font-size="8">Elipse</text>
     <!-- T -->
-    <rect x="230" y="28" width="36" height="36" fill="#3b0808" rx="5"/>
+    <rect x="230" y="28" width="36" height="36" fill="#9C4410" rx="5"/>
     <text x="248" y="51" text-anchor="middle" fill="white" font-size="16" font-weight="bold">T</text>
     <text x="248" y="74" text-anchor="middle" fill="#aaa" font-size="8">Texto</text>
     <!-- B -->
-    <rect x="272" y="28" width="36" height="36" fill="#3b0808" rx="5"/>
+    <rect x="272" y="28" width="36" height="36" fill="#9C4410" rx="5"/>
     <text x="290" y="51" text-anchor="middle" fill="white" font-size="16" font-weight="bold">B</text>
     <text x="290" y="74" text-anchor="middle" fill="#aaa" font-size="8">Blob Brush</text>
     <!-- Z -->
-    <rect x="314" y="28" width="36" height="36" fill="#3b0808" rx="5"/>
+    <rect x="314" y="28" width="36" height="36" fill="#9C4410" rx="5"/>
     <text x="332" y="51" text-anchor="middle" fill="white" font-size="16" font-weight="bold">Z</text>
     <text x="332" y="74" text-anchor="middle" fill="#aaa" font-size="8">Zoom</text>
     <!-- Row 2: Cmd combos -->
@@ -3465,47 +3465,47 @@ textarea:focus-visible {
 
 <div class="panel" style="margin-bottom:20px;">
   <h3 class="panel-title">💡 Flujo de Trabajo Recomendado</h3>
-  <svg viewBox="0 0 680 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;font-family:Inter,sans-serif;">
+  <svg viewBox="0 0 680 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;font-family:Inter,sans-serif;">
     <!-- Step bubbles -->
-    <circle cx="52"  cy="52" r="36" fill="#fce8e8" stroke="#3b0808" stroke-width="2"/>
-    <text x="52"  y="46" text-anchor="middle" fill="#3b0808" font-size="20">📐</text>
-    <text x="52"  y="62" text-anchor="middle" fill="#3b0808" font-size="8.5" font-weight="bold">1. Boceto</text>
+    <circle cx="52"  cy="52" r="36" fill="#fce8e8" stroke="#9C4410" stroke-width="2"/>
+    <text x="52"  y="46" text-anchor="middle" fill="#9C4410" font-size="20">📐</text>
+    <text x="52"  y="62" text-anchor="middle" fill="#9C4410" font-size="8.5" font-weight="bold">1. Boceto</text>
     <text x="52"  y="100" text-anchor="middle" fill="#888" font-size="8">Papel o tablet</text>
 
-    <line x1="90" y1="52" x2="118" y2="52" stroke="#3b0808" stroke-width="2"/>
-    <polygon points="118,46 130,52 118,58" fill="#3b0808"/>
+    <line x1="90" y1="52" x2="118" y2="52" stroke="#9C4410" stroke-width="2"/>
+    <polygon points="118,46 130,52 118,58" fill="#9C4410"/>
 
-    <circle cx="166" cy="52" r="36" fill="#fce8e8" stroke="#3b0808" stroke-width="2"/>
-    <text x="166" y="46" text-anchor="middle" fill="#3b0808" font-size="20">🗂</text>
-    <text x="166" y="62" text-anchor="middle" fill="#3b0808" font-size="8.5" font-weight="bold">2. Capas</text>
+    <circle cx="166" cy="52" r="36" fill="#fce8e8" stroke="#9C4410" stroke-width="2"/>
+    <text x="166" y="46" text-anchor="middle" fill="#9C4410" font-size="20">🗂</text>
+    <text x="166" y="62" text-anchor="middle" fill="#9C4410" font-size="8.5" font-weight="bold">2. Capas</text>
     <text x="166" y="100" text-anchor="middle" fill="#888" font-size="8">Organiza antes</text>
 
-    <line x1="204" y1="52" x2="232" y2="52" stroke="#3b0808" stroke-width="2"/>
-    <polygon points="232,46 244,52 232,58" fill="#3b0808"/>
+    <line x1="204" y1="52" x2="232" y2="52" stroke="#9C4410" stroke-width="2"/>
+    <polygon points="232,46 244,52 232,58" fill="#9C4410"/>
 
-    <circle cx="280" cy="52" r="36" fill="#fce8e8" stroke="#3b0808" stroke-width="2"/>
-    <text x="280" y="46" text-anchor="middle" fill="#3b0808" font-size="20">✒️</text>
-    <text x="280" y="62" text-anchor="middle" fill="#3b0808" font-size="8.5" font-weight="bold">3. Trazado</text>
+    <circle cx="280" cy="52" r="36" fill="#fce8e8" stroke="#9C4410" stroke-width="2"/>
+    <text x="280" y="46" text-anchor="middle" fill="#9C4410" font-size="20">✒️</text>
+    <text x="280" y="62" text-anchor="middle" fill="#9C4410" font-size="8.5" font-weight="bold">3. Trazado</text>
     <text x="280" y="100" text-anchor="middle" fill="#888" font-size="8">Pluma / Calco</text>
 
-    <line x1="318" y1="52" x2="346" y2="52" stroke="#3b0808" stroke-width="2"/>
-    <polygon points="346,46 358,52 346,58" fill="#3b0808"/>
+    <line x1="318" y1="52" x2="346" y2="52" stroke="#9C4410" stroke-width="2"/>
+    <polygon points="346,46 358,52 346,58" fill="#9C4410"/>
 
-    <circle cx="394" cy="52" r="36" fill="#fce8e8" stroke="#3b0808" stroke-width="2"/>
-    <text x="394" y="46" text-anchor="middle" fill="#3b0808" font-size="20">🎨</text>
-    <text x="394" y="62" text-anchor="middle" fill="#3b0808" font-size="8.5" font-weight="bold">4. Color</text>
+    <circle cx="394" cy="52" r="36" fill="#fce8e8" stroke="#9C4410" stroke-width="2"/>
+    <text x="394" y="46" text-anchor="middle" fill="#9C4410" font-size="20">🎨</text>
+    <text x="394" y="62" text-anchor="middle" fill="#9C4410" font-size="8.5" font-weight="bold">4. Color</text>
     <text x="394" y="100" text-anchor="middle" fill="#888" font-size="8">CMYK · Pantone</text>
 
-    <line x1="432" y1="52" x2="460" y2="52" stroke="#3b0808" stroke-width="2"/>
-    <polygon points="460,46 472,52 460,58" fill="#3b0808"/>
+    <line x1="432" y1="52" x2="460" y2="52" stroke="#9C4410" stroke-width="2"/>
+    <polygon points="460,46 472,52 460,58" fill="#9C4410"/>
 
-    <circle cx="508" cy="52" r="36" fill="#fce8e8" stroke="#3b0808" stroke-width="2"/>
-    <text x="508" y="46" text-anchor="middle" fill="#3b0808" font-size="20">T</text>
-    <text x="508" y="62" text-anchor="middle" fill="#3b0808" font-size="8.5" font-weight="bold">5. Tipografía</text>
+    <circle cx="508" cy="52" r="36" fill="#fce8e8" stroke="#9C4410" stroke-width="2"/>
+    <text x="508" y="46" text-anchor="middle" fill="#9C4410" font-size="20">T</text>
+    <text x="508" y="62" text-anchor="middle" fill="#9C4410" font-size="8.5" font-weight="bold">5. Tipografía</text>
     <text x="508" y="100" text-anchor="middle" fill="#888" font-size="8">Texto a contornos</text>
 
-    <line x1="546" y1="52" x2="574" y2="52" stroke="#3b0808" stroke-width="2"/>
-    <polygon points="574,46 586,52 574,58" fill="#3b0808"/>
+    <line x1="546" y1="52" x2="574" y2="52" stroke="#9C4410" stroke-width="2"/>
+    <polygon points="574,46 586,52 574,58" fill="#9C4410"/>
 
     <circle cx="628" cy="52" r="36" fill="#e8f8e8" stroke="#1a6030" stroke-width="2.5"/>
     <text x="628" y="46" text-anchor="middle" fill="#1a6030" font-size="20">📤</text>
@@ -3576,10 +3576,10 @@ textarea:focus-visible {
                 </div>
                 <div class="layer-row">
                     <span class="layer-vis">👁</span><span class="layer-lock">🔓</span>
-                    <div class="layer-color-dot" style="background:#3b0808;"></div>
+                    <div class="layer-color-dot" style="background:#9C4410;"></div>
                     <span class="layer-name">Elementos gráficos</span><span class="layer-count">12 obj</span>
                 </div>
-                <div class="layer-row" style="opacity:0.78;">
+                <div class="layer-row" style="opacity:0.88;">
                     <span class="layer-vis" style="opacity:0.3;">👁</span><span class="layer-lock">🔓</span>
                     <div class="layer-color-dot" style="background:#888;"></div>
                     <span class="layer-name">Boceto (oculto)</span><span class="layer-count">1 obj</span>
@@ -3634,7 +3634,7 @@ textarea:focus-visible {
 
 <div class="panel" style="margin-bottom:20px;">
   <h3 class="panel-title">🗂 Cómo se Apilan las Capas</h3>
-  <svg viewBox="0 0 620 222" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;font-family:Inter,sans-serif;">
+  <svg viewBox="0 0 620 222" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;font-family:Inter,sans-serif;">
   <!-- Layer 3 top: Texto y rótulos -->
   <polygon points="310,16 492,44  492,80  310,52"  fill="#ddeeff" stroke="#3b7bcf" stroke-width="1.5"/>
   <polygon points="128,44 310,16  310,52  128,80"  fill="#c8daef" stroke="#3b7bcf" stroke-width="1.5"/>
@@ -3748,17 +3748,17 @@ textarea:focus-visible {
 
 <div class="panel" style="margin-bottom:20px;">
   <h3 class="panel-title">📖 Los Términos Más Importantes</h3>
-  <svg viewBox="0 0 680 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #e8d8d8;font-family:Inter,sans-serif;">
-    <rect x="8"   y="8"  width="82"  height="20" fill="#3b0808" rx="10"/>
+  <svg viewBox="0 0 680 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fdfafa;border-radius:6px;border:1px solid #EEDFD0;font-family:Inter,sans-serif;">
+    <rect x="8"   y="8"  width="82"  height="20" fill="#9C4410" rx="10"/>
     <text x="49"  y="21" text-anchor="middle" fill="white" font-size="9" font-weight="bold">VECTORIAL</text>
-    <text x="16"  y="44" fill="#3b0808" font-size="13" font-weight="700">Ancla</text>
-    <text x="66"  y="44" fill="#3b0808" font-size="10">Manillar</text>
-    <text x="118" y="44" fill="#3b0808" font-size="15" font-weight="800">Bézier</text>
-    <text x="16"  y="64" fill="#3b0808" font-size="10">Trazado</text>
-    <text x="66"  y="64" fill="#3b0808" font-size="12" font-weight="600">Artboard</text>
-    <text x="140" y="64" fill="#3b0808" font-size="10">Contorno</text>
-    <text x="16"  y="82" fill="#3b0808" font-size="11" font-weight="600">Compuesto</text>
-    <text x="100" y="82" fill="#3b0808" font-size="10">Segmento</text>
+    <text x="16"  y="44" fill="#9C4410" font-size="13" font-weight="700">Ancla</text>
+    <text x="66"  y="44" fill="#9C4410" font-size="10">Manillar</text>
+    <text x="118" y="44" fill="#9C4410" font-size="15" font-weight="800">Bézier</text>
+    <text x="16"  y="64" fill="#9C4410" font-size="10">Trazado</text>
+    <text x="66"  y="64" fill="#9C4410" font-size="12" font-weight="600">Artboard</text>
+    <text x="140" y="64" fill="#9C4410" font-size="10">Contorno</text>
+    <text x="16"  y="82" fill="#9C4410" font-size="11" font-weight="600">Compuesto</text>
+    <text x="100" y="82" fill="#9C4410" font-size="10">Segmento</text>
     <rect x="210" y="8"  width="60"  height="20" fill="#1a4080" rx="10"/>
     <text x="240" y="21" text-anchor="middle" fill="white" font-size="9" font-weight="bold">COLOR</text>
     <text x="216" y="44" fill="#1a4080" font-size="17" font-weight="800">CMYK</text>
@@ -3782,9 +3782,9 @@ textarea:focus-visible {
     <text x="562" y="64" fill="#600060" font-size="11" font-weight="600">Panel Capas</text>
     <text x="562" y="82" fill="#600060" font-size="10">Guías inteligentes</text>
     <text x="562" y="100" fill="#600060" font-size="10">Reglas</text>
-    <line x1="205" y1="5" x2="205" y2="125" stroke="#e8d8d8" stroke-width="1"/>
-    <line x1="354" y1="5" x2="354" y2="125" stroke="#e8d8d8" stroke-width="1"/>
-    <line x1="552" y1="5" x2="552" y2="125" stroke="#e8d8d8" stroke-width="1"/>
+    <line x1="205" y1="5" x2="205" y2="125" stroke="#EEDFD0" stroke-width="1"/>
+    <line x1="354" y1="5" x2="354" y2="125" stroke="#EEDFD0" stroke-width="1"/>
+    <line x1="552" y1="5" x2="552" y2="125" stroke="#EEDFD0" stroke-width="1"/>
     <text x="340" y="115" text-anchor="middle" fill="#ccc" font-size="8">El tamaño del texto refleja su frecuencia en examen</text>
   </svg>
 </div>
@@ -4199,7 +4199,7 @@ function buildColorWheel() {
     const c = hslToHex(i + 3, 80, 55);
     html += '<path d="M' + x1 + ',' + y1 + ' A' + rOut + ',' + rOut + ' 0 0,1 ' + x2 + ',' + y2 + ' L' + x3 + ',' + y3 + ' A' + rIn + ',' + rIn + ' 0 0,0 ' + x4 + ',' + y4 + ' Z" fill="' + c + '" stroke="' + c + '" stroke-width="0.5"/>';
   }
-  html += '<circle cx="160" cy="160" r="93" fill="#fdfafa" stroke="#e8d8d8" stroke-width="1"/>';
+  html += '<circle cx="160" cy="160" r="93" fill="#fdfafa" stroke="#EEDFD0" stroke-width="1"/>';
   html += '<g id="cwMarkers"></g>';
   html += '<circle id="cwPreview" cx="160" cy="160" r="32" fill="#000"/>';
   html += '<text id="cwPreviewHex" x="160" y="165" text-anchor="middle" fill="#fff" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">#000000</text>';
@@ -4268,7 +4268,7 @@ function cwUpdate() {
       const x = cx + rMid * Math.cos(a), y = cy + rMid * Math.sin(a);
       mh += '<circle cx="' + x + '" cy="' + y + '" r="' + (i===0?12:9) + '" fill="' + c.hex + '" stroke="#fff" stroke-width="' + (i===0?3:2) + '"/>';
       if (i === 0) {
-        mh += '<circle cx="' + x + '" cy="' + y + '" r="14" fill="none" stroke="#1a0404" stroke-width="1.5"/>';
+        mh += '<circle cx="' + x + '" cy="' + y + '" r="14" fill="none" stroke="#1F140C" stroke-width="1.5"/>';
       }
     }
     mk.innerHTML = mh;
@@ -4282,7 +4282,7 @@ function cwUpdate() {
     t.textContent = baseHex.toUpperCase();
     const rgb = hexToRgb(baseHex);
     const yiq = (rgb[0]*299 + rgb[1]*587 + rgb[2]*114) / 1000;
-    t.setAttribute('fill', yiq >= 140 ? '#1a0404' : '#fff');
+    t.setAttribute('fill', yiq >= 140 ? '#1F140C' : '#fff');
   }
 
   const ex = document.getElementById('cwExplain');
@@ -4549,7 +4549,7 @@ const pfOps = [
 const pfState = { idx: 0, score: 0, locked: false, results: [] };
 
 function pfRenderShape(isOutput, shapeKey, op, idx) {
-  const C = '#c06060', S = '#3b0808';
+  const C = '#c06060', S = '#9C4410';
   const u = idx; // unique id for clipPaths
   if (shapeKey === '2c') {
     if (!isOutput) {
