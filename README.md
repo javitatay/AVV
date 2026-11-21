@@ -36,7 +36,7 @@ AVV/
 ├── magicq.html              # Suite: Control DMX & Consola de Luz (MagicQ)
 ├── iluminacion-directo.html # Curso 3D: Iluminación de espectáculos en directo
 ├── imagen-video.html        # Curso 3D: Imagen y vídeo para directo
-└── videos/                  # Vídeos explicativos UD 3, UD 4 y UD 5 (index.html + MP4 + carteles)
+└── videos/                  # Vídeos explicativos UD 1 a UD 5 (index.html + MP4 + carteles)
 ```
 
 ---
@@ -53,7 +53,7 @@ AVV/
 | 🟣 **MagicQ · DMX** | Patch, grupos, paletas, cues, playbacks, ejecutores, sintaxis | EDU·V4 |
 | 🔦 **Iluminación en directo (3D)** | Curso visual e interactivo: escenas 3D con focos y cabezas móviles, simuladores 2D, tests y progreso guardado | UD 4·5 |
 | 🎥 **Imagen y vídeo (3D)** | Curso visual e interactivo: escenas 3D de cámara, proyector, pantalla LED y blending, simuladores 2D, tests y progreso guardado | UD 1·2·3 |
-| 🎬 **Vídeos explicativos** | Vídeos cortos (~1:45) agrupados por unidad, con capítulos y enlace directo a cada uno. Disponible: UD 3 (8 vídeos), UD 4 (7) y UD 5 (7) | UD 3·4·5 |
+| 🎬 **Vídeos explicativos** | Vídeos cortos (~1:45) agrupados por unidad, con capítulos y enlace directo a cada uno. Disponible: UD 1 (8 vídeos), UD 2 (10), UD 3 (8), UD 4 (7) y UD 5 (7) | UD 1·2·3·4·5 |
 
 ---
 
@@ -174,13 +174,15 @@ Curso visual e interactivo de imagen y vídeo para directo (UD 1, 2 y 3), con el
 
 ### 🎬 Vídeos explicativos (`videos/`)
 
-Vídeos verticales (1080×1920, sin audio, ~1:45 cada uno) que explican los fundamentos con animaciones sencillas, agrupados por unidad didáctica. Ahora mismo: UD 3, proyección, LED y mapping (8 vídeos), y UD 4, iluminación: luz, temperatura de color, magnitudes, fuentes, focos convencionales, cabezas móviles y atributos (7 vídeos), y UD 5, rigging, electricidad, planos y DMX (7 vídeos). Se abren desde su propia tarjeta en la landing.
+Vídeos verticales (1080×1920, sin audio, ~1:45 cada uno) que explican los fundamentos con animaciones sencillas, agrupados por unidad didáctica. Ahora mismo: UD 1, la imagen: resolución, óptica y exposición (8 vídeos), UD 2, la señal: conectores, formatos y equipos (10 vídeos), UD 3, proyección, LED y mapping (8 vídeos), y UD 4, iluminación: luz, temperatura de color, magnitudes, fuentes, focos convencionales, cabezas móviles y atributos (7 vídeos), y UD 5, rigging, electricidad, planos y DMX (7 vídeos). Se abren desde su propia tarjeta en la landing.
 
+- Temas UD 1: la resolución · relación de aspecto · proporción de píxel · distancia focal · triángulo de exposición · profundidad de campo · canal alfa y keys · cálculo de loops
+- Temas UD 2: píxeles por pulgada · conectores de vídeo · HDMI y ancho de banda · SDI y fibra · formatos y códecs · códecs para VJ · progresivo y entrelazado · NDI y extensores · mesa de mezcla · matriz, splitter y switch
 - Temas UD 3: brillo y contraste · throw ratio · keystone y lens shift · LCD, DLP y láser · pantallas LED · nits y refresco · mapping y blending · pixel mapping
 - Temas UD 4: la luz · temperatura de color · lúmenes y lux · fuentes de luz · focos convencionales · cabezas móviles · atributos y canales
 - Temas UD 5: trusses y safety · elevar cargas · corriente trifásica · planos de luces · DMX 512 · cableado DMX · nodos y Art-Net
 - Reproductor con capítulos que saltan al punto exacto, anterior/siguiente y botón «Copiar enlace»
-- Cada vídeo tiene URL directa, pensada para enlazarla desde Google Slides: `videos/#brillo`, `#throw-ratio`, `#keystone`, `#tecnologias`, `#pantallas-led`, `#nits`, `#mapping`, `#pixel-mapping`; UD 4: `#luz`, `#temperatura`, `#magnitudes`, `#fuentes`, `#focos`, `#cabezas-moviles`, `#atributos`; UD 5: `#rigging`, `#elevar-cargas`, `#trifasica`, `#planos`, `#dmx`, `#cableado-dmx`, `#art-net`
+- Cada vídeo tiene URL directa, pensada para enlazarla desde Google Slides: UD 1: `videos/#resolucion`, `#relacion-aspecto`, `#pixel-aspect`, `#distancia-focal`, `#exposicion`, `#profundidad-campo`, `#canal-alfa`, `#loops`; UD 2: `#ppp`, `#conectores`, `#hdmi`, `#sdi`, `#codecs`, `#codecs-vj`, `#entrelazado`, `#ndi`, `#mezclador`, `#equipos-senal`; UD 3: `#brillo`, `#throw-ratio`, `#keystone`, `#tecnologias`, `#pantallas-led`, `#nits`, `#mapping`, `#pixel-mapping`; UD 4: `#luz`, `#temperatura`, `#magnitudes`, `#fuentes`, `#focos`, `#cabezas-moviles`, `#atributos`; UD 5: `#rigging`, `#elevar-cargas`, `#trifasica`, `#planos`, `#dmx`, `#cableado-dmx`, `#art-net`
 - Mismo aspecto gráfico y tema claro/oscuro compartido que el resto de AVV Lab
 
 ---
