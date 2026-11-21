@@ -5402,7 +5402,7 @@ window.AVL_NAV_CONFIG = {
         document.querySelectorAll('.page').forEach(function(sec) {
             const id = sec.id.replace(/^(page-|s-)/, '');
             const titleEl = sec.querySelector('.page-title');
-            const sectionTitle = titleEl ? titleEl.textContent.trim() : sec.id;
+            const sectionTitle = titleEl ? titleEl.textContent.trim() : (/home$/.test(sec.id) ? 'Inicio' : sec.id);
             sec.querySelectorAll('p, li, .panel-title, .card-label, h3, h4, .glossary-term, .glossary-def, .gl-term, .gl-def').forEach(function(el) {
                 const text = el.textContent.trim();
                 if (text.length > 20) {
@@ -5428,7 +5428,7 @@ window.AVL_NAV_CONFIG = {
         }).slice(0, 8);
 
         if (hits.length === 0) {
-            box.innerHTML = '<div class="no-results">Sin resultados para "' + query + '"</div>';
+            box.innerHTML = '<div class="no-results">Sin resultados para "' + String(query).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }) + '"</div>';
         } else {
             const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             box.innerHTML = hits.map(function(h) {

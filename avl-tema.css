@@ -223,3 +223,10 @@ html.avl-tema .avl-rel a:hover { background: var(--t-tint) !important; }
 
 /* Resolume: el código en línea queda sobre fondos algo más oscuros; se oscurece su verde para mantener el contraste */
 html.avl-tema[data-avl-suite="resolume"] .cmd { color: #22594a; }
+
+/* Móvil: que ninguna tabla o panel ensanche la página (se desplazan dentro de su caja) */
+@media (max-width: 640px) {
+  html.avl-tema :is(.grid-2, .grid-3, .grid-4, .g2, .g3) > * { min-width: 0; }
+  html.avl-tema .comp-table { display: block; max-width: 100%; overflow-x: auto; }
+  html.avl-tema .panel { max-width: 100%; }
+}

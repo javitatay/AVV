@@ -3985,7 +3985,7 @@ textarea:focus-visible {
         }).slice(0, 8);
 
         if (hits.length === 0) {
-            box.innerHTML = '<div class="no-results">Sin resultados para "' + query + '"</div>';
+            box.innerHTML = '<div class="no-results">Sin resultados para "' + String(query).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }) + '"</div>';
         } else {
             const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             box.innerHTML = hits.map(function(h) {
