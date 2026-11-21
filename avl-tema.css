@@ -197,7 +197,7 @@ html.avl-tema .stat-card {
   background: var(--t-surface) !important; border: 2px solid var(--t-ink) !important; border-radius: 16px !important;
   box-shadow: 4px 4px 0 var(--t-tint-d);
 }
-html.avl-tema .panel {
+html.avl-tema :is(.panel, .tool-wrap) {
   border: 2px solid var(--t-ink) !important; border-radius: 16px !important; box-shadow: 4px 4px 0 var(--t-line) !important;
 }
 html.avl-tema .panel-title { color: var(--t-fg) !important; }
@@ -235,3 +235,38 @@ html.avl-tema[data-avl-suite="resolume"] .cmd { color: #22594a; }
 /* Iconos del menú lateral: símbolos de un solo color, nunca emoji */
 html.avl-tema :is(.nav-icon, .nav-ic) { font-variant-emoji: text; filter: none; color: var(--t-fg) !important; opacity: .75; }
 html.avl-tema .nav-item.active :is(.nav-icon, .nav-ic) { opacity: 1; }
+
+/* ═══ Botones de acción y campos: mismo lenguaje que la portada ═══ */
+html.avl-tema :is(.btn, .gv-btn, .gm-btn, .gr-btn, .sc-btn, .gmq-btn, .gae-btn, .atajos-btn, .tool-btn, .btn-console:not(.cat-filter-btn):not([onclick^="filterGlossCat"]):not([id^="cat"]), .btn-quiz-next, .rq-btn, .fb-btn, .tr-btn, .ipq-btn, .pluma-action-btn) {
+  border-radius: 12px !important; font-family: var(--t-font) !important; font-weight: 700 !important;
+  text-transform: none !important; letter-spacing: 0 !important;
+  transition: transform 100ms ease, box-shadow 100ms ease, background-color 100ms ease !important;
+}
+/* Principal: tinta */
+html.avl-tema :is(.btn:not(.btn-secondary), .gv-btn-primary, .gm-btn-primary, .gr-btn-primary, .sc-btn-primary, .gmq-btn-primary, .gae-btn-primary, .atajos-btn.primary, .tool-btn:not(.tool-btn-sec), .btn-console.btn-orange, .btn-quiz-next, .rq-btn-next, .fb-btn-next, .pluma-action-btn:not(.ghost)) {
+  background: var(--t-ink) !important; color: #f7f6f3 !important; border: 2px solid var(--t-ink) !important;
+  box-shadow: 3px 3px 0 var(--t-tint-d) !important;
+}
+/* Secundario: papel con borde de tinta */
+html.avl-tema :is(.btn-secondary, .gv-btn-ghost, .gm-btn-ghost, .gr-btn-ghost, .sc-btn-ghost, .gmq-btn-ghost, .gae-btn-ghost, .atajos-btn.ghost, .tool-btn-sec, .btn-console:not(.cat-filter-btn):not([onclick^="filterGlossCat"]):not([id^="cat"]):not(.btn-orange), .rq-btn-restart, .fb-btn-reset, .tr-btn-restart, .ipq-btn-restart, .pluma-action-btn.ghost) {
+  background: var(--t-surface) !important; color: var(--t-fg) !important; border: 2px solid var(--t-ink) !important;
+  box-shadow: 3px 3px 0 var(--t-line) !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  html.avl-tema :is(.btn, .gv-btn, .gm-btn, .gr-btn, .sc-btn, .gmq-btn, .gae-btn, .atajos-btn, .tool-btn, .btn-console:not(.cat-filter-btn):not([onclick^="filterGlossCat"]):not([id^="cat"]), .btn-quiz-next, .rq-btn, .fb-btn, .tr-btn, .ipq-btn, .pluma-action-btn):not(:disabled):hover {
+    transform: translate(-1px, -1px); opacity: 1 !important;
+  }
+}
+html.avl-tema :is(.btn, .gv-btn, .gm-btn, .gr-btn, .sc-btn, .gmq-btn, .gae-btn, .atajos-btn, .tool-btn, .btn-console:not(.cat-filter-btn):not([onclick^="filterGlossCat"]):not([id^="cat"]), .btn-quiz-next, .rq-btn, .fb-btn, .tr-btn, .ipq-btn, .pluma-action-btn):not(:disabled):active {
+  transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--t-ink) !important;
+}
+
+/* Campos de las calculadoras */
+html.avl-tema main :is(input[type="text"], input[type="number"], input:not([type]), select, textarea):not(#searchInput):not(.search-input) {
+  background: var(--t-surface) !important; color: var(--t-fg) !important;
+  border: 1.5px solid #cfc9bd !important; border-radius: 10px !important; box-shadow: none !important;
+}
+html.avl-tema main :is(input[type="text"], input[type="number"], input:not([type]), select, textarea):not(#searchInput):not(.search-input):focus {
+  border-color: var(--t-ink) !important;
+}
+html.avl-tema :is(.btn-console, .cat-filter-btn) { text-transform: none !important; letter-spacing: 0 !important; }
