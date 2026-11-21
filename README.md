@@ -64,7 +64,9 @@ AVV/
 - **Tipografía** — Inter (Google Fonts) con fallback a fuentes del sistema. JetBrains Mono para código y valores técnicos.
 - **Diseño responsive** — adaptado a pantalla de ordenador, proyector y tablet.
 - **Barra de navegación flotante** — acceso entre suites desde cualquier página, con botón de retorno a la última suite visitada (sessionStorage).
+- **Buscador global** — en la portada: busca a la vez en las suites, los 40 vídeos explicativos y las lecciones de los cursos 3D, sin distinguir acentos; cada resultado abre directamente el vídeo o la lección.
 - **Glosario visual** — 54 términos técnicos con equivalencias EN/ES, buscador global y filtros por suite.
+- **Accesibilidad (WCAG 2.1 AA)** — todas las páginas pasan axe-core sin incidencias. `avl-nav.js` añade a las 6 suites navegación completa con teclado (Tab, Enter y Espacio en pestañas, tarjetas y juegos), anillo de foco visible, enlace «Saltar al contenido», nombres accesibles para iconos y campos, y encabezados ordenados.
 - **Diagramas interactivos** — 9 diagramas SVG/canvas clicables distribuidos entre las suites (flujo AV, comparativa resoluciones, simulador DOF, árbol de decisión de codec, Bézier interactiva, modelos de color RGB/CMYK/HSB, perfiles de haz, temperatura de color, flujo MagicQ).
 - **Calculadoras** — bitrate, resolución, DOF, DMX, BPM sync, ley inversa del cuadrado, iluminación escénica y más.
 - **Simuladores interactivos** — triángulo de exposición (escena de concierto animada en canvas con motion blur, ruido ISO, histograma y exposímetro en tiempo real), DOF avanzado (vista fotográfica + vista de planta con bokeh y escala métrica), temperatura de color, perfil de haz, BPM sync.
@@ -174,7 +176,7 @@ Curso visual e interactivo de imagen y vídeo para directo (UD 1, 2 y 3), con el
 
 ### 🎬 Vídeos explicativos (`videos/`)
 
-Vídeos verticales (1080×1920, sin audio, ~1:45 cada uno) que explican los fundamentos con animaciones sencillas, agrupados por unidad didáctica. Ahora mismo: UD 1, la imagen: resolución, óptica y exposición (8 vídeos), UD 2, la señal: conectores, formatos y equipos (10 vídeos), UD 3, proyección, LED y mapping (8 vídeos), y UD 4, iluminación: luz, temperatura de color, magnitudes, fuentes, focos convencionales, cabezas móviles y atributos (7 vídeos), y UD 5, rigging, electricidad, planos y DMX (7 vídeos). Se abren desde su propia tarjeta en la landing.
+Vídeos en vertical (1080×1920, para el móvil) y en horizontal (1920×1080, para el proyector), sin audio, ~1:45 cada uno, que explican los fundamentos con animaciones sencillas, agrupados por unidad didáctica. Ahora mismo: UD 1, la imagen: resolución, óptica y exposición (8 vídeos), UD 2, la señal: conectores, formatos y equipos (10 vídeos), UD 3, proyección, LED y mapping (8 vídeos), y UD 4, iluminación: luz, temperatura de color, magnitudes, fuentes, focos convencionales, cabezas móviles y atributos (7 vídeos), y UD 5, rigging, electricidad, planos y DMX (7 vídeos). Se abren desde su propia tarjeta en la landing.
 
 - Temas UD 1: la resolución · relación de aspecto · proporción de píxel · distancia focal · triángulo de exposición · profundidad de campo · canal alfa y keys · cálculo de loops
 - Temas UD 2: píxeles por pulgada · conectores de vídeo · HDMI y ancho de banda · SDI y fibra · formatos y códecs · códecs para VJ · progresivo y entrelazado · NDI y extensores · mesa de mezcla · matriz, splitter y switch
@@ -182,6 +184,7 @@ Vídeos verticales (1080×1920, sin audio, ~1:45 cada uno) que explican los fund
 - Temas UD 4: la luz · temperatura de color · lúmenes y lux · fuentes de luz · focos convencionales · cabezas móviles · atributos y canales
 - Temas UD 5: trusses y safety · elevar cargas · corriente trifásica · planos de luces · DMX 512 · cableado DMX · nodos y Art-Net
 - Reproductor con capítulos que saltan al punto exacto, anterior/siguiente y botón «Copiar enlace»
+- Selector Vertical / Horizontal en la cabecera; la primera vez que se abre un vídeo se pregunta el formato y se recuerda en el navegador. Para enlazar directamente la versión horizontal, añade `?f=h`: `videos/?f=h#luz`
 - Cada vídeo tiene URL directa, pensada para enlazarla desde Google Slides: UD 1: `videos/#resolucion`, `#relacion-aspecto`, `#pixel-aspect`, `#distancia-focal`, `#exposicion`, `#profundidad-campo`, `#canal-alfa`, `#loops`; UD 2: `#ppp`, `#conectores`, `#hdmi`, `#sdi`, `#codecs`, `#codecs-vj`, `#entrelazado`, `#ndi`, `#mezclador`, `#equipos-senal`; UD 3: `#brillo`, `#throw-ratio`, `#keystone`, `#tecnologias`, `#pantallas-led`, `#nits`, `#mapping`, `#pixel-mapping`; UD 4: `#luz`, `#temperatura`, `#magnitudes`, `#fuentes`, `#focos`, `#cabezas-moviles`, `#atributos`; UD 5: `#rigging`, `#elevar-cargas`, `#trifasica`, `#planos`, `#dmx`, `#cableado-dmx`, `#art-net`
 - Mismo aspecto gráfico y tema claro/oscuro compartido que el resto de AVV Lab
 

@@ -22,7 +22,7 @@ independiente, no afiliada a Resolume BV.
   --green-dim: #1E5244;
   --green-glow: rgba(42,106,88,.10);
   --green-line: rgba(42,106,88,.30);
-  --amber: #B08000;
+  --amber: #7D5C00;
   --red: #A0182C;
   --bg-void: #FFFFFF; --bg-surface: #FFFFFF; --bg-raised: #EEF0F2;
   --bg-deep: #F4F5F7; --bg-panel: #F0F6F4; --bg-button: #E5E7EB;
@@ -315,7 +315,7 @@ body {
   padding: 14px 16px;
   margin-bottom: 12px;
 }
-.box h4 {
+.box :is(h4,h3.h4) {
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
@@ -335,19 +335,19 @@ body {
   border-color: var(--green-line);
   border-left-color: var(--green);
 }
-.box-g h4 { color: var(--green) }
+.box-g :is(h4,h3.h4) { color: var(--green) }
 .box-y {
   background: rgba(180,128,0,.06);
   border-color: rgba(180,128,0,.2);
   border-left-color: var(--amber);
 }
-.box-y h4 { color: var(--amber) }
+.box-y :is(h4,h3.h4) { color: var(--amber) }
 .box-r {
   background: rgba(160,24,44,.05);
   border-color: rgba(160,24,44,.18);
   border-left-color: var(--red);
 }
-.box-r h4 { color: var(--red) }
+.box-r :is(h4,h3.h4) { color: var(--red) }
 
 /* ─── STEPS ─── */
 .steps { display: flex; flex-direction: column; gap: 12px }
@@ -501,6 +501,8 @@ body {
   margin-bottom: 10px;
   font-family: var(--mono);
 }
+h2.ptl { margin-top: 0; font-family: inherit; line-height: inherit; }
+h3.h4 { font-size: 1em; }
 .section-card h3 {
   font-size: 14px;
   font-weight: 700;
@@ -714,7 +716,7 @@ body {
 .tool-input:focus{border-color:var(--green)}
 .tool-select{background:var(--bg-surface);border:1px solid var(--border-dark);border-radius:5px;padding:9px 12px;color:var(--text-primary);font-family:var(--mono);font-size:12px;outline:none;cursor:pointer;transition:border .15s;width:100%;appearance:none}
 .tool-select:focus{border-color:var(--green)}
-.tool-btn{background:var(--green);color:#000;border:none;border-radius:5px;padding:10px 22px;font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;transition:background .15s;white-space:nowrap;flex-shrink:0}
+.tool-btn{background:var(--green);color:#fff;border:none;border-radius:5px;padding:10px 22px;font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;transition:background .15s;white-space:nowrap;flex-shrink:0}
 .tool-btn:hover{background:var(--green-dim)}
 .tool-btn-sec{background:var(--bg-panel);color:var(--text-secondary);border:1px solid var(--border-dark)}
 .tool-btn-sec:hover{background:var(--border-dark);color:var(--text-primary)}
@@ -740,7 +742,7 @@ body {
 h1, h2, h3, .page-title, .ptitle, .sec-title, .module-title, .panel-title {
   letter-spacing: -0.02em;
 }
-h4, .panel-subtitle, .ptl, .h-sub {
+h4, h3.h4, .panel-subtitle, .ptl, .h-sub {
   letter-spacing: -0.01em;
 }
 p, li, td, .info-card p, .page-desc, .pdesc, .sec-desc, .card-desc {
@@ -1389,7 +1391,7 @@ window.go = function (id) {
   </div>
 </div>
 
-<div class="ptl">📚 Unidades del curso</div>
+<h2 class="ptl">📚 Unidades del curso</h2>
 <div class="g3" style="margin-bottom: 26px">
   <div class="section-card" onclick="go('interfaz')">
     <div class="fc-tag">A1 · UD 1</div>
@@ -1429,7 +1431,7 @@ window.go = function (id) {
   </div>
 </div>
 
-<div class="ptl">⚡ Acceso rápido</div>
+<h2 class="ptl">⚡ Acceso rápido</h2>
 <div class="g4" style="margin-bottom: 26px">
   <div class="section-card" onclick="go('ejercicios')">
     <div class="fc-ico">✎</div>
@@ -1454,7 +1456,7 @@ window.go = function (id) {
 </div>
 
 
-<div class="ptl">📂 Contenido ampliado de las unidades</div>
+<h2 class="ptl">📂 Contenido ampliado de las unidades</h2>
 <div class="g3" style="margin-bottom: 26px">
   <div class="section-card" onclick="go('dxv')">
     <div class="fc-ico">⧉</div>
@@ -1533,7 +1535,7 @@ window.go = function (id) {
   </div>
 </div>
 
-<div class="ptl">🛠 Herramientas y calculadoras</div>
+<h2 class="ptl">🛠 Herramientas y calculadoras</h2>
 <div class="g4" style="margin-bottom: 26px">
   <div class="section-card" onclick="go('tool-rgb')">
     <div class="fc-ico">◐</div>
@@ -1608,7 +1610,7 @@ window.go = function (id) {
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">📦 Entrega de ejercicios — Recordatorio</div>
+  <h2 class="ptl">📦 Entrega de ejercicios — Recordatorio</h2>
   <div class="g2">
     <div>
       <p style="margin-bottom: 12px; font-size: 14px; color: var(--text-primary)">Todos los ejercicios siguen la misma <strong>nomenclatura</strong>:</p>
@@ -1620,7 +1622,7 @@ Apellido1_Apellido2_Nombre_UnidadN/
     </div>
     <div>
       <div class="box box-y">
-        <h4>⚠ Collect Media obligatorio</h4>
+        <h3 class="h4">⚠ Collect Media obligatorio</h3>
         <p>Antes de entregar, usa <span class="cmd">Composition → Collect Media</span> para empaquetar el proyecto con sus archivos. Sin esto, el proyecto no se podrá abrir en otro ordenador (clips en rojo).</p>
       </div>
     </div>
@@ -1632,7 +1634,7 @@ Apellido1_Apellido2_Nombre_UnidadN/
 <!-- ═══ A1 · INTERFACE ═══ -->
 <section class="page" id="page-interfaz">
 <div class="ptag">// A1 · UD 1 · MÓDULO 01</div>
-<div class="ptitle">INTER<span>FACE</span></div>
+<h2 class="ptitle">INTER<span>FACE</span></h2>
 <div class="pdesc">Estructura del programa, barra superior de menús, módulos del espacio de trabajo y organización del material en Resolume Arena.</div>
 
 <div class="dossier">
@@ -1642,32 +1644,32 @@ Apellido1_Apellido2_Nombre_UnidadN/
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Barra superior — Menús principales</div>
+  <h2 class="ptl">Barra superior — Menús principales</h2>
   <div class="g2">
     <div>
-      <div class="box"><h4>Settings</h4><p>Preferencias globales: GPU, audio, red, Syphon/Spout, MIDI, OSC.</p></div>
-      <div class="box"><h4>Composition</h4><p>Nuevo proyecto, abrir, guardar, settings, <strong>Collect Media</strong>.</p></div>
-      <div class="box"><h4>Deck · Group · Layer · Column · Clip</h4><p>Operaciones sobre cada elemento de la matriz.</p></div>
+      <div class="box"><h3 class="h4">Settings</h3><p>Preferencias globales: GPU, audio, red, Syphon/Spout, MIDI, OSC.</p></div>
+      <div class="box"><h3 class="h4">Composition</h3><p>Nuevo proyecto, abrir, guardar, settings, <strong>Collect Media</strong>.</p></div>
+      <div class="box"><h3 class="h4">Deck · Group · Layer · Column · Clip</h3><p>Operaciones sobre cada elemento de la matriz.</p></div>
     </div>
     <div>
-      <div class="box"><h4>Output</h4><p>Configuración de salida, modo <strong>Advanced</strong>, Test Card.</p></div>
-      <div class="box"><h4>Shortcut</h4><p>Edición de atajos de teclado y MIDI mapping.</p></div>
-      <div class="box"><h4>View</h4><p>Visibilidad de cada módulo de la interfaz.</p></div>
+      <div class="box"><h3 class="h4">Output</h3><p>Configuración de salida, modo <strong>Advanced</strong>, Test Card.</p></div>
+      <div class="box"><h3 class="h4">Shortcut</h3><p>Edición de atajos de teclado y MIDI mapping.</p></div>
+      <div class="box"><h3 class="h4">View</h3><p>Visibilidad de cada módulo de la interfaz.</p></div>
     </div>
   </div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Módulos principales del espacio de trabajo</div>
+  <h2 class="ptl">Módulos principales del espacio de trabajo</h2>
   <div class="g3">
-    <div class="box"><h4>Monitor / Preview</h4><p>Composition Monitor muestra la <strong>salida principal</strong> en directo. Preview Monitor muestra un clip antes de dispararlo (como la pre-escucha del DJ).</p></div>
-    <div class="box"><h4>Composition / Layer / Clip</h4><p>La <strong>matriz central</strong>: filas = Layers, columnas = Columns, celdas = Clips. Es donde vive todo el contenido de la sesión.</p></div>
-    <div class="box"><h4>Files · Effects · Sources · Record</h4><p>Paneles laterales: explorador de archivos, biblioteca de efectos, fuentes generativas y grabación de output.</p></div>
+    <div class="box"><h3 class="h4">Monitor / Preview</h3><p>Composition Monitor muestra la <strong>salida principal</strong> en directo. Preview Monitor muestra un clip antes de dispararlo (como la pre-escucha del DJ).</p></div>
+    <div class="box"><h3 class="h4">Composition / Layer / Clip</h3><p>La <strong>matriz central</strong>: filas = Layers, columnas = Columns, celdas = Clips. Es donde vive todo el contenido de la sesión.</p></div>
+    <div class="box"><h3 class="h4">Files · Effects · Sources · Record</h3><p>Paneles laterales: explorador de archivos, biblioteca de efectos, fuentes generativas y grabación de output.</p></div>
   </div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Organización del material en disco</div>
+  <h2 class="ptl">Organización del material en disco</h2>
   <div class="cb"><span class="cc">// Estructura por defecto (macOS y Windows)</span>
 ~/Documents/Resolume Arena/
   compositions/    <span class="cc">← tus proyectos .avc</span>
@@ -1679,7 +1681,7 @@ Apellido1_Apellido2_Nombre_Unidad1/
   ├── audio/
   └── Apellido1_Apellido2_Nombre_Unidad1.avc</div>
   <div class="box box-g" style="margin-top: 14px">
-    <h4>✓ Media Manager &amp; Collect Media</h4>
+    <h3 class="h4">✓ Media Manager &amp; Collect Media</h3>
     <p><strong>Media Manager</strong> gestiona las referencias a los archivos de tu composición. <strong>Collect Media</strong> copia <em>todos</em> los archivos usados a una carpeta única (un bundle). Es lo que vas a usar siempre que entregues un proyecto o lo lleves a otro ordenador.</p>
   </div>
 </div>
@@ -1688,7 +1690,7 @@ Apellido1_Apellido2_Nombre_Unidad1/
 <!-- ═══ A1 · DXV CODEC ═══ -->
 <section class="page" id="page-dxv">
 <div class="ptag">// A1 · UD 1 · MÓDULO 02</div>
-<div class="ptitle">DXV <span>CODEC &amp; ALLEY</span></div>
+<h2 class="ptitle">DXV <span>CODEC &amp; ALLEY</span></h2>
 <div class="pdesc">El códec de vídeo nativo de Resolume y la aplicación Alley para convertir cualquier vídeo al formato óptimo de reproducción en tiempo real.</div>
 
 <div class="dossier">
@@ -1772,7 +1774,7 @@ Apellido1_Apellido2_Nombre_Unidad1/
 </div>
 
 <div class="panel">
-  <div class="ptl">Resolume Alley — Flujo de conversión</div>
+  <h2 class="ptl">Resolume Alley — Flujo de conversión</h2>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Abre <strong>Resolume Alley</strong> (aplicación independiente que se instala junto a Arena).</p></div>
     <div class="step"><div class="snum">2</div><p><strong>Arrastra</strong> uno o varios vídeos a la ventana principal de Alley.</p></div>
@@ -1782,7 +1784,7 @@ Apellido1_Apellido2_Nombre_Unidad1/
 </div>
 
 <div class="panel">
-  <div class="ptl">Comparativa de códecs en VJing</div>
+  <h2 class="ptl">Comparativa de códecs en VJing</h2>
   <div class="ox">
     <table class="tbl">
       <thead><tr><th>Códec</th><th>Procesa</th><th>Tamaño</th><th>Saltos / reverse</th><th>Uso recomendado</th></tr></thead>
@@ -1800,7 +1802,7 @@ Apellido1_Apellido2_Nombre_Unidad1/
 <!-- ═══ A1 · CLIPS & FILES ═══ -->
 <section class="page" id="page-clips">
 <div class="ptag">// A1 · UD 1 · MÓDULO 03</div>
-<div class="ptitle">CLIPS <span>&amp; FILES</span></div>
+<h2 class="ptitle">CLIPS <span>&amp; FILES</span></h2>
 <div class="pdesc">El clip como unidad mínima de contenido, panel Files, la matriz Layer × Column y la diferencia entre Layer y Clip.</div>
 
 <div class="dossier">
@@ -1810,7 +1812,7 @@ Apellido1_Apellido2_Nombre_Unidad1/
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">El Deck — Estructura de trabajo</div>
+  <h2 class="ptl">El Deck — Estructura de trabajo</h2>
   <div class="g2">
     <div>
       <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 12px"><strong>Filas horizontales</strong> = Layers · <strong>Columnas verticales</strong> = Columns. Cada celda contiene un clip. Una columna entera dispara todos los clips de la misma columna a la vez (las "escenas").</p>
@@ -1822,14 +1824,14 @@ Click derecho     → menú opciones del clip
 <span style="color:#4ECCA3">Sustitución</span>      → arrastra sobre clip existente</div>
     </div>
     <div>
-      <div class="box"><h4>🗂 Múltiples Decks</h4><p>Una composición puede tener <strong>varios decks</strong> (pestañas) para organizar el set por actos, canciones o escenas. Se gestionan desde la barra de Decks arriba de la matriz.</p></div>
-      <div class="box" style="margin-top: 10px"><h4>🔄 Sustitución y selección múltiple</h4><p>Arrastra un nuevo clip <strong>sobre uno existente</strong> para sustituirlo conservando la posición. Para selección múltiple: <span class="cmd">Shift</span> o <span class="cmd">Ctrl</span> + clic.</p></div>
+      <div class="box"><h3 class="h4">🗂 Múltiples Decks</h3><p>Una composición puede tener <strong>varios decks</strong> (pestañas) para organizar el set por actos, canciones o escenas. Se gestionan desde la barra de Decks arriba de la matriz.</p></div>
+      <div class="box" style="margin-top: 10px"><h3 class="h4">🔄 Sustitución y selección múltiple</h3><p>Arrastra un nuevo clip <strong>sobre uno existente</strong> para sustituirlo conservando la posición. Para selección múltiple: <span class="cmd">Shift</span> o <span class="cmd">Ctrl</span> + clic.</p></div>
     </div>
   </div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Panel Files — Navegador de contenido</div>
+  <h2 class="ptl">Panel Files — Navegador de contenido</h2>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Abre el panel desde <span class="cmd">View → Files</span>.</p></div>
     <div class="step"><div class="snum">2</div><p>Navega a la carpeta con tu contenido. Usa las <strong>direcciones favoritas</strong> (icono ★) para acceso rápido a rutas frecuentes.</p></div>
@@ -1839,7 +1841,7 @@ Click derecho     → menú opciones del clip
 </div>
 
 <div class="panel">
-  <div class="ptl">Panel Clip — Parámetros esenciales</div>
+  <h2 class="ptl">Panel Clip — Parámetros esenciales</h2>
   <div class="ox">
     <table class="tbl">
       <thead><tr><th>Parámetro</th><th>Descripción</th><th>Atajo</th></tr></thead>
@@ -1859,7 +1861,7 @@ Click derecho     → menú opciones del clip
 <!-- ═══ A1 · EFFECTS ═══ -->
 <section class="page" id="page-efectos1">
 <div class="ptag">// A1 · UD 1 · MÓDULO 04</div>
-<div class="ptitle">EFFECTS · <span>FX en 3 niveles</span></div>
+<h2 class="ptitle">EFFECTS · <span>FX en 3 niveles</span></h2>
 <div class="pdesc">Aplicación de efectos a Composición, Layer y Clip. Propiedades, Bypass y sistema de presets.</div>
 
 <div class="dossier">
@@ -1869,7 +1871,7 @@ Click derecho     → menú opciones del clip
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Flujo básico de aplicación</div>
+  <h2 class="ptl">Flujo básico de aplicación</h2>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Abre el panel de efectos: <span class="cmd">View → Effects</span>.</p></div>
     <div class="step"><div class="snum">2</div><p>Selecciona el <strong>clip, layer o composición</strong> al que quieres aplicar el FX.</p></div>
@@ -1880,14 +1882,14 @@ Click derecho     → menú opciones del clip
 </div>
 
 <div class="panel">
-  <div class="ptl">Efectos introductorios — Usados en los ejercicios</div>
+  <h2 class="ptl">Efectos introductorios — Usados en los ejercicios</h2>
   <div class="g3">
-    <div class="box"><h4>🔥 Heat</h4><p>Distorsión de calor. Ondulación térmica en la imagen. Parámetros: Speed (velocidad) y Strength (intensidad).</p></div>
-    <div class="box"><h4>🪞 Mirror Basic</h4><p>Reflejo especular horizontal de la imagen. Crea simetrías instantáneas.</p></div>
-    <div class="box"><h4>🎨 Posterize</h4><p>Reduce el número de tonos por canal de color. Efecto de ilustración plana o cartoon.</p></div>
-    <div class="box"><h4>📐 Symmetry FX</h4><p>Mirror · Flip · Quad: crean simetrías reflejadas dentro del propio frame.</p></div>
-    <div class="box"><h4>🌀 Glitch</h4><p>Distorsión digital tipo "señal corrupta". Bandas, desplazamiento de píxeles, ruido.</p></div>
-    <div class="box"><h4>💧 Wave Warp</h4><p>Distorsión ondulatoria que tuerce el vídeo de formas orgánicas.</p></div>
+    <div class="box"><h3 class="h4">🔥 Heat</h3><p>Distorsión de calor. Ondulación térmica en la imagen. Parámetros: Speed (velocidad) y Strength (intensidad).</p></div>
+    <div class="box"><h3 class="h4">🪞 Mirror Basic</h3><p>Reflejo especular horizontal de la imagen. Crea simetrías instantáneas.</p></div>
+    <div class="box"><h3 class="h4">🎨 Posterize</h3><p>Reduce el número de tonos por canal de color. Efecto de ilustración plana o cartoon.</p></div>
+    <div class="box"><h3 class="h4">📐 Symmetry FX</h3><p>Mirror · Flip · Quad: crean simetrías reflejadas dentro del propio frame.</p></div>
+    <div class="box"><h3 class="h4">🌀 Glitch</h3><p>Distorsión digital tipo "señal corrupta". Bandas, desplazamiento de píxeles, ruido.</p></div>
+    <div class="box"><h3 class="h4">💧 Wave Warp</h3><p>Distorsión ondulatoria que tuerce el vídeo de formas orgánicas.</p></div>
   </div>
 </div>
 
@@ -1920,7 +1922,7 @@ Click derecho     → menú opciones del clip
 <!-- ═══ A1 · OUTPUT BÁSICO ═══ -->
 <section class="page" id="page-output1">
 <div class="ptag">// A1 · UD 1 · MÓDULO 05</div>
-<div class="ptitle">OUTPUT <span>BÁSICO</span></div>
+<h2 class="ptitle">OUTPUT <span>BÁSICO</span></h2>
 <div class="pdesc">Configurar la salida de vídeo, Show Test Card, Collect Media y la diferencia entre composición y salida.</div>
 
 <div class="dossier">
@@ -1986,7 +1988,7 @@ Click derecho     → menú opciones del clip
 </div>
 
 <div class="panel">
-  <div class="ptl">Configurar la salida</div>
+  <h2 class="ptl">Configurar la salida</h2>
   <div class="g2">
     <div>
       <div class="steps">
@@ -1998,11 +2000,11 @@ Click derecho     → menú opciones del clip
     </div>
     <div>
       <div class="box box-g">
-        <h4>✓ Show Test Card</h4>
+        <h3 class="h4">✓ Show Test Card</h3>
         <p>Imagen de calibración con rejilla y barras de color. Sirve para verificar que la salida funciona, alinear proyectores y revisar geometría en projection mapping.</p>
       </div>
       <div class="box box-y" style="margin-top: 10px">
-        <h4>⚠ Salida virtual vs física</h4>
+        <h3 class="h4">⚠ Salida virtual vs física</h3>
         <p>Sin proyector conectado, Resolume usa una <strong>salida virtual</strong> que simula la resolución elegida. La salida real se enchufa antes del evento.</p>
       </div>
     </div>
@@ -2010,7 +2012,7 @@ Click derecho     → menú opciones del clip
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Collect Media — Empaquetar el proyecto</div>
+  <h2 class="ptl">Collect Media — Empaquetar el proyecto</h2>
   <p style="font-size: 14px; line-height: 1.7; color: var(--text-primary); margin-bottom: 14px">Al entregar un ejercicio o llevar la composición a otro ordenador, <strong>siempre</strong> usa Collect Media. Empaqueta el proyecto (.avc) con <em>todos</em> los archivos que utiliza en una carpeta autónoma.</p>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Menú <span class="cmd">Composition → Collect Media</span>.</p></div>
@@ -2022,7 +2024,7 @@ Click derecho     → menú opciones del clip
 <!-- ═══ A2 · COMPOSITION SETTINGS ═══ -->
 <section class="page" id="page-composition">
 <div class="ptag">// A2 · UD 2 · MÓDULO 06</div>
-<div class="ptitle">COMPOSI<span>TION</span></div>
+<h2 class="ptitle">COMPOSI<span>TION</span></h2>
 <div class="pdesc">Settings de la composición, redimensionado de clips, Transform, AutoSize, alineación y Anchor.</div>
 
 <div class="dossier">
@@ -2031,7 +2033,7 @@ Click derecho     → menú opciones del clip
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Composition Settings — Parámetros globales</div>
+  <h2 class="ptl">Composition Settings — Parámetros globales</h2>
   <div class="g2">
     <div>
       <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 12px">Accede desde <span class="cmd">Composition → Settings</span>.</p>
@@ -2044,7 +2046,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
     </div>
     <div>
       <div class="box box-y">
-        <h4>⚠ ¿Qué resolución elijo?</h4>
+        <h3 class="h4">⚠ ¿Qué resolución elijo?</h3>
         <p>Lo eficiente: <strong>la resolución de la composición coincide con la salida</strong>. Para projection mapping con superficies irregulares puede convenir cuadrado (1080×1080) o no estándar. Para LED Stage Mapping, usa la suma exacta de las pantallas.</p>
       </div>
     </div>
@@ -2052,7 +2054,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Panel Clip · Transform — Los 5 controles</div>
+  <h2 class="ptl">Panel Clip · Transform — Los 5 controles</h2>
   <div class="ox">
     <table class="tbl">
       <thead><tr><th>Parámetro</th><th>Función</th><th>Valor neutro</th></tr></thead>
@@ -2066,7 +2068,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
     </table>
   </div>
   <div class="box box-g" style="margin-top: 14px">
-    <h4>✓ AutoSize · Clip Resize · Persistent</h4>
+    <h3 class="h4">✓ AutoSize · Clip Resize · Persistent</h3>
     <p><strong>AutoSize</strong> en el panel Layer ajusta el clip al tamaño de la composición de un clic. <strong>Clip Resize</strong> en el panel Clip lo hace con flechas manteniendo aspect ratio. <strong>Persistent</strong> mantiene el clip reproduciéndose aunque cambies de columna en otras capas — útil para fondos fijos.</p>
   </div>
 </div>
@@ -2075,7 +2077,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 <!-- ═══ A2 · LAYERS & BLEND ═══ -->
 <section class="page" id="page-capas">
 <div class="ptag">// A2 · UD 2 · MÓDULO 07</div>
-<div class="ptitle">LAYERS · <span>BLEND MODES</span></div>
+<h2 class="ptitle">LAYERS · <span>BLEND MODES</span></h2>
 <div class="pdesc">Estructura de capas, Bypass, Solo, orden de apilamiento, modos de fusión, opacidad y valores "50".</div>
 
 <div class="dossier">
@@ -2085,21 +2087,21 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Estructura de capa — Botones y orden</div>
+  <h2 class="ptl">Estructura de capa — Botones y orden</h2>
   <div class="g2">
     <div>
-      <div class="box"><h4>📐 Orden de apilamiento</h4><p>Las capas se renderizan <strong>de abajo hacia arriba</strong>. Lo de arriba tapa lo de abajo (salvo que el blend mode lo cambie).</p></div>
-      <div class="box"><h4>B · Bypass</h4><p>Desactiva la capa entera sin borrar contenido. La opacidad pasa a 0 visualmente.</p></div>
+      <div class="box"><h3 class="h4">📐 Orden de apilamiento</h3><p>Las capas se renderizan <strong>de abajo hacia arriba</strong>. Lo de arriba tapa lo de abajo (salvo que el blend mode lo cambie).</p></div>
+      <div class="box"><h3 class="h4">B · Bypass</h3><p>Desactiva la capa entera sin borrar contenido. La opacidad pasa a 0 visualmente.</p></div>
     </div>
     <div>
-      <div class="box"><h4>S · Solo</h4><p>Deja activa <strong>solo</strong> esa capa y silencia las demás. Útil para revisar una capa aislada.</p></div>
-      <div class="box"><h4>🗂 Grupos de capas</h4><p>Mete varias capas en un contenedor (como las carpetas de Photoshop). El efecto del grupo afecta a todas las capas dentro.</p></div>
+      <div class="box"><h3 class="h4">S · Solo</h3><p>Deja activa <strong>solo</strong> esa capa y silencia las demás. Útil para revisar una capa aislada.</p></div>
+      <div class="box"><h3 class="h4">🗂 Grupos de capas</h3><p>Mete varias capas en un contenedor (como las carpetas de Photoshop). El efecto del grupo afecta a todas las capas dentro.</p></div>
     </div>
   </div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Modos de fusión — Los más usados</div>
+  <h2 class="ptl">Modos de fusión — Los más usados</h2>
   <div class="ox">
     <table class="tbl">
       <thead><tr><th>Modo</th><th>Operación</th><th>Efecto visual</th></tr></thead>
@@ -2115,17 +2117,17 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
     </table>
   </div>
   <div class="box box-g" style="margin-top: 14px">
-    <h4>✓ Cómo elegir el modo</h4>
+    <h3 class="h4">✓ Cómo elegir el modo</h3>
     <p>Pon dos clips uno encima del otro y ve recorriendo todos los modos viendo qué pasa. En cinco minutos tienes intuición sobre cuál usar. La opacidad (<span class="key">V + arrastrar</span>) regula cuánto se nota la capa.</p>
   </div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Composición básica de capas — Esquema mental</div>
+  <h2 class="ptl">Composición básica de capas — Esquema mental</h2>
   <div class="g3">
-    <div class="box box-g"><h4>🟢 Capa inferior · base</h4><p>El fondo. Vídeos de gran escala, colores sólidos, generativos que llenan toda la pantalla.</p></div>
-    <div class="box box-y"><h4>🟡 Capa intermedia</h4><p>Elementos atmosféricos y de transición. Se mezclan con la base usando blend modes (Add, Screen).</p></div>
-    <div class="box box-r"><h4>🔴 Capa superior · acento</h4><p>Logotipos, textos, formas concretas. Normalmente con fondo transparente (alpha).</p></div>
+    <div class="box box-g"><h3 class="h4">🟢 Capa inferior · base</h3><p>El fondo. Vídeos de gran escala, colores sólidos, generativos que llenan toda la pantalla.</p></div>
+    <div class="box box-y"><h3 class="h4">🟡 Capa intermedia</h3><p>Elementos atmosféricos y de transición. Se mezclan con la base usando blend modes (Add, Screen).</p></div>
+    <div class="box box-r"><h3 class="h4">🔴 Capa superior · acento</h3><p>Logotipos, textos, formas concretas. Normalmente con fondo transparente (alpha).</p></div>
   </div>
 </div>
 
@@ -2167,7 +2169,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 <!-- ═══ A2 · TRANSPORT & AUTO-PILOT ═══ -->
 <section class="page" id="page-transport">
 <div class="ptag">// A2 · UD 2 · MÓDULO 08</div>
-<div class="ptitle">TRANSPORT · <span>Auto-Pilot &amp; Symmetry</span></div>
+<h2 class="ptitle">TRANSPORT · <span>Auto-Pilot &amp; Symmetry</span></h2>
 <div class="pdesc">Modos de reproducción del clip, propiedades de transport, Auto-Pilot por capa o composición y efectos de simetría (Mirror, Flip, Quad).</div>
 
 <div class="dossier">
@@ -2176,23 +2178,23 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Playback Modes — Modos de reproducción</div>
+  <h2 class="ptl">Playback Modes — Modos de reproducción</h2>
   <div class="g2">
     <div>
-      <div class="box"><h4>▶ Play Forward</h4><p>Reproducción normal de principio a fin.</p></div>
-      <div class="box"><h4>◀ Reverse</h4><p>Reproducción hacia atrás.</p></div>
-      <div class="box"><h4>↔ Ping-Pong</h4><p>Ida, vuelta, ida, vuelta en bucle.</p></div>
+      <div class="box"><h3 class="h4">▶ Play Forward</h3><p>Reproducción normal de principio a fin.</p></div>
+      <div class="box"><h3 class="h4">◀ Reverse</h3><p>Reproducción hacia atrás.</p></div>
+      <div class="box"><h3 class="h4">↔ Ping-Pong</h3><p>Ida, vuelta, ida, vuelta en bucle.</p></div>
     </div>
     <div>
-      <div class="box"><h4>🎲 Random</h4><p>Salta a fotogramas aleatorios. Vídeo "nervioso", útil para tensión y clímax.</p></div>
-      <div class="box"><h4>⊟ Hold</h4><p>Se queda en el último fotograma al llegar al final.</p></div>
-      <div class="box"><h4>⟳ Loop</h4><p>Vuelve al principio al llegar al final (modo por defecto).</p></div>
+      <div class="box"><h3 class="h4">🎲 Random</h3><p>Salta a fotogramas aleatorios. Vídeo "nervioso", útil para tensión y clímax.</p></div>
+      <div class="box"><h3 class="h4">⊟ Hold</h3><p>Se queda en el último fotograma al llegar al final.</p></div>
+      <div class="box"><h3 class="h4">⟳ Loop</h3><p>Vuelve al principio al llegar al final (modo por defecto).</p></div>
     </div>
   </div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Auto-Pilot — Encadenamiento automático</div>
+  <h2 class="ptl">Auto-Pilot — Encadenamiento automático</h2>
   <div class="g2">
     <div>
       <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 12px">Configurable a <strong>tres niveles</strong>:</p>
@@ -2203,7 +2205,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
       </ul>
     </div>
     <div>
-      <div class="box"><h4>Comportamientos por clip</h4>
+      <div class="box"><h3 class="h4">Comportamientos por clip</h3>
         <p>Clic derecho sobre el clip → Auto Pilot:</p>
         <ul>
           <li><strong>Play Next Clip</strong> — siguiente clip de la capa</li>
@@ -2218,14 +2220,14 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Symmetry FX — Efectos de simetría</div>
+  <h2 class="ptl">Symmetry FX — Efectos de simetría</h2>
   <div class="g3">
-    <div class="box"><h4>🪞 Mirror</h4><p>Espejo del clip sobre sí mismo. Una mitad del frame refleja la otra.</p></div>
-    <div class="box"><h4>↕ Flip</h4><p>Voltea el clip vertical u horizontalmente sin reflejar.</p></div>
-    <div class="box"><h4>⊞ Quad</h4><p>Divide el frame en 4 cuadrantes que reflejan el mismo contenido. Patrón caleidoscópico.</p></div>
+    <div class="box"><h3 class="h4">🪞 Mirror</h3><p>Espejo del clip sobre sí mismo. Una mitad del frame refleja la otra.</p></div>
+    <div class="box"><h3 class="h4">↕ Flip</h3><p>Voltea el clip vertical u horizontalmente sin reflejar.</p></div>
+    <div class="box"><h3 class="h4">⊞ Quad</h3><p>Divide el frame en 4 cuadrantes que reflejan el mismo contenido. Patrón caleidoscópico.</p></div>
   </div>
   <div class="box box-g" style="margin-top: 14px">
-    <h4>✓ Por qué son tan usados en VJing</h4>
+    <h3 class="h4">✓ Por qué son tan usados en VJing</h3>
     <p>Convierten cualquier vídeo (incluso uno simple) en un patrón visual complejo y abstracto al instante, sin tener que duplicar el clip ni editarlo.</p>
   </div>
 </div>
@@ -2234,7 +2236,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 <!-- ═══ A2 · FUENTES GENERATIVAS ═══ -->
 <section class="page" id="page-fuentes">
 <div class="ptag">// A2 · UD 2 · MÓDULO 09</div>
-<div class="ptitle">FUENTES <span>GENERATIVAS</span></div>
+<h2 class="ptitle">FUENTES <span>GENERATIVAS</span></h2>
 <div class="pdesc">Sources, Generators, contenido en tiempo real sin archivos de vídeo y presets de fuente.</div>
 
 <div class="dossier">
@@ -2243,7 +2245,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Cómo usar una Source</div>
+  <h2 class="ptl">Cómo usar una Source</h2>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Abre el panel <strong>Sources</strong> (lateral derecho, junto a Files y Effects).</p></div>
     <div class="step"><div class="snum">2</div><p>Navega por las categorías: <strong>Generators</strong>, Solid Color, Inputs, etc.</p></div>
@@ -2254,14 +2256,14 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Categorías de Sources — Las más usadas</div>
+  <h2 class="ptl">Categorías de Sources — Las más usadas</h2>
   <div class="g3">
-    <div class="box"><h4>⊕ Generators</h4><p>Rings, Lines, Shapes, Noise, Gradient, Checkered, Sand Dunes, Water Fall, Waving Ribbons, Lasers...</p></div>
-    <div class="box"><h4>◐ Solid Color</h4><p>Un color plano. Útil como fondo o para teñir capas inferiores con un modo de fusión Multiply.</p></div>
-    <div class="box"><h4>📷 Inputs</h4><p>Cámaras del sistema, Syphon (macOS) / Spout (Windows) y NDI para vídeo entre aplicaciones.</p></div>
+    <div class="box"><h3 class="h4">⊕ Generators</h3><p>Rings, Lines, Shapes, Noise, Gradient, Checkered, Sand Dunes, Water Fall, Waving Ribbons, Lasers...</p></div>
+    <div class="box"><h3 class="h4">◐ Solid Color</h3><p>Un color plano. Útil como fondo o para teñir capas inferiores con un modo de fusión Multiply.</p></div>
+    <div class="box"><h3 class="h4">📷 Inputs</h3><p>Cámaras del sistema, Syphon (macOS) / Spout (Windows) y NDI para vídeo entre aplicaciones.</p></div>
   </div>
   <div class="box box-g" style="margin-top: 14px">
-    <h4>✓ Ventajas de los generativos</h4>
+    <h3 class="h4">✓ Ventajas de los generativos</h3>
     <ul>
       <li>No ocupan espacio en disco</li>
       <li>Se modifican en directo cambiando sus parámetros</li>
@@ -2274,7 +2276,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 <!-- ═══ A3 · MODOS DE COLOR ═══ -->
 <section class="page" id="page-color-modos">
 <div class="ptag">// A3 · UD 3 · MÓDULO 10</div>
-<div class="ptitle">MODOS DE <span>COLOR</span></div>
+<h2 class="ptitle">MODOS DE <span>COLOR</span></h2>
 <div class="pdesc">RGB aditivo, CMYK sustractivo y HSB intuitivo. Cuándo usar cada modo en VJing y projection mapping.</div>
 
 <div class="dossier">
@@ -2372,7 +2374,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Resumen de modos de color</div>
+  <h2 class="ptl">Resumen de modos de color</h2>
   <div class="ox">
     <table class="tbl">
       <thead><tr><th>Modo</th><th>Tipo</th><th>Componentes</th><th>Mezcla total</th><th>Usado en</th></tr></thead>
@@ -2390,7 +2392,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 <!-- ═══ A3 · EFECTOS DE COLOR ═══ -->
 <section class="page" id="page-color-fx">
 <div class="ptag">// A3 · UD 3 · MÓDULO 11</div>
-<div class="ptitle">EFECTOS DE <span>COLOR</span></div>
+<h2 class="ptitle">EFECTOS DE <span>COLOR</span></h2>
 <div class="pdesc">Bright/Contrast, Levels, Hue Rotate, Saturation, RGB Add/Subtract, ColorPass, Colorize y construcción de paletas.</div>
 
 <div class="dossier">
@@ -2400,22 +2402,22 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Efectos de color · Catálogo</div>
+  <h2 class="ptl">Efectos de color · Catálogo</h2>
   <div class="g3">
-    <div class="box"><h4>☀ Bright / Contrast</h4><p>Ajustes básicos. Brillo sube/baja todo el valor global; contraste separa luces de sombras.</p></div>
-    <div class="box"><h4>📊 Levels</h4><p>Ajuste serio por canal (sombras, medios, luces). Equivalente a Levels de Photoshop.</p></div>
-    <div class="box"><h4>🎨 Solid Color (Source)</h4><p>Genera color plano. Mezcla con modos de fusión para teñir capas inferiores.</p></div>
-    <div class="box"><h4>🔄 Hue Rotate</h4><p>Rota el tono de toda la imagen. 180° = color opuesto. Forma rápida de cambiar la dominante.</p></div>
-    <div class="box"><h4>🌈 Saturation</h4><p>Sube/baja la pureza. 0% = blanco y negro. Máximo = chillón.</p></div>
-    <div class="box"><h4>± Add / Subtract</h4><p>Suma o resta valor por canal. Eliminar canal rojo = restar todo el rojo.</p></div>
-    <div class="box"><h4>🎯 ColorPass</h4><p>Aísla un rango de color y deja el resto en B/N. "Tono selectivo" cinematográfico.</p></div>
-    <div class="box"><h4>💧 Colorize</h4><p>Tiñe la imagen con un tono uniforme. Útil para unificar visualmente capas heterogéneas.</p></div>
-    <div class="box"><h4>📐 RGBA (Clip)</h4><p>Acceso por canal en el panel Clip. Incluye Alpha para transparencias.</p></div>
+    <div class="box"><h3 class="h4">☀ Bright / Contrast</h3><p>Ajustes básicos. Brillo sube/baja todo el valor global; contraste separa luces de sombras.</p></div>
+    <div class="box"><h3 class="h4">📊 Levels</h3><p>Ajuste serio por canal (sombras, medios, luces). Equivalente a Levels de Photoshop.</p></div>
+    <div class="box"><h3 class="h4">🎨 Solid Color (Source)</h3><p>Genera color plano. Mezcla con modos de fusión para teñir capas inferiores.</p></div>
+    <div class="box"><h3 class="h4">🔄 Hue Rotate</h3><p>Rota el tono de toda la imagen. 180° = color opuesto. Forma rápida de cambiar la dominante.</p></div>
+    <div class="box"><h3 class="h4">🌈 Saturation</h3><p>Sube/baja la pureza. 0% = blanco y negro. Máximo = chillón.</p></div>
+    <div class="box"><h3 class="h4">± Add / Subtract</h3><p>Suma o resta valor por canal. Eliminar canal rojo = restar todo el rojo.</p></div>
+    <div class="box"><h3 class="h4">🎯 ColorPass</h3><p>Aísla un rango de color y deja el resto en B/N. "Tono selectivo" cinematográfico.</p></div>
+    <div class="box"><h3 class="h4">💧 Colorize</h3><p>Tiñe la imagen con un tono uniforme. Útil para unificar visualmente capas heterogéneas.</p></div>
+    <div class="box"><h3 class="h4">📐 RGBA (Clip)</h3><p>Acceso por canal en el panel Clip. Incluye Alpha para transparencias.</p></div>
   </div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Color Picker — Selector de color</div>
+  <h2 class="ptl">Color Picker — Selector de color</h2>
   <div class="g2">
     <div>
       <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 12px">Aparece al hacer clic en cualquier parámetro de color. Tres modos de selección:</p>
@@ -2427,7 +2429,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
     </div>
     <div>
       <div class="box box-g">
-        <h4>✓ Construir una paleta</h4>
+        <h3 class="h4">✓ Construir una paleta</h3>
         <p>Crea una paleta cuando: trabajas con la identidad visual de un cliente, has diseñado un esquema cromático para un evento, o tienes 4–8 colores que repites mucho.</p>
         <p style="margin-top: 8px"><strong>Ejemplo del ejercicio A3:</strong> crea una paleta <span class="cmd">"Paleta 1.0"</span> con al menos 4 colores.</p>
       </div>
@@ -2438,7 +2440,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 <!-- ═══ A4 · AUDIO + CONTROL ═══ -->
 <section class="page" id="page-audio">
 <div class="ptag">// A4 · UD 4 · MÓDULO 12</div>
-<div class="ptitle">AUDIO · <span>BPM · FFT</span></div>
+<h2 class="ptitle">AUDIO · <span>BPM · FFT</span></h2>
 <div class="pdesc">Transport del clip, Cuepoints, BPM Tools, TAP, Resync, Quantization, BeatLooper, FFT Audio Reactive y Envelopes.</div>
 
 <div class="dossier">
@@ -2531,22 +2533,22 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Transport del clip · Control fino</div>
+  <h2 class="ptl">Transport del clip · Control fino</h2>
   <div class="g2">
     <div>
-      <div class="box"><h4>▶ Tiradores In/Out</h4><p>Pequeños triángulos en la barra de tiempo del clip. Recortan el clip sin editarlo en otro software.</p></div>
-      <div class="box"><h4>🔄 Loop Modes</h4><p>Loop · Reverse · Ping-Pong · Hold. Definen qué pasa al llegar al final del clip.</p></div>
-      <div class="box"><h4>🎲 Random Frequency / Speed</h4><p>El cursor salta a fotogramas aleatorios. Vídeo nervioso para clímax o tensión.</p></div>
+      <div class="box"><h3 class="h4">▶ Tiradores In/Out</h3><p>Pequeños triángulos en la barra de tiempo del clip. Recortan el clip sin editarlo en otro software.</p></div>
+      <div class="box"><h3 class="h4">🔄 Loop Modes</h3><p>Loop · Reverse · Ping-Pong · Hold. Definen qué pasa al llegar al final del clip.</p></div>
+      <div class="box"><h3 class="h4">🎲 Random Frequency / Speed</h3><p>El cursor salta a fotogramas aleatorios. Vídeo nervioso para clímax o tensión.</p></div>
     </div>
     <div>
-      <div class="box"><h4>📍 Cuepoints</h4><p>Marcadores de tiempo dentro del clip. Atajos: <span class="key">Shift+Q/W/E/R/T/Y</span> para set; <span class="key">q/w/e/r/t/y</span> para jump.</p></div>
-      <div class="box"><h4>⏩ Speed</h4><p>Velocidad de reproducción del clip. Doble clic = velocidad neutra (1.0×).</p></div>
+      <div class="box"><h3 class="h4">📍 Cuepoints</h3><p>Marcadores de tiempo dentro del clip. Atajos: <span class="key">Shift+Q/W/E/R/T/Y</span> para set; <span class="key">q/w/e/r/t/y</span> para jump.</p></div>
+      <div class="box"><h3 class="h4">⏩ Speed</h3><p>Velocidad de reproducción del clip. Doble clic = velocidad neutra (1.0×).</p></div>
     </div>
   </div>
 </div>
 
 <div class="panel">
-  <div class="ptl">BPM Tools — Sincronizar con el ritmo</div>
+  <h2 class="ptl">BPM Tools — Sincronizar con el ritmo</h2>
   <div class="ox">
     <table class="tbl">
       <thead><tr><th>Función</th><th>Qué hace</th><th>Atajo</th></tr></thead>
@@ -2563,25 +2565,25 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Animación de parámetros · Envelopes &amp; FFT</div>
+  <h2 class="ptl">Animación de parámetros · Envelopes &amp; FFT</h2>
   <div class="g2">
     <div>
       <div class="box box-g">
-        <h4>📈 Envelopes</h4>
+        <h3 class="h4">📈 Envelopes</h3>
         <p>Dibujas una curva en una línea de tiempo y el parámetro sigue esa curva. Para activar: flecha desplegable junto al fader → <strong>Envelope</strong>. Sirve para subidas progresivas, oscilaciones, secuencias largas.</p>
       </div>
     </div>
     <div>
       <div class="box box-g">
-        <h4>🎵 Audio Reactive · FFT</h4>
+        <h3 class="h4">🎵 Audio Reactive · FFT</h3>
         <p>El parámetro reacciona al sonido en directo. La <strong>FFT</strong> (Fast Fourier Transform) descompone la señal en bandas: graves, medios, agudos. Cada banda controla un parámetro.</p>
       </div>
     </div>
   </div>
   <div class="g3" style="margin-top: 14px">
-    <div class="box"><h4>External (audio del sistema)</h4><p>Audio que entra al ordenador. Requiere <strong>loopback</strong>: BlackHole (macOS), VB-Cable / Stereo Mix (Windows). Es lo normal para que reaccione a Spotify o al DJ.</p></div>
-    <div class="box"><h4>Composition FFT</h4><p>Audio de los clips que suenan dentro de Resolume. No necesita loopback. Útil si tu fuente sonora viene del propio Resolume.</p></div>
-    <div class="box"><h4>Preferences source</h4><p>Fuente de audio configurada en <span class="cmd">Settings → Audio</span>.</p></div>
+    <div class="box"><h3 class="h4">External (audio del sistema)</h3><p>Audio que entra al ordenador. Requiere <strong>loopback</strong>: BlackHole (macOS), VB-Cable / Stereo Mix (Windows). Es lo normal para que reaccione a Spotify o al DJ.</p></div>
+    <div class="box"><h3 class="h4">Composition FFT</h3><p>Audio de los clips que suenan dentro de Resolume. No necesita loopback. Útil si tu fuente sonora viene del propio Resolume.</p></div>
+    <div class="box"><h3 class="h4">Preferences source</h3><p>Fuente de audio configurada en <span class="cmd">Settings → Audio</span>.</p></div>
   </div>
 </div>
 
@@ -2620,7 +2622,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 <!-- ═══ A4 · DASHBOARD & PRESETS ═══ -->
 <section class="page" id="page-dashboard">
 <div class="ptag">// A4 · UD 4 · MÓDULO 13</div>
-<div class="ptitle">DASHBOARD · <span>PRESETS</span></div>
+<h2 class="ptitle">DASHBOARD · <span>PRESETS</span></h2>
 <div class="pdesc">Sistema de presets a todos los niveles, Dashboard personalizado y Key Shortcuts para acceso rápido.</div>
 
 <div class="dossier">
@@ -2630,7 +2632,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Presets · Sistema de guardado</div>
+  <h2 class="ptl">Presets · Sistema de guardado</h2>
   <div class="g2">
     <div>
       <div class="steps">
@@ -2642,7 +2644,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
     </div>
     <div>
       <div class="box box-g">
-        <h4>✓ Presets a varios niveles</h4>
+        <h3 class="h4">✓ Presets a varios niveles</h3>
         <ul>
           <li><strong>FX Preset</strong> — parámetros de un efecto</li>
           <li><strong>Source Preset</strong> — parámetros de una fuente generativa</li>
@@ -2655,7 +2657,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Dashboard · Panel personalizado</div>
+  <h2 class="ptl">Dashboard · Panel personalizado</h2>
   <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 14px">Construye tu propio panel de control sacando parámetros de donde estén en la interfaz y agrupándolos en un solo sitio.</p>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Selecciona el parámetro que quieres añadir al Dashboard.</p></div>
@@ -2667,7 +2669,7 @@ Columns          <span class="cc">← nº inicial de columnas</span></div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Key Shortcut · Atajo personalizado</div>
+  <h2 class="ptl">Key Shortcut · Atajo personalizado</h2>
   <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 12px">Asigna cualquier tecla del teclado a una acción específica (lanzar un clip, cambiar opacidad, saltar a cuepoint...).</p>
   <div class="cb"><span class="cc">// Flujo</span>
 Shortcut → Edit Application Shortcuts
@@ -2682,7 +2684,7 @@ Atajo guardado</div>
 <!-- ═══ A5 · INTRODUCCIÓN AL MAPPING ═══ -->
 <section class="page" id="page-mapping-intro">
 <div class="ptag">// A5 · UD 5 · MÓDULO 14</div>
-<div class="ptitle">MAPPING · <span>Introducción</span></div>
+<h2 class="ptitle">MAPPING · <span>Introducción</span></h2>
 <div class="pdesc">Qué es el projection mapping, tipos de mapping en Resolume, Advanced Output y conceptos clave: Screen, Slice, Polygon, Output Mask.</div>
 
 <div class="dossier">
@@ -2692,25 +2694,25 @@ Atajo guardado</div>
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Advanced Output · Conceptos clave</div>
+  <h2 class="ptl">Advanced Output · Conceptos clave</h2>
   <div class="g2">
     <div>
-      <div class="box"><h4>🖥 Screen</h4><p>Una salida de vídeo física. Cada monitor, proyector o pantalla LED conectado al ordenador es un Screen. Puedes tener varios, cada uno con su propia resolución.</p></div>
-      <div class="box"><h4>✂ Slice</h4><p>Un corte concreto dentro de la composición que se manda a un Screen. Un Slice tiene dos lados: forma de entrada (qué zona coge) y forma de salida (cómo y dónde se proyecta).</p></div>
+      <div class="box"><h3 class="h4">🖥 Screen</h3><p>Una salida de vídeo física. Cada monitor, proyector o pantalla LED conectado al ordenador es un Screen. Puedes tener varios, cada uno con su propia resolución.</p></div>
+      <div class="box"><h3 class="h4">✂ Slice</h3><p>Un corte concreto dentro de la composición que se manda a un Screen. Un Slice tiene dos lados: forma de entrada (qué zona coge) y forma de salida (cómo y dónde se proyecta).</p></div>
     </div>
     <div>
-      <div class="box"><h4>⬡ Polygon</h4><p>Un Slice rectangular con máscara de polígono, útil para superficies de forma libre.</p></div>
-      <div class="box"><h4>🎭 Output Mask</h4><p>Una máscara aplicada a la salida completa de un Screen, en la pestaña <strong>Output Transformation</strong>. Permite ocultar zonas concretas de la proyección final.</p></div>
+      <div class="box"><h3 class="h4">⬡ Polygon</h3><p>Un Slice rectangular con máscara de polígono, útil para superficies de forma libre.</p></div>
+      <div class="box"><h3 class="h4">🎭 Output Mask</h3><p>Una máscara aplicada a la salida completa de un Screen, en la pestaña <strong>Output Transformation</strong>. Permite ocultar zonas concretas de la proyección final.</p></div>
     </div>
   </div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Tres tipos de mapping</div>
+  <h2 class="ptl">Tres tipos de mapping</h2>
   <div class="g3">
-    <div class="box"><h4>📐 Input Mapping (A5)</h4><p>Un proyector → varias zonas separadas. Slices rectangulares. Caso del aula: 1 proyector, 4 ventanas.</p></div>
-    <div class="box"><h4>⬡ Structure Mapping (A6)</h4><p>Superficies irregulares: triángulos, polígonos, formas libres. Con foto-guía como referencia.</p></div>
-    <div class="box"><h4>⊟ LED Stage Mapping (A6)</h4><p>Pantallas LED dispuestas en escenario. Cada bloque tiene su propia resolución y posición.</p></div>
+    <div class="box"><h3 class="h4">📐 Input Mapping (A5)</h3><p>Un proyector → varias zonas separadas. Slices rectangulares. Caso del aula: 1 proyector, 4 ventanas.</p></div>
+    <div class="box"><h3 class="h4">⬡ Structure Mapping (A6)</h3><p>Superficies irregulares: triángulos, polígonos, formas libres. Con foto-guía como referencia.</p></div>
+    <div class="box"><h3 class="h4">⊟ LED Stage Mapping (A6)</h3><p>Pantallas LED dispuestas en escenario. Cada bloque tiene su propia resolución y posición.</p></div>
   </div>
 </div>
 </section>
@@ -2718,7 +2720,7 @@ Atajo guardado</div>
 <!-- ═══ A5 · INPUT MAPPING ═══ -->
 <section class="page" id="page-input-mapping">
 <div class="ptag">// A5 · UD 5 · MÓDULO 15</div>
-<div class="ptitle">INPUT <span>MAPPING</span></div>
+<h2 class="ptitle">INPUT <span>MAPPING</span></h2>
 <div class="pdesc">Slices rectangulares, Slice Transform FX, Input Selection vs Output Transformation y caso práctico del ejercicio A5.</div>
 
 <div class="dossier">
@@ -2775,7 +2777,7 @@ Atajo guardado</div>
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Caso práctico · 1 proyector, 4 zonas</div>
+  <h2 class="ptl">Caso práctico · 1 proyector, 4 zonas</h2>
   <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 14px">Un proyector tira a una pared con <strong>4 ventanas</strong> rectangulares. Cada ventana necesita su propio contenido.</p>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p><span class="cmd">Composition Settings</span> → resolución <strong>1080×1080</strong> (cuadrado, para matriz 2×2 dentro).</p></div>
@@ -2787,21 +2789,21 @@ Atajo guardado</div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Slice Transform FX · Vinculación contenido → slice</div>
+  <h2 class="ptl">Slice Transform FX · Vinculación contenido → slice</h2>
   <div class="g2">
     <div>
       <div class="box">
-        <h4>📌 Cómo se aplica</h4>
+        <h3 class="h4">📌 Cómo se aplica</h3>
         <p>Es un efecto como cualquier otro, pero su función no es modificar la imagen sino <strong>dirigirla a un slice específico</strong>. Se aplica al layer o al clip.</p>
       </div>
       <div class="box" style="margin-top: 10px">
-        <h4>🔗 Ventana Show Slices</h4>
+        <h3 class="h4">🔗 Ventana Show Slices</h3>
         <p><span class="cmd">View → Show Slices</span> muestra los slices encima del monitor. Permite seleccionarlos haciendo clic.</p>
       </div>
     </div>
     <div>
       <div class="box box-g">
-        <h4>✓ Match Input Shape · Edit Points</h4>
+        <h3 class="h4">✓ Match Input Shape · Edit Points</h3>
         <p>Clic derecho sobre el slice en Advanced Output:</p>
         <ul>
           <li><strong>Match Input Shape</strong> — la salida toma la forma del input</li>
@@ -2816,7 +2818,7 @@ Atajo guardado</div>
 <!-- ═══ A6 · STRUCTURE MAPPING ═══ -->
 <section class="page" id="page-structure-mapping">
 <div class="ptag">// A6 · UD 6 · MÓDULO 16</div>
-<div class="ptitle">STRUCTURE <span>MAPPING</span></div>
+<h2 class="ptitle">STRUCTURE <span>MAPPING</span></h2>
 <div class="pdesc">Slices con formas no rectangulares: triángulos, polígonos, formas libres. Input Guide con foto de la superficie.</div>
 
 <div class="dossier">
@@ -2826,7 +2828,7 @@ Atajo guardado</div>
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Flujo de Structure Mapping</div>
+  <h2 class="ptl">Flujo de Structure Mapping</h2>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Composition Settings → resolución a la que necesites (1080×1080 funciona bien).</p></div>
     <div class="step"><div class="snum">2</div><p><span class="cmd">Output → Advanced</span> → en Input Selection del Screen: <strong>Input Guide → Load</strong> y carga foto de la superficie.</p></div>
@@ -2837,18 +2839,18 @@ Atajo guardado</div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Match Input Shape vs Match Output Shape</div>
+  <h2 class="ptl">Match Input Shape vs Match Output Shape</h2>
   <div class="g2">
     <div>
       <div class="box box-g">
-        <h4>📐 Match Input Shape</h4>
+        <h3 class="h4">📐 Match Input Shape</h3>
         <p>"El slice de salida manda, la entrada se adapta". Dibujas la forma de salida (cómo quieres que se vea proyectada) y Resolume ajusta la entrada para que coincida.</p>
         <p style="margin-top: 8px"><strong>Cuándo:</strong> proyección sobre superficies físicas. Fachadas, esculturas, paneles. El contenido se adapta a la forma.</p>
       </div>
     </div>
     <div>
       <div class="box box-y">
-        <h4>📐 Match Output Shape</h4>
+        <h3 class="h4">📐 Match Output Shape</h3>
         <p>"El slice de entrada manda, la salida se adapta". Dibujas la forma de entrada (qué zona exacta de la composición usar) y Resolume ajusta la salida.</p>
         <p style="margin-top: 8px"><strong>Cuándo:</strong> pixel mapping con pantallas LED. Resoluciones conocidas y exactas, sin distorsión.</p>
       </div>
@@ -2864,7 +2866,7 @@ Show con ambos                  →  un slice de cada tipo</div>
 <!-- ═══ A6 · LED STAGE MAPPING ═══ -->
 <section class="page" id="page-led-mapping">
 <div class="ptag">// A6 · UD 6 · MÓDULO 17</div>
-<div class="ptitle">LED STAGE <span>MAPPING</span></div>
+<h2 class="ptitle">LED STAGE <span>MAPPING</span></h2>
 <div class="pdesc">Pixel Map, setups multipantalla, procesadores LED y casos reales de festivales.</div>
 
 <div class="dossier">
@@ -2874,7 +2876,7 @@ Show con ambos                  →  un slice de cada tipo</div>
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Caso real · Setup de 7 pantallas (2640×1440)</div>
+  <h2 class="ptl">Caso real · Setup de 7 pantallas (2640×1440)</h2>
   <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 14px">Ejemplo de montaje multipantalla:</p>
   <div class="ox">
     <table class="tbl">
@@ -2890,7 +2892,7 @@ Show con ambos                  →  un slice de cada tipo</div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Caso real · Setup de 4 pantallas (1920×960)</div>
+  <h2 class="ptl">Caso real · Setup de 4 pantallas (1920×960)</h2>
   <div class="ox">
     <table class="tbl">
       <thead><tr><th>Pantalla</th><th>Resolución</th><th>Función</th></tr></thead>
@@ -2906,14 +2908,14 @@ Show con ambos                  →  un slice de cada tipo</div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Hardware de LED · Conexión</div>
+  <h2 class="ptl">Hardware de LED · Conexión</h2>
   <div class="g3">
-    <div class="box"><h4>🖥 Resolume</h4><p>Genera la composición y la envía por la tarjeta gráfica.</p></div>
-    <div class="box"><h4>⊟ Procesador LED</h4><p>Ve a Resolume como un monitor externo. Distribuye la señal a cada panel.</p></div>
-    <div class="box"><h4>🔌 Paneles LED</h4><p>Cada uno recibe su parte del píxel-mapa desde el procesador.</p></div>
+    <div class="box"><h3 class="h4">🖥 Resolume</h3><p>Genera la composición y la envía por la tarjeta gráfica.</p></div>
+    <div class="box"><h3 class="h4">⊟ Procesador LED</h3><p>Ve a Resolume como un monitor externo. Distribuye la señal a cada panel.</p></div>
+    <div class="box"><h3 class="h4">🔌 Paneles LED</h3><p>Cada uno recibe su parte del píxel-mapa desde el procesador.</p></div>
   </div>
   <div class="box box-g" style="margin-top: 14px">
-    <h4>✓ Framerate y resolución</h4>
+    <h3 class="h4">✓ Framerate y resolución</h3>
     <p>Los LED walls suelen operar a <strong>60fps</strong> mínimo. Configura Resolume a 60fps y asegura que el hardware del PC puede mantener esa tasa con el contenido previsto.</p>
   </div>
 </div>
@@ -2922,7 +2924,7 @@ Show con ambos                  →  un slice de cada tipo</div>
 <!-- ═══ A6 · GRABAR ═══ -->
 <section class="page" id="page-grabar">
 <div class="ptag">// A6 · UD 6 · MÓDULO 18</div>
-<div class="ptitle">GRABAR <span>SESIÓN</span></div>
+<h2 class="ptitle">GRABAR <span>SESIÓN</span></h2>
 <div class="pdesc">Panel Record, presets DXV, condiciones de inicio/parada y captura del output para el ejercicio final.</div>
 
 <div class="dossier">
@@ -2932,7 +2934,7 @@ Show con ambos                  →  un slice de cada tipo</div>
 </div>
 
 <div class="panel panel-g">
-  <div class="ptl">Panel Record · Configuración</div>
+  <h2 class="ptl">Panel Record · Configuración</h2>
   <div class="ox">
     <table class="tbl">
       <thead><tr><th>Parámetro</th><th>Opciones</th><th>Recomendado para ejercicio</th></tr></thead>
@@ -2949,7 +2951,7 @@ Show con ambos                  →  un slice de cada tipo</div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Vector Slice · Importar desde Illustrator</div>
+  <h2 class="ptl">Vector Slice · Importar desde Illustrator</h2>
   <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 12px">Permite importar formas vectoriales desde Adobe Illustrator (<span class="cmd">.ai</span> o <span class="cmd">.svg</span>) y convertirlas en slices dentro de Advanced Output. Muy útil cuando trabajas con un diseñador o has dibujado la geometría del escenario en Illustrator.</p>
   <div class="cb"><span class="cc">// Flujo Illustrator → Resolume</span>
 1. Diseñador entrega .svg/.ai con cada zona del
@@ -2962,11 +2964,11 @@ Show con ambos                  →  un slice de cada tipo</div>
 <!-- ═══ EJERCICIOS ═══ -->
 <section class="page" id="page-ejercicios">
 <div class="ptag">// PRÁCTICAS · A1 – A6 + FINAL</div>
-<div class="ptitle">EJER<span>CICIOS</span></div>
+<h2 class="ptitle">EJER<span>CICIOS</span></h2>
 <div class="pdesc">Los 7 ejercicios evaluables del curso, según el guion oficial. Cada uno con su listado completo de requisitos.</div>
 
 <div class="panel panel-g" style="margin-bottom: 26px">
-  <div class="ptl">📦 Entrega · Nomenclatura común</div>
+  <h2 class="ptl">📦 Entrega · Nomenclatura común</h2>
   <div class="cb"><span class="cc">// Estructura de carpeta para todas las unidades</span>
 Apellido1_Apellido2_Nombre_UnidadN/
   ├── vídeo/
@@ -3203,7 +3205,7 @@ Composition → Collect Media</div>
       <div class="ex-item"><div class="ex-dot">06</div><div>Entrega <strong>.avc + Collect Media + grabación .mov</strong> de 30s.</div></div>
     </div>
     <div class="box box-g" style="margin-top: 16px">
-      <h4>✓ Criterios de evaluación</h4>
+      <h3 class="h4">✓ Criterios de evaluación</h3>
       <ul>
         <li><strong>Integración técnica</strong>: BPM, cuantización, capas, efectos, mapping, FFT.</li>
         <li><strong>Criterio estético</strong>: selección musical, coherencia visual, ritmo de cambios.</li>
@@ -3211,7 +3213,7 @@ Composition → Collect Media</div>
       </ul>
     </div>
     <div class="box box-y" style="margin-top: 10px">
-      <h4>⚠ Recomendaciones</h4>
+      <h3 class="h4">⚠ Recomendaciones</h3>
       <ul>
         <li>Escoge el fragmento con cabeza: una intro o un drop potente lucen más que un puente intermedio.</li>
         <li>Planifica antes de tocar el ordenador. Boceto rápido = horas ahorradas.</li>
@@ -3225,11 +3227,11 @@ Composition → Collect Media</div>
 <!-- ═══ SHORTCUTS ═══ -->
 <section class="page" id="page-shortcuts">
 <div class="ptag">// REFERENCIA</div>
-<div class="ptitle">ATAJOS DE <span>TECLADO</span></div>
+<h2 class="ptitle">ATAJOS DE <span>TECLADO</span></h2>
 <div class="pdesc">Atajos esenciales de Resolume Arena para una performance fluida y configuración de shortcuts personalizados.</div>
 
 <div class="panel panel-g">
-  <div class="ptl">Atajos globales · Archivo y aplicación</div>
+  <h2 class="ptl">Atajos globales · Archivo y aplicación</h2>
   <div class="ox">
     <table class="tbl">
       <thead><tr><th>Atajo</th><th>Función</th></tr></thead>
@@ -3251,7 +3253,7 @@ Composition → Collect Media</div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Transport del clip activo</div>
+  <h2 class="ptl">Transport del clip activo</h2>
   <div class="ox">
     <table class="tbl">
       <thead><tr><th>Tecla</th><th>Acción</th></tr></thead>
@@ -3270,7 +3272,7 @@ Composition → Collect Media</div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Cue Points</div>
+  <h2 class="ptl">Cue Points</h2>
   <div class="g2">
     <div>
       <div style="font-size: 11px; color: var(--green); font-family: var(--mono); font-weight: 700; margin-bottom: 8px; letter-spacing: 1.5px">SET CUE POINTS</div>
@@ -3308,7 +3310,7 @@ Composition → Collect Media</div>
 </div>
 
 <div class="panel">
-  <div class="ptl">BPM y resync</div>
+  <h2 class="ptl">BPM y resync</h2>
   <div class="ox">
     <table class="tbl">
       <thead><tr><th>Tecla</th><th>Acción</th></tr></thead>
@@ -3323,7 +3325,7 @@ Composition → Collect Media</div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Editor de Shortcuts · Personalización</div>
+  <h2 class="ptl">Editor de Shortcuts · Personalización</h2>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Abre <span class="cmd">Shortcut → Edit Application Shortcuts</span> desde la barra superior.</p></div>
     <div class="step"><div class="snum">2</div><p>Selecciona el clip, layer o parámetro al que asignar el atajo.</p></div>
@@ -3331,7 +3333,7 @@ Composition → Collect Media</div>
     <div class="step"><div class="snum">4</div><p>Sale del modo edit (Esc o de nuevo desde el menú).</p></div>
   </div>
   <div class="box box-g" style="margin-top: 14px">
-    <h4>✓ Application Map vs Composition Map</h4>
+    <h3 class="h4">✓ Application Map vs Composition Map</h3>
     <p><strong>Application Map</strong>: atajos globales que funcionan con cualquier composición. <strong>Composition Map</strong>: atajos guardados dentro de una composición específica.</p>
   </div>
 </div>
@@ -3379,77 +3381,77 @@ Composition → Collect Media</div>
 <!-- ═══ GLOSARIO ═══ -->
 <section class="page" id="page-glosario">
 <div class="ptag">// REFERENCIA</div>
-<div class="ptitle">GLO<span>SARIO</span></div>
+<h2 class="ptitle">GLO<span>SARIO</span></h2>
 <div class="pdesc">Términos técnicos esenciales del VJing y de Resolume Arena.</div>
 
 <div class="panel">
-  <div class="ptl">A–C</div>
+  <h2 class="ptl">A–C</h2>
   <div class="g2">
     <div>
-      <div class="box"><h4>Arena</h4><p>Versión completa de Resolume con Advanced Output y projection mapping.</p></div>
-      <div class="box"><h4>Avenue</h4><p>Versión de Resolume sin Advanced Output. Solo VJing en pantalla rectangular.</p></div>
-      <div class="box"><h4>Alley</h4><p>Aplicación de conversión a códec DXV. Se instala junto a Resolume Arena.</p></div>
-      <div class="box"><h4>Auto-Pilot</h4><p>Encadenamiento automático de clips. Configurable por composición, grupo o capa.</p></div>
-      <div class="box"><h4>BPM</h4><p>Beats Per Minute. Velocidad del pulso musical.</p></div>
-      <div class="box"><h4>Blend Mode</h4><p>Modo de fusión entre capas: Add, Multiply, Screen, etc.</p></div>
-      <div class="box"><h4>Bypass</h4><p>Botón B en capas y efectos. Desactiva sin perder configuración.</p></div>
+      <div class="box"><h3 class="h4">Arena</h3><p>Versión completa de Resolume con Advanced Output y projection mapping.</p></div>
+      <div class="box"><h3 class="h4">Avenue</h3><p>Versión de Resolume sin Advanced Output. Solo VJing en pantalla rectangular.</p></div>
+      <div class="box"><h3 class="h4">Alley</h3><p>Aplicación de conversión a códec DXV. Se instala junto a Resolume Arena.</p></div>
+      <div class="box"><h3 class="h4">Auto-Pilot</h3><p>Encadenamiento automático de clips. Configurable por composición, grupo o capa.</p></div>
+      <div class="box"><h3 class="h4">BPM</h3><p>Beats Per Minute. Velocidad del pulso musical.</p></div>
+      <div class="box"><h3 class="h4">Blend Mode</h3><p>Modo de fusión entre capas: Add, Multiply, Screen, etc.</p></div>
+      <div class="box"><h3 class="h4">Bypass</h3><p>Botón B en capas y efectos. Desactiva sin perder configuración.</p></div>
     </div>
     <div>
-      <div class="box"><h4>BeatLooper</h4><p>Bucle corto del clip de N beats (panel Clip). Equivalente al beatloop del DJ.</p></div>
-      <div class="box"><h4>Clip</h4><p>Unidad mínima de contenido. Vive en una celda Layer × Column.</p></div>
-      <div class="box"><h4>Collect Media</h4><p>Empaqueta la composición y todos sus archivos en una carpeta autónoma.</p></div>
-      <div class="box"><h4>Column</h4><p>Columna de la matriz. Una columna entera dispara todos los clips de esa columna a la vez.</p></div>
-      <div class="box"><h4>Composition</h4><p>El proyecto entero (.avc): layers, columns, clips, settings.</p></div>
-      <div class="box"><h4>Cuepoint</h4><p>Marcador de tiempo dentro de un clip. Marcas Shift+Q–Y, saltas con q–y.</p></div>
+      <div class="box"><h3 class="h4">BeatLooper</h3><p>Bucle corto del clip de N beats (panel Clip). Equivalente al beatloop del DJ.</p></div>
+      <div class="box"><h3 class="h4">Clip</h3><p>Unidad mínima de contenido. Vive en una celda Layer × Column.</p></div>
+      <div class="box"><h3 class="h4">Collect Media</h3><p>Empaqueta la composición y todos sus archivos en una carpeta autónoma.</p></div>
+      <div class="box"><h3 class="h4">Column</h3><p>Columna de la matriz. Una columna entera dispara todos los clips de esa columna a la vez.</p></div>
+      <div class="box"><h3 class="h4">Composition</h3><p>El proyecto entero (.avc): layers, columns, clips, settings.</p></div>
+      <div class="box"><h3 class="h4">Cuepoint</h3><p>Marcador de tiempo dentro de un clip. Marcas Shift+Q–Y, saltas con q–y.</p></div>
     </div>
   </div>
 </div>
 
 <div class="panel">
-  <div class="ptl">D–L</div>
+  <h2 class="ptl">D–L</h2>
   <div class="g2">
     <div>
-      <div class="box"><h4>Dashboard</h4><p>Panel personalizado con parámetros sacados de toda la interfaz.</p></div>
-      <div class="box"><h4>Deck</h4><p>Pestaña dentro de una composición. Sirve para organizar el set por escenas.</p></div>
-      <div class="box"><h4>DXV</h4><p>Códec de vídeo propio de Resolume. Descodifica en GPU, ideal para VJing en directo.</p></div>
-      <div class="box"><h4>Envelope</h4><p>Curva de automatización de un parámetro a lo largo del tiempo.</p></div>
-      <div class="box"><h4>FFT</h4><p>Fast Fourier Transform. Análisis que descompone audio en bandas de frecuencia.</p></div>
-      <div class="box"><h4>FX</h4><p>Effect. Se aplican a clip, layer o composición.</p></div>
-      <div class="box"><h4>Generator</h4><p>Fuente generativa que crea contenido visual sin archivos.</p></div>
+      <div class="box"><h3 class="h4">Dashboard</h3><p>Panel personalizado con parámetros sacados de toda la interfaz.</p></div>
+      <div class="box"><h3 class="h4">Deck</h3><p>Pestaña dentro de una composición. Sirve para organizar el set por escenas.</p></div>
+      <div class="box"><h3 class="h4">DXV</h3><p>Códec de vídeo propio de Resolume. Descodifica en GPU, ideal para VJing en directo.</p></div>
+      <div class="box"><h3 class="h4">Envelope</h3><p>Curva de automatización de un parámetro a lo largo del tiempo.</p></div>
+      <div class="box"><h3 class="h4">FFT</h3><p>Fast Fourier Transform. Análisis que descompone audio en bandas de frecuencia.</p></div>
+      <div class="box"><h3 class="h4">FX</h3><p>Effect. Se aplican a clip, layer o composición.</p></div>
+      <div class="box"><h3 class="h4">Generator</h3><p>Fuente generativa que crea contenido visual sin archivos.</p></div>
     </div>
     <div>
-      <div class="box"><h4>Group</h4><p>Carpeta que agrupa varios layers para tratamiento conjunto.</p></div>
-      <div class="box"><h4>HAP</h4><p>Códec alternativo a DXV, también GPU-acelerado.</p></div>
-      <div class="box"><h4>HSB</h4><p>Hue, Saturation, Brightness. Modo perceptual de selección de color.</p></div>
-      <div class="box"><h4>Input Selection</h4><p>Pestaña del Advanced Output: qué zona de la composición coge un slice.</p></div>
-      <div class="box"><h4>Juice Bar</h4><p>Tienda de extensiones de Resolume: FX, sources y aplicaciones complementarias.</p></div>
-      <div class="box"><h4>Layer</h4><p>Capa horizontal de la matriz. Cada layer reproduce un clip a la vez.</p></div>
+      <div class="box"><h3 class="h4">Group</h3><p>Carpeta que agrupa varios layers para tratamiento conjunto.</p></div>
+      <div class="box"><h3 class="h4">HAP</h3><p>Códec alternativo a DXV, también GPU-acelerado.</p></div>
+      <div class="box"><h3 class="h4">HSB</h3><p>Hue, Saturation, Brightness. Modo perceptual de selección de color.</p></div>
+      <div class="box"><h3 class="h4">Input Selection</h3><p>Pestaña del Advanced Output: qué zona de la composición coge un slice.</p></div>
+      <div class="box"><h3 class="h4">Juice Bar</h3><p>Tienda de extensiones de Resolume: FX, sources y aplicaciones complementarias.</p></div>
+      <div class="box"><h3 class="h4">Layer</h3><p>Capa horizontal de la matriz. Cada layer reproduce un clip a la vez.</p></div>
     </div>
   </div>
 </div>
 
 <div class="panel">
-  <div class="ptl">M–Z</div>
+  <h2 class="ptl">M–Z</h2>
   <div class="g2">
     <div>
-      <div class="box"><h4>Mapping</h4><p>Projection Mapping: ajustar la imagen a una superficie irregular.</p></div>
-      <div class="box"><h4>Media Manager</h4><p>Herramienta de gestión de referencias a los archivos del proyecto.</p></div>
-      <div class="box"><h4>MIDI</h4><p>Protocolo de control de instrumentos y software con controladores físicos.</p></div>
-      <div class="box"><h4>NDI</h4><p>Network Device Interface. Vídeo entre aplicaciones por red.</p></div>
-      <div class="box"><h4>OSC</h4><p>Open Sound Control. Protocolo de control en red, más flexible que MIDI.</p></div>
-      <div class="box"><h4>Output Transformation</h4><p>Pestaña del Advanced Output: dónde y cómo se proyecta físicamente un slice.</p></div>
-      <div class="box"><h4>Pixel Map</h4><p>Imagen-plantilla con la disposición física de pantallas LED.</p></div>
+      <div class="box"><h3 class="h4">Mapping</h3><p>Projection Mapping: ajustar la imagen a una superficie irregular.</p></div>
+      <div class="box"><h3 class="h4">Media Manager</h3><p>Herramienta de gestión de referencias a los archivos del proyecto.</p></div>
+      <div class="box"><h3 class="h4">MIDI</h3><p>Protocolo de control de instrumentos y software con controladores físicos.</p></div>
+      <div class="box"><h3 class="h4">NDI</h3><p>Network Device Interface. Vídeo entre aplicaciones por red.</p></div>
+      <div class="box"><h3 class="h4">OSC</h3><p>Open Sound Control. Protocolo de control en red, más flexible que MIDI.</p></div>
+      <div class="box"><h3 class="h4">Output Transformation</h3><p>Pestaña del Advanced Output: dónde y cómo se proyecta físicamente un slice.</p></div>
+      <div class="box"><h3 class="h4">Pixel Map</h3><p>Imagen-plantilla con la disposición física de pantallas LED.</p></div>
     </div>
     <div>
-      <div class="box"><h4>Polygon</h4><p>Slice con forma poligonal (no rectangular).</p></div>
-      <div class="box"><h4>Preset</h4><p>Configuración guardada de parámetros. Funciona a nivel FX, source, clip o composition.</p></div>
-      <div class="box"><h4>Screen</h4><p>Salida de vídeo física: un monitor, proyector o procesador LED.</p></div>
-      <div class="box"><h4>Slice</h4><p>Corte de la composición que se manda a un Screen.</p></div>
-      <div class="box"><h4>Slice Transform FX</h4><p>Efecto que dirige un layer/clip a un slice específico.</p></div>
-      <div class="box"><h4>Solo</h4><p>Botón S de una capa. Aísla esa capa y silencia las demás.</p></div>
-      <div class="box"><h4>Sources</h4><p>Fuentes generativas y de input (cámaras, Syphon/Spout/NDI).</p></div>
-      <div class="box"><h4>Syphon / Spout</h4><p>Vídeo entre apps locales: Syphon en macOS, Spout en Windows.</p></div>
-      <div class="box"><h4>Test Card</h4><p>Imagen de calibración con rejilla y barras de color.</p></div>
+      <div class="box"><h3 class="h4">Polygon</h3><p>Slice con forma poligonal (no rectangular).</p></div>
+      <div class="box"><h3 class="h4">Preset</h3><p>Configuración guardada de parámetros. Funciona a nivel FX, source, clip o composition.</p></div>
+      <div class="box"><h3 class="h4">Screen</h3><p>Salida de vídeo física: un monitor, proyector o procesador LED.</p></div>
+      <div class="box"><h3 class="h4">Slice</h3><p>Corte de la composición que se manda a un Screen.</p></div>
+      <div class="box"><h3 class="h4">Slice Transform FX</h3><p>Efecto que dirige un layer/clip a un slice específico.</p></div>
+      <div class="box"><h3 class="h4">Solo</h3><p>Botón S de una capa. Aísla esa capa y silencia las demás.</p></div>
+      <div class="box"><h3 class="h4">Sources</h3><p>Fuentes generativas y de input (cámaras, Syphon/Spout/NDI).</p></div>
+      <div class="box"><h3 class="h4">Syphon / Spout</h3><p>Vídeo entre apps locales: Syphon en macOS, Spout en Windows.</p></div>
+      <div class="box"><h3 class="h4">Test Card</h3><p>Imagen de calibración con rejilla y barras de color.</p></div>
     </div>
   </div>
 </div>
@@ -3458,11 +3460,11 @@ Composition → Collect Media</div>
 <!-- ═══ DIRECTORIO ═══ -->
 <section class="page" id="page-directorio">
 <div class="ptag">// REFERENCIA</div>
-<div class="ptitle">DIRECTORIO DE <span>ARCHIVOS</span></div>
+<h2 class="ptitle">DIRECTORIO DE <span>ARCHIVOS</span></h2>
 <div class="pdesc">Rutas de instalación y almacenamiento de Resolume en macOS y Windows.</div>
 
 <div class="panel panel-g">
-  <div class="ptl">Carpeta de aplicación</div>
+  <h2 class="ptl">Carpeta de aplicación</h2>
   <div class="g2">
     <div>
       <div style="font-size: 11px; color: var(--green); letter-spacing: 1.5px; font-weight: 700; font-family: var(--mono); margin-bottom: 8px">macOS</div>
@@ -3490,7 +3492,7 @@ Plugins\afx\   <span class="cc">← efectos VST</span></div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Carpetas de usuario · Composiciones y grabaciones</div>
+  <h2 class="ptl">Carpetas de usuario · Composiciones y grabaciones</h2>
   <div class="g2">
     <div>
       <div style="font-size: 11px; color: var(--green); letter-spacing: 1.5px; font-weight: 700; font-family: var(--mono); margin-bottom: 8px">macOS</div>
@@ -3523,7 +3525,7 @@ Plugins\afx\   <span class="cc">← efectos VST</span></div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Instalación de Free Resolume FX Pack</div>
+  <h2 class="ptl">Instalación de Free Resolume FX Pack</h2>
   <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 14px">Resolume publica un pack de efectos gratuitos adicionales que no viene preinstalado:</p>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Descarga el pack desde la web oficial de Resolume → sección Downloads.</p></div>
@@ -3538,24 +3540,24 @@ Plugins\afx\   <span class="cc">← efectos VST</span></div>
 <!-- ═══ EXTRA · OSC/MIDI/DMX ═══ -->
 <section class="page" id="page-osc">
 <div class="ptag">// EXTRA · ampliación profesional</div>
-<div class="ptitle">CONTROL <span>OSC · MIDI · DMX</span></div>
+<h2 class="ptitle">CONTROL <span>OSC · MIDI · DMX</span></h2>
 <div class="pdesc">Contenido ampliado, no obligatorio en el guion del curso. Protocolos de control externo para producciones profesionales.</div>
 
 <div class="panel panel-g">
-  <div class="ptl">Tres protocolos de control externo</div>
+  <h2 class="ptl">Tres protocolos de control externo</h2>
   <div class="g3">
     <div class="box">
-      <h4>🎹 MIDI</h4>
+      <h3 class="h4">🎹 MIDI</h3>
       <p>Musical Instrument Digital Interface. Protocolo histórico de controladores físicos (teclados, pads, faders).</p>
       <p style="margin-top: 8px"><strong>Cuándo:</strong> usas un controlador físico estándar (APC, Launchpad, X-Touch).</p>
     </div>
     <div class="box">
-      <h4>📡 OSC</h4>
+      <h3 class="h4">📡 OSC</h3>
       <p>Open Sound Control. Protocolo de red más flexible que MIDI. Mensajes con rutas tipo URL.</p>
       <p style="margin-top: 8px"><strong>Cuándo:</strong> comunicación entre apps, TouchOSC en tablet, integración con Max/MSP.</p>
     </div>
     <div class="box">
-      <h4>💡 DMX / Art-Net</h4>
+      <h3 class="h4">💡 DMX / Art-Net</h3>
       <p>Protocolo de iluminación. 512 canales por universo. Cada píxel RGB = 3 canales.</p>
       <p style="margin-top: 8px"><strong>Cuándo:</strong> integración con mesas de luces, pixel mapping con LED.</p>
     </div>
@@ -3563,7 +3565,7 @@ Plugins\afx\   <span class="cc">← efectos VST</span></div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Configuración en Resolume</div>
+  <h2 class="ptl">Configuración en Resolume</h2>
   <div class="cb"><span class="cc">// Acceso</span>
 Preferences → MIDI / OSC / DMX
 
@@ -3583,7 +3585,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 </div>
 
 <div class="box box-y" style="margin-top: 20px">
-  <h4>⚠ Contenido fuera del temario obligatorio</h4>
+  <h3 class="h4">⚠ Contenido fuera del temario obligatorio</h3>
   <p>Estos protocolos no aparecen en los ejercicios oficiales del curso (A1–A6 + Final). Se incluyen aquí como referencia para alumnos que quieran profundizar en producciones profesionales más complejas.</p>
 </div>
 </section>
@@ -3591,25 +3593,25 @@ Activa "Auto Span" para expansión automática de universos</div>
 <!-- ═══ EXTRA · JUICE BAR ═══ -->
 <section class="page" id="page-juicebar">
 <div class="ptag">// EXTRA · extensiones</div>
-<div class="ptitle">JUICE BAR · <span>Free FX</span></div>
+<h2 class="ptitle">JUICE BAR · <span>Free FX</span></h2>
 <div class="pdesc">Tienda oficial de extensiones de Resolume y pack de efectos gratuitos.</div>
 
 <div class="panel panel-g">
-  <div class="ptl">Juice Bar · Tienda oficial</div>
+  <h2 class="ptl">Juice Bar · Tienda oficial</h2>
   <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 14px"><strong>Juice Bar</strong> es una aplicación independiente que viene con Resolume y funciona como tienda y gestor de extensiones.</p>
   <div class="g3">
-    <div class="box"><h4>🎨 Effects</h4><p>Efectos visuales hechos por desarrolladores de la comunidad y por Resolume. Algunos gratis, otros de pago.</p></div>
-    <div class="box"><h4>⚡ Sources</h4><p>Fuentes generativas que no vienen en la instalación base.</p></div>
-    <div class="box"><h4>🛠 Applications</h4><p>Utilidades complementarias: controladores MIDI específicos, integraciones, herramientas auxiliares.</p></div>
+    <div class="box"><h3 class="h4">🎨 Effects</h3><p>Efectos visuales hechos por desarrolladores de la comunidad y por Resolume. Algunos gratis, otros de pago.</p></div>
+    <div class="box"><h3 class="h4">⚡ Sources</h3><p>Fuentes generativas que no vienen en la instalación base.</p></div>
+    <div class="box"><h3 class="h4">🛠 Applications</h3><p>Utilidades complementarias: controladores MIDI específicos, integraciones, herramientas auxiliares.</p></div>
   </div>
   <div class="box box-g" style="margin-top: 14px">
-    <h4>✓ Free vs Paid</h4>
+    <h3 class="h4">✓ Free vs Paid</h3>
     <p>Las extensiones gratis aparecen marcadas como <strong>FREE</strong>. Las instaladas como <strong>Installed</strong>. Pásate por Juice Bar de vez en cuando: la comunidad publica novedades con frecuencia y hay extensiones gratis que merecen mucho la pena.</p>
   </div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Free Resolume FX · Pack gratuito oficial</div>
+  <h2 class="ptl">Free Resolume FX · Pack gratuito oficial</h2>
   <p style="font-size: 14px; color: var(--text-primary); margin-bottom: 14px">Pack de efectos extra que NO viene preinstalado y hay que instalar a mano.</p>
   <div class="steps">
     <div class="step"><div class="snum">1</div><p>Descarga el pack desde la <strong>web oficial de Resolume</strong> → Downloads.</p></div>
@@ -3620,7 +3622,7 @@ Activa "Auto Span" para expansión automática de universos</div>
     <div class="step"><div class="snum">4</div><p>Reabre Resolume. Aparecen en el panel Effects.</p></div>
   </div>
   <div class="box box-g" style="margin-top: 14px">
-    <h4>✓ Recomendado</h4>
+    <h3 class="h4">✓ Recomendado</h3>
     <p>Instala el pack gratis desde el primer día. Amplía bastante el repertorio creativo sin coste.</p>
   </div>
 </div>
@@ -3634,7 +3636,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <section class="page" id="page-tool-rgb">
 <div class="ptag">// HERRAMIENTAS</div>
-<div class="ptitle">CONVERSOR <span>RGB ↔ HSB</span></div>
+<h2 class="ptitle">CONVERSOR <span>RGB ↔ HSB</span></h2>
 <div class="pdesc">Convierte colores entre los modelos RGB (pantallas) y HSB (Hue·Saturation·Brightness). Directamente útil para el módulo de Color de Resolume.</div>
 
 <div class="tool-wrap">
@@ -3701,7 +3703,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <section class="page" id="page-tool-hex">
 <div class="ptag">// HERRAMIENTAS · COLOR</div>
-<div class="ptitle">CONVERSOR <span>HEX · RGB · HSB</span></div>
+<h2 class="ptitle">CONVERSOR <span>HEX · RGB · HSB</span></h2>
 <div class="pdesc">Convierte entre los tres modelos de color de una sola vez. Introduce desde cualquier campo y los demás se actualizan en tiempo real. Pensado para copiar valores desde diseño web/CSS directamente a Resolume.</div>
 
 <div class="tool-wrap">
@@ -3750,7 +3752,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <section class="page" id="page-tool-fxcat">
 <div class="ptag">// HERRAMIENTAS · EFECTOS</div>
-<div class="ptitle">BUSCADOR <span>DE EFECTOS</span></div>
+<h2 class="ptitle">BUSCADOR <span>DE EFECTOS</span></h2>
 <div class="pdesc">Filtra y busca en el catálogo completo de efectos de vídeo y audio de Resolume Arena. Útil para encontrar el efecto adecuado rápidamente durante el trabajo.</div>
 
 <div class="tool-wrap">
@@ -3786,7 +3788,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <section class="page" id="page-tool-aspect">
 <div class="ptag">// HERRAMIENTAS</div>
-<div class="ptitle">ASPECT <span>RATIO</span></div>
+<h2 class="ptitle">ASPECT <span>RATIO</span></h2>
 <div class="pdesc">Calcula la dimensión faltante manteniendo el ratio exacto. Imprescindible para configurar resoluciones de composición y slices.</div>
 
 <div class="tool-wrap">
@@ -3847,7 +3849,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <section class="page" id="page-tool-slices">
 <div class="ptag">// HERRAMIENTAS</div>
-<div class="ptitle">CALCULA<span>DORA SLICES</span></div>
+<h2 class="ptitle">CALCULA<span>DORA SLICES</span></h2>
 <div class="pdesc">Calcula automáticamente el tamaño y posición exacta de cada Slice/Corte para el Advanced Output. Perfecto para preparar el Ejercicio A5.</div>
 
 <div class="tool-wrap">
@@ -3889,7 +3891,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <section class="page" id="page-tool-vectorslice">
 <div class="ptag">// HERRAMIENTAS · RESOLUCIÓN</div>
-<div class="ptitle">VECTOR<span>SLICE · SVG → XML</span></div>
+<h2 class="ptitle">VECTOR<span>SLICE · SVG → XML</span></h2>
 <div class="pdesc">Convierte vectores SVG de Illustrator en Slices listos para importar en Resolume Arena. Dibuja en Illustrator las formas que mapearás, expórtalas como SVG, importa aquí, y descarga el preset XML para cargar directamente en el Screen Setup. Sin redibujar punto por punto.</div>
 
 <div class="tool-wrap">
@@ -3988,7 +3990,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <section class="page" id="page-tool-blend">
 <div class="ptag">// HERRAMIENTAS · RESOLUCIÓN</div>
-<div class="ptitle">EDGE <span>BLENDING</span></div>
+<h2 class="ptitle">EDGE <span>BLENDING</span></h2>
 <div class="pdesc">Calcula la zona de solapamiento exacta para fusionar N proyectores en una sola pantalla seamless. La documentación oficial de Resolume recomienda un mínimo del 15% de overlap. Exclusivo de Arena.</div>
 
 <div class="tool-wrap">
@@ -4043,7 +4045,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <section class="page" id="page-tool-multiscreen">
 <div class="ptag">// HERRAMIENTAS · RESOLUCIÓN</div>
-<div class="ptitle">CALCULADORA <span>MULTI-PROYECTOR</span></div>
+<h2 class="ptitle">CALCULADORA <span>MULTI-PROYECTOR</span></h2>
 <div class="pdesc">Define un grid de proyectores con sus resoluciones individuales y obtén el canvas total de la composición, el tamaño de cada slice y su posición exacta en el Advanced Output.</div>
 
 <div class="tool-wrap">
@@ -4085,7 +4087,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <section class="page" id="page-tool-led">
 <div class="ptag">// HERRAMIENTAS</div>
-<div class="ptitle">LED <span>WALL CALCULATOR</span></div>
+<h2 class="ptitle">LED <span>WALL CALCULATOR</span></h2>
 <div class="pdesc">Calcula la resolución total de un LED wall a partir del número de cabinas y píxeles por módulo, o a la inversa.</div>
 
 <div class="tool-wrap">
@@ -4155,7 +4157,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <section class="page" id="page-tool-dmx">
 <div class="ptag">// HERRAMIENTAS · LED & DMX</div>
-<div class="ptitle">UNIVERSOS <span>DMX — LED STRIPS</span></div>
+<h2 class="ptitle">UNIVERSOS <span>DMX — LED STRIPS</span></h2>
 <div class="pdesc">Calcula cuántos universos Art-Net necesitas para tu instalación de tiras LED. Un universo DMX tiene 512 canales. Cada píxel RGB ocupa 3 canales → caben 170 píxeles por universo. Exclusivo de Arena.</div>
 
 <div class="tool-wrap">
@@ -4205,7 +4207,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <section class="page" id="page-tool-fixture">
 <div class="ptag">// HERRAMIENTAS · LED & DMX</div>
-<div class="ptitle">MAPEADOR <span>DE FIXTURE DMX</span></div>
+<h2 class="ptitle">MAPEADOR <span>DE FIXTURE DMX</span></h2>
 <div class="pdesc">Define los canales de tu fixture personalizado y genera la tabla de patch lista para usar en Resolume Arena. Añade hasta 32 canales con nombre, tipo de dato y valor por defecto.</div>
 
 <div class="tool-wrap">
@@ -4260,7 +4262,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <section class="page" id="page-tool-bpm">
 <div class="ptag">// HERRAMIENTAS</div>
-<div class="ptitle">DURACIÓN <span>DE LOOP</span></div>
+<h2 class="ptitle">DURACIÓN <span>DE LOOP</span></h2>
 <div class="pdesc">Calcula la duración exacta de un loop en segundos y fotogramas a partir del BPM y el número de compases. Sincroniza envelopes y clips con la música.</div>
 
 <div class="tool-wrap">
@@ -4313,7 +4315,7 @@ Activa "Auto Span" para expansión automática de universos</div>
 
 <section class="page" id="page-tool-bpmsync">
 <div class="ptag">// HERRAMIENTAS · TIEMPO</div>
-<div class="ptitle">SINCRONIZACIÓN <span>BPM / MÚSICA-IMAGEN</span></div>
+<h2 class="ptitle">SINCRONIZACIÓN <span>BPM / MÚSICA-IMAGEN</span></h2>
 <div class="pdesc">Comprende cómo se estructura el tiempo musical y cómo sincronizar el contenido visual con el ritmo. Teoría de compases, beats y subdivisiones aplicada al VJing en Resolume.</div>
 
 <!-- TEORÍA -->
@@ -4450,15 +4452,15 @@ Activa "Auto Span" para expansión automática de universos</div>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
       <div class="box box-g">
-        <h4>✅ Clip sincronizado correctamente</h4>
+        <h3 class="h4">✅ Clip sincronizado correctamente</h3>
         <p>El clip tiene una duración de <strong>N compases exactos</strong>, el BPM Sync está activo, y el Beat Snap está configurado. Resultado: el clip siempre empieza y termina a tiempo, sin deriva.</p>
       </div>
       <div class="box" style="border-left-color:var(--green-line)">
-        <h4>⚡ Tip: Audio Reactive</h4>
+        <h3 class="h4">⚡ Tip: Audio Reactive</h3>
         <p>Complementa la sincronización manual con el <strong>FFT Audio Reactive</strong>: asigna el análisis de frecuencias (graves, medios, agudos) a parámetros del clip. El grave moverá la opacidad, el agudo la velocidad, etc. Sincronización orgánica sin BPM fijo.</p>
       </div>
       <div class="box" style="border-left-color:#f59e0b">
-        <h4>⚠ Clips con duración incorrecta</h4>
+        <h3 class="h4">⚠ Clips con duración incorrecta</h3>
         <p>Si el clip no dura exactamente N bars, la imagen se <strong>desplaza gradualmente</strong> respecto al beat tras cada repetición del loop. Se llama <em>phase drift</em>. La solución es exportar el clip con la duración exacta calculada.</p>
       </div>
     </div>
@@ -4675,7 +4677,7 @@ if (document.readyState === 'loading') {
 
 <section class="page" id="page-tool-dxv">
 <div class="ptag">// HERRAMIENTAS</div>
-<div class="ptitle">ESTIMADOR <span>TAMAÑO DXV</span></div>
+<h2 class="ptitle">ESTIMADOR <span>TAMAÑO DXV</span></h2>
 <div class="pdesc">Estima el tamaño en disco de un archivo de vídeo codificado con DXV, HAP o HAP Q. Planifica el almacenamiento antes de una performance.</div>
 
 <div class="tool-wrap">
@@ -4728,7 +4730,7 @@ if (document.readyState === 'loading') {
         <tr><td class="hl-g">HAP</td><td>✓</td><td>~250 Mbps</td><td>Buena</td><td>Multi-app, inter-op</td></tr>
         <tr><td class="hl-g">HAP Q</td><td>✓</td><td>~450 Mbps</td><td>Muy buena</td><td>Calidad superior HAP</td></tr>
         <tr><td class="hl-g">HAP Alpha</td><td>✓</td><td>~300 Mbps</td><td>Buena</td><td>Overlays con alpha</td></tr>
-        <tr><td style="color:#ff4444">H.264</td><td>✗</td><td>~15 Mbps</td><td>Alta compresión</td><td>❌ No usar en directo</td></tr>
+        <tr><td style="color:#b81c1c">H.264</td><td>✗</td><td>~15 Mbps</td><td>Alta compresión</td><td>❌ No usar en directo</td></tr>
       </tbody>
     </table>
   </div>
@@ -4737,63 +4739,63 @@ if (document.readyState === 'loading') {
 
 <section class="page" id="page-efectos-cat">
 <div class="ptag">// REFERENCIA</div>
-<div class="ptitle">CATÁLOGO <span>DE EFECTOS</span></div>
+<h2 class="ptitle">CATÁLOGO <span>DE EFECTOS</span></h2>
 <div class="pdesc">Todos los efectos de vídeo y audio incluidos con Resolume Arena (Appendix 3 del manual oficial). Parámetros clave y casos de uso.</div>
 
 <div class="panel panel-g">
-  <div class="ptl">Efectos de vídeo — Incluidos en Resolume</div>
+  <h2 class="ptl">Efectos de vídeo — Incluidos en Resolume</h2>
   <div class="g3">
-    <div class="box"><h4>AddSubtract</h4><p>Añade o resta valor a los canales R, G o B de cada píxel. Corrección de color directa.</p></div>
-    <div class="box"><h4>Auto Mask</h4><p>Crea un canal alpha basado en la luminancia de cada píxel. Más brillo = más opaco.</p></div>
-    <div class="box"><h4>Bendoscope</h4><p>Caleidoscopio curvo. Parámetro: número de divisiones. Buen punto de partida para principiantes.</p></div>
-    <div class="box"><h4>Blow</h4><p>Reemplaza los píxeles del borde con bandas de color. Controla cuánto del vídeo se sustituye.</p></div>
-    <div class="box"><h4>Blur</h4><p>Desenfoque simple. El modo alta calidad puede ralentizar el output según la tarjeta gráfica.</p></div>
-    <div class="box"><h4>Bright Contrast</h4><p>Controles básicos de brillo y contraste. Corrección rápida de niveles.</p></div>
-    <div class="box"><h4>Chroma RGB Delay</h4><p>Retrasa los canales R, G y B de forma independiente. Efecto de aberración cromática.</p></div>
-    <div class="box"><h4>Displace</h4><p>Mueve píxeles H y V basándose en su luminancia. Parámetros Horizontal y Vertical Factor.</p></div>
-    <div class="box"><h4>Distortion</h4><p>Efecto TV rota. <strong>Distort</strong> controla cuánto se distorsiona, <strong>Radius</strong> el alcance.</p></div>
-    <div class="box"><h4>Drop Shadow</h4><p>Sombra paralela para clips con transparencia (alpha).</p></div>
-    <div class="box"><h4>Edge Detection</h4><p>Traza y opcionalmente coloriza los contornos de las formas del clip.</p></div>
-    <div class="box"><h4>Exposure</h4><p>Alternativa al brillo/contraste: ilumina las partes brillantes sin quemar las oscuras.</p></div>
-    <div class="box"><h4>Flip</h4><p>Voltea el vídeo: Horizontal, Vertical o ambos. Corrección de orientación.</p></div>
-    <div class="box"><h4>Heat</h4><p>Ondulación térmica. Speed controla la velocidad, Strength la intensidad.</p></div>
-    <div class="box"><h4>Hue Rotate</h4><p>Desplaza el matiz (H) de todos los colores en la rueda de color. Sin afectar saturación.</p></div>
-    <div class="box"><h4>Invert RGB</h4><p>Invierte canales R, G y B de forma independiente o conjunta.</p></div>
-    <div class="box"><h4>Iterate</h4><p>Dibuja el vídeo en múltiples planos 3D con posición/rotación/escala ajustable. Muy versátil.</p></div>
-    <div class="box"><h4>Kaleidoscope</h4><p>El efecto óptico clásico de reflexiones múltiples simétricas.</p></div>
-    <div class="box"><h4>Keystone</h4><p>Controla las 4 esquinas del clip. Ideal para corrección de proyección en mapping básico.</p></div>
-    <div class="box"><h4>Keystone Crop</h4><p>Como Keystone pero recorta el vídeo en lugar de deformarlo.</p></div>
-    <div class="box"><h4>Luma Key</h4><p>Elimina píxeles más brillantes que el umbral (croma por luminancia).</p></div>
-    <div class="box"><h4>Luma Key I</h4><p>Inverso del Luma Key: elimina píxeles más oscuros que el umbral.</p></div>
-    <div class="box"><h4>Mirror</h4><p>Reflejo especular. La mitad del clip es espejo de la otra.</p></div>
-    <div class="box"><h4>Pixels In Space</h4><p>Muestra una matriz de cubos 3D. La luminancia determina la altura de cada cubo.</p></div>
-    <div class="box"><h4>Point Grid</h4><p>Muestra el vídeo como una rejilla de círculos de colores en 3D.</p></div>
-    <div class="box"><h4>Posterize</h4><p>Reduce el número de colores. Mayor valor = menos colores = aspecto gráfico plano.</p></div>
-    <div class="box"><h4>Radial Blur</h4><p>Vídeo en planos concéntricos que dan efecto de zoom motion blur desde el centro.</p></div>
-    <div class="box"><h4>Recolour</h4><p>Cambia los colores a una paleta predefinida. Floor y Ceiling ajustan los umbrales.</p></div>
-    <div class="box"><h4>Separate RGB HP</h4><p>Filtros high-pass independientes para los canales R, G y B.</p></div>
-    <div class="box"><h4>Stingy Sphere</h4><p>Proyecta el vídeo sobre una esfera en espacio 3D.</p></div>
-    <div class="box"><h4>Stop Motion</h4><p>Congela fotogramas. Frequency = cuándo se elige nuevo frame. Frame Count = cuántos frames juega.</p></div>
-    <div class="box"><h4>Stripper</h4><p>Pack de efectos de strips (bandas). Mode selecciona el efecto, Speed pone las bandas en movimiento.</p></div>
-    <div class="box"><h4>Strobe</h4><p>Alterna entre vídeo y un frame en blanco a velocidad configurable. ⚠ Cuidado con epilepsia.</p></div>
-    <div class="box"><h4>Suckr</h4><p>Succiona el vídeo hacia el centro de la pantalla.</p></div>
-    <div class="box"><h4>Threshold</h4><p>Muestra el vídeo en dos colores. Cada píxel es uno u otro según su luminancia.</p></div>
-    <div class="box"><h4>Wave Warp</h4><p>Distorsión ondulatoria que tuerce el vídeo de formas que «no deberían ser posibles».</p></div>
+    <div class="box"><h3 class="h4">AddSubtract</h3><p>Añade o resta valor a los canales R, G o B de cada píxel. Corrección de color directa.</p></div>
+    <div class="box"><h3 class="h4">Auto Mask</h3><p>Crea un canal alpha basado en la luminancia de cada píxel. Más brillo = más opaco.</p></div>
+    <div class="box"><h3 class="h4">Bendoscope</h3><p>Caleidoscopio curvo. Parámetro: número de divisiones. Buen punto de partida para principiantes.</p></div>
+    <div class="box"><h3 class="h4">Blow</h3><p>Reemplaza los píxeles del borde con bandas de color. Controla cuánto del vídeo se sustituye.</p></div>
+    <div class="box"><h3 class="h4">Blur</h3><p>Desenfoque simple. El modo alta calidad puede ralentizar el output según la tarjeta gráfica.</p></div>
+    <div class="box"><h3 class="h4">Bright Contrast</h3><p>Controles básicos de brillo y contraste. Corrección rápida de niveles.</p></div>
+    <div class="box"><h3 class="h4">Chroma RGB Delay</h3><p>Retrasa los canales R, G y B de forma independiente. Efecto de aberración cromática.</p></div>
+    <div class="box"><h3 class="h4">Displace</h3><p>Mueve píxeles H y V basándose en su luminancia. Parámetros Horizontal y Vertical Factor.</p></div>
+    <div class="box"><h3 class="h4">Distortion</h3><p>Efecto TV rota. <strong>Distort</strong> controla cuánto se distorsiona, <strong>Radius</strong> el alcance.</p></div>
+    <div class="box"><h3 class="h4">Drop Shadow</h3><p>Sombra paralela para clips con transparencia (alpha).</p></div>
+    <div class="box"><h3 class="h4">Edge Detection</h3><p>Traza y opcionalmente coloriza los contornos de las formas del clip.</p></div>
+    <div class="box"><h3 class="h4">Exposure</h3><p>Alternativa al brillo/contraste: ilumina las partes brillantes sin quemar las oscuras.</p></div>
+    <div class="box"><h3 class="h4">Flip</h3><p>Voltea el vídeo: Horizontal, Vertical o ambos. Corrección de orientación.</p></div>
+    <div class="box"><h3 class="h4">Heat</h3><p>Ondulación térmica. Speed controla la velocidad, Strength la intensidad.</p></div>
+    <div class="box"><h3 class="h4">Hue Rotate</h3><p>Desplaza el matiz (H) de todos los colores en la rueda de color. Sin afectar saturación.</p></div>
+    <div class="box"><h3 class="h4">Invert RGB</h3><p>Invierte canales R, G y B de forma independiente o conjunta.</p></div>
+    <div class="box"><h3 class="h4">Iterate</h3><p>Dibuja el vídeo en múltiples planos 3D con posición/rotación/escala ajustable. Muy versátil.</p></div>
+    <div class="box"><h3 class="h4">Kaleidoscope</h3><p>El efecto óptico clásico de reflexiones múltiples simétricas.</p></div>
+    <div class="box"><h3 class="h4">Keystone</h3><p>Controla las 4 esquinas del clip. Ideal para corrección de proyección en mapping básico.</p></div>
+    <div class="box"><h3 class="h4">Keystone Crop</h3><p>Como Keystone pero recorta el vídeo en lugar de deformarlo.</p></div>
+    <div class="box"><h3 class="h4">Luma Key</h3><p>Elimina píxeles más brillantes que el umbral (croma por luminancia).</p></div>
+    <div class="box"><h3 class="h4">Luma Key I</h3><p>Inverso del Luma Key: elimina píxeles más oscuros que el umbral.</p></div>
+    <div class="box"><h3 class="h4">Mirror</h3><p>Reflejo especular. La mitad del clip es espejo de la otra.</p></div>
+    <div class="box"><h3 class="h4">Pixels In Space</h3><p>Muestra una matriz de cubos 3D. La luminancia determina la altura de cada cubo.</p></div>
+    <div class="box"><h3 class="h4">Point Grid</h3><p>Muestra el vídeo como una rejilla de círculos de colores en 3D.</p></div>
+    <div class="box"><h3 class="h4">Posterize</h3><p>Reduce el número de colores. Mayor valor = menos colores = aspecto gráfico plano.</p></div>
+    <div class="box"><h3 class="h4">Radial Blur</h3><p>Vídeo en planos concéntricos que dan efecto de zoom motion blur desde el centro.</p></div>
+    <div class="box"><h3 class="h4">Recolour</h3><p>Cambia los colores a una paleta predefinida. Floor y Ceiling ajustan los umbrales.</p></div>
+    <div class="box"><h3 class="h4">Separate RGB HP</h3><p>Filtros high-pass independientes para los canales R, G y B.</p></div>
+    <div class="box"><h3 class="h4">Stingy Sphere</h3><p>Proyecta el vídeo sobre una esfera en espacio 3D.</p></div>
+    <div class="box"><h3 class="h4">Stop Motion</h3><p>Congela fotogramas. Frequency = cuándo se elige nuevo frame. Frame Count = cuántos frames juega.</p></div>
+    <div class="box"><h3 class="h4">Stripper</h3><p>Pack de efectos de strips (bandas). Mode selecciona el efecto, Speed pone las bandas en movimiento.</p></div>
+    <div class="box"><h3 class="h4">Strobe</h3><p>Alterna entre vídeo y un frame en blanco a velocidad configurable. ⚠ Cuidado con epilepsia.</p></div>
+    <div class="box"><h3 class="h4">Suckr</h3><p>Succiona el vídeo hacia el centro de la pantalla.</p></div>
+    <div class="box"><h3 class="h4">Threshold</h3><p>Muestra el vídeo en dos colores. Cada píxel es uno u otro según su luminancia.</p></div>
+    <div class="box"><h3 class="h4">Wave Warp</h3><p>Distorsión ondulatoria que tuerce el vídeo de formas que «no deberían ser posibles».</p></div>
   </div>
 </div>
 
 <div class="panel">
-  <div class="ptl">Efectos de audio — Incluidos en Resolume</div>
+  <h2 class="ptl">Efectos de audio — Incluidos en Resolume</h2>
   <div class="g3">
-    <div class="box"><h4>Bitcrusher</h4><p>Reduce el bit rate del audio. Sonido lo-fi retro de ordenador. Ideal para texturas industriales.</p></div>
-    <div class="box"><h4>Distortion</h4><p>Overdriving clásico de guitarra. Audio saturado para sonidos grungy e industriales.</p></div>
-    <div class="box"><h4>EQ-3</h4><p>Ecualizador básico de 3 bandas: bajos, medios y altos. Ajuste rápido de tono.</p></div>
-    <div class="box"><h4>Flanger</h4><p>Mezcla el audio con una copia desfasada de sí mismo. Efectos «squidgy» variables.</p></div>
-    <div class="box"><h4>High-Pass</h4><p>Filtra las frecuencias graves. La resonancia añade profundidad al sonido filtrado.</p></div>
-    <div class="box"><h4>Low-Pass</h4><p>Filtra las frecuencias agudas. El efecto clásico de «audio que llega de otra sala».</p></div>
-    <div class="box"><h4>Reverb</h4><p>Añade un espacio acústico al audio. Size controla el tamaño de la «sala» simulada.</p></div>
-    <div class="box"><h4>Delay</h4><p>Eco del audio con tiempo de delay y feedback configurables.</p></div>
-    <div class="box"><h4>Dry/Wet</h4><p>Parámetro presente en todos los efectos de audio. Mezcla el original con el procesado.</p></div>
+    <div class="box"><h3 class="h4">Bitcrusher</h3><p>Reduce el bit rate del audio. Sonido lo-fi retro de ordenador. Ideal para texturas industriales.</p></div>
+    <div class="box"><h3 class="h4">Distortion</h3><p>Overdriving clásico de guitarra. Audio saturado para sonidos grungy e industriales.</p></div>
+    <div class="box"><h3 class="h4">EQ-3</h3><p>Ecualizador básico de 3 bandas: bajos, medios y altos. Ajuste rápido de tono.</p></div>
+    <div class="box"><h3 class="h4">Flanger</h3><p>Mezcla el audio con una copia desfasada de sí mismo. Efectos «squidgy» variables.</p></div>
+    <div class="box"><h3 class="h4">High-Pass</h3><p>Filtra las frecuencias graves. La resonancia añade profundidad al sonido filtrado.</p></div>
+    <div class="box"><h3 class="h4">Low-Pass</h3><p>Filtra las frecuencias agudas. El efecto clásico de «audio que llega de otra sala».</p></div>
+    <div class="box"><h3 class="h4">Reverb</h3><p>Añade un espacio acústico al audio. Size controla el tamaño de la «sala» simulada.</p></div>
+    <div class="box"><h3 class="h4">Delay</h3><p>Eco del audio con tiempo de delay y feedback configurables.</p></div>
+    <div class="box"><h3 class="h4">Dry/Wet</h3><p>Parámetro presente en todos los efectos de audio. Mezcla el original con el procesado.</p></div>
   </div>
 </div>
 </section>
@@ -6273,13 +6275,13 @@ const CAT_LABELS = {
 };
 
 const CAT_COLORS = {
-  distorsion: '#e74c3c',
-  color:      '#9b59b6',
-  '3d':       '#3498db',
-  mascara:    '#e67e22',
-  geometria:  '#00B894',
-  tiempo:     '#f39c12',
-  audio:      '#1abc9c',
+  distorsion: '#b41f14',
+  color:      '#7b3d96',
+  '3d':       '#1d6aa5',
+  mascara:    '#a14f05',
+  geometria:  '#00755c',
+  tiempo:     '#9c6106',
+  audio:      '#0e7a68',
 };
 
 function buildFXCat() {
@@ -6312,9 +6314,9 @@ function filterFX() {
         const lbl = CAT_LABELS[fx.cat] || fx.cat;
         const badge = fx.type === 'audio'
           ? '<span style="font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;background:#1abc9c22;color:#1abc9c;border-radius:20px;padding:2px 7px;margin-left:6px">AUDIO</span>'
-          : '<span style="font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;background:#3498db22;color:#3498db;border-radius:20px;padding:2px 7px;margin-left:6px">VÍDEO</span>';
+          : '<span style="font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;background:#1d6aa522;color:#16588a;border-radius:20px;padding:2px 7px;margin-left:6px">VÍDEO</span>';
         return `<div class="box" style="border-top:3px solid ${col}">
-          <h4 style="display:flex;align-items:center;flex-wrap:wrap;gap:4px">${fx.name}${badge}</h4>
+          <h3 class="h4" style="display:flex;align-items:center;flex-wrap:wrap;gap:4px">${fx.name}${badge}</h3>
           <div style="font-size:10px;color:${col};font-weight:600;letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">${lbl}</div>
           <p>${fx.desc}</p>
         </div>`;
@@ -6420,7 +6422,7 @@ function calcDXV() {
     const gb = mb / 1024;
     const isGPU = c.gpu.includes('✓');
     return `<tr>
-      <td class="${isGPU ? 'hl-g' : ''}" style="${!isGPU ? 'color:#ff4444' : ''}">${c.name}</td>
+      <td class="${isGPU ? 'hl-g' : ''}" style="${!isGPU ? 'color:#b81c1c' : ''}">${c.name}</td>
       <td>${c.gpu}</td>
       <td><strong>${gb >= 1 ? gb.toFixed(2)+' GB' : (mb).toFixed(0)+' MB'}</strong></td>
       <td>${c.ratio.toFixed(2)}×</td>

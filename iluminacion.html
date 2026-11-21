@@ -67,14 +67,14 @@ body {
   flex-shrink: 0;
 }
 .logo-text { font-weight: 600; font-size: 15px; color: var(--white); letter-spacing: 0.3px; }
-.logo-sub  { font-size: 11px; color: rgba(252,251,251,.45); font-weight: 400; margin-top: 1px; }
+.logo-sub  { font-size: 11px; color: rgba(252,251,251,.7); font-weight: 400; margin-top: 1px; }
 .header-badge {
   background: rgba(252,251,251,.1);
   border: 1px solid rgba(252,251,251,.18);
   border-radius: 5px;
   padding: 4px 11px;
   font-size: 11px;
-  color: rgba(252,251,251,.5);
+  color: rgba(252,251,251,.72);
   font-weight: 500;
 }
 
@@ -97,7 +97,7 @@ body {
   padding: 14px 15px;
   font-size: 12px;
   font-weight: 500;
-  color: rgba(252,251,251,.45);
+  color: rgba(252,251,251,.7);
   cursor: pointer;
   white-space: nowrap;
   border-bottom: 3px solid transparent;
@@ -105,7 +105,7 @@ body {
   transition: color .15s, border-color .15s;
   display: flex; align-items: center; gap: 8px;
 }
-.nav-tab:hover { color: rgba(252,251,251,.75); }
+.nav-tab:hover { color: rgba(252,251,251,.92); }
 .nav-tab.active { color: var(--white); border-bottom-color: var(--yellow); }
 .nav-num {
   width: 18px; height: 18px;
@@ -352,7 +352,7 @@ input:focus, select:focus { border-color: var(--navy); }
   padding: 2px 8px; border-radius: 4px;
 }
 .badge-blue   { background: rgba(25,42,86,.08);  border: 1px solid rgba(25,42,86,.2);  color: var(--navy); }
-.badge-green  { background: rgba(42,157,111,.1); border: 1px solid rgba(42,157,111,.25); color: #1e7a52; }
+.badge-green  { background: rgba(42,157,111,.1); border: 1px solid rgba(42,157,111,.25); color: #17643f; }
 .badge-orange { background: rgba(196,105,44,.1); border: 1px solid rgba(196,105,44,.25); color: #8a4416; }
 .badge-yellow { background: rgba(247,215,148,.2); border: 1px solid rgba(247,215,148,.6); color: #6b5010; }
 .badge-purple { background: rgba(92,63,191,.08); border: 1px solid rgba(92,63,191,.2);  color: #3d2a8c; }
@@ -457,7 +457,7 @@ input:focus, select:focus { border-color: var(--navy); }
   position:relative; user-select:none;
 }
 .dmx-ch:hover { transform:scale(1.12); z-index:2; }
-.dmx-ch.free   { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.2); }
+.dmx-ch.free   { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.66); }
 .dmx-ch.used   { border:2px solid; }
 .dmx-ch .ch-val { font-size:6px; opacity:.75; margin-top:1px; }
 #dmxSim .ds-detail {
@@ -476,7 +476,7 @@ input:focus, select:focus { border-color: var(--navy); }
   cursor:pointer; border:1.5px solid; transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .15s, opacity .15s;
 }
 #dmxSim .ds-fx-chip.sel { box-shadow:0 0 0 2px rgba(255,255,255,.3); }
-#dmxSim .ds-legend { display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; font-size: 11px; color:rgba(255,255,255,.45); }
+#dmxSim .ds-legend { display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; font-size: 11px; color:rgba(255,255,255,.72); }
 #dmxSim .ds-legend span { display:flex; align-items:center; gap:4px; }
 #dmxSim .ds-legend i { width:10px; height:10px; border-radius:2px; display:inline-block; }
 
@@ -594,8 +594,8 @@ canvas { border-radius: 8px; }
 .lux-table th { background:var(--bg2); border-bottom:2px solid var(--border); padding:7px 10px; text-align:left; font-size: 11px; font-weight:700; text-transform:uppercase; letter-spacing:.4px; color:var(--text2); }
 .lux-table td { padding:7px 10px; border-bottom:1px solid var(--border); vertical-align:middle; }
 .lux-table tr:last-child td { border-bottom:none; }
-.cok  { background:rgba(16,185,129,.12); color:#10b981; padding:2px 7px; border-radius:10px; font-size: 11px; font-weight:700; }
-.cwarn{ background:rgba(245,158,11,.12); color:#d97706; padding:2px 7px; border-radius:10px; font-size: 11px; font-weight:700; }
+.cok  { background:rgba(16,185,129,.12); color:#04704d; padding:2px 7px; border-radius:10px; font-size: 11px; font-weight:700; }
+.cwarn{ background:rgba(245,158,11,.12); color:#995000; padding:2px 7px; border-radius:10px; font-size: 11px; font-weight:700; }
 .cbad { background:rgba(239,68,68,.12);  color:#ef4444; padding:2px 7px; border-radius:10px; font-size: 11px; font-weight:700; }
 
 /* ── Inter typography optimisation ── */
@@ -1011,7 +1011,7 @@ textarea:focus-visible {
         <span class="badge" style="background:#8b00ff22;border:1px solid #8b00ff44;color:#5200aa;">Violeta 380–450</span>
         <span class="badge" style="background:#0000ff22;border:1px solid #0000ff44;color:#0000aa;">Azul 450–495</span>
         <span class="badge" style="background:#00b00022;border:1px solid #00b00044;color:#005500;">Verde 495–570</span>
-        <span class="badge" style="background:#ffff0022;border:1px solid #cccc0044;color:#888800;">Amarillo 570–590</span>
+        <span class="badge" style="background:#ffff0022;border:1px solid #cccc0044;color:#5e5e00;">Amarillo 570–590</span>
         <span class="badge" style="background:#ff800022;border:1px solid #ff800044;color:#994400;">Naranja 590–620</span>
         <span class="badge" style="background:#ff000022;border:1px solid #ff000044;color:#aa0000;">Rojo 620–780</span>
       </div>
@@ -1265,7 +1265,7 @@ textarea:focus-visible {
     </div>
 
     <div style="margin:20px 0 0;background:#0d0d0d;border-radius:10px;padding:20px;overflow-x:auto">
-      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;font-family:monospace">SIMULADOR DE TEMPERATURA DE COLOR — haz clic en un valor</div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:14px;font-family:monospace">SIMULADOR DE TEMPERATURA DE COLOR — haz clic en un valor</div>
       <div style="display:flex;flex-direction:column;gap:10px" id="kelvSim">
       </div>
     </div>
@@ -1291,7 +1291,7 @@ textarea:focus-visible {
           <div style="width:36px;height:36px;border-radius:6px;background:rgb(${s.rgb});flex-shrink:0;box-shadow:0 0 12px rgba(${s.rgb},.5)"></div>
           <div style="flex:1">
             <div style="color:rgba(255,255,255,.9);font-size:13px;font-weight:700;font-family:monospace">${s.k}K</div>
-            <div style="color:rgba(255,255,255,.4);font-size:11px">${s.name}</div>
+            <div style="color:rgba(255,255,255,.7);font-size:11px">${s.name}</div>
           </div>
           <div style="width:80px;height:8px;border-radius:4px;background:linear-gradient(90deg,rgb(${sources[0].rgb}),rgb(${s.rgb}));opacity:.7"></div>
           <div id="kbar_${i}" style="font-size:10px;color:rgba(255,255,255,.3);font-family:monospace;width:24px">▶</div>
@@ -2675,7 +2675,7 @@ textarea:focus-visible {
             <input type="number" id="ds_addr" min="1" max="512" value="1" style="width:72px" placeholder="Addr">
             <button class="ds-btn" onclick="DMX.addFixture()">+ Añadir fixture</button>
             <button class="ds-btn danger" onclick="DMX.clearAll()">✕ Limpiar</button>
-            <span style="font-size:10px;color:rgba(255,255,255,.3);margin-left:auto">Clic en canal = detalle</span>
+            <span style="font-size:10px;color:rgba(255,255,255,.72);margin-left:auto">Clic en canal = detalle</span>
           </div>
 
           <!-- Fixtures chips -->

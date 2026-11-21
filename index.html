@@ -602,8 +602,8 @@ strong { font-weight: 700; }
     </a>
     <div class="topbar-search" role="search">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-      <input type="text" id="globalSearch" placeholder="Buscar en todas las suites…"
-        aria-label="Buscar en todas las suites"
+      <input type="text" id="globalSearch" placeholder="Buscar en suites, vídeos y cursos 3D…"
+        aria-label="Buscar en suites, vídeos y cursos 3D"
         oninput="globalSearchFn(this.value)"
         onfocus="if(this.value) document.getElementById('searchDrop').classList.add('visible')"
         onblur="setTimeout(()=>document.getElementById('searchDrop').classList.remove('visible'),200)"
@@ -615,10 +615,11 @@ strong { font-weight: 700; }
     <button class="theme-toggle" id="themeToggle" type="button" hidden aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro"></button>
   </header>
 
+  <main id="main-content">
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" aria-labelledby="hero-h1">
     <div class="hero-copy">
-      <h1>Tu centro de <em>recursos visuales</em></h1>
+      <h1 id="hero-h1">Tu centro de <em>recursos visuales</em></h1>
       <p class="hero-sub">Plataforma educativa · Animación Visual en Vivo · CFGM Video DJ</p>
     </div>
     <ul class="hero-stats">
@@ -640,7 +641,7 @@ strong { font-weight: 700; }
   </div>
 
   <!-- CARDS GRID -->
-  <main class="grid" id="main-content">
+  <div class="grid" id="suites-grid">
 
     <!-- 1 VIDEO -->
     <div class="card card-duo">
@@ -793,10 +794,10 @@ strong { font-weight: 700; }
       </div>
     </a>
 
-  </main>
+  </div>
 
   <!-- CONTACT -->
-  <div class="contact">
+  <aside class="contact" aria-label="Contacto e información del módulo">
     <div class="contact-inner">
       <div class="contact-left">
         <div class="contact-icon">
@@ -827,7 +828,8 @@ strong { font-weight: 700; }
         <span id="emailBtnLabel">j.tatayrubio@edu.gva.es</span>
       </a>
     </div>
-  </div>
+  </aside>
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -861,7 +863,7 @@ strong { font-weight: 700; }
           <button class="g-filter" style="--fc:var(--yellow)" data-suite="magicq" onclick="setSuite(this)">MagicQ</button>
         </div>
       </div>
-      <div class="glosario-body">
+      <div class="glosario-body" tabindex="0" role="region" aria-label="Términos del glosario">
         <div class="glosario-grid" id="glosarioGrid"></div>
         <div class="glosario-empty" id="glosarioEmpty">
           <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -1364,11 +1366,96 @@ strong { font-weight: 700; }
     aftereffects: { url:'after-effects.html', color:'#6B7FA3', label:'After Effects' },
     iluminacion:  { url:'iluminacion.html',   color:'#A06B6B', label:'Iluminación' },
     magicq:       { url:'magicq.html',         color:'#7A6BA3', label:'MagicQ' },
+    videos:       { url:'videos/',                 color:'#4A6FA5', label:'Vídeos' },
+    imagen3d:     { url:'imagen-video.html',       color:'#6B9A6B', label:'Curso 3D · Imagen y vídeo' },
+    ilu3d:        { url:'iluminacion-directo.html', color:'#A06B6B', label:'Curso 3D · Iluminación' },
   };
 
   // ── B1: Recursos (juegos, simuladores, módulos) indexados para búsqueda global ──
   // tipo: 'game' | 'sim' | 'calc' | 'module'
   const RECURSOS = [
+    // ─── VÍDEOS EXPLICATIVOS (videos/) ───────────────────────────
+    { suite:'videos', tipo:'video', nombre:'La resolución', desc:'UD 1 · Píxeles, ancho × alto y formatos', tags:'píxeles, ancho × alto y formatos el píxel ancho × alto formatos el nombre', href:'videos/#resolucion' },
+    { suite:'videos', tipo:'video', nombre:'Relación de aspecto', desc:'UD 1 · Proporción y cálculo con el MCD', tags:'proporción y cálculo con el mcd qué es las habituales cálculo con el mcd en vertical', href:'videos/#relacion-aspecto' },
+    { suite:'videos', tipo:'video', nombre:'Proporción de píxel', desc:'UD 1 · DAR, SAR y PAR', tags:'dar, sar y par el píxel tres relaciones un ejemplo píxel cuadrado', href:'videos/#pixel-aspect' },
+    { suite:'videos', tipo:'video', nombre:'Distancia focal', desc:'UD 1 · Focal, ángulo de visión y fórmula', tags:'focal, ángulo de visión y fórmula qué es focal y ángulo la fórmula', href:'videos/#distancia-focal' },
+    { suite:'videos', tipo:'video', nombre:'Triángulo de exposición', desc:'UD 1 · Diafragma, obturación e ISO', tags:'diafragma, obturación e iso diafragma número f obturación iso equilibrio', href:'videos/#exposicion' },
+    { suite:'videos', tipo:'video', nombre:'Profundidad de campo', desc:'UD 1 · La zona nítida de la imagen', tags:'la zona nítida de la imagen qué es el diafragma focal y distancia para qué sirve', href:'videos/#profundidad-campo' },
+    { suite:'videos', tipo:'video', nombre:'Canal alfa y keys', desc:'UD 1 · Transparencia, luma, chroma y máscaras', tags:'transparencia, luma, chroma y máscaras canal alfa luma key chroma key diferencia y máscara', href:'videos/#canal-alfa' },
+    { suite:'videos', tipo:'video', nombre:'Cálculo de loops', desc:'UD 1 · BPM, pulsos y fotogramas', tags:'bpm, pulsos y fotogramas el pulso duración fotogramas la fórmula', href:'videos/#loops' },
+    { suite:'videos', tipo:'video', nombre:'Píxeles por pulgada', desc:'UD 2 · PPP, diagonal y nitidez', tags:'ppp, diagonal y nitidez qué son la diagonal el cálculo tamaño y resolución', href:'videos/#ppp' },
+    { suite:'videos', tipo:'video', nombre:'Conectores de vídeo', desc:'UD 2 · VGA, DVI, HDMI, DisplayPort y USB-C', tags:'vga, dvi, hdmi, displayport y usb-c vga dvi hdmi displayport y usb-c', href:'videos/#conectores' },
+    { suite:'videos', tipo:'video', nombre:'HDMI y ancho de banda', desc:'UD 2 · Versiones, Gbit/s y HDCP', tags:'versiones, gbit/s y hdcp versiones el cálculo el eslabón más bajo hdcp', href:'videos/#hdmi' },
+    { suite:'videos', tipo:'video', nombre:'SDI y fibra', desc:'UD 2 · Vídeo profesional por coaxial', tags:'vídeo profesional por coaxial sdi versiones quad-link fibra', href:'videos/#sdi' },
+    { suite:'videos', tipo:'video', nombre:'Formatos y códecs', desc:'UD 2 · Contenedor, códec, intra e inter', tags:'contenedor, códec, intra e inter contenedor y códec contenedores intra-frame inter-frame', href:'videos/#codecs' },
+    { suite:'videos', tipo:'video', nombre:'Códecs para VJ', desc:'UD 2 · DXV, HAP, ProRes y NotchLC', tags:'dxv, hap, prores y notchlc por qué intra cpu y gpu los habituales el flujo', href:'videos/#codecs-vj' },
+    { suite:'videos', tipo:'video', nombre:'Progresivo y entrelazado', desc:'UD 2 · p / i, fps, PAL y NTSC', tags:'p / i, fps, pal y ntsc progresivo entrelazado fotogramas por segundo pal y ntsc', href:'videos/#entrelazado' },
+    { suite:'videos', tipo:'video', nombre:'NDI y extensores', desc:'UD 2 · Vídeo por red y a larga distancia', tags:'vídeo por red y a larga distancia ndi extensores sentido de la señal', href:'videos/#ndi' },
+    { suite:'videos', tipo:'video', nombre:'Mesa de mezcla', desc:'UD 2 · Entradas, preview, programa y T-bar', tags:'entradas, preview, programa y t-bar entradas y salida preview y programa t-bar y transiciones tipos', href:'videos/#mezclador' },
+    { suite:'videos', tipo:'video', nombre:'Matriz, splitter y switch', desc:'UD 2 · También conversor y escalador', tags:'también conversor y escalador splitter switch matriz conversor y escalador', href:'videos/#equipos-senal' },
+    { suite:'videos', tipo:'video', nombre:'Brillo y contraste', desc:'UD 3 · Lúmenes, lux, ANSI, gamma y HDR', tags:'lúmenes, lux, ansi, gamma y hdr lúmenes y lux ansi, iso y «led» contraste, gamma y hdr', href:'videos/#brillo' },
+    { suite:'videos', tipo:'video', nombre:'Throw ratio', desc:'UD 3 · Ópticas y distancia de proyección', tags:'ópticas y distancia de proyección la óptica qué es el throw ratio tipos de tiro lentes con zoom', href:'videos/#throw-ratio' },
+    { suite:'videos', tipo:'video', nombre:'Keystone y lens shift', desc:'UD 3 · Encajar la imagen en la pantalla', tags:'encajar la imagen en la pantalla el problema keystone lens shift corrección de esquinas focus, zoom y crop', href:'videos/#keystone' },
+    { suite:'videos', tipo:'video', nombre:'LCD, DLP y láser', desc:'UD 3 · Tecnologías de proyector y HDBaseT', tags:'tecnologías de proyector y hdbaset lcd dlp láser ¿cuál elegir? hdbaset', href:'videos/#tecnologias' },
+    { suite:'videos', tipo:'video', nombre:'Pantallas LED', desc:'UD 3 · Del píxel a la pantalla, y cómo se calcula', tags:'del píxel a la pantalla, y cómo se calcula cómo es pixel pitch cálculo paso a paso la controladora', href:'videos/#pantallas-led' },
+    { suite:'videos', tipo:'video', nombre:'Nits y refresco', desc:'UD 3 · El brillo y la estabilidad de una pantalla LED', tags:'el brillo y la estabilidad de una pantalla led nits lúmenes ≠ nits tasa de refresco', href:'videos/#nits' },
+    { suite:'videos', tipo:'video', nombre:'Mapping y blending', desc:'UD 3 · Grid, warping y unión de proyectores', tags:'grid, warping y unión de proyectores video mapping grid warping blending', href:'videos/#mapping' },
+    { suite:'videos', tipo:'video', nombre:'Pixel mapping', desc:'UD 3 · Pantallas LED, DMX y Art-Net', tags:'pantallas led, dmx y art-net la idea en pantallas led dmx: canales y universos art-net y sacn', href:'videos/#pixel-mapping' },
+    { suite:'videos', tipo:'video', nombre:'La luz', desc:'UD 4 · Intensidad, calidad y dirección', tags:'intensidad, calidad y dirección intensidad calidad dirección', href:'videos/#luz' },
+    { suite:'videos', tipo:'video', nombre:'Temperatura de color', desc:'UD 4 · Espectro visible y grados kelvin', tags:'espectro visible y grados kelvin espectro visible grados kelvin fuentes y cámara', href:'videos/#temperatura' },
+    { suite:'videos', tipo:'video', nombre:'Lúmenes y lux', desc:'UD 4 · Lúmenes, candelas, lux y dimmer', tags:'lúmenes, candelas, lux y dimmer lúmenes candelas lux dimmer', href:'videos/#magnitudes' },
+    { suite:'videos', tipo:'video', nombre:'Fuentes de luz', desc:'UD 4 · De la incandescente al LED', tags:'de la incandescente al led filamento fluorescente y descarga led comparativa', href:'videos/#fuentes' },
+    { suite:'videos', tipo:'video', nombre:'Focos convencionales', desc:'UD 4 · PAR, PC, Fresnel y recorte', tags:'par, pc, fresnel y recorte lentes par pc fresnel recorte', href:'videos/#focos' },
+    { suite:'videos', tipo:'video', nombre:'Cabezas móviles', desc:'UD 4 · Wash, spot y beam', tags:'wash, spot y beam pan y tilt wash spot beam comparativa', href:'videos/#cabezas-moviles' },
+    { suite:'videos', tipo:'video', nombre:'Atributos y canales', desc:'UD 4 · Dimmer, color, zoom, iris, gobo y DMX', tags:'dimmer, color, zoom, iris, gobo y dmx dimmer y color forma del haz gobo y prisma canales dmx', href:'videos/#atributos' },
+    { suite:'videos', tipo:'video', nombre:'Trusses y safety', desc:'UD 5 · Estructuras, garras y cable de seguridad', tags:'estructuras, garras y cable de seguridad trusses garras safety principios', href:'videos/#rigging' },
+    { suite:'videos', tipo:'video', nombre:'Elevar cargas', desc:'UD 5 · Torres, motores y tipos de rigging', tags:'torres, motores y tipos de rigging torres motores tipos de rigging trabajo en altura', href:'videos/#elevar-cargas' },
+    { suite:'videos', tipo:'video', nombre:'Corriente trifásica', desc:'UD 5 · Acometida, generador y distribución', tags:'acometida, generador y distribución acometida trifásica grupo electrógeno distribución', href:'videos/#trifasica' },
+    { suite:'videos', tipo:'video', nombre:'Planos de luces', desc:'UD 5 · El documento para montar un show', tags:'el documento para montar un show qué es información zonas para qué sirve', href:'videos/#planos' },
+    { suite:'videos', tipo:'video', nombre:'DMX 512', desc:'UD 5 · Universo, canal, address e ID', tags:'universo, canal, address e id protocolo canal address id y fixture', href:'videos/#dmx' },
+    { suite:'videos', tipo:'video', nombre:'Cableado DMX', desc:'UD 5 · Cascada, conectores y terminador', tags:'cascada, conectores y terminador cascada cable y conectores terminador dirección en el foco', href:'videos/#cableado-dmx' },
+    { suite:'videos', tipo:'video', nombre:'Nodos y Art-Net', desc:'UD 5 · Librerías, dimmers, splitters y red', tags:'librerías, dimmers, splitters y red librerías dimmers splitter nodos y art-net', href:'videos/#art-net' },
+    // ─── CURSO 3D · imagen-video.html ───────────────────────────
+    { suite:'imagen3d', tipo:'lesson', nombre:'Resolución', desc:'UD 1 · Cuántos píxeles tiene una imagen y por qué el alto le da nombre.', tags:'lección curso 3d ud1', href:'imagen-video.html#leccion-1' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Relación de aspecto (DAR)', desc:'UD 1 · La forma de la imagen: cuánto ancho hay por cada unidad de alto.', tags:'lección curso 3d ud1', href:'imagen-video.html#leccion-2' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Proporción de píxel: DAR, PAR y SAR', desc:'UD 1 · Los píxeles no siempre son cuadrados, y eso cambia la forma de la imagen.', tags:'lección curso 3d ud1', href:'imagen-video.html#leccion-3' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Distancia focal y ángulo visual', desc:'UD 1 · Cuánta escena entra en el encuadre depende de los milímetros del objetivo.', tags:'lección curso 3d ud1', href:'imagen-video.html#leccion-4' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Diafragma y exposición', desc:'UD 1 · Tres controles deciden cuánta luz registra la cámara: diafragma, obturación e ISO.', tags:'lección curso 3d ud1', href:'imagen-video.html#leccion-5' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Profundidad de campo', desc:'UD 1 · La zona que se ve nítida delante y detrás del punto enfocado.', tags:'lección curso 3d ud1', href:'imagen-video.html#leccion-6' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Canal alfa y keys', desc:'UD 1 · Cómo se hace transparente una parte de la imagen para ver la capa de debajo.', tags:'lección curso 3d ud1', href:'imagen-video.html#leccion-7' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Loops y códecs para VJ', desc:'UD 1 · Un loop tiene que durar un número exacto de pulsos, y reproducirse en un códec pensado para directo.', tags:'lección curso 3d ud1', href:'imagen-video.html#leccion-8' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Píxeles por pulgada (PPP)', desc:'UD 2 · La nitidez percibida depende de cuántos píxeles caben en cada pulgada.', tags:'lección curso 3d ud2', href:'imagen-video.html#leccion-9' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Conectores de vídeo y ancho de banda', desc:'UD 2 · VGA, DVI, HDMI, DisplayPort y USB-C: qué lleva cada uno y cuánta señal cabe.', tags:'lección curso 3d ud2', href:'imagen-video.html#leccion-10' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'SDI, fibra y HDCP', desc:'UD 2 · El estándar profesional para llevar vídeo sin comprimir a decenas de metros.', tags:'lección curso 3d ud2', href:'imagen-video.html#leccion-11' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Formatos, contenedores y códecs de vídeo', desc:'UD 2 · Un archivo de vídeo es una caja (contenedor) con el vídeo comprimido dentro (códec).', tags:'lección curso 3d ud2', href:'imagen-video.html#leccion-12' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Formatos de imagen', desc:'UD 2 · Mapa de bits o vectorial, con o sin pérdida, con o sin transparencia.', tags:'lección curso 3d ud2', href:'imagen-video.html#leccion-13' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Progresivo, entrelazado y fotogramas por segundo', desc:'UD 2 · Cómo se dibuja cada imagen en pantalla y cuántas se muestran por segundo.', tags:'lección curso 3d ud2', href:'imagen-video.html#leccion-14' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'NDI y extensores de señal', desc:'UD 2 · Cuando el cable directo no llega: vídeo por red, HDBaseT y fibra.', tags:'lección curso 3d ud2', href:'imagen-video.html#leccion-15' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Mezcladoras, matrices y compañía', desc:'UD 2 · Los equipos que eligen, reparten, convierten y adaptan la señal de vídeo.', tags:'lección curso 3d ud2', href:'imagen-video.html#leccion-16' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Brillo, contraste y HDR', desc:'UD 3 · Los mismos lúmenes dan una imagen brillante o apagada según el tamaño y la luz de la sala.', tags:'lección curso 3d ud3', href:'imagen-video.html#leccion-17' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Ópticas y throw ratio', desc:'UD 3 · La lente decide a qué distancia hay que poner el proyector para llenar la pantalla.', tags:'lección curso 3d ud3', href:'imagen-video.html#leccion-18' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Keystone, lens shift y corrección de esquinas', desc:'UD 3 · Tres formas de encajar la imagen cuando el proyector no está frente a la pantalla.', tags:'lección curso 3d ud3', href:'imagen-video.html#leccion-19' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Tecnologías de proyector y HDBaseT', desc:'UD 3 · LCD, DLP y láser por dentro, y el cable de red que lleva vídeo a 100 metros.', tags:'lección curso 3d ud3', href:'imagen-video.html#leccion-20' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Pantallas LED: del píxel a la pantalla', desc:'UD 3 · Píxeles, módulos y cabinas: cómo se construye una pantalla LED y cómo se calcula.', tags:'lección curso 3d ud3', href:'imagen-video.html#leccion-21' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Nits y tasa de refresco', desc:'UD 3 · El brillo de una pantalla se mide en nits, y cuántas veces se redibuja, en hercios.', tags:'lección curso 3d ud3', href:'imagen-video.html#leccion-22' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Video mapping, warping y blending', desc:'UD 3 · Proyectar sobre objetos reales y unir varios proyectores en una sola imagen.', tags:'lección curso 3d ud3', href:'imagen-video.html#leccion-23' },
+    { suite:'imagen3d', tipo:'lesson', nombre:'Pixel mapping: LED, DMX y Art-Net', desc:'UD 3 · Tratar pantallas y luminarias como píxeles a los que se asigna un trozo de vídeo.', tags:'lección curso 3d ud3', href:'imagen-video.html#leccion-24' },
+    // ─── CURSO 3D · iluminacion-directo.html ───────────────────────────
+    { suite:'ilu3d', tipo:'lesson', nombre:'La luz y el espectro visible', desc:'UD 4 · Qué es la luz, qué parte vemos y por qué en un espectáculo la luz es mucho más que ver.', tags:'lección curso 3d ud4', href:'iluminacion-directo.html#leccion-1' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'Intensidad y magnitudes: lumen, candela y lux', desc:'UD 4 · Cuánta luz emite un foco, cuánta llega a una superficie y por qué se reparte tan rápido con la distancia.', tags:'lección curso 3d ud4', href:'iluminacion-directo.html#leccion-2' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'Calidad y dirección de la luz', desc:'UD 4 · Luz dura o suave, y desde dónde llega: lo que más cambia el aspecto de lo que iluminas.', tags:'lección curso 3d ud4', href:'iluminacion-directo.html#leccion-3' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'Reflexión y refracción', desc:'UD 4 · Los dos fenómenos que explican espejos, lentes, prismas y la óptica de cualquier proyector.', tags:'lección curso 3d ud4', href:'iluminacion-directo.html#leccion-4' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'Temperatura de color', desc:'UD 4 · Por qué una bombilla se ve amarilla y el cielo azul, y cómo se mide.', tags:'lección curso 3d ud4', href:'iluminacion-directo.html#leccion-5' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'Fuentes de luz', desc:'UD 4 · De la incandescente al LED: qué rendimiento, calor, color y vida útil ofrece cada tecnología.', tags:'lección curso 3d ud4', href:'iluminacion-directo.html#leccion-6' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'Focos convencionales', desc:'UD 4 · PAR, PC, Fresnel, recortes, cegadoras y pixel bars: qué hace cada uno y cuándo elegirlo.', tags:'lección curso 3d ud4', href:'iluminacion-directo.html#leccion-7' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'Cabezas móviles: wash, spot y beam', desc:'UD 4 · Tres familias de móviles con funciones distintas según el ángulo de su haz.', tags:'lección curso 3d ud4', href:'iluminacion-directo.html#leccion-8' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'Atributos y canales de una cabeza móvil', desc:'UD 4 · Dimmer, pan, tilt, color, zoom, iris, enfoque, frost, prisma y gobo: qué controla cada canal.', tags:'lección curso 3d ud4', href:'iluminacion-directo.html#leccion-9' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'Marcas y mesas de iluminación', desc:'UD 4 · Fabricantes de referencia y primer contacto con las consolas.', tags:'lección curso 3d ud4', href:'iluminacion-directo.html#leccion-10' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'Sujeción, seguridad y rigging', desc:'UD 5 · Todo lo que se cuelga, puede caer. Los elementos y las reglas para colgar bien.', tags:'lección curso 3d ud5', href:'iluminacion-directo.html#leccion-11' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'Acometida, trifásica y distribución eléctrica', desc:'UD 5 · De dónde sale la energía de un espectáculo y cómo se reparte con seguridad.', tags:'lección curso 3d ud5', href:'iluminacion-directo.html#leccion-12' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'Planos de iluminación', desc:'UD 5 · El documento que permite entender, montar y comunicar un espectáculo.', tags:'lección curso 3d ud5', href:'iluminacion-directo.html#leccion-13' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'El protocolo DMX512', desc:'UD 5 · Universos, canales, direcciones, ID y fixtures: cómo habla una mesa con los focos.', tags:'lección curso 3d ud5', href:'iluminacion-directo.html#leccion-14' },
+    { suite:'ilu3d', tipo:'lesson', nombre:'Conexionado, librerías, splitters, nodos y Art-Net', desc:'UD 5 · Cómo viaja la señal desde la mesa hasta cada foco y cómo evitar que un fallo apague todo.', tags:'lección curso 3d ud5', href:'iluminacion-directo.html#leccion-15' },
     // ─── VIDEO ─────────────────────────────────────────────────────
     { suite:'video', tipo:'game', nombre:'Quiz Resoluciones', desc:'Identifica la resolución, aspecto y uso típico a partir del nº de píxeles.', tags:'resolución HD FHD UHD 4K 8K' },
     { suite:'video', tipo:'game', nombre:'Progresivo o Entrelazado', desc:'Identifica el tipo de señal observando el efecto peine en el clip animado.', tags:'progresivo entrelazado interlaced peine campo broadcast' },
@@ -1433,31 +1520,37 @@ strong { font-weight: 700; }
     game:   { label:'Juego',       icon:'🎮' },
     sim:    { label:'Simulador',   icon:'🎚' },
     calc:   { label:'Calculadora', icon:'🧮' },
-    module: { label:'Módulo',      icon:'📚' }
+    module: { label:'Módulo',      icon:'📚' },
+    video:  { label:'Vídeo',       icon:'▶' },
+    lesson: { label:'Lección 3D',  icon:'🧊' }
   };
 
   function globalSearchFn(q) {
     const drop = document.getElementById('searchDrop');
-    q = q.trim().toLowerCase();
+    const norm = x => (x || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const raw = q.trim();
+    q = norm(raw);
     if (q.length < 2) { drop.classList.remove('visible'); return; }
 
     // Buscar en términos del glosario
     const terminos = TERMINOS.filter(t =>
-      t.nombre.toLowerCase().includes(q) ||
-      t.def.toLowerCase().includes(q) ||
-      (t.en && t.en.toLowerCase().includes(q)) ||
-      (t.es && t.es.toLowerCase().includes(q))
+      norm(t.nombre).includes(q) ||
+      norm(t.def).includes(q) ||
+      norm(t.en).includes(q) ||
+      norm(t.es).includes(q)
     ).slice(0, 5);
 
     // Buscar en recursos (juegos, simuladores, módulos…)
+    const score = r => norm(r.nombre).includes(q) ? 0 : 1;
     const recursos = RECURSOS.filter(r =>
-      r.nombre.toLowerCase().includes(q) ||
-      r.desc.toLowerCase().includes(q) ||
-      (r.tags && r.tags.toLowerCase().includes(q))
-    ).slice(0, 5);
+      norm(r.nombre).includes(q) ||
+      norm(r.desc).includes(q) ||
+      norm(r.tags).includes(q)
+    ).sort((a, b) => score(a) - score(b)).slice(0, 8);
 
     if (!terminos.length && !recursos.length) {
-      drop.innerHTML = '<div class="search-no-results">Sin resultados para <strong>' + q + '</strong></div>';
+      const safe = raw.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+      drop.innerHTML = '<div class="search-no-results">Sin resultados para <strong>' + safe + '</strong></div>';
       drop.classList.add('visible');
       return;
     }
@@ -1470,7 +1563,7 @@ strong { font-weight: 700; }
       html += recursos.map(r => {
         const s = SUITE_URLS[r.suite] || {};
         const t = TIPO_LABELS[r.tipo] || { label:'', icon:'' };
-        return `<a class="search-item" href="${s.url || '#'}">
+        return `<a class="search-item" href="${r.href || s.url || '#'}">
           <span class="search-item-suite" style="background:${s.color || '#888'}"></span>
           <span class="search-item-name">${t.icon} ${r.nombre}</span>
           <span class="search-item-def">${r.desc.slice(0, 65)}${r.desc.length > 65 ? '…' : ''}</span>
