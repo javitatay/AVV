@@ -1,0 +1,34 @@
+/* Enlaces de cada módulo de suite a sus vídeos explicativos y a las lecciones del curso 3D.
+   Los datos se generan a partir de la lista de vídeos (videos/index.html) y de las lecciones de los cursos 3D. */
+(function () {
+  var DATA = {"video.html": {"m1": {"v": [["resolucion", "La resolución"], ["relacion-aspecto", "Relación de aspecto"], ["pixel-aspect", "Proporción de píxel"], ["ppp", "Píxeles por pulgada"]], "l": [["imagen-video", 1, "Resolución"], ["imagen-video", 2, "Relación de aspecto (DAR)"], ["imagen-video", 3, "Proporción de píxel: DAR, PAR y SAR"], ["imagen-video", 9, "Píxeles por pulgada (PPP)"]]}, "m2": {"v": [["distancia-focal", "Distancia focal"], ["profundidad-campo", "Profundidad de campo"], ["exposicion", "Triángulo de exposición"]], "l": [["imagen-video", 4, "Distancia focal y ángulo visual"], ["imagen-video", 5, "Diafragma y exposición"], ["imagen-video", 6, "Profundidad de campo"]]}, "m3": {"v": [["entrelazado", "Progresivo y entrelazado"], ["brillo", "Brillo y contraste"], ["canal-alfa", "Canal alfa y keys"]], "l": [["imagen-video", 7, "Canal alfa y keys"], ["imagen-video", 14, "Progresivo, entrelazado y fotogramas por segundo"], ["imagen-video", 17, "Brillo, contraste y HDR"]]}, "m4": {"v": [["conectores", "Conectores de vídeo"], ["hdmi", "HDMI y ancho de banda"], ["sdi", "SDI y fibra"], ["codecs", "Formatos y códecs"], ["codecs-vj", "Códecs para VJ"]], "l": [["imagen-video", 8, "Loops y códecs para VJ"], ["imagen-video", 10, "Conectores de vídeo y ancho de banda"], ["imagen-video", 11, "SDI, fibra y HDCP"], ["imagen-video", 12, "Formatos, contenedores y códecs de vídeo"]]}, "m5": {"v": [], "l": [["imagen-video", 13, "Formatos de imagen"]]}, "m6": {"v": [["mezclador", "Mesa de mezcla"], ["equipos-senal", "Matriz, splitter y switch"], ["ndi", "NDI y extensores"]], "l": [["imagen-video", 15, "NDI y extensores de señal"], ["imagen-video", 16, "Mezcladoras, matrices y compañía"]]}, "m7": {"v": [["brillo", "Brillo y contraste"], ["throw-ratio", "Throw ratio"], ["keystone", "Keystone y lens shift"], ["tecnologias", "LCD, DLP y láser"]], "l": [["imagen-video", 17, "Brillo, contraste y HDR"], ["imagen-video", 18, "Ópticas y throw ratio"], ["imagen-video", 19, "Keystone, lens shift y corrección de esquinas"], ["imagen-video", 20, "Tecnologías de proyector y HDBaseT"]]}, "m8": {"v": [["pantallas-led", "Pantallas LED"], ["nits", "Nits y refresco"], ["mapping", "Mapping y blending"], ["pixel-mapping", "Pixel mapping"]], "l": [["imagen-video", 21, "Pantallas LED: del píxel a la pantalla"], ["imagen-video", 22, "Nits y tasa de refresco"], ["imagen-video", 23, "Video mapping, warping y blending"], ["imagen-video", 24, "Pixel mapping: LED, DMX y Art-Net"]]}}, "iluminacion.html": {"m1": {"v": [["luz", "La luz"]], "l": [["iluminacion-directo", 1, "La luz y el espectro visible"], ["iluminacion-directo", 3, "Calidad y dirección de la luz"], ["iluminacion-directo", 4, "Reflexión y refracción"]]}, "m2": {"v": [["magnitudes", "Lúmenes y lux"], ["temperatura", "Temperatura de color"]], "l": [["iluminacion-directo", 2, "Intensidad y magnitudes: lumen, candela y lux"], ["iluminacion-directo", 5, "Temperatura de color"]]}, "m3": {"v": [["fuentes", "Fuentes de luz"]], "l": [["iluminacion-directo", 6, "Fuentes de luz"]]}, "m4": {"v": [["focos", "Focos convencionales"]], "l": [["iluminacion-directo", 7, "Focos convencionales"]]}, "m5": {"v": [["cabezas-moviles", "Cabezas móviles"]], "l": [["iluminacion-directo", 8, "Cabezas móviles: wash, spot y beam"]]}, "m6": {"v": [["atributos", "Atributos y canales"]], "l": [["iluminacion-directo", 9, "Atributos y canales de una cabeza móvil"]]}, "m7": {"v": [["rigging", "Trusses y safety"], ["elevar-cargas", "Elevar cargas"], ["trifasica", "Corriente trifásica"]], "l": [["iluminacion-directo", 11, "Sujeción, seguridad y rigging"], ["iluminacion-directo", 12, "Acometida, trifásica y distribución eléctrica"]]}, "m8": {"v": [["dmx", "DMX 512"], ["cableado-dmx", "Cableado DMX"], ["art-net", "Nodos y Art-Net"]], "l": [["iluminacion-directo", 10, "Marcas y mesas de iluminación"], ["iluminacion-directo", 14, "El protocolo DMX512"], ["iluminacion-directo", 15, "Conexionado, librerías, splitters, nodos y Art-Net"]]}, "m9": {"v": [["art-net", "Nodos y Art-Net"]], "l": [["iluminacion-directo", 15, "Conexionado, librerías, splitters, nodos y Art-Net"]]}}};
+  var page = location.pathname.split('/').pop() || 'index.html';
+  var mods = DATA[page];
+  if (!mods) return;
+  var css = '.avl-rel{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:-4px 0 22px;padding:12px 14px;border:1px solid rgba(25,42,86,.16);border-radius:12px;background:rgba(25,42,86,.035)}' +
+    '.avl-rel-h{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#4a5570;margin-right:2px}' +
+    '.avl-rel-h{flex-basis:100%}' +
+    '.avl-rel a{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:4px 12px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;color:#192a56;background:#fff;border:1.5px solid #192a56;transition:background .15s,color .15s}' +
+    '.avl-rel a.l{border-style:dashed}' +
+    '.avl-rel a:hover{background:#192a56;color:#fff}' +
+    '.avl-rel a svg{width:12px;height:12px;flex-shrink:0}' +
+    '@media (max-width:640px){.avl-rel{padding:10px 12px}}';
+  var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+  var PLAY = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg>';
+  var CUBE = '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1 11 3.5v5L6 11 1 8.5v-5zM1 3.5 6 6l5-2.5M6 6v5" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>';
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  Object.keys(mods).forEach(function (id) {
+    var sec = document.getElementById(id), d = mods[id];
+    if (!sec || (!d.v.length && !d.l.length)) return;
+    var head = sec.querySelector('.module-header');
+    var box = document.createElement('div');
+    box.className = 'avl-rel';
+    box.setAttribute('role', 'group');
+    box.setAttribute('aria-label', 'Vídeos y práctica de este módulo');
+    var h = '';
+    if (d.v.length) h += '<span class="avl-rel-h">Ver vídeo</span>' + d.v.map(function (v) { return '<a href="videos/#' + v[0] + '">' + PLAY + esc(v[1]) + '</a>'; }).join('');
+    if (d.l.length) h += '<span class="avl-rel-h">Practicar en 3D</span>' + d.l.map(function (l) { return '<a class="l" href="' + l[0] + '.html#leccion-' + l[1] + '">' + CUBE + 'Lección ' + l[1] + ' · ' + esc(l[2]) + '</a>'; }).join('');
+    box.innerHTML = h;
+    if (head) head.insertAdjacentElement('afterend', box); else sec.insertBefore(box, sec.firstChild);
+  });
+})();

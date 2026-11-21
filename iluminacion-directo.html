@@ -7,11 +7,9 @@
 <meta name="description" content="Curso interactivo de iluminación de espectáculos en directo (UD 4 y 5): luz, focos, cabezas móviles, rigging y DMX con escenas 3D. AVV Lab · CFGM Video DJ.">
 <meta name="theme-color" content="#f7f6f3">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-4 -4 410 342%22 role=%22presentation%22 focusable=%22false%22%3E%3Cg fill=%22none%22 stroke-linejoin=%22round%22 stroke-linecap=%22round%22 stroke-width=%2216%22%3E%3Cg style=%22stroke:%231f1d1a%22%3E%3Crect x=%2213%22 y=%2213%22 width=%22387%22 height=%22203%22 rx=%2222%22 style=%22fill:%23cbe6f7%22 stroke=%22none%22/%3E%3Crect x=%220%22 y=%220%22 width=%22387%22 height=%22203%22 rx=%2222%22/%3E%3C/g%3E%3Cg style=%22stroke:%231f1d1a%22%3E%3Cpath d=%22M206 60L128 176L284 176Z%22 style=%22fill:%23f2da8e%22 stroke=%22none%22 transform=%22translate%2813 13%29%22/%3E%3Cpath d=%22M193 47L115 163L271 163Z%22/%3E%3Ccircle cx=%22193%22 cy=%2234%22 r=%2214%22 style=%22fill:%23f2da8e%22/%3E%3C/g%3E%3Cg style=%22stroke:%231f1d1a%22%3E%3Crect x=%2213%22 y=%22248%22 width=%22120%22 height=%2285%22 rx=%2215%22 style=%22fill:%23f2da8e%22 stroke=%22none%22/%3E%3Crect x=%220%22 y=%22236%22 width=%22120%22 height=%2285%22 rx=%2215%22/%3E%3C/g%3E%3Cg style=%22stroke:%231f1d1a%22%3E%3Crect x=%22147%22 y=%22248%22 width=%22120%22 height=%2285%22 rx=%2215%22 style=%22fill:%23d5e7d0%22 stroke=%22none%22/%3E%3Crect x=%22134%22 y=%22236%22 width=%22120%22 height=%2285%22 rx=%2215%22/%3E%3C/g%3E%3Cg style=%22stroke:%231f1d1a%22%3E%3Crect x=%22280%22 y=%22248%22 width=%22120%22 height=%2285%22 rx=%2215%22 style=%22fill:%23f5cfcd%22 stroke=%22none%22/%3E%3Crect x=%22267%22 y=%22236%22 width=%22120%22 height=%2285%22 rx=%2215%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/fonts.css">
 <script>try{var t=localStorage.getItem("avvlab_theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",t==="dark"?"#1b1917":"#f7f6f3")})}}catch(e){}</script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+<script src="vendor/three-0.158.0.min.js"></script>
 <style>
 @font-face {
   font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 800; font-display: swap;
@@ -188,6 +186,9 @@ body.menu-open .scrim{display:block}
 .lpage{max-width:var(--max);margin:0 auto;padding:24px 32px 60px}
 .lhead{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-bottom:22px}
 .lhead h1{font-size:clamp(1.55rem,3.4vw,2.3rem)}
+.lvids{display:flex;flex-wrap:wrap;gap:10px;flex-basis:100%}
+.btn.small.vid{display:inline-flex;align-items:center;gap:7px;box-shadow:3px 3px 0 var(--green-d)}
+@media (hover:hover) and (pointer:fine){.btn.small.vid:hover{box-shadow:6px 6px 0 var(--green-d)}}
 .kicker{font-family:var(--font-mono);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:var(--yellow);color:var(--fg);border:2px solid var(--stroke-c);border-radius:6px;padding:1px 9px;transform:rotate(-2deg);white-space:nowrap;display:inline-block}
 .lgrid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(310px,1fr);gap:30px;align-items:start}
 .lgrid .viewer{height:clamp(320px,64vh,680px);border:2px solid var(--stroke-c);border-radius:var(--radius);box-shadow:var(--offset) var(--offset) 0 var(--blue-d)}
@@ -380,6 +381,8 @@ const tbl = (head, rows) =>
 
 const exercise = (id, html) => `<div class="exercise"><span class="tag">Ejercicio ${id}</span>${html}</div>`;
 
+// Vídeos explicativos de cada lección (número de lección → [id del vídeo, título])
+const LVIDS = {"1": [["luz", "La luz"]], "2": [["magnitudes", "Lúmenes y lux"]], "3": [["luz", "La luz"]], "5": [["temperatura", "Temperatura de color"]], "6": [["fuentes", "Fuentes de luz"]], "7": [["focos", "Focos convencionales"]], "8": [["cabezas-moviles", "Cabezas móviles"]], "9": [["atributos", "Atributos y canales"]], "11": [["rigging", "Trusses y safety"], ["elevar-cargas", "Elevar cargas"]], "12": [["trifasica", "Corriente trifásica"]], "13": [["planos", "Planos de luces"]], "14": [["dmx", "DMX 512"]], "15": [["cableado-dmx", "Cableado DMX"], ["art-net", "Nodos y Art-Net"]]};
 const LESSONS = [
 /* ───────────── UNIDAD 4 ───────────── */
 {
@@ -2383,7 +2386,7 @@ WIDGETS.topologia = el => {
     const tabs = [...(use3D ? [['explorar', 'Explorar']] : []), ['ideas', 'Ideas'], ['prueba', 'Prueba'], ...(bodyInMain ? [] : [['apuntes', 'Apuntes']])];
     const first = tabs[0][0];
     $('#view').innerHTML = `<div class="lpage">
-      <div class="lhead"><span class="kicker">UD${l.unit} · Lección ${l.n}/${total}</span><h1>${l.title}</h1></div>
+      <div class="lhead"><span class="kicker">UD${l.unit} · Lección ${l.n}/${total}</span><h1>${l.title}</h1>${(LVIDS[l.n] || []).length ? `<div class="lvids" role="group" aria-label="Vídeos de esta lección">${LVIDS[l.n].map(v => `<a class="btn small vid" href="videos/#${v[0]}"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg>Ver vídeo · ${v[1]}</a>`).join('')}</div>` : ''}</div>
       <div class="lgrid">
         <div class="lmain">
           ${use3D ? '<div class="viewer" id="viewer"></div>' : ''}

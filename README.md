@@ -66,6 +66,9 @@ AVV/
 - **Barra de navegación flotante** — acceso entre suites desde cualquier página, con botón de retorno a la última suite visitada (sessionStorage).
 - **Buscador global** — en la portada: busca a la vez en las suites, los 40 vídeos explicativos y las lecciones de los cursos 3D, sin distinguir acentos; cada resultado abre directamente el vídeo o la lección.
 - **Glosario visual** — 54 términos técnicos con equivalencias EN/ES, buscador global y filtros por suite.
+- **Enlaces entre vídeos, suites y cursos 3D** — cada módulo de las suites de Vídeo e Iluminación muestra sus vídeos y las lecciones 3D donde practicarlo (`avl-rel.js`); cada lección 3D enlaza a sus vídeos, y el reproductor enlaza a la lección 3D correspondiente.
+- **Sin dependencias externas** — las fuentes (Inter y JetBrains Mono, en `fonts/`) y three.js (en `vendor/`) se sirven desde el propio sitio: no se envía la IP del alumno a Google y funciona aunque un CDN falle.
+
 - **Accesibilidad (WCAG 2.1 AA)** — todas las páginas pasan axe-core sin incidencias. `avl-nav.js` añade a las 6 suites navegación completa con teclado (Tab, Enter y Espacio en pestañas, tarjetas y juegos), anillo de foco visible, enlace «Saltar al contenido», nombres accesibles para iconos y campos, y encabezados ordenados.
 - **Diagramas interactivos** — 9 diagramas SVG/canvas clicables distribuidos entre las suites (flujo AV, comparativa resoluciones, simulador DOF, árbol de decisión de codec, Bézier interactiva, modelos de color RGB/CMYK/HSB, perfiles de haz, temperatura de color, flujo MagicQ).
 - **Calculadoras** — bitrate, resolución, DOF, DMX, BPM sync, ley inversa del cuadrado, iluminación escénica y más.
