@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Por unidad · AVV Lab</title>
+<meta name="description" content="Todo el material de cada unidad didáctica en un solo sitio: vídeos explicativos, lecciones del curso 3D, módulos de consulta, juegos y software. AVV Lab · CFGM Video DJ.">
+<meta name="theme-color" content="#f7f6f3">
+<meta property="og:type" content="website"><meta property="og:site_name" content="AVV Lab">
+<meta property="og:title" content="Por unidad · AVV Lab"><meta property="og:description" content="Vídeos, curso 3D, consulta y juegos de cada unidad didáctica.">
+<meta property="og:url" content="https://javitatay.github.io/AVV/unidades.html"><meta property="og:image" content="https://javitatay.github.io/AVV/og/video.jpg"><meta property="og:locale" content="es_ES">
+<script>try{var t=localStorage.getItem("avvlab_theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",t==="dark"?"#1b1917":"#f7f6f3")})}}catch(e){}</script>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f7f6f3;--surface:#fff;--fg:#1f1d1a;--mid:#6f6b64;--line:#e6e2da;--stroke-c:#1f1d1a;
+  --blue:#cbe6f7;--yellow:#f2da8e;--green:#d5e7d0;--pink:#f5cfcd;--on-pastel:#1f1d1a;
+  --sh-mix:100%;
+  --blue-d:color-mix(in srgb,var(--blue) var(--sh-mix),#000);
+  --yellow-d:color-mix(in srgb,var(--yellow) var(--sh-mix),#000);
+  --green-d:color-mix(in srgb,var(--green) var(--sh-mix),#000);
+  --btn-bg:#1f1d1a;--btn-fg:#f7f6f3;--stage:#201e1b;
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --font-display:'Bricolage Grotesque','Avenir Next','Segoe UI',system-ui,sans-serif;
+  --font-mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --ease-out:cubic-bezier(.23,1,.32,1);color-scheme:light}
+:root[data-theme="dark"]{--bg:#1b1917;--surface:#262320;--fg:#f7f6f3;--mid:#b3aea4;--line:#38342f;--stroke-c:#a9a499;--btn-bg:var(--yellow);--btn-fg:#1f1d1a;--sh-mix:52%;color-scheme:dark}
+@supports (color:oklch(from red l c h)){:root[data-theme="dark"]{--blue-d:oklch(from var(--blue) calc(l*.70) calc(c*2.0) h);--yellow-d:oklch(from var(--yellow) calc(l*.70) calc(c*2.0) h);--green-d:oklch(from var(--green) calc(l*.70) calc(c*2.0) h)}}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--font);background:var(--bg);color:var(--fg);line-height:1.5;min-height:100vh}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.skip{position:absolute;left:-999px}
+.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:2px solid var(--stroke-c)}
+.top-in{max-width:1240px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:12px}
+.btn{height:40px;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--surface);color:var(--fg);border:2px solid var(--stroke-c);border-radius:12px;box-shadow:3px 3px 0 var(--green-d);font-weight:700;font-size:14px;padding:0 14px;text-decoration:none;cursor:pointer;touch-action:manipulation;transition:transform 100ms var(--ease-out),box-shadow 100ms var(--ease-out)}
+.btn svg{width:16px;height:16px;flex-shrink:0}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--stroke-c)}
+.btn.sq{width:40px;padding:0}
+.btn.y{box-shadow:3px 3px 0 var(--yellow-d)}
+.btn.theme-toggle svg{width:20px;height:20px}.theme-toggle .ic-sun{display:none}:root[data-theme="dark"] .theme-toggle .ic-sun{display:block}:root[data-theme="dark"] .theme-toggle .ic-moon{display:none}:root[data-theme="dark"] .theme-toggle{border-color:var(--yellow)}
+.btn:focus-visible,.chap:focus-visible,.vc:focus-visible,video:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
+.brand{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.1}
+.brand b{font-family:var(--font-display);font-weight:800;font-size:1.15rem;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand span{font-family:var(--font-mono);font-size:11px;color:var(--mid);letter-spacing:.08em;text-transform:uppercase}
+.wrap{max-width:1240px;margin:0 auto;padding:28px 20px 56px}
+.kicker{display:inline-flex;align-self:flex-start;font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--yellow);color:var(--on-pastel);border:2px solid var(--stroke-c);border-radius:8px;padding:3px 10px;box-shadow:3px 3px 0 var(--yellow-d)}
+.h2{font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid)}:root{--pink-d:color-mix(in srgb,var(--pink) var(--sh-mix),#000)}
+@supports (color:oklch(from red l c h)){:root[data-theme="dark"]{--pink-d:oklch(from var(--pink) calc(l*.70) calc(c*2.0) h)}}
+@media(hover:hover) and (pointer:fine){.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--green-d)}.btn.y:hover{box-shadow:5px 5px 0 var(--yellow-d)}}
+.skip:focus{left:12px;top:12px;z-index:50;background:var(--surface);border:2px solid var(--stroke-c);border-radius:10px;padding:8px 14px;font-weight:700}
+h1,h2,h3{font-family:var(--font-display);font-weight:800;letter-spacing:-.025em;line-height:1.05}
+a:focus-visible,[role="tab"]:focus-visible,.unit:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
+.unit:focus{outline:none}
+
+/* Introducción y pestañas de unidad */
+.intro{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.intro h1{font-size:clamp(2.2rem,5.4vw,3.6rem)}
+.intro p{color:var(--mid);max-width:62ch;font-size:1.02rem}
+.intro b{color:var(--fg)}
+.utabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:28px}
+.ut{--c:var(--blue);--c-d:var(--blue-d);display:flex;flex-direction:column;gap:4px;text-decoration:none;background:var(--surface);border:2px solid var(--stroke-c);border-radius:14px;padding:10px 12px 12px;box-shadow:3px 3px 0 var(--c-d);transition:transform 120ms var(--ease-out),box-shadow 120ms var(--ease-out),background-color 120ms}
+.ut.ilu{--c:var(--yellow);--c-d:var(--yellow-d)}
+.ut .n{align-self:flex-start;font-family:var(--font-mono);font-size:12px;font-weight:700;background:var(--c);color:var(--on-pastel);border:2px solid var(--stroke-c);border-radius:7px;padding:0 7px}
+.ut .tt{font-weight:700;font-size:13.5px;line-height:1.25}
+.ut[aria-selected="true"]{background:var(--c);color:var(--on-pastel);box-shadow:5px 5px 0 var(--stroke-c);transform:translate(-2px,-2px)}
+.ut[aria-selected="true"] .n{background:var(--surface);color:var(--fg)}
+@media(hover:hover) and (pointer:fine){.ut:not([aria-selected="true"]):hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--c-d)}}
+
+/* Unidad */
+.unit{--c:var(--blue);--c-d:var(--blue-d)}
+.unit.ilu{--c:var(--yellow);--c-d:var(--yellow-d)}
+.unit[hidden]{display:none}
+.uhead{display:flex;flex-direction:column;gap:12px;background:var(--c);color:var(--on-pastel);border:2px solid var(--stroke-c);border-radius:20px;padding:24px 26px;box-shadow:8px 8px 0 var(--stroke-c);margin-bottom:34px}
+.uhead .kicker{background:var(--surface);box-shadow:3px 3px 0 var(--stroke-c);color:var(--fg)}
+.uhead h2{font-size:clamp(1.7rem,3.8vw,2.6rem);max-width:24ch}
+.counts{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.counts li{background:var(--surface);color:var(--fg);border:2px solid var(--stroke-c);border-radius:999px;padding:2px 12px;font-size:13.5px}
+.counts b{font-family:var(--font-display);font-weight:800}
+
+.step{margin-bottom:38px}
+.sh{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+.sh>div{flex:1;min-width:0}
+.sh .num{flex-shrink:0;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--surface);border:2px solid var(--stroke-c);font-family:var(--font-display);font-weight:800;font-size:1.25rem;box-shadow:3px 3px 0 var(--c-d)}
+.sh h3{font-size:1.5rem}
+.sh p{color:var(--mid);font-size:14.5px;margin-top:2px}
+.more{flex-shrink:0;align-self:center;display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:14px;text-decoration:none;border-bottom:2px solid var(--c-d);padding-bottom:1px}
+.more svg{width:15px;height:15px}
+@media(hover:hover) and (pointer:fine){.more:hover{border-bottom-color:var(--fg)}}
+
+/* 1 · Vídeos */
+.vids{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.vid{display:flex;flex-direction:column;gap:4px;text-decoration:none;height:100%}
+.vid .ph{position:relative;display:block;aspect-ratio:16/9;border:2px solid var(--stroke-c);border-radius:12px;overflow:hidden;background:var(--stage);box-shadow:4px 4px 0 var(--c-d);margin-bottom:6px;transition:transform 120ms var(--ease-out),box-shadow 120ms var(--ease-out)}
+.vid img{width:100%;height:100%;object-fit:cover;display:block}
+.vid .dur{position:absolute;right:8px;bottom:8px;font-family:var(--font-mono);font-size:11.5px;font-weight:700;background:var(--surface);color:var(--fg);border:2px solid var(--stroke-c);border-radius:6px;padding:0 6px}
+.vid .pl{position:absolute;left:8px;bottom:8px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--yellow);color:#1f1d1a;border:2px solid #1f1d1a}
+.vid .pl svg{width:11px;height:11px;margin-left:2px}
+.vid .vt{font-weight:700;font-size:15px;line-height:1.25}
+.vid .vs{color:var(--mid);font-size:13px;line-height:1.35}
+@media(hover:hover) and (pointer:fine){.vid:hover .ph{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--c-d)}}
+
+/* 2 · Lecciones */
+.less{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.less a{display:flex;align-items:center;gap:12px;text-decoration:none;background:var(--surface);border:2px solid var(--stroke-c);border-radius:12px;padding:9px 12px;font-weight:600;font-size:14.5px;height:100%;box-shadow:3px 3px 0 var(--green-d);transition:transform 120ms var(--ease-out),box-shadow 120ms var(--ease-out)}
+.less .ln{flex-shrink:0;display:grid;place-items:center;min-width:30px;height:30px;padding:0 6px;border-radius:8px;background:var(--green);color:var(--on-pastel);border:2px solid var(--stroke-c);font-family:var(--font-mono);font-size:13px;font-weight:700}
+.less .lt{flex:1;line-height:1.3}
+.less svg{width:15px;height:15px;flex-shrink:0;color:var(--mid)}
+@media(hover:hover) and (pointer:fine){.less a:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--green-d)}}
+
+/* 3 · Módulos */
+.mods{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.mod{display:flex;flex-direction:column;gap:6px;text-decoration:none;background:var(--surface);border:2px solid var(--stroke-c);border-radius:16px;padding:16px 18px;height:100%;box-shadow:5px 5px 0 var(--c-d);transition:transform 120ms var(--ease-out),box-shadow 120ms var(--ease-out)}
+.mod .mt{font-family:var(--font-display);font-weight:800;font-size:1.15rem;letter-spacing:-.02em;line-height:1.15}
+.mod .md{color:var(--mid);font-size:13.5px;line-height:1.45}
+.mod .also{align-self:flex-start;margin-top:auto;font-family:var(--font-mono);font-size:11px;font-weight:700;border:1.5px solid var(--stroke-c);border-radius:999px;padding:0 8px}
+@media(hover:hover) and (pointer:fine){.mod:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--c-d)}}
+
+/* 4 · Juegos y software */
+.games,.sw{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.games a,.sw a{display:flex;align-items:center;gap:12px;text-decoration:none;background:var(--surface);border:2px solid var(--stroke-c);border-radius:12px;padding:10px 14px;height:100%;box-shadow:3px 3px 0 var(--pink-d);transition:transform 120ms var(--ease-out),box-shadow 120ms var(--ease-out)}
+.sw a{box-shadow:3px 3px 0 var(--line)}
+.games .gi{font-size:20px;flex-shrink:0}
+.games a>span:last-child,.sw a>span{display:flex;flex-direction:column;flex:1;min-width:0}
+.gt{font-weight:700;font-size:14.5px;line-height:1.3}
+.gm{color:var(--mid);font-size:12.5px}
+.sw img{width:36px;height:36px;border-radius:8px;object-fit:contain;flex-shrink:0}
+.sw svg{width:15px;height:15px;color:var(--mid);flex-shrink:0}
+@media(hover:hover) and (pointer:fine){.games a:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--pink-d)}.sw a:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--stroke-c)}}
+
+@media(max-width:860px){.utabs{grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.ut .tt{display:none}.ut{align-items:center;padding:8px 4px}.ut .n{font-size:13px}}
+@media(max-width:640px){.wrap{padding:20px 16px 48px}.top-in{padding:8px 14px}.uhead{padding:18px;box-shadow:5px 5px 0 var(--stroke-c)}.sh{flex-wrap:wrap}.sh>div{flex:1 1 calc(100% - 60px)}.more{margin-left:54px}.vids{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.vid .vs{display:none}.less,.mods,.games,.sw{grid-template-columns:1fr}.btn .lb{display:none}.btn{padding:0 10px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="top"><div class="top-in">
+  <a class="btn" href="index.html" aria-label="Volver a AVV Lab"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lb">AVV Lab</span></a>
+  <div class="brand"><b>Por unidad</b><span>Todo el material de cada UD</span></div>
+  <button class="btn sq y theme-toggle" id="theme" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro"><svg class="ic-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg><svg class="ic-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+</div></header>
+<main class="wrap" id="main">
+  <div class="intro"><h1>Todo por unidad</h1><p>Elige una unidad y sigue el orden de la clase: <b>ver</b> el vídeo, <b>practicar</b> en 3D, <b>consultar</b> la suite y <b>ponerte a prueba</b>.</p></div>
+  <nav class="utabs" role="tablist" aria-label="Unidades didácticas">
+    <a class="ut img" href="#ud-1" role="tab" id="tab-1" aria-controls="u1" aria-selected="false"><span class="n">UD 1</span><span class="tt">La imagen</span></a><a class="ut img" href="#ud-2" role="tab" id="tab-2" aria-controls="u2" aria-selected="false"><span class="n">UD 2</span><span class="tt">La señal</span></a><a class="ut img" href="#ud-3" role="tab" id="tab-3" aria-controls="u3" aria-selected="false"><span class="n">UD 3</span><span class="tt">Proyección, LED y mapping</span></a><a class="ut ilu" href="#ud-4" role="tab" id="tab-4" aria-controls="u4" aria-selected="false"><span class="n">UD 4</span><span class="tt">Iluminación</span></a><a class="ut ilu" href="#ud-5" role="tab" id="tab-5" aria-controls="u5" aria-selected="false"><span class="n">UD 5</span><span class="tt">Rigging, DMX y programación</span></a>
+  </nav>
+  <section class="unit img" id="u1" role="tabpanel" aria-labelledby="tab-1" tabindex="-1">
+<div class="uhead"><span class="kicker">UD 1 · Imagen y vídeo</span><h2>La imagen: resolución, óptica y exposición</h2><ul class="counts"><li><b>8</b> vídeos · 11 min</li><li><b>8</b> lecciones 3D</li><li><b>3</b> módulos de consulta</li><li><b>3</b> juegos</li></ul></div>
+<div class="step"><div class="sh"><span class="num">1</span><div><h3>Ver</h3><p>Vídeos cortos sin audio para arrancar cada tema.</p></div><a class="more" href="videos/#ud-1">Todos en el reproductor<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ul class="vids">
+<li><a class="vid" href="videos/#resolucion"><span class="ph"><img src="videos/posters/h/resolucion.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:29</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">La resolución</span><span class="vs">Píxeles, ancho × alto y formatos</span></a></li>
+<li><a class="vid" href="videos/#relacion-aspecto"><span class="ph"><img src="videos/posters/h/relacion-aspecto.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:24</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Relación de aspecto</span><span class="vs">Proporción y cálculo con el MCD</span></a></li>
+<li><a class="vid" href="videos/#pixel-aspect"><span class="ph"><img src="videos/posters/h/pixel-aspect.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:32</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Proporción de píxel</span><span class="vs">DAR, SAR y PAR</span></a></li>
+<li><a class="vid" href="videos/#distancia-focal"><span class="ph"><img src="videos/posters/h/distancia-focal.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:16</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Distancia focal</span><span class="vs">Focal, ángulo de visión y fórmula</span></a></li>
+<li><a class="vid" href="videos/#exposicion"><span class="ph"><img src="videos/posters/h/exposicion.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:32</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Triángulo de exposición</span><span class="vs">Diafragma, obturación e ISO</span></a></li>
+<li><a class="vid" href="videos/#profundidad-campo"><span class="ph"><img src="videos/posters/h/profundidad-campo.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:09</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Profundidad de campo</span><span class="vs">La zona nítida de la imagen</span></a></li>
+<li><a class="vid" href="videos/#canal-alfa"><span class="ph"><img src="videos/posters/h/canal-alfa.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:32</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Canal alfa y keys</span><span class="vs">Transparencia, luma, chroma y máscaras</span></a></li>
+<li><a class="vid" href="videos/#loops"><span class="ph"><img src="videos/posters/h/loops.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:17</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Cálculo de loops</span><span class="vs">BPM, pulsos y fotogramas</span></a></li>
+</ul></div>
+<div class="step"><div class="sh"><span class="num">2</span><div><h3>Practicar en 3D</h3><p>Curso Imagen y vídeo: escenas 3D, simuladores y una prueba al final de cada lección.</p></div><a class="more" href="imagen-video.html">Abrir el curso<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ol class="less">
+<li><a href="imagen-video.html#leccion-1"><span class="ln">1</span><span class="lt">Resolución</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-2"><span class="ln">2</span><span class="lt">Relación de aspecto (DAR)</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-3"><span class="ln">3</span><span class="lt">Proporción de píxel: DAR, PAR y SAR</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-4"><span class="ln">4</span><span class="lt">Distancia focal y ángulo visual</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-5"><span class="ln">5</span><span class="lt">Diafragma y exposición</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-6"><span class="ln">6</span><span class="lt">Profundidad de campo</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-7"><span class="ln">7</span><span class="lt">Canal alfa y keys</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-8"><span class="ln">8</span><span class="lt">Loops y códecs para VJ</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+</ol></div>
+<div class="step"><div class="sh"><span class="num">3</span><div><h3>Consultar</h3><p>Teoría, tablas y calculadoras de la Video Suite.</p></div><a class="more" href="video.html">Abrir la suite<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ul class="mods">
+<li><a class="mod" href="video.html#m1"><span class="mt">Resolución &amp; Geometría</span><span class="md">Calculadora de resolución, PPI, Máximo Común Divisor y relaciones de aspecto DAR, SAR y PAR.</span></a></li>
+<li><a class="mod" href="video.html#m2"><span class="mt">Óptica &amp; Profundidad de Campo</span><span class="md">Fórmula de lentes 1/u+1/v=1/f, DOF, ángulo de visión, diafragma y triángulo de exposición.</span></a></li>
+<li><a class="mod" href="video.html#m3"><span class="mt">Señal de Vídeo</span><span class="md">Canal alpha, escaneo progresivo vs entrelazado, PAL/NTSC/SECAM, gamma y HDR.</span><span class="also">También UD 2</span></a></li>
+</ul></div>
+<div class="step"><div class="sh"><span class="num">4</span><div><h3>Ponerse a prueba</h3><p>Juegos de la suite y la prueba de cada lección 3D.</p></div></div><ul class="games">
+<li><a href="video.html#m1"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Quiz — Identifica la Resolución</span><span class="gm">Resolución &amp; Geometría</span></span></a></li>
+<li><a href="video.html#m2"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Adivina el Efecto</span><span class="gm">Óptica &amp; Profundidad de Campo</span></span></a></li>
+<li><a href="video.html#m3"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Progresivo o Entrelazado</span><span class="gm">Señal de Vídeo</span></span></a></li>
+<li><a href="imagen-video.html#leccion-1"><span class="gi" aria-hidden="true">✅</span><span><span class="gt">Pruebas de las lecciones 1–8</span><span class="gm">Curso 3D · pestaña «Prueba»</span></span></a></li>
+</ul></div>
+<div class="step soft"><div class="sh"><span class="num" aria-hidden="true">+</span><div><h3>Software de la unidad</h3><p>Suites de los programas que se usan en esta unidad.</p></div></div><ul class="sw">
+<li><a href="resolume.html"><img src="icons/resolume.svg" alt="" width="36" height="36"><span><span class="gt">Resolume Arena</span><span class="gm">VJing y projection mapping</span></span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+</ul></div>
+</section><section class="unit img" id="u2" role="tabpanel" aria-labelledby="tab-2" tabindex="-1">
+<div class="uhead"><span class="kicker">UD 2 · Imagen y vídeo</span><h2>La señal: conectores, formatos y equipos</h2><ul class="counts"><li><b>10</b> vídeos · 13 min</li><li><b>8</b> lecciones 3D</li><li><b>4</b> módulos de consulta</li><li><b>3</b> juegos</li></ul></div>
+<div class="step"><div class="sh"><span class="num">1</span><div><h3>Ver</h3><p>Vídeos cortos sin audio para arrancar cada tema.</p></div><a class="more" href="videos/#ud-2">Todos en el reproductor<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ul class="vids">
+<li><a class="vid" href="videos/#ppp"><span class="ph"><img src="videos/posters/h/ppp.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:24</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Píxeles por pulgada</span><span class="vs">PPP, diagonal y nitidez</span></a></li>
+<li><a class="vid" href="videos/#conectores"><span class="ph"><img src="videos/posters/h/conectores.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:24</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Conectores de vídeo</span><span class="vs">VGA, DVI, HDMI, DisplayPort y USB-C</span></a></li>
+<li><a class="vid" href="videos/#hdmi"><span class="ph"><img src="videos/posters/h/hdmi.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:24</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">HDMI y ancho de banda</span><span class="vs">Versiones, Gbit/s y HDCP</span></a></li>
+<li><a class="vid" href="videos/#sdi"><span class="ph"><img src="videos/posters/h/sdi.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:24</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">SDI y fibra</span><span class="vs">Vídeo profesional por coaxial</span></a></li>
+<li><a class="vid" href="videos/#codecs"><span class="ph"><img src="videos/posters/h/codecs.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:24</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Formatos y códecs</span><span class="vs">Contenedor, códec, intra e inter</span></a></li>
+<li><a class="vid" href="videos/#codecs-vj"><span class="ph"><img src="videos/posters/h/codecs-vj.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:24</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Códecs para VJ</span><span class="vs">DXV, HAP, ProRes y NotchLC</span></a></li>
+<li><a class="vid" href="videos/#entrelazado"><span class="ph"><img src="videos/posters/h/entrelazado.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:17</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Progresivo y entrelazado</span><span class="vs">p / i, fps, PAL y NTSC</span></a></li>
+<li><a class="vid" href="videos/#ndi"><span class="ph"><img src="videos/posters/h/ndi.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:09</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">NDI y extensores</span><span class="vs">Vídeo por red y a larga distancia</span></a></li>
+<li><a class="vid" href="videos/#mezclador"><span class="ph"><img src="videos/posters/h/mezclador.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:17</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Mesa de mezcla</span><span class="vs">Entradas, preview, programa y T-bar</span></a></li>
+<li><a class="vid" href="videos/#equipos-senal"><span class="ph"><img src="videos/posters/h/equipos-senal.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:17</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Matriz, splitter y switch</span><span class="vs">También conversor y escalador</span></a></li>
+</ul></div>
+<div class="step"><div class="sh"><span class="num">2</span><div><h3>Practicar en 3D</h3><p>Curso Imagen y vídeo: escenas 3D, simuladores y una prueba al final de cada lección.</p></div><a class="more" href="imagen-video.html">Abrir el curso<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ol class="less">
+<li><a href="imagen-video.html#leccion-9"><span class="ln">9</span><span class="lt">Píxeles por pulgada (PPP)</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-10"><span class="ln">10</span><span class="lt">Conectores de vídeo y ancho de banda</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-11"><span class="ln">11</span><span class="lt">SDI, fibra y HDCP</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-12"><span class="ln">12</span><span class="lt">Formatos, contenedores y códecs de vídeo</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-13"><span class="ln">13</span><span class="lt">Formatos de imagen</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-14"><span class="ln">14</span><span class="lt">Progresivo, entrelazado y fotogramas por segundo</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-15"><span class="ln">15</span><span class="lt">NDI y extensores de señal</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-16"><span class="ln">16</span><span class="lt">Mezcladoras, matrices y compañía</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+</ol></div>
+<div class="step"><div class="sh"><span class="num">3</span><div><h3>Consultar</h3><p>Teoría, tablas y calculadoras de la Video Suite.</p></div><a class="more" href="video.html">Abrir la suite<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ul class="mods">
+<li><a class="mod" href="video.html#m3"><span class="mt">Señal de Vídeo</span><span class="md">Canal alpha, escaneo progresivo vs entrelazado, PAL/NTSC/SECAM, gamma y HDR.</span><span class="also">También UD 1</span></a></li>
+<li><a class="mod" href="video.html#m4"><span class="mt">Conectores &amp; Codecs de Vídeo</span><span class="md">VGA, DVI, HDMI, DisplayPort, SDI, HDBaseT, HDCP, formatos y codecs intra/inter-frame.</span></a></li>
+<li><a class="mod" href="video.html#m5"><span class="mt">Formatos de Imagen</span><span class="md">Mapa de bits vs vectoriales, compresión con y sin pérdida, transparencia y canal alfa.</span></a></li>
+<li><a class="mod" href="video.html#m6"><span class="mt">Distribución &amp; Routing</span><span class="md">Matrices, splitters, conversores, switches, escaladores y mesas mezcladoras de vídeo.</span></a></li>
+</ul></div>
+<div class="step"><div class="sh"><span class="num">4</span><div><h3>Ponerse a prueba</h3><p>Juegos de la suite y la prueba de cada lección 3D.</p></div></div><ul class="games">
+<li><a href="video.html#m3"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Progresivo o Entrelazado</span><span class="gm">Señal de Vídeo</span></span></a></li>
+<li><a href="video.html#m4"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Conecta el Conector — Drag &amp; Drop</span><span class="gm">Conectores &amp; Codecs de Vídeo</span></span></a></li>
+<li><a href="video.html#m5"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Raster o Vectorial</span><span class="gm">Formatos de Imagen</span></span></a></li>
+<li><a href="imagen-video.html#leccion-9"><span class="gi" aria-hidden="true">✅</span><span><span class="gt">Pruebas de las lecciones 9–16</span><span class="gm">Curso 3D · pestaña «Prueba»</span></span></a></li>
+</ul></div>
+<div class="step soft"><div class="sh"><span class="num" aria-hidden="true">+</span><div><h3>Software de la unidad</h3><p>Suites de los programas que se usan en esta unidad.</p></div></div><ul class="sw">
+<li><a href="resolume.html"><img src="icons/resolume.svg" alt="" width="36" height="36"><span><span class="gt">Resolume Arena</span><span class="gm">VJing y projection mapping</span></span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="after-effects.html"><img src="icons/aftereffects.png" alt="" width="36" height="36"><span><span class="gt">After Effects</span><span class="gm">Animación y motion graphics</span></span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+</ul></div>
+</section><section class="unit img" id="u3" role="tabpanel" aria-labelledby="tab-3" tabindex="-1">
+<div class="uhead"><span class="kicker">UD 3 · Imagen y vídeo</span><h2>Proyección, LED y mapping</h2><ul class="counts"><li><b>8</b> vídeos · 14 min</li><li><b>8</b> lecciones 3D</li><li><b>2</b> módulos de consulta</li><li><b>2</b> juegos</li></ul></div>
+<div class="step"><div class="sh"><span class="num">1</span><div><h3>Ver</h3><p>Vídeos cortos sin audio para arrancar cada tema.</p></div><a class="more" href="videos/#ud-3">Todos en el reproductor<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ul class="vids">
+<li><a class="vid" href="videos/#brillo"><span class="ph"><img src="videos/posters/h/brillo.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:45</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Brillo y contraste</span><span class="vs">Lúmenes, lux, ANSI, gamma y HDR</span></a></li>
+<li><a class="vid" href="videos/#throw-ratio"><span class="ph"><img src="videos/posters/h/throw-ratio.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:41</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Throw ratio</span><span class="vs">Ópticas y distancia de proyección</span></a></li>
+<li><a class="vid" href="videos/#keystone"><span class="ph"><img src="videos/posters/h/keystone.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:51</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Keystone y lens shift</span><span class="vs">Encajar la imagen en la pantalla</span></a></li>
+<li><a class="vid" href="videos/#tecnologias"><span class="ph"><img src="videos/posters/h/tecnologias.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:46</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">LCD, DLP y láser</span><span class="vs">Tecnologías de proyector y HDBaseT</span></a></li>
+<li><a class="vid" href="videos/#pantallas-led"><span class="ph"><img src="videos/posters/h/pantallas-led.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:47</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Pantallas LED</span><span class="vs">Del píxel a la pantalla, y cómo se calcula</span></a></li>
+<li><a class="vid" href="videos/#nits"><span class="ph"><img src="videos/posters/h/nits.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:33</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Nits y refresco</span><span class="vs">El brillo y la estabilidad de una pantalla LED</span></a></li>
+<li><a class="vid" href="videos/#mapping"><span class="ph"><img src="videos/posters/h/mapping.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:41</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Mapping y blending</span><span class="vs">Grid, warping y unión de proyectores</span></a></li>
+<li><a class="vid" href="videos/#pixel-mapping"><span class="ph"><img src="videos/posters/h/pixel-mapping.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:41</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Pixel mapping</span><span class="vs">Pantallas LED, DMX y Art-Net</span></a></li>
+</ul></div>
+<div class="step"><div class="sh"><span class="num">2</span><div><h3>Practicar en 3D</h3><p>Curso Imagen y vídeo: escenas 3D, simuladores y una prueba al final de cada lección.</p></div><a class="more" href="imagen-video.html">Abrir el curso<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ol class="less">
+<li><a href="imagen-video.html#leccion-17"><span class="ln">17</span><span class="lt">Brillo, contraste y HDR</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-18"><span class="ln">18</span><span class="lt">Ópticas y throw ratio</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-19"><span class="ln">19</span><span class="lt">Keystone, lens shift y corrección de esquinas</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-20"><span class="ln">20</span><span class="lt">Tecnologías de proyector y HDBaseT</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-21"><span class="ln">21</span><span class="lt">Pantallas LED: del píxel a la pantalla</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-22"><span class="ln">22</span><span class="lt">Nits y tasa de refresco</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-23"><span class="ln">23</span><span class="lt">Video mapping, warping y blending</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="imagen-video.html#leccion-24"><span class="ln">24</span><span class="lt">Pixel mapping: LED, DMX y Art-Net</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+</ol></div>
+<div class="step"><div class="sh"><span class="num">3</span><div><h3>Consultar</h3><p>Teoría, tablas y calculadoras de la Video Suite.</p></div><a class="more" href="video.html">Abrir la suite<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ul class="mods">
+<li><a class="mod" href="video.html#m7"><span class="mt">Proyección</span><span class="md">Lúmenes ANSI/ISO/LED, throw ratio, tipos de lente, keystone, lens shift y tecnologías LCD/DLP/Láser.</span></a></li>
+<li><a class="mod" href="video.html#m8"><span class="mt">Pantallas LED &amp; Mapping</span><span class="md">Pixel Pitch, Nits, tasa de refresco, controladora LED, mapping, grid, blending y warping.</span></a></li>
+</ul></div>
+<div class="step"><div class="sh"><span class="num">4</span><div><h3>Ponerse a prueba</h3><p>Juegos de la suite y la prueba de cada lección 3D.</p></div></div><ul class="games">
+<li><a href="video.html#m7"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Quiz — Throw Ratio &amp; Proyección</span><span class="gm">Proyección</span></span></a></li>
+<li><a href="video.html#m8"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Elige el Pixel Pitch Correcto</span><span class="gm">Pantallas LED &amp; Mapping</span></span></a></li>
+<li><a href="imagen-video.html#leccion-17"><span class="gi" aria-hidden="true">✅</span><span><span class="gt">Pruebas de las lecciones 17–24</span><span class="gm">Curso 3D · pestaña «Prueba»</span></span></a></li>
+</ul></div>
+<div class="step soft"><div class="sh"><span class="num" aria-hidden="true">+</span><div><h3>Software de la unidad</h3><p>Suites de los programas que se usan en esta unidad.</p></div></div><ul class="sw">
+<li><a href="resolume.html"><img src="icons/resolume.svg" alt="" width="36" height="36"><span><span class="gt">Resolume Arena</span><span class="gm">VJing y projection mapping</span></span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="after-effects.html"><img src="icons/aftereffects.png" alt="" width="36" height="36"><span><span class="gt">After Effects</span><span class="gm">Animación y motion graphics</span></span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+</ul></div>
+</section><section class="unit ilu" id="u4" role="tabpanel" aria-labelledby="tab-4" tabindex="-1">
+<div class="uhead"><span class="kicker">UD 4 · Iluminación</span><h2>Iluminación: luz, fuentes y focos</h2><ul class="counts"><li><b>7</b> vídeos · 11 min</li><li><b>10</b> lecciones 3D</li><li><b>6</b> módulos de consulta</li><li><b>4</b> juegos</li></ul></div>
+<div class="step"><div class="sh"><span class="num">1</span><div><h3>Ver</h3><p>Vídeos cortos sin audio para arrancar cada tema.</p></div><a class="more" href="videos/#ud-4">Todos en el reproductor<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ul class="vids">
+<li><a class="vid" href="videos/#luz"><span class="ph"><img src="videos/posters/h/luz.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:43</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">La luz</span><span class="vs">Intensidad, calidad y dirección</span></a></li>
+<li><a class="vid" href="videos/#temperatura"><span class="ph"><img src="videos/posters/h/temperatura.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:33</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Temperatura de color</span><span class="vs">Espectro visible y grados kelvin</span></a></li>
+<li><a class="vid" href="videos/#magnitudes"><span class="ph"><img src="videos/posters/h/magnitudes.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:32</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Lúmenes y lux</span><span class="vs">Lúmenes, candelas, lux y dimmer</span></a></li>
+<li><a class="vid" href="videos/#fuentes"><span class="ph"><img src="videos/posters/h/fuentes.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:34</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Fuentes de luz</span><span class="vs">De la incandescente al LED</span></a></li>
+<li><a class="vid" href="videos/#focos"><span class="ph"><img src="videos/posters/h/focos.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:30</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Focos convencionales</span><span class="vs">PAR, PC, Fresnel y recorte</span></a></li>
+<li><a class="vid" href="videos/#cabezas-moviles"><span class="ph"><img src="videos/posters/h/cabezas-moviles.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:19</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Cabezas móviles</span><span class="vs">Wash, spot y beam</span></a></li>
+<li><a class="vid" href="videos/#atributos"><span class="ph"><img src="videos/posters/h/atributos.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:32</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Atributos y canales</span><span class="vs">Dimmer, color, zoom, iris, gobo y DMX</span></a></li>
+</ul></div>
+<div class="step"><div class="sh"><span class="num">2</span><div><h3>Practicar en 3D</h3><p>Curso Iluminación en directo: escenas 3D, simuladores y una prueba al final de cada lección.</p></div><a class="more" href="iluminacion-directo.html">Abrir el curso<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ol class="less">
+<li><a href="iluminacion-directo.html#leccion-1"><span class="ln">1</span><span class="lt">La luz y el espectro visible</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="iluminacion-directo.html#leccion-2"><span class="ln">2</span><span class="lt">Intensidad y magnitudes: lumen, candela y lux</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="iluminacion-directo.html#leccion-3"><span class="ln">3</span><span class="lt">Calidad y dirección de la luz</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="iluminacion-directo.html#leccion-4"><span class="ln">4</span><span class="lt">Reflexión y refracción</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="iluminacion-directo.html#leccion-5"><span class="ln">5</span><span class="lt">Temperatura de color</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="iluminacion-directo.html#leccion-6"><span class="ln">6</span><span class="lt">Fuentes de luz</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="iluminacion-directo.html#leccion-7"><span class="ln">7</span><span class="lt">Focos convencionales</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="iluminacion-directo.html#leccion-8"><span class="ln">8</span><span class="lt">Cabezas móviles: wash, spot y beam</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="iluminacion-directo.html#leccion-9"><span class="ln">9</span><span class="lt">Atributos y canales de una cabeza móvil</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="iluminacion-directo.html#leccion-10"><span class="ln">10</span><span class="lt">Marcas y mesas de iluminación</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+</ol></div>
+<div class="step"><div class="sh"><span class="num">3</span><div><h3>Consultar</h3><p>Teoría, tablas y calculadoras de la Iluminación Suite.</p></div><a class="more" href="iluminacion.html">Abrir la suite<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ul class="mods">
+<li><a class="mod" href="iluminacion.html#m1"><span class="mt">Fundamentos de la Luz</span><span class="md">Qué es la luz, intensidad, calidad (dura/suave), dirección, espectro visible y fenómenos de reflexión y refracción.</span></a></li>
+<li><a class="mod" href="iluminacion.html#m2"><span class="mt">Magnitudes &amp; Temperatura de Color</span><span class="md">Lúmenes, candelas, lux, dimmer, temperatura de color en ºKelvin y calculadora de la ley inversa del cuadrado.</span></a></li>
+<li><a class="mod" href="iluminacion.html#m3"><span class="mt">Fuentes de Luz</span><span class="md">Incandescente, halógena, dicroica, fluorescente, descarga HMI y LED. Comparativa de rendimiento, temperatura y vida útil.</span></a></li>
+<li><a class="mod" href="iluminacion.html#m4"><span class="mt">Tipos de Focos</span><span class="md">PAR, PAR LED, PC Plano Convexo, Fresnel, Recortes (Profile), Cegadoras y Pixel Bar. Tabla comparativa completa.</span></a></li>
+<li><a class="mod" href="iluminacion.html#m5"><span class="mt">Cabezas Móviles</span><span class="md">Wash, Spot y Beam. Diferencias de haz, ángulo, funciones y usos en escena. Simulador visual de tipos de haz.</span></a></li>
+<li><a class="mod" href="iluminacion.html#m6"><span class="mt">Atributos &amp; Canales</span><span class="md">Dimmer, Pan/Tilt, Color, Zoom, Iris, Focus, Frost, Prisma y Gobo. Qué son y para qué sirven en espectáculos.</span></a></li>
+</ul></div>
+<div class="step"><div class="sh"><span class="num">4</span><div><h3>Ponerse a prueba</h3><p>Juegos de la suite y la prueba de cada lección 3D.</p></div></div><ul class="games">
+<li><a href="iluminacion.html#m1"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Identifica la Dirección de la Luz</span><span class="gm">Fundamentos de la Luz</span></span></a></li>
+<li><a href="iluminacion.html#m2"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Adivina los Kelvin</span><span class="gm">Magnitudes &amp; Temperatura de Color</span></span></a></li>
+<li><a href="iluminacion.html#m4"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Identifica el Foco</span><span class="gm">Tipos de Focos</span></span></a></li>
+<li><a href="iluminacion.html#m6"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Constructor de Fixture</span><span class="gm">Atributos &amp; Canales</span></span></a></li>
+<li><a href="iluminacion-directo.html#leccion-1"><span class="gi" aria-hidden="true">✅</span><span><span class="gt">Pruebas de las lecciones 1–10</span><span class="gm">Curso 3D · pestaña «Prueba»</span></span></a></li>
+</ul></div>
+</section><section class="unit ilu" id="u5" role="tabpanel" aria-labelledby="tab-5" tabindex="-1">
+<div class="uhead"><span class="kicker">UD 5 · Iluminación</span><h2>Rigging, DMX y programación</h2><ul class="counts"><li><b>7</b> vídeos · 8 min</li><li><b>5</b> lecciones 3D</li><li><b>3</b> módulos de consulta</li><li><b>3</b> juegos</li></ul></div>
+<div class="step"><div class="sh"><span class="num">1</span><div><h3>Ver</h3><p>Vídeos cortos sin audio para arrancar cada tema.</p></div><a class="more" href="videos/#ud-5">Todos en el reproductor<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ul class="vids">
+<li><a class="vid" href="videos/#rigging"><span class="ph"><img src="videos/posters/h/rigging.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:17</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Trusses y safety</span><span class="vs">Estructuras, garras y cable de seguridad</span></a></li>
+<li><a class="vid" href="videos/#elevar-cargas"><span class="ph"><img src="videos/posters/h/elevar-cargas.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:16</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Elevar cargas</span><span class="vs">Torres, motores y tipos de rigging</span></a></li>
+<li><a class="vid" href="videos/#trifasica"><span class="ph"><img src="videos/posters/h/trifasica.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:17</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Corriente trifásica</span><span class="vs">Acometida, generador y distribución</span></a></li>
+<li><a class="vid" href="videos/#planos"><span class="ph"><img src="videos/posters/h/planos.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:03</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Planos de luces</span><span class="vs">El documento para montar un show</span></a></li>
+<li><a class="vid" href="videos/#dmx"><span class="ph"><img src="videos/posters/h/dmx.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:17</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">DMX 512</span><span class="vs">Universo, canal, address e ID</span></a></li>
+<li><a class="vid" href="videos/#cableado-dmx"><span class="ph"><img src="videos/posters/h/cableado-dmx.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:10</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Cableado DMX</span><span class="vs">Cascada, conectores y terminador</span></a></li>
+<li><a class="vid" href="videos/#art-net"><span class="ph"><img src="videos/posters/h/art-net.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080"><span class="dur">1:10</span><span class="pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></span><span class="vt">Nodos y Art-Net</span><span class="vs">Librerías, dimmers, splitters y red</span></a></li>
+</ul></div>
+<div class="step"><div class="sh"><span class="num">2</span><div><h3>Practicar en 3D</h3><p>Curso Iluminación en directo: escenas 3D, simuladores y una prueba al final de cada lección.</p></div><a class="more" href="iluminacion-directo.html">Abrir el curso<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ol class="less">
+<li><a href="iluminacion-directo.html#leccion-11"><span class="ln">11</span><span class="lt">Sujeción, seguridad y rigging</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="iluminacion-directo.html#leccion-12"><span class="ln">12</span><span class="lt">Acometida, trifásica y distribución eléctrica</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="iluminacion-directo.html#leccion-13"><span class="ln">13</span><span class="lt">Planos de iluminación</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="iluminacion-directo.html#leccion-14"><span class="ln">14</span><span class="lt">El protocolo DMX512</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+<li><a href="iluminacion-directo.html#leccion-15"><span class="ln">15</span><span class="lt">Conexionado, librerías, splitters, nodos y Art-Net</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+</ol></div>
+<div class="step"><div class="sh"><span class="num">3</span><div><h3>Consultar</h3><p>Teoría, tablas y calculadoras de la Iluminación Suite.</p></div><a class="more" href="iluminacion.html">Abrir la suite<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><ul class="mods">
+<li><a class="mod" href="iluminacion.html#m7"><span class="mt">Rigging &amp; Seguridad</span><span class="md">Trusses, torres, garras, safety, polipastos, acometida eléctrica, corriente trifásica y distribuidores de corriente.</span></a></li>
+<li><a class="mod" href="iluminacion.html#m8"><span class="mt">Protocolo DMX</span><span class="md">DMX-512, canales, address, ID, fixture, conexionado, librerías, splitters, nodos, cuadro dimmers y ART-NET.</span></a></li>
+<li><a class="mod" href="iluminacion.html#m9"><span class="mt">Redes IP</span><span class="md">Qué es una red, dirección IP, subred, router y switch. Fundamentos para entender ART-NET y sACN en producción.</span></a></li>
+</ul></div>
+<div class="step"><div class="sh"><span class="num">4</span><div><h3>Ponerse a prueba</h3><p>Juegos de la suite y la prueba de cada lección 3D.</p></div></div><ul class="games">
+<li><a href="iluminacion.html#m7"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Detecta el Peligro — Auditoría de Seguridad</span><span class="gm">Rigging &amp; Seguridad</span></span></a></li>
+<li><a href="iluminacion.html#m8"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">Calcula la Dirección DMX</span><span class="gm">Protocolo DMX</span></span></a></li>
+<li><a href="iluminacion.html#m9"><span class="gi" aria-hidden="true">🎮</span><span><span class="gt">¿Están en la misma red?</span><span class="gm">Redes IP</span></span></a></li>
+<li><a href="iluminacion-directo.html#leccion-11"><span class="gi" aria-hidden="true">✅</span><span><span class="gt">Pruebas de las lecciones 11–15</span><span class="gm">Curso 3D · pestaña «Prueba»</span></span></a></li>
+</ul></div>
+<div class="step soft"><div class="sh"><span class="num" aria-hidden="true">+</span><div><h3>Software de la unidad</h3><p>Suites de los programas que se usan en esta unidad.</p></div></div><ul class="sw">
+<li><a href="magicq.html"><img src="icons/magicq.png" alt="" width="36" height="36"><span><span class="gt">MagicQ</span><span class="gm">Programación de mesas de luces</span></span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+</ul></div>
+</section>
+</main>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var tabs=[].slice.call(document.querySelectorAll('.ut')),secs=[].slice.call(document.querySelectorAll('.unit'));
+  var KEY='avvlab_ud';
+  function show(n,focus){
+    n=Math.min(5,Math.max(1,n|0||1));
+    tabs.forEach(function(t,i){var on=i+1===n;t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1});
+    secs.forEach(function(s,i){s.hidden=i+1!==n});
+    try{localStorage.setItem(KEY,n)}catch(e){}
+    document.title='UD '+n+' · Por unidad · AVV Lab';
+    if(focus)secs[n-1].focus({preventScroll:true});
+  }
+  function fromHash(){var m=/^#ud-([1-5])$/.exec(location.hash);if(m)return +m[1];var s=null;try{s=localStorage.getItem(KEY)}catch(e){}return +s||1}
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(e){e.preventDefault();history.replaceState(null,'','#ud-'+(i+1));show(i+1)});
+    t.addEventListener('keydown',function(e){var k=e.key,j=null;if(k==='ArrowRight')j=(i+1)%5;else if(k==='ArrowLeft')j=(i+4)%5;else if(k==='Home')j=0;else if(k==='End')j=4;if(j===null)return;e.preventDefault();tabs[j].focus();history.replaceState(null,'','#ud-'+(j+1));show(j+1)});
+  });
+  window.addEventListener('hashchange',function(){show(fromHash())});
+  show(fromHash());
+  // tema claro / oscuro
+  function paint(){var b=$('theme'),n=document.documentElement.getAttribute('data-theme')==='dark'?'claro':'oscuro';b.setAttribute('aria-label','Cambiar a modo '+n);b.title='Cambiar a modo '+n}
+  paint();
+  $('theme').onclick=function(){var d=document.documentElement,n=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('avvlab_theme',n)}catch(e){}document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',n==='dark'?'#1b1917':'#f7f6f3')});paint()};
+})();
+
+</script>
+</body>
+</html>

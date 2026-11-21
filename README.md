@@ -66,6 +66,8 @@ AVV/
 - **Barra de navegación flotante** — acceso entre suites desde cualquier página, con botón de retorno a la última suite visitada (sessionStorage).
 - **Buscador global** — en la portada: busca a la vez en las suites, los 40 vídeos explicativos y las lecciones de los cursos 3D, sin distinguir acentos; cada resultado abre directamente el vídeo o la lección.
 - **Glosario visual** — 54 términos técnicos con equivalencias EN/ES, buscador global y filtros por suite.
+- **Por unidad** — `unidades.html` reúne, para cada UD, sus vídeos, las lecciones del curso 3D, los módulos de consulta de la suite (enlazados directamente con `video.html#m3`, `iluminacion.html#m8`…), los juegos y el software. Se abre desde la tarjeta «Todo por unidad» de la portada.
+- **Diseño común** — las 6 suites usan el sistema visual de la portada (`avl-tema.css`): papel crema, bordes de tinta, sombras desplazadas y titulares en Bricolage Grotesque, con el color de cada suite (Vídeo e Iluminación azul, Resolume verde, After Effects morado, Illustrator amarillo, MagicQ azul lavanda).
 - **Enlaces entre vídeos, suites y cursos 3D** — cada módulo de las suites de Vídeo e Iluminación muestra sus vídeos y las lecciones 3D donde practicarlo (`avl-rel.js`); cada lección 3D enlaza a sus vídeos, y el reproductor enlaza a la lección 3D correspondiente.
 - **Sin dependencias externas** — las fuentes (Inter y JetBrains Mono, en `fonts/`) y three.js (en `vendor/`) se sirven desde el propio sitio: no se envía la IP del alumno a Google y funciona aunque un CDN falle.
 

@@ -1,0 +1,225 @@
+/* ═══════════════════════════════════════════════════════════════════
+   AVV Lab · Tema común para las 6 suites
+   Lleva a las suites el sistema visual de la portada: papel crema, tinta,
+   bordes de 2 px, sombras desplazadas en pastel y titulares en Bricolage.
+   Solo cambia el «marco» (cabecera, menú, títulos, tarjetas y paneles);
+   el contenido, los simuladores y los colores propios de cada suite no se tocan.
+   Cada suite lo enlaza en su <head> y lleva class="avl-tema" y data-avl-suite en <html>.
+   ═══════════════════════════════════════════════════════════════════ */
+
+html.avl-tema {
+  --t-bg: #f7f6f3;
+  --t-surface: #ffffff;
+  --t-fg: #1f1d1a;
+  --t-mid: #5f5b54;
+  --t-line: #e6e2da;
+  --t-ink: #1f1d1a;
+  --t-blue: #cbe6f7;
+  --t-yellow: #f2da8e;
+  --t-green: #d5e7d0;
+  --t-pink: #f5cfcd;
+  --t-purple: #ddd3f3;
+  --t-indigo: #c9d2f6;
+  --t-tint: var(--t-blue);
+  --t-tint-d: color-mix(in srgb, var(--t-tint) 100%, #000);
+  --t-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --t-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --t-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+/* Color de cada suite: el mismo que su tarjeta en la portada */
+html.avl-tema[data-avl-suite="video"]        { --t-tint: var(--t-blue); }
+html.avl-tema[data-avl-suite="iluminacion"]  { --t-tint: var(--t-blue); }
+html.avl-tema[data-avl-suite="resolume"]     { --t-tint: var(--t-green); }
+html.avl-tema[data-avl-suite="after-effects"]{ --t-tint: var(--t-purple); }
+html.avl-tema[data-avl-suite="illustrator"]  { --t-tint: var(--t-yellow); }
+html.avl-tema[data-avl-suite="magicq"]       { --t-tint: var(--t-indigo); }
+
+/* Fondos y textos base: se reasignan las variables de cada suite */
+html.avl-tema[data-avl-suite="video"], html.avl-tema[data-avl-suite="iluminacion"] {
+  --bg: var(--t-bg); --bg2: #efede8; --bg3: #e9e6df; --border: var(--t-line); --border2: #d6d1c7;
+  --text: var(--t-fg); --text2: #4a463f; --text3: #5f5b54; --navy: #1f1d1a; --white: #ffffff;
+}
+html.avl-tema[data-avl-suite="resolume"], html.avl-tema[data-avl-suite="magicq"],
+html.avl-tema[data-avl-suite="after-effects"], html.avl-tema[data-avl-suite="illustrator"] {
+  --bg-void: var(--t-bg); --bg-deep: var(--t-bg); --bg-surface: #ffffff; --bg-raised: #fbfaf7; --bg-panel: #f3f1ec;
+  --text-primary: var(--t-fg); --border-dark: var(--t-line); --border-mid: #d6d1c7;
+}
+html.avl-tema body { background: var(--t-bg) !important; color: var(--t-fg); font-family: var(--t-font) !important; }
+
+/* Titulares con la tipografía de la portada */
+html.avl-tema :is(.landing-title, .module-title, .page-title, .ptitle, .hero-title, .sec-title, .sidebar-title, .sb-name, .logo-text, .logo-title, .card-title, .section-card-title, .exercise-title) {
+  font-family: var(--t-display) !important; font-weight: 800 !important; letter-spacing: -0.02em !important;
+  text-transform: none !important; color: var(--t-fg) !important;
+}
+
+/* ═══ Familia A: Vídeo e Iluminación (cabecera + pestañas) ═══ */
+html.avl-tema .top-header {
+  background: var(--t-bg) !important; border-bottom: 2px solid var(--t-ink); height: 60px;
+}
+html.avl-tema .top-header .logo-icon {
+  background: var(--t-tint) !important; color: var(--t-fg) !important; border: 2px solid var(--t-ink);
+  border-radius: 10px; width: 34px; height: 34px; box-shadow: 2px 2px 0 var(--t-ink);
+}
+html.avl-tema .top-header .logo-text { font-size: 19px !important; }
+html.avl-tema .top-header .logo-sub { color: var(--t-mid) !important; }
+html.avl-tema .top-header .header-badge {
+  background: var(--t-surface) !important; color: var(--t-fg) !important; border: 2px solid var(--t-ink) !important;
+  border-radius: 999px !important; font-family: var(--t-mono); font-weight: 700;
+}
+html.avl-tema .nav-bar {
+  background: var(--t-bg) !important; top: 60px !important; border-bottom: 2px solid var(--t-ink) !important;
+  padding: 10px 24px !important; gap: 8px !important; box-shadow: none !important;
+}
+html.avl-tema .nav-tab {
+  color: var(--t-fg) !important; background: var(--t-surface); border: 2px solid var(--t-ink) !important;
+  border-radius: 999px; padding: 6px 14px !important; margin: 0 !important; font-weight: 600 !important; font-size: 13px !important;
+  transition: transform 100ms ease, box-shadow 100ms ease, background-color 100ms ease;
+}
+html.avl-tema .nav-tab .nav-num {
+  background: transparent !important; color: var(--t-mid) !important; font-family: var(--t-mono); font-weight: 700;
+}
+html.avl-tema .nav-tab.active { background: var(--t-tint) !important; box-shadow: 3px 3px 0 var(--t-ink); }
+html.avl-tema .nav-tab.active .nav-num { color: var(--t-fg) !important; }
+@media (hover: hover) and (pointer: fine) {
+  html.avl-tema .nav-tab:not(.active):hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--t-tint-d); }
+}
+
+/* Portada de la suite */
+html.avl-tema .landing-hero {
+  background: var(--t-tint) !important; border: 2px solid var(--t-ink); border-radius: 20px !important;
+  box-shadow: 8px 8px 0 var(--t-ink);
+}
+html.avl-tema .landing-hero::before, html.avl-tema .landing-hero::after { display: none !important; }
+html.avl-tema .landing-title { font-size: clamp(30px, 4vw, 44px) !important; line-height: 1.05 !important; }
+html.avl-tema .landing-title span, html.avl-tema .landing-title em { color: var(--t-fg) !important; background: var(--t-surface); padding: 0 .18em; border-radius: 8px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+html.avl-tema .landing-desc { color: #33302b !important; }
+html.avl-tema .landing-pills > * {
+  background: var(--t-surface) !important; color: var(--t-fg) !important; border: 2px solid var(--t-ink) !important;
+  border-radius: 999px !important; font-weight: 600;
+}
+html.avl-tema .module-card {
+  border: 2px solid var(--t-ink) !important; border-radius: 16px !important; box-shadow: 5px 5px 0 var(--t-tint-d) !important;
+  transition: transform 140ms ease, box-shadow 140ms ease !important;
+}
+html.avl-tema .module-card::before { display: none !important; }
+@media (hover: hover) and (pointer: fine) {
+  html.avl-tema .module-card:hover { transform: translate(-2px, -2px) !important; box-shadow: 8px 8px 0 var(--t-tint-d) !important; }
+}
+html.avl-tema .module-card .card-num { font-family: var(--t-mono); color: var(--t-mid) !important; }
+html.avl-tema .module-card .card-title { font-size: 18px !important; }
+
+/* Cabecera de cada módulo */
+html.avl-tema .back-btn {
+  background: var(--t-surface) !important; color: var(--t-fg) !important; border: 2px solid var(--t-ink) !important;
+  border-radius: 12px !important; box-shadow: 3px 3px 0 var(--t-tint-d); font-weight: 700 !important;
+}
+html.avl-tema .module-header { border-bottom: 2px solid var(--t-ink) !important; }
+html.avl-tema .module-title { font-size: clamp(24px, 3vw, 32px) !important; }
+html.avl-tema .module-icon {
+  background: var(--t-tint); border: 2px solid var(--t-ink); border-radius: 14px; width: 54px; height: 54px;
+  display: grid; place-items: center; box-shadow: 3px 3px 0 var(--t-ink); flex-shrink: 0;
+}
+html.avl-tema .module-tags .tag, html.avl-tema .card-tags .card-tag {
+  background: var(--t-surface) !important; color: var(--t-fg) !important; border: 1.5px solid var(--t-ink) !important;
+  border-radius: 999px !important; font-weight: 600;
+}
+html.avl-tema .inner-tab {
+  border: 2px solid var(--t-ink) !important; border-radius: 999px !important; color: var(--t-fg) !important;
+  background: var(--t-surface) !important; font-weight: 600 !important;
+}
+html.avl-tema .inner-tab.active { background: var(--t-tint) !important; box-shadow: 3px 3px 0 var(--t-ink); }
+
+/* ═══ Familia B: Resolume, MagicQ, After Effects e Illustrator (menú lateral) ═══ */
+html.avl-tema :is(.sidebar, .sb) {
+  background: var(--t-bg) !important; border-right: 2px solid var(--t-ink) !important;
+}
+html.avl-tema :is(.sidebar-header, .sb-head, .sidebar > .logo) { border-bottom: 2px solid var(--t-ink) !important; background: transparent !important; }
+html.avl-tema :is(.sidebar-title, .sb-name, .logo-title) { font-size: 20px !important; }
+html.avl-tema :is(.sidebar-subtitle, .sb-sub, .sidebar > .logo .logo-sub) { color: var(--t-mid) !important; }
+html.avl-tema :is(.sidebar-version, .sb-ver) {
+  background: var(--t-tint) !important; color: var(--t-fg) !important; border: 2px solid var(--t-ink) !important;
+  border-radius: 999px !important; font-weight: 700;
+}
+html.avl-tema :is(.nav-section-label, .nav-section > .nav-label, .sb-nav .nav-lbl) {
+  color: var(--t-mid) !important; border-bottom: none !important; font-family: var(--t-mono) !important; font-weight: 700;
+}
+html.avl-tema :is(.sidebar, .sb) .nav-item {
+  color: var(--t-fg) !important; border: 2px solid transparent !important; border-radius: 12px !important;
+  font-weight: 500;
+}
+html.avl-tema :is(.sidebar, .sb) .nav-item:hover { background: rgba(31, 29, 26, .05) !important; }
+html.avl-tema :is(.sidebar, .sb) .nav-item.active {
+  background: var(--t-tint) !important; border-color: var(--t-ink) !important; box-shadow: 3px 3px 0 var(--t-ink);
+  color: var(--t-fg) !important; font-weight: 700;
+}
+html.avl-tema :is(.sidebar, .sb) .nav-item.active::before { display: none !important; }
+html.avl-tema :is(.sidebar-footer, .sb-foot) { border-top: 2px solid var(--t-ink) !important; color: var(--t-mid) !important; background: transparent !important; }
+
+html.avl-tema .top-bar {
+  background: var(--t-bg) !important; border-bottom: 2px solid var(--t-ink) !important; backdrop-filter: none !important;
+}
+html.avl-tema .topbar-title { color: var(--t-mid) !important; }
+html.avl-tema .topbar-title :is(strong, b, span) { color: var(--t-fg) !important; }
+html.avl-tema :is(.search-wrapper, .top-bar) input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  background: var(--t-surface) !important; border: 2px solid var(--t-ink) !important; border-radius: 999px !important; color: var(--t-fg) !important;
+}
+
+/* Cabeceras de página */
+html.avl-tema :is(.page-title, .ptitle) { font-size: clamp(28px, 3.6vw, 42px) !important; line-height: 1.05 !important; }
+html.avl-tema :is(.page-title, .ptitle) :is(span, em) { color: var(--t-fg) !important; }
+html.avl-tema :is(.page-tag, .ptag, .sec-label) {
+  display: inline-block; background: var(--t-tint) !important; color: var(--t-fg) !important; border: 2px solid var(--t-ink);
+  border-radius: 6px; padding: 1px 9px !important; font-family: var(--t-mono) !important; font-weight: 700 !important;
+  transform: rotate(-2deg); box-shadow: 2px 2px 0 var(--t-ink); margin-bottom: 12px !important;
+}
+html.avl-tema .page-header::after, html.avl-tema .page-header .divider { background: var(--t-ink) !important; }
+
+/* Portadas de suite (familia B) */
+html.avl-tema :is(.hero, .hero-section) {
+  background: var(--t-tint) !important; border: 2px solid var(--t-ink) !important; border-radius: 20px !important;
+  box-shadow: 8px 8px 0 var(--t-ink) !important;
+}
+html.avl-tema :is(.hero, .hero-section)::before, html.avl-tema :is(.hero, .hero-section)::after { display: none !important; }
+html.avl-tema :is(.hero, .hero-section) :is(.hero-title, .hero-title *) { color: var(--t-fg) !important; }
+html.avl-tema :is(.hero, .hero-section) :is(.hero-sub, .hero-desc, .hero-module, .hero-tag, p) { color: #33302b !important; }
+html.avl-tema .hero-section { margin: 24px 0 32px; }
+
+/* Tarjetas de sección y paneles */
+html.avl-tema .section-card {
+  border: 2px solid var(--t-ink) !important; border-radius: 16px !important; box-shadow: 5px 5px 0 var(--t-tint-d) !important;
+  background: var(--t-surface) !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  html.avl-tema .section-card:hover { transform: translate(-2px, -2px) !important; box-shadow: 8px 8px 0 var(--t-tint-d) !important; }
+}
+html.avl-tema .stat-card {
+  background: var(--t-surface) !important; border: 2px solid var(--t-ink) !important; border-radius: 16px !important;
+  box-shadow: 4px 4px 0 var(--t-tint-d);
+}
+html.avl-tema .panel {
+  border: 2px solid var(--t-ink) !important; border-radius: 16px !important; box-shadow: 4px 4px 0 var(--t-line) !important;
+}
+html.avl-tema .panel-title { color: var(--t-fg) !important; }
+html.avl-tema .panel-title::before { background: var(--t-ink) !important; }
+
+/* Títulos de portada con parte coloreada (Resolume): todo en tinta */
+html.avl-tema .hero h1, html.avl-tema .hero h1 span { color: var(--t-fg) !important; font-family: var(--t-display) !important; font-weight: 800 !important; letter-spacing: -0.02em !important; }
+
+/* Botón de menú en móvil */
+html.avl-tema :is(.mobile-btn, .hamburger) {
+  background: var(--t-surface) !important; color: var(--t-fg) !important; border: 2px solid var(--t-ink) !important;
+  border-radius: 12px !important; box-shadow: 3px 3px 0 var(--t-tint-d) !important;
+}
+html.avl-tema :is(.mobile-btn, .hamburger) :is(span, i) { background: var(--t-fg) !important; }
+html.avl-tema :is(.mobile-btn, .hamburger) svg { color: var(--t-fg) !important; stroke: currentColor; }
+
+/* Bloque «Ver vídeo / Practicar en 3D» (avl-rel.js) con el mismo lenguaje */
+html.avl-tema .avl-rel { background: var(--t-surface) !important; border: 2px solid var(--t-ink) !important; border-radius: 16px !important; box-shadow: 4px 4px 0 var(--t-line); }
+html.avl-tema .avl-rel-h { color: var(--t-mid) !important; font-family: var(--t-mono); }
+html.avl-tema .avl-rel a { color: var(--t-fg) !important; border: 2px solid var(--t-ink) !important; background: var(--t-surface) !important; }
+html.avl-tema .avl-rel a:not(.l) { box-shadow: 2px 2px 0 var(--t-green); }
+html.avl-tema .avl-rel a.l { border-style: solid !important; box-shadow: 2px 2px 0 var(--t-yellow); }
+html.avl-tema .avl-rel a:hover { background: var(--t-tint) !important; }
+
+/* Resolume: el código en línea queda sobre fondos algo más oscuros; se oscurece su verde para mantener el contraste */
+html.avl-tema[data-avl-suite="resolume"] .cmd { color: #22594a; }

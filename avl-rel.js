@@ -31,4 +31,14 @@
     box.innerHTML = h;
     if (head) head.insertAdjacentElement('afterend', box); else sec.insertBefore(box, sec.firstChild);
   });
+
+  // Enlace directo a un módulo: video.html#m3 abre el módulo 3
+  function openHash() {
+    var m = /^#(m\d+)$/.exec(location.hash);
+    if (!m) return;
+    var tab = document.querySelector('.nav-tab[data-module="' + m[1] + '"]');
+    if (tab && !tab.classList.contains('active')) tab.click();
+  }
+  openHash();
+  window.addEventListener('hashchange', openHash);
 })();
