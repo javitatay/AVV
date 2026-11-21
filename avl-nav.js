@@ -90,7 +90,7 @@
 
   /* ─── History & back-button logic ────────────────────────────────────────── */
   var PAGES = {
-    'video.html':        'Imagen & Vídeo',
+    'video.html':        'Imagen y vídeo',
     'illustrator.html':  'Illustrator',
     'resolume.html':     'Resolume',
     'after-effects.html':'After Effects',

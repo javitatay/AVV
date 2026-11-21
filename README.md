@@ -27,14 +27,15 @@ El proyecto no requiere servidor, base de datos ni dependencias externas — cad
 
 ```
 AVV/
-├── index.html              # Landing page — acceso a todas las suites
-├── video.html              # Suite: Imagen & Vídeo
-├── illustrator.html        # Suite: Diseño Vectorial (Adobe Illustrator)
-├── resolume.html           # Suite: VJing & Projection Mapping (Resolume Arena)
-├── after-effects.html      # Suite: Motion Graphics & Composición (After Effects)
-├── iluminacion.html        # Suite: Iluminación de Espectáculos
-├── magicq.html              # Suite: Control DMX & Consola de Luz (MagicQ)
-├── iluminacion-directo.html # Curso 3D: Iluminación de espectáculos en directo
+├── index.html              # Portada — acceso a todas las suites
+├── unidades.html           # Vista por unidad
+├── video.html              # Suite de consulta: Imagen y vídeo
+├── illustrator.html        # Suite: Illustrator · Diseño vectorial
+├── resolume.html           # Suite: Resolume Arena · VJing y projection mapping
+├── after-effects.html      # Suite: After Effects · Motion graphics y efectos
+├── iluminacion.html        # Suite de consulta: Iluminación
+├── magicq.html              # Suite: MagicQ · Control DMX y programación de luces
+├── iluminacion-directo.html # Curso 3D: Iluminación
 ├── imagen-video.html        # Curso 3D: Imagen y vídeo para directo
 └── videos/                  # Vídeos explicativos UD 1 a UD 5 (index.html + MP4 + carteles)
 ```
@@ -45,14 +46,14 @@ AVV/
 
 | Suite | Contenido principal | UDs |
 | --- | --- | --- |
-| 🎬 **Imagen & Vídeo** | Resolución, PPI, óptica, DOF, codecs, contenedores, NDI, señal AV | UD 1·2·3 |
-| ✏️ **Diseño Vectorial** | Illustrator: pluma, Bézier, color, formas, tipografía, exportación | CFGM·DG |
-| 🟢 **VJing & Resolume** | Interfaz, clips, efectos, outputs, BPM sync, blend modes, constructor diagramas | UD 1·2·3 |
-| 🔵 **Motion Graphics** | After Effects: keyframes, composición, efectos visuales, motion graphics | UD 2·3 |
+| 🎬 **Imagen y vídeo** | Resolución, PPI, óptica, DOF, codecs, contenedores, NDI, señal AV | UD 1·2·3 |
+| ✏️ **Illustrator** | Illustrator: pluma, Bézier, color, formas, tipografía, exportación | CFGM·DG |
+| 🟢 **Resolume Arena** | Interfaz, clips, efectos, outputs, BPM sync, blend modes, constructor diagramas | UD 1·2·3 |
+| 🟣 **After Effects** | After Effects: keyframes, composición, efectos visuales, motion graphics | UD 2·3 |
 | 💡 **Iluminación** | Magnitudes fotométricas, fuentes de luz, tipos de focos, rigging, DMX, redes IP | UD 4·5 |
-| 🟣 **MagicQ · DMX** | Patch, grupos, paletas, cues, playbacks, ejecutores, sintaxis | EDU·V4 |
-| 🔦 **Iluminación en directo (3D)** | Curso visual e interactivo: escenas 3D con focos y cabezas móviles, simuladores 2D, tests y progreso guardado | UD 4·5 |
-| 🎥 **Imagen y vídeo (3D)** | Curso visual e interactivo: escenas 3D de cámara, proyector, pantalla LED y blending, simuladores 2D, tests y progreso guardado | UD 1·2·3 |
+| 🔵 **MagicQ** | Patch, grupos, paletas, cues, playbacks, ejecutores, sintaxis | UD 5 |
+| 🔦 **Curso 3D · Iluminación** | Curso visual e interactivo: escenas 3D con focos y cabezas móviles, simuladores 2D, tests y progreso guardado | UD 4·5 |
+| 🎥 **Curso 3D · Imagen y vídeo** | Curso visual e interactivo: escenas 3D de cámara, proyector, pantalla LED y blending, simuladores 2D, tests y progreso guardado | UD 1·2·3 |
 | 🎬 **Vídeos explicativos** | Vídeos cortos (~1:45) agrupados por unidad, con capítulos y enlace directo a cada uno. Disponible: UD 1 (8 vídeos), UD 2 (10), UD 3 (8), UD 4 (7) y UD 5 (7) | UD 1·2·3·4·5 |
 
 ---
