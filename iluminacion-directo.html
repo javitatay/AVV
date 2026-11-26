@@ -542,7 +542,7 @@ ${tbl(['Fuente', 'Rendimiento', 'Temp. color', 'Calor', 'Vida útil', 'Desventaj
   ['Descarga', 'Muy alto (80–120+ lm/W)', '5600–8000 K', 'Muy alto', '750–3.000 h', 'Sin dimmer eléctrico (solo mecánico), calentamiento, cambio costoso'],
   ['LED', 'Muy alto (80–150+ lm/W)', '2700–9000 K / RGBW', 'Bajo', '25.000–50.000 h', 'Requiere buena refrigeración']
 ])}`,
-  widgets: [{ key: 'fuentes', title: 'Cuánto consume cada fuente', note: 'Vatios necesarios para un mismo flujo luminoso, con el punto medio de cada rango de la tabla.' }],
+  widgets: [{ key: 'fuentes', title: 'Cuánto consume cada fuente', note: 'Vatios necesarios para un mismo flujo luminoso, con el punto medio de cada rango de la tabla (halógena: valor de espectáculo).' }],
   after: exercise('4.3', `<p>Selección de fuente según el contexto. Para cada situación, elige la fuente de luz más adecuada (halógena, LED, descarga, fluorescente) y justifica tu elección:</p>
 <ol type="a"><li>Obra de teatro con regulación suave y cambios lentos de intensidad.</li><li>Festival al aire libre con muchas horas de funcionamiento continuo.</li><li>Rodaje o espectáculo que debe simular luz de día realista.</li><li>Evento en un espacio pequeño con limitación de consumo eléctrico.</li></ol>`),
   quiz: [
@@ -1125,7 +1125,7 @@ WIDGETS.fuentes = el => {
   el.innerHTML = `${rng('lm', 'Luz que necesitas', 1000, 100000, 1000, 20000)}
     <h4 style="margin:6px 0 0">Potencia necesaria</h4><div class="bars" id="b1"></div>
     <h4 style="margin:10px 0 0">Vida útil típica</h4><div class="bars" id="b2"></div>
-    <p class="note">Valores orientativos: punto medio de cada rango de la tabla de la lección (rendimiento en lm/W y vida útil en horas).</p>`;
+    <p class="note">Valores orientativos: punto medio de cada rango de la tabla de la lección (rendimiento en lm/W y vida útil en horas); en la halógena, la vida útil es la de espectáculo.</p>`;
   const q = s => el.querySelector(s);
   bindRanges(el, { lm: v => nf(v) + ' lm' }, () => {
     const lm = +q('#lm').value, W = S.map(s => lm / s[1]), maxW = Math.max(...W);
